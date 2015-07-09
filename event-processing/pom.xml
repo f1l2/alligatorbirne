@@ -16,10 +16,11 @@
   </properties>
   
   <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <scope>test</scope>
-    </dependency>
+ 	<dependency>
+  		<groupId>at.prototype</groupId>
+  		<artifactId>common</artifactId>
+  		<version>${common.version}</version>
+  	</dependency>
+  
   </dependencies>
 </project>

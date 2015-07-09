@@ -8,20 +8,13 @@
     <version>1.0.0-SNAPSHOT</version>
   </parent>
   
-  <artifactId>iot-device</artifactId>
-  <name>iot-device</name>
-  
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+  <artifactId>common</artifactId>
+  <name>common</name>
   
   <dependencies>
-  	
-  	<dependency>
-  		<groupId>at.prototype</groupId>
-  		<artifactId>common</artifactId>
-  		<version>${common.version}</version>
-  	</dependency>
   
   </dependencies>
+  <build>
+  	  
+  </build>
 </project>
