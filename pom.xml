@@ -17,6 +17,7 @@
 		<java.version>1.7</java.version>
 		<common.version>1.0.0-SNAPSHOT</common.version>
 		<antlr.version>4.5.1</antlr.version>
+		<esper.version>4.11.0</esper.version>
 	</properties>
 	
 	<modules>
@@ -92,6 +93,14 @@
      			<artifactId>antlr4-runtime</artifactId>
      			<version>${antlr.version}</version>
  			</dependency>	
+ 			
+ 			<dependency>
+				<groupId>com.espertech</groupId>
+				<artifactId>esper</artifactId>
+				<version>${esper.version}</version>
+			</dependency>
+ 			
+ 			
 		</dependencies>
 	</dependencyManagement>
 

@@ -26,6 +26,12 @@
    		<groupId>org.antlr</groupId>
      	<artifactId>antlr4-runtime</artifactId>
     </dependency>
+    
+   	<dependency>
+		<groupId>com.espertech</groupId>
+		<artifactId>esper</artifactId>
+	</dependency>
+    
   </dependencies>
   
   <build>
