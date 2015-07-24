@@ -1,5 +1,7 @@
 package at.prototype.common.data;
 
+
+
 public abstract class NotificationDelegation {
 
 	private String name;

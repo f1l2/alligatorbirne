@@ -1,10 +1,13 @@
-package at.prototype.configuration.management;
+package configuration.management.startup;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
+
+import configuration.management.model.Device;
+import configuration.management.repo.DeviceRepository;
 
 @Component
 public class ApplicationStartup implements ApplicationListener<ContextRefreshedEvent> {
@@ -30,8 +33,6 @@ public class ApplicationStartup implements ApplicationListener<ContextRefreshedE
 	  for (Device d : devices) {	  
 		  logger.info(d);
 	  }
-		
-	  
     return;
   }
  

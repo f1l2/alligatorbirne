@@ -1,0 +1,12 @@
+T__0=1
+T__1=2
+T__2=3
+Name=4
+Int=5
+COMMA=6
+WS=7
+NL=8
+OPERATOR=9
+'FROM'=1
+'SELECT'=2
+'.'=3

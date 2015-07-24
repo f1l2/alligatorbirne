@@ -1,17 +1,21 @@
-package at.prototype.configuration.management;
+package configuration.management.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "devices")
 public class Device {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	private String name;
+	
+	private String url;
 
 	public Long getId() {
 		return id;
@@ -31,8 +35,7 @@ public class Device {
 
 	@Override
 	public String toString() {
-		return "Device [id=" + id + ", name=" + name + "]";
+		return "Device [id=" + id + ", name=" + name + ", url=" + url + "]";
 	}
-	
 
 }

@@ -14,8 +14,9 @@
 	</parent>
 	
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>1.7</java.version>
 		<common.version>1.0.0-SNAPSHOT</common.version>
+		<antlr.version>4.5.1</antlr.version>
 	</properties>
 	
 	<modules>
@@ -34,10 +35,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-hateoas</artifactId>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jersey</artifactId>
-		</dependency>
+		</dependency> -->
 		<dependency>
     		<groupId>org.springframework.boot</groupId>
     		<artifactId>spring-boot-starter</artifactId>
@@ -56,27 +57,43 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-remote-shell</artifactId>
 		</dependency>
+		<!-- 	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
-		
+	 	-->	
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		
+		<!-- 
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
-		</dependency>
+		</dependency> 
+		-->
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+			
 	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+    			<groupId>org.antlr</groupId>
+     			<artifactId>antlr4-runtime</artifactId>
+     			<version>${antlr.version}</version>
+ 			</dependency>	
+		</dependencies>
+	</dependencyManagement>
 
     <build>
     	<plugins>
@@ -84,6 +101,15 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			  
+      		<plugin>
+        		<artifactId>maven-compiler-plugin</artifactId>
+        		<configuration>
+          			<source>${java.version}</source>
+          			<target>${java.version}</target>	
+        		</configuration>
+      		</plugin>
+      		
 		</plugins>   
     </build>
 </project>
