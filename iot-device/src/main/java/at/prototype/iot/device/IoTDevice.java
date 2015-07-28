@@ -6,7 +6,6 @@ import org.springframework.web.client.RestTemplate;
 
 import at.prototype.common.data.concrete.RegisterDevice;
 
-import common.data.DeviceInformation;
 import common.model.DevConfiguration;
 
 @SpringBootApplication
@@ -26,9 +25,10 @@ public class IoTDevice
 	    	
 	        RestTemplate restTemplate = new RestTemplate();
 
-	        DeviceInformation[] forObject = restTemplate.getForObject("http://127.0.0.1:5000/registrations", RegisterDevice[].class);
+	        RegisterDevice[] forObject = restTemplate.getForObject("http://127.0.0.1:5000/registrations", RegisterDevice[].class);
 	        
 	        System.out.println(forObject[0].getName());
+	        System.out.println(forObject[0].getAbitrary());
 	        
 	    }
 }

@@ -2,6 +2,7 @@ package configuration.management;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,16 +28,15 @@ public class CMgmtRegisterDeviceImpl implements CMgmtRegisterDevice {
 	
 	@Override
     @RequestMapping(value = "/registrations", method=RequestMethod.GET)
-    public @ResponseBody ArrayList<RegisterDevice> getAllDevices() {
+    public @ResponseBody List<DeviceInformation> getAllDevices() {
     
-		Iterable<Device> devices = repository.findAll();
+		List<DeviceInformation> arrayList = new ArrayList<DeviceInformation>();
 		
-		ArrayList<RegisterDevice> arrayList = new ArrayList<RegisterDevice>();
-		
-		for (Device device : devices) {
+		for (Device device : repository.findAll()) {
 			
 			RegisterDevice deviceInformation = new RegisterDevice();
 			deviceInformation.setName(device.getName());
+			deviceInformation.setAbitrary("something");
 			arrayList.add(deviceInformation);
 		}
 		return arrayList;

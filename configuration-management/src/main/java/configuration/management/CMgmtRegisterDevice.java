@@ -1,8 +1,6 @@
 package configuration.management;
 
-import java.util.ArrayList;
-
-import at.prototype.common.data.concrete.RegisterDevice;
+import java.util.List;
 
 import common.data.DeviceInformation;
 
@@ -15,7 +13,7 @@ import common.data.DeviceInformation;
  */
 public interface CMgmtRegisterDevice { 
 	
-	public ArrayList<RegisterDevice> getAllDevices();
+	public List<DeviceInformation> getAllDevices();
 
 	public DeviceInformation getDevice(Long id, DeviceInformation deviceInformation);
 	
