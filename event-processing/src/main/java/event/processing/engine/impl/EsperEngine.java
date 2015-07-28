@@ -1,6 +1,6 @@
 package event.processing.engine.impl;
 
-import at.prototype.common.data.DeviceInformation;
+import org.apache.log4j.Logger;
 
 import com.espertech.esper.client.Configuration;
 import com.espertech.esper.client.EPAdministrator;
@@ -8,30 +8,35 @@ import com.espertech.esper.client.EPRuntime;
 import com.espertech.esper.client.EPServiceProvider;
 import com.espertech.esper.client.EPServiceProviderManager;
 import com.espertech.esper.client.EPStatement;
+import common.data.DeviceInformation;
 
 import event.processing.DeviceInformationImpl;
+import event.processing.engine.ENGINE_TYPE;
 import event.processing.engine.Engine;
 import event.processing.query.Query;
 
-public class EsperEngine implements Engine {
+public class EsperEngine extends Engine {
 
-	private static final String ENGINE_NAME = "myCEPEngine";
+	final static Logger logger = Logger.getLogger(EsperEngine.class);
 	
-	private EPRuntime cepRT;
+	private static EPRuntime EP_RUNTIME = null;
 	
-	private EPServiceProvider cep;
+	private static EPServiceProvider EP_SP = null;
+
+	public EsperEngine() {
+		super(ENGINE_TYPE.ESPER);
+	}
 	
 	@Override
 	public void initialize() {
-		
 		
 	    Configuration cepConfig = new Configuration();
 	    
 	    cepConfig.addEventType("DeviceInformationImpl" , DeviceInformationImpl.class.getName());
 	
-	    this.cep = EPServiceProviderManager.getProvider(ENGINE_NAME,cepConfig);
+	    EP_SP = EPServiceProviderManager.getProvider(getType().getDescription(), cepConfig);
 	     
-	    this.cepRT = cep.getEPRuntime();
+	    EP_RUNTIME = EP_SP.getEPRuntime();
 	
 	}
 
@@ -43,14 +48,32 @@ public class EsperEngine implements Engine {
 	@Override
 	public void registerQuery(String query) {
 		
-		EPAdministrator cepAdm = this.cep.getEPAdministrator();
+		EPAdministrator cepAdm = EP_SP.getEPAdministrator();
 		EPStatement cepStatement = cepAdm.createEPL(query);
-		 
+			
 		cepStatement.addListener(new CEPListener());
 	}
 
 	@Override
 	public void sendEvent(DeviceInformation deviceInformation) {
-		this.cepRT.sendEvent(deviceInformation);
+		if (null != EP_RUNTIME) {
+			EP_RUNTIME.sendEvent(deviceInformation);
+		} else {
+			logger.error("Event couldn't be proccesed due engine wasn't initialized properly");
+		}
+	}
+
+	@Override
+	public void unregisterQuery(String query) {
+		
+	
+	}
+	
+	public EPRuntime getCepRT() {
+		return EP_RUNTIME;
+	}
+
+	public EPServiceProvider getCep() {
+		return EP_SP;
 	}
 }

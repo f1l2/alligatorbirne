@@ -1,14 +1,22 @@
 package event.processing.engine;
 
-import event.processing.engine.impl.EsperEngine;
 
-public class EngineFactory {
-
+public abstract class EngineFactory {
 	
-	public Engine createEngine() {
+	protected static Engine INSTANCE = null;
+	protected static Object MUTEX = new Object();
+	
+	protected abstract Engine createEngine();
+	
+	public abstract Engine getEngine();
 
-		return new EsperEngine();
+	public Boolean isTypeEqual(ENGINE_TYPE type) {
 		
+		if ((null != INSTANCE) && (INSTANCE.getType().equals(type))) {
+			return true;
+		}
+		return false;
 	}
-	
 }
+
+

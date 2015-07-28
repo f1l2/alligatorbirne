@@ -1,6 +1,10 @@
 package configuration.management;
 
-import at.prototype.common.data.DeviceInformation;
+import java.util.ArrayList;
+
+import at.prototype.common.data.concrete.RegisterDevice;
+
+import common.data.DeviceInformation;
 
 
 /**
@@ -11,11 +15,12 @@ import at.prototype.common.data.DeviceInformation;
  */
 public interface CMgmtRegisterDevice { 
 	
-	/**
-	 * @param deviceInformation
-	 */
-	public void register(DeviceInformation deviceInformation);
+	public ArrayList<RegisterDevice> getAllDevices();
+
+	public DeviceInformation getDevice(Long id, DeviceInformation deviceInformation);
 	
-	public void heartBeat(DeviceInformation deviceInformation);
+	public void registerDevice(DeviceInformation deviceInformation);
+
+	public void sendHeartBeat(DeviceInformation deviceInformation);
 
 }

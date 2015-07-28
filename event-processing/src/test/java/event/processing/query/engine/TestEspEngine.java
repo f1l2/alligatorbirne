@@ -1,18 +1,16 @@
 package event.processing.query.engine;
 
-import java.util.Random;
-
 import org.junit.Test;
 
-import at.prototype.common.data.DeviceInformation;
+import common.data.DeviceInformation;
+
 import event.processing.DeviceInformationImpl;
 import event.processing.engine.Engine;
 import event.processing.engine.EngineFactory;
+import event.processing.engine.impl.EsperEngineFactory;
 
 public class TestEspEngine {
 
-	private static Random generator = new Random();
-	 
 	  private void delay(long time) {
 	    	try {
 				Thread.sleep(time);
@@ -34,11 +32,10 @@ public class TestEspEngine {
 	    public void testEngine() {
 
 	    	
-	    	EngineFactory factory = new EngineFactory();
+	    	EngineFactory factory = new EsperEngineFactory();
 	    	
-	    	Engine engine = factory.createEngine();
-	    	engine.initialize();
-	    	
+	    	Engine engine = factory.getEngine();
+
 	    	engine.sendEvent(TestEspEngine.generateRandomInformation());
 	    	
 	    	delay(1000);

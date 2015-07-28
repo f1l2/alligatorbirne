@@ -1,5 +1,7 @@
 package configuration.management.model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,6 +18,8 @@ public class Device {
 	private String name;
 	
 	private String url;
+	
+	private Date date;
 
 	public Long getId() {
 		return id;
@@ -33,9 +37,26 @@ public class Device {
 		this.name = name;
 	}
 
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
 	@Override
 	public String toString() {
-		return "Device [id=" + id + ", name=" + name + ", url=" + url + "]";
+		return "Device [id=" + id + ", name=" + name + ", url=" + url
+				+ ", date=" + date + "]";
 	}
 
 }

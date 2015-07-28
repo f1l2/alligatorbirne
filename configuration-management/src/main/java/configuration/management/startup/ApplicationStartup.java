@@ -1,5 +1,7 @@
 package configuration.management.startup;
 
+import java.util.Date;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -26,6 +28,7 @@ public class ApplicationStartup implements ApplicationListener<ContextRefreshedE
 	  for (int i = 0; i<10; i++) {
 		  device = new Device();
 		  device.setName("Device" + (i+1));
+		  device.setDate(new Date());
 		  this.repository.save(device);
 	  }
 	  	  
