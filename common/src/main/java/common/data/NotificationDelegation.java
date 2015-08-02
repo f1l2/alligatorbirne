@@ -1,8 +1,6 @@
 package common.data;
 
-
-
-public abstract class NotificationDelegation {
+public class NotificationDelegation {
 
 	private String name;
 	

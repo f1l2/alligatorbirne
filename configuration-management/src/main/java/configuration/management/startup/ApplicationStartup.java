@@ -8,7 +8,7 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
-import configuration.management.model.Device;
+import configuration.management.model.DeviceJPA;
 import configuration.management.repo.DeviceRepository;
 
 @Component
@@ -23,17 +23,17 @@ public class ApplicationStartup implements ApplicationListener<ContextRefreshedE
   public void onApplicationEvent(final ContextRefreshedEvent event) {
  
 	  
-	  Device device = new Device();
+	  DeviceJPA device = new DeviceJPA();
 	  
 	  for (int i = 0; i<10; i++) {
-		  device = new Device();
+		  device = new DeviceJPA();
 		  device.setName("Device" + (i+1));
 		  device.setDate(new Date());
 		  this.repository.save(device);
 	  }
 	  	  
-	  Iterable<Device> devices = repository.findAll();
-	  for (Device d : devices) {	  
+	  Iterable<DeviceJPA> devices = repository.findAll();
+	  for (DeviceJPA d : devices) {	  
 		  logger.info(d);
 	  }
     return;
