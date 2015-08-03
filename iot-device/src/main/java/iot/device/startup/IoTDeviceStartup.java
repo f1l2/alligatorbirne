@@ -36,9 +36,9 @@ public class IoTDeviceStartup implements ApplicationListener<EmbeddedServletCont
 			logger.error(e);
 		}
 		
-		iotDevice.setProperties(ip, port);
+		iotDevice.setLocalConfiguration(ip, port);
 		
-		iotDevice.informCM();
+		iotDevice.register();
 		
 	}
 }

@@ -1,0 +1,25 @@
+package common.transformer;
+
+import org.springframework.stereotype.Component;
+
+import common.data.DeviceInformation;
+import common.data.configuration.DeviceInformationConfig;
+
+@Component
+public class TransformerDeviceInformationConfig extends  Transformer<DeviceInformationConfig, DeviceInformation> {
+
+		@Override
+		public DeviceInformationConfig toLocal(DeviceInformation remote) {
+			DeviceInformationConfig deviceInformationConfig = new DeviceInformationConfig();
+			deviceInformationConfig.setName(remote.getName());
+			return deviceInformationConfig;
+		}
+
+		@Override
+		public DeviceInformation toRemote(DeviceInformationConfig local) {
+			DeviceInformation deviceInformation = new DeviceInformation();
+			deviceInformation.setName(local.getName());
+			return deviceInformation;
+		}
+
+	}

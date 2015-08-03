@@ -1,7 +1,5 @@
 package iot.device.rest;
 
-import common.model.DevConfiguration;
-
 /**
  * Interface definition
  * 
@@ -10,7 +8,4 @@ import common.model.DevConfiguration;
  */
 public interface IDevManageConfig {
 	
-	public void receiveConfiguration(DevConfiguration devConfiguration);
-	
-	public DevConfiguration getConfiguration();
 }

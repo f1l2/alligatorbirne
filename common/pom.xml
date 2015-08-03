@@ -11,10 +11,61 @@
   <artifactId>common</artifactId>
   <name>common</name>
   
+  <properties>
+  	 <user.language>en</user.language>
+  </properties>
+  
   <dependencies>
   
   </dependencies>
   <build>
+   <plugins>
+		<plugin>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-xjc-plugin</artifactId>
+			<executions>
+				<execution>
+					<id>generate-sources</id>
+					<phase>generate-sources</phase>
+					<goals>
+						<goal>xsdtojava</goal>
+					</goals>
+					<configuration>
+						<sourceRoot>${project.build.directory}/generated-sources/jaxb</sourceRoot>
+						<xsdOptions>
+							<xsdOption>
+								<xsd>${basedir}/src/main/xsd/configuration.xsd</xsd>
+								<packagename>common.data.configuration</packagename>
+								<extensionArgs>
+									<extensionArg>-target</extensionArg>
+									<extensionArg>2.0</extensionArg>
+								</extensionArgs>
+							</xsdOption>
+						</xsdOptions>
+					</configuration>
+				</execution>
+			</executions>
+		</plugin>
+
+        <plugin>
+			<groupId>org.codehaus.mojo</groupId>
+			<artifactId>build-helper-maven-plugin</artifactId>
+			<executions>
+				<execution>
+					<id>add-xsd-source</id>
+					<phase>generate-sources</phase>
+					<goals>
+						<goal>add-source</goal>
+					</goals>
+					<configuration>
+						<sources>
+							<source>${project.build.directory}/generated-sources/jaxb</source>
+						</sources>
+					</configuration>
+				</execution>
+			</executions>
+		</plugin>
+	</plugins>
   	  
   </build>
 </project>

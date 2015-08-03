@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema  xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  <xs:element name="configuration">
+  	<xs:complexType>
+	     <xs:sequence>
+	     	<xs:element ref="measurementDataConfig" />
+	     	<xs:element ref="connections" />
+		</xs:sequence>
+	</xs:complexType>		
+  </xs:element> 
+    
+  <xs:element name="measurementDataConfig">
+    <xs:complexType>
+      <xs:sequence maxOccurs="unbounded" minOccurs="0">
+		<xs:element ref="measurementPointConfig" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="measurementPointConfig">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element ref="deviceInformationConfig" />
+			<xs:element ref="domainConfig" />
+		</xs:sequence>
+	</xs:complexType>
+  </xs:element>
+  
+  <xs:element name="deviceInformationConfig">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element type="xs:string" name="name" />
+		</xs:sequence>
+	</xs:complexType>
+  </xs:element>
+  
+  <xs:element name="deviceInformationList">
+    <xs:complexType>
+      <xs:sequence maxOccurs="unbounded" minOccurs="0">
+        <xs:element ref="deviceInformationConfig" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="domainConfig">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element type="xs:string" name="name" />
+		</xs:sequence>
+	</xs:complexType>
+  </xs:element>
+  
+  <xs:element name="domainList">
+    <xs:complexType>
+      <xs:sequence maxOccurs="unbounded" minOccurs="0">
+        <xs:element ref="domainConfig" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  
+  <xs:element name="connectionConfig">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element type="xs:string" name="component"/>
+			<xs:element type="xs:string" name="ip"/>
+	        <xs:element type="xs:string" name="port"/>
+			<xs:element type="xs:string" name="url"/>
+		</xs:sequence>
+		<xs:attribute type="xs:string" name="name"/>
+	</xs:complexType>
+  </xs:element>
+  
+  <xs:element name="connections">
+    <xs:complexType>
+      <xs:sequence maxOccurs="unbounded" minOccurs="0">
+        <xs:element ref="connectionConfig" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>
