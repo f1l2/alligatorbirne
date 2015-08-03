@@ -1,11 +1,10 @@
 package common.transformer;
 
-import org.springframework.stereotype.Component;
 
 import common.data.DeviceInformation;
 import common.data.configuration.DeviceInformationConfig;
 
-@Component
+
 public class TransformerDeviceInformationConfig extends  Transformer<DeviceInformationConfig, DeviceInformation> {
 
 		@Override

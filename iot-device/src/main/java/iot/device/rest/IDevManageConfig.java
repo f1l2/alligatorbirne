@@ -1,5 +1,7 @@
 package iot.device.rest;
 
+import common.data.NotificationDelegation;
+
 /**
  * Interface definition
  * 
@@ -7,5 +9,6 @@ package iot.device.rest;
  *
  */
 public interface IDevManageConfig {
+	
 	
 }

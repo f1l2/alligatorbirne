@@ -1,4 +1,4 @@
-package iot.device.configuration;
+package iot.device.config;
 
 import java.util.HashMap;
 import java.util.Map;

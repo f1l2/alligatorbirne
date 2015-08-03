@@ -2,7 +2,7 @@ package common.data;
 
 public class MeasurementPoint {
 
-	private Domain domain;
+	private DomainInformation domain;
 	
 	private DeviceInformation deviceInformation;
 	
@@ -10,16 +10,16 @@ public class MeasurementPoint {
 		
 	}
 	
-	public MeasurementPoint(Domain domain, DeviceInformation deviceInformation) {
+	public MeasurementPoint(DomainInformation domain, DeviceInformation deviceInformation) {
 		this.setDomain(domain);
 		this.setDeviceInformation(deviceInformation);
 	}
 
-	public Domain getDomain() {
+	public DomainInformation getDomain() {
 		return domain;
 	}
 
-	public void setDomain(Domain domain) {
+	public void setDomain(DomainInformation domain) {
 		this.domain = domain;
 	}
 	

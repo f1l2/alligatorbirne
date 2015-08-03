@@ -1,15 +1,13 @@
 package common.transformer;
 
-import org.springframework.stereotype.Component;
-
-import common.data.Domain;
+import common.data.DomainInformation;
 import common.data.configuration.DomainConfig;
 
-@Component
-public class TransformerDomainConfig extends Transformer<DomainConfig, Domain> {
+
+public class TransformerDomainConfig extends Transformer<DomainConfig, DomainInformation> {
 	
 	@Override
-	public DomainConfig toLocal(Domain remote) {
+	public DomainConfig toLocal(DomainInformation remote) {
 		DomainConfig domainConfig = new DomainConfig();
 		domainConfig.setName(remote.getName());
 		
@@ -17,9 +15,9 @@ public class TransformerDomainConfig extends Transformer<DomainConfig, Domain> {
 	}
 
 	@Override
-	public Domain toRemote(DomainConfig local) {
+	public DomainInformation toRemote(DomainConfig local) {
 
-		Domain domain = new Domain();
+		DomainInformation domain = new DomainInformation();
 		domain.setName(local.getName());
 		
 		return domain;

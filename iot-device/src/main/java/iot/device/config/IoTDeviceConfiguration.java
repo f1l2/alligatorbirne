@@ -1,4 +1,4 @@
-package iot.device.configuration;
+package iot.device.config;
 
 public interface IoTDeviceConfiguration<KEY, VALUE> {
 

@@ -1,6 +1,6 @@
 package common.data;
 
-public class Domain {
+public class DomainInformation {
 
 	private Long id;
 	

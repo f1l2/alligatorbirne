@@ -2,25 +2,29 @@ package common.configuration;
 
 import java.io.File;
 import java.net.URI;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import common.data.MeasurementPoint;
 import common.data.configuration.Configuration;
 import common.data.configuration.Connections;
 import common.data.configuration.DeviceInformationConfig;
 import common.data.configuration.DomainConfig;
 import common.data.configuration.MeasurementDataConfig;
 import common.data.configuration.MeasurementPointConfig;
+import common.transformer.TransformConfig;
 import common.transformer.TransformXML;
-
 
 public class TransformXMLTest {
 	
 	private String configurationStr;
 	private File configurationFile;
 	private URI configurationURI;
+	
+	private TransformConfig transformerConfig = new TransformConfig();
 	
 	@Before
 	public void setup() {
@@ -30,7 +34,7 @@ public class TransformXMLTest {
 		configurationURI = configurationFile.toURI();
         configurationURI = configurationURI.normalize();
 	}
-	
+
 
 	@Test
     public void testUnmarshal() throws Exception {
@@ -80,4 +84,17 @@ public class TransformXMLTest {
 		TransformXML.marshal(unmarshal, configurationFile);
 		
     }
+	
+	@Test
+    public void testTransformConfiguration() throws Exception {
+		
+		Configuration configuration = TransformXML.unmarshal(configurationURI);
+		
+		List<MeasurementPoint> remote = transformerConfig.toRemote(configuration.getMeasurementDataConfig().getMeasurementPointConfig());
+		
+		Assert.assertNotNull(remote);
+		Assert.assertNotNull(remote.get(0));
+		Assert.assertNotNull(remote.get(0).getDeviceInformation());
+		
+	}
 }

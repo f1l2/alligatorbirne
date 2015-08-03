@@ -1,26 +1,17 @@
 package common.transformer;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import common.data.DeviceInformation;
-import common.data.Domain;
-import common.data.MeasurementData;
+import common.data.DomainInformation;
 import common.data.MeasurementPoint;
 import common.data.configuration.DeviceInformationConfig;
 import common.data.configuration.DomainConfig;
 import common.data.configuration.MeasurementPointConfig;
 
-@Component
 public class TransformConfig extends Transformer<MeasurementPointConfig, MeasurementPoint> {
 
-	@Autowired
-	private TransformerDeviceInformationConfig transformerDeviceInformation;
+	private TransformerDeviceInformationConfig transformerDeviceInformation = new TransformerDeviceInformationConfig();
 	
-	@Autowired
-	private TransformerDomainConfig transformerDomain;
+	private TransformerDomainConfig transformerDomain = new TransformerDomainConfig();
 	
 	
 	@Override
@@ -48,7 +39,7 @@ public class TransformConfig extends Transformer<MeasurementPointConfig, Measure
 		
 		measurementPoint.setDeviceInformation(remoteDev);
 		
-		Domain remoteDomain = transformerDomain.toRemote(local.getDomainConfig());
+		DomainInformation remoteDomain = transformerDomain.toRemote(local.getDomainConfig());
 		
 		measurementPoint.setDomain(remoteDomain);
 		
