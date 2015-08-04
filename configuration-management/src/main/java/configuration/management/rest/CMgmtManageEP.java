@@ -8,8 +8,6 @@ import common.data.NotificationDelegation;
  * @author Manuel Filz
  *
  */
-public interface CMgmtNotifyEvent { 
-	
-	public NotificationDelegation notify(NotificationDelegation notificationDelegation);
+public interface CMgmtManageEP { 
 	
 }

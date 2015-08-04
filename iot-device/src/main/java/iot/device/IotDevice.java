@@ -36,12 +36,18 @@ public class IotDevice {
 		String url = getCMConnection().getUrl() + "/registrations";
 		MeasurementData data = loadMeasurementData();
 
-		RestTemplate restTemplate = new RestTemplate();
-	    ResponseEntity<String> response = restTemplate.postForEntity(url, data, String.class);
-	    HttpStatus status = response.getStatusCode();
-	    String restCall = response.getBody();
-	    
-	    logger.info("Device registered. Status: " + status + " Response body: " + restCall);
+		
+		try {
+			RestTemplate restTemplate = new RestTemplate();
+		    ResponseEntity<String> response = restTemplate.postForEntity(url, data, String.class);
+		    HttpStatus status = response.getStatusCode();
+		    String restCall = response.getBody();
+		    logger.info("Device registered. Status: " + status + " Response body: " + restCall);
+		} catch (Exception ex) {
+			//TODO
+			logger.error("Register error.");
+		}
+
 	    
 	}
 	

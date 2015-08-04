@@ -1,9 +1,12 @@
 package iot.device.repo;
 
 
+import org.springframework.stereotype.Component;
+
 import common.data.ConfigurationModification;
 import common.transformer.Transformer;
 
+@Component
 public class JobTransformer extends Transformer<JobJPA, ConfigurationModification> {
 	
 

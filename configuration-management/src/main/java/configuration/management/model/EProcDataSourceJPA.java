@@ -9,15 +9,15 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "measuringPoints", uniqueConstraints=@UniqueConstraint(columnNames={"deviceId", "domain", "deviceInformation"}))
-public class MeasuringPointJPA {
+@Table(name = "EPROCE_DATA_SOURCE", uniqueConstraints=@UniqueConstraint(columnNames={"eprocId", "domain", "deviceInformation"}))
+public class EProcDataSourceJPA {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@Column
-	private Long deviceId;
+	private Long eprocId;
 	
 	@Column
 	private String domain;
@@ -33,14 +33,14 @@ public class MeasuringPointJPA {
 		this.id = id;
 	}
 
-	public Long getDeviceId() {
-		return deviceId;
+	public Long getEprocId() {
+		return eprocId;
 	}
 
-	public void setDeviceId(Long deviceId) {
-		this.deviceId = deviceId;
+	public void setEprocId(Long eprocId) {
+		this.eprocId = eprocId;
 	}
-	
+
 	public String getDomain() {
 		return domain;
 	}

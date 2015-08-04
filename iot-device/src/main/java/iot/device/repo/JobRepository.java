@@ -7,7 +7,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Component;
 
+@Component	
 public class JobRepository  {
 
 	private Map<Long, JobJPA> repo = new LinkedHashMap<Long, JobJPA>();

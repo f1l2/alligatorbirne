@@ -2,13 +2,17 @@ package iot.device.rest;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
+import iot.device.repo.Job;
 import iot.device.repo.JobJPA;
 import iot.device.repo.JobRepository;
 import iot.device.repo.JobTransformer;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,6 +31,9 @@ public class IDevManageConfigImpl implements IDevManageConfig {
 	
 	@Autowired
 	private JobTransformer transformer;
+	
+	@Autowired
+	private ThreadPoolTaskExecutor taskExecutor;
 	
 	@RequestMapping(value = "/configurations", method=RequestMethod.GET)
 	public List<ConfigurationModification> getAllConfiguration() {
@@ -51,12 +58,37 @@ public class IDevManageConfigImpl implements IDevManageConfig {
 	}
 	
 	@RequestMapping(value = "/configurations", method=RequestMethod.POST)
-	public void setConfiguration(ConfigurationModification configurationModification) {
+	public void setConfiguration(@RequestBody ConfigurationModification configurationModification) {
 		
 		logger.info("POST /configurations is invoked");
 		
 		JobJPA local = transformer.toLocal(configurationModification);
 		repository.save(local);
+		
+		Job job = new Job(local);
+		
+		taskExecutor.execute(job);
+		
+		
+	}
+	
+	@RequestMapping(value = "/configurationtest", method=RequestMethod.GET)
+	public void setConfiguration1() {
+		
+		logger.info("POST /configurations is invoked");
+		
+		Random random = new Random();
+		random.nextLong();
+		
+		JobJPA local = new JobJPA();
+		local.setEpId(random.nextLong());
+		local.setEpUrl("Urls");
+
+		
+		Job job = new Job(local);
+		
+		taskExecutor.execute(job);
+		
 		
 	}
 }

@@ -1,4 +1,4 @@
-package event.processing.engine;
+package event.processing.rest;
 
 import common.data.DeviceInformation;
 import common.data.DomainInformation;

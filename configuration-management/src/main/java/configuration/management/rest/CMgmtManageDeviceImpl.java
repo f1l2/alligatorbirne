@@ -16,25 +16,23 @@ import org.springframework.web.bind.annotation.RestController;
 import common.data.DeviceInformation;
 import common.data.MeasurementData;
 import common.data.MeasurementPoint;
-
+import configuration.management.model.DeviceDataSourceJPA;
 import configuration.management.model.DeviceJPA;
-import configuration.management.model.MeasuringPointJPA;
 import configuration.management.repo.DeviceRepository;
 import configuration.management.repo.DeviceTransformer;
 import configuration.management.repo.MeasurementPointRepository;
 
 
 @RestController
-public class CMgmtRegisterDeviceImpl implements CMgmtRegisterDevice {
+public class CMgmtManageDeviceImpl implements CMgmtManageDevice {
 
-	final static Logger logger = Logger.getLogger(CMgmtRegisterDeviceImpl.class);
+	final static Logger logger = Logger.getLogger(CMgmtManageDeviceImpl.class);
 	
 	@Autowired
 	private DeviceRepository deviceRepository;
 	
 	@Autowired
 	private MeasurementPointRepository measurementPointRepository;
-	
 	
 	@Autowired
 	private DeviceTransformer transformer;
@@ -76,7 +74,7 @@ public class CMgmtRegisterDeviceImpl implements CMgmtRegisterDevice {
     	
     	for (MeasurementPoint point : data.getMeasurementPoints()) {
     		
-    		MeasuringPointJPA item = new MeasuringPointJPA();
+    		DeviceDataSourceJPA item = new DeviceDataSourceJPA();
     		item.setDeviceId(device.getId());
     		item.setDeviceInformation(point.getDeviceInformation().getName());
     		item.setDomain(point.getDomain().getName());
@@ -89,7 +87,7 @@ public class CMgmtRegisterDeviceImpl implements CMgmtRegisterDevice {
 
 	@Override
     @RequestMapping(value = "/registrations/{id}", method=RequestMethod.PUT) 
-	public void sendHeartBeat(DeviceInformation deviceInformation) {
+	public void receiveHeartBeat(DeviceInformation deviceInformation) {
 
 		logger.info("PUT /registrations{id} is invoked");
 		

@@ -1,4 +1,4 @@
-package event.processing.engine;
+package event.processing.rest;
 
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

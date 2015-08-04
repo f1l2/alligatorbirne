@@ -12,7 +12,7 @@ import common.data.MeasurementData;
  * @author Manuel Filz
  *
  */
-public interface CMgmtRegisterDevice { 
+public interface CMgmtManageDevice { 
 	
 	public List<DeviceInformation> getAllDevices();
 	
@@ -20,6 +20,6 @@ public interface CMgmtRegisterDevice {
 	
 	public String registerDevice(MeasurementData data);
 	
-	public void sendHeartBeat(DeviceInformation deviceInformation);
+	public void receiveHeartBeat(DeviceInformation deviceInformation);
 
 }
