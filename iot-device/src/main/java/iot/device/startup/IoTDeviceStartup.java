@@ -15,32 +15,27 @@ import org.springframework.stereotype.Component;
 @Component
 public class IoTDeviceStartup implements ApplicationListener<EmbeddedServletContainerInitializedEvent> {
 
-	final static Logger logger = Logger.getLogger(IoTDeviceStartup.class);
-	
-	@Autowired
-	private Status status;
-	
-	@Autowired
-	private IotDevice iotDevice;
-	
-	
-	@Override
-	public void onApplicationEvent(EmbeddedServletContainerInitializedEvent arg0) {
-		
-		String port = String.valueOf(arg0.getEmbeddedServletContainer().getPort());
+    final static Logger logger = Logger.getLogger(IoTDeviceStartup.class);
 
-		String ip = null;
-		try {
-			ip = InetAddress.getLocalHost().getHostAddress();
-		} catch (UnknownHostException e) {
-			logger.error(e);
-		}
-		
-		iotDevice.setLocalConfiguration(ip, port);
-		
-		iotDevice.register();
-		
-	}
+    @Autowired
+    private Status status;
+
+    @Autowired
+    private IotDevice iotDevice;
+
+    @Override
+    public void onApplicationEvent(EmbeddedServletContainerInitializedEvent arg0) {
+
+        String port = String.valueOf(arg0.getEmbeddedServletContainer().getPort());
+
+        String ip = null;
+        try {
+            ip = InetAddress.getLocalHost().getHostAddress();
+        } catch (UnknownHostException e) {
+            logger.error(e);
+        }
+
+        iotDevice.setLocalConfiguration(ip, port);
+
+    }
 }
-	
-

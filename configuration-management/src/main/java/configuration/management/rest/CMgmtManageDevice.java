@@ -2,9 +2,8 @@ package configuration.management.rest;
 
 import java.util.List;
 
-import common.data.DeviceInformation;
+import common.data.Connection;
 import common.data.MeasurementData;
-
 
 /**
  * Interface definition
@@ -12,14 +11,14 @@ import common.data.MeasurementData;
  * @author Manuel Filz
  *
  */
-public interface CMgmtManageDevice { 
-	
-	public List<DeviceInformation> getAllDevices();
-	
-	public DeviceInformation getDevice(Long id);
-	
-	public String registerDevice(MeasurementData data);
-	
-	public void receiveHeartBeat(DeviceInformation deviceInformation);
+public interface CMgmtManageDevice {
+
+    public Connection registerDevice(Connection connection);
+
+    public List<Connection> getAllDevices();
+
+    public void heartBeat(Long id);
+
+    public void registerDeviceSources(Long id, MeasurementData data);
 
 }

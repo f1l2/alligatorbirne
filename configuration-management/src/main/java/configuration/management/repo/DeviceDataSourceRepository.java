@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import configuration.management.model.DeviceDataSourceJPA;
 
 
-public interface MeasurementPointRepository extends CrudRepository<DeviceDataSourceJPA, Long> {
+public interface DeviceDataSourceRepository extends CrudRepository<DeviceDataSourceJPA, Long> {
 
 	public List<DeviceDataSourceJPA> findByDomain(@Param("domain") String domain);
 	

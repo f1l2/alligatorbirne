@@ -1,6 +1,5 @@
 package configuration.management.rest;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -15,95 +14,114 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.RestTemplate;
 
 import common.data.ConfigurationModification;
+import common.data.EProcInformation;
 import common.data.MeasurementData;
 import common.data.MeasurementPoint;
 import common.rest.Url;
 
 import configuration.management.model.DeviceDataSourceJPA;
+import configuration.management.model.DeviceJPA;
+import configuration.management.model.EProcDataSourceJPA;
+import configuration.management.model.EProcJPA;
+import configuration.management.repo.DeviceDataSourceRepository;
+import configuration.management.repo.DeviceRepository;
+import configuration.management.repo.EProcDataSourceRepository;
 import configuration.management.repo.EProcRepository;
-import configuration.management.repo.MeasurementPointRepository;
+import configuration.management.repo.EProcTransformer;
 
 public class CMgmtManageEPImpl implements CMgmtManageEP {
 
     final static Logger logger = Logger.getLogger(CMgmtManageEPImpl.class);
 
     @Autowired
-    private EProcRepository eprocRepository;
+    private EProcRepository eProcRepository;
 
     @Autowired
-    private MeasurementPointRepository measurementPointRepository;
+    private EProcDataSourceRepository eProcDataSourceRepository;
+
+    @Autowired
+    private DeviceRepository deviceRepository;
+
+    @Autowired
+    private DeviceDataSourceRepository deviceDataSourceRepository;
+
+    @Autowired
+    private EProcTransformer eProcTransformer;
 
     @RequestMapping(value = "/subscription", method = RequestMethod.POST)
-    public String subscripeEP(@RequestBody MeasurementData data) {
+    public String subscripe(@RequestBody EProcInformation eproc) {
 
         logger.info("POST /subscription is invoked");
 
-        List<DeviceDataSourceJPA> points = new ArrayList<DeviceDataSourceJPA>();
-        for (MeasurementPoint point : data.getMeasurementPoints()) {
-            points.addAll(measurementPointRepository.findByDomainAndDeviceInformation(point.getDomain().getName(), point.getDeviceInformation().getName()));
-        }
+        EProcJPA local = eProcTransformer.toLocal(eproc);
 
-        Set<Long> deviceIds = new HashSet<Long>();
-        for (DeviceDataSourceJPA point : points) {
-            deviceIds.add(point.getDeviceId());
-        }
-
-        for (Long id : deviceIds) {
-
-            String url = Url.IDEV_SET_CONFIGURATION.getUrl("127.0.0.1", "5002");
-
-            ConfigurationModification cm = new ConfigurationModification();
-
-            try {
-                RestTemplate restTemplate = new RestTemplate();
-                ResponseEntity<String> response = restTemplate.postForEntity(url, cm, String.class);
-                HttpStatus status = response.getStatusCode();
-                String restCall = response.getBody();
-                logger.info("Send delegation to url: " + url + " Status: " + status + " Response body: " + restCall);
-            } catch (Exception ex) {
-                // TODO
-                logger.error("Delegation error.");
-            }
-
-        }
+        eProcRepository.save(local);
 
         return "OK";
     }
 
     @RequestMapping(value = "/delegation", method = RequestMethod.POST)
-    public String delegateEP(@RequestBody MeasurementData data) {
+    public String delegate(@RequestBody EProcInformation eProc, @RequestBody MeasurementData data) {
 
         logger.info("POST /delegation is invoked");
 
-        List<DeviceDataSourceJPA> points = new ArrayList<DeviceDataSourceJPA>();
         for (MeasurementPoint point : data.getMeasurementPoints()) {
-            points.addAll(measurementPointRepository.findByDomainAndDeviceInformation(point.getDomain().getName(), point.getDeviceInformation().getName()));
+
+            EProcDataSourceJPA item = new EProcDataSourceJPA();
+            item.setEProcId(eProc.getId());
+            item.setDomain(point.getDomain().getName());
+            item.setDeviceInformation(point.getDeviceInformation().getName());
+
+            eProcDataSourceRepository.save(item);
         }
 
-        Set<Long> deviceIds = new HashSet<Long>();
-        for (DeviceDataSourceJPA point : points) {
-            deviceIds.add(point.getDeviceId());
-        }
+        Set<DeviceDataSourceJPA> devicesToNotify = getDevicesToNotify(eProc);
 
-        for (Long id : deviceIds) {
+        notifyDevices(devicesToNotify, eProc);
 
-            String url = Url.IDEV_SET_CONFIGURATION.getUrl("127.0.0.1", "5002");
+        return "OK";
+    }
+
+    private void notifyDevices(Set<DeviceDataSourceJPA> devicesToNotify, EProcInformation eProc) {
+
+        for (DeviceDataSourceJPA deviceDataSource : devicesToNotify) {
 
             ConfigurationModification cm = new ConfigurationModification();
+            cm.setEpId(eProc.getId());
+            cm.setEpUrl(eProc.getUrl());
+
+            DeviceJPA device = deviceRepository.findOne(deviceDataSource.getDeviceId());
+
+            String url = Url.IDEV_SET_CONFIGURATION.getUrl("127.0.0.1", "5002");
+            // TODO
+            // String url = device.getUrl() + Url.IDEV_SET_CONFIGURATION.getPath();
 
             try {
                 RestTemplate restTemplate = new RestTemplate();
                 ResponseEntity<String> response = restTemplate.postForEntity(url, cm, String.class);
                 HttpStatus status = response.getStatusCode();
                 String restCall = response.getBody();
-                logger.info("Send delegation to url: " + url + " Status: " + status + " Response body: " + restCall);
+                logger.info("Device registered. Status: " + status + " Response body: " + restCall);
             } catch (Exception ex) {
                 // TODO
-                logger.error("Delegation error.");
+                logger.error("Register error.");
             }
 
         }
 
-        return "OK";
+    }
+
+    private Set<DeviceDataSourceJPA> getDevicesToNotify(EProcInformation eProc) {
+
+        List<EProcDataSourceJPA> eProcDataSources = eProcDataSourceRepository.findByEProcId(eProc.getId());
+
+        Set<DeviceDataSourceJPA> deviceDataSources = new HashSet<DeviceDataSourceJPA>();
+
+        for (EProcDataSourceJPA eProcDataSource : eProcDataSources) {
+            deviceDataSources.addAll(deviceDataSourceRepository.findByDomainAndDeviceInformation(eProcDataSource.getDomain(), eProcDataSource.getDeviceInformation()));
+        }
+
+        return deviceDataSources;
+
     }
 }

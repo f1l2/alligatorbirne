@@ -9,51 +9,51 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "EPROCE_DATA_SOURCE", uniqueConstraints=@UniqueConstraint(columnNames={"eprocId", "domain", "deviceInformation"}))
+@Table(name = "EPROCE_DATA_SOURCE", uniqueConstraints = @UniqueConstraint(columnNames = { "eprocId", "domain", "deviceInformation" }))
 public class EProcDataSourceJPA {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
 
-	@Column
-	private Long eprocId;
-	
-	@Column
-	private String domain;
-	
-	@Column
-	private String deviceInformation;
-	
-	public Long getId() {
-		return id;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @Column
+    private Long eProcId;
 
-	public Long getEprocId() {
-		return eprocId;
-	}
+    @Column
+    private String domain;
 
-	public void setEprocId(Long eprocId) {
-		this.eprocId = eprocId;
-	}
+    @Column
+    private String deviceInformation;
 
-	public String getDomain() {
-		return domain;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setDomain(String domain) {
-		this.domain = domain;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getDeviceInformation() {
-		return deviceInformation;
-	}
+    public Long getEProcId() {
+        return eProcId;
+    }
 
-	public void setDeviceInformation(String deviceInformation) {
-		this.deviceInformation = deviceInformation;
-	}
+    public void setEProcId(Long eprocId) {
+        this.eProcId = eprocId;
+    }
+
+    public String getDomain() {
+        return domain;
+    }
+
+    public void setDomain(String domain) {
+        this.domain = domain;
+    }
+
+    public String getDeviceInformation() {
+        return deviceInformation;
+    }
+
+    public void setDeviceInformation(String deviceInformation) {
+        this.deviceInformation = deviceInformation;
+    }
 }
