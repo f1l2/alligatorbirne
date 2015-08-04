@@ -5,7 +5,7 @@ import common.data.DeviceInformation;
 import common.data.configuration.DeviceInformationConfig;
 
 
-public class TransformerDeviceInformationConfig extends  Transformer<DeviceInformationConfig, DeviceInformation> {
+public class DeviceInformationConfigTranformer extends  Transformer<DeviceInformationConfig, DeviceInformation> {
 
 		@Override
 		public DeviceInformationConfig toLocal(DeviceInformation remote) {

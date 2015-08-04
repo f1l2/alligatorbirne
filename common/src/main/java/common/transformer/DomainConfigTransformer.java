@@ -4,7 +4,7 @@ import common.data.DomainInformation;
 import common.data.configuration.DomainConfig;
 
 
-public class TransformerDomainConfig extends Transformer<DomainConfig, DomainInformation> {
+public class DomainConfigTransformer extends Transformer<DomainConfig, DomainInformation> {
 	
 	@Override
 	public DomainConfig toLocal(DomainInformation remote) {

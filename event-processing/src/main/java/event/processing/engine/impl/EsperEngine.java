@@ -10,70 +10,68 @@ import com.espertech.esper.client.EPServiceProviderManager;
 import com.espertech.esper.client.EPStatement;
 import common.data.DeviceInformation;
 
-import event.processing.DeviceInformationImpl;
 import event.processing.engine.ENGINE_TYPE;
 import event.processing.engine.Engine;
 import event.processing.query.Query;
 
 public class EsperEngine extends Engine {
 
-	final static Logger logger = Logger.getLogger(EsperEngine.class);
-	
-	private static EPRuntime EP_RUNTIME = null;
-	
-	private static EPServiceProvider EP_SP = null;
+    final static Logger logger = Logger.getLogger(EsperEngine.class);
 
-	public EsperEngine() {
-		super(ENGINE_TYPE.ESPER);
-	}
-	
-	@Override
-	public void initialize() {
-		
-	    Configuration cepConfig = new Configuration();
-	    
-	    cepConfig.addEventType("DeviceInformationImpl" , DeviceInformationImpl.class.getName());
-	
-	    EP_SP = EPServiceProviderManager.getProvider(getType().getDescription(), cepConfig);
-	     
-	    EP_RUNTIME = EP_SP.getEPRuntime();
-	
-	}
+    private static EPRuntime EP_RUNTIME = null;
 
-	@Override
-	public void registerQuery(Query query) {
-		
-	}
-	
-	@Override
-	public void registerQuery(String query) {
-		
-		EPAdministrator cepAdm = EP_SP.getEPAdministrator();
-		EPStatement cepStatement = cepAdm.createEPL(query);
-			
-		cepStatement.addListener(new CEPListener());
-	}
+    private static EPServiceProvider EP_SP = null;
 
-	@Override
-	public void sendEvent(DeviceInformation deviceInformation) {
-		if (null != EP_RUNTIME) {
-			EP_RUNTIME.sendEvent(deviceInformation);
-		} else {
-			logger.error("Event couldn't be proccesed due engine wasn't initialized properly");
-		}
-	}
+    public EsperEngine() {
+        super(ENGINE_TYPE.ESPER);
+    }
 
-	@Override
-	public void unregisterQuery(String query) {
-		
-	
-	}
-	
-	public EPRuntime getCepRT() {
-		return EP_RUNTIME;
-	}
+    @Override
+    public void initialize() {
 
-	public EPServiceProvider getCep() {
-		return EP_SP;
-	}
+        Configuration cepConfig = new Configuration();
+
+        cepConfig.addEventType("DeviceInformation", DeviceInformation.class.getName());
+
+        EP_SP = EPServiceProviderManager.getProvider(getType().getDescription(), cepConfig);
+
+        EP_RUNTIME = EP_SP.getEPRuntime();
+
+    }
+
+    @Override
+    public void registerQuery(Query query) {
+
+    }
+
+    @Override
+    public void registerQuery(String query) {
+
+        EPAdministrator cepAdm = EP_SP.getEPAdministrator();
+        EPStatement cepStatement = cepAdm.createEPL(query);
+
+        cepStatement.addListener(new CEPListener());
+    }
+
+    @Override
+    public void sendEvent(DeviceInformation deviceInformation) {
+        if (null != EP_RUNTIME) {
+            EP_RUNTIME.sendEvent(deviceInformation);
+        } else {
+            logger.error("Event couldn't be proccesed due engine wasn't initialized properly");
+        }
+    }
+
+    @Override
+    public void unregisterQuery(String query) {
+
+    }
+
+    public EPRuntime getCepRT() {
+        return EP_RUNTIME;
+    }
+
+    public EPServiceProvider getCep() {
+        return EP_SP;
+    }
 }

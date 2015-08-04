@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import common.data.Connection;
 import common.data.MeasurementData;
 import common.data.MeasurementPoint;
+import common.rest.Url;
 import common.transformer.Transformer;
 
 import configuration.management.model.DeviceDataSourceJPA;
@@ -29,43 +30,44 @@ public class CMgmtManageDeviceImpl implements CMgmtManageDevice {
     final static Logger logger = Logger.getLogger(CMgmtManageDeviceImpl.class);
 
     @Autowired
-    private DeviceRepository deviceRepository;
+    private DeviceRepository deviceRepo;
 
     @Autowired
-    private DeviceDataSourceRepository measurementPointRepository;
+    private DeviceDataSourceRepository deviceDataSourceRepo;
 
     @Autowired
     private DeviceTransformer transformer;
 
     @Override
-    @RequestMapping(value = "/registrations", method = RequestMethod.GET)
-    public @ResponseBody List<Connection> getAllDevices() {
+    @RequestMapping(value = "/registrations/devices", method = RequestMethod.GET)
+    public @ResponseBody
+    List<Connection> getAllDevices() {
 
-        logger.info("GET /registrations is invoked");
+        logger.info(Url.CMGMT_GET_ALL_DEVICES.getLogMessage());
 
-        return transformer.toRemote(Transformer.makeCollection(deviceRepository.findAll()));
+        return transformer.toRemote(Transformer.makeCollection(deviceRepo.findAll()));
     }
 
-    @RequestMapping(value = "/registrations", method = RequestMethod.POST)
+    @RequestMapping(value = "/registrations/devices", method = RequestMethod.POST)
     public Connection registerDevice(@RequestBody Connection connection) {
 
-        logger.info("POST /registrations is invoked");
+        logger.info(Url.CMGMT_REGISTER_DEVICE.getRequestMethod() + " " + Url.CMGMT_REGISTER_DEVICE.getPath());
 
-        DeviceJPA device = new DeviceJPA();
-        device.setDate(new Date());
-        device.setUrl(connection.getUrl());
-        device = deviceRepository.save(device);
+        DeviceJPA item = new DeviceJPA();
+        item.setDate(new Date());
+        item.setUrl(connection.getUrl());
+        item = deviceRepo.save(item);
 
-        connection.setId(device.getId());
+        connection.setId(item.getId());
 
         return connection;
     }
 
     @Override
-    @RequestMapping(value = "/registrations/sources/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/registrations/devices/sources/{id}", method = RequestMethod.POST)
     public void registerDeviceSources(@PathVariable(value = "id") Long id, @RequestBody MeasurementData data) {
 
-        logger.info("POST /registrations/sources{id} is invoked");
+        logger.info(Url.CMGMT_REGISTER_DEVICE_SOURCES.getLogMessage());
 
         for (MeasurementPoint point : data.getMeasurementPoints()) {
 
@@ -74,21 +76,21 @@ public class CMgmtManageDeviceImpl implements CMgmtManageDevice {
             item.setDeviceInformation(point.getDeviceInformation().getName());
             item.setDomain(point.getDomain().getName());
 
-            measurementPointRepository.save(item);
+            deviceDataSourceRepo.save(item);
         }
 
     }
 
     @Override
-    @RequestMapping(value = "/registrations/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/registrations/devices/{id}", method = RequestMethod.PUT)
     public void heartBeat(@PathVariable(value = "id") Long id) {
 
-        logger.info("PUT /registrations{id} is invoked");
+        logger.info(Url.CMGMT_HEART_BEAT_DEVICE.getLogMessage());
 
-        DeviceJPA device = deviceRepository.findOne(id);
-        if (device != null) {
-            device.setDate(new Date());
-            deviceRepository.save(device);
+        DeviceJPA item = deviceRepo.findOne(id);
+        if (item != null) {
+            item.setDate(new Date());
+            deviceRepo.save(item);
         }
 
     }

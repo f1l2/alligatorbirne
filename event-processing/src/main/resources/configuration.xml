@@ -12,10 +12,10 @@
 	</measurementDataConfig>
 	<connections>
 		<connectionConfig>
-			<component>IoTDevice</component>
+			<component>EP</component>
 			<ip>127.0.0.1</ip>
 			<port>5001</port>
-			<url>http://127.0.0.1:5002</url>
+			<url>http://127.0.0.1:5001</url>
 		</connectionConfig>
 		<connectionConfig>
 			<component>CM</component>

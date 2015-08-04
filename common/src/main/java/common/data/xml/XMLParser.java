@@ -1,4 +1,4 @@
-package common.transformer;
+package common.data.xml;
 
 import java.io.File;
 import java.net.URI;
@@ -10,7 +10,7 @@ import javax.xml.bind.Unmarshaller;
 
 import common.data.configuration.Configuration;
 
-public class TransformXML {
+public class XMLParser {
 	
 	public static Configuration unmarshal(final URI uri) {
 		  try {

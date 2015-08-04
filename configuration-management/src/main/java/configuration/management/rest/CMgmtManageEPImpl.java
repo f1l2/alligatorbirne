@@ -6,38 +6,44 @@ import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import common.data.ConfigurationModification;
-import common.data.EProcInformation;
+import common.data.Connection;
 import common.data.MeasurementData;
 import common.data.MeasurementPoint;
 import common.rest.Url;
+import common.transformer.Transformer;
 
 import configuration.management.model.DeviceDataSourceJPA;
 import configuration.management.model.DeviceJPA;
-import configuration.management.model.EProcDataSourceJPA;
-import configuration.management.model.EProcJPA;
+import configuration.management.model.EventProcessingDataSourceJPA;
+import configuration.management.model.EventProcessingJPA;
 import configuration.management.repo.DeviceDataSourceRepository;
 import configuration.management.repo.DeviceRepository;
 import configuration.management.repo.EProcDataSourceRepository;
-import configuration.management.repo.EProcRepository;
-import configuration.management.repo.EProcTransformer;
+import configuration.management.repo.EventProcessingRepository;
+import configuration.management.repo.EventProcessingTransformer;
 
+@RestController
 public class CMgmtManageEPImpl implements CMgmtManageEP {
 
     final static Logger logger = Logger.getLogger(CMgmtManageEPImpl.class);
 
-    @Autowired
-    private EProcRepository eProcRepository;
+    final static String TEIG = "TING";
 
     @Autowired
-    private EProcDataSourceRepository eProcDataSourceRepository;
+    private EventProcessingRepository eventProcessingRepo;
+
+    @Autowired
+    private EProcDataSourceRepository eventProcessingDataSourceRepo;
 
     @Autowired
     private DeviceRepository deviceRepository;
@@ -46,62 +52,88 @@ public class CMgmtManageEPImpl implements CMgmtManageEP {
     private DeviceDataSourceRepository deviceDataSourceRepository;
 
     @Autowired
-    private EProcTransformer eProcTransformer;
+    private EventProcessingTransformer transformer;
 
-    @RequestMapping(value = "/subscription", method = RequestMethod.POST)
-    public String subscripe(@RequestBody EProcInformation eproc) {
+    @RequestMapping(value = "/registrations/eventprocessing", method = RequestMethod.GET)
+    public @ResponseBody
+    List<Connection> getAllEventProcessingInstances() {
 
-        logger.info("POST /subscription is invoked");
+        logger.info("GET /registrations/eventprocessing is invoked");
 
-        EProcJPA local = eProcTransformer.toLocal(eproc);
-
-        eProcRepository.save(local);
-
-        return "OK";
+        return transformer.toRemote(Transformer.makeCollection(eventProcessingRepo.findAll()));
     }
 
-    @RequestMapping(value = "/delegation", method = RequestMethod.POST)
-    public String delegate(@RequestBody EProcInformation eProc, @RequestBody MeasurementData data) {
+    @RequestMapping(value = "/registrations/eventprocessing", method = RequestMethod.POST)
+    public Connection registerEventProcessingInstance(@RequestBody Connection connection) {
 
-        logger.info("POST /delegation is invoked");
+        logger.info(Url.CMGMT_REGISTER_EVENT_PROCESSING.getLogMessage());
+
+        EventProcessingJPA item = new EventProcessingJPA();
+        item.setUrl(connection.getUrl());
+        item = eventProcessingRepo.save(item);
+
+        connection.setId(item.getId());
+
+        return connection;
+    }
+
+    @RequestMapping(value = "/registrations/eventprocessing/{id}", method = RequestMethod.PUT)
+    public void heartBeat(@PathVariable(value = "id") Long id) {
+
+        logger.info(Url.CMGMT_HEART_BEAT_EVENT_PROCESSING.getLogMessage());
+
+        EventProcessingJPA item = eventProcessingRepo.findOne(id);
+        if (item != null) {
+            eventProcessingRepo.save(item);
+            // TODO
+        }
+    }
+
+    @RequestMapping(value = "/delegation/{id}", method = RequestMethod.POST)
+    public void delegate(@PathVariable(value = "id") Long id, @RequestBody MeasurementData data) {
+
+        logger.info(Url.CMGMT_DELEGATION.getLogMessage());
+
+        EventProcessingJPA ep = eventProcessingRepo.findOne(id);
 
         for (MeasurementPoint point : data.getMeasurementPoints()) {
 
-            EProcDataSourceJPA item = new EProcDataSourceJPA();
-            item.setEProcId(eProc.getId());
+            EventProcessingDataSourceJPA item = new EventProcessingDataSourceJPA();
+            item.setEProcId(id);
             item.setDomain(point.getDomain().getName());
             item.setDeviceInformation(point.getDeviceInformation().getName());
 
-            eProcDataSourceRepository.save(item);
+            eventProcessingDataSourceRepo.save(item);
         }
 
-        Set<DeviceDataSourceJPA> devicesToNotify = getDevicesToNotify(eProc);
+        logger.info("Get device to notify ...");
 
-        notifyDevices(devicesToNotify, eProc);
+        Set<DeviceDataSourceJPA> devicesToNotify = getDevicesToNotify(ep);
 
-        return "OK";
+        logger.info("Number of devices to notify: " + devicesToNotify.size());
+
+        logger.info("Notify devices ... ");
+
+        notifyDevices(devicesToNotify, ep);
+
     }
 
-    private void notifyDevices(Set<DeviceDataSourceJPA> devicesToNotify, EProcInformation eProc) {
+    private void notifyDevices(Set<DeviceDataSourceJPA> devicesToNotify, EventProcessingJPA ep) {
 
-        for (DeviceDataSourceJPA deviceDataSource : devicesToNotify) {
+        for (DeviceDataSourceJPA deviceJPA : devicesToNotify) {
 
             ConfigurationModification cm = new ConfigurationModification();
-            cm.setEpId(eProc.getId());
-            cm.setEpUrl(eProc.getUrl());
+            cm.setEpId(ep.getId());
+            cm.setEpUrl(ep.getUrl());
 
-            DeviceJPA device = deviceRepository.findOne(deviceDataSource.getDeviceId());
+            DeviceJPA device = deviceRepository.findOne(deviceJPA.getDeviceId());
 
-            String url = Url.IDEV_SET_CONFIGURATION.getUrl("127.0.0.1", "5002");
-            // TODO
-            // String url = device.getUrl() + Url.IDEV_SET_CONFIGURATION.getPath();
+            String url = Url.IDEV_SET_CONFIGURATION.getUrl(device.getUrl());
 
             try {
                 RestTemplate restTemplate = new RestTemplate();
                 ResponseEntity<String> response = restTemplate.postForEntity(url, cm, String.class);
-                HttpStatus status = response.getStatusCode();
-                String restCall = response.getBody();
-                logger.info("Device registered. Status: " + status + " Response body: " + restCall);
+                logger.info("Device notification - " + url + " Status: " + response.getStatusCode() + " Response body: " + response.getBody());
             } catch (Exception ex) {
                 // TODO
                 logger.error("Register error.");
@@ -111,13 +143,13 @@ public class CMgmtManageEPImpl implements CMgmtManageEP {
 
     }
 
-    private Set<DeviceDataSourceJPA> getDevicesToNotify(EProcInformation eProc) {
+    private Set<DeviceDataSourceJPA> getDevicesToNotify(EventProcessingJPA ep) {
 
-        List<EProcDataSourceJPA> eProcDataSources = eProcDataSourceRepository.findByEProcId(eProc.getId());
+        List<EventProcessingDataSourceJPA> eProcDataSources = eventProcessingDataSourceRepo.findByEProcId(ep.getId());
 
         Set<DeviceDataSourceJPA> deviceDataSources = new HashSet<DeviceDataSourceJPA>();
 
-        for (EProcDataSourceJPA eProcDataSource : eProcDataSources) {
+        for (EventProcessingDataSourceJPA eProcDataSource : eProcDataSources) {
             deviceDataSources.addAll(deviceDataSourceRepository.findByDomainAndDeviceInformation(eProcDataSource.getDomain(), eProcDataSource.getDeviceInformation()));
         }
 

@@ -7,11 +7,11 @@ import common.data.configuration.DeviceInformationConfig;
 import common.data.configuration.DomainConfig;
 import common.data.configuration.MeasurementPointConfig;
 
-public class TransformConfig extends Transformer<MeasurementPointConfig, MeasurementPoint> {
+public class ConfigTransformer extends Transformer<MeasurementPointConfig, MeasurementPoint> {
 
-	private TransformerDeviceInformationConfig transformerDeviceInformation = new TransformerDeviceInformationConfig();
+	private DeviceInformationConfigTranformer transformerDeviceInformation = new DeviceInformationConfigTranformer();
 	
-	private TransformerDomainConfig transformerDomain = new TransformerDomainConfig();
+	private DomainConfigTransformer transformerDomain = new DomainConfigTransformer();
 	
 	
 	@Override

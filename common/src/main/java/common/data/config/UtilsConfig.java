@@ -1,14 +1,8 @@
-package iot.device;
-
-import iot.device.status.Status;
+package common.data.config;
 
 import java.io.File;
 import java.net.URI;
 import java.util.List;
-
-import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 
 import common.data.MeasurementData;
 import common.data.MeasurementPoint;
@@ -18,19 +12,9 @@ import common.data.configuration.Connections;
 import common.data.xml.XMLParser;
 import common.transformer.ConfigTransformer;
 
-@Controller
-public class IotDevice {
+public class UtilsConfig {
 
-    final static Logger logger = Logger.getLogger(IotDevice.class);
-
-    @Autowired
-    private Status status;
-
-    public void setLocalConfiguration(String ip, String port) {
-        // TODO
-    }
-
-    public ConnectionConfig getCMConnection() {
+    public static ConnectionConfig getCMConnection() {
 
         for (ConnectionConfig connectionConfig : loadConnections().getConnectionConfig()) {
             if ("CM".equals(connectionConfig.getComponent())) {
@@ -40,14 +24,24 @@ public class IotDevice {
         return null;
     }
 
-    private Connections loadConnections() {
+    public static ConnectionConfig getEPConnection() {
+
+        for (ConnectionConfig connectionConfig : loadConnections().getConnectionConfig()) {
+            if ("EP".equals(connectionConfig.getComponent())) {
+                return connectionConfig;
+            }
+        }
+        return null;
+    }
+
+    public static Connections loadConnections() {
 
         Configuration configuration = loadConfiguration();
 
         return configuration.getConnections();
     }
 
-    public MeasurementData loadMeasurementData() {
+    public static MeasurementData loadMeasurementData() {
 
         Configuration configuration = loadConfiguration();
         ConfigTransformer transformer = new ConfigTransformer();
@@ -60,7 +54,7 @@ public class IotDevice {
         return measurementData;
     }
 
-    private Configuration loadConfiguration() {
+    private static Configuration loadConfiguration() {
 
         String configurationStr = "src/main/resources/configuration.xml";
         File configurationFile = new File(configurationStr);
@@ -70,4 +64,5 @@ public class IotDevice {
 
         return XMLParser.unmarshal(configurationURI);
     }
+
 }

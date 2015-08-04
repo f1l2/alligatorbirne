@@ -1,12 +1,9 @@
-package iot.device.repo;
-
-import iot.device.IotDevice;
+package iot.device;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -14,33 +11,33 @@ import org.springframework.web.client.RestTemplate;
 
 import common.data.Connection;
 import common.data.MeasurementData;
+import common.data.config.UtilsConfig;
+import common.data.configuration.ConnectionConfig;
+import common.rest.Url;
 
 @Component
-public class ScheduledJob {
+public class Scheduler {
 
-    final static Logger logger = Logger.getLogger(ScheduledJob.class);
-
-    @Autowired
-    private IotDevice iotDevice;
+    final static Logger logger = Logger.getLogger(Scheduler.class);
 
     private static int statusRegistration = 0;
 
     private static Connection connection;
 
-    private static String url;
-
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
-    @Scheduled(fixedRate = 50000)
-    public void reportCurrentTime() {
+    @Scheduled(fixedRate = 20000)
+    public void action() {
 
         RestTemplate restTemplate = new RestTemplate();
+        String url = null;
 
         if (statusRegistration == 0) {
 
             try {
 
-                url = "http://" + iotDevice.getCMConnection().getUrl() + "/registrations";
+                ConnectionConfig cmConnection = UtilsConfig.getCMConnection();
+                url = Url.CMGMT_REGISTER_DEVICE.getUrl(cmConnection);
 
                 connection = new Connection();
                 connection.setIp("127.0.0.1");
@@ -62,9 +59,11 @@ public class ScheduledJob {
         } else if (statusRegistration == 1) {
 
             try {
-                MeasurementData data = iotDevice.loadMeasurementData();
+                MeasurementData data = UtilsConfig.loadMeasurementData();
 
-                url = "http://" + iotDevice.getCMConnection().getUrl() + "/registrations/sources/" + connection.getId();
+                ConnectionConfig cmConnection = UtilsConfig.getCMConnection();
+                url = Url.CMGMT_REGISTER_DEVICE_SOURCES.getUrl(cmConnection);
+                url = url.replace("{id}", String.valueOf(connection.getId()));
 
                 ResponseEntity<Void> responseRegisteriationSources = restTemplate.postForEntity(url, data, Void.class);
                 logger.info("Sources of device registered. Status: " + responseRegisteriationSources.getStatusCode() + " Response body: ");

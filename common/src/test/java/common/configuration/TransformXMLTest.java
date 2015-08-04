@@ -15,8 +15,8 @@ import common.data.configuration.DeviceInformationConfig;
 import common.data.configuration.DomainConfig;
 import common.data.configuration.MeasurementDataConfig;
 import common.data.configuration.MeasurementPointConfig;
-import common.transformer.TransformConfig;
-import common.transformer.TransformXML;
+import common.data.xml.XMLParser;
+import common.transformer.ConfigTransformer;
 
 public class TransformXMLTest {
 	
@@ -24,7 +24,7 @@ public class TransformXMLTest {
 	private File configurationFile;
 	private URI configurationURI;
 	
-	private TransformConfig transformerConfig = new TransformConfig();
+	private ConfigTransformer transformerConfig = new ConfigTransformer();
 	
 	@Before
 	public void setup() {
@@ -39,7 +39,7 @@ public class TransformXMLTest {
 	@Test
     public void testUnmarshal() throws Exception {
 		
-		Configuration configuration = TransformXML.unmarshal(configurationURI);
+		Configuration configuration = XMLParser.unmarshal(configurationURI);
 		
 		MeasurementDataConfig measurementData = configuration.getMeasurementDataConfig();
 		Connections connections = configuration.getConnections();
@@ -64,7 +64,7 @@ public class TransformXMLTest {
 	@Test
     public void testMarshal() throws Exception {
 
-		Configuration unmarshal = TransformXML.unmarshal(configurationURI);
+		Configuration unmarshal = XMLParser.unmarshal(configurationURI);
 		
 		DeviceInformationConfig deviceInformation = new DeviceInformationConfig();
 		deviceInformation.setName("ALARM");
@@ -81,14 +81,14 @@ public class TransformXMLTest {
 		configurationStr = "target/configuration_test_output.xml";
 		configurationFile = new File(configurationStr);
 				
-		TransformXML.marshal(unmarshal, configurationFile);
+		XMLParser.marshal(unmarshal, configurationFile);
 		
     }
 	
 	@Test
     public void testTransformConfiguration() throws Exception {
 		
-		Configuration configuration = TransformXML.unmarshal(configurationURI);
+		Configuration configuration = XMLParser.unmarshal(configurationURI);
 		
 		List<MeasurementPoint> remote = transformerConfig.toRemote(configuration.getMeasurementDataConfig().getMeasurementPointConfig());
 		
