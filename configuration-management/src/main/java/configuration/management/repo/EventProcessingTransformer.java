@@ -2,16 +2,16 @@ package configuration.management.repo;
 
 import org.springframework.stereotype.Component;
 
-import common.data.Connection;
+import common.data.ConnectionProperties;
 import common.transformer.Transformer;
 
 import configuration.management.model.EventProcessingJPA;
 
 @Component
-public class EventProcessingTransformer extends Transformer<EventProcessingJPA, Connection> {
+public class EventProcessingTransformer extends Transformer<EventProcessingJPA, ConnectionProperties> {
 
     @Override
-    public EventProcessingJPA toLocal(Connection remote) {
+    public EventProcessingJPA toLocal(ConnectionProperties remote) {
 
         EventProcessingJPA eProcJPA = new EventProcessingJPA();
         eProcJPA.setId(remote.getId());
@@ -21,9 +21,9 @@ public class EventProcessingTransformer extends Transformer<EventProcessingJPA, 
     }
 
     @Override
-    public Connection toRemote(EventProcessingJPA local) {
+    public ConnectionProperties toRemote(EventProcessingJPA local) {
 
-        Connection connection = new Connection();
+        ConnectionProperties connection = new ConnectionProperties();
         connection.setId(local.getId());
         connection.setUrl(local.getUrl());
 

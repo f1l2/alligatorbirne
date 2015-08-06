@@ -1,34 +1,27 @@
 package common.data;
 
-public class DeviceInformation {
+import common.data.type.DEVICE_INFORMATION_TYPE;
 
-	private Long id;
-	
-	private String name;
-	
-	private String type;
+public class DeviceInformation extends DataModel {
 
-	public Long getId() {
-		return id;
-	}
-	
-	public void setId(Long id) {
-		this.id = id;
-	}
-	
-	public String getName() {
-		return name;
-	}
+    private String name;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    private DEVICE_INFORMATION_TYPE type;
 
-	public String getType() {
-		return type;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public DEVICE_INFORMATION_TYPE getType() {
+        return type;
+    }
+
+    public void setType(DEVICE_INFORMATION_TYPE type) {
+        this.type = type;
+    }
+
 }

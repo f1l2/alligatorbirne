@@ -5,15 +5,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import common.data.DeviceInformation;
-import common.rest.Url;
+import common.rest.RESOURCE_NAMING;
 
 public class Job implements Runnable {
 
     final static Logger logger = Logger.getLogger(Job.class);
 
-    private JobJPA job;
+    private InstructionJPA job;
 
-    public Job(JobJPA job) {
+    public Job(InstructionJPA job) {
         this.job = job;
     }
 
@@ -26,7 +26,7 @@ public class Job implements Runnable {
 
             try {
 
-                String url = Url.EPROCESSING_SEND.getUrl(job.getEpUrl());
+                String url = RESOURCE_NAMING.EPROCESSING_SEND.getUrl(job.getEpUrl());
 
                 DeviceInformation deviceInformation = new DeviceInformation();
                 deviceInformation.setName("Name");

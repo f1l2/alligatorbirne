@@ -1,7 +1,7 @@
 package iot.device.rest;
 
+import iot.device.repo.InstructionJPA;
 import iot.device.repo.Job;
-import iot.device.repo.JobJPA;
 import iot.device.repo.JobRepository;
 import iot.device.repo.JobTransformer;
 
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import common.data.ConfigurationModification;
-import common.rest.Url;
+import common.rest.RESOURCE_NAMING;
 
 @RestController
 public class IDevManageConfigImpl implements IDevManageConfig {
@@ -34,29 +34,32 @@ public class IDevManageConfigImpl implements IDevManageConfig {
     @Autowired
     private ThreadPoolTaskExecutor taskExecutor;
 
+    @Override
     @RequestMapping(value = "/configurations", method = RequestMethod.GET)
     public List<ConfigurationModification> getAllConfiguration() {
 
-        logger.info(Url.IDEV_GET_ALL_CONFIGURATION.getLogMessage());
+        logger.info(RESOURCE_NAMING.IDEV_GET_ALL_CONFIGURATION.getLogMessage());
 
         return transformer.toRemote(repository.findAll());
     }
 
+    @Override
     @RequestMapping(value = "/configurations/{id}", method = RequestMethod.GET)
-    public JobJPA getConfigurationByEP(@RequestParam(value = "id") Long id) {
+    public InstructionJPA getConfigurationByEP(@RequestParam(value = "id") Long id) {
 
-        logger.info(Url.IDEV_GET_CONFIGURATION_BY_EP.getLogMessage());
+        logger.info(RESOURCE_NAMING.IDEV_GET_CONFIGURATION_BY_EP.getLogMessage());
 
         return repository.findOne(id);
 
     }
 
+    @Override
     @RequestMapping(value = "/configurations", method = RequestMethod.POST)
     public void setConfiguration(@RequestBody ConfigurationModification configurationModification) {
 
-        logger.info(Url.IDEV_SET_CONFIGURATION);
+        logger.info(RESOURCE_NAMING.IDEV_SET_CONFIGURATION);
 
-        JobJPA local = transformer.toLocal(configurationModification);
+        InstructionJPA local = transformer.toLocal(configurationModification);
         repository.save(local);
 
         Job job = new Job(local);
@@ -65,6 +68,7 @@ public class IDevManageConfigImpl implements IDevManageConfig {
 
     }
 
+    @Override
     @RequestMapping(value = "/configurationtest", method = RequestMethod.GET)
     public void setConfiguration1() {
 
@@ -73,7 +77,7 @@ public class IDevManageConfigImpl implements IDevManageConfig {
         Random random = new Random();
         random.nextLong();
 
-        JobJPA local = new JobJPA();
+        InstructionJPA local = new InstructionJPA();
         local.setEpId(random.nextLong());
         local.setEpUrl("Urls");
 

@@ -1,12 +1,12 @@
 package common.transformer;
 
-import common.data.Connection;
+import common.data.ConnectionProperties;
 import common.data.configuration.ConnectionConfig;
 
-public class ConnectionTransformer extends Transformer<ConnectionConfig, Connection> {
+public class ConnectionTransformer extends Transformer<ConnectionConfig, ConnectionProperties> {
 
     @Override
-    public ConnectionConfig toLocal(Connection remote) {
+    public ConnectionConfig toLocal(ConnectionProperties remote) {
 
         if (null == remote) {
             return null;
@@ -21,13 +21,13 @@ public class ConnectionTransformer extends Transformer<ConnectionConfig, Connect
     }
 
     @Override
-    public Connection toRemote(ConnectionConfig local) {
+    public ConnectionProperties toRemote(ConnectionConfig local) {
 
         if (null == local) {
             return null;
         }
 
-        Connection connection = new Connection();
+        ConnectionProperties connection = new ConnectionProperties();
         connection.setIp(local.getIp());
         connection.setPort(local.getPort());
         connection.setUrl(local.getUrl());

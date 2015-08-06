@@ -7,13 +7,13 @@ import common.data.ConfigurationModification;
 import common.transformer.Transformer;
 
 @Component
-public class JobTransformer extends Transformer<JobJPA, ConfigurationModification> {
+public class JobTransformer extends Transformer<InstructionJPA, ConfigurationModification> {
 	
 
 	@Override
-	public JobJPA toLocal(ConfigurationModification remote) {
+	public InstructionJPA toLocal(ConfigurationModification remote) {
 		
-		JobJPA job = new JobJPA();
+		InstructionJPA job = new InstructionJPA();
 		job.setEpId(remote.getEpId());
 		job.setProperties(remote.getProperties());
 		job.setEpUrl(remote.getEpUrl());
@@ -22,7 +22,7 @@ public class JobTransformer extends Transformer<JobJPA, ConfigurationModificatio
 	}
 	
 	@Override
-	public ConfigurationModification toRemote(JobJPA local) {
+	public ConfigurationModification toRemote(InstructionJPA local) {
 		
 		ConfigurationModification cm = new ConfigurationModification();
 		cm.setEpId(local.getEpId());

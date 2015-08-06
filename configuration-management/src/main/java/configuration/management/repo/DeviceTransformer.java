@@ -2,16 +2,16 @@ package configuration.management.repo;
 
 import org.springframework.stereotype.Component;
 
-import common.data.Connection;
+import common.data.ConnectionProperties;
 import common.transformer.Transformer;
 
 import configuration.management.model.DeviceJPA;
 
 @Component
-public class DeviceTransformer extends Transformer<DeviceJPA, Connection> {
+public class DeviceTransformer extends Transformer<DeviceJPA, ConnectionProperties> {
 
     @Override
-    public DeviceJPA toLocal(Connection remote) {
+    public DeviceJPA toLocal(ConnectionProperties remote) {
 
         if (null == remote) {
             return null;
@@ -25,13 +25,13 @@ public class DeviceTransformer extends Transformer<DeviceJPA, Connection> {
     }
 
     @Override
-    public Connection toRemote(DeviceJPA local) {
+    public ConnectionProperties toRemote(DeviceJPA local) {
 
         if (null == local) {
             return null;
         }
 
-        Connection connection = new Connection();
+        ConnectionProperties connection = new ConnectionProperties();
         connection.setId(local.getId());
         connection.setUrl(local.getUrl());
 

@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import common.data.Connection;
+import common.data.ConnectionProperties;
 import common.data.MeasurementData;
 import common.data.MeasurementPoint;
-import common.rest.Url;
+import common.rest.RESOURCE_NAMING;
 import common.transformer.Transformer;
 
 import configuration.management.model.DeviceDataSourceJPA;
@@ -41,17 +41,17 @@ public class CMgmtManageDeviceImpl implements CMgmtManageDevice {
     @Override
     @RequestMapping(value = "/registrations/devices", method = RequestMethod.GET)
     public @ResponseBody
-    List<Connection> getAllDevices() {
+    List<ConnectionProperties> getAllDevices() {
 
-        logger.info(Url.CMGMT_GET_ALL_DEVICES.getLogMessage());
+        logger.info(RESOURCE_NAMING.CMGMT_GET_ALL_DEVICES.getLogMessage());
 
         return transformer.toRemote(Transformer.makeCollection(deviceRepo.findAll()));
     }
 
     @RequestMapping(value = "/registrations/devices", method = RequestMethod.POST)
-    public Connection registerDevice(@RequestBody Connection connection) {
+    public ConnectionProperties registerDevice(@RequestBody ConnectionProperties connection) {
 
-        logger.info(Url.CMGMT_REGISTER_DEVICE.getRequestMethod() + " " + Url.CMGMT_REGISTER_DEVICE.getPath());
+        logger.info(RESOURCE_NAMING.CMGMT_REGISTER_DEVICE.getRequestMethod() + " " + RESOURCE_NAMING.CMGMT_REGISTER_DEVICE.getPath());
 
         DeviceJPA item = new DeviceJPA();
         item.setDate(new Date());
@@ -67,7 +67,7 @@ public class CMgmtManageDeviceImpl implements CMgmtManageDevice {
     @RequestMapping(value = "/registrations/devices/sources/{id}", method = RequestMethod.POST)
     public void registerDeviceSources(@PathVariable(value = "id") Long id, @RequestBody MeasurementData data) {
 
-        logger.info(Url.CMGMT_REGISTER_DEVICE_SOURCES.getLogMessage());
+        logger.info(RESOURCE_NAMING.CMGMT_REGISTER_DEVICE_SOURCES.getLogMessage());
 
         for (MeasurementPoint point : data.getMeasurementPoints()) {
 
@@ -85,7 +85,7 @@ public class CMgmtManageDeviceImpl implements CMgmtManageDevice {
     @RequestMapping(value = "/registrations/devices/{id}", method = RequestMethod.PUT)
     public void heartBeat(@PathVariable(value = "id") Long id) {
 
-        logger.info(Url.CMGMT_HEART_BEAT_DEVICE.getLogMessage());
+        logger.info(RESOURCE_NAMING.CMGMT_HEART_BEAT_DEVICE.getLogMessage());
 
         DeviceJPA item = deviceRepo.findOne(id);
         if (item != null) {

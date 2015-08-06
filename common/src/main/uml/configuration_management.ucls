@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.8" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" language="java" name="configuration.management.model.EventProcessingJPA" 
+    project="configuration-management" 
+    file="/configuration-management/src/main/java/configuration/management/model/EventProcessingJPA.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="247" width="142" x="324" y="-9"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="configuration.management.repo.EventProcessingTransformer" 
+    project="configuration-management" 
+    file="/configuration-management/src/main/java/configuration/management/repo/EventProcessingTransformer.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="103" width="235" x="2021" y="332"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="configuration.management.model.DeviceJPA" project="configuration-management" 
+    file="/configuration-management/src/main/java/configuration/management/model/DeviceJPA.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="301" width="127" x="506" y="-9"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="4" language="java" name="configuration.management.repo.DeviceDataSourceRepository" 
+    project="configuration-management" 
+    file="/configuration-management/src/main/java/configuration/management/repo/DeviceDataSourceRepository.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="103" width="405" x="1576" y="332"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="5" language="java" name="configuration.management.repo.DeviceRepository" 
+    project="configuration-management" 
+    file="/configuration-management/src/main/java/configuration/management/repo/DeviceRepository.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="67" width="174" x="1362" y="332"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="6" language="java" name="configuration.management.repo.EventProcessingRepository" 
+    project="configuration-management" 
+    file="/configuration-management/src/main/java/configuration/management/repo/EventProcessingRepository.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="67" width="222" x="2296" y="332"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="7" language="java" name="configuration.management.rest.CMgmtManageDeviceImpl" 
+    project="configuration-management" 
+    file="/configuration-management/src/main/java/configuration/management/rest/CMgmtManageDeviceImpl.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1511" y="73"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="8" language="java" name="configuration.management.repo.EProcDataSourceRepository" 
+    project="configuration-management" 
+    file="/configuration-management/src/main/java/configuration/management/repo/EProcDataSourceRepository.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="121" width="453" x="2558" y="332"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="9" language="java" name="configuration.management.model.EventProcessingDataSourceJPA" 
+    project="configuration-management" 
+    file="/configuration-management/src/main/java/configuration/management/model/EventProcessingDataSourceJPA.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="283" width="209" x="673" y="-9"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="10" language="java" name="configuration.management.rest.CMgmtManageEP" 
+    project="configuration-management" 
+    file="/configuration-management/src/main/java/configuration/management/rest/CMgmtManageEP.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="49" width="124" x="3051" y="332"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="11" language="java" name="configuration.management.rest.CMgmtManageEPImpl" 
+    project="configuration-management" 
+    file="/configuration-management/src/main/java/configuration/management/rest/CMgmtManageEPImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="211" width="365" x="2144" y="-9"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="configuration.management.repo.DeviceTransformer" 
+    project="configuration-management" 
+    file="/configuration-management/src/main/java/configuration/management/repo/DeviceTransformer.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="103" width="187" x="813" y="332"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="13" language="java" name="configuration.management.rest.CMgmtManageDevice" 
+    project="configuration-management" 
+    file="/configuration-management/src/main/java/configuration/management/rest/CMgmtManageDevice.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="121" width="282" x="1040" y="332"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="14" language="java" name="configuration.management.model.DeviceDataSourceJPA" 
+    project="configuration-management" 
+    file="/configuration-management/src/main/java/configuration/management/model/DeviceDataSourceJPA.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="283" width="186" x="922" y="-9"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="configuration.management.ConfigurationManagement" 
+    project="configuration-management" 
+    file="/configuration-management/src/main/java/configuration/management/ConfigurationManagement.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="85" width="174" x="1148" y="-9"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="configuration.management.startup.ApplicationStartup" 
+    project="configuration-management" 
+    file="/configuration-management/src/main/java/configuration/management/startup/ApplicationStartup.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="103" width="264" x="1684" y="-9"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="17">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="18" name="deviceDataSourceRepository"/>      
+      <multiplicity id="19" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="20">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="13"/>  
+  </realization>  
+  <association id="21">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="22" name="transformer"/>      
+      <multiplicity id="23" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="24">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="10"/>  
+  </realization>  
+  <association id="25">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="26" name="repository"/>      
+      <multiplicity id="27" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="28">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="29" name="deviceRepo"/>      
+      <multiplicity id="30" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="31">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="32" name="deviceRepository"/>      
+      <multiplicity id="33" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="34">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="35" name="deviceDataSourceRepo"/>      
+      <multiplicity id="36" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="37">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="38" name="eventProcessingRepo"/>      
+      <multiplicity id="39" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="40">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="41" name="transformer"/>      
+      <multiplicity id="42" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="43">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="44" name="eventProcessingDataSourceRepo"/>      
+      <multiplicity id="45" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

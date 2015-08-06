@@ -9,11 +9,11 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import common.data.Connection;
+import common.data.ConnectionProperties;
 import common.data.MeasurementData;
 import common.data.config.UtilsConfig;
 import common.data.configuration.ConnectionConfig;
-import common.rest.Url;
+import common.rest.RESOURCE_NAMING;
 import common.transformer.ConnectionTransformer;
 
 import event.processing.engine.Engine;
@@ -29,7 +29,7 @@ public class Scheduler {
 
     private static String url;
 
-    private static Connection connection;
+    private static ConnectionProperties connection;
 
     private final static SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
@@ -41,13 +41,13 @@ public class Scheduler {
         if (status == 0) {
             try {
                 ConnectionConfig cmConnection = UtilsConfig.getCMConnection();
-                url = Url.CMGMT_REGISTER_EVENT_PROCESSING.getUrl(cmConnection);
+                url = RESOURCE_NAMING.CMGMT_REGISTER_EVENT_PROCESSING.getUrl(cmConnection);
 
                 ConnectionConfig epConnectionConfig = UtilsConfig.getEPConnection();
                 ConnectionTransformer transformer = new ConnectionTransformer();
                 connection = transformer.toRemote(epConnectionConfig);
 
-                ResponseEntity<Connection> responseRegistration = restTemplate.postForEntity(url, connection, Connection.class);
+                ResponseEntity<ConnectionProperties> responseRegistration = restTemplate.postForEntity(url, connection, ConnectionProperties.class);
                 connection = responseRegistration.getBody();
 
                 logger.info("Event processing registered. Status: " + responseRegistration.getStatusCode() + " Response body: " + connection);
@@ -77,7 +77,7 @@ public class Scheduler {
                 MeasurementData data = UtilsConfig.loadMeasurementData();
 
                 ConnectionConfig cmConnection = UtilsConfig.getCMConnection();
-                url = Url.CMGMT_DELEGATION.getUrl(cmConnection);
+                url = RESOURCE_NAMING.CMGMT_DELEGATION.getUrl(cmConnection);
                 url = url.replace("{id}", String.valueOf(connection.getId()));
 
                 ResponseEntity<Void> responseRegisteriationSources = restTemplate.postForEntity(url, data, Void.class);

@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class JobRepository {
 
-    private Map<Long, JobJPA> repo = new LinkedHashMap<Long, JobJPA>();
+    private Map<Long, InstructionJPA> repo = new LinkedHashMap<Long, InstructionJPA>();
 
-    public JobJPA findOne(Long id) {
+    public InstructionJPA findOne(Long id) {
 
         if (repo.containsKey(id)) {
             return repo.get(id);
@@ -22,11 +22,11 @@ public class JobRepository {
         return null;
     }
 
-    public List<JobJPA> findAll() {
+    public List<InstructionJPA> findAll() {
 
-        List<JobJPA> jobs = new ArrayList<JobJPA>();
+        List<InstructionJPA> jobs = new ArrayList<InstructionJPA>();
 
-        Iterator<JobJPA> it = repo.values().iterator();
+        Iterator<InstructionJPA> it = repo.values().iterator();
         while (it.hasNext()) {
             jobs.add(it.next());
         }
@@ -34,7 +34,7 @@ public class JobRepository {
         return jobs;
     }
 
-    public void save(JobJPA job) {
+    public void save(InstructionJPA job) {
         repo.put(job.getEpId(), job);
     }
 

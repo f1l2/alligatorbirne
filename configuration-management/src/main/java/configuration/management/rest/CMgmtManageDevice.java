@@ -2,7 +2,7 @@ package configuration.management.rest;
 
 import java.util.List;
 
-import common.data.Connection;
+import common.data.ConnectionProperties;
 import common.data.MeasurementData;
 
 /**
@@ -13,9 +13,9 @@ import common.data.MeasurementData;
  */
 public interface CMgmtManageDevice {
 
-    public Connection registerDevice(Connection connection);
+    public ConnectionProperties registerDevice(ConnectionProperties connection);
 
-    public List<Connection> getAllDevices();
+    public List<ConnectionProperties> getAllDevices();
 
     public void heartBeat(Long id);
 

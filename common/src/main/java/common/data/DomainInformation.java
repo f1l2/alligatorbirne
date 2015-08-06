@@ -1,34 +1,26 @@
 package common.data;
 
-public class DomainInformation {
+import common.data.type.DOMAIN_INFORMATION_TYPE;
 
-	private Long id;
-	
-	private String name;
+public class DomainInformation extends DataModel {
 
-	private String type;
+    private String name;
 
-	public Long getId() {
-		return id;
-	}
+    private DOMAIN_INFORMATION_TYPE type;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public DOMAIN_INFORMATION_TYPE getType() {
+        return type;
+    }
 
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
+    public void setType(DOMAIN_INFORMATION_TYPE type) {
+        this.type = type;
+    }
 }

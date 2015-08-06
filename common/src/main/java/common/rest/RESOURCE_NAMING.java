@@ -2,7 +2,7 @@ package common.rest;
 
 import common.data.configuration.ConnectionConfig;
 
-public enum Url {
+public enum RESOURCE_NAMING {
 
     IDEV_GET_ALL_CONFIGURATION("/configurations", RequestMethod.GET),
     //
@@ -32,7 +32,7 @@ public enum Url {
 
     private RequestMethod requestMethod;
 
-    Url(String path, RequestMethod requestMethod) {
+    RESOURCE_NAMING(String path, RequestMethod requestMethod) {
         this.path = path;
         this.requestMethod = requestMethod;
     }

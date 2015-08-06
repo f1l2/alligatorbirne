@@ -4,16 +4,16 @@
   <xs:element name="configuration">
   	<xs:complexType>
 	     <xs:sequence>
-	     	<xs:element ref="measurementDataConfig" />
+	     	<xs:element ref="dataSourcesConfig" />
 	     	<xs:element ref="connections" />
 		</xs:sequence>
 	</xs:complexType>		
   </xs:element> 
     
-  <xs:element name="measurementDataConfig">
+  <xs:element name="dataSourcesConfig">
     <xs:complexType>
       <xs:sequence maxOccurs="unbounded" minOccurs="0">
-		<xs:element ref="measurementPointConfig" />
+		<xs:element ref="dataSourceConfig" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

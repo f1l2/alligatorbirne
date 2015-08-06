@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class JobJPA {
+public class InstructionJPA {
 	
 	private Long epId;
 	
