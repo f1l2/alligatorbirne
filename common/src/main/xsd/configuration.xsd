@@ -5,39 +5,23 @@
         jaxb:version="2.1">
   
   <xs:element name="configuration">
-  	<xs:annotation>
-    	<xs:appinfo>
-        	<jaxb:class name="XML_Configuration"/>
-       	</xs:appinfo>
-   	</xs:annotation>
-  	<xs:complexType>
-	     <xs:sequence>
-	     	<xs:element ref="dataSources" />
-	     	<xs:element ref="connections" />
-	     	
-		</xs:sequence>
-	</xs:complexType>		
-  </xs:element> 
-    
+	<xs:complexType>
+		<xs:all>
+			<xs:element ref="dataSources" />
+			<xs:element ref="connections" />
+		</xs:all>
+  	</xs:complexType>	 
+  </xs:element>
+
   <xs:element name="dataSources">
-  	<xs:annotation>
-    	<xs:appinfo>
-        	<jaxb:class name="XML_DataSources"/>
-       	</xs:appinfo>
-   	</xs:annotation>
     <xs:complexType>
-      <xs:sequence maxOccurs="unbounded" minOccurs="0">
+      <xs:sequence minOccurs="0" maxOccurs="unbounded">
 		<xs:element ref="dataSource" />
       </xs:sequence>
     </xs:complexType>  
   </xs:element>
   
   <xs:element name="dataSource">
-  	<xs:annotation>
-    	<xs:appinfo>
-        	<jaxb:class name="XML_DataSource"/>
-       	</xs:appinfo>
-   	</xs:annotation>
 	<xs:complexType>
 		<xs:sequence>
 			<xs:element ref="deviceInformation" />
@@ -47,13 +31,6 @@
   </xs:element>
   
   <xs:element name="deviceInformation">
-  
-  	<xs:annotation>
-    	<xs:appinfo>
-    		<jaxb:class name="XML_DeviceInformation" />
-       	</xs:appinfo>
-   	</xs:annotation>
-	
 	<xs:complexType>
 		<xs:sequence>
 			<xs:element type="xs:string" name="name" />
@@ -62,81 +39,35 @@
   
   </xs:element>
   
-  <xs:element name="listDeviceInformation">
-    
-    <xs:annotation>
-    	<xs:appinfo>
-    		<jaxb:class name="XML_ListDeviceInformation" />
-       	</xs:appinfo>
-   	</xs:annotation>
-    
+   <!--
+  <xs:element name="deviceInformationList">
     <xs:complexType>
       <xs:sequence maxOccurs="unbounded" minOccurs="0">
         <xs:element ref="deviceInformation" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  -->
   
   <xs:element name="domainInformation">
-  	
-  	<xs:annotation>
-    	<xs:appinfo>
-    		<jaxb:class name="XML_DomainInformation" />
-       	</xs:appinfo>
-   	</xs:annotation>
-  
 	<xs:complexType>
 		<xs:sequence>
 			<xs:element type="xs:string" name="name" />
 		</xs:sequence>
 	</xs:complexType>
-	
   </xs:element>
   
+  <!--  
   <xs:element name="domainInformationList">
-    
-    <xs:annotation>
-    	<xs:appinfo>
-    		<jaxb:class name="XML_DomainInformationList" />
-       	</xs:appinfo>
-   	</xs:annotation>
-    
     <xs:complexType>
       <xs:sequence maxOccurs="unbounded" minOccurs="0">
         <xs:element ref="domainInformation" />
       </xs:sequence>
     </xs:complexType>
-    
   </xs:element>
-  
-  
-  <xs:element name="connection">
-	
-	<xs:annotation>
-    	<xs:appinfo>
-    		<jaxb:class name="XML_Connection" />
-       	</xs:appinfo>
-   	</xs:annotation>
-	
-	<xs:complexType>
-		<xs:sequence>
-			<xs:element type="xs:string" name="ip"/>
-	        <xs:element type="xs:string" name="port"/>
-			<xs:element type="xs:string" name="url"/>
-		</xs:sequence>
-		<xs:attribute type="XMLComponent" name="component" />
-	</xs:complexType>
-  
-  </xs:element>
+  -->
   
   <xs:element name="connections">
-    
-    <xs:annotation>
-    	<xs:appinfo>
-    		<jaxb:class name="XML_Connections" />
-       	</xs:appinfo>
-   	</xs:annotation>
-    
     <xs:complexType>
       <xs:sequence maxOccurs="unbounded" minOccurs="0">
         <xs:element ref="connection" />
@@ -144,15 +75,22 @@
     </xs:complexType>
   </xs:element>
   
-  <xs:simpleType name="XMLComponent">
+  <xs:element name="connection" >
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element type="xs:string" name="name"/>
+			<xs:element type="xs:string" name="host"/>
+	        <xs:element type="xs:string" name="port"/>
+		</xs:sequence>
+		<xs:attribute type="Component" name="component" />
+	</xs:complexType>
+  </xs:element>
   
+  <xs:simpleType name="Component">
   	<xs:restriction base="xs:string">
     	<xs:enumeration value="IOT_DEVICE" />
       	<xs:enumeration value="CONFIGURATION_MANAGEMENT" />
       	<xs:enumeration value="EVENT_PROCESSING" />
     </xs:restriction>
   </xs:simpleType>
-  
-  
-  
 </xs:schema>

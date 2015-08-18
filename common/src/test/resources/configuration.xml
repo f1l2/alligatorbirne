@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<configuration>
+<configuration schemaLocation="configuration.xsd">
 	<dataSources>
 		<dataSource>
 			<deviceInformation>
@@ -12,9 +12,10 @@
 	</dataSources>
 	<connections>
 		<connection component="IOT_DEVICE">
-			<ip>127.0.0.1</ip>
+			<name>Name</name>
+			<host>127.0.0.1</host>
 			<port>5000</port>
-			<url>127.0.0.1:5000</url>
 		</connection>
 	</connections>
 </configuration>
+

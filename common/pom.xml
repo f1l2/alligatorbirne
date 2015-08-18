@@ -35,9 +35,12 @@
 						<goal>xsdtojava</goal>
 					</goals>
 					<configuration>
+						
 						<sourceRoot>${project.build.directory}/generated-sources/jaxb</sourceRoot>
 						<xsdOptions>
+						
 							<xsdOption>
+    							<bindingFile>${basedir}/src/main/xsd/configuration.xjb</bindingFile>
 								<packagename>common.data.configuration</packagename>
 								<xsd>${basedir}/src/main/xsd/configuration.xsd</xsd>
 								<extensionArgs>

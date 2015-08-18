@@ -1,8 +1,8 @@
 package common.transformer;
 
+import common.data.DataSource;
 import common.data.DeviceInformation;
 import common.data.DomainInformation;
-import common.data.DataSource;
 import common.data.configuration.XMLDataSource;
 import common.data.configuration.XMLDeviceInformation;
 import common.data.configuration.XMLDomainInformation;
@@ -16,30 +16,39 @@ public class XMLConfigurationTransformer extends Transformer<XMLDataSource, Data
     @Override
     public DataSource toRemote(XMLDataSource local) {
 
-        DataSource measurementPoint = new DataSource();
+        if (null == local) {
+            return null;
+        }
 
-        DeviceInformation remoteDev = transformerDeviceInformation.toRemote(local.getDeviceInformation());
+        DataSource dataSource = new DataSource();
 
-        measurementPoint.setDeviceInformation(remoteDev);
+        DeviceInformation deviceInformation = transformerDeviceInformation.toRemote(local.getDeviceInformation());
 
-        DomainInformation remoteDomain = transformerDomain.toRemote(local.getDomainInformation());
+        dataSource.setDeviceInformation(deviceInformation);
 
-        measurementPoint.setDomain(remoteDomain);
+        DomainInformation domainInformation = transformerDomain.toRemote(local.getDomainInformation());
 
-        return measurementPoint;
+        dataSource.setDomain(domainInformation);
+
+        return dataSource;
     }
 
     @Override
     public XMLDataSource toLocal(DataSource remote) {
+
+        if (null == remote) {
+            return null;
+        }
+
         XMLDataSource xMLDataSource = new XMLDataSource();
 
-        XMLDeviceInformation localDev = transformerDeviceInformation.toLocal(remote.getDeviceInformation());
+        XMLDeviceInformation xMLDeviceInformation = transformerDeviceInformation.toLocal(remote.getDeviceInformation());
 
-        xMLDataSource.setDeviceInformation(localDev);
+        xMLDataSource.setDeviceInformation(xMLDeviceInformation);
 
-        XMLDomainInformation localDomain = transformerDomain.toLocal(remote.getDomain());
+        XMLDomainInformation xMLDomainInformation = transformerDomain.toLocal(remote.getDomain());
 
-        xMLDataSource.setDomainInformation(localDomain);
+        xMLDataSource.setDomainInformation(xMLDomainInformation);
 
         return xMLDataSource;
     }

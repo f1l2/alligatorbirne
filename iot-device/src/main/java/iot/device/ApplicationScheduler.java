@@ -48,7 +48,7 @@ public class ApplicationScheduler {
                 url = UtilsResource.getUrl(RESOURCE_NAMING.CMGMT_REGISTER_DEVICE, cmConnection);
 
                 connection = new Connection();
-                connection.setIp("127.0.0.1");
+                connection.setHost("127.0.0.1");
                 connection.setPort("5002");
                 connection.setUrl("http://127.0.0.1:5002");
 

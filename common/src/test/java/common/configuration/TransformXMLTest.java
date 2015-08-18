@@ -21,7 +21,9 @@ import common.transformer.XMLParser;
 public class TransformXMLTest {
 
     private String configurationStr;
+
     private File configurationFile;
+
     private URI configurationURI;
 
     private XMLConfigurationTransformer transformerConfig = new XMLConfigurationTransformer();
@@ -55,9 +57,9 @@ public class TransformXMLTest {
         Assert.assertEquals(1, connections.getConnection().size());
         connections.getConnection().get(0).getComponent();
         Assert.assertEquals("IOT_DEVICE", connections.getConnection().get(0).getComponent().value());
-        Assert.assertEquals("127.0.0.1", connections.getConnection().get(0).getIp());
+        Assert.assertEquals("127.0.0.1", connections.getConnection().get(0).getHost());
         Assert.assertEquals("5000", connections.getConnection().get(0).getPort());
-        Assert.assertEquals("127.0.0.1:5000", connections.getConnection().get(0).getUrl());
+        Assert.assertEquals("127.0.0.1:5000", connections.getConnection().get(0).getHost() + ":" + connections.getConnection().get(0).getPort());
 
     }
 

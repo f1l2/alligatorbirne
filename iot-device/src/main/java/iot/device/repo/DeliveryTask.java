@@ -8,14 +8,14 @@ import common.data.DeviceInformation;
 import common.rest.RESOURCE_NAMING;
 import common.rest.UtilsResource;
 
-public class Job implements Runnable {
+public class DeliveryTask implements Runnable {
 
-    final static Logger logger = Logger.getLogger(Job.class);
+    final static Logger logger = Logger.getLogger(DeliveryTask.class);
 
-    private InstructionJPA job;
+    private DeliveryTaskRO deliveryTask;
 
-    public Job(InstructionJPA job) {
-        this.job = job;
+    public DeliveryTask(DeliveryTaskRO job) {
+        this.deliveryTask = job;
     }
 
     @Override
@@ -27,7 +27,7 @@ public class Job implements Runnable {
 
             try {
 
-                String url = UtilsResource.getUrl(RESOURCE_NAMING.EPROCESSING_SEND, job.getEpUrl());
+                String url = UtilsResource.getUrl(RESOURCE_NAMING.EPROCESSING_SEND, deliveryTask.getEventProcessingUrl());
 
                 DeviceInformation deviceInformation = new DeviceInformation();
                 deviceInformation.setName("Name");

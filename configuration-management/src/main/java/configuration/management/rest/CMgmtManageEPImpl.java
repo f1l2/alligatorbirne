@@ -123,7 +123,7 @@ public class CMgmtManageEPImpl implements CMgmtManageEP {
         for (DeviceDataSourceJPA deviceJPA : devicesToNotify) {
 
             ConfigurationModification cm = new ConfigurationModification();
-            cm.setEpId(ep.getId());
+            cm.setEventProcessingId(ep.getId());
             cm.setEpUrl(ep.getUrl());
 
             DeviceJPA device = deviceRepository.findOne(deviceJPA.getDeviceId());

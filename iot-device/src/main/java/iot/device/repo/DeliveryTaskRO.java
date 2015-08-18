@@ -1,21 +1,22 @@
-package common.data;
+package iot.device.repo;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class ConfigurationModification extends DataModel {
+
+public class DeliveryTaskRO {
 	
-	private long eventProcessingId;
+	private Long eventProcessingId;
 	
 	private String eventProcessingUrl;
 	
-	private Map<String, String> properties =new HashMap<String, String>();
-
-	public long getEventProcessingId() {
+	private Map<String, String> properties = new HashMap<String, String>();
+	
+	public Long getEventProcessingId() {
 		return eventProcessingId;
 	}
 
-	public void setEventProcessingId(long epId) {
+	public void setEventProcessingId(Long epId) {
 		this.eventProcessingId = epId;
 	}
 
@@ -23,7 +24,7 @@ public class ConfigurationModification extends DataModel {
 		return eventProcessingUrl;
 	}
 
-	public void setEpUrl(String epUrl) {
+	public void setEventProcessingUrl(String epUrl) {
 		this.eventProcessingUrl = epUrl;
 	}
 
@@ -34,6 +35,5 @@ public class ConfigurationModification extends DataModel {
 	public void setProperties(Map<String, String> properties) {
 		this.properties = properties;
 	}
-	
-	
+
 }

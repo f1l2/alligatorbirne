@@ -7,6 +7,11 @@ public class XMLDomainInformationTransformer extends Transformer<XMLDomainInform
 
     @Override
     public XMLDomainInformation toLocal(DomainInformation remote) {
+
+        if (null == remote) {
+            return null;
+        }
+
         XMLDomainInformation XMLDomainInformation = new XMLDomainInformation();
         XMLDomainInformation.setName(remote.getName());
 
@@ -15,6 +20,10 @@ public class XMLDomainInformationTransformer extends Transformer<XMLDomainInform
 
     @Override
     public DomainInformation toRemote(XMLDomainInformation local) {
+
+        if (null == local) {
+            return null;
+        }
 
         DomainInformation domain = new DomainInformation();
         domain.setName(local.getName());

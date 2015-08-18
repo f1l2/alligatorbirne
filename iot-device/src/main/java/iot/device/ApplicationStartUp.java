@@ -1,4 +1,4 @@
-package iot.device.startup;
+package iot.device;
 
 import iot.device.status.Status;
 
@@ -12,9 +12,9 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
 @Component
-public class IoTDeviceStartup implements ApplicationListener<EmbeddedServletContainerInitializedEvent> {
+public class ApplicationStartUp implements ApplicationListener<EmbeddedServletContainerInitializedEvent> {
 
-    final static Logger logger = Logger.getLogger(IoTDeviceStartup.class);
+    final static Logger logger = Logger.getLogger(ApplicationStartUp.class);
 
     @Autowired
     private Status status;

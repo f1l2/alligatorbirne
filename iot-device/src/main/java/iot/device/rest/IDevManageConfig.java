@@ -1,6 +1,6 @@
 package iot.device.rest;
 
-import iot.device.repo.InstructionJPA;
+import iot.device.repo.DeliveryTaskRO;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ public interface IDevManageConfig {
 
     public List<ConfigurationModification> getAllConfiguration();
 
-    public InstructionJPA getConfigurationByEP(Long id);
+    public DeliveryTaskRO getConfigurationByEventProcessingId(Long id);
 
     public void setConfiguration(ConfigurationModification configurationModification);
 

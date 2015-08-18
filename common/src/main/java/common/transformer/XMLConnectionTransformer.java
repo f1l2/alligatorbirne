@@ -13,9 +13,8 @@ public class XMLConnectionTransformer extends Transformer<XMLConnection, Connect
         }
 
         XMLConnection xMLConnection = new XMLConnection();
-        xMLConnection.setIp(remote.getIp());
+        xMLConnection.setHost(remote.getHost());
         xMLConnection.setPort(remote.getPort());
-        xMLConnection.setUrl(remote.getUrl());
 
         return xMLConnection;
     }
@@ -28,9 +27,9 @@ public class XMLConnectionTransformer extends Transformer<XMLConnection, Connect
         }
 
         Connection connection = new Connection();
-        connection.setIp(local.getIp());
+        connection.setHost(local.getHost());
         connection.setPort(local.getPort());
-        connection.setUrl(local.getUrl());
+        connection.setUrl(local.getHost() + ":" + local.getPort());
 
         return connection;
     }

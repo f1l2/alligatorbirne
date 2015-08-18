@@ -4,7 +4,9 @@ public class Connection {
 
     private long id;
 
-    private String ip;
+    private String name;
+
+    private String host;
 
     private String port;
 
@@ -18,12 +20,20 @@ public class Connection {
         this.id = id;
     }
 
-    public String getIp() {
-        return ip;
+    public String getName() {
+        return name;
     }
 
-    public void setIp(String ip) {
-        this.ip = ip;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getHost() {
+        return host;
+    }
+
+    public void setHost(String host) {
+        this.host = host;
     }
 
     public String getPort() {
@@ -44,6 +54,7 @@ public class Connection {
 
     @Override
     public String toString() {
-        return "Connection [id=" + id + ", ip=" + ip + ", port=" + port + ", url=" + url + "]";
+        return "Connection [id=" + id + ", name=" + name + ", host=" + host + ", port=" + port + ", url=" + url + "]";
     }
+
 }

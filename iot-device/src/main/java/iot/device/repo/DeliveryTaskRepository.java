@@ -9,11 +9,11 @@ import java.util.Map;
 import org.springframework.stereotype.Component;
 
 @Component
-public class JobRepository {
+public class DeliveryTaskRepository {
 
-    private Map<Long, InstructionJPA> repo = new LinkedHashMap<Long, InstructionJPA>();
+    private Map<Long, DeliveryTaskRO> repo = new LinkedHashMap<Long, DeliveryTaskRO>();
 
-    public InstructionJPA findOne(Long id) {
+    public DeliveryTaskRO findOne(Long id) {
 
         if (repo.containsKey(id)) {
             return repo.get(id);
@@ -22,11 +22,11 @@ public class JobRepository {
         return null;
     }
 
-    public List<InstructionJPA> findAll() {
+    public List<DeliveryTaskRO> findAll() {
 
-        List<InstructionJPA> jobs = new ArrayList<InstructionJPA>();
+        List<DeliveryTaskRO> jobs = new ArrayList<DeliveryTaskRO>();
 
-        Iterator<InstructionJPA> it = repo.values().iterator();
+        Iterator<DeliveryTaskRO> it = repo.values().iterator();
         while (it.hasNext()) {
             jobs.add(it.next());
         }
@@ -34,8 +34,8 @@ public class JobRepository {
         return jobs;
     }
 
-    public void save(InstructionJPA job) {
-        repo.put(job.getEpId(), job);
+    public void save(DeliveryTaskRO job) {
+        repo.put(job.getEventProcessingId(), job);
     }
 
 }

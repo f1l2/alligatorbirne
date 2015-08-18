@@ -1,9 +1,9 @@
 package iot.device.rest;
 
-import iot.device.repo.InstructionJPA;
-import iot.device.repo.Job;
-import iot.device.repo.JobRepository;
-import iot.device.repo.JobTransformer;
+import iot.device.repo.DeliveryTaskRO;
+import iot.device.repo.DeliveryTask;
+import iot.device.repo.DeliveryTaskRepository;
+import iot.device.repo.DeliveryTaskTransformer;
 
 import java.util.List;
 import java.util.Random;
@@ -27,10 +27,10 @@ public class IDevManageConfigImpl implements IDevManageConfig {
     final static Logger logger = Logger.getLogger(IDevManageConfigImpl.class);
 
     @Autowired
-    private JobRepository repository;
+    private DeliveryTaskRepository repository;
 
     @Autowired
-    private JobTransformer transformer;
+    private DeliveryTaskTransformer transformer;
 
     @Autowired
     private ThreadPoolTaskExecutor taskExecutor;
@@ -46,7 +46,7 @@ public class IDevManageConfigImpl implements IDevManageConfig {
 
     @Override
     @RequestMapping(value = "/configurations/{id}", method = RequestMethod.GET)
-    public InstructionJPA getConfigurationByEP(@RequestParam(value = "id") Long id) {
+    public DeliveryTaskRO getConfigurationByEventProcessingId(@RequestParam(value = "id") Long id) {
 
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.IDEV_GET_CONFIGURATION_BY_EP));
 
@@ -60,10 +60,10 @@ public class IDevManageConfigImpl implements IDevManageConfig {
 
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.IDEV_SET_CONFIGURATION));
 
-        InstructionJPA local = transformer.toLocal(configurationModification);
+        DeliveryTaskRO local = transformer.toLocal(configurationModification);
         repository.save(local);
 
-        Job job = new Job(local);
+        DeliveryTask job = new DeliveryTask(local);
 
         taskExecutor.execute(job);
 
@@ -78,11 +78,11 @@ public class IDevManageConfigImpl implements IDevManageConfig {
         Random random = new Random();
         random.nextLong();
 
-        InstructionJPA local = new InstructionJPA();
-        local.setEpId(random.nextLong());
-        local.setEpUrl("Urls");
+        DeliveryTaskRO local = new DeliveryTaskRO();
+        local.setEventProcessingId(random.nextLong());
+        local.setEventProcessingUrl("Urls");
 
-        Job job = new Job(local);
+        DeliveryTask job = new DeliveryTask(local);
 
         taskExecutor.execute(job);
 
