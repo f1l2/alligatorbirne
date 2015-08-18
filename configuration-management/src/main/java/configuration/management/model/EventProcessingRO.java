@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "EPROC")
-public class EventProcessingJPA {
+public class EventProcessingRO {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;

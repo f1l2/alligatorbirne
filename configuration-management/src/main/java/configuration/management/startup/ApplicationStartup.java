@@ -6,7 +6,7 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
-import configuration.management.repo.DeviceRepository;
+import configuration.management.repo.IoTDeviceRepository;
 
 @Component
 public class ApplicationStartup implements ApplicationListener<ContextRefreshedEvent> {
@@ -14,7 +14,7 @@ public class ApplicationStartup implements ApplicationListener<ContextRefreshedE
     final static Logger logger = Logger.getLogger(ApplicationStartup.class);
 
     @Autowired
-    DeviceRepository repository;
+    IoTDeviceRepository repository;
 
     @Override
     public void onApplicationEvent(final ContextRefreshedEvent event) {

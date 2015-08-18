@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "DEVICE")
-public class DeviceJPA {
+public class IoTDeviceRO {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;

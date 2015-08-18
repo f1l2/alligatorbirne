@@ -23,52 +23,51 @@ import common.rest.RESOURCE_NAMING;
 import common.rest.UtilsResource;
 import common.transformer.Transformer;
 
-import configuration.management.model.DeviceDataSourceJPA;
-import configuration.management.model.DeviceJPA;
-import configuration.management.model.EventProcessingDataSourceJPA;
-import configuration.management.model.EventProcessingJPA;
-import configuration.management.repo.DeviceDataSourceRepository;
-import configuration.management.repo.DeviceRepository;
-import configuration.management.repo.EProcDataSourceRepository;
+import configuration.management.model.EventProcessingDataSourceRO;
+import configuration.management.model.EventProcessingRO;
+import configuration.management.model.IoTDeviceDataSourceRO;
+import configuration.management.model.IoTDeviceRO;
+import configuration.management.repo.EventProcessingDataSourceRepository;
 import configuration.management.repo.EventProcessingRepository;
 import configuration.management.repo.EventProcessingTransformer;
+import configuration.management.repo.IoTDeviceDataSourceRepository;
+import configuration.management.repo.IoTDeviceRepository;
 
 @RestController
-public class CMgmtManageEPImpl implements CMgmtManageEP {
+public class CMgmtManageEventProcessingImpl implements CMgmtManageEventProcessing {
 
-    final static Logger logger = Logger.getLogger(CMgmtManageEPImpl.class);
-
-    final static String TEIG = "TING";
+    final static Logger logger = Logger.getLogger(CMgmtManageEventProcessingImpl.class);
 
     @Autowired
     private EventProcessingRepository eventProcessingRepo;
 
     @Autowired
-    private EProcDataSourceRepository eventProcessingDataSourceRepo;
+    private EventProcessingDataSourceRepository eventProcessingDataSourceRepo;
 
     @Autowired
-    private DeviceRepository deviceRepository;
+    private IoTDeviceRepository deviceRepository;
 
     @Autowired
-    private DeviceDataSourceRepository deviceDataSourceRepository;
+    private IoTDeviceDataSourceRepository deviceDataSourceRepository;
 
     @Autowired
     private EventProcessingTransformer transformer;
 
+    @Override
     @RequestMapping(value = "/registrations/eventprocessing", method = RequestMethod.GET)
-    public @ResponseBody
-    List<Connection> getAllEventProcessingInstances() {
+    public @ResponseBody List<Connection> getAll() {
 
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_GET_ALL_EVENT_PROCESSING));
         return transformer.toRemote(Transformer.makeCollection(eventProcessingRepo.findAll()));
     }
 
+    @Override
     @RequestMapping(value = "/registrations/eventprocessing", method = RequestMethod.POST)
-    public Connection registerEventProcessingInstance(@RequestBody Connection connection) {
+    public Connection register(@RequestBody Connection connection) {
 
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_REGISTER_EVENT_PROCESSING));
 
-        EventProcessingJPA item = new EventProcessingJPA();
+        EventProcessingRO item = new EventProcessingRO();
         item.setUrl(connection.getUrl());
         item = eventProcessingRepo.save(item);
 
@@ -77,28 +76,30 @@ public class CMgmtManageEPImpl implements CMgmtManageEP {
         return connection;
     }
 
+    @Override
     @RequestMapping(value = "/registrations/eventprocessing/{id}", method = RequestMethod.PUT)
     public void heartBeat(@PathVariable(value = "id") Long id) {
 
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_HEART_BEAT_EVENT_PROCESSING));
 
-        EventProcessingJPA item = eventProcessingRepo.findOne(id);
+        EventProcessingRO item = eventProcessingRepo.findOne(id);
         if (item != null) {
             eventProcessingRepo.save(item);
             // TODO
         }
     }
 
+    @Override
     @RequestMapping(value = "/delegation/{id}", method = RequestMethod.POST)
     public void delegate(@PathVariable(value = "id") Long id, @RequestBody DataSources data) {
 
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_DELEGATION));
 
-        EventProcessingJPA ep = eventProcessingRepo.findOne(id);
+        EventProcessingRO ep = eventProcessingRepo.findOne(id);
 
         for (DataSource point : data.getDataSources()) {
 
-            EventProcessingDataSourceJPA item = new EventProcessingDataSourceJPA();
+            EventProcessingDataSourceRO item = new EventProcessingDataSourceRO();
             item.setEProcId(id);
             item.setDomain(point.getDomain().getName());
             item.setDeviceInformation(point.getDeviceInformation().getName());
@@ -108,7 +109,7 @@ public class CMgmtManageEPImpl implements CMgmtManageEP {
 
         logger.info("Get device to notify ...");
 
-        Set<DeviceDataSourceJPA> devicesToNotify = getDevicesToNotify(ep);
+        Set<IoTDeviceDataSourceRO> devicesToNotify = getDevicesToNotify(ep);
 
         logger.info("Number of devices to notify: " + devicesToNotify.size());
 
@@ -118,15 +119,15 @@ public class CMgmtManageEPImpl implements CMgmtManageEP {
 
     }
 
-    private void notifyDevices(Set<DeviceDataSourceJPA> devicesToNotify, EventProcessingJPA ep) {
+    private void notifyDevices(Set<IoTDeviceDataSourceRO> devicesToNotify, EventProcessingRO ep) {
 
-        for (DeviceDataSourceJPA deviceJPA : devicesToNotify) {
+        for (IoTDeviceDataSourceRO deviceJPA : devicesToNotify) {
 
             ConfigurationModification cm = new ConfigurationModification();
             cm.setEventProcessingId(ep.getId());
             cm.setEpUrl(ep.getUrl());
 
-            DeviceJPA device = deviceRepository.findOne(deviceJPA.getDeviceId());
+            IoTDeviceRO device = deviceRepository.findOne(deviceJPA.getDeviceId());
 
             String url = UtilsResource.getUrl(RESOURCE_NAMING.IDEV_SET_CONFIGURATION, device.getUrl());
 
@@ -143,13 +144,13 @@ public class CMgmtManageEPImpl implements CMgmtManageEP {
 
     }
 
-    private Set<DeviceDataSourceJPA> getDevicesToNotify(EventProcessingJPA ep) {
+    private Set<IoTDeviceDataSourceRO> getDevicesToNotify(EventProcessingRO ep) {
 
-        List<EventProcessingDataSourceJPA> eProcDataSources = eventProcessingDataSourceRepo.findByEProcId(ep.getId());
+        List<EventProcessingDataSourceRO> eProcDataSources = eventProcessingDataSourceRepo.findByEventProcessingId(ep.getId());
 
-        Set<DeviceDataSourceJPA> deviceDataSources = new HashSet<DeviceDataSourceJPA>();
+        Set<IoTDeviceDataSourceRO> deviceDataSources = new HashSet<IoTDeviceDataSourceRO>();
 
-        for (EventProcessingDataSourceJPA eProcDataSource : eProcDataSources) {
+        for (EventProcessingDataSourceRO eProcDataSource : eProcDataSources) {
             deviceDataSources.addAll(deviceDataSourceRepository.findByDomainAndDeviceInformation(eProcDataSource.getDomain(), eProcDataSource.getDeviceInformation()));
         }
 

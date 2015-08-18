@@ -10,7 +10,7 @@ import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "DEVICE_DATA_SOURCE", uniqueConstraints=@UniqueConstraint(columnNames={"deviceId", "domain", "deviceInformation"}))
-public class DeviceDataSourceJPA {
+public class IoTDeviceDataSourceRO {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

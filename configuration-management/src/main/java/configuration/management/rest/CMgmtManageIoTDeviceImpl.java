@@ -19,41 +19,41 @@ import common.rest.RESOURCE_NAMING;
 import common.rest.UtilsResource;
 import common.transformer.Transformer;
 
-import configuration.management.model.DeviceDataSourceJPA;
-import configuration.management.model.DeviceJPA;
-import configuration.management.repo.DeviceDataSourceRepository;
-import configuration.management.repo.DeviceRepository;
-import configuration.management.repo.DeviceTransformer;
+import configuration.management.model.IoTDeviceDataSourceRO;
+import configuration.management.model.IoTDeviceRO;
+import configuration.management.repo.IoTDeviceDataSourceRepository;
+import configuration.management.repo.IoTDeviceRepository;
+import configuration.management.repo.IoTDeviceTransformer;
 
 @RestController
-public class CMgmtManageDeviceImpl implements CMgmtManageDevice {
+public class CMgmtManageIoTDeviceImpl implements CMgmtManageIoTDevice {
 
-    final static Logger logger = Logger.getLogger(CMgmtManageDeviceImpl.class);
-
-    @Autowired
-    private DeviceRepository deviceRepo;
+    final static Logger logger = Logger.getLogger(CMgmtManageIoTDeviceImpl.class);
 
     @Autowired
-    private DeviceDataSourceRepository deviceDataSourceRepo;
+    private IoTDeviceRepository deviceRepo;
 
     @Autowired
-    private DeviceTransformer transformer;
+    private IoTDeviceDataSourceRepository deviceDataSourceRepo;
+
+    @Autowired
+    private IoTDeviceTransformer transformer;
 
     @Override
     @RequestMapping(value = "/registrations/devices", method = RequestMethod.GET)
-    public @ResponseBody
-    List<Connection> getAllDevices() {
+    public @ResponseBody List<Connection> getAll() {
 
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_GET_ALL_DEVICES));
 
         return transformer.toRemote(Transformer.makeCollection(deviceRepo.findAll()));
     }
 
+    @Override
     @RequestMapping(value = "/registrations/devices", method = RequestMethod.POST)
-    public Connection registerDevice(@RequestBody Connection connection) {
+    public Connection register(@RequestBody Connection connection) {
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_REGISTER_DEVICE));
 
-        DeviceJPA item = new DeviceJPA();
+        IoTDeviceRO item = new IoTDeviceRO();
         item.setDate(new Date());
         item.setUrl(connection.getUrl());
         item = deviceRepo.save(item);
@@ -65,13 +65,13 @@ public class CMgmtManageDeviceImpl implements CMgmtManageDevice {
 
     @Override
     @RequestMapping(value = "/registrations/devices/sources/{id}", method = RequestMethod.POST)
-    public void registerDeviceSources(@PathVariable(value = "id") Long id, @RequestBody DataSources data) {
+    public void registerDataSources(@PathVariable(value = "id") Long id, @RequestBody DataSources data) {
 
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_REGISTER_DEVICE_SOURCES));
 
         for (DataSource point : data.getDataSources()) {
 
-            DeviceDataSourceJPA item = new DeviceDataSourceJPA();
+            IoTDeviceDataSourceRO item = new IoTDeviceDataSourceRO();
             item.setDeviceId(id);
             item.setDeviceInformation(point.getDeviceInformation().getName());
             item.setDomain(point.getDomain().getName());
@@ -87,7 +87,7 @@ public class CMgmtManageDeviceImpl implements CMgmtManageDevice {
 
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_HEART_BEAT_DEVICE));
 
-        DeviceJPA item = deviceRepo.findOne(id);
+        IoTDeviceRO item = deviceRepo.findOne(id);
         if (item != null) {
             item.setDate(new Date());
             deviceRepo.save(item);

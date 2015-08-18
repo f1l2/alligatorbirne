@@ -10,7 +10,7 @@ import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "EPROCE_DATA_SOURCE", uniqueConstraints = @UniqueConstraint(columnNames = { "eprocId", "domain", "deviceInformation" }))
-public class EventProcessingDataSourceJPA {
+public class EventProcessingDataSourceRO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

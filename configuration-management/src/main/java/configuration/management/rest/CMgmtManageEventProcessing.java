@@ -9,16 +9,16 @@ import common.data.DataSources;
  * Interface definition
  * 
  * @author Manuel Filz
- *
+ * 
  */
-public interface CMgmtManageDevice {
+public interface CMgmtManageEventProcessing {
 
-    public Connection registerDevice(Connection connection);
+    public List<Connection> getAll();
 
-    public List<Connection> getAllDevices();
+    public Connection register(Connection connection);
 
     public void heartBeat(Long id);
 
-    public void registerDeviceSources(Long id, DataSources data);
+    public void delegate(Long id, DataSources data);
 
 }

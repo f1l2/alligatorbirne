@@ -15,22 +15,16 @@ import common.data.config.UtilsConfiguration;
 import common.rest.RESOURCE_NAMING;
 import common.rest.UtilsResource;
 
-import event.processing.engine.Engine;
-import event.processing.engine.EngineFactory;
-import event.processing.engine.impl.EsperEngineFactory;
-
 @Component
 public class ApplicationScheduler {
 
     final static Logger logger = Logger.getLogger(ApplicationScheduler.class);
 
-    private static UtilsConfiguration utilsConfig = new UtilsConfiguration();
-
-    private static int status = 0;
-
-    private static String url;
+    private static int statusRegistration = 0;
 
     private static Connection connection;
+
+    private final static UtilsConfiguration utilsConfig = new UtilsConfiguration();
 
     private final static SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
@@ -38,8 +32,9 @@ public class ApplicationScheduler {
     public void action() {
 
         RestTemplate restTemplate = new RestTemplate();
+        String url = null;
 
-        if (status == 0) {
+        if (statusRegistration == 0) {
             try {
                 Connection cmConnection = utilsConfig.getCMConnection();
 
@@ -52,26 +47,20 @@ public class ApplicationScheduler {
 
                 logger.info("Event processing registered. Status: " + responseRegistration.getStatusCode() + " Response body: " + connection);
 
-                status++;
+                statusRegistration++;
 
             } catch (Exception ex) {
                 logger.error("Registration of event processing failed - " + url);
                 logger.error(ex);
             }
 
-        } else if (status == 1) {
+        } else if (statusRegistration == 1) {
 
-            EngineFactory factory = new EsperEngineFactory();
-
-            Engine engine = factory.getEngine();
-
-            engine.registerQuery("select * from DeviceInformation");
-
-            status++;
+            statusRegistration++;
 
         }
 
-        else if (status == 2) {
+        else if (statusRegistration == 2) {
 
             try {
                 DataSources data = UtilsConfiguration.loadMeasurementData();
@@ -84,7 +73,7 @@ public class ApplicationScheduler {
                 ResponseEntity<Void> responseRegisteriationSources = restTemplate.postForEntity(url, data, Void.class);
                 logger.info("Delegation successfully called. Status: " + responseRegisteriationSources.getStatusCode() + " Response body: ");
 
-                status++;
+                statusRegistration++;
 
             } catch (Exception ex) {
                 logger.error("Error registration sources of device. Url: " + url);

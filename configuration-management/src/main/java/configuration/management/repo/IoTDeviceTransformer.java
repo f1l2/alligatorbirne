@@ -5,19 +5,19 @@ import org.springframework.stereotype.Component;
 import common.data.Connection;
 import common.transformer.Transformer;
 
-import configuration.management.model.DeviceJPA;
+import configuration.management.model.IoTDeviceRO;
 
 @Component
-public class DeviceTransformer extends Transformer<DeviceJPA, Connection> {
+public class IoTDeviceTransformer extends Transformer<IoTDeviceRO, Connection> {
 
     @Override
-    public DeviceJPA toLocal(Connection remote) {
+    public IoTDeviceRO toLocal(Connection remote) {
 
         if (null == remote) {
             return null;
         }
 
-        DeviceJPA device = new DeviceJPA();
+        IoTDeviceRO device = new IoTDeviceRO();
         device.setId(remote.getId());
         device.setUrl(remote.getUrl());
 
@@ -25,7 +25,7 @@ public class DeviceTransformer extends Transformer<DeviceJPA, Connection> {
     }
 
     @Override
-    public Connection toRemote(DeviceJPA local) {
+    public Connection toRemote(IoTDeviceRO local) {
 
         if (null == local) {
             return null;
