@@ -16,10 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import common.data.ConfigurationModification;
-import common.data.ConnectionProperties;
-import common.data.MeasurementData;
-import common.data.MeasurementPoint;
+import common.data.Connection;
+import common.data.DataSource;
+import common.data.DataSources;
 import common.rest.RESOURCE_NAMING;
+import common.rest.UtilsResource;
 import common.transformer.Transformer;
 
 import configuration.management.model.DeviceDataSourceJPA;
@@ -56,17 +57,16 @@ public class CMgmtManageEPImpl implements CMgmtManageEP {
 
     @RequestMapping(value = "/registrations/eventprocessing", method = RequestMethod.GET)
     public @ResponseBody
-    List<ConnectionProperties> getAllEventProcessingInstances() {
+    List<Connection> getAllEventProcessingInstances() {
 
-        logger.info("GET /registrations/eventprocessing is invoked");
-
+        logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_GET_ALL_EVENT_PROCESSING));
         return transformer.toRemote(Transformer.makeCollection(eventProcessingRepo.findAll()));
     }
 
     @RequestMapping(value = "/registrations/eventprocessing", method = RequestMethod.POST)
-    public ConnectionProperties registerEventProcessingInstance(@RequestBody ConnectionProperties connection) {
+    public Connection registerEventProcessingInstance(@RequestBody Connection connection) {
 
-        logger.info(RESOURCE_NAMING.CMGMT_REGISTER_EVENT_PROCESSING.getLogMessage());
+        logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_REGISTER_EVENT_PROCESSING));
 
         EventProcessingJPA item = new EventProcessingJPA();
         item.setUrl(connection.getUrl());
@@ -80,7 +80,7 @@ public class CMgmtManageEPImpl implements CMgmtManageEP {
     @RequestMapping(value = "/registrations/eventprocessing/{id}", method = RequestMethod.PUT)
     public void heartBeat(@PathVariable(value = "id") Long id) {
 
-        logger.info(RESOURCE_NAMING.CMGMT_HEART_BEAT_EVENT_PROCESSING.getLogMessage());
+        logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_HEART_BEAT_EVENT_PROCESSING));
 
         EventProcessingJPA item = eventProcessingRepo.findOne(id);
         if (item != null) {
@@ -90,13 +90,13 @@ public class CMgmtManageEPImpl implements CMgmtManageEP {
     }
 
     @RequestMapping(value = "/delegation/{id}", method = RequestMethod.POST)
-    public void delegate(@PathVariable(value = "id") Long id, @RequestBody MeasurementData data) {
+    public void delegate(@PathVariable(value = "id") Long id, @RequestBody DataSources data) {
 
-        logger.info(RESOURCE_NAMING.CMGMT_DELEGATION.getLogMessage());
+        logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_DELEGATION));
 
         EventProcessingJPA ep = eventProcessingRepo.findOne(id);
 
-        for (MeasurementPoint point : data.getMeasurementPoints()) {
+        for (DataSource point : data.getDataSources()) {
 
             EventProcessingDataSourceJPA item = new EventProcessingDataSourceJPA();
             item.setEProcId(id);
@@ -128,7 +128,7 @@ public class CMgmtManageEPImpl implements CMgmtManageEP {
 
             DeviceJPA device = deviceRepository.findOne(deviceJPA.getDeviceId());
 
-            String url = RESOURCE_NAMING.IDEV_SET_CONFIGURATION.getUrl(device.getUrl());
+            String url = UtilsResource.getUrl(RESOURCE_NAMING.IDEV_SET_CONFIGURATION, device.getUrl());
 
             try {
                 RestTemplate restTemplate = new RestTemplate();

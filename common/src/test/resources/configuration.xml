@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration>
-	<measurementDataConfig>
-		<measurementPointConfig>
-			<deviceInformationConfig>
+	<dataSources>
+		<dataSource>
+			<deviceInformation>
 				<name>SENSOR</name>
-			</deviceInformationConfig>
-			<domainConfig>
+			</deviceInformation>
+			<domainInformation>
 				<name>FLOOR1</name>
-			</domainConfig>
-		</measurementPointConfig>
-	</measurementDataConfig>
+			</domainInformation>
+		</dataSource>
+	</dataSources>
 	<connections>
-		<connectionConfig>
-			<component>IoTDevice</component>
+		<connection component="IOT_DEVICE">
 			<ip>127.0.0.1</ip>
 			<port>5000</port>
 			<url>127.0.0.1:5000</url>
-		</connectionConfig>
+		</connection>
 	</connections>
 </configuration>

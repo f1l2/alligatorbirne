@@ -9,27 +9,28 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import common.data.ConnectionProperties;
-import common.data.MeasurementData;
-import common.data.config.UtilsConfig;
-import common.data.configuration.ConnectionConfig;
+import common.data.Connection;
+import common.data.DataSources;
+import common.data.config.UtilsConfiguration;
 import common.rest.RESOURCE_NAMING;
-import common.transformer.ConnectionTransformer;
+import common.rest.UtilsResource;
 
 import event.processing.engine.Engine;
 import event.processing.engine.EngineFactory;
 import event.processing.engine.impl.EsperEngineFactory;
 
 @Component
-public class Scheduler {
+public class ApplicationScheduler {
 
-    final static Logger logger = Logger.getLogger(Scheduler.class);
+    final static Logger logger = Logger.getLogger(ApplicationScheduler.class);
+
+    private static UtilsConfiguration utilsConfig = new UtilsConfiguration();
 
     private static int status = 0;
 
     private static String url;
 
-    private static ConnectionProperties connection;
+    private static Connection connection;
 
     private final static SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
@@ -40,14 +41,13 @@ public class Scheduler {
 
         if (status == 0) {
             try {
-                ConnectionConfig cmConnection = UtilsConfig.getCMConnection();
-                url = RESOURCE_NAMING.CMGMT_REGISTER_EVENT_PROCESSING.getUrl(cmConnection);
+                Connection cmConnection = utilsConfig.getCMConnection();
 
-                ConnectionConfig epConnectionConfig = UtilsConfig.getEPConnection();
-                ConnectionTransformer transformer = new ConnectionTransformer();
-                connection = transformer.toRemote(epConnectionConfig);
+                UtilsResource.getUrl(RESOURCE_NAMING.CMGMT_REGISTER_EVENT_PROCESSING, cmConnection);
 
-                ResponseEntity<ConnectionProperties> responseRegistration = restTemplate.postForEntity(url, connection, ConnectionProperties.class);
+                connection = utilsConfig.getEPConnection().get(0);
+
+                ResponseEntity<Connection> responseRegistration = restTemplate.postForEntity(url, connection, Connection.class);
                 connection = responseRegistration.getBody();
 
                 logger.info("Event processing registered. Status: " + responseRegistration.getStatusCode() + " Response body: " + connection);
@@ -74,10 +74,11 @@ public class Scheduler {
         else if (status == 2) {
 
             try {
-                MeasurementData data = UtilsConfig.loadMeasurementData();
+                DataSources data = UtilsConfiguration.loadMeasurementData();
 
-                ConnectionConfig cmConnection = UtilsConfig.getCMConnection();
-                url = RESOURCE_NAMING.CMGMT_DELEGATION.getUrl(cmConnection);
+                Connection cmConnection = utilsConfig.getCMConnection();
+
+                url = UtilsResource.getUrl(RESOURCE_NAMING.CMGMT_DELEGATION, cmConnection);
                 url = url.replace("{id}", String.valueOf(connection.getId()));
 
                 ResponseEntity<Void> responseRegisteriationSources = restTemplate.postForEntity(url, data, Void.class);

@@ -38,8 +38,8 @@
 						<sourceRoot>${project.build.directory}/generated-sources/jaxb</sourceRoot>
 						<xsdOptions>
 							<xsdOption>
-								<xsd>${basedir}/src/main/xsd/configuration.xsd</xsd>
 								<packagename>common.data.configuration</packagename>
+								<xsd>${basedir}/src/main/xsd/configuration.xsd</xsd>
 								<extensionArgs>
 									<extensionArg>-target</extensionArg>
 									<extensionArg>2.0</extensionArg>

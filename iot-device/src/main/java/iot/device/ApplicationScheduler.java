@@ -12,11 +12,11 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import common.data.ConnectionProperties;
-import common.data.MeasurementData;
-import common.data.config.UtilsConfig;
-import common.data.configuration.ConnectionConfig;
+import common.data.Connection;
+import common.data.DataSources;
+import common.data.config.UtilsConfiguration;
 import common.rest.RESOURCE_NAMING;
+import common.rest.UtilsResource;
 
 @Component
 public class ApplicationScheduler {
@@ -25,7 +25,9 @@ public class ApplicationScheduler {
 
     private static int statusRegistration = 0;
 
-    private static ConnectionProperties connection;
+    private static Connection connection;
+
+    private static final UtilsConfiguration utilsConfig = new UtilsConfiguration();
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
@@ -42,15 +44,15 @@ public class ApplicationScheduler {
 
             try {
 
-                ConnectionConfig cmConnection = UtilsConfig.getCMConnection();
-                url = RESOURCE_NAMING.CMGMT_REGISTER_DEVICE.getUrl(cmConnection);
+                Connection cmConnection = utilsConfig.getCMConnection();
+                url = UtilsResource.getUrl(RESOURCE_NAMING.CMGMT_REGISTER_DEVICE, cmConnection);
 
-                connection = new ConnectionProperties();
+                connection = new Connection();
                 connection.setIp("127.0.0.1");
                 connection.setPort("5002");
                 connection.setUrl("http://127.0.0.1:5002");
 
-                ResponseEntity<ConnectionProperties> responseRegistration = restTemplate.postForEntity(url, connection, ConnectionProperties.class);
+                ResponseEntity<Connection> responseRegistration = restTemplate.postForEntity(url, connection, Connection.class);
                 connection = responseRegistration.getBody();
 
                 logger.info("Device registered. Status: " + responseRegistration.getStatusCode() + " Response body: " + connection);
@@ -65,10 +67,10 @@ public class ApplicationScheduler {
         } else if (statusRegistration == 1) {
 
             try {
-                MeasurementData data = UtilsConfig.loadMeasurementData();
+                DataSources data = UtilsConfiguration.loadMeasurementData();
 
-                ConnectionConfig cmConnection = UtilsConfig.getCMConnection();
-                url = RESOURCE_NAMING.CMGMT_REGISTER_DEVICE_SOURCES.getUrl(cmConnection);
+                Connection cmConnection = utilsConfig.getCMConnection();
+                url = UtilsResource.getUrl(RESOURCE_NAMING.CMGMT_REGISTER_DEVICE_SOURCES, cmConnection);
                 url = url.replace("{id}", String.valueOf(connection.getId()));
 
                 ResponseEntity<Void> responseRegisteriationSources = restTemplate.postForEntity(url, data, Void.class);

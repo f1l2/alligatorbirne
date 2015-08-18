@@ -1,6 +1,6 @@
 package common.data;
 
-public class ConnectionProperties {
+public class Connection {
 
     private long id;
 

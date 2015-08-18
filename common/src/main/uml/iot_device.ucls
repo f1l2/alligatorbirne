@@ -55,16 +55,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="iot.device.repo.JobJPA" project="iot-device" 
-    file="/iot-device/src/main/java/iot/device/repo/JobJPA.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="229" width="212" x="567" y="695"/>    
-    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <enumeration id="8" language="java" name="iot.device.status.STATUS_TYPE" project="iot-device" 
+  <enumeration id="7" language="java" name="iot.device.status.STATUS_TYPE" project="iot-device" 
     file="/iot-device/src/main/java/iot/device/status/STATUS_TYPE.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="229" width="168" x="1508" y="964"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
@@ -73,7 +64,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </enumeration>  
-  <class id="9" language="java" name="iot.device.ApplicationScheduler" project="iot-device" 
+  <class id="8" language="java" name="iot.device.ApplicationScheduler" project="iot-device" 
     file="/iot-device/src/main/java/iot/device/ApplicationScheduler.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="157" width="172" x="352" y="265"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
@@ -82,7 +73,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="iot.device.rest.IDevManageConfigImpl" project="iot-device" 
+  <class id="9" language="java" name="iot.device.rest.IDevManageConfigImpl" project="iot-device" 
     file="/iot-device/src/main/java/iot/device/rest/IDevManageConfigImpl.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="175" width="278" x="976" y="265"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
@@ -91,7 +82,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="iot.device.startup.IoTDeviceStartup" project="iot-device" 
+  <class id="10" language="java" name="iot.device.startup.IoTDeviceStartup" project="iot-device" 
     file="/iot-device/src/main/java/iot/device/startup/IoTDeviceStartup.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="103" width="349" x="1294" y="265"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
@@ -100,7 +91,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="12" language="java" name="iot.device.Application" project="iot-device" 
+  <class id="11" language="java" name="iot.device.Application" project="iot-device" 
     file="/iot-device/src/main/java/iot/device/Application.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="85" width="113" x="564" y="265"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
@@ -109,7 +100,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="13" language="java" name="iot.device.IotDevice" project="iot-device" 
+  <class id="12" language="java" name="iot.device.IotDevice" project="iot-device" 
     file="/iot-device/src/main/java/iot/device/IotDevice.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="175" width="231" x="1256" y="480"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
@@ -118,7 +109,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="14" language="java" name="iot.device.config.IoTDeviceConfigurationImpl" project="iot-device" 
+  <class id="13" language="java" name="iot.device.config.IoTDeviceConfigurationImpl" project="iot-device" 
     file="/iot-device/src/main/java/iot/device/config/IoTDeviceConfigurationImpl.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="139" width="179" x="1683" y="265"/>    
@@ -128,7 +119,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="15" language="java" name="iot.device.ApplicationConfig" project="iot-device" 
+  <class id="14" language="java" name="iot.device.ApplicationConfig" project="iot-device" 
     file="/iot-device/src/main/java/iot/device/ApplicationConfig.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="85" width="219" x="717" y="265"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
@@ -137,111 +128,75 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <association id="16">    
+  <association id="15">    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="17" name="current">        
+      <attribute id="16" name="current">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="18" minimum="0" maximum="1">        
+      <multiplicity id="17" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
+    <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <realization id="18">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
   <association id="19">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="20" name="job">        
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="20" name="transformer">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
       <multiplicity id="21" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
+    <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="22">    
-    <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="23" name="status">        
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="23" name="repository">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
       <multiplicity id="24" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
+    <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="25">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="26" name="iotDevice">        
+    <bendpoint x="1517" y="480"/>    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="26" name="status">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
       <multiplicity id="27" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="13" navigable="true"/>    
+    <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="28">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="29" name="repo">        
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="29" name="status">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="30" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="31">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="32" name="transformer">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="33" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="34">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="35" name="repository">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="36" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="37">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="2"/>  
-  </realization>  
-  <realization id="38">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <association id="39">    
-    <bendpoint x="1517" y="480"/>    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="40" name="status">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="41" minimum="0" maximum="1">        
+      <multiplicity id="30" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <realization id="31">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="2"/>  
+  </realization>  
   <classifier-display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

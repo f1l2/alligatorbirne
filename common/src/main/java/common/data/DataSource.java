@@ -1,16 +1,16 @@
 package common.data;
 
-public class MeasurementPoint {
+public class DataSource {
 
 	private DomainInformation domain;
 	
 	private DeviceInformation deviceInformation;
 	
-	public MeasurementPoint() {
+	public DataSource() {
 		
 	}
 	
-	public MeasurementPoint(DomainInformation domain, DeviceInformation deviceInformation) {
+	public DataSource(DomainInformation domain, DeviceInformation deviceInformation) {
 		this.setDomain(domain);
 		this.setDeviceInformation(deviceInformation);
 	}

@@ -6,6 +6,7 @@ import org.springframework.web.client.RestTemplate;
 
 import common.data.DeviceInformation;
 import common.rest.RESOURCE_NAMING;
+import common.rest.UtilsResource;
 
 public class Job implements Runnable {
 
@@ -26,7 +27,7 @@ public class Job implements Runnable {
 
             try {
 
-                String url = RESOURCE_NAMING.EPROCESSING_SEND.getUrl(job.getEpUrl());
+                String url = UtilsResource.getUrl(RESOURCE_NAMING.EPROCESSING_SEND, job.getEpUrl());
 
                 DeviceInformation deviceInformation = new DeviceInformation();
                 deviceInformation.setName("Name");

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import common.data.ConfigurationModification;
 import common.rest.RESOURCE_NAMING;
+import common.rest.UtilsResource;
 
 @RestController
 public class IDevManageConfigImpl implements IDevManageConfig {
@@ -38,7 +39,7 @@ public class IDevManageConfigImpl implements IDevManageConfig {
     @RequestMapping(value = "/configurations", method = RequestMethod.GET)
     public List<ConfigurationModification> getAllConfiguration() {
 
-        logger.info(RESOURCE_NAMING.IDEV_GET_ALL_CONFIGURATION.getLogMessage());
+        logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.IDEV_GET_ALL_CONFIGURATION));
 
         return transformer.toRemote(repository.findAll());
     }
@@ -47,7 +48,7 @@ public class IDevManageConfigImpl implements IDevManageConfig {
     @RequestMapping(value = "/configurations/{id}", method = RequestMethod.GET)
     public InstructionJPA getConfigurationByEP(@RequestParam(value = "id") Long id) {
 
-        logger.info(RESOURCE_NAMING.IDEV_GET_CONFIGURATION_BY_EP.getLogMessage());
+        logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.IDEV_GET_CONFIGURATION_BY_EP));
 
         return repository.findOne(id);
 
@@ -57,7 +58,7 @@ public class IDevManageConfigImpl implements IDevManageConfig {
     @RequestMapping(value = "/configurations", method = RequestMethod.POST)
     public void setConfiguration(@RequestBody ConfigurationModification configurationModification) {
 
-        logger.info(RESOURCE_NAMING.IDEV_SET_CONFIGURATION);
+        logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.IDEV_SET_CONFIGURATION));
 
         InstructionJPA local = transformer.toLocal(configurationModification);
         repository.save(local);

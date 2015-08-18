@@ -1,6 +1,5 @@
 package common.rest;
 
-import common.data.configuration.ConnectionConfig;
 
 public enum RESOURCE_NAMING {
 
@@ -43,22 +42,6 @@ public enum RESOURCE_NAMING {
 
     public RequestMethod getRequestMethod() {
         return requestMethod;
-    }
-
-    public String getUrl(String ip, String port) {
-        return String.format("%s:%s%s", ip, port, path);
-    }
-
-    public String getUrl(ConnectionConfig config) {
-        return String.format("%s%s", config.getUrl(), path);
-    }
-
-    public String getUrl(String url) {
-        return String.format("%s%s", url, path);
-    }
-
-    public String getLogMessage() {
-        return String.format("%s %s is invoked.", requestMethod, path);
     }
 
     public enum RequestMethod {

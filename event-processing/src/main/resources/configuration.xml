@@ -1,27 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration>
-	<measurementDataConfig>
-		<measurementPointConfig>
-			<deviceInformationConfig>
+	<dataSources>
+		<dataSource>
+			<deviceInformation>
 				<name>SENSOR</name>
-			</deviceInformationConfig>
-			<domainConfig>
+			</deviceInformation>
+			<domainInformation>
 				<name>FLOOR1</name>
-			</domainConfig>
-		</measurementPointConfig>
-	</measurementDataConfig>
+			</domainInformation>
+		</dataSource>
+	</dataSources>
 	<connections>
-		<connectionConfig>
-			<component>EP</component>
+		<connection component="EVENT_PROCESSING">
 			<ip>127.0.0.1</ip>
 			<port>5001</port>
 			<url>http://127.0.0.1:5001</url>
-		</connectionConfig>
-		<connectionConfig>
-			<component>CM</component>
+		</connection>
+		<connection component="CONFIGURATION_MANAGEMENT">
 			<ip>127.0.0.1</ip>
 			<port>5000</port>
 			<url>http://127.0.0.1:5000</url>
-		</connectionConfig>
+		</connection>
 	</connections>
 </configuration>

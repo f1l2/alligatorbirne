@@ -1,6 +1,5 @@
 package iot.device.startup;
 
-import iot.device.IotDevice;
 import iot.device.status.Status;
 
 import java.net.InetAddress;
@@ -20,9 +19,6 @@ public class IoTDeviceStartup implements ApplicationListener<EmbeddedServletCont
     @Autowired
     private Status status;
 
-    @Autowired
-    private IotDevice iotDevice;
-
     @Override
     public void onApplicationEvent(EmbeddedServletContainerInitializedEvent arg0) {
 
@@ -34,8 +30,5 @@ public class IoTDeviceStartup implements ApplicationListener<EmbeddedServletCont
         } catch (UnknownHostException e) {
             logger.error(e);
         }
-
-        iotDevice.setLocalConfiguration(ip, port);
-
     }
 }
