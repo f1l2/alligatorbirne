@@ -1,286 +1,188 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.8" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true">  
-  <class id="1" language="java" name="event.processing.query.language.QueryParser.ConditionContext" 
-    project="event-processing" file="/event-processing/src/main/java/event/processing/query/language/QueryParser.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="157" width="219" x="1162" y="846"/>    
-    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="2" language="java" name="event.processing.ApplicationScheduler" project="event-processing" 
-    file="/event-processing/src/main/java/event/processing/ApplicationScheduler.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="193" width="172" x="1624" y="37"/>    
-    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="3" language="java" name="event.processing.engine.impl.EsperEngineFactory" project="event-processing" 
+  <class id="1" language="java" name="event.processing.engine.impl.EsperEngineFactory" project="event-processing" 
     file="/event-processing/src/main/java/event/processing/engine/impl/EsperEngineFactory.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="103" width="137" x="748" y="846"/>    
+    <position height="175" width="248" x="1362" y="478"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="event.processing.query.QueryFactory" project="event-processing" 
+  <class id="2" language="java" name="event.processing.query.QueryFactory" project="event-processing" 
     file="/event-processing/src/main/java/event/processing/query/QueryFactory.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="85" width="156" x="327" y="37"/>    
+    <position height="85" width="156" x="382" y="137"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="event.processing.engine.EngineFactory" project="event-processing" 
+  <class id="3" language="java" name="event.processing.rest.EProcManageQueryImpl" project="event-processing" 
+    file="/event-processing/src/main/java/event/processing/rest/EProcManageQueryImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="103" width="161" x="181" y="137"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="event.processing.engine.EngineFactory" project="event-processing" 
     file="/event-processing/src/main/java/event/processing/engine/EngineFactory.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="139" width="201" x="925" y="37"/>    
+    <position height="-1" width="-1" x="1297" y="157"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <enumeration id="6" language="java" name="event.processing.engine.ENGINE_TYPE" project="event-processing" 
+  <enumeration id="5" language="java" name="event.processing.engine.ENGINE_TYPE" project="event-processing" 
     file="/event-processing/src/main/java/event/processing/engine/ENGINE_TYPE.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="157" width="161" x="824" y="1151"/>    
+    <position height="157" width="161" x="563" y="693"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </enumeration>  
-  <class id="7" language="java" name="event.processing.query.language.QueryLexer" project="event-processing" 
-    file="/event-processing/src/main/java/event/processing/query/language/QueryLexer.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="535" width="255" x="1166" y="37"/>    
-    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="8" language="java" name="event.processing.rest.EProcManageDataImpl" project="event-processing" 
+  <class id="6" language="java" name="event.processing.rest.EProcManageDataImpl" project="event-processing" 
     file="/event-processing/src/main/java/event/processing/rest/EProcManageDataImpl.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="85" width="234" x="2948" y="37"/>    
+    <position height="85" width="179" x="1650" y="137"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="event.processing.engine.Engine" project="event-processing" 
+  <class id="7" language="java" name="event.processing.engine.Engine" project="event-processing" 
     file="/event-processing/src/main/java/event/processing/engine/Engine.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="175" width="197" x="925" y="846"/>    
+    <position height="-1" width="-1" x="742" y="500"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="event.processing.Application" project="event-processing" 
-    file="/event-processing/src/main/java/event/processing/Application.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="85" width="113" x="523" y="37"/>    
-    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="11" language="java" name="event.processing.engine.impl.CEPListener" project="event-processing" 
-    file="/event-processing/src/main/java/event/processing/engine/impl/CEPListener.java" binary="false" 
+  <class id="8" language="java" name="event.processing.engine.impl.EsperQueryTransformer" project="event-processing" 
+    file="/event-processing/src/main/java/event/processing/engine/impl/EsperQueryTransformer.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="103" width="209" x="676" y="37"/>    
+    <position height="85" width="162" x="1279" y="693"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="12" language="java" name="event.processing.query.language.QueryBaseListener" project="event-processing" 
-    file="/event-processing/src/main/java/event/processing/query/language/QueryBaseListener.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="355" width="221" x="2687" y="37"/>    
-    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="13" language="java" name="event.processing.ApplicationConfig" project="event-processing" 
-    file="/event-processing/src/main/java/event/processing/ApplicationConfig.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="67" width="123" x="1461" y="37"/>    
-    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="14" language="java" name="event.processing.engine.impl.EsperEngine" project="event-processing" 
+  <class id="9" language="java" name="event.processing.engine.impl.EsperEngine" project="event-processing" 
     file="/event-processing/src/main/java/event/processing/engine/impl/EsperEngine.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="247" width="194" x="1025" y="1151"/>    
+    <position height="229" width="226" x="764" y="693"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="15" language="java" name="event.processing.query.language.QueryParser.DomainContext" 
-    project="event-processing" file="/event-processing/src/main/java/event/processing/query/language/QueryParser.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="139" width="210" x="2180" y="846"/>    
-    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <interface id="16" language="java" name="event.processing.rest.EProcManageData" project="event-processing" 
+  <interface id="10" language="java" name="event.processing.rest.EProcManageData" project="event-processing" 
     file="/event-processing/src/main/java/event/processing/rest/EProcManageData.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="49" width="129" x="2948" y="846"/>    
+    <position height="67" width="179" x="1650" y="478"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="17" language="java" name="event.processing.query.language.QueryParser.DomainlistContext" 
-    project="event-processing" file="/event-processing/src/main/java/event/processing/query/language/QueryParser.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="229" width="223" x="2430" y="846"/>    
-    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="18" language="java" name="event.processing.query.language.QueryParser.PropertyContext" 
-    project="event-processing" file="/event-processing/src/main/java/event/processing/query/language/QueryParser.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="175" width="216" x="1924" y="846"/>    
-    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <interface id="19" language="java" name="event.processing.query.language.QueryListener" project="event-processing" 
-    file="/event-processing/src/main/java/event/processing/query/language/QueryListener.java" binary="false" 
+  <class id="11" language="java" name="event.processing.engine.EngineListener" project="event-processing" 
+    file="/event-processing/src/main/java/event/processing/engine/EngineListener.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="265" width="215" x="2693" y="846"/>    
-    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <class id="20" language="java" name="event.processing.query.language.QueryParser.CompareContext" 
-    project="event-processing" file="/event-processing/src/main/java/event/processing/query/language/QueryParser.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="211" width="218" x="1421" y="846"/>    
+    <position height="85" width="110" x="1030" y="478"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="21" language="java" name="event.processing.query.Query" project="event-processing" 
+  <class id="12" language="java" name="event.processing.engine.QueryTransformer" project="event-processing" 
+    file="/event-processing/src/main/java/event/processing/engine/QueryTransformer.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="85" width="142" x="1180" y="478"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="event.processing.engine.impl.EsperEngineListener" project="event-processing" 
+    file="/event-processing/src/main/java/event/processing/engine/impl/EsperEngineListener.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="121" width="209" x="1030" y="693"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="14" language="java" name="event.processing.rest.EProcManageQuery" project="event-processing" 
+    file="/event-processing/src/main/java/event/processing/rest/EProcManageQuery.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="49" width="137" x="181" y="478"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="15" language="java" name="event.processing.query.Query" project="event-processing" 
     file="/event-processing/src/main/java/event/processing/query/Query.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="301" width="246" x="41" y="37"/>    
+    <position height="-1" width="-1" x="824" y="177"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="22" language="java" name="event.processing.query.language.QueryParser" project="event-processing" 
-    file="/event-processing/src/main/java/event/processing/query/language/QueryParser.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="769" width="269" x="1836" y="37"/>    
-    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="23" language="java" name="event.processing.query.language.QueryParser.QueryContext" 
-    project="event-processing" file="/event-processing/src/main/java/event/processing/query/language/QueryParser.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="193" width="205" x="1679" y="846"/>    
-    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <nesting id="24">    
-    <end type="SOURCE" refId="22"/>    
-    <end type="TARGET" refId="20"/>  
-  </nesting>  
-  <generalization id="25">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="9"/>  
-  </generalization>  
-  <nesting id="26">    
-    <end type="SOURCE" refId="22"/>    
-    <end type="TARGET" refId="17"/>  
-  </nesting>  
-  <nesting id="27">    
-    <end type="SOURCE" refId="22"/>    
-    <end type="TARGET" refId="15"/>  
-  </nesting>  
-  <association id="28">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="29" name="INSTANCE"/>      
-      <multiplicity id="30" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <nesting id="31">    
-    <end type="SOURCE" refId="22"/>    
-    <end type="TARGET" refId="18"/>  
-  </nesting>  
-  <nesting id="32">    
-    <end type="SOURCE" refId="22"/>    
-    <end type="TARGET" refId="1"/>  
-  </nesting>  
-  <realization id="33">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="19"/>  
+  <realization id="16">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="10"/>  
   </realization>  
-  <generalization id="34">    
+  <generalization id="17">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <realization id="18">    
     <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="5"/>  
-  </generalization>  
-  <association id="35">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="36" name="type"/>      
-      <multiplicity id="37" minimum="0" maximum="1"/>    
+    <end type="TARGET" refId="14"/>  
+  </realization>  
+  <association id="19">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="20" name="type">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="21" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
+    <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <nesting id="38">    
-    <end type="SOURCE" refId="22"/>    
-    <end type="TARGET" refId="23"/>  
-  </nesting>  
-  <realization id="39">    
+  <generalization id="22">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="7"/>  
+  </generalization>  
+  <generalization id="23">    
     <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="16"/>  
-  </realization>  
+    <end type="TARGET" refId="12"/>  
+  </generalization>  
+  <generalization id="24">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
   <classifier-display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

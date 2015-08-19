@@ -8,11 +8,12 @@ import com.espertech.esper.client.EPRuntime;
 import com.espertech.esper.client.EPServiceProvider;
 import com.espertech.esper.client.EPServiceProviderManager;
 import com.espertech.esper.client.EPStatement;
+import com.espertech.esper.client.UpdateListener;
 import common.data.DeviceInformation;
 
 import event.processing.engine.ENGINE_TYPE;
 import event.processing.engine.Engine;
-import event.processing.query.Query;
+import event.processing.engine.EngineListener;
 
 public class EsperEngine extends Engine {
 
@@ -40,17 +41,12 @@ public class EsperEngine extends Engine {
     }
 
     @Override
-    public void registerQuery(Query query) {
-
-    }
-
-    @Override
-    public void registerQuery(String query) {
+    public void registerQuery(String query, EngineListener listener) {
 
         EPAdministrator cepAdm = EP_SP.getEPAdministrator();
         EPStatement cepStatement = cepAdm.createEPL(query);
 
-        cepStatement.addListener(new CEPListener());
+        cepStatement.addListener((UpdateListener) listener);
     }
 
     @Override

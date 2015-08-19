@@ -6,6 +6,8 @@ import common.data.DeviceInformation;
 
 import event.processing.engine.Engine;
 import event.processing.engine.EngineFactory;
+import event.processing.engine.EngineListener;
+import event.processing.engine.QueryTransformer;
 import event.processing.engine.impl.EsperEngineFactory;
 
 public class TestEspEngine {
@@ -33,12 +35,15 @@ public class TestEspEngine {
 
         Engine engine = factory.getEngine();
 
+        EngineListener engineListener = factory.getEngineListener();
+
+        QueryTransformer queryTransformer = factory.getQueryTransformer();
+
         engine.sendEvent(TestEspEngine.generateRandomInformation());
 
         delay(1000);
 
-        engine.registerQuery("select * from DeviceInformationImpl");
-
+        engine.registerQuery(queryTransformer.transform("select * from DeviceInformationImpl"), engineListener);
         delay(1000);
 
         engine.sendEvent(TestEspEngine.generateRandomInformation());

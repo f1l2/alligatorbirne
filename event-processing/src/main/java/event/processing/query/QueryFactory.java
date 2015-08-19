@@ -12,30 +12,29 @@ import event.processing.query.language.QueryBaseListener;
 import event.processing.query.language.QueryLexer;
 import event.processing.query.language.QueryParser;
 
-
 public class QueryFactory {
-	
-	 public Query createQuery(String in) throws IOException {
-	        QueryLexer l = new QueryLexer(new ANTLRInputStream(in));
-	        QueryParser p = new QueryParser(new CommonTokenStream(l));
-	        p.addErrorListener(new BaseErrorListener() {
-	            @Override
-	            public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line, int charPositionInLine, String msg, RecognitionException e) {
-	                throw new IllegalStateException("failed to parse at line " + line + " due to " + msg, e);
-	            }
-	        });
 
+    public Query create(String in) throws IOException {
+        QueryLexer queryLexer = new QueryLexer(new ANTLRInputStream(in));
+        QueryParser queryParser = new QueryParser(new CommonTokenStream(queryLexer));
+        queryParser.addErrorListener(new BaseErrorListener() {
+            @Override
+            public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line, int charPositionInLine, String msg, RecognitionException e) {
+                throw new IllegalStateException("failed to parse at line " + line + " due to " + msg, e);
+            }
+        });
 
-	        final String[] condition = new String[1];
+        final String[] condition = new String[1];
 
-	        p.addParseListener(new QueryBaseListener() {
-	        	@Override public void exitCondition(QueryParser.ConditionContext ctx) {
-	        		condition[0] = ctx.compare().getText();
-	        	}
-	        });
-	        p.query();
+        queryParser.addParseListener(new QueryBaseListener() {
+            @Override
+            public void exitCondition(QueryParser.ConditionContext ctx) {
+                condition[0] = ctx.compare().getText();
+            }
+        });
+        queryParser.query();
 
-	        return new Query(condition[0], null);
-	    }
-	
+        return new Query(condition[0], null);
+    }
+
 }
