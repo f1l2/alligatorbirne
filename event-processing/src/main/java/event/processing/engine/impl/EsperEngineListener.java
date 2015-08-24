@@ -14,6 +14,9 @@ public class EsperEngineListener extends EngineListener implements UpdateListene
     @Override
     public void update(EventBean[] newData, EventBean[] oldData) {
         logger.info("Event received: " + newData[0].getUnderlying());
+
+        System.out.println("Event received." + newData[0].getUnderlying());
+
     }
 
     @Override

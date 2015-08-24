@@ -28,7 +28,7 @@ public class QueryParser extends Parser {
 	};
 
 	private static final String[] _LITERAL_NAMES = {
-		null, "'FROM'", "'SELECT'", "'.'"
+		null, "'FROM'", "'CONDITION'", "'.'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
 		null, null, null, null, "Name", "Int", "COMMA", "WS", "NL", "OPERATOR"

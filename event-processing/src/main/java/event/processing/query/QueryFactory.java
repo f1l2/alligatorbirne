@@ -31,10 +31,12 @@ public class QueryFactory {
             public void exitCondition(QueryParser.ConditionContext ctx) {
                 condition[0] = ctx.compare().getText();
             }
+            
+            @Override
+            public void exit
         });
         queryParser.query();
 
         return new Query(condition[0], null);
     }
-
 }

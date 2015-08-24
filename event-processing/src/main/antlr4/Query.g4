@@ -10,7 +10,7 @@ domainlist: domain | domainlist WS? COMMA WS? domainlist;
 
 domain: Name;
 
-condition: 'SELECT' WS compare;
+condition: 'CONDITION' WS compare;
 compare: property WS? OPERATOR WS? property;
 property: Name '.' Name | Int;
 

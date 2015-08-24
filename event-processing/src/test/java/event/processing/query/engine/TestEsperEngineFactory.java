@@ -12,7 +12,7 @@ import event.processing.engine.Engine;
 import event.processing.engine.impl.EsperEngine;
 import event.processing.engine.impl.EsperEngineFactory;
 
-public class TestEsbEngineFactory {
+public class TestEsperEngineFactory {
 	
 	private EsperEngineFactory factory;
 	
