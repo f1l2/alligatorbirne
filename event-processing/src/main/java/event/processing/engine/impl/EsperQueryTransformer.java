@@ -8,18 +8,22 @@ import event.processing.query.QueryFactory;
 
 public class EsperQueryTransformer extends QueryTransformer {
 
-    private String eql = "select * from stream_def [where search_conditions]";
+    private String eql = new String("select d.device as device, d.domain as domain from DataSource as d [where search_conditions]");
 
     @Override
     public String transform(String in) {
+
+        System.out.println(in);
 
         QueryFactory queryFactory = new QueryFactory();
 
         try {
             Query query = queryFactory.create(in);
 
-            eql = eql.replace("stream_def", "DeviceInformation");
-            eql = eql.replace("[where search_conditions]", "where " + query.getCondition());
+            eql = eql.replace("[where search_conditions]", "where " + query.getCondition().replace(Query.KEYWORD_CONDITION, "").trim());
+
+            eql = eql.replaceAll("DeviceInformation", "device");
+            eql = eql.replaceAll("DomainInformation", "domain");
 
             removeUnused();
 

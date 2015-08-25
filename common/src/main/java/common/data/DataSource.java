@@ -4,7 +4,7 @@ public class DataSource {
 
 	private DomainInformation domain;
 	
-	private DeviceInformation deviceInformation;
+	private DeviceInformation device;
 	
 	public DataSource() {
 		
@@ -12,7 +12,7 @@ public class DataSource {
 	
 	public DataSource(DomainInformation domain, DeviceInformation deviceInformation) {
 		this.setDomain(domain);
-		this.setDeviceInformation(deviceInformation);
+		this.setDevice(deviceInformation);
 	}
 
 	public DomainInformation getDomain() {
@@ -23,11 +23,11 @@ public class DataSource {
 		this.domain = domain;
 	}
 	
-	public DeviceInformation getDeviceInformation() {
-		return deviceInformation;
+	public DeviceInformation getDevice() {
+		return device;
 	}
 
-	public void setDeviceInformation(DeviceInformation deviceInformation) {
-		this.deviceInformation = deviceInformation;
+	public void setDevice(DeviceInformation device) {
+		this.device = device;
 	}
 }

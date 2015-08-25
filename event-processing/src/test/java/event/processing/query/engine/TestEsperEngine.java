@@ -2,7 +2,9 @@ package event.processing.query.engine;
 
 import org.junit.Test;
 
+import common.data.DataSource;
 import common.data.DeviceInformation;
+import common.data.DomainInformation;
 
 import event.processing.engine.Engine;
 import event.processing.engine.EngineFactory;
@@ -19,11 +21,15 @@ public class TestEsperEngine {
         }
     }
 
-    private static DeviceInformation generateRandomInformation() {
+    private static DataSource generateTestDataSource1() {
 
         DeviceInformation device = new DeviceInformation();
+        device.setName("name");
+        device.setId(10);
 
-        return device;
+        DomainInformation domain = new DomainInformation();
+
+        return new DataSource(domain, device);
     }
 
     @Test
@@ -33,7 +39,7 @@ public class TestEsperEngine {
 
         Engine engine = factory.getEngine();
 
-        engine.sendEvent(TestEsperEngine.generateRandomInformation());
+        engine.sendEvent(generateTestDataSource1());
 
         delay(1000);
 
@@ -41,11 +47,11 @@ public class TestEsperEngine {
 
         delay(1000);
 
-        engine.sendEvent(TestEsperEngine.generateRandomInformation());
+        engine.sendEvent(generateTestDataSource1());
 
         delay(1000);
 
-        engine.sendEvent(TestEsperEngine.generateRandomInformation());
+        engine.sendEvent(generateTestDataSource1());
 
     }
 }

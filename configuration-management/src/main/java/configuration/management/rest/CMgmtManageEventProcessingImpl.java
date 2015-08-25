@@ -102,7 +102,7 @@ public class CMgmtManageEventProcessingImpl implements CMgmtManageEventProcessin
             EventProcessingDataSourceRO item = new EventProcessingDataSourceRO();
             item.setEProcId(id);
             item.setDomain(point.getDomain().getName());
-            item.setDeviceInformation(point.getDeviceInformation().getName());
+            item.setDeviceInformation(point.getDevice().getName());
 
             eventProcessingDataSourceRepo.save(item);
         }

@@ -20,6 +20,16 @@ public interface QueryListener extends ParseTreeListener {
 	 */
 	void exitQuery(QueryParser.QueryContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link QueryParser#window}.
+	 * @param ctx the parse tree
+	 */
+	void enterWindow(QueryParser.WindowContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QueryParser#window}.
+	 * @param ctx the parse tree
+	 */
+	void exitWindow(QueryParser.WindowContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link QueryParser#domainlist}.
 	 * @param ctx the parse tree
 	 */
@@ -50,6 +60,16 @@ public interface QueryListener extends ParseTreeListener {
 	 */
 	void exitCondition(QueryParser.ConditionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link QueryParser#comparelogic}.
+	 * @param ctx the parse tree
+	 */
+	void enterComparelogic(QueryParser.ComparelogicContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QueryParser#comparelogic}.
+	 * @param ctx the parse tree
+	 */
+	void exitComparelogic(QueryParser.ComparelogicContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link QueryParser#compare}.
 	 * @param ctx the parse tree
 	 */
@@ -59,6 +79,16 @@ public interface QueryListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCompare(QueryParser.CompareContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link QueryParser#aggregate}.
+	 * @param ctx the parse tree
+	 */
+	void enterAggregate(QueryParser.AggregateContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QueryParser#aggregate}.
+	 * @param ctx the parse tree
+	 */
+	void exitAggregate(QueryParser.AggregateContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link QueryParser#property}.
 	 * @param ctx the parse tree

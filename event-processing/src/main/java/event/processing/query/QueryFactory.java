@@ -24,19 +24,66 @@ public class QueryFactory {
             }
         });
 
-        final String[] condition = new String[1];
+        final Query query = new Query();
 
         queryParser.addParseListener(new QueryBaseListener() {
+
+            @Override
+            public void exitQuery(QueryParser.QueryContext ctx) {
+            }
+
+            @Override
+            public void exitWindow(QueryParser.WindowContext ctx) {
+                query.setWindow(ctx.getText());
+
+                String windowValue = ctx.getText().replace(Query.KEYWORD_WIN, "");
+                windowValue = windowValue.replace(Query.KEYWORD_TIME, "");
+                windowValue = windowValue.replace(Query.KEYWORD_LENGTH, "");
+                windowValue = windowValue.trim();
+
+                query.setWindowValue(windowValue);
+
+            }
+
+            @Override
+            public void exitDomainlist(QueryParser.DomainlistContext ctx) {
+                query.setDomainList(ctx.getText());
+            }
+
+            @Override
+            public void exitDomain(QueryParser.DomainContext ctx) {
+                query.getDomain().add(ctx.getText());
+            }
+
             @Override
             public void exitCondition(QueryParser.ConditionContext ctx) {
-                condition[0] = ctx.compare().getText();
+                query.setCondition(ctx.getText());
             }
-            
+
             @Override
-            public void exit
+            public void exitComparelogic(QueryParser.ComparelogicContext ctx) {
+                query.setCompareLogic(ctx.getText());
+            }
+
+            @Override
+            public void exitCompare(QueryParser.CompareContext ctx) {
+                query.getCompare().add(ctx.getText());
+            }
+
+            @Override
+            public void exitAggregate(QueryParser.AggregateContext ctx) {
+                query.getAggregate().add(ctx.getText());
+            }
+
+            @Override
+            public void exitProperty(QueryParser.PropertyContext ctx) {
+                query.getProperty().add(ctx.getText());
+            }
+
         });
+
         queryParser.query();
 
-        return new Query(condition[0], null);
+        return query;
     }
 }

@@ -73,7 +73,7 @@ public class CMgmtManageIoTDeviceImpl implements CMgmtManageIoTDevice {
 
             IoTDeviceDataSourceRO item = new IoTDeviceDataSourceRO();
             item.setDeviceId(id);
-            item.setDeviceInformation(point.getDeviceInformation().getName());
+            item.setDeviceInformation(point.getDevice().getName());
             item.setDomain(point.getDomain().getName());
 
             deviceDataSourceRepo.save(item);

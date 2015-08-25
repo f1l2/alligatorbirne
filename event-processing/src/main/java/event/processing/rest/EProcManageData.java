@@ -1,9 +1,9 @@
 package event.processing.rest;
 
-import common.data.DeviceInformation;
+import common.data.DataSource;
 
 public interface EProcManageData {
 
-    public void receive(DeviceInformation deviceInformation);
+    public void receive(DataSource dataSource);
 
 }

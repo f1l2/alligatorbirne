@@ -17,6 +17,13 @@ public class EsperEngineListener extends EngineListener implements UpdateListene
 
         System.out.println("Event received." + newData[0].getUnderlying());
 
+        if (newData[0].getUnderlying() instanceof DeviceInformationAgg) {
+
+            System.out.println("HERE");
+
+            System.out.println(((DeviceInformationAgg) newData[0].getUnderlying()).getValue());
+        }
+
     }
 
     @Override

@@ -96,7 +96,7 @@ public class TransformXMLTest {
 
         Assert.assertNotNull(remote);
         Assert.assertNotNull(remote.get(0));
-        Assert.assertNotNull(remote.get(0).getDeviceInformation());
+        Assert.assertNotNull(remote.get(0).getDevice());
 
     }
 }

@@ -1,6 +1,6 @@
 package event.processing.engine;
 
-import common.data.DeviceInformation;
+import common.data.DataSource;
 
 public abstract class Engine {
 
@@ -12,7 +12,7 @@ public abstract class Engine {
 
     public abstract void unregisterQuery(String query);
 
-    public abstract void sendEvent(DeviceInformation deviceInformation);
+    public abstract void sendEvent(DataSource dataSource);
 
     public ENGINE_TYPE getType() {
         return type;
@@ -22,4 +22,5 @@ public abstract class Engine {
         this.type = type;
         this.initialize();
     }
+
 }

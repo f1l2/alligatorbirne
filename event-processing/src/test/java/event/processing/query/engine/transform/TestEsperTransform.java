@@ -3,12 +3,15 @@ package event.processing.query.engine.transform;
 import org.junit.Before;
 import org.junit.Test;
 
+import common.data.DataSource;
 import common.data.DeviceInformation;
+import common.data.DomainInformation;
 
 import event.processing.engine.Engine;
 import event.processing.engine.EngineListener;
 import event.processing.engine.QueryTransformer;
 import event.processing.engine.impl.EsperEngineFactory;
+import event.processing.engine.impl.EsperEngineListener;
 import event.processing.query.Query;
 
 public class TestEsperTransform {
@@ -33,7 +36,7 @@ public class TestEsperTransform {
     @Test
     public void testEsperEngine1() {
 
-        String eql = this.queryTransformer.transform(Query.KEYWORD_CONDITION + " 10 = 10  " + Query.KEYWORD_FROM + " Domain");
+        String eql = this.queryTransformer.transform(Query.KEYWORD_CONDITION + " DeviceInformation.id = 5  " + Query.KEYWORD_FROM);
 
         this.test(eql);
     }
@@ -46,21 +49,42 @@ public class TestEsperTransform {
         this.test(eql);
     }
 
+    @Test
+    public void testEsperEngine3() {
+
+        String query = "insert into DeviceInformationAgg select sum(id) as value from DeviceInformation";
+
+        engine.registerQuery(query, new EsperEngineListener());
+
+        query = "select * from DeviceInformationAgg where value > 5";
+
+        engine.registerQuery(query, new EsperEngineListener());
+
+        query = "select * from DeviceInformationAgg, DeviceInformation";
+
+        engine.registerQuery(query, null);
+
+        test("");
+
+    }
+
     private void test(String eql) {
         System.out.println(eql);
 
-        engine.sendEvent(generateRandomInformation());
+        engine.sendEvent(generateTestDataSource1());
 
         delay(1000);
 
         engine.registerQuery(eql, engineListener);
         delay(1000);
 
-        engine.sendEvent(generateRandomInformation());
+        engine.sendEvent(generateTestDataSource1());
 
         delay(1000);
 
-        engine.sendEvent(generateRandomInformation());
+        engine.sendEvent(generateTestDataSource2());
+
+        delay(1000);
 
     }
 
@@ -73,12 +97,26 @@ public class TestEsperTransform {
         }
     }
 
-    private static DeviceInformation generateRandomInformation() {
+    private static DataSource generateTestDataSource1() {
 
         DeviceInformation device = new DeviceInformation();
         device.setName("name");
         device.setId(10);
-        return device;
+
+        DomainInformation domain = new DomainInformation();
+
+        return new DataSource(domain, device);
+    }
+
+    private static DataSource generateTestDataSource2() {
+
+        DeviceInformation device = new DeviceInformation();
+        device.setName("name");
+        device.setId(5);
+
+        DomainInformation domain = new DomainInformation();
+
+        return new DataSource(domain, device);
     }
 
 }

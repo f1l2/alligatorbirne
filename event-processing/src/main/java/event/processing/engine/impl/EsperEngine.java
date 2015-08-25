@@ -9,7 +9,7 @@ import com.espertech.esper.client.EPServiceProvider;
 import com.espertech.esper.client.EPServiceProviderManager;
 import com.espertech.esper.client.EPStatement;
 import com.espertech.esper.client.UpdateListener;
-import common.data.DeviceInformation;
+import common.data.DataSource;
 
 import event.processing.engine.ENGINE_TYPE;
 import event.processing.engine.Engine;
@@ -32,7 +32,8 @@ public class EsperEngine extends Engine {
 
         Configuration cepConfig = new Configuration();
 
-        cepConfig.addEventType("DeviceInformation", DeviceInformation.class.getName());
+        cepConfig.addEventType("DataSource", DataSource.class.getName());
+        cepConfig.addEventType("DeviceInformationAgg", DeviceInformationAgg.class.getName());
 
         EP_SP = EPServiceProviderManager.getProvider(getType().getDescription(), cepConfig);
 
@@ -50,9 +51,9 @@ public class EsperEngine extends Engine {
     }
 
     @Override
-    public void sendEvent(DeviceInformation deviceInformation) {
+    public void sendEvent(DataSource dataSource) {
         if (null != EP_RUNTIME) {
-            EP_RUNTIME.sendEvent(deviceInformation);
+            EP_RUNTIME.sendEvent(dataSource);
         } else {
             logger.error("Event couldn't be proccesed due engine wasn't initialized properly");
         }

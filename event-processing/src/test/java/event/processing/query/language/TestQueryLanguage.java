@@ -10,7 +10,7 @@ public class TestQueryLanguage {
 
     @Test
     public void testCondition1() throws Exception {
-        query = Query.KEYWORD_CONDITION + " DeviceInformation.property = 21 " + Query.KEYWORD_FROM + " Domain";
+        query = Query.KEYWORD_CONDITION + " DeviceInformation.property = 21 AND x.abc = 21 " + Query.KEYWORD_FROM + " Domain";
         test(query);
     }
 
@@ -62,9 +62,35 @@ public class TestQueryLanguage {
         test(query);
     }
 
+    @Test
+    public void testWindows1() throws Exception {
+        query = Query.KEYWORD_CONDITION + " 21 = 79 " + Query.KEYWORD_FROM + " Domain " + Query.KEYWORD_WIN + Query.KEYWORD_TIME + "(10)";
+        test(query);
+    }
+
+    @Test
+    public void testWindows2() throws Exception {
+        query = Query.KEYWORD_CONDITION + " 21 = 79 " + Query.KEYWORD_FROM + " Domain " + Query.KEYWORD_WIN + Query.KEYWORD_LENGTH + "(10)";
+        test(query);
+    }
+
+    @Test
+    public void testDomain1() throws Exception {
+        query = Query.KEYWORD_CONDITION + " 21 = 79 " + Query.KEYWORD_FROM + " Domain, DomainAB";
+        test(query);
+    }
+
+    @Test
+    public void testAggregate1() throws Exception {
+        query = Query.KEYWORD_CONDITION + " " + Query.AGG_AVG + "( 21 ) = 79 " + Query.KEYWORD_FROM + " Domain";
+        test(query);
+
+    }
+
     private void test(String query) throws Exception {
 
+        System.out.println(query);
         Query queryObject = new QueryFactory().create(query);
-        System.out.println(queryObject.getCondition());
+        System.out.println(queryObject.toString());
     }
 }

@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import common.data.DeviceInformation;
+import common.data.DataSource;
 
 import event.processing.engine.Engine;
 import event.processing.engine.EngineFactory;
@@ -18,11 +18,11 @@ public class EProcManageDataImpl implements EProcManageData {
 
     @Override
     @RequestMapping(value = "/send", method = RequestMethod.POST)
-    public void receive(@RequestBody DeviceInformation deviceInformation) {
+    public void receive(@RequestBody DataSource dataSource) {
 
         Engine engine = factory.getEngine();
 
-        engine.sendEvent(deviceInformation);
+        engine.sendEvent(dataSource);
 
     }
 }

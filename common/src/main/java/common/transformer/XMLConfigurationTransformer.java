@@ -24,7 +24,7 @@ public class XMLConfigurationTransformer extends Transformer<XMLDataSource, Data
 
         DeviceInformation deviceInformation = transformerDeviceInformation.toRemote(local.getDeviceInformation());
 
-        dataSource.setDeviceInformation(deviceInformation);
+        dataSource.setDevice(deviceInformation);
 
         DomainInformation domainInformation = transformerDomain.toRemote(local.getDomainInformation());
 
@@ -42,7 +42,7 @@ public class XMLConfigurationTransformer extends Transformer<XMLDataSource, Data
 
         XMLDataSource xMLDataSource = new XMLDataSource();
 
-        XMLDeviceInformation xMLDeviceInformation = transformerDeviceInformation.toLocal(remote.getDeviceInformation());
+        XMLDeviceInformation xMLDeviceInformation = transformerDeviceInformation.toLocal(remote.getDevice());
 
         xMLDataSource.setDeviceInformation(xMLDeviceInformation);
 
