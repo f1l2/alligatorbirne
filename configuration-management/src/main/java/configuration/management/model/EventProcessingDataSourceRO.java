@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "EPROCE_DATA_SOURCE", uniqueConstraints = @UniqueConstraint(columnNames = { "eprocId", "domain", "deviceInformation" }))
+@Table(name = "EPROCE_DATA_SOURCE", uniqueConstraints = @UniqueConstraint(columnNames = { "eventProcessingId", "domain", "deviceInformation" }) )
 public class EventProcessingDataSourceRO {
 
     @Id
@@ -17,7 +17,7 @@ public class EventProcessingDataSourceRO {
     private Long id;
 
     @Column
-    private Long eProcId;
+    private Long eventProcessingId;
 
     @Column
     private String domain;
@@ -33,16 +33,16 @@ public class EventProcessingDataSourceRO {
         this.id = id;
     }
 
-    public Long getEProcId() {
-        return eProcId;
-    }
-
-    public void setEProcId(Long eprocId) {
-        this.eProcId = eprocId;
-    }
-
     public String getDomain() {
         return domain;
+    }
+
+    public Long getEventProcessingId() {
+        return eventProcessingId;
+    }
+
+    public void setEventProcessingId(Long eventProcessingId) {
+        this.eventProcessingId = eventProcessingId;
     }
 
     public void setDomain(String domain) {

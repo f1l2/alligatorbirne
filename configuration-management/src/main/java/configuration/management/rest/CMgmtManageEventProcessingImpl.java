@@ -23,7 +23,6 @@ import common.data.DataSources;
 import common.rest.RESOURCE_NAMING;
 import common.rest.UtilsResource;
 import common.transformer.Transformer;
-
 import configuration.management.model.EventProcessingDataSourceRO;
 import configuration.management.model.EventProcessingRO;
 import configuration.management.model.IoTDeviceDataSourceRO;
@@ -56,8 +55,7 @@ public class CMgmtManageEventProcessingImpl implements CMgmtManageEventProcessin
 
     @Override
     @RequestMapping(value = "/registrations/eventprocessing", method = RequestMethod.GET)
-    public @ResponseBody
-    List<Connection> getAll() {
+    public @ResponseBody List<Connection> getAll() {
 
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_GET_ALL_EVENT_PROCESSING));
         return transformer.toRemote(Transformer.makeCollection(eventProcessingRepo.findAll()));
@@ -102,7 +100,7 @@ public class CMgmtManageEventProcessingImpl implements CMgmtManageEventProcessin
         for (DataSource point : data.getDataSources()) {
 
             EventProcessingDataSourceRO item = new EventProcessingDataSourceRO();
-            item.setEProcId(id);
+            item.setEventProcessingId(id);
             item.setDomain(point.getDomain().getName());
             item.setDeviceInformation(point.getDevice().getName());
 

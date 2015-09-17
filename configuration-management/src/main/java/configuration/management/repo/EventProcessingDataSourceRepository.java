@@ -15,5 +15,5 @@ public interface EventProcessingDataSourceRepository extends CrudRepository<Even
 
     public List<EventProcessingDataSourceRO> findByDomainAndDeviceInformation(@Param("domain") String domain, @Param("deviceInformation") String deviceInformation);
 
-    public List<EventProcessingDataSourceRO> findByEventProcessingId(@Param("eprocId") Long eventProcessingId);
+    public List<EventProcessingDataSourceRO> findByEventProcessingId(@Param("eventProcessingId") Long eventProcessingId);
 }
