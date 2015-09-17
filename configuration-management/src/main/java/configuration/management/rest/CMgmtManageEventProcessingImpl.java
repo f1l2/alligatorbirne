@@ -128,9 +128,7 @@ public class CMgmtManageEventProcessingImpl implements CMgmtManageEventProcessin
             cm.setEventProcessingId(ep.getId());
             cm.setEpUrl(ep.getUrl());
 
-            // TODO
-            IoTDeviceRO device = deviceRepository.findOne(2l);
-            // IoTDeviceRO device = deviceRepository.findOne(deviceJPA.getDeviceId());
+            IoTDeviceRO device = deviceRepository.findOne(deviceJPA.getIoTDevice().getId());
 
             String url = UtilsResource.getUrl(RESOURCE_NAMING.IDEV_SET_CONFIGURATION, device.getUrl());
 

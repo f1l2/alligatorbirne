@@ -13,6 +13,7 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import configuration.management.ConfigurationManagement;
 import configuration.management.model.IoTDeviceDataSourceRO;
@@ -69,6 +70,7 @@ public class TestEventProcessingRepository {
     }
 
     @Test
+    @Transactional
     public void saveDataSource() {
 
         IoTDeviceRO result = this.deviceRepo.findByName(device1.getName());

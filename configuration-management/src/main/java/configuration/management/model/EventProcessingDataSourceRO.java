@@ -25,7 +25,7 @@ public class EventProcessingDataSourceRO {
     private String device;
 
     @ManyToOne()
-    @JoinColumn(name = "event_processing_id")
+    @JoinColumn(name = "event_processing_id", unique = true)
     private EventProcessingRO eventProcessing;
 
     public Long getId() {

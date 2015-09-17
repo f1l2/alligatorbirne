@@ -7,5 +7,5 @@ import configuration.management.model.IoTDeviceRO;
 
 public interface IoTDeviceRepository extends CrudRepository<IoTDeviceRO, Long> {
 
-		public IoTDeviceRO findByName(@Param("name") String name);
+    public IoTDeviceRO findByName(@Param("name") String name);
 }

@@ -7,7 +7,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,7 +29,7 @@ public class IoTDeviceRO {
     @Column
     private Date date;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     private List<IoTDeviceDataSourceRO> ioTDeviceDataSources = new ArrayList<IoTDeviceDataSourceRO>();
 
     public Long getId() {

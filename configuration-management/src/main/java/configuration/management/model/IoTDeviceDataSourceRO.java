@@ -19,7 +19,7 @@ public class IoTDeviceDataSourceRO {
     private Long id;
 
     @ManyToOne()
-    @JoinColumn(name = "device_id")
+    @JoinColumn(name = "device_id", unique = true)
     private IoTDeviceRO ioTDevice;
 
     @Column
@@ -62,7 +62,7 @@ public class IoTDeviceDataSourceRO {
 
     @Override
     public String toString() {
-        return "IoTDeviceDataSourceRO [id=" + id + ", ioTDeviceRO=" + ioTDevice + ", domain=" + domain + ", device=" + device + "]";
+        return "IoTDeviceDataSourceRO [id=" + id + ", ioTDevice=" + ioTDevice + ", domain=" + domain + ", device=" + device + "]";
     }
 
 }
