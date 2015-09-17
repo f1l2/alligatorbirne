@@ -100,9 +100,10 @@ public class CMgmtManageEventProcessingImpl implements CMgmtManageEventProcessin
         for (DataSource point : data.getDataSources()) {
 
             EventProcessingDataSourceRO item = new EventProcessingDataSourceRO();
-            item.setEventProcessingId(id);
+            // TODO Manuel
+            // item.setEventProcessingId(id);
             item.setDomain(point.getDomain().getName());
-            item.setDeviceInformation(point.getDevice().getName());
+            item.setDevice(point.getDevice().getName());
 
             eventProcessingDataSourceRepo.save(item);
         }
@@ -127,7 +128,9 @@ public class CMgmtManageEventProcessingImpl implements CMgmtManageEventProcessin
             cm.setEventProcessingId(ep.getId());
             cm.setEpUrl(ep.getUrl());
 
-            IoTDeviceRO device = deviceRepository.findOne(deviceJPA.getDeviceId());
+            // TODO
+            IoTDeviceRO device = deviceRepository.findOne(2l);
+            // IoTDeviceRO device = deviceRepository.findOne(deviceJPA.getDeviceId());
 
             String url = UtilsResource.getUrl(RESOURCE_NAMING.IDEV_SET_CONFIGURATION, device.getUrl());
 
@@ -151,7 +154,7 @@ public class CMgmtManageEventProcessingImpl implements CMgmtManageEventProcessin
         Set<IoTDeviceDataSourceRO> deviceDataSources = new HashSet<IoTDeviceDataSourceRO>();
 
         for (EventProcessingDataSourceRO eProcDataSource : eProcDataSources) {
-            deviceDataSources.addAll(deviceDataSourceRepository.findByDomainAndDeviceInformation(eProcDataSource.getDomain(), eProcDataSource.getDeviceInformation()));
+            deviceDataSources.addAll(deviceDataSourceRepository.findByDomainAndDevice(eProcDataSource.getDomain(), eProcDataSource.getDevice()));
         }
 
         return deviceDataSources;

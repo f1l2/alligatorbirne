@@ -1,54 +1,81 @@
 package configuration.management.model;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "EPROC")
+@Table(name = "EventProcessingRO")
 public class EventProcessingRO {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-	
-	@Column
-	private String name;
-	
-	@Column
-	private String url;
-	
-	public Long getId() {
-		return id;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @Column
+    private String name;
 
-	public String getName() {
-		return name;
-	}
+    @Column
+    private String url;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    @Column
+    private Date date;
 
-	public String getUrl() {
-		return url;
-	}
+    @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    private List<EventProcessingDataSourceRO> eventProcessingDataSources = new ArrayList<EventProcessingDataSourceRO>();
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
-	
+    public Long getId() {
+        return id;
+    }
 
-	@Override
-	public String toString() {
-		return "EProc [id=" + id + ", name=" + name + ", url=" + url
-				+ "]";
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public List<EventProcessingDataSourceRO> getEventProcessingDataSources() {
+        return eventProcessingDataSources;
+    }
+
+    public void setEventProcessingDataSources(List<EventProcessingDataSourceRO> eventProcessingDataSources) {
+        this.eventProcessingDataSources = eventProcessingDataSources;
+    }
+
+    @Override
+    public String toString() {
+        return "EventProcessingRO [id=" + id + ", name=" + name + ", url=" + url + ", eventProcessingDataSources=" + eventProcessingDataSources + "]";
+    }
 
 }

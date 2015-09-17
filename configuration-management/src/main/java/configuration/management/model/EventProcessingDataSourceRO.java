@@ -5,11 +5,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "EPROCE_DATA_SOURCE", uniqueConstraints = @UniqueConstraint(columnNames = { "eventProcessingId", "domain", "deviceInformation" }) )
+@Table(name = "EPROCESSING_DATA_SOURCE", uniqueConstraints = @UniqueConstraint(columnNames = { "event_processing_id", "domain", "device" }) )
 public class EventProcessingDataSourceRO {
 
     @Id
@@ -17,13 +19,14 @@ public class EventProcessingDataSourceRO {
     private Long id;
 
     @Column
-    private Long eventProcessingId;
-
-    @Column
     private String domain;
 
     @Column
-    private String deviceInformation;
+    private String device;
+
+    @ManyToOne()
+    @JoinColumn(name = "event_processing_id")
+    private EventProcessingRO eventProcessing;
 
     public Long getId() {
         return id;
@@ -37,23 +40,23 @@ public class EventProcessingDataSourceRO {
         return domain;
     }
 
-    public Long getEventProcessingId() {
-        return eventProcessingId;
-    }
-
-    public void setEventProcessingId(Long eventProcessingId) {
-        this.eventProcessingId = eventProcessingId;
-    }
-
     public void setDomain(String domain) {
         this.domain = domain;
     }
 
-    public String getDeviceInformation() {
-        return deviceInformation;
+    public String getDevice() {
+        return device;
     }
 
-    public void setDeviceInformation(String deviceInformation) {
-        this.deviceInformation = deviceInformation;
+    public void setDevice(String device) {
+        this.device = device;
+    }
+
+    public EventProcessingRO getEventProcessing() {
+        return eventProcessing;
+    }
+
+    public void setEventProcessing(EventProcessingRO eventProcessing) {
+        this.eventProcessing = eventProcessing;
     }
 }

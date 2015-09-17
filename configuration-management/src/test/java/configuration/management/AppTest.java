@@ -1,4 +1,4 @@
-package at.prototype.configuration.management;
+package configuration.management;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
