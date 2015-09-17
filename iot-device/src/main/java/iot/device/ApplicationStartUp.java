@@ -5,7 +5,8 @@ import iot.device.status.Status;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerInitializedEvent;
 import org.springframework.context.ApplicationListener;
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ApplicationStartUp implements ApplicationListener<EmbeddedServletContainerInitializedEvent> {
 
-    final static Logger logger = Logger.getLogger(ApplicationStartUp.class);
+    final static Logger logger = LoggerFactory.getLogger(ApplicationStartUp.class);
 
     @Autowired
     private Status status;
@@ -28,7 +29,7 @@ public class ApplicationStartUp implements ApplicationListener<EmbeddedServletCo
         try {
             ip = InetAddress.getLocalHost().getHostAddress();
         } catch (UnknownHostException e) {
-            logger.error(e);
+            logger.error(e.getMessage());
         }
     }
 }

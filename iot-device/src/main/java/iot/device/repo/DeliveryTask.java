@@ -1,6 +1,7 @@
 package iot.device.repo;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
@@ -10,7 +11,7 @@ import common.rest.UtilsResource;
 
 public class DeliveryTask implements Runnable {
 
-    final static Logger logger = Logger.getLogger(DeliveryTask.class);
+    final static Logger logger = LoggerFactory.getLogger(DeliveryTask.class);
 
     private DeliveryTaskRO deliveryTask;
 
@@ -39,7 +40,7 @@ public class DeliveryTask implements Runnable {
             } catch (Exception ex) {
 
                 logger.error("Error sending device data.");
-                logger.error(ex);
+                logger.error(ex.getMessage());
             }
 
             try {

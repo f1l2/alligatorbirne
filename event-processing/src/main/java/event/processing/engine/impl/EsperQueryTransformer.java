@@ -13,8 +13,6 @@ public class EsperQueryTransformer extends QueryTransformer {
     @Override
     public String transform(String in) {
 
-        System.out.println(in);
-
         QueryFactory queryFactory = new QueryFactory();
 
         try {

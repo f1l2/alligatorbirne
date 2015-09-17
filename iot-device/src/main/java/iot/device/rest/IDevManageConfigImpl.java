@@ -1,14 +1,15 @@
 package iot.device.rest;
 
-import iot.device.repo.DeliveryTaskRO;
 import iot.device.repo.DeliveryTask;
+import iot.device.repo.DeliveryTaskRO;
 import iot.device.repo.DeliveryTaskRepository;
 import iot.device.repo.DeliveryTaskTransformer;
 
 import java.util.List;
 import java.util.Random;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,7 +25,7 @@ import common.rest.UtilsResource;
 @RestController
 public class IDevManageConfigImpl implements IDevManageConfig {
 
-    final static Logger logger = Logger.getLogger(IDevManageConfigImpl.class);
+    final static Logger logger = LoggerFactory.getLogger(IDevManageConfigImpl.class);
 
     @Autowired
     private DeliveryTaskRepository repository;

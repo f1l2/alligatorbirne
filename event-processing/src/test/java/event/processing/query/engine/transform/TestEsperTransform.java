@@ -1,58 +1,65 @@
 package event.processing.query.engine.transform;
 
-import org.junit.Before;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import common.data.DataSource;
-import common.data.DeviceInformation;
-import common.data.DomainInformation;
-
-import event.processing.engine.Engine;
+import event.processing.AbstractTest;
 import event.processing.engine.EngineListener;
-import event.processing.engine.QueryTransformer;
-import event.processing.engine.impl.EsperEngineFactory;
 import event.processing.engine.impl.EsperEngineListener;
 import event.processing.query.Query;
 
-public class TestEsperTransform {
+public class TestEsperTransform extends AbstractTest {
 
-    private EsperEngineFactory factory;
-
-    private Engine engine;
-
-    private QueryTransformer queryTransformer;
+    final static Logger logger = LoggerFactory.getLogger(TestEsperTransform.class);
 
     private EngineListener engineListener;
-
-    @Before
-    public void before() {
-        factory = new EsperEngineFactory();
-
-        engine = factory.getEngine();
-        queryTransformer = factory.getQueryTransformer();
-        engineListener = factory.getEngineListener();
-    }
 
     @Test
     public void testEsperEngine1() {
 
-        String eql = this.queryTransformer.transform(Query.KEYWORD_CONDITION + " DeviceInformation.id = 5  " + Query.KEYWORD_FROM);
+        String query = Query.KEYWORD_CONDITION + " DeviceInformation.id = 5  " + Query.KEYWORD_FROM;
 
-        this.test(eql);
+        transformAndRegister(query);
+
     }
 
     @Test
     public void testEsperEngine2() {
 
-        String eql = this.queryTransformer.transform(Query.KEYWORD_CONDITION + " DeviceInformation.id = 11 " + Query.KEYWORD_FROM + " Domain");
+        String query1 = "select d.device as device from DataSource as d where device.id = 5";
 
-        this.test(eql);
+        register(query1);
+
+        String query2 = "select d.device as device from DataSource as d where device.id = 5 and device.id = 20";
+
+        register(query2);
+
+        String query31 = "insert into DataSourceAgg select sum(d.device.id) as value from DataSource as d";
+
+        String query32 = "select * from DataSourceAgg where value > 5";
+
+        register(query31);
+
+        register(query32);
+
+        String query4 = "select d.device as device, d.domain as domain from DataSource d where device.id > 10 AND domain.name = 'name'";
+
+        register(query4);
+
+        String query51 = "insert into DataSourceAgg select sum(d.device.id) as value from DataSource.win:time(30) as d";
+
+        String query52 = "select * from DataSourceAgg where value > 5";
+
+        register(query51);
+
+        register(query52);
     }
 
     @Test
     public void testEsperEngine3() {
 
-        String query = "insert into DeviceInformationAgg select sum(id) as value from DeviceInformation";
+        String query = "insert into DeviceInformationAgg select sum(DeviceInformation.id) as value from DeviceInformation";
 
         engine.registerQuery(query, new EsperEngineListener());
 
@@ -68,55 +75,30 @@ public class TestEsperTransform {
 
     }
 
+    private void register(String eql) {
+        engine.registerQuery(eql, factory.getEngineListener());
+    }
+
+    private void transformAndRegister(String query) {
+
+        logger.info(String.format("Transform query: %s", query));
+
+        String eql = queryTransformer.transform(query);
+
+        logger.info(String.format("Generated EQL: %s", eql));
+
+        // engine.registerQuery(eql, null);
+    }
+
     private void test(String eql) {
-        System.out.println(eql);
-
-        engine.sendEvent(generateTestDataSource1());
-
-        delay(1000);
 
         engine.registerQuery(eql, engineListener);
         delay(1000);
 
-        engine.sendEvent(generateTestDataSource1());
+        sendEventAndWait(dataSource1, 1000);
 
-        delay(1000);
+        sendEventAndWait(dataSource2, 1000);
 
-        engine.sendEvent(generateTestDataSource2());
-
-        delay(1000);
-
+        sendEventAndWait(dataSource3, 1000);
     }
-
-    private void delay(long time) {
-        try {
-            Thread.sleep(time);
-        } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
-
-    private static DataSource generateTestDataSource1() {
-
-        DeviceInformation device = new DeviceInformation();
-        device.setName("name");
-        device.setId(10);
-
-        DomainInformation domain = new DomainInformation();
-
-        return new DataSource(domain, device);
-    }
-
-    private static DataSource generateTestDataSource2() {
-
-        DeviceInformation device = new DeviceInformation();
-        device.setName("name");
-        device.setId(5);
-
-        DomainInformation domain = new DomainInformation();
-
-        return new DataSource(domain, device);
-    }
-
 }

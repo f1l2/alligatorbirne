@@ -1,6 +1,7 @@
 package configuration.management.startup;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -11,7 +12,7 @@ import configuration.management.repo.IoTDeviceRepository;
 @Component
 public class ApplicationStartup implements ApplicationListener<ContextRefreshedEvent> {
 
-    final static Logger logger = Logger.getLogger(ApplicationStartup.class);
+    final static Logger logger = LoggerFactory.getLogger(ApplicationStartup.class);
 
     @Autowired
     IoTDeviceRepository repository;

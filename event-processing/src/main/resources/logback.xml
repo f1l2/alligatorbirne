@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true">
+
+    <appender name="CON" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date{dd.MM.yyyy HH:mm:ss.SSS} [%-5level] [%-15.15thread] [%20.30logger{36}] - %msg %n</pattern>
+        </encoder>
+    </appender>
+
+
+    <logger name="org.apache.http" level="DEBUG" />
+    <logger name="org.apache.activemq" level="INFO" />
+    <logger name="com.jolbox.bonecp" level="DEBUG" />
+    <logger name="org.springframework.jms" level="DEBUG" />
+    <logger name="org.springframework.jndi" level="DEBUG" />
+    <logger name="org.springframework.jdbc" level="DEBUG" />
+    <logger name="at.a1ta" level="DEBUG" />
+    <logger name="at.a1ta.eai.test.client" level="TRACE" />
+
+    <root level="INFO">
+        <appender-ref ref="CON" />
+    </root>
+
+</configuration>

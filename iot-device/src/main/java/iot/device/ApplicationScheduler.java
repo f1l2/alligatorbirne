@@ -5,7 +5,8 @@ import iot.device.status.Status;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -21,7 +22,7 @@ import common.rest.UtilsResource;
 @Component
 public class ApplicationScheduler {
 
-    final static Logger logger = Logger.getLogger(ApplicationScheduler.class);
+    final static Logger logger = LoggerFactory.getLogger(ApplicationScheduler.class);
 
     private static int statusRegistration = 0;
 
@@ -61,7 +62,7 @@ public class ApplicationScheduler {
 
             } catch (Exception ex) {
                 logger.error("Register error. Call: " + url);
-                logger.error(ex);
+                logger.error(ex.getMessage());
             }
 
         } else if (statusRegistration == 1) {
@@ -80,7 +81,7 @@ public class ApplicationScheduler {
 
             } catch (Exception ex) {
                 logger.error("Error registration sources of device. Url: " + url);
-                logger.error(ex);
+                logger.error(ex.getMessage());
             }
 
         } else {

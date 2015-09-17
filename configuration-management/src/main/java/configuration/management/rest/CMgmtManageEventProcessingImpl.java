@@ -4,7 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,7 +37,7 @@ import configuration.management.repo.IoTDeviceRepository;
 @RestController
 public class CMgmtManageEventProcessingImpl implements CMgmtManageEventProcessing {
 
-    final static Logger logger = Logger.getLogger(CMgmtManageEventProcessingImpl.class);
+    final static Logger logger = LoggerFactory.getLogger(CMgmtManageEventProcessingImpl.class);
 
     @Autowired
     private EventProcessingRepository eventProcessingRepo;
@@ -55,7 +56,8 @@ public class CMgmtManageEventProcessingImpl implements CMgmtManageEventProcessin
 
     @Override
     @RequestMapping(value = "/registrations/eventprocessing", method = RequestMethod.GET)
-    public @ResponseBody List<Connection> getAll() {
+    public @ResponseBody
+    List<Connection> getAll() {
 
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_GET_ALL_EVENT_PROCESSING));
         return transformer.toRemote(Transformer.makeCollection(eventProcessingRepo.findAll()));

@@ -3,7 +3,8 @@ package configuration.management.rest;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,7 +29,7 @@ import configuration.management.repo.IoTDeviceTransformer;
 @RestController
 public class CMgmtManageIoTDeviceImpl implements CMgmtManageIoTDevice {
 
-    final static Logger logger = Logger.getLogger(CMgmtManageIoTDeviceImpl.class);
+    final static Logger logger = LoggerFactory.getLogger(CMgmtManageIoTDeviceImpl.class);
 
     @Autowired
     private IoTDeviceRepository deviceRepo;
@@ -41,7 +42,8 @@ public class CMgmtManageIoTDeviceImpl implements CMgmtManageIoTDevice {
 
     @Override
     @RequestMapping(value = "/registrations/devices", method = RequestMethod.GET)
-    public @ResponseBody List<Connection> getAll() {
+    public @ResponseBody
+    List<Connection> getAll() {
 
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_GET_ALL_DEVICES));
 
