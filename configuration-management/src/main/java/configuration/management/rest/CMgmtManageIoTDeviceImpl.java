@@ -19,7 +19,6 @@ import common.data.DataSources;
 import common.rest.RESOURCE_NAMING;
 import common.rest.UtilsResource;
 import common.transformer.Transformer;
-
 import configuration.management.model.IoTDeviceDataSourceRO;
 import configuration.management.model.IoTDeviceRO;
 import configuration.management.repo.IoTDeviceDataSourceRepository;
@@ -42,8 +41,7 @@ public class CMgmtManageIoTDeviceImpl implements CMgmtManageIoTDevice {
 
     @Override
     @RequestMapping(value = "/registrations/devices", method = RequestMethod.GET)
-    public @ResponseBody
-    List<Connection> getAll() {
+    public @ResponseBody List<Connection> getAll() {
 
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_GET_ALL_DEVICES));
 

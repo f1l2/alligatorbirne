@@ -25,7 +25,7 @@
 		</layout>
 	</appender>
 
-	<logger name="event.processing" level="INFO" />
+	<logger name="configuration.management" level="INFO" />
 
 	<root>
 		<level value="ERROR" />

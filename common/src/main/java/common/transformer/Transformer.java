@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * @author Manuel Filz
+ *
+ */
 public abstract class Transformer<LOCAL, REMOTE> {
 
     public abstract LOCAL toLocal(REMOTE remote);

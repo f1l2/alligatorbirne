@@ -30,7 +30,6 @@ public class UtilsConfiguration {
             }
         }
         return connection;
-
     }
 
     public Connection getCMConnection() {
