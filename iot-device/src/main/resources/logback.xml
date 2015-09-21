@@ -25,7 +25,7 @@
 		</layout>
 	</appender>
 
-	<logger name="iot.device" level="INFO" />
+	<logger name="iot.device" level="INFO" ref="CON" />
 
 	<root>
 		<level value="ERROR" />

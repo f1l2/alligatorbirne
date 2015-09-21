@@ -8,4 +8,6 @@ import configuration.management.model.EventProcessingRO;
 public interface EventProcessingRepository extends CrudRepository<EventProcessingRO, Long> {
 
     public EventProcessingRO findByName(@Param("name") String name);
+
+    public EventProcessingRO findByUrl(@Param("url") String url);
 }

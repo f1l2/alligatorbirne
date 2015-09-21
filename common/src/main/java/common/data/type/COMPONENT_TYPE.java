@@ -1,5 +1,7 @@
 package common.data.type;
 
+import common.data.configuration.XMLComponent;
+
 public enum COMPONENT_TYPE {
 
     IOT_DEVICE("iot device", "Device"),
@@ -15,6 +17,12 @@ public enum COMPONENT_TYPE {
     COMPONENT_TYPE(final String type, final String description) {
         this.value = type;
         this.description = description;
+    }
+
+    public boolean equals(XMLComponent component) {
+        if (component.name().equals(this.name()))
+            return true;
+        return false;
     }
 
     public String getValue() {

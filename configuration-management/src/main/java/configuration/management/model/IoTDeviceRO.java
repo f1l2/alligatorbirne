@@ -23,11 +23,14 @@ public class IoTDeviceRO {
     @Column
     private String name;
 
-    @Column
+    @Column(nullable = false)
     private String url;
 
     @Column
-    private Date date;
+    private Date created;
+
+    @Column
+    private Date updated;
 
     @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     private List<IoTDeviceDataSourceRO> ioTDeviceDataSources = new ArrayList<IoTDeviceDataSourceRO>();
@@ -56,12 +59,20 @@ public class IoTDeviceRO {
         this.url = url;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getCreated() {
+        return created;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public Date getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(Date updated) {
+        this.updated = updated;
     }
 
     public List<IoTDeviceDataSourceRO> getIoTDeviceDataSources() {
@@ -74,7 +85,7 @@ public class IoTDeviceRO {
 
     @Override
     public String toString() {
-        return "IoTDeviceRO [id=" + id + ", name=" + name + ", url=" + url + ", date=" + date + ", ioTDeviceDataSources=" + ioTDeviceDataSources + "]";
+        return "IoTDeviceRO [id=" + id + ", name=" + name + ", url=" + url + ", created=" + created + ", updated=" + updated + ", ioTDeviceDataSources=" + ioTDeviceDataSources + "]";
     }
 
 }

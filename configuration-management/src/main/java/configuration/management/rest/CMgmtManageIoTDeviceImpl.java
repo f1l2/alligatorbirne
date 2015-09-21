@@ -53,11 +53,24 @@ public class CMgmtManageIoTDeviceImpl implements CMgmtManageIoTDevice {
     public Connection register(@RequestBody Connection connection) {
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_REGISTER_DEVICE));
 
-        IoTDeviceRO item = new IoTDeviceRO();
-        item.setDate(new Date());
-        item.setUrl(connection.getUrl());
-        item = deviceRepo.save(item);
+        /**
+         * If device with URL already exists, return existing values. Otherwise generate new values.
+         */
 
+        IoTDeviceRO item = deviceRepo.findByUrl(connection.getUrl());
+        if (null != item) {
+            connection.setId(item.getId());
+            item.setUpdated(new Date());
+        } else {
+            item = new IoTDeviceRO();
+            item.setCreated(new Date());
+            item.setUpdated(new Date());
+            item.setUrl(connection.getUrl());
+            item = deviceRepo.save(item);
+        }
+
+        deviceRepo.save(item);
+        item = deviceRepo.save(item);
         connection.setId(item.getId());
 
         return connection;
@@ -90,7 +103,7 @@ public class CMgmtManageIoTDeviceImpl implements CMgmtManageIoTDevice {
 
         IoTDeviceRO item = deviceRepo.findOne(id);
         if (item != null) {
-            item.setDate(new Date());
+            item.setCreated(new Date());
             deviceRepo.save(item);
         }
 

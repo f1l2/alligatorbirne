@@ -1,9 +1,12 @@
 package common.data.config;
 
 import java.io.File;
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.xml.bind.JAXBException;
 
 import common.data.Connection;
 import common.data.DataSource;
@@ -18,9 +21,9 @@ import common.transformer.XMLParser;
 
 public class UtilsConfiguration {
 
-    private XMLConnectionTransformer transformer = new XMLConnectionTransformer();
+    public static List<Connection> getConnections(COMPONENT_TYPE component) throws MalformedURLException, JAXBException {
 
-    public List<Connection> getConnections(COMPONENT_TYPE component) {
+        XMLConnectionTransformer transformer = new XMLConnectionTransformer();
 
         List<Connection> connection = new ArrayList<Connection>();
 
@@ -32,30 +35,34 @@ public class UtilsConfiguration {
         return connection;
     }
 
-    public Connection getCMConnection() {
+    public static Connection getCMConnection() throws MalformedURLException, JAXBException {
         List<Connection> connections = getConnections(COMPONENT_TYPE.CONFIGURATION_MANAGEMENT);
 
-        return connections.get(0);
+        if (null != connections && connections.size() > 0) {
+            return connections.get(0);
+        } else {
+            return null;
+        }
     }
 
-    public List<Connection> getEPConnection() {
+    public static List<Connection> getEPConnection() throws MalformedURLException, JAXBException {
 
         return getConnections(COMPONENT_TYPE.EVENT_PROCESSING);
     }
 
-    public List<Connection> getIoTDevicesConnection() {
+    public static List<Connection> getIoTDevicesConnection() throws MalformedURLException, JAXBException {
 
         return getConnections(COMPONENT_TYPE.IOT_DEVICE);
     }
 
-    public static XMLConnections loadConnections() {
+    public static XMLConnections loadConnections() throws MalformedURLException, JAXBException {
 
         XMLConfiguration xMLconfiguration = loadConfiguration();
 
         return xMLconfiguration.getConnections();
     }
 
-    public static DataSources loadMeasurementData() {
+    public static DataSources loadMeasurementData() throws MalformedURLException, JAXBException {
 
         XMLConfiguration xMLconfiguration = loadConfiguration();
         XMLConfigurationTransformer transformer = new XMLConfigurationTransformer();
@@ -68,7 +75,7 @@ public class UtilsConfiguration {
         return measurementData;
     }
 
-    private static XMLConfiguration loadConfiguration() {
+    public static XMLConfiguration loadConfiguration() throws MalformedURLException, JAXBException {
 
         String configurationStr = "src/main/resources/configuration.xml";
         File configurationFile = new File(configurationStr);
@@ -77,6 +84,15 @@ public class UtilsConfiguration {
         configurationURI = configurationURI.normalize();
 
         return XMLParser.unmarshal(configurationURI);
+    }
+
+    public static void saveConfiguration(XMLConfiguration configuration) throws JAXBException {
+
+        String configurationStr = "src/main/resources/configuration.xml";
+        File configurationFile = new File(configurationStr);
+
+        XMLParser.marshal(configuration, configurationFile);
+
     }
 
 }

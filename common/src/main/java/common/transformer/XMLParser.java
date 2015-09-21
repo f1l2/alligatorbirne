@@ -1,10 +1,11 @@
 package common.transformer;
 
 import java.io.File;
+import java.net.MalformedURLException;
 import java.net.URI;
 
-import javax.xml.bind.DataBindingException;
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
@@ -12,27 +13,20 @@ import common.data.configuration.XMLConfiguration;
 
 public class XMLParser {
 
-    public static XMLConfiguration unmarshal(final URI uri) {
-        try {
-            final JAXBContext jaxbContext = JAXBContext.newInstance(XMLConfiguration.class);
-            final Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-            return (XMLConfiguration) unmarshaller.unmarshal(uri.toURL());
+    public static XMLConfiguration unmarshal(final URI uri) throws JAXBException, MalformedURLException {
 
-        } catch (final Exception ex) {
-            throw new DataBindingException(ex);
-        }
+        final JAXBContext jaxbContext = JAXBContext.newInstance(XMLConfiguration.class);
+        final Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+        return (XMLConfiguration) unmarshaller.unmarshal(uri.toURL());
+
     }
 
-    public static void marshal(XMLConfiguration data, final File file) {
-        try {
-            final JAXBContext jaxbContext = JAXBContext.newInstance(XMLConfiguration.class);
-            final Marshaller marshaller = jaxbContext.createMarshaller();
+    public static void marshal(XMLConfiguration data, final File file) throws JAXBException {
+        final JAXBContext jaxbContext = JAXBContext.newInstance(XMLConfiguration.class);
+        final Marshaller marshaller = jaxbContext.createMarshaller();
 
-            marshaller.marshal(data, file);
+        marshaller.marshal(data, file);
 
-        } catch (final Exception ex) {
-            throw new DataBindingException(ex);
-        }
     }
 
 }

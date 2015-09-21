@@ -1,7 +1,5 @@
 package iot.device;
 
-import iot.device.status.Status;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -18,75 +16,114 @@ import common.data.DataSources;
 import common.data.config.UtilsConfiguration;
 import common.rest.RESOURCE_NAMING;
 import common.rest.UtilsResource;
+import iot.device.status.STATUS_TYPE;
+import iot.device.status.Status;
 
 @Component
 public class ApplicationScheduler {
 
     final static Logger logger = LoggerFactory.getLogger(ApplicationScheduler.class);
 
-    private static int statusRegistration = 0;
-
-    private static Connection connection;
-
-    private static final UtilsConfiguration utilsConfig = new UtilsConfiguration();
+    private static Connection local, cm;
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+
+    private RestTemplate restTemplate = new RestTemplate();
+
+    private String url;
 
     @Autowired
     private Status status;
 
-    @Scheduled(fixedRate = 20000)
+    // TODO change fixedRate
+
+    @Scheduled(initialDelay = 1000, fixedRate = 20000)
     public void carryOutActivity() {
 
-        RestTemplate restTemplate = new RestTemplate();
-        String url = null;
-
-        if (statusRegistration == 0) {
+        switch (status.getCurrent()) {
+        case STARTED_UP:
 
             try {
+                /**
+                 * Load connection data.
+                 */
+                local = UtilsConfiguration.getIoTDevicesConnection().get(0);
+                logger.info("Retrieve local connection data ... ");
+                logger.info(local.toString());
 
-                Connection cmConnection = utilsConfig.getCMConnection();
-                url = UtilsResource.getUrl(RESOURCE_NAMING.CMGMT_REGISTER_DEVICE, cmConnection);
+                /**
+                 * Load CM connection data and prepare URL
+                 */
+                cm = UtilsConfiguration.getCMConnection();
+                logger.info("Load CM connection data ...");
+                logger.info(cm.toString());
 
-                connection = new Connection();
-                connection.setHost("127.0.0.1");
-                connection.setPort("5002");
-                connection.setUrl("http://127.0.0.1:5002");
+                url = UtilsResource.getUrl(RESOURCE_NAMING.CMGMT_REGISTER_DEVICE, cm);
+                logger.info(url);
 
-                ResponseEntity<Connection> responseRegistration = restTemplate.postForEntity(url, connection, Connection.class);
-                connection = responseRegistration.getBody();
-
-                logger.info("Device registered. Status: " + responseRegistration.getStatusCode() + " Response body: " + connection);
-
-                statusRegistration++;
+                status.setCurrent(STATUS_TYPE.REGISTER_DEVICE);
 
             } catch (Exception ex) {
+
                 logger.error("Register error. Call: " + url);
                 logger.error(ex.getMessage());
             }
+            break;
 
-        } else if (statusRegistration == 1) {
+        case REGISTER_DEVICE:
 
             try {
+
+                logger.info("Try to register device ...");
+
+                ResponseEntity<Connection> responseRegistration = restTemplate.postForEntity(url, local, Connection.class);
+                local = responseRegistration.getBody();
+
+                logger.info("Device registered. Status: " + responseRegistration.getStatusCode() + " Response body: " + local);
+
+                status.setCurrent(STATUS_TYPE.REGISTER_DATA_SOURCES);
+
+            } catch (Exception ex) {
+                logger.error("Register error. Exception {}", ex);
+            }
+
+            break;
+
+        case REGISTER_DATA_SOURCES:
+
+            try {
+
+                logger.info("Convey data sources ...");
+
                 DataSources data = UtilsConfiguration.loadMeasurementData();
 
-                Connection cmConnection = utilsConfig.getCMConnection();
+                Connection cmConnection = UtilsConfiguration.getCMConnection();
                 url = UtilsResource.getUrl(RESOURCE_NAMING.CMGMT_REGISTER_DEVICE_SOURCES, cmConnection);
-                url = url.replace("{id}", String.valueOf(connection.getId()));
+                url = url.replace("{id}", String.valueOf(local.getId()));
 
                 ResponseEntity<Void> responseRegisteriationSources = restTemplate.postForEntity(url, data, Void.class);
                 logger.info("Sources of device registered. Status: " + responseRegisteriationSources.getStatusCode() + " Response body: ");
 
-                statusRegistration++;
+                status.setCurrent(STATUS_TYPE.WORKING);
 
             } catch (Exception ex) {
-                logger.error("Error registration sources of device. Url: " + url);
-                logger.error(ex.getMessage());
+                logger.error("Error registration sources of device. Url: {}; Exception {}", url, ex);
             }
 
-        } else {
+            break;
+
+        case WORKING:
+
             // TODO send heart beat
             logger.info("Send heart beat: " + dateFormat.format(new Date()));
+
+            break;
+
+        case ERROR:
+            break;
+
+        default:
+            break;
         }
 
     }

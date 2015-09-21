@@ -3,60 +3,19 @@ package configuration.management.repo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import java.util.Date;
-
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import configuration.management.ConfigurationManagement;
-import configuration.management.model.IoTDeviceDataSourceRO;
+import configuration.management.TestCM;
 import configuration.management.model.IoTDeviceRO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = ConfigurationManagement.class)
-@DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD)
-public class TestEventProcessingRepository {
-
-    @Autowired
-    private IoTDeviceRepository deviceRepo;
-
-    private IoTDeviceRO device1, device2;
-
-    private IoTDeviceDataSourceRO dataSource1;
-
-    @Before
-    public void before() {
-
-        this.deviceRepo.deleteAll();
-
-        device1 = new IoTDeviceRO();
-
-        device1.setDate(new Date());
-        device1.setName("device1");
-        device1.setUrl("http://url1.bla.bla.at");
-
-        device1 = this.deviceRepo.save(device1);
-
-        device2 = new IoTDeviceRO();
-
-        device2.setDate(new Date());
-        device2.setName("device2");
-        device2.setUrl("http://url2.bla.bla.at");
-
-        device2 = this.deviceRepo.save(device2);
-
-        dataSource1 = new IoTDeviceDataSourceRO();
-        dataSource1.setDevice("deviceInformation1");
-        dataSource1.setDomain("domain1");
-
-    }
+public class TestEventProcessingRepository extends TestCM {
 
     @Test
     public void findByName() {
