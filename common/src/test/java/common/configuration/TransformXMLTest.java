@@ -17,24 +17,24 @@ import common.data.configuration.XMLDataSource;
 import common.data.configuration.XMLDataSources;
 import common.data.configuration.XMLDeviceInformation;
 import common.data.configuration.XMLDomainInformation;
-import common.transformer.XMLConfigurationTransformer;
+import common.transformer.XMLDataSourceTransformer;
 import common.transformer.XMLParser;
 
-public class TestTransformXML {
+public class TransformXMLTest {
 
-    private String configurationStr;
+    private static final String PATH_TO_CONFIGURATION_FILE = "src/test/resources/configuration.xml";
+
+    private static final String PATH_TO_TEST_OUTPUT = "target/configuration_test_output.xml";
 
     private File configurationFile;
 
     private URI configurationURI;
 
-    private XMLConfigurationTransformer transformerConfig = new XMLConfigurationTransformer();
+    private XMLDataSourceTransformer transformerConfig = new XMLDataSourceTransformer();
 
     @Before
-    public void setup() {
-        configurationStr = "src/test/resources/configuration.xml";
-        configurationFile = new File(configurationStr);
-
+    public void before() {
+        configurationFile = new File(PATH_TO_CONFIGURATION_FILE);
         configurationURI = configurationFile.toURI();
         configurationURI = configurationURI.normalize();
     }
@@ -68,8 +68,8 @@ public class TestTransformXML {
     @Test(expected = UnmarshalException.class)
     public void testUnmarshalFailure() throws Exception {
 
-        configurationStr = "src/test/resources/blabla.xml";
-        configurationFile = new File(configurationStr);
+        String pathToUnexistingFile = "src/test/resources/blabla.xml";
+        configurationFile = new File(pathToUnexistingFile);
 
         configurationURI = configurationFile.toURI();
         configurationURI = configurationURI.normalize();
@@ -95,10 +95,7 @@ public class TestTransformXML {
 
         unmarshal.getDataSources().getDataSource().add(measurementPoint);
 
-        configurationStr = "target/configuration_test_output.xml";
-        configurationFile = new File(configurationStr);
-
-        XMLParser.marshal(unmarshal, configurationFile);
+        XMLParser.marshal(unmarshal, new File(PATH_TO_TEST_OUTPUT));
 
     }
 
@@ -111,7 +108,7 @@ public class TestTransformXML {
 
         Assert.assertNotNull(remote);
         Assert.assertNotNull(remote.get(0));
-        Assert.assertNotNull(remote.get(0).getDevice());
+        Assert.assertNotNull(remote.get(0).getDeviceInformation());
 
     }
 }

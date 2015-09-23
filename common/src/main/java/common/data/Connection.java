@@ -1,16 +1,14 @@
 package common.data;
 
+import java.net.URL;
+
 public class Connection {
 
     private long id;
 
     private String name;
 
-    private String host;
-
-    private String port;
-
-    private String url;
+    private URL url;
 
     public long getId() {
         return id;
@@ -28,33 +26,17 @@ public class Connection {
         this.name = name;
     }
 
-    public String getHost() {
-        return host;
-    }
-
-    public void setHost(String host) {
-        this.host = host;
-    }
-
-    public String getPort() {
-        return port;
-    }
-
-    public void setPort(String port) {
-        this.port = port;
-    }
-
-    public String getUrl() {
+    public URL getUrl() {
         return url;
     }
 
-    public void setUrl(String url) {
+    public void setUrl(URL url) {
         this.url = url;
     }
 
     @Override
     public String toString() {
-        return "Connection [id=" + id + ", name=" + name + ", host=" + host + ", port=" + port + ", url=" + url + "]";
+        return "Connection [id=" + id + ", name=" + name + ", url=" + url + "]";
     }
 
 }

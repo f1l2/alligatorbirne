@@ -36,7 +36,7 @@ public class TestIoTDeviceRepository {
         ep1 = new EventProcessingRO();
         ep1.setDate(new Date());
         ep1.setName("ep1");
-        ep1.setUrl("http://url1.bla.bla.at");
+        ep1.setAuthority("http://url1.bla.bla.at");
 
         ep1 = this.eventProcessingRepo.save(ep1);
 
@@ -44,7 +44,7 @@ public class TestIoTDeviceRepository {
 
         ep2.setDate(new Date());
         ep2.setName("ep2");
-        ep2.setUrl("http://url2.bla.bla.at");
+        ep2.setAuthority("http://url2.bla.bla.at");
 
         ep2 = this.eventProcessingRepo.save(ep2);
 
@@ -62,7 +62,7 @@ public class TestIoTDeviceRepository {
         assertNotNull(result);
         assertEquals(ep1.getId(), result.getId());
         assertEquals(ep1.getName(), result.getName());
-        assertEquals(ep1.getUrl(), result.getUrl());
+        assertEquals(ep1.getAuthority(), result.getAuthority());
     }
 
     @Test
@@ -81,7 +81,7 @@ public class TestIoTDeviceRepository {
         assertNotNull(result);
         assertEquals(ep1.getId(), result.getId());
         assertEquals(ep1.getName(), result.getName());
-        assertEquals(ep1.getUrl(), result.getUrl());
+        assertEquals(ep1.getAuthority(), result.getAuthority());
 
         assertNotNull(result.getEventProcessingDataSources());
         assertEquals(1, result.getEventProcessingDataSources().size());

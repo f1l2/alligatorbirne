@@ -4,11 +4,16 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * @author Manuel Filz
  *
  */
 public abstract class Transformer<LOCAL, REMOTE> {
+
+    final static Logger logger = LoggerFactory.getLogger(Transformer.class);
 
     public abstract LOCAL toLocal(REMOTE remote);
 

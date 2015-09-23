@@ -8,9 +8,10 @@ import org.springframework.boot.context.embedded.EmbeddedServletContainerInitial
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
+import common.data.Configuration;
 import common.data.Connection;
 import common.data.config.UtilsConfiguration;
-import common.data.configuration.XMLConfiguration;
+import common.data.util.Util;
 
 @Component
 public class ApplicationStartUp implements ApplicationListener<EmbeddedServletContainerInitializedEvent> {
@@ -22,17 +23,21 @@ public class ApplicationStartUp implements ApplicationListener<EmbeddedServletCo
 
         try {
 
-            StringBuilder url = new StringBuilder();
+            StringBuilder authority = new StringBuilder();
+            authority.append(InetAddress.getLocalHost().getHostAddress());
+            authority.append(":");
+            authority.append(String.valueOf(arg0.getEmbeddedServletContainer().getPort()));
 
-            url.append(InetAddress.getLocalHost().getHostAddress());
-            url.append(":");
-            url.append(String.valueOf(arg0.getEmbeddedServletContainer().getPort()));
+            Connection localConnection = UtilsConfiguration.getIoTDeviceConnection();
 
-            Connection connection = UtilsConfiguration.getIoTDevicesConnection().get(0);
+            if (null == localConnection) {
+                localConnection = new Connection();
+                localConnection.setUrl(Util.parseUrl(authority.toString()));
+            }
 
-            if (!url.toString().equals(connection.getUrl())) {
-                XMLConfiguration loadConfiguration = UtilsConfiguration.loadConfiguration();
-                loadConfiguration.set
+            if (!authority.toString().equals(localConnection.getUrl())) {
+                Configuration configuration = UtilsConfiguration.loadConfiguration();
+                // configuration.
             }
 
         } catch (Exception e) {

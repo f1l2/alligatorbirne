@@ -24,7 +24,7 @@ public class IoTDeviceRO {
     private String name;
 
     @Column(nullable = false)
-    private String url;
+    private String authority;
 
     @Column
     private Date created;
@@ -51,12 +51,12 @@ public class IoTDeviceRO {
         this.name = name;
     }
 
-    public String getUrl() {
-        return url;
+    public String getAuthority() {
+        return authority;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setAuthority(String authority) {
+        this.authority = authority;
     }
 
     public Date getCreated() {
@@ -85,7 +85,7 @@ public class IoTDeviceRO {
 
     @Override
     public String toString() {
-        return "IoTDeviceRO [id=" + id + ", name=" + name + ", url=" + url + ", created=" + created + ", updated=" + updated + ", ioTDeviceDataSources=" + ioTDeviceDataSources + "]";
+        return "IoTDeviceRO [id=" + id + ", name=" + name + ", url=" + authority + ", created=" + created + ", updated=" + updated + ", ioTDeviceDataSources=" + ioTDeviceDataSources + "]";
     }
 
 }

@@ -68,7 +68,7 @@ public class CMgmtManageEventProcessingImpl implements CMgmtManageEventProcessin
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_REGISTER_EVENT_PROCESSING));
 
         EventProcessingRO item = new EventProcessingRO();
-        item.setUrl(connection.getUrl());
+        item.setAuthority(connection.getUrl().getAuthority());
         item = eventProcessingRepo.save(item);
 
         connection.setId(item.getId());
@@ -102,8 +102,8 @@ public class CMgmtManageEventProcessingImpl implements CMgmtManageEventProcessin
             EventProcessingDataSourceRO item = new EventProcessingDataSourceRO();
             // TODO Manuel
             // item.setEventProcessingId(id);
-            item.setDomain(point.getDomain().getName());
-            item.setDevice(point.getDevice().getName());
+            item.setDomain(point.getDomainInformation().getName());
+            item.setDevice(point.getDeviceInformation().getName());
 
             eventProcessingDataSourceRepo.save(item);
         }
@@ -126,11 +126,11 @@ public class CMgmtManageEventProcessingImpl implements CMgmtManageEventProcessin
 
             ConfigurationModification cm = new ConfigurationModification();
             cm.setEventProcessingId(ep.getId());
-            cm.setEpUrl(ep.getUrl());
+            cm.setEpUrl(ep.getAuthority());
 
             IoTDeviceRO device = deviceRepository.findOne(deviceJPA.getIoTDevice().getId());
 
-            String url = UtilsResource.getUrl(RESOURCE_NAMING.IDEV_SET_CONFIGURATION, device.getUrl());
+            String url = UtilsResource.getUrl(RESOURCE_NAMING.IDEV_SET_CONFIGURATION, device.getAuthority());
 
             try {
                 RestTemplate restTemplate = new RestTemplate();

@@ -1,56 +1,41 @@
 package common.transformer;
 
-import common.data.DataSource;
-import common.data.DeviceInformation;
-import common.data.DomainInformation;
-import common.data.configuration.XMLDataSource;
-import common.data.configuration.XMLDeviceInformation;
-import common.data.configuration.XMLDomainInformation;
+import common.data.Configuration;
+import common.data.configuration.XMLConfiguration;
+import common.data.configuration.XMLConnections;
+import common.data.configuration.XMLDataSources;
 
-public class XMLConfigurationTransformer extends Transformer<XMLDataSource, DataSource> {
+public class XMLConfigurationTransformer extends Transformer<XMLConfiguration, Configuration> {
 
-    private XMLDeviceInformationTranformer transformerDeviceInformation = new XMLDeviceInformationTranformer();
-
-    private XMLDomainInformationTransformer transformerDomain = new XMLDomainInformationTransformer();
+    private XMLConnectionTransformer connectionTransformer = new XMLConnectionTransformer();
+    private XMLDataSourceTransformer dataSourceTransformer = new XMLDataSourceTransformer();
 
     @Override
-    public DataSource toRemote(XMLDataSource local) {
+    public XMLConfiguration toLocal(Configuration remote) {
 
-        if (null == local) {
-            return null;
-        }
+        XMLConfiguration xmlConfiguration = new XMLConfiguration();
 
-        DataSource dataSource = new DataSource();
+        XMLDataSources xmlDataSources = new XMLDataSources();
+        xmlDataSources.getDataSource().addAll(dataSourceTransformer.toLocal(remote.getDataSources()));
 
-        DeviceInformation deviceInformation = transformerDeviceInformation.toRemote(local.getDeviceInformation());
+        XMLConnections xmlConnections = new XMLConnections();
+        xmlConnections.getConnection().addAll(connectionTransformer.toLocal(remote.getConnections()));
 
-        dataSource.setDevice(deviceInformation);
+        xmlConfiguration.setDataSources(xmlDataSources);
+        xmlConfiguration.setConnections(xmlConnections);
 
-        DomainInformation domainInformation = transformerDomain.toRemote(local.getDomainInformation());
-
-        dataSource.setDomain(domainInformation);
-
-        return dataSource;
+        return xmlConfiguration;
     }
 
     @Override
-    public XMLDataSource toLocal(DataSource remote) {
+    public Configuration toRemote(XMLConfiguration local) {
 
-        if (null == remote) {
-            return null;
-        }
+        Configuration configuration = new Configuration();
 
-        XMLDataSource xMLDataSource = new XMLDataSource();
+        configuration.setConnections(connectionTransformer.toRemote(local.getConnections().getConnection()));
+        configuration.setDataSources(dataSourceTransformer.toRemote(local.getDataSources().getDataSource()));
 
-        XMLDeviceInformation xMLDeviceInformation = transformerDeviceInformation.toLocal(remote.getDevice());
-
-        xMLDataSource.setDeviceInformation(xMLDeviceInformation);
-
-        XMLDomainInformation xMLDomainInformation = transformerDomain.toLocal(remote.getDomain());
-
-        xMLDataSource.setDomainInformation(xMLDomainInformation);
-
-        return xMLDataSource;
+        return configuration;
     }
 
 }

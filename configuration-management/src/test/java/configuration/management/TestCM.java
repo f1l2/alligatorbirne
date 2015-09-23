@@ -28,7 +28,7 @@ public class TestCM {
 
         device1.setCreated(new Date());
         device1.setName("device1");
-        device1.setUrl("http://url1.bla.bla.at");
+        device1.setAuthority("http://url1.bla.bla.at");
 
         device1 = this.deviceRepo.save(device1);
 
@@ -36,7 +36,7 @@ public class TestCM {
 
         device2.setCreated(new Date());
         device2.setName("device2");
-        device2.setUrl("http://url2.bla.bla.at");
+        device2.setAuthority("http://url2.bla.bla.at");
 
         device2 = this.deviceRepo.save(device2);
 

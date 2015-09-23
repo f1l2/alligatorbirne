@@ -47,7 +47,7 @@ public class ApplicationScheduler {
                 /**
                  * Load connection data.
                  */
-                local = UtilsConfiguration.getIoTDevicesConnection().get(0);
+                local = UtilsConfiguration.getIoTDeviceConnection();
                 logger.info("Retrieve local connection data ... ");
                 logger.info(local.toString());
 

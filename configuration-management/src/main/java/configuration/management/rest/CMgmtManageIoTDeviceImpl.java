@@ -57,7 +57,7 @@ public class CMgmtManageIoTDeviceImpl implements CMgmtManageIoTDevice {
          * If device with URL already exists, return existing values. Otherwise generate new values.
          */
 
-        IoTDeviceRO item = deviceRepo.findByUrl(connection.getUrl());
+        IoTDeviceRO item = deviceRepo.findByAuthority(connection.getUrl().getAuthority());
         if (null != item) {
             connection.setId(item.getId());
             item.setUpdated(new Date());
@@ -65,7 +65,7 @@ public class CMgmtManageIoTDeviceImpl implements CMgmtManageIoTDevice {
             item = new IoTDeviceRO();
             item.setCreated(new Date());
             item.setUpdated(new Date());
-            item.setUrl(connection.getUrl());
+            item.setAuthority(connection.getUrl().getAuthority());
             item = deviceRepo.save(item);
         }
 
@@ -87,8 +87,8 @@ public class CMgmtManageIoTDeviceImpl implements CMgmtManageIoTDevice {
             IoTDeviceDataSourceRO item = new IoTDeviceDataSourceRO();
             // TODO Manuel
             // item.setDeviceId(id);
-            item.setDevice(dataSource.getDevice().getName());
-            item.setDomain(dataSource.getDomain().getName());
+            item.setDevice(dataSource.getDeviceInformation().getName());
+            item.setDomain(dataSource.getDomainInformation().getName());
 
             deviceDataSourceRepo.save(item);
         }

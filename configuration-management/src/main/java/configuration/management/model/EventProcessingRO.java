@@ -24,7 +24,7 @@ public class EventProcessingRO {
     private String name;
 
     @Column
-    private String url;
+    private String authority;
 
     @Column
     private Date date;
@@ -48,12 +48,12 @@ public class EventProcessingRO {
         this.name = name;
     }
 
-    public String getUrl() {
-        return url;
+    public String getAuthority() {
+        return authority;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setAuthority(String authority) {
+        this.authority = authority;
     }
 
     public Date getDate() {
@@ -74,7 +74,7 @@ public class EventProcessingRO {
 
     @Override
     public String toString() {
-        return "EventProcessingRO [id=" + id + ", name=" + name + ", url=" + url + ", eventProcessingDataSources=" + eventProcessingDataSources + "]";
+        return "EventProcessingRO [id=" + id + ", name=" + name + ", url=" + authority + ", eventProcessingDataSources=" + eventProcessingDataSources + "]";
     }
 
 }

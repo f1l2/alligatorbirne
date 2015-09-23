@@ -1,5 +1,7 @@
 package common.transformer;
 
+import java.net.URL;
+
 import common.data.Connection;
 import common.data.configuration.XMLConnection;
 
@@ -13,8 +15,8 @@ public class XMLConnectionTransformer extends Transformer<XMLConnection, Connect
         }
 
         XMLConnection xMLConnection = new XMLConnection();
-        xMLConnection.setHost(remote.getHost());
-        xMLConnection.setPort(remote.getPort());
+        xMLConnection.setHost(remote.getUrl().getHost());
+        xMLConnection.setPort(Integer.toString(remote.getUrl().getPort()));
 
         return xMLConnection;
     }
@@ -26,10 +28,16 @@ public class XMLConnectionTransformer extends Transformer<XMLConnection, Connect
             return null;
         }
 
+        URL url = null;
+        try {
+            url = new URL("http", local.getHost(), Integer.parseInt(local.getPort()), "/");
+        } catch (Exception ex) {
+            logger.error("Error parsing configuration file (connection element). {}", ex);
+        }
+
         Connection connection = new Connection();
-        connection.setHost(local.getHost());
-        connection.setPort(local.getPort());
-        connection.setUrl(local.getHost() + ":" + local.getPort());
+        connection.setName(local.getName());
+        connection.setUrl(url);
 
         return connection;
     }

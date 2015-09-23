@@ -25,7 +25,7 @@ public class TestEventProcessingRepository extends TestCM {
         assertNotNull(result);
         assertEquals(device1.getId(), result.getId());
         assertEquals(device1.getName(), result.getName());
-        assertEquals(device1.getUrl(), result.getUrl());
+        assertEquals(device1.getAuthority(), result.getAuthority());
     }
 
     @Test
@@ -44,7 +44,7 @@ public class TestEventProcessingRepository extends TestCM {
         assertNotNull(result);
         assertEquals(device1.getId(), result.getId());
         assertEquals(device1.getName(), result.getName());
-        assertEquals(device1.getUrl(), result.getUrl());
+        assertEquals(device1.getAuthority(), result.getAuthority());
 
         assertNotNull(result.getIoTDeviceDataSources());
         assertEquals(1, result.getIoTDeviceDataSources().size());

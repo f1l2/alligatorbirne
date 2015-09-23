@@ -1,14 +1,18 @@
 package configuration.management.repo;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import common.data.Connection;
 import common.transformer.Transformer;
-
 import configuration.management.model.IoTDeviceRO;
+import configuration.management.util.Util;
 
 @Component
 public class IoTDeviceTransformer extends Transformer<IoTDeviceRO, Connection> {
+
+    final static Logger logger = LoggerFactory.getLogger(Transformer.class);
 
     @Override
     public IoTDeviceRO toLocal(Connection remote) {
@@ -19,7 +23,7 @@ public class IoTDeviceTransformer extends Transformer<IoTDeviceRO, Connection> {
 
         IoTDeviceRO device = new IoTDeviceRO();
         device.setId(remote.getId());
-        device.setUrl(remote.getUrl());
+        device.setAuthority(remote.getUrl().getAuthority());
 
         return device;
     }
@@ -33,7 +37,7 @@ public class IoTDeviceTransformer extends Transformer<IoTDeviceRO, Connection> {
 
         Connection connection = new Connection();
         connection.setId(local.getId());
-        connection.setUrl(local.getUrl());
+        connection.setUrl(Util.parseUrl(local.getAuthority()));
 
         return connection;
     }
