@@ -28,7 +28,7 @@
 	<logger name="configuration.management" level="INFO" />
 
 	<root>
-		<level value="ERROR" />
+		<level value="INFO" />
 		<appender-ref ref="CON" />
 	</root>
 	 	
