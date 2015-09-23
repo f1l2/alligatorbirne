@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<xs:schema 
+ <xs:schema 
         xmlns:xs="http://www.w3.org/2001/XMLSchema"
         xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
         jaxb:version="2.1">
@@ -39,16 +39,6 @@
   
   </xs:element>
   
-   <!--
-  <xs:element name="deviceInformationList">
-    <xs:complexType>
-      <xs:sequence maxOccurs="unbounded" minOccurs="0">
-        <xs:element ref="deviceInformation" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  -->
-  
   <xs:element name="domainInformation">
 	<xs:complexType>
 		<xs:sequence>
@@ -56,16 +46,6 @@
 		</xs:sequence>
 	</xs:complexType>
   </xs:element>
-  
-  <!--  
-  <xs:element name="domainInformationList">
-    <xs:complexType>
-      <xs:sequence maxOccurs="unbounded" minOccurs="0">
-        <xs:element ref="domainInformation" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  -->
   
   <xs:element name="connections">
     <xs:complexType>
@@ -77,11 +57,11 @@
   
   <xs:element name="connection" >
 	<xs:complexType>
-		<xs:sequence>
+		<xs:all>
 			<xs:element type="xs:string" name="name"/>
 			<xs:element type="xs:string" name="host"/>
 	        <xs:element type="xs:string" name="port"/>
-		</xs:sequence>
+		</xs:all>
 		<xs:attribute type="Component" name="component" />
 	</xs:complexType>
   </xs:element>

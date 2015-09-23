@@ -16,6 +16,6 @@ public class Status {
     }
 
     public Status() {
-        current = STATUS_TYPE.STARTED_UP;
+        current = STATUS_TYPE.BOOTING;
     }
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<configuration schemaLocation="configuration.xsd">
+<!DOCTYPE xml>
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="configuration.xsd">
 	<dataSources>
 		<dataSource>
 			<deviceInformation>
@@ -15,12 +16,11 @@
 			<name>Name</name>
 			<host>127.0.0.1</host>
 			<port>5000</port>
-			<url>http://127.0.0.1:5000</url>
 		</connection>
 		<connection component="CONFIGURATION_MANAGEMENT">
-			<ip>127.0.0.1</ip>
+			<name>Name</name>
+			<host>127.0.0.1</host>
 			<port>5000</port>
-			<url>http://127.0.0.1:5000</url>
 		</connection>
 	</connections>
 </configuration>

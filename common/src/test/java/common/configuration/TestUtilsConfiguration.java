@@ -10,6 +10,7 @@ import javax.xml.bind.JAXBException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.xml.sax.SAXException;
 
 import common.data.Configuration;
 import common.data.Connection;
@@ -38,7 +39,7 @@ public class TestUtilsConfiguration {
     }
 
     @Test
-    public void saveNewConnection() throws MalformedURLException, JAXBException {
+    public void saveNewConnection() throws MalformedURLException, JAXBException, SAXException {
 
         Configuration configuration = UtilsConfiguration.loadConfiguration(PATH_TO_CONFIGURATION_FILE);
 
@@ -70,7 +71,7 @@ public class TestUtilsConfiguration {
     }
 
     @Test
-    public void saveNewDataSource() throws MalformedURLException, JAXBException {
+    public void saveNewDataSource() throws MalformedURLException, JAXBException, SAXException {
 
         Configuration configuration = UtilsConfiguration.loadConfiguration(PATH_TO_CONFIGURATION_FILE);
 
@@ -106,6 +107,19 @@ public class TestUtilsConfiguration {
 
         Assert.assertEquals("SENSOR 1", newConfiguration.getDataSources().get(1).getDeviceInformation().getName());
         Assert.assertEquals("DOMAIN 1", newConfiguration.getDataSources().get(1).getDomainInformation().getName());
+
+    }
+
+    @Test
+    public void replace() throws MalformedURLException, JAXBException, SAXException {
+
+        Configuration configuration = UtilsConfiguration.loadConfiguration(PATH_TO_CONFIGURATION_FILE);
+
+        Assert.assertNotNull(configuration);
+        Assert.assertNotNull(configuration.getConnections());
+        Assert.assertNotNull(configuration.getDataSources());
+        Assert.assertEquals(2, configuration.getConnections().size());
+        Assert.assertEquals(1, configuration.getDataSources().size());
 
     }
 
