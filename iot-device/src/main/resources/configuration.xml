@@ -11,11 +11,6 @@
         </dataSource>
     </dataSources>
     <connections>
-        <connection component="IOT_DEVICE">
-            <name>Name</name>
-            <host>127.0.0.1</host>
-            <port>5000</port>
-        </connection>
         <connection component="CONFIGURATION_MANAGEMENT">
             <name>Name</name>
             <host>127.0.0.1</host>

@@ -50,7 +50,7 @@ public class ApplicationStartUp implements ApplicationListener<EmbeddedServletCo
                 configConnection.setUrl(localConnection.getUrl());
                 configConnection.setName("localConnection");
                 configConnection.setComponentType(COMPONENT_TYPE.IOT_DEVICE);
-                Configuration newConfiguration = UtilsConfiguration.replaceIoTDeviceConnection(configConnection);
+                Configuration newConfiguration = UtilsConfiguration.replaceConnection(configConnection, COMPONENT_TYPE.IOT_DEVICE);
                 UtilsConfiguration.saveConfiguration(newConfiguration);
             }
 

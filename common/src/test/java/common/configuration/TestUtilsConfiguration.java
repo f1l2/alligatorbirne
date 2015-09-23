@@ -18,6 +18,7 @@ import common.data.DataSource;
 import common.data.DeviceInformation;
 import common.data.DomainInformation;
 import common.data.config.UtilsConfiguration;
+import common.data.type.COMPONENT_TYPE;
 import common.data.type.DEVICE_INFORMATION_TYPE;
 import common.data.type.DOMAIN_INFORMATION_TYPE;
 
@@ -31,23 +32,27 @@ public class TestUtilsConfiguration {
 
     private URI configurationURI;
 
+    private Configuration configuration;
+
     @Before
-    public void setup() {
+    public void before() throws MalformedURLException, JAXBException, SAXException {
         configurationFile = new File(PATH_TO_CONFIGURATION_FILE);
         configurationURI = configurationFile.toURI();
         configurationURI = configurationURI.normalize();
-    }
 
-    @Test
-    public void saveNewConnection() throws MalformedURLException, JAXBException, SAXException {
+        UtilsConfiguration.setPATH_TO_CONFIG_FILE(PATH_TO_CONFIGURATION_FILE);
 
-        Configuration configuration = UtilsConfiguration.loadConfiguration(PATH_TO_CONFIGURATION_FILE);
+        configuration = UtilsConfiguration.loadConfiguration();
 
         Assert.assertNotNull(configuration);
         Assert.assertNotNull(configuration.getConnections());
         Assert.assertNotNull(configuration.getDataSources());
         Assert.assertEquals(2, configuration.getConnections().size());
         Assert.assertEquals(1, configuration.getDataSources().size());
+    }
+
+    @Test
+    public void saveNewConnection() throws MalformedURLException, JAXBException, SAXException {
 
         URL url = new URL("http", "localhost", 1234, "/");
         Connection newConnection = new Connection();
@@ -56,9 +61,11 @@ public class TestUtilsConfiguration {
 
         configuration.getConnections().add(newConnection);
 
-        UtilsConfiguration.saveConfiguration(configuration, PATH_TO_TEST_OUTPUT);
+        UtilsConfiguration.setPATH_TO_CONFIG_FILE(PATH_TO_TEST_OUTPUT);
 
-        Configuration newConfiguration = UtilsConfiguration.loadConfiguration(PATH_TO_TEST_OUTPUT);
+        UtilsConfiguration.saveConfiguration(configuration);
+
+        Configuration newConfiguration = UtilsConfiguration.loadConfiguration();
 
         Assert.assertNotNull(newConfiguration);
         Assert.assertNotNull(newConfiguration.getConnections());
@@ -72,14 +79,6 @@ public class TestUtilsConfiguration {
 
     @Test
     public void saveNewDataSource() throws MalformedURLException, JAXBException, SAXException {
-
-        Configuration configuration = UtilsConfiguration.loadConfiguration(PATH_TO_CONFIGURATION_FILE);
-
-        Assert.assertNotNull(configuration);
-        Assert.assertNotNull(configuration.getConnections());
-        Assert.assertNotNull(configuration.getDataSources());
-        Assert.assertEquals(2, configuration.getConnections().size());
-        Assert.assertEquals(1, configuration.getDataSources().size());
 
         DeviceInformation deviceInformation = new DeviceInformation();
         deviceInformation.setName("SENSOR 1");
@@ -95,9 +94,11 @@ public class TestUtilsConfiguration {
 
         configuration.getDataSources().add(dataSource);
 
-        UtilsConfiguration.saveConfiguration(configuration, PATH_TO_TEST_OUTPUT);
+        UtilsConfiguration.setPATH_TO_CONFIG_FILE(PATH_TO_TEST_OUTPUT);
 
-        Configuration newConfiguration = UtilsConfiguration.loadConfiguration(PATH_TO_TEST_OUTPUT);
+        UtilsConfiguration.saveConfiguration(configuration);
+
+        Configuration newConfiguration = UtilsConfiguration.loadConfiguration();
 
         Assert.assertNotNull(newConfiguration);
         Assert.assertNotNull(newConfiguration.getConnections());
@@ -113,13 +114,27 @@ public class TestUtilsConfiguration {
     @Test
     public void replace() throws MalformedURLException, JAXBException, SAXException {
 
-        Configuration configuration = UtilsConfiguration.loadConfiguration(PATH_TO_CONFIGURATION_FILE);
+        URL url = new URL("http", "localhost", 1234, "/");
+        Connection newConnection = new Connection();
+        newConnection.setName("new connection");
+        newConnection.setUrl(url);
+        newConnection.setComponentType(COMPONENT_TYPE.IOT_DEVICE);
 
-        Assert.assertNotNull(configuration);
-        Assert.assertNotNull(configuration.getConnections());
-        Assert.assertNotNull(configuration.getDataSources());
-        Assert.assertEquals(2, configuration.getConnections().size());
-        Assert.assertEquals(1, configuration.getDataSources().size());
+        Configuration newConfiguration1 = UtilsConfiguration.replaceConnection(newConnection, COMPONENT_TYPE.IOT_DEVICE);
+
+        UtilsConfiguration.setPATH_TO_CONFIG_FILE(PATH_TO_TEST_OUTPUT);
+
+        UtilsConfiguration.saveConfiguration(newConfiguration1);
+
+        Configuration newConfiguration2 = UtilsConfiguration.loadConfiguration();
+
+        Assert.assertNotNull(newConfiguration2);
+        Assert.assertNotNull(newConfiguration2.getConnections());
+        Assert.assertNotNull(newConfiguration2.getDataSources());
+        Assert.assertEquals(2, newConfiguration2.getConnections().size());
+        Assert.assertEquals(1, newConfiguration2.getDataSources().size());
+
+        before();
 
     }
 

@@ -29,7 +29,15 @@ public class UtilsConfiguration {
 
     final static Logger logger = LoggerFactory.getLogger(UtilsConfiguration.class);
 
-    private static final String PATH_TO_CONFIG_FILE = "src/main/resources/configuration.xml";
+    private static String PATH_TO_CONFIG_FILE = "src/main/resources/configuration.xml";
+
+    public static String getPATH_TO_CONFIG_FILE() {
+        return PATH_TO_CONFIG_FILE;
+    }
+
+    public static void setPATH_TO_CONFIG_FILE(String pATH_TO_CONFIG_FILE) {
+        PATH_TO_CONFIG_FILE = pATH_TO_CONFIG_FILE;
+    }
 
     /**
      * Method for retrieving a set of connection data.
@@ -72,26 +80,6 @@ public class UtilsConfiguration {
     }
 
     /**
-     * Replace configuration management component
-     * 
-     * @throws SAXException
-     */
-
-    public static Configuration replaceCMConnection(Connection newConnection) throws MalformedURLException, JAXBException, SAXException {
-
-        return UtilsConfiguration.replace(UtilsConfiguration.getCMConnection(), newConnection);
-    }
-
-    private static Configuration replace(Connection oldConnection, Connection newConnection) throws MalformedURLException, JAXBException, SAXException {
-
-        Configuration configuration = UtilsConfiguration.loadConfiguration();
-        configuration.getConnections().remove(oldConnection);
-        configuration.getConnections().add(newConnection);
-
-        return configuration;
-    }
-
-    /**
      * Retrieve a set of connection data for the defined event processing components.
      * 
      * @throws SAXException
@@ -122,13 +110,26 @@ public class UtilsConfiguration {
     }
 
     /**
-     * Replace iot component.
+     * Replace connection
      * 
      * @throws SAXException
      */
-    public static Configuration replaceIoTDeviceConnection(Connection newConnection) throws MalformedURLException, JAXBException, SAXException {
+    public static Configuration replaceConnection(Connection newConnection, COMPONENT_TYPE type) throws MalformedURLException, JAXBException, SAXException {
 
-        return UtilsConfiguration.replace(UtilsConfiguration.getIoTDeviceConnection(), newConnection);
+        Configuration configuration = UtilsConfiguration.loadConfiguration();
+        Connection tempConnection = null;
+
+        for (Connection connection : configuration.getConnections()) {
+            if (type.equals(connection.getComponentType())) {
+                tempConnection = connection;
+                break;
+            }
+        }
+
+        configuration.getConnections().remove(tempConnection);
+        configuration.getConnections().add(newConnection);
+
+        return configuration;
     }
 
     /**
@@ -138,7 +139,7 @@ public class UtilsConfiguration {
      */
     public static XMLConnections loadConnections() throws MalformedURLException, JAXBException, SAXException {
 
-        final XMLConfiguration xMLconfiguration = loadConfigurationNative(PATH_TO_CONFIG_FILE);
+        final XMLConfiguration xMLconfiguration = loadConfigurationNative();
 
         return xMLconfiguration.getConnections();
     }
@@ -150,7 +151,7 @@ public class UtilsConfiguration {
      */
     public static DataSources loadMeasurementData() throws MalformedURLException, JAXBException, SAXException {
 
-        final XMLConfiguration xMLconfiguration = loadConfigurationNative(PATH_TO_CONFIG_FILE);
+        final XMLConfiguration xMLconfiguration = loadConfigurationNative();
         final XMLDataSourceTransformer transformer = new XMLDataSourceTransformer();
 
         List<DataSource> remote = transformer.toRemote(xMLconfiguration.getDataSources().getDataSource());
@@ -166,9 +167,9 @@ public class UtilsConfiguration {
      * 
      * @throws SAXException
      */
-    public static XMLConfiguration loadConfigurationNative(String pathToConfigFile) throws MalformedURLException, JAXBException, SAXException {
+    public static XMLConfiguration loadConfigurationNative() throws MalformedURLException, JAXBException, SAXException {
 
-        final File configurationFile = new File(pathToConfigFile);
+        final File configurationFile = new File(PATH_TO_CONFIG_FILE);
 
         URI configurationURI = configurationFile.toURI();
         configurationURI = configurationURI.normalize();
@@ -181,14 +182,10 @@ public class UtilsConfiguration {
      * 
      * @throws SAXException
      */
+
     public static Configuration loadConfiguration() throws MalformedURLException, JAXBException, SAXException {
 
-        return UtilsConfiguration.loadConfiguration(PATH_TO_CONFIG_FILE);
-    }
-
-    public static Configuration loadConfiguration(String pathToConfigFile) throws MalformedURLException, JAXBException, SAXException {
-
-        final XMLConfiguration loadConfigurationNative = UtilsConfiguration.loadConfigurationNative(pathToConfigFile);
+        final XMLConfiguration loadConfigurationNative = UtilsConfiguration.loadConfigurationNative();
 
         final XMLConfigurationTransformer transformer = new XMLConfigurationTransformer();
 
@@ -201,9 +198,9 @@ public class UtilsConfiguration {
      * 
      * @throws SAXException
      */
-    public static void saveConfigurationNative(XMLConfiguration configuration, String pathToConfigFile) throws JAXBException, SAXException {
+    public static void saveConfigurationNative(XMLConfiguration configuration) throws JAXBException, SAXException {
 
-        final File configurationFile = new File(pathToConfigFile);
+        final File configurationFile = new File(PATH_TO_CONFIG_FILE);
 
         XMLParser.marshal(configuration, configurationFile);
 
@@ -214,16 +211,11 @@ public class UtilsConfiguration {
      * 
      * @throws SAXException
      */
+
     public static void saveConfiguration(Configuration configuration) throws JAXBException, SAXException {
-
-        UtilsConfiguration.saveConfiguration(configuration, PATH_TO_CONFIG_FILE);
-
-    }
-
-    public static void saveConfiguration(Configuration configuration, String pathToConfigFile) throws JAXBException, SAXException {
         final XMLConfigurationTransformer transformer = new XMLConfigurationTransformer();
 
-        UtilsConfiguration.saveConfigurationNative(transformer.toLocal(configuration), pathToConfigFile);
+        UtilsConfiguration.saveConfigurationNative(transformer.toLocal(configuration));
     }
 
 }
