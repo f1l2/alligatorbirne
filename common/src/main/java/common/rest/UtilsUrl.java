@@ -1,13 +1,13 @@
-package common.data.util;
+package common.rest;
 
 import java.net.URL;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Util {
+public class UtilsUrl {
 
-    final static Logger logger = LoggerFactory.getLogger(Util.class);
+    final static Logger logger = LoggerFactory.getLogger(UtilsUrl.class);
 
     public static final String parseHost(String authority) {
 

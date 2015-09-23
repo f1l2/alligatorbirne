@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import common.data.Configuration;
 import common.data.Connection;
 import common.data.config.UtilsConfiguration;
-import common.data.util.Util;
+import common.rest.UtilsUrl;
 
 @Component
 public class ApplicationStartUp implements ApplicationListener<EmbeddedServletContainerInitializedEvent> {
@@ -32,7 +32,7 @@ public class ApplicationStartUp implements ApplicationListener<EmbeddedServletCo
 
             if (null == localConnection) {
                 localConnection = new Connection();
-                localConnection.setUrl(Util.parseUrl(authority.toString()));
+                localConnection.setUrl(UtilsUrl.parseUrl(authority.toString()));
             }
 
             if (!authority.toString().equals(localConnection.getUrl())) {

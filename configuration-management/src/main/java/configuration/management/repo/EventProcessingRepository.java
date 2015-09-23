@@ -9,5 +9,5 @@ public interface EventProcessingRepository extends CrudRepository<EventProcessin
 
     public EventProcessingRO findByName(@Param("name") String name);
 
-    public EventProcessingRO findByUrl(@Param("url") String url);
+    public EventProcessingRO findByAuthority(@Param("authority") String authority);
 }
