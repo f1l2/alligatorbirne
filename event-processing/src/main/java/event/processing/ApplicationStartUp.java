@@ -1,4 +1,4 @@
-package iot.device;
+package event.processing;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,8 +8,8 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
 import common.component.ApplicationStartUpUtils;
-import iot.device.status.STATUS_TYPE;
-import iot.device.status.Status;
+import event.processing.status.STATUS_TYPE;
+import event.processing.status.Status;
 
 @Component
 public class ApplicationStartUp implements ApplicationListener<EmbeddedServletContainerInitializedEvent> {

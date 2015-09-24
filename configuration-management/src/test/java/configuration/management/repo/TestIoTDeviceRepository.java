@@ -13,12 +13,12 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import configuration.management.ConfigurationManagement;
+import configuration.management.Application;
 import configuration.management.model.EventProcessingDataSourceRO;
 import configuration.management.model.EventProcessingRO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = ConfigurationManagement.class)
+@SpringApplicationConfiguration(classes = Application.class)
 public class TestIoTDeviceRepository {
 
     @Autowired
@@ -34,7 +34,8 @@ public class TestIoTDeviceRepository {
         this.eventProcessingRepo.deleteAll();
 
         ep1 = new EventProcessingRO();
-        ep1.setDate(new Date());
+        ep1.setCreated(new Date());
+        ep1.setUpdated(new Date());
         ep1.setName("ep1");
         ep1.setAuthority("http://url1.bla.bla.at");
 
@@ -42,7 +43,8 @@ public class TestIoTDeviceRepository {
 
         ep2 = new EventProcessingRO();
 
-        ep2.setDate(new Date());
+        ep2.setCreated(new Date());
+        ep2.setUpdated(new Date());
         ep2.setName("ep2");
         ep2.setAuthority("http://url2.bla.bla.at");
 
@@ -88,4 +90,5 @@ public class TestIoTDeviceRepository {
         assertEquals(dataSource1.getDevice(), result.getEventProcessingDataSources().get(0).getDevice());
         assertEquals(dataSource1.getDomain(), result.getEventProcessingDataSources().get(0).getDomain());
     }
+
 }

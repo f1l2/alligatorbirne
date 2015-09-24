@@ -57,6 +57,10 @@ public class Connection {
             return false;
         }
 
+        if (null == connection.getUrl()) {
+            return false;
+        }
+
         if (getUrl().getAuthority().equals(connection.getUrl().getAuthority())) {
             return true;
         }

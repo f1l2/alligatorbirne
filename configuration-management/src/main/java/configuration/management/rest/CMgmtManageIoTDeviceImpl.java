@@ -69,7 +69,6 @@ public class CMgmtManageIoTDeviceImpl implements CMgmtManageIoTDevice {
             item = deviceRepo.save(item);
         }
 
-        deviceRepo.save(item);
         item = deviceRepo.save(item);
         connection.setId(item.getId());
 

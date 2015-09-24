@@ -22,7 +22,7 @@ public class TestConfigUtils {
     @Test
     public void testLoadIoTDevicesConnection() throws Exception {
 
-        Connection connection = UtilsConfiguration.getIoTDeviceConnection();
+        Connection connection = UtilsConfiguration.getLocalConnection();
 
         Assert.assertNotNull(connection);
         Assert.assertEquals("127.0.0.1", connection.getUrl().getHost());

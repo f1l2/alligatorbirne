@@ -27,7 +27,18 @@ public class EventProcessingRO {
     private String authority;
 
     @Column
-    private Date date;
+    private Date created;
+
+    public Date getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(Date updated) {
+        this.updated = updated;
+    }
+
+    @Column
+    private Date updated;
 
     @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     private List<EventProcessingDataSourceRO> eventProcessingDataSources = new ArrayList<EventProcessingDataSourceRO>();
@@ -56,12 +67,12 @@ public class EventProcessingRO {
         this.authority = authority;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getCreated() {
+        return created;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setCreated(Date created) {
+        this.created = created;
     }
 
     public List<EventProcessingDataSourceRO> getEventProcessingDataSources() {

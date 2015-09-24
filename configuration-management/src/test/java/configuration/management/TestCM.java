@@ -27,6 +27,7 @@ public class TestCM {
         device1 = new IoTDeviceRO();
 
         device1.setCreated(new Date());
+        device1.setUpdated(new Date());
         device1.setName("device1");
         device1.setAuthority("http://url1.bla.bla.at");
 
@@ -35,6 +36,7 @@ public class TestCM {
         device2 = new IoTDeviceRO();
 
         device2.setCreated(new Date());
+        device2.setUpdated(new Date());
         device2.setName("device2");
         device2.setAuthority("http://url2.bla.bla.at");
 

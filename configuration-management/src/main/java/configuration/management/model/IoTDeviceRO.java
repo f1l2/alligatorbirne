@@ -32,7 +32,7 @@ public class IoTDeviceRO {
     @Column
     private Date updated;
 
-    @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE })
     private List<IoTDeviceDataSourceRO> ioTDeviceDataSources = new ArrayList<IoTDeviceDataSourceRO>();
 
     public Long getId() {

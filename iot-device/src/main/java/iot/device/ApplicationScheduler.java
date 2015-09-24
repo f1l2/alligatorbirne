@@ -1,14 +1,9 @@
 package iot.device;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.SchedulingConfigurer;
-import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -21,24 +16,17 @@ import iot.device.status.STATUS_TYPE;
 import iot.device.status.Status;
 
 @Component
-public class ApplicationScheduler implements SchedulingConfigurer {
+public class ApplicationScheduler {
 
     final static Logger logger = LoggerFactory.getLogger(ApplicationScheduler.class);
 
     private static Connection local, cm;
 
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-
     private RestTemplate restTemplate = new RestTemplate();
-
-    private String url;
 
     @Autowired
     private Status status;
 
-    // TODO change fixedRate
-
-    // @Scheduled(initialDelay = 1000, fixedRate = 20000)
     public void carryOutActivity() {
 
         switch (status.getCurrent()) {
@@ -48,25 +36,21 @@ public class ApplicationScheduler implements SchedulingConfigurer {
                 /**
                  * Load connection data.
                  */
-                local = UtilsConfiguration.getIoTDeviceConnection();
+                local = UtilsConfiguration.getLocalConnection();
                 logger.info("Retrieve local connection data ... ");
                 logger.info(local.toString());
 
                 /**
-                 * Load CM connection data and prepare URL
+                 * Load CM connection data
                  */
                 cm = UtilsConfiguration.getCMConnection();
                 logger.info("Load CM connection data ...");
                 logger.info(cm.toString());
 
-                url = UtilsResource.getUrl(RESOURCE_NAMING.CMGMT_REGISTER_DEVICE, cm);
-                logger.info(url);
-
                 status.setCurrent(STATUS_TYPE.REGISTER_DEVICE);
 
             } catch (Exception ex) {
 
-                logger.error("Register error. Call: " + url);
                 logger.error(ex.getMessage());
             }
             break;
@@ -76,6 +60,9 @@ public class ApplicationScheduler implements SchedulingConfigurer {
             try {
 
                 logger.info("Try to register device ...");
+
+                String url = UtilsResource.getUrl(RESOURCE_NAMING.CMGMT_REGISTER_DEVICE, cm);
+                logger.info(url);
 
                 ResponseEntity<Connection> responseRegistration = restTemplate.postForEntity(url, local, Connection.class);
                 local = responseRegistration.getBody();
@@ -99,7 +86,7 @@ public class ApplicationScheduler implements SchedulingConfigurer {
                 DataSources data = UtilsConfiguration.loadMeasurementData();
 
                 Connection cmConnection = UtilsConfiguration.getCMConnection();
-                url = UtilsResource.getUrl(RESOURCE_NAMING.CMGMT_REGISTER_DEVICE_SOURCES, cmConnection);
+                String url = UtilsResource.getUrl(RESOURCE_NAMING.CMGMT_REGISTER_DEVICE_SOURCES, cmConnection);
                 url = url.replace("{id}", String.valueOf(local.getId()));
 
                 ResponseEntity<Void> responseRegisteriationSources = restTemplate.postForEntity(url, data, Void.class);
@@ -108,7 +95,7 @@ public class ApplicationScheduler implements SchedulingConfigurer {
                 status.setCurrent(STATUS_TYPE.WORKING);
 
             } catch (Exception ex) {
-                logger.error("Error registration sources of device. Url: {}; Exception: {}", url, ex.getMessage());
+                logger.error("Error registration sources of device. Exception: {}", ex.getMessage());
             }
 
             break;
@@ -116,7 +103,7 @@ public class ApplicationScheduler implements SchedulingConfigurer {
         case WORKING:
 
             // TODO send heart beat
-            logger.info("Send heart beat: " + dateFormat.format(new Date()));
+            logger.info("Send heart beat");
 
             break;
 
@@ -126,12 +113,6 @@ public class ApplicationScheduler implements SchedulingConfigurer {
         default:
             break;
         }
-
-    }
-
-    @Override
-    public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
-        // TODO Auto-generated method stub
 
     }
 }

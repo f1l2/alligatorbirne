@@ -71,6 +71,7 @@
     	<xs:enumeration value="IOT_DEVICE" />
       	<xs:enumeration value="CONFIGURATION_MANAGEMENT" />
       	<xs:enumeration value="EVENT_PROCESSING" />
+      	<xs:enumeration value="LOCAL" />
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>

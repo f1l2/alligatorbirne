@@ -1,4 +1,4 @@
-package iot.device;
+package event.processing;
 
 import java.util.Date;
 import java.util.concurrent.Executor;
@@ -11,11 +11,10 @@ import org.springframework.scheduling.Trigger;
 import org.springframework.scheduling.TriggerContext;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.SchedulingConfigurer;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 
-import iot.device.status.STATUS_TYPE;
-import iot.device.status.Status;
+import event.processing.status.STATUS_TYPE;
+import event.processing.status.Status;
 
 @Configuration
 @EnableScheduling
@@ -34,15 +33,6 @@ public class ApplicationConfig implements SchedulingConfigurer {
 
     @Autowired
     private Status status;
-
-    @Bean
-    public ThreadPoolTaskExecutor taskExecutor() {
-        ThreadPoolTaskExecutor pool = new ThreadPoolTaskExecutor();
-        pool.setCorePoolSize(5);
-        pool.setMaxPoolSize(10);
-        pool.setWaitForTasksToCompleteOnShutdown(true);
-        return pool;
-    }
 
     @Bean(destroyMethod = "shutdown")
     public Executor applicationExcutor() {
@@ -73,29 +63,17 @@ public class ApplicationConfig implements SchedulingConfigurer {
                      */
                     difference = 1000l;
 
-                } else if (status.getCurrent().equals(STATUS_TYPE.REGISTER_DEVICE)) {
+                } else if (status.getCurrent().equals(STATUS_TYPE.REGISTER_EP)) {
                     /**
                      * Add one time unit as long device tries to register.
                      * 
                      */
 
-                    if (difference < STATUS_TYPE.REGISTER_DEVICE.getDelay() * 1000l) {
+                    if (difference < STATUS_TYPE.REGISTER_EP.getDelay() * 1000l) {
                         difference = 0;
                     }
 
-                    difference += (STATUS_TYPE.REGISTER_DEVICE.getDelay() * 1000l);
-
-                } else if (status.getCurrent().equals(STATUS_TYPE.REGISTER_DATA_SOURCES)) {
-
-                    /**
-                     * Add one time unit as long device tries to register.
-                     */
-
-                    if (difference < STATUS_TYPE.REGISTER_DATA_SOURCES.getDelay() * 1000l) {
-                        difference = 0;
-                    }
-
-                    difference += (STATUS_TYPE.REGISTER_DATA_SOURCES.getDelay() * 1000l);
+                    difference += (STATUS_TYPE.REGISTER_EP.getDelay() * 1000l);
 
                 } else {
                     /**
@@ -117,4 +95,5 @@ public class ApplicationConfig implements SchedulingConfigurer {
         });
 
     }
+
 }

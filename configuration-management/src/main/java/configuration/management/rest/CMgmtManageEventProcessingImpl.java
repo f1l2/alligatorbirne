@@ -1,5 +1,6 @@
 package configuration.management.rest;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -67,10 +68,19 @@ public class CMgmtManageEventProcessingImpl implements CMgmtManageEventProcessin
 
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_REGISTER_EVENT_PROCESSING));
 
-        EventProcessingRO item = new EventProcessingRO();
-        item.setAuthority(connection.getUrl().getAuthority());
-        item = eventProcessingRepo.save(item);
+        EventProcessingRO item = eventProcessingRepo.findByAuthority(connection.getUrl().getAuthority());
+        if (null != item) {
+            connection.setId(item.getId());
+            item.setUpdated(new Date());
+        } else {
+            item = new EventProcessingRO();
+            item.setCreated(new Date());
+            item.setUpdated(new Date());
+            item.setAuthority(connection.getUrl().getAuthority());
+            item = eventProcessingRepo.save(item);
+        }
 
+        item = eventProcessingRepo.save(item);
         connection.setId(item.getId());
 
         return connection;

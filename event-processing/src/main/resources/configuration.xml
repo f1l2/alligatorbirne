@@ -1,25 +1,30 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<configuration>
-	<dataSources>
-		<dataSource>
-			<deviceInformation>
-				<name>SENSOR</name>
-			</deviceInformation>
-			<domainInformation>
-				<name>FLOOR1</name>
-			</domainInformation>
-		</dataSource>
-	</dataSources>
-	<connections>
-		<connection component="EVENT_PROCESSING">
-			<ip>127.0.0.1</ip>
-			<port>5001</port>
-			<url>http://127.0.0.1:5001</url>
-		</connection>
-		<connection component="CONFIGURATION_MANAGEMENT">
-			<ip>127.0.0.1</ip>
-			<port>5000</port>
-			<url>http://127.0.0.1:5000</url>
-		</connection>
-	</connections>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="configuration ../src/main/xsd/configuration.xsd">
+    <dataSources>
+        <dataSource>
+            <deviceInformation>
+                <name>SENSOR</name>
+            </deviceInformation>
+            <domainInformation>
+                <name>FLOOR1</name>
+            </domainInformation>
+        </dataSource>
+    </dataSources>
+    <connections>
+        <connection component="CONFIGURATION_MANAGEMENT">
+            <name>Name</name>
+            <host>127.0.0.1</host>
+            <port>5000</port>
+        </connection>
+        <connection component="IOT_DEVICE">
+            <name>localConnection</name>
+            <host>10.241.100.135</host>
+            <port>5003</port>
+        </connection>
+        <connection component="LOCAL">
+            <name>localConnection</name>
+            <host>10.241.100.135</host>
+            <port>5001</port>
+        </connection>
+    </connections>
 </configuration>

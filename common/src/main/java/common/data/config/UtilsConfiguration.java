@@ -68,11 +68,12 @@ public class UtilsConfiguration {
     public static Connection getCMConnection() throws MalformedURLException, JAXBException, SAXException {
         final List<Connection> connections = getConnections(COMPONENT_TYPE.CONFIGURATION_MANAGEMENT);
 
-        if (connections.size() > 1) {
-            logger.error("Configuraiton file contains multiple 'CM connection' entries. Problem of ambiguous.");
-        }
-
         if (null != connections && connections.size() > 0) {
+
+            if (connections.size() > 1) {
+                logger.error("Configuraiton file contains multiple 'CM connection' entries. Problem of ambiguous.");
+            }
+
             return connections.get(0);
         }
 
@@ -94,15 +95,20 @@ public class UtilsConfiguration {
      * 
      * @throws SAXException
      */
-    public static Connection getIoTDeviceConnection() throws MalformedURLException, JAXBException, SAXException {
+    public static List<Connection> getIoTDeviceConnection() throws MalformedURLException, JAXBException, SAXException {
 
-        final List<Connection> connections = getConnections(COMPONENT_TYPE.IOT_DEVICE);
+        return getConnections(COMPONENT_TYPE.IOT_DEVICE);
+    }
 
-        if (connections.size() > 1) {
-            logger.error("Configuraiton file contains multiple 'EP connection' entries. Problem of ambiguous.");
-        }
+    public static Connection getLocalConnection() throws MalformedURLException, JAXBException, SAXException {
+        final List<Connection> connections = getConnections(COMPONENT_TYPE.LOCAL);
 
         if (null != connections && connections.size() > 0) {
+
+            if (connections.size() > 1) {
+                logger.error("Configuraiton file contains multiple 'LOCAL connection' entries. Problem of ambiguous.");
+            }
+
             return connections.get(0);
         }
 
