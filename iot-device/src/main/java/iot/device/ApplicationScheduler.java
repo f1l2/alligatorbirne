@@ -7,7 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.scheduling.annotation.SchedulingConfigurer;
+import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -20,7 +21,7 @@ import iot.device.status.STATUS_TYPE;
 import iot.device.status.Status;
 
 @Component
-public class ApplicationScheduler {
+public class ApplicationScheduler implements SchedulingConfigurer {
 
     final static Logger logger = LoggerFactory.getLogger(ApplicationScheduler.class);
 
@@ -37,7 +38,7 @@ public class ApplicationScheduler {
 
     // TODO change fixedRate
 
-    @Scheduled(initialDelay = 1000, fixedRate = 20000)
+    // @Scheduled(initialDelay = 1000, fixedRate = 20000)
     public void carryOutActivity() {
 
         switch (status.getCurrent()) {
@@ -84,7 +85,7 @@ public class ApplicationScheduler {
                 status.setCurrent(STATUS_TYPE.REGISTER_DATA_SOURCES);
 
             } catch (Exception ex) {
-                logger.error("Register error. Exception {}", ex);
+                logger.error("Register error. Exception: {}", ex.getMessage());
             }
 
             break;
@@ -107,7 +108,7 @@ public class ApplicationScheduler {
                 status.setCurrent(STATUS_TYPE.WORKING);
 
             } catch (Exception ex) {
-                logger.error("Error registration sources of device. Url: {}; Exception {}", url, ex);
+                logger.error("Error registration sources of device. Url: {}; Exception: {}", url, ex.getMessage());
             }
 
             break;
@@ -125,6 +126,12 @@ public class ApplicationScheduler {
         default:
             break;
         }
+
+    }
+
+    @Override
+    public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
+        // TODO Auto-generated method stub
 
     }
 }

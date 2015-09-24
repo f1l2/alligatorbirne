@@ -1,10 +1,5 @@
 package iot.device.rest;
 
-import iot.device.repo.DeliveryTask;
-import iot.device.repo.DeliveryTaskRO;
-import iot.device.repo.DeliveryTaskRepository;
-import iot.device.repo.DeliveryTaskTransformer;
-
 import java.util.List;
 import java.util.Random;
 
@@ -21,6 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 import common.data.ConfigurationModification;
 import common.rest.RESOURCE_NAMING;
 import common.rest.UtilsResource;
+import iot.device.repo.DeliveryTask;
+import iot.device.repo.DeliveryTaskRO;
+import iot.device.repo.DeliveryTaskRepository;
+import iot.device.repo.DeliveryTaskTransformer;
 
 @RestController
 public class IDevManageConfigImpl implements IDevManageConfig {
