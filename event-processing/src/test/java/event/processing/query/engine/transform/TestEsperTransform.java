@@ -4,12 +4,12 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import event.processing.AbstractTest;
+import event.processing.AbstractTestEP;
 import event.processing.engine.EngineListener;
 import event.processing.engine.impl.EsperEngineListener;
 import event.processing.query.Query;
 
-public class TestEsperTransform extends AbstractTest {
+public class TestEsperTransform extends AbstractTestEP {
 
     final static Logger logger = LoggerFactory.getLogger(TestEsperTransform.class);
 
@@ -18,7 +18,7 @@ public class TestEsperTransform extends AbstractTest {
     @Test
     public void testEsperEngine1() {
 
-        String query = Query.KEYWORD_CONDITION + " DeviceInformation.id = 5  " + Query.KEYWORD_FROM;
+        String query = Query.KEYWORD_CONDITION + " DevicedInformation.id = 5  " + Query.KEYWORD_FROM;
 
         transformAndRegister(query);
 

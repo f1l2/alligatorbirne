@@ -26,7 +26,7 @@ public class EProcManageQueryImpl implements EProcManageQuery {
     public void register(String query) {
 
         try {
-            Query q = queryFactory.create(query);
+            Query q = queryFactory.parse(query);
         } catch (IOException ex) {
 
         }

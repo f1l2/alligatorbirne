@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Query {
 
-    /*
-     * KEYWORD
+    /**
+     * Keywords
      */
     public static final String KEYWORD_CONDITION = "CONDITION";
 
@@ -28,8 +28,8 @@ public class Query {
 
     public static final String AVG_MIN = "MIN";
 
-    /*
-     * Operator
+    /**
+     * Operators
      */
     public static final String OPERATOR_EQUAL = "=";
 
@@ -40,6 +40,10 @@ public class Query {
     public static final String OPERATOR_IS_BIGGER_OR_EQUAL = ">=";
 
     public static final String OPERATOR_IS_SMALLER_OR_EQUAL = "<=";
+
+    /**
+     * Parts
+     */
 
     private String condition;
 

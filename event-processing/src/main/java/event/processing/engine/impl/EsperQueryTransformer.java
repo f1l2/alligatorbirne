@@ -16,7 +16,7 @@ public class EsperQueryTransformer extends QueryTransformer {
         QueryFactory queryFactory = new QueryFactory();
 
         try {
-            Query query = queryFactory.create(in);
+            Query query = queryFactory.parse(in);
 
             eql = eql.replace("[where search_conditions]", "where " + query.getCondition().replace(Query.KEYWORD_CONDITION, "").trim());
 

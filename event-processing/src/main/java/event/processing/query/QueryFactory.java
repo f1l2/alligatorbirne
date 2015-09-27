@@ -7,24 +7,28 @@ import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
+import org.springframework.stereotype.Component;
 
 import event.processing.query.language.QueryBaseListener;
 import event.processing.query.language.QueryLexer;
 import event.processing.query.language.QueryParser;
 
+@Component
 public class QueryFactory {
 
-    public Query create(String in) throws IOException {
-        QueryLexer queryLexer = new QueryLexer(new ANTLRInputStream(in));
-        QueryParser queryParser = new QueryParser(new CommonTokenStream(queryLexer));
+    public Query parse(String in) throws IOException {
+
+        final Query query = new Query();
+
+        final QueryLexer queryLexer = new QueryLexer(new ANTLRInputStream(in));
+        final QueryParser queryParser = new QueryParser(new CommonTokenStream(queryLexer));
+
         queryParser.addErrorListener(new BaseErrorListener() {
             @Override
             public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line, int charPositionInLine, String msg, RecognitionException e) {
                 throw new IllegalStateException("failed to parse at line " + line + " due to " + msg, e);
             }
         });
-
-        final Query query = new Query();
 
         queryParser.addParseListener(new QueryBaseListener() {
 
