@@ -1,43 +1,58 @@
 package configuration.management;
 
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 
-import configuration.management.repo.EventProcessingDataSourceRepository;
+import configuration.management.model.EventProcessingRO;
+import configuration.management.model.IoTDeviceRO;
 import configuration.management.repo.EventProcessingRepository;
-import configuration.management.repo.IoTDeviceDataSourceRepository;
 import configuration.management.repo.IoTDeviceRepository;
 
 @Component
 public class ApplicationScheduler {
 
-    final static Logger logger = LoggerFactory.getLogger(ApplicationScheduler.class);
+    private static final Logger logger = LoggerFactory.getLogger(ApplicationScheduler.class);
+
+    private static final int OBSOLETE_CORRIDOR = 2;
 
     @Autowired
     private EventProcessingRepository eventProcessingRepo;
 
     @Autowired
-    private EventProcessingDataSourceRepository eventProcessingDataSourceRepo;
-
-    @Autowired
-    private IoTDeviceRepository deviceRepository;
-
-    @Autowired
-    private IoTDeviceDataSourceRepository deviceDataSourceRepository;
+    private IoTDeviceRepository deviceRepo;
 
     @Scheduled(fixedDelay = 60000)
     public void carryOutActivity() {
 
         /**
-         * clean up;
+         * Detect obsolete components
+         * 
+         * IoTDev(s) or EP(s) which hasn't send a heart beat message within the last {@value #OBSOLETE_CORRIDOR} minutes gets removed.
          */
 
-        GregorianCalendar gregorianCalendar = new GregorianCalendar();
+        GregorianCalendar gc = new GregorianCalendar();
+        gc.add(GregorianCalendar.MINUTE, OBSOLETE_CORRIDOR * (-1));
+
+        List<IoTDeviceRO> obsoleteIoTDevs = deviceRepo.findByUpdatedBefore(gc.getTime());
+
+        if (!CollectionUtils.isEmpty(obsoleteIoTDevs)) {
+            deviceRepo.delete(obsoleteIoTDevs);
+            logger.info("Obsolete IoTDev(s) detected.");
+        }
+
+        List<EventProcessingRO> obsoleteEPs = eventProcessingRepo.findByUpdatedBefore(gc.getTime());
+
+        if (!CollectionUtils.isEmpty(obsoleteEPs)) {
+            this.eventProcessingRepo.delete(obsoleteEPs);
+            logger.info("Obsolete EP(s) detected.");
+        }
 
     }
 }

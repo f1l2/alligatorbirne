@@ -12,13 +12,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import configuration.management.Application;
-import configuration.management.TestCM;
+import configuration.management.AbstractTestCM;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
 @IntegrationTest("server.port:0")
-public class TestCMgmtManageEventProcessing extends TestCM {
+public class TestCMgmtManageEventProcessing extends AbstractTestCM {
 
     @Test
     public void getAll() {
