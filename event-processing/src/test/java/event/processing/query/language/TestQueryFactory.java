@@ -1,12 +1,23 @@
 package event.processing.query.language;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import event.processing.Application;
 import event.processing.query.Query;
 import event.processing.query.QueryFactory;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(classes = Application.class)
 public class TestQueryFactory {
-    private static String query;
+
+    private String query;
+
+    @Autowired
+    private QueryFactory qf;
 
     @Test
     public void testCondition1() throws Exception {
@@ -88,9 +99,6 @@ public class TestQueryFactory {
     }
 
     private void test(String query) throws Exception {
-
-        System.out.println(query);
-        Query queryObject = new QueryFactory().parse(query);
-        System.out.println(queryObject.toString());
+        qf.parse(query);
     }
 }

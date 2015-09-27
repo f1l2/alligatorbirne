@@ -1,5 +1,6 @@
 package event.processing.repo;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.IOException;
@@ -24,37 +25,47 @@ public class TestQueryRepository {
     private QueryRepository repo;
 
     @Autowired
-    private QueryFactory factory;
+    private QueryFactory qf;
 
     private Query query;
 
     @Before
     public void before() throws IOException {
 
-        query = factory.parse("condition d.device as device from DataSource as d where device.id = 5");
+        String strQuery = Query.KEYWORD_CONDITION + " DeviceInformation.property = 21 AND x.abc = 21 " + Query.KEYWORD_FROM + " Domain";
+        query = qf.parse(strQuery);
 
-    }
-
-    @Test
-    public void saveQuery() {
-        List<Query> allQueries = repo.findAll();
-
-        assertNotNull(allQueries);
-
-    }
-
-    @Test
-    public void findOneQuey() {
-
+        repo.save(query);
     }
 
     @Test
     public void findAllQueries() {
 
+        List<Query> allQueries = repo.findAll();
+
+        assertNotNull(allQueries);
+        assertEquals(1, allQueries.size());
+        assertEquals(query.toString(), allQueries.get(0).toString());
+    }
+
+    @Test
+    public void findOneQuey() {
+
+        Query result = repo.findOne(query.toString());
+
+        assertNotNull(result);
+        assertEquals(query.toString(), result.toString());
     }
 
     @Test
     public void deleteQuery() {
+
+        repo.delete(query);
+
+        List<Query> allQueries = repo.findAll();
+
+        assertNotNull(allQueries);
+        assertEquals(0, allQueries.size());
 
     }
 
