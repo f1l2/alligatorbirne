@@ -1,5 +1,6 @@
 package event.processing.query.language;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import event.processing.query.Query;
@@ -87,10 +88,12 @@ public class TestQueryLanguage {
 
     }
 
-    private void test(String query) throws Exception {
+    private void test(String query) {
 
-        System.out.println(query);
-        Query queryObject = new QueryFactory().create(query);
-        System.out.println(queryObject.toString());
+        try {
+            new QueryFactory().parse(query);
+        } catch (Exception e) {
+            Assert.fail();
+        }
     }
 }

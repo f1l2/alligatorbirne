@@ -2,9 +2,9 @@ package event.processing.query.engine;
 
 import org.junit.Test;
 
-import event.processing.AbstractTest;
+import event.processing.AbstractTestEP;
 
-public class TestEsperEngine extends AbstractTest {
+public class TestEsperEngine extends AbstractTestEP {
 
     @Test
     public void testEngine() {
