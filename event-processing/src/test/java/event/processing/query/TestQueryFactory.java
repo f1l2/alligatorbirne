@@ -7,8 +7,6 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import event.processing.Application;
-import event.processing.query.Query;
-import event.processing.query.QueryFactory;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
@@ -21,19 +19,19 @@ public class TestQueryFactory {
 
     @Test
     public void testCondition1() throws Exception {
-        query = Query.KEYWORD_CONDITION + " DeviceInformation.property = 21 AND x.abc = 21 " + Query.KEYWORD_FROM + " Domain";
+        query = Query.KEYWORD_CONDITION + " property = 21 AND abc = 21 " + Query.KEYWORD_FROM + " Domain";
         test(query);
     }
 
     @Test
     public void testCondition2() throws Exception {
-        query = Query.KEYWORD_CONDITION + " DeviceInformation.property = DeviceInformation.property " + Query.KEYWORD_FROM + " Domain";
+        query = Query.KEYWORD_CONDITION + " property = property " + Query.KEYWORD_FROM + " Domain";
         test(query);
     }
 
     @Test
     public void testCondition3() throws Exception {
-        query = Query.KEYWORD_CONDITION + " 21 = DeviceInformation.property " + Query.KEYWORD_FROM + " Domain";
+        query = Query.KEYWORD_CONDITION + " 21 = property " + Query.KEYWORD_FROM + " Domain";
         test(query);
     }
 
@@ -51,7 +49,7 @@ public class TestQueryFactory {
 
     @Test
     public void testOperator2() throws Exception {
-        query = Query.KEYWORD_CONDITION + " 21 " + Query.OPERATOR_IS_BIGGER + " 23 " + Query.KEYWORD_FROM + " Domain";
+        query = Query.KEYWORD_CONDITION + " 21 " + Query.OPERATOR_IS_GREATER + " 23 " + Query.KEYWORD_FROM + " Domain";
         test(query);
     }
 
@@ -63,7 +61,7 @@ public class TestQueryFactory {
 
     @Test
     public void testOperator4() throws Exception {
-        query = Query.KEYWORD_CONDITION + " 21  " + Query.OPERATOR_IS_BIGGER_OR_EQUAL + " 79 " + Query.KEYWORD_FROM + " Domain";
+        query = Query.KEYWORD_CONDITION + " 21  " + Query.OPERATOR_IS_GREATER_OR_EQUAL + " 79 " + Query.KEYWORD_FROM + " Domain";
         test(query);
     }
 

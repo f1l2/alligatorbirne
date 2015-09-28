@@ -1,5 +1,7 @@
 package event.processing.query.esper;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -18,12 +20,54 @@ public class TestEsperTransform extends AbstractTestEP {
 
     final static Logger logger = LoggerFactory.getLogger(TestEsperTransform.class);
 
-    @Test
-    public void testEsperEngine1() {
+    private static String query, eql;
 
-        String query = Query.KEYWORD_CONDITION + " DevicedInformation.id = 5  " + Query.KEYWORD_FROM;
+    @Test
+    public void testEsperEngineUC1() {
+
+        query = Query.KEYWORD_CONDITION + " id = 5  " + Query.KEYWORD_FROM;
+
+        eql = factory.getQueryTransformer().transform(query);
 
         transformAndRegister(query);
+
+    }
+
+    @Test
+    public void testEsperEngineUC2() {
+
+        query = Query.KEYWORD_CONDITION + " id = 10  " + Query.LOGIC_AND + " name = 'abc' " + Query.KEYWORD_FROM;
+
+        transformAndRegister(query);
+
+    }
+
+    @Test
+    public void testEsperEngineUC3() {
+        query = Query.KEYWORD_CONDITION + " " + Query.AGG_SUM + "(value)" + Query.OPERATOR_IS_GREATER_OR_EQUAL + " 5 " + Query.KEYWORD_FROM;
+
+        transformAndRegister(query);
+    }
+
+    @Test
+    public void testEsperEngineUC4() {
+
+        /**
+         * CONDITION property >= 10 FROM name_of_domain
+         */
+
+        query = Query.KEYWORD_CONDITION + " id " + Query.OPERATOR_IS_GREATER_OR_EQUAL + " 10 " + Query.KEYWORD_FROM + " name_of_domain";
+
+        assertEquals("", "");
+
+        transformAndRegister(query);
+    }
+
+    @Test
+    public void testEsperEngineUC5() {
+        /**
+         * CONDITION SUM (property) >= 10 From domain WIN.TIME(10)
+         */
 
     }
 
@@ -88,7 +132,7 @@ public class TestEsperTransform extends AbstractTestEP {
 
         String eql = queryTransformer.transform(query);
 
-        engine.registerQuery(eql, null);
+        engine.registerQuery(eql, listener);
     }
 
     private void test(String eql) {

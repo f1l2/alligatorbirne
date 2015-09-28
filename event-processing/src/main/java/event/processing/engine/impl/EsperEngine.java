@@ -45,6 +45,8 @@ public class EsperEngine extends Engine {
         ClassPathScanningCandidateComponentProvider provider = new ClassPathScanningCandidateComponentProvider(true);
         provider.addIncludeFilter(new AssignableTypeFilter(DataModel.class));
 
+        cepConfig.addEventType("DataSource", DataSource.class);
+
         Set<BeanDefinition> components = provider.findCandidateComponents("common/data");
         for (BeanDefinition component : components) {
             try {

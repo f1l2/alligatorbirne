@@ -28,16 +28,18 @@ public class Query {
 
     public static final String AVG_MIN = "MIN";
 
+    public static final String LOGIC_AND = "AND";
+
     /**
      * Operators
      */
     public static final String OPERATOR_EQUAL = "=";
 
-    public static final String OPERATOR_IS_BIGGER = ">";
+    public static final String OPERATOR_IS_GREATER = ">";
 
     public static final String OPERATOR_IS_SMALLER = "<";
 
-    public static final String OPERATOR_IS_BIGGER_OR_EQUAL = ">=";
+    public static final String OPERATOR_IS_GREATER_OR_EQUAL = ">=";
 
     public static final String OPERATOR_IS_SMALLER_OR_EQUAL = "<=";
 
@@ -87,12 +89,6 @@ public class Query {
         this.domain = domain;
     }
 
-    @Override
-    public String toString() {
-        return "Query [condition=" + condition + ", domainList=" + domainList + ", domain=" + domain + ", compareLogic=" + compareLogic + ", compare=" + compare + ", aggregate=" + aggregate
-                + ", property=" + property + ", window=" + window + ", windowValue=" + windowValue + "]";
-    }
-
     public String getCompareLogic() {
         return compareLogic;
     }
@@ -139,6 +135,12 @@ public class Query {
 
     public void setWindowValue(String windowValue) {
         this.windowValue = windowValue;
+    }
+
+    @Override
+    public String toString() {
+        return "Query [condition=" + condition + ", domainList=" + domainList + ", domain=" + domain + ", compareLogic=" + compareLogic + ", compare=" + compare + ", aggregate=" + aggregate
+                + ", property=" + property + ", window=" + window + ", windowValue=" + windowValue + "]";
     }
 
 }
