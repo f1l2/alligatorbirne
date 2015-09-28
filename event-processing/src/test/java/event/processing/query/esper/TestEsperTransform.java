@@ -25,7 +25,7 @@ public class TestEsperTransform extends AbstractTestEP {
     @Test
     public void testEsperEngineUC1() {
 
-        query = Query.KEYWORD.CONDITION.getKeyword() + " id = 5  " + Query.KEYWORD.FROM.getKeyword();
+        query = Query.KEYWORD.CONDITION.getKeyword() + " id = 5";
 
         eql = factory.getQueryTransformer().transform(query);
 
@@ -36,7 +36,7 @@ public class TestEsperTransform extends AbstractTestEP {
     @Test
     public void testEsperEngineUC2() {
 
-        query = Query.KEYWORD.CONDITION.getKeyword() + " id = 10  " + Query.LOGIC_SYMBOL.AND.getSymbol() + " name = 'abc' " + Query.KEYWORD.FROM.getKeyword();
+        query = Query.KEYWORD.CONDITION.getKeyword() + " id = 10  " + Query.LOGIC_SYMBOL.AND.getSymbol() + " name = 'abc'";
 
         transformAndRegister(query);
 

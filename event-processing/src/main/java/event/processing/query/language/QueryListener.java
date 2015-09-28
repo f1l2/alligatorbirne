@@ -30,6 +30,16 @@ public interface QueryListener extends ParseTreeListener {
 	 */
 	void exitWindow(QueryParser.WindowContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link QueryParser#domains}.
+	 * @param ctx the parse tree
+	 */
+	void enterDomains(QueryParser.DomainsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QueryParser#domains}.
+	 * @param ctx the parse tree
+	 */
+	void exitDomains(QueryParser.DomainsContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link QueryParser#domain}.
 	 * @param ctx the parse tree
 	 */
@@ -39,16 +49,6 @@ public interface QueryListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitDomain(QueryParser.DomainContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link QueryParser#domainlist}.
-	 * @param ctx the parse tree
-	 */
-	void enterDomainlist(QueryParser.DomainlistContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link QueryParser#domainlist}.
-	 * @param ctx the parse tree
-	 */
-	void exitDomainlist(QueryParser.DomainlistContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link QueryParser#domainName}.
 	 * @param ctx the parse tree
@@ -60,6 +60,16 @@ public interface QueryListener extends ParseTreeListener {
 	 */
 	void exitDomainName(QueryParser.DomainNameContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link QueryParser#conditions}.
+	 * @param ctx the parse tree
+	 */
+	void enterConditions(QueryParser.ConditionsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QueryParser#conditions}.
+	 * @param ctx the parse tree
+	 */
+	void exitConditions(QueryParser.ConditionsContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link QueryParser#condition}.
 	 * @param ctx the parse tree
 	 */
@@ -70,35 +80,105 @@ public interface QueryListener extends ParseTreeListener {
 	 */
 	void exitCondition(QueryParser.ConditionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link QueryParser#compare}.
+	 * Enter a parse tree produced by {@link QueryParser#singleCondition}.
 	 * @param ctx the parse tree
 	 */
-	void enterCompare(QueryParser.CompareContext ctx);
+	void enterSingleCondition(QueryParser.SingleConditionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link QueryParser#compare}.
+	 * Exit a parse tree produced by {@link QueryParser#singleCondition}.
 	 * @param ctx the parse tree
 	 */
-	void exitCompare(QueryParser.CompareContext ctx);
+	void exitSingleCondition(QueryParser.SingleConditionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link QueryParser#logicLink}.
+	 * Enter a parse tree produced by {@link QueryParser#compositeCondition}.
 	 * @param ctx the parse tree
 	 */
-	void enterLogicLink(QueryParser.LogicLinkContext ctx);
+	void enterCompositeCondition(QueryParser.CompositeConditionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link QueryParser#logicLink}.
+	 * Exit a parse tree produced by {@link QueryParser#compositeCondition}.
 	 * @param ctx the parse tree
 	 */
-	void exitLogicLink(QueryParser.LogicLinkContext ctx);
+	void exitCompositeCondition(QueryParser.CompositeConditionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link QueryParser#aggregateCompare}.
+	 * Enter a parse tree produced by {@link QueryParser#compositeOperationSingleDigit}.
 	 * @param ctx the parse tree
 	 */
-	void enterAggregateCompare(QueryParser.AggregateCompareContext ctx);
+	void enterCompositeOperationSingleDigit(QueryParser.CompositeOperationSingleDigitContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link QueryParser#aggregateCompare}.
+	 * Exit a parse tree produced by {@link QueryParser#compositeOperationSingleDigit}.
 	 * @param ctx the parse tree
 	 */
-	void exitAggregateCompare(QueryParser.AggregateCompareContext ctx);
+	void exitCompositeOperationSingleDigit(QueryParser.CompositeOperationSingleDigitContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link QueryParser#compositeFunctionSingleDigit}.
+	 * @param ctx the parse tree
+	 */
+	void enterCompositeFunctionSingleDigit(QueryParser.CompositeFunctionSingleDigitContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QueryParser#compositeFunctionSingleDigit}.
+	 * @param ctx the parse tree
+	 */
+	void exitCompositeFunctionSingleDigit(QueryParser.CompositeFunctionSingleDigitContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link QueryParser#compositeOperationDoubleDigit}.
+	 * @param ctx the parse tree
+	 */
+	void enterCompositeOperationDoubleDigit(QueryParser.CompositeOperationDoubleDigitContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QueryParser#compositeOperationDoubleDigit}.
+	 * @param ctx the parse tree
+	 */
+	void exitCompositeOperationDoubleDigit(QueryParser.CompositeOperationDoubleDigitContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link QueryParser#compositeFunctionDoubleDigit}.
+	 * @param ctx the parse tree
+	 */
+	void enterCompositeFunctionDoubleDigit(QueryParser.CompositeFunctionDoubleDigitContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QueryParser#compositeFunctionDoubleDigit}.
+	 * @param ctx the parse tree
+	 */
+	void exitCompositeFunctionDoubleDigit(QueryParser.CompositeFunctionDoubleDigitContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link QueryParser#aggregateCondition}.
+	 * @param ctx the parse tree
+	 */
+	void enterAggregateCondition(QueryParser.AggregateConditionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QueryParser#aggregateCondition}.
+	 * @param ctx the parse tree
+	 */
+	void exitAggregateCondition(QueryParser.AggregateConditionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link QueryParser#aggregateOperation}.
+	 * @param ctx the parse tree
+	 */
+	void enterAggregateOperation(QueryParser.AggregateOperationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QueryParser#aggregateOperation}.
+	 * @param ctx the parse tree
+	 */
+	void exitAggregateOperation(QueryParser.AggregateOperationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link QueryParser#aggregateFunction}.
+	 * @param ctx the parse tree
+	 */
+	void enterAggregateFunction(QueryParser.AggregateFunctionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QueryParser#aggregateFunction}.
+	 * @param ctx the parse tree
+	 */
+	void exitAggregateFunction(QueryParser.AggregateFunctionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link QueryParser#evaluation}.
+	 * @param ctx the parse tree
+	 */
+	void enterEvaluation(QueryParser.EvaluationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QueryParser#evaluation}.
+	 * @param ctx the parse tree
+	 */
+	void exitEvaluation(QueryParser.EvaluationContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link QueryParser#property}.
 	 * @param ctx the parse tree
@@ -110,13 +190,13 @@ public interface QueryListener extends ParseTreeListener {
 	 */
 	void exitProperty(QueryParser.PropertyContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link QueryParser#aggregate}.
+	 * Enter a parse tree produced by {@link QueryParser#operator}.
 	 * @param ctx the parse tree
 	 */
-	void enterAggregate(QueryParser.AggregateContext ctx);
+	void enterOperator(QueryParser.OperatorContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link QueryParser#aggregate}.
+	 * Exit a parse tree produced by {@link QueryParser#operator}.
 	 * @param ctx the parse tree
 	 */
-	void exitAggregate(QueryParser.AggregateContext ctx);
+	void exitOperator(QueryParser.OperatorContext ctx);
 }

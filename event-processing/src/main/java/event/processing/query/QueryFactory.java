@@ -9,9 +9,14 @@ import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
 import org.springframework.stereotype.Component;
 
+import event.processing.query.Query.LOGIC_SYMBOL;
+import event.processing.query.Query.OPERATOR;
 import event.processing.query.language.QueryBaseListener;
 import event.processing.query.language.QueryLexer;
 import event.processing.query.language.QueryParser;
+import event.processing.query.language.QueryParser.EvaluationContext;
+import event.processing.query.language.QueryParser.OperatorContext;
+import event.processing.query.language.QueryParser.PropertyContext;
 
 @Component
 public class QueryFactory {
@@ -34,67 +39,58 @@ public class QueryFactory {
 
             @Override
             public void exitWindow(QueryParser.WindowContext ctx) {
-                query.setWindow(ctx.getText());
-
-                String windowValue = ctx.getText().replace(Query.KEYWORD.WIN.getKeyword(), "");
-                windowValue = windowValue.replace(Query.KEYWORD.TIME.getKeyword(), "");
-                windowValue = windowValue.replace(Query.KEYWORD.LENGTH.getKeyword(), "");
-                windowValue = windowValue.trim();
-
-                query.setWindowValue(windowValue);
+                // query.setWindow(ctx.getText());
+                //
+                // String windowValue = ctx.getText().replace(Query.KEYWORD.WIN.getKeyword(), "");
+                // windowValue = windowValue.replace(Query.KEYWORD.TIME.getKeyword(), "");
+                // windowValue = windowValue.replace(Query.KEYWORD.LENGTH.getKeyword(), "");
+                // windowValue = windowValue.trim();
+                //
+                // query.setWindowValue(windowValue);
             }
 
             @Override
-            public void enterDomainName(QueryParser.DomainNameContext ctx) {
-                query.getDomains().add(ctx.getText());
+            public void exitSingleCondition(QueryParser.SingleConditionContext ctx) {
+
+                SingleCondition singleCondition = new SingleCondition();
+                singleCondition.setEvaluation(getEvaluation(ctx.getChild(QueryParser.EvaluationContext.class, 0)));
+
+                query.setCondition(singleCondition);
             }
 
             @Override
-            public void enterCompare(QueryParser.CompareContext ctx) {
-
-            }
-
-            @Override
-            public void exitCompare(QueryParser.CompareContext ctx) {
-
-            }
-
-            @Override
-            public void enterProperty(QueryParser.PropertyContext ctx) {
+            public void exitCompositeCondition(QueryParser.CompositeConditionContext ctx) {
 
             }
 
             @Override
-            public void exitProperty(QueryParser.PropertyContext ctx) {
-                query.getProperty().add(ctx.getText());
+            public void exitCompositeOperationSingleDigit(QueryParser.CompositeOperationSingleDigitContext ctx) {
+
+                CompositeCondition compositeCondition = new CompositeCondition();
+                compositeCondition.setEvaluation1(getEvaluation(ctx.getChild(QueryParser.EvaluationContext.class, 0)));
+
+                String compositeFunction = ctx.getChild(QueryParser.CompositeFunctionDoubleDigitContext.class, 0).getText();
+                compositeCondition.setCompositeFunction(LOGIC_SYMBOL.findBySign(compositeFunction.toUpperCase()));
+
+                query.setCondition(compositeCondition);
             }
 
             @Override
-            public void enterLogicLink(QueryParser.LogicLinkContext ctx) {
+            public void exitCompositeOperationDoubleDigit(QueryParser.CompositeOperationDoubleDigitContext ctx) {
 
+                CompositeCondition compositeCondition = new CompositeCondition();
+                compositeCondition.setEvaluation1(getEvaluation(ctx.getChild(QueryParser.EvaluationContext.class, 0)));
+                compositeCondition.setEvaluation2(getEvaluation(ctx.getChild(QueryParser.EvaluationContext.class, 1)));
+
+                String compositeFunction = ctx.getChild(QueryParser.CompositeFunctionDoubleDigitContext.class, 0).getText();
+                compositeCondition.setCompositeFunction(LOGIC_SYMBOL.findBySign(compositeFunction.toUpperCase()));
+
+                query.setCondition(compositeCondition);
             }
 
             @Override
-            public void exitLogicLink(QueryParser.LogicLinkContext ctx) {
+            public void exitAggregateCondition(QueryParser.AggregateConditionContext ctx) {
 
-            }
-
-            @Override
-            public void enterAggregateCompare(QueryParser.AggregateCompareContext ctx) {
-            }
-
-            @Override
-            public void exitAggregateCompare(QueryParser.AggregateCompareContext ctx) {
-                query.getAggregateCompares().add(ctx.getText());
-            }
-
-            @Override
-            public void enterAggregate(QueryParser.AggregateContext ctx) {
-            }
-
-            @Override
-            public void exitAggregate(QueryParser.AggregateContext ctx) {
-                query.getAggregates().add(ctx.getText());
             }
 
         });
@@ -102,5 +98,22 @@ public class QueryFactory {
         queryParser.query();
 
         return query;
+    }
+
+    private Evaluation getEvaluation(EvaluationContext ctx) {
+
+        OperatorContext operatorContext = ctx.getChild(QueryParser.OperatorContext.class, 0);
+
+        PropertyContext propertyContext1 = ctx.getChild(QueryParser.PropertyContext.class, 0);
+
+        PropertyContext propertyContext2 = ctx.getChild(QueryParser.PropertyContext.class, 1);
+
+        Evaluation evaluation = new Evaluation();
+        evaluation.setEvaluation(ctx.getText());
+        evaluation.setProperty1(propertyContext1.getText());
+        evaluation.setProperty2(propertyContext2.getText());
+        evaluation.setOperator(OPERATOR.findBySign(operatorContext.getText()));
+
+        return evaluation;
     }
 }

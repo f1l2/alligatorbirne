@@ -42,6 +42,18 @@ public class QueryBaseListener implements QueryListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterDomains(QueryParser.DomainsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDomains(QueryParser.DomainsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterDomain(QueryParser.DomainContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -49,18 +61,6 @@ public class QueryBaseListener implements QueryListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitDomain(QueryParser.DomainContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterDomainlist(QueryParser.DomainlistContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitDomainlist(QueryParser.DomainlistContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -78,6 +78,18 @@ public class QueryBaseListener implements QueryListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterConditions(QueryParser.ConditionsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitConditions(QueryParser.ConditionsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterCondition(QueryParser.ConditionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -90,37 +102,121 @@ public class QueryBaseListener implements QueryListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterCompare(QueryParser.CompareContext ctx) { }
+	@Override public void enterSingleCondition(QueryParser.SingleConditionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitCompare(QueryParser.CompareContext ctx) { }
+	@Override public void exitSingleCondition(QueryParser.SingleConditionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLogicLink(QueryParser.LogicLinkContext ctx) { }
+	@Override public void enterCompositeCondition(QueryParser.CompositeConditionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLogicLink(QueryParser.LogicLinkContext ctx) { }
+	@Override public void exitCompositeCondition(QueryParser.CompositeConditionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAggregateCompare(QueryParser.AggregateCompareContext ctx) { }
+	@Override public void enterCompositeOperationSingleDigit(QueryParser.CompositeOperationSingleDigitContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAggregateCompare(QueryParser.AggregateCompareContext ctx) { }
+	@Override public void exitCompositeOperationSingleDigit(QueryParser.CompositeOperationSingleDigitContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCompositeFunctionSingleDigit(QueryParser.CompositeFunctionSingleDigitContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCompositeFunctionSingleDigit(QueryParser.CompositeFunctionSingleDigitContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCompositeOperationDoubleDigit(QueryParser.CompositeOperationDoubleDigitContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCompositeOperationDoubleDigit(QueryParser.CompositeOperationDoubleDigitContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCompositeFunctionDoubleDigit(QueryParser.CompositeFunctionDoubleDigitContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCompositeFunctionDoubleDigit(QueryParser.CompositeFunctionDoubleDigitContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAggregateCondition(QueryParser.AggregateConditionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAggregateCondition(QueryParser.AggregateConditionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAggregateOperation(QueryParser.AggregateOperationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAggregateOperation(QueryParser.AggregateOperationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAggregateFunction(QueryParser.AggregateFunctionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAggregateFunction(QueryParser.AggregateFunctionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterEvaluation(QueryParser.EvaluationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitEvaluation(QueryParser.EvaluationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -138,13 +234,13 @@ public class QueryBaseListener implements QueryListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAggregate(QueryParser.AggregateContext ctx) { }
+	@Override public void enterOperator(QueryParser.OperatorContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAggregate(QueryParser.AggregateContext ctx) { }
+	@Override public void exitOperator(QueryParser.OperatorContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

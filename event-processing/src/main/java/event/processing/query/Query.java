@@ -1,8 +1,5 @@
 package event.processing.query;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Query {
 
     /**
@@ -34,7 +31,6 @@ public class Query {
         public void setKeyword(String keyword) {
             this.keyword = keyword;
         }
-
     }
 
     /**
@@ -72,6 +68,15 @@ public class Query {
         public void setNumberOperand(int numberOperand) {
             this.numberOperand = numberOperand;
         }
+
+        public static LOGIC_SYMBOL findBySign(String sign) {
+            for (LOGIC_SYMBOL item : LOGIC_SYMBOL.values()) {
+                if (item.getSymbol().equals(sign)) {
+                    return item;
+                }
+            }
+            return null;
+        }
     }
 
     /**
@@ -104,10 +109,19 @@ public class Query {
         public void setSign(String sign) {
             this.sign = sign;
         }
+
+        public static AGGREGATOR findBySign(String sign) {
+            for (AGGREGATOR item : AGGREGATOR.values()) {
+                if (item.getSign().equals(sign)) {
+                    return item;
+                }
+            }
+            return null;
+        }
     }
 
     /**
-     * Enum Operator
+     * Enum LOGIC_SYMBOL
      */
 
     public static enum OPERATOR {
@@ -136,95 +150,25 @@ public class Query {
         public void setSign(String sign) {
             this.sign = sign;
         }
+
+        public static OPERATOR findBySign(String sign) {
+            for (OPERATOR item : OPERATOR.values()) {
+                if (item.getSign().equals(sign)) {
+                    return item;
+                }
+            }
+            return null;
+        }
     }
 
-    /**
-     * Parts
-     */
-    private List<String> domains = new ArrayList<String>();
+    private Condition condition;
 
-    private List<String> logicLinks = new ArrayList<String>();
-
-    private List<String> compares = new ArrayList<String>();
-
-    private List<String> property = new ArrayList<String>();
-
-    private List<String> aggregateCompares = new ArrayList<String>();
-
-    private List<String> aggregates = new ArrayList<String>();
-
-    public List<String> getCompares() {
-        return compares;
+    public Condition getCondition() {
+        return condition;
     }
 
-    public void setCompares(List<String> compares) {
-        this.compares = compares;
-    }
-
-    public List<String> getProperty() {
-        return property;
-    }
-
-    public void setProperty(List<String> property) {
-        this.property = property;
-    }
-
-    public List<String> getAggregateCompares() {
-        return aggregateCompares;
-    }
-
-    public void setAggregateCompares(List<String> aggregateCompares) {
-        this.aggregateCompares = aggregateCompares;
-    }
-
-    public List<String> getAggregates() {
-        return aggregates;
-    }
-
-    public void setAggregates(List<String> aggregates) {
-        this.aggregates = aggregates;
-    }
-
-    private String window;
-
-    private String windowValue;
-
-    public String getWindowValue() {
-        return windowValue;
-    }
-
-    public void setWindowValue(String windowValue) {
-        this.windowValue = windowValue;
-    }
-
-    public String getWindow() {
-        return window;
-    }
-
-    public void setWindow(String window) {
-        this.window = window;
-    }
-
-    public List<String> getDomains() {
-        return domains;
-    }
-
-    public void setDomains(List<String> domains) {
-        this.domains = domains;
-    }
-
-    public List<String> getLogicLinks() {
-        return logicLinks;
-    }
-
-    public void setLogicLinks(List<String> logicLinks) {
-        this.logicLinks = logicLinks;
-    }
-
-    @Override
-    public String toString() {
-        return "Query [domains=" + domains + ", compares=" + compares + ", property=" + property + ", logicLinks=" + logicLinks + ", aggregateCompares=" + aggregateCompares + ", aggregates="
-                + aggregates + ", window=" + window + ", windowValue=" + windowValue + "]";
+    public void setCondition(Condition condition) {
+        this.condition = condition;
     }
 
 }

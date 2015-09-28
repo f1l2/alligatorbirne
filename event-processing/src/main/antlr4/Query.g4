@@ -4,27 +4,43 @@ grammar Query;
 	package event.processing.query.language;
 }
 
-query: condition WS domain? window?;
+query: conditions domains? window?;
 
 window: WS 'WIN.TIME(' WS? INT WS? ')' | WS 'WIN.LENGTH(' WS? INT WS? ')';
 
-domain: ('FROM' WS domainlist);
+domains: (WS 'FROM' WS domain);
 
-domainlist: domainName | domainlist WS? COMMA WS? domainlist;
+domain: domainName | domain WS? COMMA WS? domain;
 
 domainName: VARIABLE;
 
-condition: 'CONDITION' WS compare | 'CONDITION' WS logicLink | 'CONDITION' WS aggregateCompare;
+conditions: 'CONDITION' WS condition;
 
-compare: property WS? OPERATOR WS? property;
+condition: singleCondition | compositeCondition | aggregateCondition;
 
-logicLink: compare WS 'AND' WS compare | compare WS 'OR' WS compare | 'NOT' compare;
+singleCondition: evaluation;
 
-aggregateCompare: aggregate WS? OPERATOR WS? INT | INT WS? OPERATOR WS? aggregate;
+compositeCondition: compositeOperationSingleDigit | compositeOperationDoubleDigit;
+
+compositeOperationSingleDigit: compositeFunctionSingleDigit WS evaluation;
+
+compositeFunctionSingleDigit: 'NOT'; 
+
+compositeOperationDoubleDigit: evaluation WS compositeFunctionDoubleDigit WS evaluation;
+
+compositeFunctionDoubleDigit: ('AND' | 'OR'); 
+
+aggregateCondition: aggregateOperation WS? operator WS? INT | INT WS? operator WS? aggregateOperation;
+
+aggregateOperation: aggregateFunction WS? '(' WS? VARIABLE WS? ')'; 
+
+aggregateFunction: ('SUM' | 'AVG' | 'COUNT' | 'MAX' | 'MIN');
+
+evaluation: property WS? operator WS? property;
 
 property: (VARIABLE | STRING | INT);
 
-aggregate: 'SUM' WS? '(' WS? VARIABLE WS? ')' | 'AVG' WS? '(' WS? VARIABLE WS? ')' | 'COUNT' WS? '(' WS? VARIABLE WS? ')' | 'MAX' WS? '(' WS? VARIABLE WS? ')' | 'MIN' WS? '(' WS? VARIABLE WS? ')'; 
+operator: ('=' | '<' | '>' | '<=' | '>=');
 
 VARIABLE: ('A'..'Z' | 'a'..'z' | '-' | '_' )+;
 STRING: '\'' ('A'..'Z' | 'a'..'z')+ '\'';
@@ -33,4 +49,3 @@ INT: ('0'..'9')+;
 COMMA: (',')+;
 WS: (' ' | '\t')+;
 NL:  '\r'? '\n';
-OPERATOR: ('=' | '<' | '>' | '<=' | '>=');
