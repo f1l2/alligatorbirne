@@ -18,7 +18,7 @@ public class EsperQueryTransformer extends QueryTransformer {
 
     private static final Logger logger = LoggerFactory.getLogger(EsperQueryTransformer.class);
 
-    private String eql = new String("select d.deviceInformation as device, d.domainInformation as domain from DataSource as d [where] [where_deviceInformation] [where_domainInformation]");
+    private String eql = new String("select d.deviceInformation as device, d.domainInformation as domain from DataSource as d where [where_deviceInformation] [where_domainInformation]");
 
     @Override
     public String transform(String in) {
@@ -30,47 +30,98 @@ public class EsperQueryTransformer extends QueryTransformer {
         try {
             Query query = queryFactory.parse(in);
 
-            if (!CollectionUtils.isEmpty(query.getCompare())) {
+            /**
+             * Convert domain part
+             */
 
-                eql = StringUtils.replace(eql, "[where]", "where");
-
-                String whereConditions = query.getCompareLogic();
-
-                for (int i = 0; i < query.getCompare().size(); i++) {
-
-                    String compare = query.getCompare().get(i);
-
-                    String property1 = query.getProperty().get(2 * i);
-                    if (isPropertyVariable(property1)) {
-                        compare = compare.replace(property1, "d.deviceInformation." + property1);
-                    }
-
-                    String property2 = query.getProperty().get(2 * i + 1);
-                    if (isPropertyVariable(property2)) {
-                        compare = compare.replace(property2, "d.deviceInformation." + property2);
-                    }
-
-                    whereConditions = whereConditions.replace(query.getCompare().get(i), compare);
-
-                }
-
-                eql = StringUtils.replace(eql, "[where_deviceInformation]", whereConditions);
-            }
-
-            if (!CollectionUtils.isEmpty(query.getDomain())) {
-                eql = StringUtils.replace(eql, "[where]", "where");
+            if (!CollectionUtils.isEmpty(query.getDomains())) {
 
                 StringBuilder sb = new StringBuilder();
                 sb.append(" AND ");
-                sb.append(query.getDomain().stream().map(item -> "d.domainInformation.name = '".concat(item).concat("'")).collect(Collectors.joining(" AND ")));
+                sb.append(query.getDomains().stream().map(item -> "d.domainInformation.name = '".concat(item).concat("'")).collect(Collectors.joining(" AND ")));
 
                 eql = eql.replace("[where_domainInformation]", sb.toString());
+            }
+
+            /**
+             * Convert condition part
+             */
+            if (!CollectionUtils.isEmpty(query.getLogicLinks())) {
+
+            } else if (!CollectionUtils.isEmpty(query.getAggregates())) {
+
+            } else {
 
             }
 
-            if (!StringUtils.isEmpty(query.getWindow())) {
-
-            }
+            // if (!CollectionUtils.isEmpty(query.getAggregateCompares())) {
+            //
+            // } else if (!CollectionUtils.isEmpty(query.getLogicLinks())) {
+            //
+            // eql = StringUtils.replace(eql, "[where]", "where");
+            //
+            // for (int i = 0; i < query.getLogicLinks().size(); i++) {
+            //
+            // }
+            //
+            // } else {
+            //
+            // }
+            //
+            // if (!CollectionUtils.isEmpty(query.getCompare())) {
+            //
+            // String where_deviceInformation = query.getCompareLogic();
+            //
+            // for (int i = 0; i < query.getCompare().size(); i++) {
+            //
+            // String compare = query.getCompare().get(i);
+            //
+            // String property1 = query.getProperty().get(2 * i);
+            // if (isPropertyVariable(property1)) {
+            // compare = compare.replace(property1, "d.deviceInformation." + property1);
+            // }
+            //
+            // String property2 = query.getProperty().get(2 * i + 1);
+            // if (isPropertyVariable(property2)) {
+            // compare = compare.replace(property2, "d.deviceInformation." + property2);
+            // }
+            //
+            // where_deviceInformation = where_deviceInformation.replace(query.getCompare().get(i), compare);
+            //
+            // }
+            //
+            // eql = StringUtils.replace(eql, "[where_deviceInformation]", where_deviceInformation);
+            // }
+            //
+            // if (!CollectionUtils.isEmpty(query.getDomain())) {
+            //
+            // eql = StringUtils.replace(eql, "[where]", "where");
+            //
+            // StringBuilder sb = new StringBuilder();
+            // sb.append(" AND ");
+            // sb.append(query.getDomain().stream().map(item -> "d.domainInformation.name = '".concat(item).concat("'")).collect(Collectors.joining(" AND ")));
+            //
+            // eql = eql.replace("[where_domainInformation]", sb.toString());
+            //
+            // }
+            //
+            // if (!StringUtils.isEmpty(query.getWindow())) {
+            //
+            // }
+            //
+            // if (!CollectionUtils.isEmpty(query.getAggregate())) {
+            //
+            // /**
+            // * insert into TEMP select sum(d.device.property) as value from DataSource d
+            // *
+            // * select * from TEMP where value > 5
+            // */
+            //
+            // for (String aggregate : query.getAggregate()) {
+            // System.out.println(aggregate);
+            // }
+            //
+            // }
 
             removeUnused();
 
@@ -97,7 +148,6 @@ public class EsperQueryTransformer extends QueryTransformer {
 
     private void removeUnused() {
 
-        eql = StringUtils.replace(eql, "[where]", "");
         eql = StringUtils.replace(eql, "[where_deviceInformation]", "");
         eql = StringUtils.replace(eql, "[where_domainInformation]", "");
     }

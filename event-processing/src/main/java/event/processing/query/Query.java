@@ -6,111 +6,159 @@ import java.util.List;
 public class Query {
 
     /**
-     * Keywords
+     * Enum Keywords
+     * 
+     *
      */
-    public static final String KEYWORD_CONDITION = "CONDITION";
+    public static enum KEYWORD {
+        CONDITION("CONDITION"),
+        //
+        FROM("FROM"),
+        //
+        WIN("WIN."),
+        //
+        TIME("TIME"),
+        //
+        LENGTH("LENGTH");
 
-    public static final String KEYWORD_FROM = "FROM";
+        private String keyword;
 
-    public static final String KEYWORD_WIN = "WIN.";
+        KEYWORD(String keyword) {
+            this.setKeyword(keyword);
+        }
 
-    public static final String KEYWORD_TIME = "TIME";
+        public String getKeyword() {
+            return keyword;
+        }
 
-    public static final String KEYWORD_LENGTH = "LENGTH";
+        public void setKeyword(String keyword) {
+            this.keyword = keyword;
+        }
 
-    public static final String AGG_SUM = "SUM";
-
-    public static final String AGG_AVG = "AVG";
-
-    public static final String AGG_COUNT = "COUNT";
-
-    public static final String AGG_MAX = "MAX";
-
-    public static final String AVG_MIN = "MIN";
-
-    public static final String LOGIC_AND = "AND";
+    }
 
     /**
-     * Operators
+     * Keyword Logic Symbols
+     *
      */
-    public static final String OPERATOR_EQUAL = "=";
+    public static enum LOGIC_SYMBOL {
+        AND("AND", 2),
+        //
+        OR("OR", 2),
+        //
+        NOT("NOT", 1);
 
-    public static final String OPERATOR_IS_GREATER = ">";
+        private String symbol;
 
-    public static final String OPERATOR_IS_SMALLER = "<";
+        private int numberOperand;
 
-    public static final String OPERATOR_IS_GREATER_OR_EQUAL = ">=";
+        LOGIC_SYMBOL(String symbol, int numberOperand) {
+            this.setSymbol(symbol);
+            this.setNumberOperand(numberOperand);
+        }
 
-    public static final String OPERATOR_IS_SMALLER_OR_EQUAL = "<=";
+        public String getSymbol() {
+            return symbol;
+        }
+
+        public void setSymbol(String symbol) {
+            this.symbol = symbol;
+        }
+
+        public int getNumberOperand() {
+            return numberOperand;
+        }
+
+        public void setNumberOperand(int numberOperand) {
+            this.numberOperand = numberOperand;
+        }
+    }
+
+    /**
+     * Enum Aggregator
+     */
+
+    public static enum AGGREGATOR {
+        SUM("SUM"),
+        //
+        AVG("AVG"),
+        //
+        COUNT("COUNT"),
+        //
+        MAX("MAX"),
+        //
+        MIN("<=");
+
+        private String sign;
+
+        AGGREGATOR(String sign) {
+
+            this.setSign(sign);
+
+        }
+
+        public String getSign() {
+            return sign;
+        }
+
+        public void setSign(String sign) {
+            this.sign = sign;
+        }
+    }
+
+    /**
+     * Enum Operator
+     */
+
+    public static enum OPERATOR {
+        EQUAL("="),
+        //
+        IS_GREATER(">"),
+        //
+        IS_GREATER_OR_EQUAL(">="),
+        //
+        IS_SMALLER("<"),
+        //
+        IS_SMALLER_OR_EQUAL("<=");
+
+        private String sign;
+
+        OPERATOR(String sign) {
+
+            this.setSign(sign);
+
+        }
+
+        public String getSign() {
+            return sign;
+        }
+
+        public void setSign(String sign) {
+            this.sign = sign;
+        }
+    }
 
     /**
      * Parts
      */
+    private List<String> domains = new ArrayList<String>();
 
-    private String condition;
+    private List<String> logicLinks = new ArrayList<String>();
 
-    private String domainList;
-
-    private List<String> domain = new ArrayList<String>();
-
-    private String compareLogic;
-
-    private List<String> compare = new ArrayList<String>();
-
-    private List<String> aggregate = new ArrayList<String>();
+    private List<String> compares = new ArrayList<String>();
 
     private List<String> property = new ArrayList<String>();
 
-    private String window;
+    private List<String> aggregateCompares = new ArrayList<String>();
 
-    private String windowValue;
+    private List<String> aggregates = new ArrayList<String>();
 
-    public String getCondition() {
-        return condition;
+    public List<String> getCompares() {
+        return compares;
     }
 
-    public void setCondition(String condition) {
-        this.condition = condition;
-    }
-
-    public String getDomainList() {
-        return domainList;
-    }
-
-    public void setDomainList(String domainList) {
-        this.domainList = domainList;
-    }
-
-    public List<String> getDomain() {
-        return domain;
-    }
-
-    public void setDomain(List<String> domain) {
-        this.domain = domain;
-    }
-
-    public String getCompareLogic() {
-        return compareLogic;
-    }
-
-    public void setCompareLogic(String compareLogic) {
-        this.compareLogic = compareLogic;
-    }
-
-    public List<String> getCompare() {
-        return compare;
-    }
-
-    public void setCompare(List<String> compare) {
-        this.compare = compare;
-    }
-
-    public List<String> getAggregate() {
-        return aggregate;
-    }
-
-    public void setAggregate(List<String> aggregate) {
-        this.aggregate = aggregate;
+    public void setCompares(List<String> compares) {
+        this.compares = compares;
     }
 
     public List<String> getProperty() {
@@ -121,13 +169,25 @@ public class Query {
         this.property = property;
     }
 
-    public String getWindow() {
-        return window;
+    public List<String> getAggregateCompares() {
+        return aggregateCompares;
     }
 
-    public void setWindow(String window) {
-        this.window = window;
+    public void setAggregateCompares(List<String> aggregateCompares) {
+        this.aggregateCompares = aggregateCompares;
     }
+
+    public List<String> getAggregates() {
+        return aggregates;
+    }
+
+    public void setAggregates(List<String> aggregates) {
+        this.aggregates = aggregates;
+    }
+
+    private String window;
+
+    private String windowValue;
 
     public String getWindowValue() {
         return windowValue;
@@ -137,10 +197,34 @@ public class Query {
         this.windowValue = windowValue;
     }
 
+    public String getWindow() {
+        return window;
+    }
+
+    public void setWindow(String window) {
+        this.window = window;
+    }
+
+    public List<String> getDomains() {
+        return domains;
+    }
+
+    public void setDomains(List<String> domains) {
+        this.domains = domains;
+    }
+
+    public List<String> getLogicLinks() {
+        return logicLinks;
+    }
+
+    public void setLogicLinks(List<String> logicLinks) {
+        this.logicLinks = logicLinks;
+    }
+
     @Override
     public String toString() {
-        return "Query [condition=" + condition + ", domainList=" + domainList + ", domain=" + domain + ", compareLogic=" + compareLogic + ", compare=" + compare + ", aggregate=" + aggregate
-                + ", property=" + property + ", window=" + window + ", windowValue=" + windowValue + "]";
+        return "Query [domains=" + domains + ", compares=" + compares + ", property=" + property + ", logicLinks=" + logicLinks + ", aggregateCompares=" + aggregateCompares + ", aggregates="
+                + aggregates + ", window=" + window + ", windowValue=" + windowValue + "]";
     }
 
 }

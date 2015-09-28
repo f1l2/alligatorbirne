@@ -33,55 +33,68 @@ public class QueryFactory {
         queryParser.addParseListener(new QueryBaseListener() {
 
             @Override
-            public void exitQuery(QueryParser.QueryContext ctx) {
-            }
-
-            @Override
             public void exitWindow(QueryParser.WindowContext ctx) {
                 query.setWindow(ctx.getText());
 
-                String windowValue = ctx.getText().replace(Query.KEYWORD_WIN, "");
-                windowValue = windowValue.replace(Query.KEYWORD_TIME, "");
-                windowValue = windowValue.replace(Query.KEYWORD_LENGTH, "");
+                String windowValue = ctx.getText().replace(Query.KEYWORD.WIN.getKeyword(), "");
+                windowValue = windowValue.replace(Query.KEYWORD.TIME.getKeyword(), "");
+                windowValue = windowValue.replace(Query.KEYWORD.LENGTH.getKeyword(), "");
                 windowValue = windowValue.trim();
 
                 query.setWindowValue(windowValue);
-
             }
 
             @Override
-            public void exitDomainlist(QueryParser.DomainlistContext ctx) {
-                query.setDomainList(ctx.getText());
+            public void enterDomainName(QueryParser.DomainNameContext ctx) {
+                query.getDomains().add(ctx.getText());
             }
 
             @Override
-            public void exitDomain(QueryParser.DomainContext ctx) {
-                query.getDomain().add(ctx.getText());
-            }
+            public void enterCompare(QueryParser.CompareContext ctx) {
 
-            @Override
-            public void exitCondition(QueryParser.ConditionContext ctx) {
-                query.setCondition(ctx.getText());
-            }
-
-            @Override
-            public void exitComparelogic(QueryParser.ComparelogicContext ctx) {
-                query.setCompareLogic(ctx.getText());
             }
 
             @Override
             public void exitCompare(QueryParser.CompareContext ctx) {
-                query.getCompare().add(ctx.getText());
+
             }
 
             @Override
-            public void exitAggregate(QueryParser.AggregateContext ctx) {
-                query.getAggregate().add(ctx.getText());
+            public void enterProperty(QueryParser.PropertyContext ctx) {
+
             }
 
             @Override
             public void exitProperty(QueryParser.PropertyContext ctx) {
                 query.getProperty().add(ctx.getText());
+            }
+
+            @Override
+            public void enterLogicLink(QueryParser.LogicLinkContext ctx) {
+
+            }
+
+            @Override
+            public void exitLogicLink(QueryParser.LogicLinkContext ctx) {
+
+            }
+
+            @Override
+            public void enterAggregateCompare(QueryParser.AggregateCompareContext ctx) {
+            }
+
+            @Override
+            public void exitAggregateCompare(QueryParser.AggregateCompareContext ctx) {
+                query.getAggregateCompares().add(ctx.getText());
+            }
+
+            @Override
+            public void enterAggregate(QueryParser.AggregateContext ctx) {
+            }
+
+            @Override
+            public void exitAggregate(QueryParser.AggregateContext ctx) {
+                query.getAggregates().add(ctx.getText());
             }
 
         });

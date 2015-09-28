@@ -4,27 +4,31 @@ grammar Query;
 	package event.processing.query.language;
 }
 
-query: condition WS 'FROM' domainlist? window?;
+query: condition WS domain? window?;
 
-window: WS 'WIN.TIME(' WS? Int WS? ')' | WS 'WIN.LENGTH(' WS? Int WS? ')';
+window: WS 'WIN.TIME(' WS? INT WS? ')' | WS 'WIN.LENGTH(' WS? INT WS? ')';
 
-domainlist: WS domain | WS domainlist WS? COMMA WS? domainlist;
+domain: ('FROM' WS domainlist);
 
-domain: Variable;
+domainlist: domainName | domainlist WS? COMMA WS? domainlist;
 
-condition: 'CONDITION' WS comparelogic;
+domainName: VARIABLE;
 
-comparelogic: comparelogic WS 'AND' WS comparelogic | comparelogic WS 'OR' WS comparelogic | 'NOT' comparelogic | compare;
+condition: 'CONDITION' WS compare | 'CONDITION' WS logicLink | 'CONDITION' WS aggregateCompare;
 
-compare: aggregate WS? OPERATOR WS? aggregate;
+compare: property WS? OPERATOR WS? property;
 
-aggregate: 'SUM' WS? '(' WS? property WS? ')' | 'AVG' WS? '(' WS? property WS? ')' | 'COUNT' WS? '(' WS? property WS? ')' | 'MAX' WS? '(' WS? property WS? ')' | 'MIN' WS? '(' WS? property WS? ')' | property; 
+logicLink: compare WS 'AND' WS compare | compare WS 'OR' WS compare | 'NOT' compare;
 
-property: Variable | String | Int;
+aggregateCompare: aggregate WS? OPERATOR WS? INT | INT WS? OPERATOR WS? aggregate;
 
-Variable: ('A'..'Z' | 'a'..'z' | '-' | '_' )+;
-String: '\'' ('A'..'Z' | 'a'..'z')+ '\'';
-Int: ('0'..'9')+;
+property: (VARIABLE | STRING | INT);
+
+aggregate: 'SUM' WS? '(' WS? VARIABLE WS? ')' | 'AVG' WS? '(' WS? VARIABLE WS? ')' | 'COUNT' WS? '(' WS? VARIABLE WS? ')' | 'MAX' WS? '(' WS? VARIABLE WS? ')' | 'MIN' WS? '(' WS? VARIABLE WS? ')'; 
+
+VARIABLE: ('A'..'Z' | 'a'..'z' | '-' | '_' )+;
+STRING: '\'' ('A'..'Z' | 'a'..'z')+ '\'';
+INT: ('0'..'9')+;
 
 COMMA: (',')+;
 WS: (' ' | '\t')+;

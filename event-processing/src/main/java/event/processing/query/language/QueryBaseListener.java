@@ -42,6 +42,18 @@ public class QueryBaseListener implements QueryListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterDomain(QueryParser.DomainContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDomain(QueryParser.DomainContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterDomainlist(QueryParser.DomainlistContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -54,13 +66,13 @@ public class QueryBaseListener implements QueryListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDomain(QueryParser.DomainContext ctx) { }
+	@Override public void enterDomainName(QueryParser.DomainNameContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDomain(QueryParser.DomainContext ctx) { }
+	@Override public void exitDomainName(QueryParser.DomainNameContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -78,18 +90,6 @@ public class QueryBaseListener implements QueryListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterComparelogic(QueryParser.ComparelogicContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitComparelogic(QueryParser.ComparelogicContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterCompare(QueryParser.CompareContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -102,13 +102,25 @@ public class QueryBaseListener implements QueryListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAggregate(QueryParser.AggregateContext ctx) { }
+	@Override public void enterLogicLink(QueryParser.LogicLinkContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAggregate(QueryParser.AggregateContext ctx) { }
+	@Override public void exitLogicLink(QueryParser.LogicLinkContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAggregateCompare(QueryParser.AggregateCompareContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAggregateCompare(QueryParser.AggregateCompareContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -121,6 +133,18 @@ public class QueryBaseListener implements QueryListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitProperty(QueryParser.PropertyContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAggregate(QueryParser.AggregateContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAggregate(QueryParser.AggregateContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

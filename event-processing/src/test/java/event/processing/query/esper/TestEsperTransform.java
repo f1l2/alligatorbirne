@@ -25,7 +25,7 @@ public class TestEsperTransform extends AbstractTestEP {
     @Test
     public void testEsperEngineUC1() {
 
-        query = Query.KEYWORD_CONDITION + " id = 5  " + Query.KEYWORD_FROM;
+        query = Query.KEYWORD.CONDITION.getKeyword() + " id = 5  " + Query.KEYWORD.FROM.getKeyword();
 
         eql = factory.getQueryTransformer().transform(query);
 
@@ -36,7 +36,7 @@ public class TestEsperTransform extends AbstractTestEP {
     @Test
     public void testEsperEngineUC2() {
 
-        query = Query.KEYWORD_CONDITION + " id = 10  " + Query.LOGIC_AND + " name = 'abc' " + Query.KEYWORD_FROM;
+        query = Query.KEYWORD.CONDITION.getKeyword() + " id = 10  " + Query.LOGIC_SYMBOL.AND.getSymbol() + " name = 'abc' " + Query.KEYWORD.FROM.getKeyword();
 
         transformAndRegister(query);
 
@@ -44,7 +44,7 @@ public class TestEsperTransform extends AbstractTestEP {
 
     @Test
     public void testEsperEngineUC3() {
-        query = Query.KEYWORD_CONDITION + " " + Query.AGG_SUM + "(value)" + Query.OPERATOR_IS_GREATER_OR_EQUAL + " 5 " + Query.KEYWORD_FROM;
+        query = Query.KEYWORD.CONDITION.getKeyword() + " " + Query.AGGREGATOR.SUM.getSign() + "(value)" + Query.OPERATOR.IS_GREATER + " 5 " + Query.KEYWORD.FROM.getKeyword();
 
         transformAndRegister(query);
     }
@@ -56,7 +56,7 @@ public class TestEsperTransform extends AbstractTestEP {
          * CONDITION property >= 10 FROM name_of_domain
          */
 
-        query = Query.KEYWORD_CONDITION + " id " + Query.OPERATOR_IS_GREATER_OR_EQUAL + " 10 " + Query.KEYWORD_FROM + " name_of_domain";
+        query = Query.KEYWORD.CONDITION.getKeyword() + " id " + Query.OPERATOR.IS_GREATER + " 10 " + Query.KEYWORD.FROM.getKeyword() + " name_of_domain";
 
         assertEquals("", "");
 

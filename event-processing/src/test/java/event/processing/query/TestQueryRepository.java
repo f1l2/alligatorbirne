@@ -14,8 +14,6 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import event.processing.Application;
-import event.processing.query.Query;
-import event.processing.query.QueryFactory;
 import event.processing.repo.QueryRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -33,7 +31,7 @@ public class TestQueryRepository {
     @Before
     public void before() throws IOException {
 
-        String strQuery = Query.KEYWORD_CONDITION + " DeviceInformation.property = 21 AND x.abc = 21 " + Query.KEYWORD_FROM + " Domain";
+        String strQuery = Query.KEYWORD.CONDITION.getKeyword() + " DeviceInformation.property = 21 AND x.abc = 21 " + Query.KEYWORD.FROM.getKeyword() + " Domain";
         query = qf.parse(strQuery);
 
         repo.save(query);
