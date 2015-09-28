@@ -1,4 +1,4 @@
-package event.processing.repo;
+package event.processing.query;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -16,6 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import event.processing.Application;
 import event.processing.query.Query;
 import event.processing.query.QueryFactory;
+import event.processing.repo.QueryRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)

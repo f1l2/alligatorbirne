@@ -1,4 +1,4 @@
-package event.processing.query.language;
+package event.processing.query;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,20 +1,27 @@
 package event.processing;
 
 import org.junit.Before;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import common.data.DataSource;
 import common.data.DeviceInformation;
 import common.data.DomainInformation;
-
 import event.processing.engine.Engine;
 import event.processing.engine.EngineFactory;
+import event.processing.engine.EngineListener;
 import event.processing.engine.QueryTransformer;
-import event.processing.engine.impl.EsperEngineFactory;
 
 public abstract class AbstractTestEP {
 
+    @Autowired
+    @Qualifier("esper")
     protected EngineFactory factory;
+
     protected Engine engine;
+
+    protected EngineListener listener;
+
     protected QueryTransformer queryTransformer;
 
     protected DataSource dataSource1, dataSource2, dataSource3;
@@ -25,9 +32,9 @@ public abstract class AbstractTestEP {
         dataSource2 = generateTestDataSource("device2", "domain2");
         dataSource3 = generateTestDataSource("device3", "domain3");
 
-        factory = new EsperEngineFactory();
         engine = factory.getEngine();
         queryTransformer = factory.getQueryTransformer();
+        listener = factory.getEngineListener();
 
     }
 

@@ -2,6 +2,7 @@ package configuration.management;
 
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,14 +45,14 @@ public class ApplicationScheduler {
 
         if (!CollectionUtils.isEmpty(obsoleteIoTDevs)) {
             deviceRepo.delete(obsoleteIoTDevs);
-            logger.info("Obsolete IoTDev(s) detected.");
+            logger.info("Obsolete IoTDev(s) detected. {}", obsoleteIoTDevs.stream().map(item -> item.toString()).collect(Collectors.joining(", ")));
         }
 
         List<EventProcessingRO> obsoleteEPs = eventProcessingRepo.findByUpdatedBefore(gc.getTime());
 
         if (!CollectionUtils.isEmpty(obsoleteEPs)) {
-            this.eventProcessingRepo.delete(obsoleteEPs);
-            logger.info("Obsolete EP(s) detected.");
+            eventProcessingRepo.delete(obsoleteEPs);
+            logger.info("Obsolete EP(s) detected. {}", obsoleteEPs.stream().map(item -> item.toString()).collect(Collectors.joining(", ")));
         }
 
     }

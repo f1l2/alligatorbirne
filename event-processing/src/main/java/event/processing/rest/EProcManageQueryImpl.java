@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,7 +14,6 @@ import event.processing.engine.Engine;
 import event.processing.engine.EngineFactory;
 import event.processing.engine.EngineListener;
 import event.processing.engine.QueryTransformer;
-import event.processing.engine.impl.EsperEngineFactory;
 import event.processing.query.QueryFactory;
 
 @RestController
@@ -21,7 +21,9 @@ public class EProcManageQueryImpl implements EProcManageQuery {
 
     private static final Logger logger = LoggerFactory.getLogger(EProcManageQueryImpl.class);
 
-    private EngineFactory engineFactory = EsperEngineFactory.getEsperEngineFactory();
+    @Autowired
+    @Qualifier("esper")
+    private EngineFactory factory;
 
     @Autowired
     private QueryFactory qf;
@@ -37,11 +39,11 @@ public class EProcManageQueryImpl implements EProcManageQuery {
             throw new IllegalArgumentException("Couldn't parse string. Please check coorectness of query.");
         }
 
-        Engine engine = engineFactory.getEngine();
+        Engine engine = factory.getEngine();
 
-        EngineListener engineListener = engineFactory.getEngineListener();
+        EngineListener engineListener = factory.getEngineListener();
 
-        QueryTransformer queryTransformer = engineFactory.getQueryTransformer();
+        QueryTransformer queryTransformer = factory.getQueryTransformer();
 
         engine.registerQuery(queryTransformer.transform(query), engineListener);
 
@@ -51,7 +53,7 @@ public class EProcManageQueryImpl implements EProcManageQuery {
     @RequestMapping(value = "/unregistration", method = RequestMethod.POST)
     public void unregister(String query) {
 
-        Engine engine = engineFactory.getEngine();
+        Engine engine = factory.getEngine();
 
         engine.unregisterQuery(query);
 

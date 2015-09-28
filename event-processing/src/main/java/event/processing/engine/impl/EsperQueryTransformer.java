@@ -2,16 +2,25 @@ package event.processing.engine.impl;
 
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+
 import event.processing.engine.QueryTransformer;
 import event.processing.query.Query;
 import event.processing.query.QueryFactory;
 
+@Component
 public class EsperQueryTransformer extends QueryTransformer {
+
+    private static final Logger logger = LoggerFactory.getLogger(EsperQueryTransformer.class);
 
     private String eql = new String("select d.device as device, d.domain as domain from DataSource as d [where search_conditions]");
 
     @Override
     public String transform(String in) {
+
+        logger.debug("Start query transformation. Input: {}", in);
 
         QueryFactory queryFactory = new QueryFactory();
 
@@ -25,11 +34,13 @@ public class EsperQueryTransformer extends QueryTransformer {
 
             removeUnused();
 
+            logger.debug("Query transformation finished.");
+            logger.info("Generated EQL: {}", eql);
+
             return eql;
 
         } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            logger.error("Error transforming query to eql.2", e);
         }
 
         return null;

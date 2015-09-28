@@ -1,16 +1,22 @@
-package event.processing.query.engine;
+package event.processing.query.esper;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import event.processing.AbstractTestEP;
+import event.processing.Application;
 import event.processing.engine.ENGINE_TYPE;
 import event.processing.engine.Engine;
 import event.processing.engine.EngineListener;
 import event.processing.engine.QueryTransformer;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(classes = Application.class)
 public class TestEsperEngineFactory extends AbstractTestEP {
 
     @Test
@@ -26,6 +32,7 @@ public class TestEsperEngineFactory extends AbstractTestEP {
 
     }
 
+    @Test
     public void testGetListener() {
 
         EngineListener listener = factory.getEngineListener();
@@ -34,6 +41,7 @@ public class TestEsperEngineFactory extends AbstractTestEP {
 
     }
 
+    @Test
     public void testGetQueryTransformer() {
 
         QueryTransformer transformer = factory.getQueryTransformer();

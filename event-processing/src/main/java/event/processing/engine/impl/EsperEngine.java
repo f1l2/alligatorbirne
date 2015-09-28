@@ -1,6 +1,13 @@
 package event.processing.engine.impl;
 
-import org.apache.log4j.Logger;
+import java.util.Set;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
+import org.springframework.core.type.filter.AssignableTypeFilter;
+import org.springframework.stereotype.Component;
 
 import com.espertech.esper.client.Configuration;
 import com.espertech.esper.client.EPAdministrator;
@@ -9,15 +16,17 @@ import com.espertech.esper.client.EPServiceProvider;
 import com.espertech.esper.client.EPServiceProviderManager;
 import com.espertech.esper.client.EPStatement;
 import com.espertech.esper.client.UpdateListener;
-import common.data.DataSource;
 
+import common.data.DataModel;
+import common.data.DataSource;
 import event.processing.engine.ENGINE_TYPE;
 import event.processing.engine.Engine;
 import event.processing.engine.EngineListener;
 
+@Component
 public class EsperEngine extends Engine {
 
-    final static Logger logger = Logger.getLogger(EsperEngine.class);
+    private static final Logger logger = LoggerFactory.getLogger(EsperEngine.class);
 
     private static EPRuntime EP_RUNTIME = null;
 
@@ -31,9 +40,22 @@ public class EsperEngine extends Engine {
     public void initialize() {
 
         Configuration cepConfig = new Configuration();
-
         cepConfig.addEventType("DataSource", DataSource.class.getName());
-        cepConfig.addEventType("DeviceInformationAgg", DeviceInformationAgg.class.getName());
+
+        ClassPathScanningCandidateComponentProvider provider = new ClassPathScanningCandidateComponentProvider(true);
+        provider.addIncludeFilter(new AssignableTypeFilter(DataModel.class));
+
+        Set<BeanDefinition> components = provider.findCandidateComponents("common/data");
+        for (BeanDefinition component : components) {
+            try {
+                Class<?> cls = Class.forName(component.getBeanClassName());
+                cepConfig.addEventType(cls.getSimpleName(), cls);
+                logger.info("Adding event type. EventTypeName: {}, Class: {}", cls.getSimpleName(), cls.getName());
+            } catch (Exception e) {
+                logger.error("Error adding event type.");
+            }
+
+        }
 
         EP_SP = EPServiceProviderManager.getProvider(getType().getDescription(), cepConfig);
 
@@ -71,4 +93,5 @@ public class EsperEngine extends Engine {
     public EPServiceProvider getCep() {
         return EP_SP;
     }
+
 }

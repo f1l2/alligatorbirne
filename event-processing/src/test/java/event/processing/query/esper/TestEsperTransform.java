@@ -1,19 +1,22 @@
-package event.processing.query.engine.transform;
+package event.processing.query.esper;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import event.processing.AbstractTestEP;
-import event.processing.engine.EngineListener;
+import event.processing.Application;
 import event.processing.engine.impl.EsperEngineListener;
 import event.processing.query.Query;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(classes = Application.class)
 public class TestEsperTransform extends AbstractTestEP {
 
     final static Logger logger = LoggerFactory.getLogger(TestEsperTransform.class);
-
-    private EngineListener engineListener;
 
     @Test
     public void testEsperEngine1() {
@@ -85,14 +88,12 @@ public class TestEsperTransform extends AbstractTestEP {
 
         String eql = queryTransformer.transform(query);
 
-        logger.info(String.format("Generated EQL: %s", eql));
-
-        // engine.registerQuery(eql, null);
+        engine.registerQuery(eql, null);
     }
 
     private void test(String eql) {
 
-        engine.registerQuery(eql, engineListener);
+        engine.registerQuery(eql, listener);
         delay(1000);
 
         sendEventAndWait(dataSource1, 1000);
