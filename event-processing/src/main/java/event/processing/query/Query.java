@@ -1,5 +1,8 @@
 package event.processing.query;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Query {
 
     /**
@@ -163,12 +166,22 @@ public class Query {
 
     private Condition condition;
 
+    private List<String> domains = new ArrayList<String>();
+
     public Condition getCondition() {
         return condition;
     }
 
     public void setCondition(Condition condition) {
         this.condition = condition;
+    }
+
+    public List<String> getDomains() {
+        return domains;
+    }
+
+    public void setDomains(List<String> domains) {
+        this.domains = domains;
     }
 
 }

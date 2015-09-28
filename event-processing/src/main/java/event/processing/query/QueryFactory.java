@@ -9,11 +9,14 @@ import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
 import org.springframework.stereotype.Component;
 
+import event.processing.query.Query.AGGREGATOR;
 import event.processing.query.Query.LOGIC_SYMBOL;
 import event.processing.query.Query.OPERATOR;
 import event.processing.query.language.QueryBaseListener;
 import event.processing.query.language.QueryLexer;
 import event.processing.query.language.QueryParser;
+import event.processing.query.language.QueryParser.AggregateFunctionContext;
+import event.processing.query.language.QueryParser.AggregateOperationContext;
 import event.processing.query.language.QueryParser.EvaluationContext;
 import event.processing.query.language.QueryParser.OperatorContext;
 import event.processing.query.language.QueryParser.PropertyContext;
@@ -66,31 +69,49 @@ public class QueryFactory {
             @Override
             public void exitCompositeOperationSingleDigit(QueryParser.CompositeOperationSingleDigitContext ctx) {
 
-                CompositeCondition compositeCondition = new CompositeCondition();
-                compositeCondition.setEvaluation1(getEvaluation(ctx.getChild(QueryParser.EvaluationContext.class, 0)));
+                CompositeCondition condition = new CompositeCondition();
+                condition.setEvaluation1(getEvaluation(ctx.getChild(QueryParser.EvaluationContext.class, 0)));
 
                 String compositeFunction = ctx.getChild(QueryParser.CompositeFunctionDoubleDigitContext.class, 0).getText();
-                compositeCondition.setCompositeFunction(LOGIC_SYMBOL.findBySign(compositeFunction.toUpperCase()));
+                condition.setCompositeFunction(LOGIC_SYMBOL.findBySign(compositeFunction.toUpperCase()));
 
-                query.setCondition(compositeCondition);
+                query.setCondition(condition);
             }
 
             @Override
             public void exitCompositeOperationDoubleDigit(QueryParser.CompositeOperationDoubleDigitContext ctx) {
 
-                CompositeCondition compositeCondition = new CompositeCondition();
-                compositeCondition.setEvaluation1(getEvaluation(ctx.getChild(QueryParser.EvaluationContext.class, 0)));
-                compositeCondition.setEvaluation2(getEvaluation(ctx.getChild(QueryParser.EvaluationContext.class, 1)));
+                CompositeCondition condition = new CompositeCondition();
+                condition.setEvaluation1(getEvaluation(ctx.getChild(QueryParser.EvaluationContext.class, 0)));
+                condition.setEvaluation2(getEvaluation(ctx.getChild(QueryParser.EvaluationContext.class, 1)));
 
                 String compositeFunction = ctx.getChild(QueryParser.CompositeFunctionDoubleDigitContext.class, 0).getText();
-                compositeCondition.setCompositeFunction(LOGIC_SYMBOL.findBySign(compositeFunction.toUpperCase()));
+                condition.setCompositeFunction(LOGIC_SYMBOL.findBySign(compositeFunction.toUpperCase()));
 
-                query.setCondition(compositeCondition);
+                query.setCondition(condition);
             }
 
             @Override
             public void exitAggregateCondition(QueryParser.AggregateConditionContext ctx) {
 
+                AggregateCondition condition = new AggregateCondition();
+                condition.setAggregateCondition(ctx.getText());
+
+                AggregateOperationContext aggregateOperationContext = ctx.getChild(QueryParser.AggregateOperationContext.class, 0);
+                condition.setAggregateOperation(aggregateOperationContext.getText());
+
+                OperatorContext operatorContext = aggregateOperationContext.getChild(QueryParser.OperatorContext.class, 0);
+                condition.setOperator(OPERATOR.findBySign(operatorContext.getText()));
+
+                AggregateFunctionContext aggregateFunctionContext = aggregateOperationContext.getChild(QueryParser.AggregateFunctionContext.class, 0);
+                condition.setAggregator(AGGREGATOR.findBySign(aggregateFunctionContext.getText().toUpperCase()));
+
+                query.setCondition(condition);
+            }
+
+            @Override
+            public void exitDomainName(QueryParser.DomainNameContext ctx) {
+                query.getDomains().add(ctx.getText());
             }
 
         });

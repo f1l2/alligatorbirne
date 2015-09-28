@@ -1,10 +1,12 @@
 package event.processing.engine.impl;
 
 import java.io.IOException;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import event.processing.engine.QueryTransformer;
@@ -20,7 +22,7 @@ public class EsperQueryTransformer extends QueryTransformer {
 
     private static final Logger logger = LoggerFactory.getLogger(EsperQueryTransformer.class);
 
-    private String eql = new String("select d.deviceInformation as device, d.domainInformation as domain from DataSource as d where [where_condition] [where_domainInformation]");
+    private String eql = new String("select d.deviceInformation as device, d.domainInformation as domain from DataSource as d where [where_condition] [where_domain]");
 
     @Override
     public String transform(String in) {
@@ -33,8 +35,6 @@ public class EsperQueryTransformer extends QueryTransformer {
             Query query = queryFactory.parse(in);
 
             if (null != query.getCondition()) {
-
-                String where_condition;
 
                 if (query.getCondition() instanceof SingleCondition) {
 
@@ -61,6 +61,15 @@ public class EsperQueryTransformer extends QueryTransformer {
 
                     AggregateCondition aggregateCondition = (AggregateCondition) query.getCondition();
 
+                }
+
+                if (!CollectionUtils.isEmpty(query.getDomains())) {
+                    StringBuilder sb = new StringBuilder();
+                    sb.append("AND ");
+                    sb.append("( ");
+                    sb.append(query.getDomains().stream().map(item -> "d.domainInformation.name = '".concat(item).concat("'")).collect(Collectors.joining(" AND ")));
+                    sb.append(" )");
+                    eql = eql.replace("[where_domain]", sb.toString());
                 }
             }
 
@@ -101,6 +110,6 @@ public class EsperQueryTransformer extends QueryTransformer {
     private void removeUnused() {
 
         eql = StringUtils.replace(eql, "[where_condition]", "");
-        eql = StringUtils.replace(eql, "[where_domainInformation]", "");
+        eql = StringUtils.replace(eql, "[where_domain]", "");
     }
 }

@@ -56,7 +56,7 @@ public class TestEsperTransform extends AbstractTestEP {
          * CONDITION property >= 10 FROM name_of_domain
          */
 
-        query = Query.KEYWORD.CONDITION.getKeyword() + " id " + Query.OPERATOR.IS_GREATER + " 10 " + Query.KEYWORD.FROM.getKeyword() + " name_of_domain";
+        query = Query.KEYWORD.CONDITION.getKeyword() + " id " + Query.OPERATOR.IS_GREATER.getSign() + " 10 " + Query.KEYWORD.FROM.getKeyword() + " name_of_domain";
 
         assertEquals("", "");
 
