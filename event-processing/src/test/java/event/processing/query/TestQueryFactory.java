@@ -98,6 +98,19 @@ public class TestQueryFactory {
     }
 
     @Test
+    public void testCondition7() throws Exception {
+
+        input = "CONDITION property = 23 AND 'abc' = 21 AND 12 = 12 AND 12 = 12 FROM Domain";
+        query = test(input);
+
+        assertNotNull(query);
+        assertTrue(query.getCondition() instanceof CompositeCondition);
+        assertEquals("property = 23", ((CompositeCondition) query.getCondition()).getEvaluation1().generate());
+        assertEquals("'abc' = 21", ((CompositeCondition) query.getCondition()).getEvaluation2().generate());
+
+    }
+
+    @Test
     public void testOperator1() throws Exception {
         input = Query.KEYWORD.CONDITION.getKeyword() + " 21 " + COMPARE_FUNCTION.EQUAL.getFunction() + " 14 " + Query.KEYWORD.FROM.getKeyword() + " Domain";
         query = test(input);
@@ -154,13 +167,13 @@ public class TestQueryFactory {
 
     @Test
     public void testWindows1() throws Exception {
-        input = Query.KEYWORD.CONDITION.getKeyword() + " 21 = 79 " + Query.KEYWORD.FROM.getKeyword() + " Domain " + Query.KEYWORD.WIN.getKeyword() + Query.KEYWORD.TIME.getKeyword() + "(10)";
+        input = Query.KEYWORD.CONDITION.getKeyword() + " 21 = 79 " + Query.KEYWORD.FROM.getKeyword() + " Domain " + Query.KEYWORD.WIN.getKeyword() + "." + Query.KEYWORD.TIME.getKeyword() + "(10)";
         query = test(input);
     }
 
     @Test
     public void testWindows2() throws Exception {
-        input = Query.KEYWORD.CONDITION.getKeyword() + " 21 = 79 " + Query.KEYWORD.FROM.getKeyword() + " Domain " + Query.KEYWORD.WIN.getKeyword() + Query.KEYWORD.LENGTH.getKeyword() + "(10)";
+        input = Query.KEYWORD.CONDITION.getKeyword() + " 21 = 79 " + Query.KEYWORD.FROM.getKeyword() + " Domain " + Query.KEYWORD.WIN.getKeyword() + "." + Query.KEYWORD.LENGTH.getKeyword() + "(10)";
         query = test(input);
     }
 

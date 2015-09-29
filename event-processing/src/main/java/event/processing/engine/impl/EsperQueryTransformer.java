@@ -22,18 +22,18 @@ public class EsperQueryTransformer extends QueryTransformer {
 
     private static final Logger logger = LoggerFactory.getLogger(EsperQueryTransformer.class);
 
-    private static final String eqlPattern = "select d.deviceInformation as device, d.domainInformation as domain from DataSource as d where [where_condition] [where_domain]";
+    private static final String EQL_PATTERN = "select d.deviceInformation as device, d.domainInformation as domain from DataSource as d where [where_condition] [where_domain]";
 
     private String eql;
 
-    // private static String eql_insert = new String("insert into AggregatedValue select [aggregate_operation] as value, [id] as id from DataSource as d");
+    private static final String eql_insert = new String("insert into AggregatedValue select [aggregate_operation] as value, [id] as id from DataSource as d");
 
-    // private static String eql_select = new String("select * from AggregatedValue where value > 5 and id = 12");
+    private static String eql_select = new String("select * from AggregatedValue where value > 5 and id = 12");
 
     @Override
     public String transform(Query query) {
 
-        eql = new String(eqlPattern);
+        eql = new String(EQL_PATTERN);
 
         if (null == query) {
             return eql;

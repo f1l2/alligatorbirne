@@ -13,7 +13,7 @@ public class Query {
         //
         FROM("FROM"),
         //
-        WIN("WIN."),
+        WIN("WIN"),
         //
         TIME("TIME"),
         //

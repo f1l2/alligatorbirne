@@ -40,6 +40,8 @@ public class QueryFactory {
 
         queryParser.addParseListener(new QueryBaseListener() {
 
+            CompositeCondition cc = null;
+
             @Override
             public void exitWindow(QueryParser.WindowContext ctx) {
                 // query.setWindow(ctx.getText());
@@ -62,8 +64,13 @@ public class QueryFactory {
             }
 
             @Override
-            public void exitCompositeCondition(QueryParser.CompositeConditionContext ctx) {
+            public void enterCompositeCondition(QueryParser.CompositeConditionContext ctx) {
 
+            }
+
+            @Override
+            public void exitCompositeCondition(QueryParser.CompositeConditionContext ctx) {
+                System.out.println(ctx.getText());
             }
 
             @Override
@@ -137,4 +144,5 @@ public class QueryFactory {
 
         return evaluation;
     }
+
 }

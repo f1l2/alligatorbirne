@@ -4,6 +4,8 @@ import event.processing.query.Query.LOGIC_FUNCTION;
 
 public class CompositeCondition extends Condition {
 
+    private CompositeCondition parent = null;
+
     private LOGIC_FUNCTION compositeFunction;
 
     private String compositeCondition = null;
@@ -67,6 +69,14 @@ public class CompositeCondition extends Condition {
 
         return sb.toString();
 
+    }
+
+    public CompositeCondition getParent() {
+        return parent;
+    }
+
+    public void setParent(CompositeCondition parent) {
+        this.parent = parent;
     }
 
 }
