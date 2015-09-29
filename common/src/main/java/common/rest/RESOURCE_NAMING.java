@@ -1,6 +1,5 @@
 package common.rest;
 
-
 public enum RESOURCE_NAMING {
 
     IDEV_GET_ALL_CONFIGURATION("/configurations", RequestMethod.GET),
@@ -25,7 +24,15 @@ public enum RESOURCE_NAMING {
     //
     CMGMT_DELEGATION("/delegation/{id}", RequestMethod.POST),
     //
-    EPROCESSING_SEND("/send", RequestMethod.POST);
+    EPROCESSING_SEND("/send", RequestMethod.POST),
+    //
+    EPROCESSING_REGISTRATION_QUERY("/registration/query", RequestMethod.POST),
+    //
+    EPROCESSING_UNREGISTRATION_QUERY("/unregistration/query", RequestMethod.POST),
+    //
+    EPROCESSING_REGISTRATION_RULE("/registration/rule", RequestMethod.POST),
+    //
+    EPROCESSING_UNREGISTRATION_RULE("/unregistration/rule", RequestMethod.POST);
 
     private String path;
 
