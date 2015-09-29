@@ -22,73 +22,86 @@ public class EsperQueryTransformer extends QueryTransformer {
 
     private static final Logger logger = LoggerFactory.getLogger(EsperQueryTransformer.class);
 
-    private String eql = new String("select d.deviceInformation as device, d.domainInformation as domain from DataSource as d where [where_condition] [where_domain]");
+    private static final String eqlPattern = "select d.deviceInformation as device, d.domainInformation as domain from DataSource as d where [where_condition] [where_domain]";
+
+    private String eql;
+
+    // private static String eql_insert = new String("insert into AggregatedValue select [aggregate_operation] as value, [id] as id from DataSource as d");
+
+    // private static String eql_select = new String("select * from AggregatedValue where value > 5 and id = 12");
+
+    @Override
+    public String transform(Query query) {
+
+        eql = new String(eqlPattern);
+
+        if (null == query) {
+            return eql;
+        }
+
+        if (null != query.getCondition()) {
+
+            if (query.getCondition() instanceof SingleCondition) {
+
+                SingleCondition condition = (SingleCondition) query.getCondition();
+
+                check(condition.getEvaluation());
+
+                eql = eql.replace("[where_condition]", condition.getEvaluation().generate());
+
+            } else if (query.getCondition() instanceof CompositeCondition) {
+
+                CompositeCondition condition = (CompositeCondition) query.getCondition();
+
+                if (condition.getCompositeFunction().getNumberOperand() == 1) {
+                    check(condition.getEvaluation1());
+                } else if (condition.getCompositeFunction().getNumberOperand() == 2) {
+                    check(condition.getEvaluation1());
+                    check(condition.getEvaluation2());
+                }
+
+                eql = eql.replace("[where_condition]", condition.generate());
+
+            } else if (query.getCondition() instanceof AggregateCondition) {
+
+                AggregateCondition aggregateCondition = (AggregateCondition) query.getCondition();
+                // TODO
+            }
+        }
+
+        if (!CollectionUtils.isEmpty(query.getDomains())) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("AND ");
+            sb.append("( ");
+            sb.append(query.getDomains().stream().map(item -> "d.domainInformation.name = '".concat(item).concat("'")).collect(Collectors.joining(" AND ")));
+            sb.append(" )");
+            eql = eql.replace("[where_domain]", sb.toString());
+        }
+
+        removeUnused();
+
+        logger.debug("Query transformation finished.");
+        logger.info("Generated EQL: {}", eql);
+
+        return eql;
+    }
 
     @Override
     public String transform(String in) {
 
-        logger.debug("Start query transformation. Input: {}", in);
+        logger.info("Start query transformation. Input: {}", in);
 
-        QueryFactory queryFactory = new QueryFactory();
+        Query query = null;
 
         try {
-            Query query = queryFactory.parse(in);
+            QueryFactory queryFactory = new QueryFactory();
+            query = queryFactory.parse(in);
 
-            if (null != query.getCondition()) {
-
-                if (query.getCondition() instanceof SingleCondition) {
-
-                    SingleCondition condition = (SingleCondition) query.getCondition();
-
-                    check(condition.getEvaluation());
-
-                    eql = eql.replace("[where_condition]", condition.getEvaluation().generate());
-
-                } else if (query.getCondition() instanceof CompositeCondition) {
-
-                    CompositeCondition condition = (CompositeCondition) query.getCondition();
-
-                    if (condition.getCompositeFunction().getNumberOperand() == 1) {
-                        check(condition.getEvaluation1());
-                    } else if (condition.getCompositeFunction().getNumberOperand() == 2) {
-                        check(condition.getEvaluation1());
-                        check(condition.getEvaluation2());
-                    }
-
-                    eql = eql.replace("[where_condition]", condition.generate());
-
-                } else if (query.getCondition() instanceof AggregateCondition) {
-
-                    AggregateCondition aggregateCondition = (AggregateCondition) query.getCondition();
-
-                }
-
-                if (!CollectionUtils.isEmpty(query.getDomains())) {
-                    StringBuilder sb = new StringBuilder();
-                    sb.append("AND ");
-                    sb.append("( ");
-                    sb.append(query.getDomains().stream().map(item -> "d.domainInformation.name = '".concat(item).concat("'")).collect(Collectors.joining(" AND ")));
-                    sb.append(" )");
-                    eql = eql.replace("[where_domain]", sb.toString());
-                }
-            }
-
-            removeUnused();
-
-            logger.debug("Query transformation finished.");
-            logger.info("Generated EQL: {}", eql);
-
-            return eql;
-
-        } catch (
-
-        IOException e)
-
-        {
-            logger.error("Error transforming query to eql.2", e);
+        } catch (IOException e) {
+            logger.error("Error parsing query.", e);
         }
 
-        return null;
+        return transform(query);
 
     }
 

@@ -1,5 +1,7 @@
 package event.processing;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -24,13 +26,19 @@ public abstract class AbstractTestEP {
 
     protected QueryTransformer queryTransformer;
 
-    protected DataSource dataSource1, dataSource2, dataSource3;
+    protected DataSource ds1, ds2, ds3;
+
+    protected int cntFiredEvents;
+
+    protected static final int DEFAULT_DELAY_MS = 100;
 
     @Before
     public void before() {
-        dataSource1 = generateTestDataSource("device1", "domain1");
-        dataSource2 = generateTestDataSource("device2", "domain2");
-        dataSource3 = generateTestDataSource("device3", "domain3");
+        ds1 = generateTestDataSource(1l, "device1", 1l, "domain1");
+        ds2 = generateTestDataSource(2l, "device2", 2l, "domain2");
+        ds3 = generateTestDataSource(3l, "device3", 1l, "domain1");
+
+        cntFiredEvents = 0;
 
         engine = factory.getEngine();
         queryTransformer = factory.getQueryTransformer();
@@ -51,14 +59,26 @@ public abstract class AbstractTestEP {
         }
     }
 
-    private DataSource generateTestDataSource(String deviceName, String domainName) {
+    private DataSource generateTestDataSource(Long deviceId, String deviceName, Long domainId, String domainName) {
 
         DeviceInformation device = new DeviceInformation();
         device.setName(deviceName);
+        device.setId(deviceId);
 
         DomainInformation domain = new DomainInformation();
         domain.setName(domainName);
+        domain.setId(domainId);
 
         return new DataSource(domain, device);
+    }
+
+    protected void sendEventAndWait(DataSource[] dataSources, int[] expectedFiredEvents) {
+
+        for (int i = 0; i < dataSources.length; i++) {
+            sendEventAndWait(dataSources[i], DEFAULT_DELAY_MS);
+
+            assertEquals(expectedFiredEvents[i], cntFiredEvents);
+        }
+
     }
 }

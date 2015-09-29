@@ -1,10 +1,10 @@
 package event.processing.query;
 
-import event.processing.query.Query.OPERATOR;
+import event.processing.query.Query.COMPARE_FUNCTION;
 
 public class Evaluation {
 
-    private OPERATOR operator;
+    private COMPARE_FUNCTION operator;
 
     private String evaluation;
 
@@ -36,11 +36,11 @@ public class Evaluation {
         this.property2 = property2;
     }
 
-    public OPERATOR getOperator() {
+    public COMPARE_FUNCTION getOperator() {
         return operator;
     }
 
-    public void setOperator(OPERATOR operator) {
+    public void setOperator(COMPARE_FUNCTION operator) {
         this.operator = operator;
     }
 
@@ -48,7 +48,7 @@ public class Evaluation {
         StringBuilder sb = new StringBuilder();
         sb.append(property1);
         sb.append(" ");
-        sb.append(operator.getSign());
+        sb.append(operator.getFunction());
         sb.append(" ");
         sb.append(property2);
 

@@ -9,9 +9,9 @@ import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
 import org.springframework.stereotype.Component;
 
-import event.processing.query.Query.AGGREGATOR;
-import event.processing.query.Query.LOGIC_SYMBOL;
-import event.processing.query.Query.OPERATOR;
+import event.processing.query.Query.AGGREGATION_FUNCTION;
+import event.processing.query.Query.COMPARE_FUNCTION;
+import event.processing.query.Query.LOGIC_FUNCTION;
 import event.processing.query.language.QueryBaseListener;
 import event.processing.query.language.QueryLexer;
 import event.processing.query.language.QueryParser;
@@ -72,8 +72,8 @@ public class QueryFactory {
                 CompositeCondition condition = new CompositeCondition();
                 condition.setEvaluation1(getEvaluation(ctx.getChild(QueryParser.EvaluationContext.class, 0)));
 
-                String compositeFunction = ctx.getChild(QueryParser.CompositeFunctionDoubleDigitContext.class, 0).getText();
-                condition.setCompositeFunction(LOGIC_SYMBOL.findBySign(compositeFunction.toUpperCase()));
+                String compositeFunction = ctx.getChild(QueryParser.CompositeFunctionSingleDigitContext.class, 0).getText();
+                condition.setCompositeFunction(LOGIC_FUNCTION.findByFunction(compositeFunction.toUpperCase()));
 
                 query.setCondition(condition);
             }
@@ -86,7 +86,7 @@ public class QueryFactory {
                 condition.setEvaluation2(getEvaluation(ctx.getChild(QueryParser.EvaluationContext.class, 1)));
 
                 String compositeFunction = ctx.getChild(QueryParser.CompositeFunctionDoubleDigitContext.class, 0).getText();
-                condition.setCompositeFunction(LOGIC_SYMBOL.findBySign(compositeFunction.toUpperCase()));
+                condition.setCompositeFunction(LOGIC_FUNCTION.findByFunction(compositeFunction.toUpperCase()));
 
                 query.setCondition(condition);
             }
@@ -100,11 +100,11 @@ public class QueryFactory {
                 AggregateOperationContext aggregateOperationContext = ctx.getChild(QueryParser.AggregateOperationContext.class, 0);
                 condition.setAggregateOperation(aggregateOperationContext.getText());
 
-                OperatorContext operatorContext = aggregateOperationContext.getChild(QueryParser.OperatorContext.class, 0);
-                condition.setOperator(OPERATOR.findBySign(operatorContext.getText()));
+                OperatorContext operatorContext = ctx.getChild(QueryParser.OperatorContext.class, 0);
+                condition.setOperator(COMPARE_FUNCTION.findByFunction(operatorContext.getText()));
 
                 AggregateFunctionContext aggregateFunctionContext = aggregateOperationContext.getChild(QueryParser.AggregateFunctionContext.class, 0);
-                condition.setAggregator(AGGREGATOR.findBySign(aggregateFunctionContext.getText().toUpperCase()));
+                condition.setAggregator(AGGREGATION_FUNCTION.findByFunction(aggregateFunctionContext.getText().toUpperCase()));
 
                 query.setCondition(condition);
             }
@@ -133,7 +133,7 @@ public class QueryFactory {
         evaluation.setEvaluation(ctx.getText());
         evaluation.setProperty1(propertyContext1.getText());
         evaluation.setProperty2(propertyContext2.getText());
-        evaluation.setOperator(OPERATOR.findBySign(operatorContext.getText()));
+        evaluation.setOperator(COMPARE_FUNCTION.findByFunction(operatorContext.getText()));
 
         return evaluation;
     }

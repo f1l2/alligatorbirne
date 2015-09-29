@@ -7,8 +7,6 @@ public class Query {
 
     /**
      * Enum Keywords
-     * 
-     *
      */
     public static enum KEYWORD {
         CONDITION("CONDITION"),
@@ -37,44 +35,43 @@ public class Query {
     }
 
     /**
-     * Keyword Logic Symbols
-     *
+     * Enum Logic Fucntions
      */
-    public static enum LOGIC_SYMBOL {
+    public static enum LOGIC_FUNCTION {
         AND("AND", 2),
         //
         OR("OR", 2),
         //
         NOT("NOT", 1);
 
-        private String symbol;
+        private String function;
 
-        private int numberOperand;
+        private int numberOperands;
 
-        LOGIC_SYMBOL(String symbol, int numberOperand) {
-            this.setSymbol(symbol);
-            this.setNumberOperand(numberOperand);
+        LOGIC_FUNCTION(String symbol, int numberOperands) {
+            this.setFunction(symbol);
+            this.setNumberOperand(numberOperands);
         }
 
-        public String getSymbol() {
-            return symbol;
+        public String getFunction() {
+            return function;
         }
 
-        public void setSymbol(String symbol) {
-            this.symbol = symbol;
+        public void setFunction(String function) {
+            this.function = function;
         }
 
         public int getNumberOperand() {
-            return numberOperand;
+            return numberOperands;
         }
 
         public void setNumberOperand(int numberOperand) {
-            this.numberOperand = numberOperand;
+            this.numberOperands = numberOperand;
         }
 
-        public static LOGIC_SYMBOL findBySign(String sign) {
-            for (LOGIC_SYMBOL item : LOGIC_SYMBOL.values()) {
-                if (item.getSymbol().equals(sign)) {
+        public static LOGIC_FUNCTION findByFunction(String function) {
+            for (LOGIC_FUNCTION item : LOGIC_FUNCTION.values()) {
+                if (item.getFunction().equals(function)) {
                     return item;
                 }
             }
@@ -83,10 +80,9 @@ public class Query {
     }
 
     /**
-     * Enum Aggregator
+     * Enum Aggregation Functions
      */
-
-    public static enum AGGREGATOR {
+    public static enum AGGREGATION_FUNCTION {
         SUM("SUM"),
         //
         AVG("AVG"),
@@ -95,27 +91,25 @@ public class Query {
         //
         MAX("MAX"),
         //
-        MIN("<=");
+        MIN("MIN");
 
-        private String sign;
+        private String function;
 
-        AGGREGATOR(String sign) {
-
-            this.setSign(sign);
-
+        AGGREGATION_FUNCTION(String function) {
+            this.setFunction(function);
         }
 
-        public String getSign() {
-            return sign;
+        public String getFunction() {
+            return function;
         }
 
-        public void setSign(String sign) {
-            this.sign = sign;
+        public void setFunction(String function) {
+            this.function = function;
         }
 
-        public static AGGREGATOR findBySign(String sign) {
-            for (AGGREGATOR item : AGGREGATOR.values()) {
-                if (item.getSign().equals(sign)) {
+        public static AGGREGATION_FUNCTION findByFunction(String function) {
+            for (AGGREGATION_FUNCTION item : AGGREGATION_FUNCTION.values()) {
+                if (item.getFunction().equals(function)) {
                     return item;
                 }
             }
@@ -124,10 +118,10 @@ public class Query {
     }
 
     /**
-     * Enum LOGIC_SYMBOL
+     * Enum Compare Functions
      */
+    public static enum COMPARE_FUNCTION {
 
-    public static enum OPERATOR {
         EQUAL("="),
         //
         IS_GREATER(">"),
@@ -138,25 +132,23 @@ public class Query {
         //
         IS_SMALLER_OR_EQUAL("<=");
 
-        private String sign;
+        private String function;
 
-        OPERATOR(String sign) {
-
-            this.setSign(sign);
-
+        COMPARE_FUNCTION(String function) {
+            this.setFunction(function);
         }
 
-        public String getSign() {
-            return sign;
+        public String getFunction() {
+            return function;
         }
 
-        public void setSign(String sign) {
-            this.sign = sign;
+        public void setFunction(String function) {
+            this.function = function;
         }
 
-        public static OPERATOR findBySign(String sign) {
-            for (OPERATOR item : OPERATOR.values()) {
-                if (item.getSign().equals(sign)) {
+        public static COMPARE_FUNCTION findByFunction(String function) {
+            for (COMPARE_FUNCTION item : COMPARE_FUNCTION.values()) {
+                if (item.getFunction().equals(function)) {
                     return item;
                 }
             }

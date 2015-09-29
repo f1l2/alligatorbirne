@@ -6,15 +6,15 @@ public class QueryLogicLink {
 
     private String logicLink;
 
-    private Query.LOGIC_SYMBOL symbol;
+    private Query.LOGIC_FUNCTION symbol;
 
     private List<String> compares;
 
-    public Query.LOGIC_SYMBOL getSymbol() {
+    public Query.LOGIC_FUNCTION getSymbol() {
         return symbol;
     }
 
-    public void setSymbol(Query.LOGIC_SYMBOL symbol) {
+    public void setSymbol(Query.LOGIC_FUNCTION symbol) {
         this.symbol = symbol;
     }
 

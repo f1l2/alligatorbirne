@@ -1,10 +1,10 @@
 package event.processing.query;
 
-import event.processing.query.Query.LOGIC_SYMBOL;
+import event.processing.query.Query.LOGIC_FUNCTION;
 
 public class CompositeCondition extends Condition {
 
-    private LOGIC_SYMBOL compositeFunction;
+    private LOGIC_FUNCTION compositeFunction;
 
     private String compositeCondition = null;
 
@@ -12,11 +12,11 @@ public class CompositeCondition extends Condition {
 
     private Evaluation evaluation2 = new Evaluation();
 
-    public LOGIC_SYMBOL getCompositeFunction() {
+    public LOGIC_FUNCTION getCompositeFunction() {
         return compositeFunction;
     }
 
-    public void setCompositeFunction(LOGIC_SYMBOL compositeFunction) {
+    public void setCompositeFunction(LOGIC_FUNCTION compositeFunction) {
         this.compositeFunction = compositeFunction;
     }
 
@@ -49,7 +49,7 @@ public class CompositeCondition extends Condition {
         StringBuilder sb = new StringBuilder();
 
         if (compositeFunction.getNumberOperand() == 1) {
-            sb.append(compositeFunction.getSymbol());
+            sb.append(compositeFunction.getFunction());
             sb.append("(");
             sb.append(evaluation1.generate());
             sb.append(")");
@@ -58,7 +58,7 @@ public class CompositeCondition extends Condition {
             sb.append(evaluation1.generate());
             sb.append(")");
             sb.append(" ");
-            sb.append(compositeFunction.getSymbol());
+            sb.append(compositeFunction.getFunction());
             sb.append(" ");
             sb.append("(");
             sb.append(evaluation2.generate());

@@ -13,4 +13,12 @@ public class AggregatedValue {
     public void setValue(long value) {
         this.value = value;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 }

@@ -1,31 +1,31 @@
 package event.processing.query;
 
-import event.processing.query.Query.AGGREGATOR;
-import event.processing.query.Query.OPERATOR;
+import event.processing.query.Query.AGGREGATION_FUNCTION;
+import event.processing.query.Query.COMPARE_FUNCTION;
 
 public class AggregateCondition extends Condition {
 
-    private OPERATOR operator;
+    private COMPARE_FUNCTION operator;
 
-    private AGGREGATOR aggregator;
+    private AGGREGATION_FUNCTION aggregator;
 
     private String aggregateCondition;
 
     private String aggregateOperation;
 
-    public OPERATOR getOperator() {
+    public COMPARE_FUNCTION getOperator() {
         return operator;
     }
 
-    public void setOperator(OPERATOR operator) {
+    public void setOperator(COMPARE_FUNCTION operator) {
         this.operator = operator;
     }
 
-    public AGGREGATOR getAggregator() {
+    public AGGREGATION_FUNCTION getAggregator() {
         return aggregator;
     }
 
-    public void setAggregator(AGGREGATOR aggregator) {
+    public void setAggregator(AGGREGATION_FUNCTION aggregator) {
         this.aggregator = aggregator;
     }
 
