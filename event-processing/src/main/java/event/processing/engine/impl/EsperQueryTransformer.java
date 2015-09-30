@@ -10,19 +10,16 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import event.processing.engine.QueryTransformer;
-import event.processing.query.AggregateCondition;
-import event.processing.query.CompositeCondition;
 import event.processing.query.Evaluation;
 import event.processing.query.Query;
 import event.processing.query.QueryFactory;
-import event.processing.query.SingleCondition;
 
 @Component
 public class EsperQueryTransformer extends QueryTransformer {
 
     private static final Logger logger = LoggerFactory.getLogger(EsperQueryTransformer.class);
 
-    private static final String EQL_PATTERN = "select d.deviceInformation as device, d.domainInformation as domain from DataSource as d where [where_condition] [where_domain]";
+    private static final String EQL_PATTERN = "select * from DataSource as d where [where_condition] [where_domain]";
 
     private String eql;
 
@@ -40,33 +37,7 @@ public class EsperQueryTransformer extends QueryTransformer {
         }
 
         if (null != query.getCondition()) {
-
-            if (query.getCondition() instanceof SingleCondition) {
-
-                SingleCondition condition = (SingleCondition) query.getCondition();
-
-                check(condition.getEvaluation());
-
-                eql = eql.replace("[where_condition]", condition.getEvaluation().generate());
-
-            } else if (query.getCondition() instanceof CompositeCondition) {
-
-                CompositeCondition condition = (CompositeCondition) query.getCondition();
-
-                if (condition.getCompositeFunction().getNumberOperand() == 1) {
-                    check(condition.getEvaluation1());
-                } else if (condition.getCompositeFunction().getNumberOperand() == 2) {
-                    check(condition.getEvaluation1());
-                    check(condition.getEvaluation2());
-                }
-
-                eql = eql.replace("[where_condition]", condition.generate());
-
-            } else if (query.getCondition() instanceof AggregateCondition) {
-
-                AggregateCondition aggregateCondition = (AggregateCondition) query.getCondition();
-                // TODO
-            }
+            eql = eql.replace("[where_condition]", query.getCondition().generateInclPrefix());
         }
 
         if (!CollectionUtils.isEmpty(query.getDomains())) {

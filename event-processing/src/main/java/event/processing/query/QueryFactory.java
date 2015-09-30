@@ -1,6 +1,7 @@
 package event.processing.query;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.BaseErrorListener;
@@ -15,11 +16,16 @@ import event.processing.query.Query.LOGIC_FUNCTION;
 import event.processing.query.language.QueryBaseListener;
 import event.processing.query.language.QueryLexer;
 import event.processing.query.language.QueryParser;
+import event.processing.query.language.QueryParser.AggregateConditionContext;
 import event.processing.query.language.QueryParser.AggregateFunctionContext;
 import event.processing.query.language.QueryParser.AggregateOperationContext;
+import event.processing.query.language.QueryParser.CompositeConditionContext;
+import event.processing.query.language.QueryParser.CompositeOperationDoubleDigitContext;
+import event.processing.query.language.QueryParser.CompositeOperationSingleDigitContext;
 import event.processing.query.language.QueryParser.EvaluationContext;
 import event.processing.query.language.QueryParser.OperatorContext;
 import event.processing.query.language.QueryParser.PropertyContext;
+import event.processing.query.language.QueryParser.SingleConditionContext;
 
 @Component
 public class QueryFactory {
@@ -40,80 +46,102 @@ public class QueryFactory {
 
         queryParser.addParseListener(new QueryBaseListener() {
 
-            CompositeCondition cc = null;
+            HashMap<String, SingleCondition> singleConditions = new HashMap<String, SingleCondition>();
+
+            HashMap<String, CompositeCondition> compositeConditions = new HashMap<String, CompositeCondition>();
 
             @Override
             public void exitWindow(QueryParser.WindowContext ctx) {
-                // query.setWindow(ctx.getText());
-                //
-                // String windowValue = ctx.getText().replace(Query.KEYWORD.WIN.getKeyword(), "");
-                // windowValue = windowValue.replace(Query.KEYWORD.TIME.getKeyword(), "");
-                // windowValue = windowValue.replace(Query.KEYWORD.LENGTH.getKeyword(), "");
-                // windowValue = windowValue.trim();
-                //
-                // query.setWindowValue(windowValue);
+                query.setWindow(ctx.getText());
+            }
+
+            @Override
+            public void exitCondition(QueryParser.ConditionContext ctx) {
+
+                SingleConditionContext singleConditionContext = ctx.getChild(SingleConditionContext.class, 0);
+                CompositeConditionContext compositeConditionContext = ctx.getChild(CompositeConditionContext.class, 0);
+
+                if (null != singleConditionContext) {
+
+                    SingleCondition singleCondition = getSingleCondition(singleConditionContext, singleConditions);
+
+                    query.setCondition(singleCondition);
+
+                } else if (null != compositeConditionContext) {
+
+                    CompositeCondition compositeCondition = getCompositeCondition(compositeConditionContext, compositeConditions);
+
+                    query.setCondition(compositeCondition);
+
+                }
             }
 
             @Override
             public void exitSingleCondition(QueryParser.SingleConditionContext ctx) {
 
-                SingleCondition singleCondition = new SingleCondition();
-                singleCondition.setEvaluation(getEvaluation(ctx.getChild(QueryParser.EvaluationContext.class, 0)));
+                System.out.println("exitSingleCondition: " + ctx.getText());
 
-                query.setCondition(singleCondition);
-            }
+                SingleCondition sc = new SingleCondition();
 
-            @Override
-            public void enterCompositeCondition(QueryParser.CompositeConditionContext ctx) {
+                EvaluationContext evaluationContext = ctx.getChild(QueryParser.EvaluationContext.class, 0);
 
+                if (evaluationContext != null) {
+                    sc.setEvaluation(getEvaluation(ctx.getChild(QueryParser.EvaluationContext.class, 0)));
+                } else {
+                    AggregateConditionContext aCtx = ctx.getChild(QueryParser.AggregateConditionContext.class, 0);
+
+                    AggregateCondition aCondition = new AggregateCondition();
+                    aCondition.setAggregateCondition(aCtx.getText());
+
+                    AggregateOperationContext aggregateOperationContext = aCtx.getChild(QueryParser.AggregateOperationContext.class, 0);
+                    aCondition.setAggregateOperation(aggregateOperationContext.getText());
+
+                    OperatorContext operatorContext = aCtx.getChild(QueryParser.OperatorContext.class, 0);
+                    aCondition.setOperator(COMPARE_FUNCTION.findByFunction(operatorContext.getText()));
+
+                    AggregateFunctionContext aggregateFunctionContext = aggregateOperationContext.getChild(QueryParser.AggregateFunctionContext.class, 0);
+                    aCondition.setAggregator(AGGREGATION_FUNCTION.findByFunction(aggregateFunctionContext.getText().toUpperCase()));
+
+                    sc.setAggregateCondition(aCondition);
+                }
+
+                singleConditions.put(ctx.getText(), sc);
             }
 
             @Override
             public void exitCompositeCondition(QueryParser.CompositeConditionContext ctx) {
-                System.out.println(ctx.getText());
-            }
 
-            @Override
-            public void exitCompositeOperationSingleDigit(QueryParser.CompositeOperationSingleDigitContext ctx) {
+                CompositeCondition cc = new CompositeCondition();
 
-                CompositeCondition condition = new CompositeCondition();
-                condition.setEvaluation1(getEvaluation(ctx.getChild(QueryParser.EvaluationContext.class, 0)));
+                CompositeOperationSingleDigitContext singleDigitContext = ctx.getChild(QueryParser.CompositeOperationSingleDigitContext.class, 0);
+                CompositeOperationDoubleDigitContext doubleDigitContext = ctx.getChild(QueryParser.CompositeOperationDoubleDigitContext.class, 0);
+                SingleConditionContext singleConditionContextSecond = ctx.getChild(QueryParser.SingleConditionContext.class, 0);
 
-                String compositeFunction = ctx.getChild(QueryParser.CompositeFunctionSingleDigitContext.class, 0).getText();
-                condition.setCompositeFunction(LOGIC_FUNCTION.findByFunction(compositeFunction.toUpperCase()));
+                if (singleDigitContext != null) {
 
-                query.setCondition(condition);
-            }
+                    String compositeFunction = singleDigitContext.getChild(QueryParser.CompositeFunctionSingleDigitContext.class, 0).getText();
+                    cc.setCompositeFunction(LOGIC_FUNCTION.findByFunction(compositeFunction.toUpperCase()));
 
-            @Override
-            public void exitCompositeOperationDoubleDigit(QueryParser.CompositeOperationDoubleDigitContext ctx) {
+                    CompositeConditionContext second = singleDigitContext.getChild(QueryParser.CompositeConditionContext.class, 0);
+                    cc.setCc(getCompositeCondition(second, compositeConditions));
 
-                CompositeCondition condition = new CompositeCondition();
-                condition.setEvaluation1(getEvaluation(ctx.getChild(QueryParser.EvaluationContext.class, 0)));
-                condition.setEvaluation2(getEvaluation(ctx.getChild(QueryParser.EvaluationContext.class, 1)));
+                } else if (doubleDigitContext != null) {
 
-                String compositeFunction = ctx.getChild(QueryParser.CompositeFunctionDoubleDigitContext.class, 0).getText();
-                condition.setCompositeFunction(LOGIC_FUNCTION.findByFunction(compositeFunction.toUpperCase()));
+                    String compositeFunction = doubleDigitContext.getChild(QueryParser.CompositeFunctionDoubleDigitContext.class, 0).getText();
+                    cc.setCompositeFunction(LOGIC_FUNCTION.findByFunction(compositeFunction.toUpperCase()));
 
-                query.setCondition(condition);
-            }
+                    SingleConditionContext first = doubleDigitContext.getChild(QueryParser.SingleConditionContext.class, 0);
+                    CompositeConditionContext second = doubleDigitContext.getChild(QueryParser.CompositeConditionContext.class, 0);
 
-            @Override
-            public void exitAggregateCondition(QueryParser.AggregateConditionContext ctx) {
+                    cc.setSc(getSingleCondition(first, singleConditions));
+                    cc.setCc(getCompositeCondition(second, compositeConditions));
 
-                AggregateCondition condition = new AggregateCondition();
-                condition.setAggregateCondition(ctx.getText());
+                } else if (singleConditionContextSecond != null) {
 
-                AggregateOperationContext aggregateOperationContext = ctx.getChild(QueryParser.AggregateOperationContext.class, 0);
-                condition.setAggregateOperation(aggregateOperationContext.getText());
+                    cc.setSc(getSingleCondition(singleConditionContextSecond, singleConditions));
+                }
 
-                OperatorContext operatorContext = ctx.getChild(QueryParser.OperatorContext.class, 0);
-                condition.setOperator(COMPARE_FUNCTION.findByFunction(operatorContext.getText()));
-
-                AggregateFunctionContext aggregateFunctionContext = aggregateOperationContext.getChild(QueryParser.AggregateFunctionContext.class, 0);
-                condition.setAggregator(AGGREGATION_FUNCTION.findByFunction(aggregateFunctionContext.getText().toUpperCase()));
-
-                query.setCondition(condition);
+                compositeConditions.put(ctx.getText(), cc);
             }
 
             @Override
@@ -143,6 +171,45 @@ public class QueryFactory {
         evaluation.setOperator(COMPARE_FUNCTION.findByFunction(operatorContext.getText()));
 
         return evaluation;
+    }
+
+    // private CompositeCondition getLeave(Condition cc) {
+    //
+    // if (cc instanceof SingleCondition) {
+    // return null;
+    // }
+    //
+    // if (((CompositeCondition) cc).getChild() == null) {
+    // return ((CompositeCondition) cc);
+    // }
+    // return getLeave(((CompositeCondition) cc).getChild());
+    // }
+
+    // private Condition getLeaveByIdentifier(int identifier, Condition c) {
+    //
+    // if (c.getIdentifier() == identifier) {
+    // return c;
+    // }
+    //
+    // return getLeaveByIdentifier(identifier, ((CompositeCondition) c).getChild());
+    // }
+
+    private SingleCondition getSingleCondition(SingleConditionContext ctx, HashMap<String, SingleCondition> map) {
+
+        if (map.containsKey(ctx.getText())) {
+            return map.get(ctx.getText());
+        }
+
+        return null;
+    }
+
+    private CompositeCondition getCompositeCondition(CompositeConditionContext ctx, HashMap<String, CompositeCondition> map) {
+
+        if (map.containsKey(ctx.getText())) {
+            return map.get(ctx.getText());
+        }
+
+        return null;
     }
 
 }

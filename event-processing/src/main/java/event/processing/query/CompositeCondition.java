@@ -4,15 +4,13 @@ import event.processing.query.Query.LOGIC_FUNCTION;
 
 public class CompositeCondition extends Condition {
 
-    private CompositeCondition parent = null;
-
     private LOGIC_FUNCTION compositeFunction;
 
     private String compositeCondition = null;
 
-    private Evaluation evaluation1 = new Evaluation();
+    private SingleCondition sc = null;
 
-    private Evaluation evaluation2 = new Evaluation();
+    private CompositeCondition cc = null;
 
     public LOGIC_FUNCTION getCompositeFunction() {
         return compositeFunction;
@@ -30,53 +28,72 @@ public class CompositeCondition extends Condition {
         this.compositeCondition = compositeCondition;
     }
 
-    public Evaluation getEvaluation1() {
-        return evaluation1;
-    }
-
-    public void setEvaluation1(Evaluation evaluation1) {
-        this.evaluation1 = evaluation1;
-    }
-
-    public Evaluation getEvaluation2() {
-        return evaluation2;
-    }
-
-    public void setEvaluation2(Evaluation evaluation2) {
-        this.evaluation2 = evaluation2;
-    }
-
     public String generate() {
-
         StringBuilder sb = new StringBuilder();
-
-        if (compositeFunction.getNumberOperand() == 1) {
-            sb.append(compositeFunction.getFunction());
-            sb.append("(");
-            sb.append(evaluation1.generate());
-            sb.append(")");
-        } else if (compositeFunction.getNumberOperand() == 2) {
-            sb.append("(");
-            sb.append(evaluation1.generate());
-            sb.append(")");
-            sb.append(" ");
-            sb.append(compositeFunction.getFunction());
-            sb.append(" ");
-            sb.append("(");
-            sb.append(evaluation2.generate());
-            sb.append(")");
+        if (null != cc) {
+            if (compositeFunction.getNumberOperand() == 1) {
+                sb.append(compositeFunction.getFunction());
+                // sb.append("(");
+                sb.append(cc.generate());
+                // sb.append(")");
+            } else if (compositeFunction.getNumberOperand() == 2) {
+                // sb.append("(");
+                sb.append(sc.generate());
+                // sb.append(")");
+                sb.append(" ");
+                sb.append(compositeFunction.getFunction());
+                sb.append(" ");
+                // sb.append("(");
+                sb.append(cc.generate());
+                // sb.append(")");
+            }
+        } else {
+            return sc.generate();
         }
 
         return sb.toString();
-
     }
 
-    public CompositeCondition getParent() {
-        return parent;
+    public String generateInclPrefix() {
+        StringBuilder sb = new StringBuilder();
+        if (null != cc) {
+            if (compositeFunction.getNumberOperand() == 1) {
+                sb.append(compositeFunction.getFunction());
+                sb.append("(");
+                sb.append(cc.generateInclPrefix());
+                sb.append(")");
+            } else if (compositeFunction.getNumberOperand() == 2) {
+                // sb.append("(");
+                sb.append(sc.generateInclPrefix());
+                // sb.append(")");
+                sb.append(" ");
+                sb.append(compositeFunction.getFunction());
+                sb.append(" ");
+                // sb.append("(");
+                sb.append(cc.generateInclPrefix());
+                // sb.append(")");
+            }
+        } else {
+            return sc.generateInclPrefix();
+        }
+
+        return sb.toString();
     }
 
-    public void setParent(CompositeCondition parent) {
-        this.parent = parent;
+    public SingleCondition getSc() {
+        return sc;
+    }
+
+    public void setSc(SingleCondition sc) {
+        this.sc = sc;
+    }
+
+    public CompositeCondition getCc() {
+        return cc;
+    }
+
+    public void setCc(CompositeCondition sc) {
+        this.cc = sc;
     }
 
 }

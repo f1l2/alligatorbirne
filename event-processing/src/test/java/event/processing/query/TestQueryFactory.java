@@ -34,8 +34,14 @@ public class TestQueryFactory {
 
         assertNotNull(query);
         assertTrue(query.getCondition() instanceof CompositeCondition);
-        assertEquals("property = 23", ((CompositeCondition) query.getCondition()).getEvaluation1().generate());
-        assertEquals("'abc' = 21", ((CompositeCondition) query.getCondition()).getEvaluation2().generate());
+
+        assertEquals("property = 23 AND 'abc' = 21", ((CompositeCondition) query.getCondition()).generate());
+        assertEquals("property = 23", ((CompositeCondition) query.getCondition()).getSc().generate());
+        assertEquals("'abc' = 21", ((CompositeCondition) query.getCondition()).getCc().generate());
+
+        assertEquals(Evaluation.PREFIX + "property = 23 AND 'abc' = 21", ((CompositeCondition) query.getCondition()).generateInclPrefix());
+        assertEquals(Evaluation.PREFIX + "property = 23", ((CompositeCondition) query.getCondition()).getSc().generateInclPrefix());
+        assertEquals("'abc' = 21", ((CompositeCondition) query.getCondition()).getCc().generateInclPrefix());
 
     }
 
@@ -92,7 +98,7 @@ public class TestQueryFactory {
 
         assertNotNull(query);
         assertTrue(query.getCondition() instanceof CompositeCondition);
-        assertEquals("property = 23", ((CompositeCondition) query.getCondition()).getEvaluation1().generate());
+        assertEquals("property = 23", ((CompositeCondition) query.getCondition()).getCc().generate());
         assertEquals(Query.LOGIC_FUNCTION.NOT, ((CompositeCondition) query.getCondition()).getCompositeFunction());
 
     }
@@ -105,9 +111,9 @@ public class TestQueryFactory {
 
         assertNotNull(query);
         assertTrue(query.getCondition() instanceof CompositeCondition);
-        assertEquals("property = 23", ((CompositeCondition) query.getCondition()).getEvaluation1().generate());
-        assertEquals("'abc' = 21", ((CompositeCondition) query.getCondition()).getEvaluation2().generate());
-
+        assertEquals("property = 23", ((CompositeCondition) query.getCondition()).getSc().generate());
+        assertEquals("'abc' = 21", ((CompositeCondition) query.getCondition()).getCc().getSc().generate());
+        assertEquals("12 = 12 AND 12 = 12", ((CompositeCondition) query.getCondition()).getCc().getCc().generate());
     }
 
     @Test
@@ -192,14 +198,6 @@ public class TestQueryFactory {
     public void testAggregate1() throws Exception {
         input = Query.KEYWORD.CONDITION.getKeyword() + " " + Query.AGGREGATION_FUNCTION.SUM.getFunction() + "( abc ) = 79 " + Query.KEYWORD.FROM.getKeyword() + " Domain";
         query = test(input);
-
-        assertNotNull(query);
-        assertTrue(query.getCondition() instanceof AggregateCondition);
-        assertEquals("SUM( abc ) = 79", ((AggregateCondition) query.getCondition()).getAggregateCondition());
-        assertEquals(Query.AGGREGATION_FUNCTION.SUM, ((AggregateCondition) query.getCondition()).getAggregator());
-        assertEquals("SUM( abc )", ((AggregateCondition) query.getCondition()).getAggregateOperation());
-        assertEquals("Domain", query.getDomains().stream().collect(Collectors.joining(",")));
-
     }
 
     private Query test(String query) throws Exception {

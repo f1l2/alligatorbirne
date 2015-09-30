@@ -160,6 +160,8 @@ public class Query {
 
     private List<String> domains = new ArrayList<String>();
 
+    private String window;
+
     public Condition getCondition() {
         return condition;
     }
@@ -174,6 +176,14 @@ public class Query {
 
     public void setDomains(List<String> domains) {
         this.domains = domains;
+    }
+
+    public String getWindow() {
+        return window;
+    }
+
+    public void setWindow(String window) {
+        this.window = window;
     }
 
 }

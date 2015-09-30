@@ -3,7 +3,7 @@ package event.processing.query;
 import event.processing.query.Query.AGGREGATION_FUNCTION;
 import event.processing.query.Query.COMPARE_FUNCTION;
 
-public class AggregateCondition extends Condition {
+public class AggregateCondition {
 
     private COMPARE_FUNCTION operator;
 
@@ -45,8 +45,9 @@ public class AggregateCondition extends Condition {
         this.aggregateOperation = aggregateOperation;
     }
 
-    public void generate() {
+    public String generate() {
 
+        return "";
     }
 
 }

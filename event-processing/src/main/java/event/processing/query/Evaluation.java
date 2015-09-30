@@ -4,6 +4,8 @@ import event.processing.query.Query.COMPARE_FUNCTION;
 
 public class Evaluation {
 
+    public static final String PREFIX = "d.deviceInformation.";
+
     private COMPARE_FUNCTION operator;
 
     private String evaluation;
@@ -54,4 +56,29 @@ public class Evaluation {
 
         return sb.toString();
     }
+
+    public String generateInclPrefix() {
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(addPrefix(property1));
+        sb.append(" ");
+        sb.append(operator.getFunction());
+        sb.append(" ");
+        sb.append(addPrefix(property2));
+
+        return sb.toString();
+    }
+
+    private String addPrefix(String property) {
+        if (isPropertyVariable(property)) {
+            return PREFIX.concat(property);
+        } else {
+            return property;
+        }
+    }
+
+    private Boolean isPropertyVariable(String property) {
+        return !(property.matches("^[0-9]+$") || (property.matches("^'.+'$")));
+    }
+
 }

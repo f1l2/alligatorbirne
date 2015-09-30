@@ -16,17 +16,17 @@ domainName: VARIABLE;
 
 conditions: 'CONDITION' WS condition;
 
-condition: singleCondition | compositeCondition | aggregateCondition;
+condition: singleCondition | compositeCondition;
 
-singleCondition: evaluation;
+singleCondition: evaluation | aggregateCondition;
 
-compositeCondition: compositeOperationSingleDigit | compositeOperationDoubleDigit;
+compositeCondition: compositeOperationSingleDigit | compositeOperationDoubleDigit | singleCondition;
 
-compositeOperationSingleDigit: compositeFunctionSingleDigit WS evaluation;
+compositeOperationSingleDigit: compositeFunctionSingleDigit WS compositeCondition;
 
 compositeFunctionSingleDigit: 'NOT'; 
 
-compositeOperationDoubleDigit: evaluation WS compositeFunctionDoubleDigit WS evaluation;
+compositeOperationDoubleDigit: singleCondition WS compositeFunctionDoubleDigit WS compositeCondition;
 
 compositeFunctionDoubleDigit: ('AND' | 'OR'); 
 
