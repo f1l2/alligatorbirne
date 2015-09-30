@@ -22,11 +22,11 @@ public class RuleParser extends Parser {
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, VARIABLE=8, STRING=9, 
 		INT=10, COMMA=11, WS=12, NL=13;
 	public static final int
-		RULE_rule = 0, RULE_query = 1, RULE_reactions = 2, RULE_reaction = 3, 
+		RULE_structure = 0, RULE_query = 1, RULE_reactions = 2, RULE_reaction = 3, 
 		RULE_deviceInformation = 4, RULE_deviceInformationName = 5, RULE_domainInformation = 6, 
 		RULE_domainInformationName = 7, RULE_configurationModification = 8, RULE_configurationModificationName = 9;
 	public static final String[] ruleNames = {
-		"rule", "query", "reactions", "reaction", "deviceInformation", "deviceInformationName", 
+		"structure", "query", "reactions", "reaction", "deviceInformation", "deviceInformationName", 
 		"domainInformation", "domainInformationName", "configurationModification", 
 		"configurationModificationName"
 	};
@@ -88,7 +88,7 @@ public class RuleParser extends Parser {
 		super(input);
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
-	public static class RuleContext extends ParserRuleContext {
+	public static class StructureContext extends ParserRuleContext {
 		public QueryContext query() {
 			return getRuleContext(QueryContext.class,0);
 		}
@@ -99,23 +99,23 @@ public class RuleParser extends Parser {
 		public ReactionsContext reactions() {
 			return getRuleContext(ReactionsContext.class,0);
 		}
-		public RuleContext(ParserRuleContext parent, int invokingState) {
+		public StructureContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_rule; }
+		@Override public int getRuleIndex() { return RULE_structure; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof RuleListener ) ((RuleListener)listener).enterRule(this);
+			if ( listener instanceof RuleListener ) ((RuleListener)listener).enterStructure(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof RuleListener ) ((RuleListener)listener).exitRule(this);
+			if ( listener instanceof RuleListener ) ((RuleListener)listener).exitStructure(this);
 		}
 	}
 
-	public final RuleContext rule() throws RecognitionException {
-		RuleContext _localctx = new RuleContext(_ctx, getState());
-		enterRule(_localctx, 0, RULE_rule);
+	public final StructureContext structure() throws RecognitionException {
+		StructureContext _localctx = new StructureContext(_ctx, getState());
+		enterRule(_localctx, 0, RULE_structure);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{

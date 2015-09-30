@@ -10,15 +10,15 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface RuleListener extends ParseTreeListener {
 	/**
-	 * Enter a parse tree produced by {@link RuleParser#rule}.
+	 * Enter a parse tree produced by {@link RuleParser#structure}.
 	 * @param ctx the parse tree
 	 */
-	void enterRule(RuleParser.RuleContext ctx);
+	void enterStructure(RuleParser.StructureContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link RuleParser#rule}.
+	 * Exit a parse tree produced by {@link RuleParser#structure}.
 	 * @param ctx the parse tree
 	 */
-	void exitRule(RuleParser.RuleContext ctx);
+	void exitStructure(RuleParser.StructureContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link RuleParser#query}.
 	 * @param ctx the parse tree

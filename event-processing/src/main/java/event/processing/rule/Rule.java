@@ -2,6 +2,8 @@ package event.processing.rule;
 
 import java.util.List;
 
+import event.processing.rule.model.Reaction;
+
 public class Rule {
 
     /**

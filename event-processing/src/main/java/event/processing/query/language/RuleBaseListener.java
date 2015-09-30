@@ -18,13 +18,13 @@ public class RuleBaseListener implements RuleListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRule(RuleParser.RuleContext ctx) { }
+	@Override public void enterStructure(RuleParser.StructureContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRule(RuleParser.RuleContext ctx) { }
+	@Override public void exitStructure(RuleParser.StructureContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

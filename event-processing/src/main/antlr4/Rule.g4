@@ -4,7 +4,7 @@ grammar Rule;
 	package event.processing.query.language;
 }
 
-rule: query WS 'TRIGGERS' WS reactions;
+structure: query WS 'TRIGGERS' WS reactions;
 
 query: VARIABLE;
 

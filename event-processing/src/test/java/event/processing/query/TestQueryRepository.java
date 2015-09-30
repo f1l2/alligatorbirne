@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNotNull;
 import java.io.IOException;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,10 +32,15 @@ public class TestQueryRepository {
     @Before
     public void before() throws IOException {
 
-        String strQuery = Query.KEYWORD.CONDITION.getKeyword() + " DeviceInformation.property = 21 AND x.abc = 21 " + Query.KEYWORD.FROM.getKeyword() + " Domain";
+        String strQuery = Query.KEYWORD.CONDITION.getKeyword() + " property = 21 AND abc = 21 " + Query.KEYWORD.FROM.getKeyword() + " Domain";
         query = qf.parse(strQuery);
 
         repo.save(query);
+    }
+
+    @After
+    public void after() {
+        repo.delete(query);
     }
 
     @Test

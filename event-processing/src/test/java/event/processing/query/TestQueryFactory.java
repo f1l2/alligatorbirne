@@ -189,9 +189,6 @@ public class TestQueryFactory {
     @Test
     public void testWindows2() throws Exception {
         input = Query.KEYWORD.CONDITION.getKeyword() + " 21 = 79 " + Query.KEYWORD.FROM.getKeyword() + " Domain " + Query.KEYWORD.LENGTH.getKeyword() + "(10)";
-
-        System.out.println(input);
-
         query = test(input);
 
         assertNotNull(query);

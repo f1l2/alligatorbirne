@@ -15,6 +15,7 @@ import event.processing.query.language.RuleParser;
 import event.processing.query.language.RuleParser.ConfigurationModificationContext;
 import event.processing.query.language.RuleParser.DeviceInformationContext;
 import event.processing.query.language.RuleParser.DomainInformationContext;
+import event.processing.rule.model.Reaction;
 
 @Component
 public class RuleFactory {
@@ -64,7 +65,7 @@ public class RuleFactory {
             }
         });
 
-        ruleParser.rule();
+        ruleParser.structure();
 
         return rule;
     }

@@ -28,7 +28,7 @@ compositeFunctionSingleDigit: 'NOT';
 
 compositeOperationDoubleDigit: singleCondition WS compositeFunctionDoubleDigit WS compositeCondition;
 
-compositeFunctionDoubleDigit: ('AND' | 'OR'); 
+compositeFunctionDoubleDigit: ('AND' | 'and' | 'OR' | 'or' ); 
 
 aggregateCondition: aggregateFunction WS? '(' WS? variable WS? ')' WS? operator WS? intValue;
 
@@ -44,7 +44,7 @@ intValue: INT;
 
 operator: ('=' | '<' | '>' | '<=' | '>=');
 
-windowType: ('WIN:TIME' | 'WIN:LENGTH');
+windowType: ('WIN:TIME' | 'win:time' | 'WIN:LENGTH' | 'win:length');
 
 VARIABLE: ('A'..'Z' | 'a'..'z') ('A'..'Z' | 'a'..'z' | '0'..'9' | '-' | '_' )+;
 
