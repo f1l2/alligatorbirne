@@ -124,11 +124,11 @@ public class TestEsperTransform extends AbstractTestEP {
     @Test
     public void testEsperEngine3() {
 
-        String query = "insert into AggregatedValue select sum(d.deviceInformation.id) as value[0], 12 as id from DataSource as d where d.deviceInformation.name = 'hallo'";
+        String query = "insert into AggregatedValue select sum(d.deviceInformation.id) as value, 12 as id from DataSource as d where d.deviceInformation.name = 'hallo'";
         String query2 = "select * from AggregatedValue where value > 5 and id = 12";
 
         engine.registerQuery(query, new EsperEngineListener());
-        engine.registerQuery(query2, listener);
+        engine.registerQuery(query2, testListener);
 
     }
 
@@ -136,8 +136,8 @@ public class TestEsperTransform extends AbstractTestEP {
 
         logger.info(String.format("Transform query: %s", query));
 
-        String eql = queryTransformer.transform(query);
+        String eql = queryTransformer.transform(query).get(0);
 
-        engine.registerQuery(eql, listener);
+        engine.registerQuery(eql, testListener);
     }
 }

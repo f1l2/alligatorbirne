@@ -30,15 +30,17 @@ compositeOperationDoubleDigit: singleCondition WS compositeFunctionDoubleDigit W
 
 compositeFunctionDoubleDigit: ('AND' | 'OR'); 
 
-aggregateCondition: aggregateOperation WS? operator WS? INT | INT WS? operator WS? aggregateOperation;
-
-aggregateOperation: aggregateFunction WS? '(' WS? VARIABLE WS? ')'; 
+aggregateCondition: aggregateFunction WS? '(' WS? variable WS? ')' WS? operator WS? intValue;
 
 aggregateFunction: ('SUM' | 'AVG' | 'COUNT' | 'MAX' | 'MIN');
 
 evaluation: property WS? operator WS? property;
 
-property: (VARIABLE | STRING | INT);
+property: (variable | STRING | intValue);
+
+variable: VARIABLE;
+
+intValue: INT;
 
 operator: ('=' | '<' | '>' | '<=' | '>=');
 

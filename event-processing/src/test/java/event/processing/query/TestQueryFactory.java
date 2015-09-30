@@ -198,6 +198,19 @@ public class TestQueryFactory {
     public void testAggregate1() throws Exception {
         input = Query.KEYWORD.CONDITION.getKeyword() + " " + Query.AGGREGATION_FUNCTION.SUM.getFunction() + "( abc ) = 79 " + Query.KEYWORD.FROM.getKeyword() + " Domain";
         query = test(input);
+
+        assertNotNull(query);
+        assertEquals("SUM(abc) = 79", query.getCondition().generate());
+        assertEquals("SUM(d.deviceInformation.abc) = 79", query.getCondition().generateInclPrefix());
+        assertTrue(query.getCondition() instanceof SingleCondition);
+        assertNotNull(((SingleCondition) query.getCondition()).getAggregateCondition());
+
+        AggregateCondition aCondition = ((SingleCondition) query.getCondition()).getAggregateCondition();
+        assertEquals(Query.AGGREGATION_FUNCTION.SUM, aCondition.getAggregation());
+        assertEquals("abc", aCondition.getProperty());
+        assertEquals("79", aCondition.getValue());
+        assertEquals(Query.COMPARE_FUNCTION.EQUAL, aCondition.getOperator());
+        assertEquals("Domain", query.getDomains().stream().collect(Collectors.joining(",")));
     }
 
     private Query test(String query) throws Exception {

@@ -18,14 +18,15 @@ import event.processing.query.language.QueryLexer;
 import event.processing.query.language.QueryParser;
 import event.processing.query.language.QueryParser.AggregateConditionContext;
 import event.processing.query.language.QueryParser.AggregateFunctionContext;
-import event.processing.query.language.QueryParser.AggregateOperationContext;
 import event.processing.query.language.QueryParser.CompositeConditionContext;
 import event.processing.query.language.QueryParser.CompositeOperationDoubleDigitContext;
 import event.processing.query.language.QueryParser.CompositeOperationSingleDigitContext;
 import event.processing.query.language.QueryParser.EvaluationContext;
+import event.processing.query.language.QueryParser.IntValueContext;
 import event.processing.query.language.QueryParser.OperatorContext;
 import event.processing.query.language.QueryParser.PropertyContext;
 import event.processing.query.language.QueryParser.SingleConditionContext;
+import event.processing.query.language.QueryParser.VariableContext;
 
 @Component
 public class QueryFactory {
@@ -79,8 +80,6 @@ public class QueryFactory {
             @Override
             public void exitSingleCondition(QueryParser.SingleConditionContext ctx) {
 
-                System.out.println("exitSingleCondition: " + ctx.getText());
-
                 SingleCondition sc = new SingleCondition();
 
                 EvaluationContext evaluationContext = ctx.getChild(QueryParser.EvaluationContext.class, 0);
@@ -93,14 +92,17 @@ public class QueryFactory {
                     AggregateCondition aCondition = new AggregateCondition();
                     aCondition.setAggregateCondition(aCtx.getText());
 
-                    AggregateOperationContext aggregateOperationContext = aCtx.getChild(QueryParser.AggregateOperationContext.class, 0);
-                    aCondition.setAggregateOperation(aggregateOperationContext.getText());
-
                     OperatorContext operatorContext = aCtx.getChild(QueryParser.OperatorContext.class, 0);
                     aCondition.setOperator(COMPARE_FUNCTION.findByFunction(operatorContext.getText()));
 
-                    AggregateFunctionContext aggregateFunctionContext = aggregateOperationContext.getChild(QueryParser.AggregateFunctionContext.class, 0);
-                    aCondition.setAggregator(AGGREGATION_FUNCTION.findByFunction(aggregateFunctionContext.getText().toUpperCase()));
+                    AggregateFunctionContext aggregateFunctionContext = aCtx.getChild(QueryParser.AggregateFunctionContext.class, 0);
+                    aCondition.setAggregation(AGGREGATION_FUNCTION.findByFunction(aggregateFunctionContext.getText().toUpperCase()));
+
+                    VariableContext propertyContext = aCtx.getChild(QueryParser.VariableContext.class, 0);
+                    aCondition.setProperty(propertyContext.getText());
+
+                    IntValueContext intContext = aCtx.getChild(QueryParser.IntValueContext.class, 0);
+                    aCondition.setValue(intContext.getText());
 
                     sc.setAggregateCondition(aCondition);
                 }
@@ -173,33 +175,11 @@ public class QueryFactory {
         return evaluation;
     }
 
-    // private CompositeCondition getLeave(Condition cc) {
-    //
-    // if (cc instanceof SingleCondition) {
-    // return null;
-    // }
-    //
-    // if (((CompositeCondition) cc).getChild() == null) {
-    // return ((CompositeCondition) cc);
-    // }
-    // return getLeave(((CompositeCondition) cc).getChild());
-    // }
-
-    // private Condition getLeaveByIdentifier(int identifier, Condition c) {
-    //
-    // if (c.getIdentifier() == identifier) {
-    // return c;
-    // }
-    //
-    // return getLeaveByIdentifier(identifier, ((CompositeCondition) c).getChild());
-    // }
-
     private SingleCondition getSingleCondition(SingleConditionContext ctx, HashMap<String, SingleCondition> map) {
 
         if (map.containsKey(ctx.getText())) {
             return map.get(ctx.getText());
         }
-
         return null;
     }
 
@@ -208,7 +188,6 @@ public class QueryFactory {
         if (map.containsKey(ctx.getText())) {
             return map.get(ctx.getText());
         }
-
         return null;
     }
 

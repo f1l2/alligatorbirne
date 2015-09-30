@@ -35,7 +35,7 @@ public class SingleCondition extends Condition {
         if (null != evaluation) {
             return evaluation.generateInclPrefix();
         } else {
-            return aggregateCondition.generate();
+            return aggregateCondition.generateInclPrefix();
         }
     }
 }

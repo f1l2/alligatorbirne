@@ -1,5 +1,6 @@
 package event.processing.engine.impl;
 
+import java.util.List;
 import java.util.Set;
 
 import org.slf4j.Logger;
@@ -67,11 +68,24 @@ public class EsperEngine extends Engine {
 
     @Override
     public void registerQuery(String query, EngineListener listener) {
-
         EPAdministrator cepAdm = EP_SP.getEPAdministrator();
         EPStatement cepStatement = cepAdm.createEPL(query);
 
         cepStatement.addListener((UpdateListener) listener);
+    }
+
+    private void registerQuery(String query) {
+        EPAdministrator cepAdm = EP_SP.getEPAdministrator();
+        cepAdm.createEPL(query);
+    }
+
+    @Override
+    public void registerQuery(List<String> query, EngineListener listener) {
+
+        for (int i = 0; i < (query.size() - 1); i++) {
+            registerQuery(query.get(i));
+        }
+        registerQuery(query.get(query.size() - 1), listener);
     }
 
     @Override
@@ -94,6 +108,17 @@ public class EsperEngine extends Engine {
 
     public EPServiceProvider getCep() {
         return EP_SP;
+    }
+
+    @Override
+    public void unregisterQuery(List<String> query) {
+        query.forEach(item -> unregisterQuery(query));
+    }
+
+    @Override
+    public void unregisterAll() {
+        EPAdministrator cepAdm = EP_SP.getEPAdministrator();
+        cepAdm.destroyAllStatements();
     }
 
 }

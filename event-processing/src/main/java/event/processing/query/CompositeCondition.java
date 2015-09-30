@@ -28,6 +28,22 @@ public class CompositeCondition extends Condition {
         this.compositeCondition = compositeCondition;
     }
 
+    public SingleCondition getSc() {
+        return sc;
+    }
+
+    public void setSc(SingleCondition sc) {
+        this.sc = sc;
+    }
+
+    public CompositeCondition getCc() {
+        return cc;
+    }
+
+    public void setCc(CompositeCondition sc) {
+        this.cc = sc;
+    }
+
     public String generate() {
         StringBuilder sb = new StringBuilder();
         if (null != cc) {
@@ -78,22 +94,6 @@ public class CompositeCondition extends Condition {
         }
 
         return sb.toString();
-    }
-
-    public SingleCondition getSc() {
-        return sc;
-    }
-
-    public void setSc(SingleCondition sc) {
-        this.sc = sc;
-    }
-
-    public CompositeCondition getCc() {
-        return cc;
-    }
-
-    public void setCc(CompositeCondition sc) {
-        this.cc = sc;
     }
 
 }

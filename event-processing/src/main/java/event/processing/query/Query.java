@@ -186,4 +186,16 @@ public class Query {
         this.window = window;
     }
 
+    public static String addPrefix(String property) {
+        if (isPropertyVariable(property)) {
+            return Evaluation.PREFIX.concat(property);
+        } else {
+            return property;
+        }
+    }
+
+    public static Boolean isPropertyVariable(String property) {
+        return !(property.matches("^[0-9]+$") || (property.matches("^'.+'$")));
+    }
+
 }

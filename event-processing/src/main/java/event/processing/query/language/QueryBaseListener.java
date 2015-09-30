@@ -186,18 +186,6 @@ public class QueryBaseListener implements QueryListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAggregateOperation(QueryParser.AggregateOperationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitAggregateOperation(QueryParser.AggregateOperationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterAggregateFunction(QueryParser.AggregateFunctionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -229,6 +217,30 @@ public class QueryBaseListener implements QueryListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitProperty(QueryParser.PropertyContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterVariable(QueryParser.VariableContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitVariable(QueryParser.VariableContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterIntValue(QueryParser.IntValueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitIntValue(QueryParser.IntValueContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

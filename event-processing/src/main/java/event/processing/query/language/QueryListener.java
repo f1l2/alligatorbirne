@@ -150,16 +150,6 @@ public interface QueryListener extends ParseTreeListener {
 	 */
 	void exitAggregateCondition(QueryParser.AggregateConditionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link QueryParser#aggregateOperation}.
-	 * @param ctx the parse tree
-	 */
-	void enterAggregateOperation(QueryParser.AggregateOperationContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link QueryParser#aggregateOperation}.
-	 * @param ctx the parse tree
-	 */
-	void exitAggregateOperation(QueryParser.AggregateOperationContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link QueryParser#aggregateFunction}.
 	 * @param ctx the parse tree
 	 */
@@ -189,6 +179,26 @@ public interface QueryListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitProperty(QueryParser.PropertyContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link QueryParser#variable}.
+	 * @param ctx the parse tree
+	 */
+	void enterVariable(QueryParser.VariableContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QueryParser#variable}.
+	 * @param ctx the parse tree
+	 */
+	void exitVariable(QueryParser.VariableContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link QueryParser#intValue}.
+	 * @param ctx the parse tree
+	 */
+	void enterIntValue(QueryParser.IntValueContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QueryParser#intValue}.
+	 * @param ctx the parse tree
+	 */
+	void exitIntValue(QueryParser.IntValueContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link QueryParser#operator}.
 	 * @param ctx the parse tree

@@ -1,5 +1,7 @@
 package event.processing.engine;
 
+import java.util.List;
+
 import common.data.DataSource;
 
 public abstract class Engine {
@@ -10,7 +12,11 @@ public abstract class Engine {
 
     public abstract void registerQuery(String query, EngineListener listener);
 
+    public abstract void registerQuery(List<String> query, EngineListener listener);
+
     public abstract void unregisterQuery(String query);
+
+    public abstract void unregisterQuery(List<String> query);
 
     public abstract void sendEvent(DataSource dataSource);
 
@@ -22,5 +28,7 @@ public abstract class Engine {
         this.type = type;
         this.initialize();
     }
+
+    public abstract void unregisterAll();
 
 }

@@ -7,11 +7,13 @@ public class AggregateCondition {
 
     private COMPARE_FUNCTION operator;
 
-    private AGGREGATION_FUNCTION aggregator;
+    private AGGREGATION_FUNCTION aggregation;
 
     private String aggregateCondition;
 
-    private String aggregateOperation;
+    private String property;
+
+    private String value;
 
     public COMPARE_FUNCTION getOperator() {
         return operator;
@@ -19,14 +21,6 @@ public class AggregateCondition {
 
     public void setOperator(COMPARE_FUNCTION operator) {
         this.operator = operator;
-    }
-
-    public AGGREGATION_FUNCTION getAggregator() {
-        return aggregator;
-    }
-
-    public void setAggregator(AGGREGATION_FUNCTION aggregator) {
-        this.aggregator = aggregator;
     }
 
     public String getAggregateCondition() {
@@ -37,17 +31,57 @@ public class AggregateCondition {
         this.aggregateCondition = aggregateCondition;
     }
 
-    public String getAggregateOperation() {
-        return aggregateOperation;
+    public String getProperty() {
+        return property;
     }
 
-    public void setAggregateOperation(String aggregateOperation) {
-        this.aggregateOperation = aggregateOperation;
+    public void setProperty(String property) {
+        this.property = property;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public AGGREGATION_FUNCTION getAggregation() {
+        return aggregation;
+    }
+
+    public void setAggregation(AGGREGATION_FUNCTION aggregation) {
+        this.aggregation = aggregation;
     }
 
     public String generate() {
 
-        return "";
+        StringBuilder sb = new StringBuilder();
+        sb.append(aggregation.getFunction());
+        sb.append("(");
+        sb.append(property);
+        sb.append(")");
+        sb.append(" ");
+        sb.append(operator.getFunction());
+        sb.append(" ");
+        sb.append(value);
+
+        return sb.toString();
     }
 
+    public String generateInclPrefix() {
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(aggregation.getFunction());
+        sb.append("(");
+        sb.append(Query.addPrefix(property));
+        sb.append(")");
+        sb.append(" ");
+        sb.append(operator.getFunction());
+        sb.append(" ");
+        sb.append(value);
+
+        return sb.toString();
+    }
 }

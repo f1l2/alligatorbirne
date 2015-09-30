@@ -2,6 +2,7 @@ package event.processing;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.After;
 import org.junit.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -11,8 +12,8 @@ import common.data.DeviceInformation;
 import common.data.DomainInformation;
 import event.processing.engine.Engine;
 import event.processing.engine.EngineFactory;
-import event.processing.engine.EngineListener;
 import event.processing.engine.QueryTransformer;
+import event.processing.query.esper.TestListener;
 
 public abstract class AbstractTestEP {
 
@@ -22,28 +23,31 @@ public abstract class AbstractTestEP {
 
     protected Engine engine;
 
-    protected EngineListener listener;
-
     protected QueryTransformer queryTransformer;
 
     protected DataSource ds1, ds2, ds3;
 
-    protected int cntFiredEvents;
+    protected TestListener testListener;
 
     protected static final int DEFAULT_DELAY_MS = 100;
 
     @Before
     public void before() {
+
         ds1 = generateTestDataSource(1l, "device1", 1l, "domain1");
         ds2 = generateTestDataSource(2l, "device2", 2l, "domain2");
         ds3 = generateTestDataSource(3l, "device3", 1l, "domain1");
 
-        cntFiredEvents = 0;
-
         engine = factory.getEngine();
-        queryTransformer = factory.getQueryTransformer();
-        listener = factory.getEngineListener();
 
+        queryTransformer = factory.getQueryTransformer();
+
+        testListener = new TestListener();
+    }
+
+    @After
+    public void after() {
+        engine.unregisterAll();
     }
 
     protected void sendEventAndWait(DataSource dataSource, long time) {
@@ -77,7 +81,7 @@ public abstract class AbstractTestEP {
         for (int i = 0; i < dataSources.length; i++) {
             sendEventAndWait(dataSources[i], DEFAULT_DELAY_MS);
 
-            assertEquals(expectedFiredEvents[i], cntFiredEvents);
+            assertEquals(expectedFiredEvents[i], testListener.getFiredEvents());
         }
 
     }

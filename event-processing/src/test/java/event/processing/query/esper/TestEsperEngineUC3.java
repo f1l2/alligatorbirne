@@ -13,36 +13,49 @@ import event.processing.Application;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
-public class TestEsperEngineUC4 extends AbstractTestEP {
+public class TestEsperEngineUC3 extends AbstractTestEP {
 
     @Test
     public void test1() throws IOException {
 
-        String query = "CONDITION id >= 1 FROM domain1";
+        String query = "CONDITION SUM(id) >= 3";
 
         engine.registerQuery(queryTransformer.transform(query), testListener);
 
-        sendEventAndWait(new DataSource[] { ds1, ds2, ds3 }, new int[] { 1, 1, 2 });
+        sendEventAndWait(new DataSource[] { ds1, ds2, ds3 }, new int[] { 0, 1, 2 });
 
     }
 
     @Test
     public void test2() throws IOException {
 
-        String query = "CONDITION id >= 2 FROM domain1";
-
-        engine.registerQuery(queryTransformer.transform(query), testListener);
-
-        sendEventAndWait(new DataSource[] { ds1, ds2, ds3 }, new int[] { 0, 0, 1 });
-    }
-
-    @Test
-    public void test3() throws IOException {
-        String query = "CONDITION id >= 0 FROM domain";
+        String query = "CONDITION MIN(id) >= 3";
 
         engine.registerQuery(queryTransformer.transform(query), testListener);
 
         sendEventAndWait(new DataSource[] { ds1, ds2, ds3 }, new int[] { 0, 0, 0 });
+
     }
 
+    @Test
+    public void test3() throws IOException {
+
+        String query = "CONDITION MAX(id) >= 2";
+
+        engine.registerQuery(queryTransformer.transform(query), testListener);
+
+        sendEventAndWait(new DataSource[] { ds1, ds2, ds3 }, new int[] { 0, 1, 2 });
+
+    }
+
+    @Test
+    public void test4() throws IOException {
+
+        String query = "CONDITION SUM(id) >= 2  AND id = 2";
+
+        engine.registerQuery(queryTransformer.transform(query), testListener);
+
+        sendEventAndWait(new DataSource[] { ds1, ds2, ds3 }, new int[] { 0, 1, 1 });
+
+    }
 }
