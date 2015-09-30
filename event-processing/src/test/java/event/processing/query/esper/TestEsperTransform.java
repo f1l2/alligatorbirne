@@ -82,10 +82,10 @@ public class TestEsperTransform extends AbstractTestEP {
     @Test
     public void testEsperEngineUC5() {
         /**
-         * CONDITION SUM (property) >= 10 From domain WIN.TIME(10)
+         * CONDITION SUM (property) >= 10 From domain WIN:LENGTH(10)
          */
 
-        input = "CONDITION SUM (property) >= 10 From domain WIN.TIME(10)";
+        input = "CONDITION SUM (property) >= 10 From domain WIN:LENGTH(10)";
         transformAndRegister(input);
 
     }
@@ -124,7 +124,7 @@ public class TestEsperTransform extends AbstractTestEP {
     @Test
     public void testEsperEngine3() {
 
-        String query = "insert into AggregatedValue select sum(d.deviceInformation.id) as value, 12 as id from DataSource as d where d.deviceInformation.name = 'hallo'";
+        String query = "insert into AggregatedValue select sum(d.deviceInformation.id) as value, 12 as id from DataSource.win:time(10) as d where d.deviceInformation.name = 'hallo'";
         String query2 = "select * from AggregatedValue where value > 5 and id = 12";
 
         engine.registerQuery(query, new EsperEngineListener());

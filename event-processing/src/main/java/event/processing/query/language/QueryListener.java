@@ -209,4 +209,14 @@ public interface QueryListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitOperator(QueryParser.OperatorContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link QueryParser#windowType}.
+	 * @param ctx the parse tree
+	 */
+	void enterWindowType(QueryParser.WindowTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link QueryParser#windowType}.
+	 * @param ctx the parse tree
+	 */
+	void exitWindowType(QueryParser.WindowTypeContext ctx);
 }

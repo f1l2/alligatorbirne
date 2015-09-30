@@ -6,7 +6,7 @@ grammar Query;
 
 query: conditions domains? window?;
 
-window: WS 'WIN.TIME(' WS? INT WS? ')' | WS 'WIN.LENGTH(' WS? INT WS? ')';
+window: WS windowType'(' WS? intValue WS? ')' | WS windowType'(' WS? intValue WS? ')';
 
 domains: (WS 'FROM' WS domain);
 
@@ -43,6 +43,8 @@ variable: VARIABLE;
 intValue: INT;
 
 operator: ('=' | '<' | '>' | '<=' | '>=');
+
+windowType: ('WIN:TIME' | 'WIN:LENGTH');
 
 VARIABLE: ('A'..'Z' | 'a'..'z') ('A'..'Z' | 'a'..'z' | '0'..'9' | '-' | '_' )+;
 

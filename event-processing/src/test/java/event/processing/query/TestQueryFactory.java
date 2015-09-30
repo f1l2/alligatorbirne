@@ -14,6 +14,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import event.processing.Application;
 import event.processing.query.Query.COMPARE_FUNCTION;
+import event.processing.query.model.AggregateCondition;
+import event.processing.query.model.CompositeCondition;
+import event.processing.query.model.Evaluation;
+import event.processing.query.model.SingleCondition;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
@@ -173,14 +177,27 @@ public class TestQueryFactory {
 
     @Test
     public void testWindows1() throws Exception {
-        input = Query.KEYWORD.CONDITION.getKeyword() + " 21 = 79 " + Query.KEYWORD.FROM.getKeyword() + " Domain " + Query.KEYWORD.WIN.getKeyword() + "." + Query.KEYWORD.TIME.getKeyword() + "(10)";
+        input = Query.KEYWORD.CONDITION.getKeyword() + " 21 = 79 " + Query.KEYWORD.FROM.getKeyword() + " Domain " + Query.KEYWORD.TIME.getKeyword() + "(10)";
         query = test(input);
+
+        assertNotNull(query);
+        assertNotNull(query.getWindow());
+        assertEquals("10", query.getWindow().getValue());
+        assertEquals(Query.KEYWORD.TIME, query.getWindow().getType());
     }
 
     @Test
     public void testWindows2() throws Exception {
-        input = Query.KEYWORD.CONDITION.getKeyword() + " 21 = 79 " + Query.KEYWORD.FROM.getKeyword() + " Domain " + Query.KEYWORD.WIN.getKeyword() + "." + Query.KEYWORD.LENGTH.getKeyword() + "(10)";
+        input = Query.KEYWORD.CONDITION.getKeyword() + " 21 = 79 " + Query.KEYWORD.FROM.getKeyword() + " Domain " + Query.KEYWORD.LENGTH.getKeyword() + "(10)";
+
+        System.out.println(input);
+
         query = test(input);
+
+        assertNotNull(query);
+        assertNotNull(query.getWindow());
+        assertEquals("10", query.getWindow().getValue());
+        assertEquals(Query.KEYWORD.LENGTH, query.getWindow().getType());
     }
 
     @Test

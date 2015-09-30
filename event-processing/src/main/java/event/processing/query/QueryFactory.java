@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import event.processing.query.Query.AGGREGATION_FUNCTION;
 import event.processing.query.Query.COMPARE_FUNCTION;
+import event.processing.query.Query.KEYWORD;
 import event.processing.query.Query.LOGIC_FUNCTION;
 import event.processing.query.language.QueryBaseListener;
 import event.processing.query.language.QueryLexer;
@@ -27,6 +28,12 @@ import event.processing.query.language.QueryParser.OperatorContext;
 import event.processing.query.language.QueryParser.PropertyContext;
 import event.processing.query.language.QueryParser.SingleConditionContext;
 import event.processing.query.language.QueryParser.VariableContext;
+import event.processing.query.language.QueryParser.WindowTypeContext;
+import event.processing.query.model.AggregateCondition;
+import event.processing.query.model.CompositeCondition;
+import event.processing.query.model.Evaluation;
+import event.processing.query.model.SingleCondition;
+import event.processing.query.model.Window;
 
 @Component
 public class QueryFactory {
@@ -53,7 +60,12 @@ public class QueryFactory {
 
             @Override
             public void exitWindow(QueryParser.WindowContext ctx) {
-                query.setWindow(ctx.getText());
+
+                Window window = new Window();
+                window.setType(KEYWORD.findByKeyword(ctx.getChild(WindowTypeContext.class, 0).getText().toLowerCase()));
+                window.setValue(ctx.getChild(IntValueContext.class, 0).getText());
+
+                query.setWindow(window);
             }
 
             @Override

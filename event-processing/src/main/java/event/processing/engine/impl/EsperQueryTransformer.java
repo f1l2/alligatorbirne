@@ -12,21 +12,22 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import event.processing.engine.QueryTransformer;
-import event.processing.query.AggregateCondition;
-import event.processing.query.CompositeCondition;
-import event.processing.query.Condition;
 import event.processing.query.Query;
 import event.processing.query.QueryFactory;
-import event.processing.query.SingleCondition;
+import event.processing.query.model.AggregateCondition;
+import event.processing.query.model.CompositeCondition;
+import event.processing.query.model.Condition;
+import event.processing.query.model.SingleCondition;
 
 @Component
 public class EsperQueryTransformer extends QueryTransformer {
 
     private static final Logger logger = LoggerFactory.getLogger(EsperQueryTransformer.class);
 
-    private static final String EQL_PATTERN = "select * from DataSource as d where [where_condition] [where_domain]";
+    private static final String EQL_PATTERN = "select * from DataSource[window] as d where [where_condition] [where_domain]";
 
-    private static final String EQL_INSERT_PATTERN = new String("insert into AggregatedValue select [aggregate_operation] as value from DataSource as d where [where_condition] [where_domain]");
+    private static final String EQL_INSERT_PATTERN = new String(
+            "insert into AggregatedValue select [aggregate_operation] as value from DataSource[window] as d where [where_condition] [where_domain]");
 
     private static final String EQL_SELECT_PATTERN = new String("select * from AggregatedValue where value [operator] [value]");
 
@@ -87,11 +88,18 @@ public class EsperQueryTransformer extends QueryTransformer {
             sb.append("( ");
             sb.append(query.getDomains().stream().map(item -> "d.domainInformation.name = '".concat(item).concat("'")).collect(Collectors.joining(" AND ")));
             sb.append(" )");
-            eql = eql.replace("[where_domain]", sb.toString());
+
+            eql = StringUtils.replace(eql, "[where_domain]", sb.toString());
+            insert = StringUtils.replace(insert, "[where_domain]", sb.toString());
+        }
+
+        if (null != query.getWindow()) {
+            eql = StringUtils.replace(eql, "[window]", query.getWindow().generate());
+            insert = StringUtils.replace(insert, "[window]", query.getWindow().generate());
         }
 
         if (!CollectionUtils.isEmpty(aConditions)) {
-            insert = cleanup(insert);
+            select = cleanup(select);
             insert = cleanup(insert);
             queries.add(insert);
             queries.add(select);
@@ -153,9 +161,14 @@ public class EsperQueryTransformer extends QueryTransformer {
 
     private String cleanup(String string) {
 
+        if (null == string) {
+            return string;
+        }
+
         string = StringUtils.replace(string, "[select *]", "select *");
         string = StringUtils.replace(string, "[where_condition]", "");
         string = StringUtils.replace(string, "[where_domain]", "");
+        string = StringUtils.replace(string, "[window]", "");
         string = string.trim();
 
         if (string.endsWith("where")) {

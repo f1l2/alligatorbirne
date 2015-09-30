@@ -253,6 +253,18 @@ public class QueryBaseListener implements QueryListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitOperator(QueryParser.OperatorContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterWindowType(QueryParser.WindowTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitWindowType(QueryParser.WindowTypeContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

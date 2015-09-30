@@ -3,6 +3,10 @@ package event.processing.query;
 import java.util.ArrayList;
 import java.util.List;
 
+import event.processing.query.model.Condition;
+import event.processing.query.model.Evaluation;
+import event.processing.query.model.Window;
+
 public class Query {
 
     /**
@@ -13,11 +17,9 @@ public class Query {
         //
         FROM("FROM"),
         //
-        WIN("WIN"),
+        TIME("win:time"),
         //
-        TIME("TIME"),
-        //
-        LENGTH("LENGTH");
+        LENGTH("win:length");
 
         private String keyword;
 
@@ -31,6 +33,15 @@ public class Query {
 
         public void setKeyword(String keyword) {
             this.keyword = keyword;
+        }
+
+        public static KEYWORD findByKeyword(String keyword) {
+            for (KEYWORD item : KEYWORD.values()) {
+                if (item.getKeyword().equals(keyword)) {
+                    return item;
+                }
+            }
+            return null;
         }
     }
 
@@ -160,10 +171,22 @@ public class Query {
 
     private List<String> domains = new ArrayList<String>();
 
-    private String window;
+    private Window window;
 
     public Condition getCondition() {
         return condition;
+    }
+
+    public static String addPrefix(String property) {
+        if (isPropertyVariable(property)) {
+            return Evaluation.PREFIX.concat(property);
+        } else {
+            return property;
+        }
+    }
+
+    public static Boolean isPropertyVariable(String property) {
+        return !(property.matches("^[0-9]+$") || (property.matches("^'.+'$")));
     }
 
     public void setCondition(Condition condition) {
@@ -178,24 +201,12 @@ public class Query {
         this.domains = domains;
     }
 
-    public String getWindow() {
+    public Window getWindow() {
         return window;
     }
 
-    public void setWindow(String window) {
+    public void setWindow(Window window) {
         this.window = window;
-    }
-
-    public static String addPrefix(String property) {
-        if (isPropertyVariable(property)) {
-            return Evaluation.PREFIX.concat(property);
-        } else {
-            return property;
-        }
-    }
-
-    public static Boolean isPropertyVariable(String property) {
-        return !(property.matches("^[0-9]+$") || (property.matches("^'.+'$")));
     }
 
 }
