@@ -23,8 +23,8 @@
         </connection>
         <connection component="LOCAL">
             <name>localConnection</name>
-            <host>192.168.56.1</host>
-            <port>5001</port>
+            <host>10.241.100.95</host>
+            <port>45801</port>
         </connection>
     </connections>
 </configuration>

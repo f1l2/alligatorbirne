@@ -21,11 +21,6 @@ public class TestRuleFactory {
     private RuleFactory rf;
 
     @Test
-    public void dummyTest() {
-
-    }
-
-    @Test
     public void test1() throws IOException {
 
         String input = "query TRIGGERS deviceName, domainName, cMName";

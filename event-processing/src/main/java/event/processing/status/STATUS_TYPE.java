@@ -10,7 +10,9 @@ public enum STATUS_TYPE {
 
     WORKING("wor", "EP is working", 30),
 
-    ERROR("err", "EP is in error state", 30);
+    ERROR("err", "EP is in error state", 30),
+
+    TEST("test", "EP is in test state", 100);
 
     private final String value;
 

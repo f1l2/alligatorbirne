@@ -1,6 +1,7 @@
 package event.processing.rest;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import common.rest.RESOURCE_NAMING;
@@ -19,6 +21,7 @@ import event.processing.engine.EngineListener;
 import event.processing.engine.QueryTransformer;
 import event.processing.query.Query;
 import event.processing.query.QueryFactory;
+import event.processing.repo.QueryRepository;
 import event.processing.rule.Rule;
 import event.processing.rule.RuleFactory;
 
@@ -32,19 +35,21 @@ public class EProcManageQueryImpl implements EProcManageQuery {
     private EngineFactory factory;
 
     @Autowired
-    private QueryFactory qf;
+    private QueryFactory queryFactory;
 
     @Autowired
-    private RuleFactory rf;
+    private RuleFactory ruleFactory;
+
+    @Autowired
+    private QueryRepository queryRepository;
 
     @Override
-    @RequestMapping(value = "/registration/query", method = RequestMethod.POST)
+    @RequestMapping(value = "/registrations/query", method = RequestMethod.POST)
     public void register(@RequestBody String query) {
-
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.EPROCESSING_REGISTRATION_QUERY));
 
         try {
-            Query q = qf.parse(query);
+            Query q = queryFactory.parse(query);
         } catch (IOException e) {
             logger.error("Couldn't parse query string. Please check correctness of query.");
             throw new IllegalArgumentException("Couldn't parse string. Please check coorectness of query.");
@@ -61,9 +66,8 @@ public class EProcManageQueryImpl implements EProcManageQuery {
     }
 
     @Override
-    @RequestMapping(value = "/unregistration/query", method = RequestMethod.POST)
+    @RequestMapping(value = "/unregistrations/query", method = RequestMethod.POST)
     public void unregister(@RequestBody String query) {
-
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.EPROCESSING_UNREGISTRATION_QUERY));
 
         Engine engine = factory.getEngine();
@@ -71,13 +75,12 @@ public class EProcManageQueryImpl implements EProcManageQuery {
     }
 
     @Override
-    @RequestMapping(value = "/registration/rule", method = RequestMethod.POST)
+    @RequestMapping(value = "/registrations/rule", method = RequestMethod.POST)
     public void registerRule(@RequestBody String rule) {
-
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.EPROCESSING_REGISTRATION_RULE));
 
         try {
-            Rule r = rf.parse(rule);
+            Rule r = ruleFactory.parse(rule);
         } catch (IOException e) {
             logger.error("Couldn't parse rule string. Please check correctness of rule.");
             throw new IllegalArgumentException("Couldn't parse rule string. Please check coorectness of rule.");
@@ -86,10 +89,25 @@ public class EProcManageQueryImpl implements EProcManageQuery {
     }
 
     @Override
-    @RequestMapping(value = "/unregistration/rule", method = RequestMethod.POST)
+    @RequestMapping(value = "/unregistrations/rule", method = RequestMethod.POST)
     public void unregisterRule(@RequestBody String rule) {
-
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.EPROCESSING_UNREGISTRATION_RULE));
 
+    }
+
+    @Override
+    @RequestMapping(value = "/registrations/queries", method = RequestMethod.GET)
+    public @ResponseBody List<Query> getAllQueries() {
+        logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.EPROCESSING_GET_ALL_QUERIES));
+
+        return queryRepository.findAll();
+    }
+
+    @Override
+    @RequestMapping(value = "/registrations/rules", method = RequestMethod.GET)
+    public @ResponseBody List<Rule> getAllRules() {
+        logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.EPROCESSING_GET_ALL_RULES));
+
+        return null;
     }
 }
