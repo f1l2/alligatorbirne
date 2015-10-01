@@ -66,73 +66,73 @@ public class RuleBaseListener implements RuleListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDeviceInformation(RuleParser.DeviceInformationContext ctx) { }
+	@Override public void enterDevInfo(RuleParser.DevInfoContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDeviceInformation(RuleParser.DeviceInformationContext ctx) { }
+	@Override public void exitDevInfo(RuleParser.DevInfoContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDeviceInformationName(RuleParser.DeviceInformationNameContext ctx) { }
+	@Override public void enterDevInfoName(RuleParser.DevInfoNameContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDeviceInformationName(RuleParser.DeviceInformationNameContext ctx) { }
+	@Override public void exitDevInfoName(RuleParser.DevInfoNameContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDomainInformation(RuleParser.DomainInformationContext ctx) { }
+	@Override public void enterDomainInfo(RuleParser.DomainInfoContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDomainInformation(RuleParser.DomainInformationContext ctx) { }
+	@Override public void exitDomainInfo(RuleParser.DomainInfoContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDomainInformationName(RuleParser.DomainInformationNameContext ctx) { }
+	@Override public void enterDomainInfoName(RuleParser.DomainInfoNameContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDomainInformationName(RuleParser.DomainInformationNameContext ctx) { }
+	@Override public void exitDomainInfoName(RuleParser.DomainInfoNameContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterConfigurationModification(RuleParser.ConfigurationModificationContext ctx) { }
+	@Override public void enterCM(RuleParser.CMContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitConfigurationModification(RuleParser.ConfigurationModificationContext ctx) { }
+	@Override public void exitCM(RuleParser.CMContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterConfigurationModificationName(RuleParser.ConfigurationModificationNameContext ctx) { }
+	@Override public void enterCMName(RuleParser.CMNameContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitConfigurationModificationName(RuleParser.ConfigurationModificationNameContext ctx) { }
+	@Override public void exitCMName(RuleParser.CMNameContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

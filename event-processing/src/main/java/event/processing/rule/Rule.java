@@ -1,5 +1,6 @@
 package event.processing.rule;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import event.processing.rule.model.Reaction;
@@ -40,6 +41,11 @@ public class Rule {
     }
 
     public List<Reaction> getReactions() {
+
+        if (null == reactions) {
+            reactions = new ArrayList<Reaction>();
+        }
+
         return reactions;
     }
 

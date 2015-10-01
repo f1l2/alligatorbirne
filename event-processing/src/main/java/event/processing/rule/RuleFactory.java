@@ -12,9 +12,9 @@ import org.springframework.stereotype.Component;
 import event.processing.query.language.RuleBaseListener;
 import event.processing.query.language.RuleLexer;
 import event.processing.query.language.RuleParser;
-import event.processing.query.language.RuleParser.ConfigurationModificationContext;
-import event.processing.query.language.RuleParser.DeviceInformationContext;
-import event.processing.query.language.RuleParser.DomainInformationContext;
+import event.processing.query.language.RuleParser.CMContext;
+import event.processing.query.language.RuleParser.DevInfoContext;
+import event.processing.query.language.RuleParser.DomainInfoContext;
 import event.processing.rule.model.Reaction;
 
 @Component
@@ -51,15 +51,15 @@ public class RuleFactory {
             @Override
             public void exitReaction(RuleParser.ReactionContext ctx) {
 
+                DevInfoContext devInfoContext = ctx.getChild(RuleParser.DevInfoContext.class, 0);
+                DomainInfoContext domainInfoContext = ctx.getChild(RuleParser.DomainInfoContext.class, 0);
+                CMContext cMContext = ctx.getChild(RuleParser.CMContext.class, 0);
+
                 Reaction reaction = new Reaction();
 
-                DeviceInformationContext deviceInformationContext = ctx.getChild(RuleParser.DeviceInformationContext.class, 0);
-                DomainInformationContext domainInformationContext = ctx.getChild(RuleParser.DomainInformationContext.class, 0);
-                ConfigurationModificationContext configurationModificationContext = ctx.getChild(RuleParser.ConfigurationModificationContext.class, 0);
-
-                reaction.setDeviceInformation(deviceInformationContext.getChild(RuleParser.DeviceInformationNameContext.class, 0).getText());
-                reaction.setDomainInformation(domainInformationContext.getChild(RuleParser.DomainInformationNameContext.class, 0).getText());
-                reaction.setConfigurationModification(configurationModificationContext.getChild(RuleParser.ConfigurationModificationContext.class, 0).getText());
+                reaction.setDeviceInformation(devInfoContext.getChild(RuleParser.DevInfoNameContext.class, 0).getText());
+                reaction.setDomainInformation(domainInfoContext.getChild(RuleParser.DomainInfoNameContext.class, 0).getText());
+                reaction.setConfigurationModification(cMContext.getChild(RuleParser.CMNameContext.class, 0).getText());
 
                 rule.getReactions().add(reaction);
             }

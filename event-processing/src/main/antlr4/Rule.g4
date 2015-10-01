@@ -8,21 +8,21 @@ structure: query WS 'TRIGGERS' WS reactions;
 
 query: VARIABLE;
 
-reactions: (reaction | reaction  WS? ';' WS? reactions);
+reactions: (reaction  WS? ';' WS? reactions | reaction ';'?);
 
-reaction: deviceInformation ',' domainInformation ',' configurationModification;
+reaction: devInfo ',' domainInfo ',' cM;
 
-deviceInformation:  WS ?('deviceInformation' WS? '=' WS?)? deviceInformationName WS?;
+devInfo:  WS? devInfoName  WS?;
 
-deviceInformationName: VARIABLE;
+devInfoName: VARIABLE;
 
-domainInformation: WS? ('domainInformation' WS? '=' WS?)? domainInformationName WS?;
+domainInfo: WS? domainInfoName  WS?;
 
-domainInformationName: VARIABLE;
+domainInfoName: VARIABLE;
 
-configurationModification: WS? ('configurationModification' WS? '=' WS?)? configurationModificationName WS?;
+cM: WS? cMName WS? ;
 
-configurationModificationName: VARIABLE;
+cMName:  VARIABLE;
 
 VARIABLE: ('A'..'Z' | 'a'..'z') ('A'..'Z' | 'a'..'z' | '0'..'9' | '-' | '_' )+;
 

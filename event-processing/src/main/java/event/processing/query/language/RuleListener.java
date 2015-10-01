@@ -50,63 +50,63 @@ public interface RuleListener extends ParseTreeListener {
 	 */
 	void exitReaction(RuleParser.ReactionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link RuleParser#deviceInformation}.
+	 * Enter a parse tree produced by {@link RuleParser#devInfo}.
 	 * @param ctx the parse tree
 	 */
-	void enterDeviceInformation(RuleParser.DeviceInformationContext ctx);
+	void enterDevInfo(RuleParser.DevInfoContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link RuleParser#deviceInformation}.
+	 * Exit a parse tree produced by {@link RuleParser#devInfo}.
 	 * @param ctx the parse tree
 	 */
-	void exitDeviceInformation(RuleParser.DeviceInformationContext ctx);
+	void exitDevInfo(RuleParser.DevInfoContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link RuleParser#deviceInformationName}.
+	 * Enter a parse tree produced by {@link RuleParser#devInfoName}.
 	 * @param ctx the parse tree
 	 */
-	void enterDeviceInformationName(RuleParser.DeviceInformationNameContext ctx);
+	void enterDevInfoName(RuleParser.DevInfoNameContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link RuleParser#deviceInformationName}.
+	 * Exit a parse tree produced by {@link RuleParser#devInfoName}.
 	 * @param ctx the parse tree
 	 */
-	void exitDeviceInformationName(RuleParser.DeviceInformationNameContext ctx);
+	void exitDevInfoName(RuleParser.DevInfoNameContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link RuleParser#domainInformation}.
+	 * Enter a parse tree produced by {@link RuleParser#domainInfo}.
 	 * @param ctx the parse tree
 	 */
-	void enterDomainInformation(RuleParser.DomainInformationContext ctx);
+	void enterDomainInfo(RuleParser.DomainInfoContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link RuleParser#domainInformation}.
+	 * Exit a parse tree produced by {@link RuleParser#domainInfo}.
 	 * @param ctx the parse tree
 	 */
-	void exitDomainInformation(RuleParser.DomainInformationContext ctx);
+	void exitDomainInfo(RuleParser.DomainInfoContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link RuleParser#domainInformationName}.
+	 * Enter a parse tree produced by {@link RuleParser#domainInfoName}.
 	 * @param ctx the parse tree
 	 */
-	void enterDomainInformationName(RuleParser.DomainInformationNameContext ctx);
+	void enterDomainInfoName(RuleParser.DomainInfoNameContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link RuleParser#domainInformationName}.
+	 * Exit a parse tree produced by {@link RuleParser#domainInfoName}.
 	 * @param ctx the parse tree
 	 */
-	void exitDomainInformationName(RuleParser.DomainInformationNameContext ctx);
+	void exitDomainInfoName(RuleParser.DomainInfoNameContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link RuleParser#configurationModification}.
+	 * Enter a parse tree produced by {@link RuleParser#cM}.
 	 * @param ctx the parse tree
 	 */
-	void enterConfigurationModification(RuleParser.ConfigurationModificationContext ctx);
+	void enterCM(RuleParser.CMContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link RuleParser#configurationModification}.
+	 * Exit a parse tree produced by {@link RuleParser#cM}.
 	 * @param ctx the parse tree
 	 */
-	void exitConfigurationModification(RuleParser.ConfigurationModificationContext ctx);
+	void exitCM(RuleParser.CMContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link RuleParser#configurationModificationName}.
+	 * Enter a parse tree produced by {@link RuleParser#cMName}.
 	 * @param ctx the parse tree
 	 */
-	void enterConfigurationModificationName(RuleParser.ConfigurationModificationNameContext ctx);
+	void enterCMName(RuleParser.CMNameContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link RuleParser#configurationModificationName}.
+	 * Exit a parse tree produced by {@link RuleParser#cMName}.
 	 * @param ctx the parse tree
 	 */
-	void exitConfigurationModificationName(RuleParser.ConfigurationModificationNameContext ctx);
+	void exitCMName(RuleParser.CMNameContext ctx);
 }
