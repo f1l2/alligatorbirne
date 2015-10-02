@@ -1,13 +1,14 @@
 package event.processing.engine;
 
+import java.io.IOException;
 import java.util.List;
 
 import event.processing.query.Query;
 
-public abstract class QueryTransformer {
+public interface QueryTransformer {
 
-    public abstract List<String> transform(String query);
+    public List<String> transform(String query) throws IOException;
 
-    public abstract List<String> transform(Query query);
+    public List<String> transform(Query query);
 
 }

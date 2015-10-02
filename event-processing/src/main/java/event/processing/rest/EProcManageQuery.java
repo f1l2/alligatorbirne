@@ -2,12 +2,14 @@ package event.processing.rest;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+
 import event.processing.query.Query;
 import event.processing.rule.Rule;
 
 public interface EProcManageQuery {
 
-    public void register(String query);
+    public ResponseEntity<String> register(String query);
 
     public void unregister(String query);
 

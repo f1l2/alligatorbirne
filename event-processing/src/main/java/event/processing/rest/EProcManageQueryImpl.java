@@ -7,6 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,7 +19,6 @@ import common.rest.RESOURCE_NAMING;
 import common.rest.UtilsResource;
 import event.processing.engine.Engine;
 import event.processing.engine.EngineFactory;
-import event.processing.engine.EngineListener;
 import event.processing.engine.QueryTransformer;
 import event.processing.query.Query;
 import event.processing.query.QueryFactory;
@@ -45,23 +46,23 @@ public class EProcManageQueryImpl implements EProcManageQuery {
 
     @Override
     @RequestMapping(value = "/registrations/query", method = RequestMethod.POST)
-    public void register(@RequestBody String query) {
+    public ResponseEntity<String> register(@RequestBody String query) {
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.EPROCESSING_REGISTRATION_QUERY));
 
         try {
-            Query q = queryFactory.parse(query);
-        } catch (IOException e) {
+            Engine engine = factory.getEngine();
+
+            QueryTransformer qT = factory.getQueryTransformer();
+            List<String> nativeQueries = qT.transform(query);
+
+            engine.registerQuery(nativeQueries, factory.getEngineListener());
+
+        } catch (Exception e) {
             logger.error("Couldn't parse query string. Please check correctness of query.");
-            throw new IllegalArgumentException("Couldn't parse string. Please check coorectness of query.");
+            return new ResponseEntity<String>("Couldn't parse query string. Please check correctness of query.", HttpStatus.NOT_ACCEPTABLE);
         }
 
-        Engine engine = factory.getEngine();
-
-        EngineListener engineListener = factory.getEngineListener();
-
-        QueryTransformer queryTransformer = factory.getQueryTransformer();
-
-        engine.registerQuery(queryTransformer.transform(query), engineListener);
+        return new ResponseEntity<String>("ok", HttpStatus.OK);
 
     }
 
@@ -110,4 +111,5 @@ public class EProcManageQueryImpl implements EProcManageQuery {
 
         return null;
     }
+
 }

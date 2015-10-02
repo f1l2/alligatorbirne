@@ -3,8 +3,11 @@ package event.processing.query;
 import java.util.ArrayList;
 import java.util.List;
 
+import event.processing.query.model.AggregateCondition;
+import event.processing.query.model.CompositeCondition;
 import event.processing.query.model.Condition;
 import event.processing.query.model.Evaluation;
+import event.processing.query.model.SingleCondition;
 import event.processing.query.model.Window;
 
 public class Query {
@@ -207,6 +210,31 @@ public class Query {
 
     public void setWindow(Window window) {
         this.window = window;
+    }
+
+    public List<AggregateCondition> collectAggregateCondition() {
+
+        List<AggregateCondition> aConditions = new ArrayList<AggregateCondition>();
+        if (condition instanceof SingleCondition) {
+            collectAggregateCondition((SingleCondition) condition, aConditions);
+        } else if (condition instanceof CompositeCondition) {
+            collectAggregateCondition((CompositeCondition) condition, aConditions);
+        }
+        return aConditions;
+    }
+
+    private void collectAggregateCondition(CompositeCondition condition, List<AggregateCondition> collection) {
+        if (condition.getCc() != null)
+            collectAggregateCondition(condition.getCc(), collection);
+        if (condition.getSc() != null)
+            collectAggregateCondition(condition.getSc(), collection);
+    }
+
+    private void collectAggregateCondition(SingleCondition condition, List<AggregateCondition> collection) {
+
+        if (condition.getAggregateCondition() != null) {
+            collection.add(condition.getAggregateCondition());
+        }
     }
 
 }
