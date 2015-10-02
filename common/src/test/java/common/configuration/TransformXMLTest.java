@@ -20,7 +20,7 @@ import common.data.configuration.XMLDomainInformation;
 import common.transformer.XMLDataSourceTransformer;
 import common.transformer.XMLParser;
 
-public class TestTransformXML {
+public class TransformXMLTest {
 
     private static final String PATH_TO_CONFIGURATION_FILE = "src/test/resources/configuration.xml";
 

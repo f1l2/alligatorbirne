@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import common.rest.UtilsUrl;
 
-public class TestUtilsUrl {
+public class UtilsUrlTest {
 
     @Test
     public void testParse() {

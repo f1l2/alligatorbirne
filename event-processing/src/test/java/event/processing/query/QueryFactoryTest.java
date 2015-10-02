@@ -21,7 +21,7 @@ import event.processing.query.model.SingleCondition;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
-public class TestQueryFactory {
+public class QueryFactoryTest {
 
     private String input;
 

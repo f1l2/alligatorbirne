@@ -17,7 +17,7 @@ import event.processing.engine.QueryTransformer;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
-public class TestEsperEngineFactory extends AbstractTestEP {
+public class EsperEngineFactoryTest extends AbstractTestEP {
 
     @Test
     public void testGetEngine() {

@@ -19,7 +19,7 @@ import configuration.management.model.IoTDeviceRO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
-public class TestEventProcessingRepository extends AbstractTestCM {
+public class EventProcessingRepositoryTest extends AbstractTestCM {
 
     @Test
     public void findByName() {

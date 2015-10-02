@@ -19,7 +19,7 @@ import configuration.management.model.EventProcessingRO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
-public class TestIoTDeviceRepository {
+public class IoTDeviceRepositoryTest {
 
     @Autowired
     private EventProcessingRepository eventProcessingRepo;

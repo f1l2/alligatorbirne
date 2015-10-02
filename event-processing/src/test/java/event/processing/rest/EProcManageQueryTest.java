@@ -28,7 +28,7 @@ import event.processing.query.Query;
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
 @IntegrationTest("server.port:0")
-public class TestEProcManageQuery extends AbstractTestRestEP {
+public class EProcManageQueryTest extends AbstractTestRestEP {
 
     @Test
     public void getAllQueries1() {

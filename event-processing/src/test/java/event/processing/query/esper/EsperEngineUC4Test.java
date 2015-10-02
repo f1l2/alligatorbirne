@@ -13,7 +13,7 @@ import event.processing.Application;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
-public class TestEsperEngineUC4 extends AbstractTestEP {
+public class EsperEngineUC4Test extends AbstractTestEP {
 
     @Test
     public void test1() throws IOException {

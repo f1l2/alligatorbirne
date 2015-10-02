@@ -15,7 +15,7 @@ import event.processing.Application;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
-public class TestRuleFactory {
+public class RuleFactoryTest {
 
     @Autowired
     private RuleFactory rf;

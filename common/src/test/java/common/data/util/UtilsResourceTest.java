@@ -9,7 +9,7 @@ import common.rest.RESOURCE_NAMING;
 import common.rest.UtilsResource;
 import common.rest.UtilsUrl;
 
-public class TestUtilsResource {
+public class UtilsResourceTest {
 
     @Test
     public void testGetUrl1() {

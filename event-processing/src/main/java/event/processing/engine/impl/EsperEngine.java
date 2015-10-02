@@ -41,12 +41,10 @@ public class EsperEngine extends Engine {
     public void initialize() {
 
         Configuration cepConfig = new Configuration();
-        cepConfig.addEventType("DataSource", DataSource.class.getName());
+        cepConfig.addEventType("DataSource", DataSource.class);
 
         ClassPathScanningCandidateComponentProvider provider = new ClassPathScanningCandidateComponentProvider(true);
         provider.addIncludeFilter(new AssignableTypeFilter(DataModel.class));
-
-        cepConfig.addEventType("DataSource", DataSource.class);
 
         Set<BeanDefinition> components = provider.findCandidateComponents("common/data");
         for (BeanDefinition component : components) {
@@ -57,7 +55,6 @@ public class EsperEngine extends Engine {
             } catch (Exception e) {
                 logger.error("Error adding event type.");
             }
-
         }
 
         EP_SP = EPServiceProviderManager.getProvider(getType().getDescription(), cepConfig);
@@ -120,5 +117,4 @@ public class EsperEngine extends Engine {
         EPAdministrator cepAdm = EP_SP.getEPAdministrator();
         cepAdm.destroyAllStatements();
     }
-
 }

@@ -22,7 +22,7 @@ import common.data.type.COMPONENT_TYPE;
 import common.data.type.DEVICE_INFORMATION_TYPE;
 import common.data.type.DOMAIN_INFORMATION_TYPE;
 
-public class TestUtilsConfiguration {
+public class UtilsConfigurationTest {
 
     private static final String PATH_TO_CONFIGURATION_FILE = "src/test/resources/configuration.xml";
 

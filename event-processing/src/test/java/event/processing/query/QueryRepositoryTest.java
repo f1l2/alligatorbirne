@@ -19,7 +19,7 @@ import event.processing.repo.QueryRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
-public class TestQueryRepository {
+public class QueryRepositoryTest {
 
     @Autowired
     private QueryRepository repo;
