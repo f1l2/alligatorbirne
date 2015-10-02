@@ -40,13 +40,13 @@ public abstract class AbstractTestRestEP {
 
         query = qf.parse(strQuery);
 
-        repo.save(query);
+        repo.save("test query", query);
 
         RestAssured.port = port;
     }
 
     @After
     public void after() {
-        repo.delete(query);
+        repo.delete("test query");
     }
 }

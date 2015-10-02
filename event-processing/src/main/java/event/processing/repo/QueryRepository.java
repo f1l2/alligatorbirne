@@ -10,8 +10,7 @@ public interface QueryRepository {
 
     public List<Query> findAll();
 
-    public void save(Query query);
+    public void save(String name, Query query);
 
-    public void delete(Query query);
-
+    public void delete(String name);
 }

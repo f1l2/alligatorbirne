@@ -20,7 +20,7 @@ public class EsperEngineUC5Test extends AbstractTestEP {
 
         String query = "CONDITION id = 1 WIN:LENGTH(1)";
 
-        engine.registerQuery(queryTransformer.transform(query), testListener);
+        engine.register(queryTransformer.transformQuery(query), testListener);
 
         sendEventAndWait(new DataSource[] { ds1, ds2, ds3 }, new int[] { 1, 1, 1 });
 
@@ -30,7 +30,7 @@ public class EsperEngineUC5Test extends AbstractTestEP {
     public void test2() throws IOException {
 
         String query = "CONDITION SUM(id) >= 4 WIN:LENGTH(1)";
-        engine.registerQuery(queryTransformer.transform(query), testListener);
+        engine.register(queryTransformer.transformQuery(query), testListener);
         sendEventAndWait(new DataSource[] { ds1, ds2, ds3 }, new int[] { 0, 0, 0 });
     }
 
@@ -38,7 +38,7 @@ public class EsperEngineUC5Test extends AbstractTestEP {
     public void test3() throws IOException {
 
         String query = "CONDITION SUM(id) >= 4 WIN:LENGTH(2)";
-        engine.registerQuery(queryTransformer.transform(query), testListener);
+        engine.register(queryTransformer.transformQuery(query), testListener);
         sendEventAndWait(new DataSource[] { ds1, ds2, ds3 }, new int[] { 0, 0, 1 });
     }
 
@@ -46,7 +46,7 @@ public class EsperEngineUC5Test extends AbstractTestEP {
     public void test4() throws IOException {
 
         String query = "CONDITION MIN(id) < 2 WIN:LENGTH(2)";
-        engine.registerQuery(queryTransformer.transform(query), testListener);
+        engine.register(queryTransformer.transformQuery(query), testListener);
         sendEventAndWait(new DataSource[] { ds1, ds2, ds3 }, new int[] { 1, 2, 2 });
     }
 
@@ -54,7 +54,7 @@ public class EsperEngineUC5Test extends AbstractTestEP {
     public void test5() throws IOException {
 
         String query = "CONDITION COUNT(id) = 3 WIN:LENGTH(2)";
-        engine.registerQuery(queryTransformer.transform(query), testListener);
+        engine.register(queryTransformer.transformQuery(query), testListener);
         sendEventAndWait(new DataSource[] { ds1, ds2, ds3 }, new int[] { 0, 0, 0 });
     }
 
@@ -62,14 +62,14 @@ public class EsperEngineUC5Test extends AbstractTestEP {
     public void test6() throws IOException {
 
         String query = "CONDITION COUNT(id) = 3 WIN:LENGTH(3)";
-        engine.registerQuery(queryTransformer.transform(query), testListener);
+        engine.register(queryTransformer.transformQuery(query), testListener);
         sendEventAndWait(new DataSource[] { ds1, ds2, ds3 }, new int[] { 0, 0, 1 });
     }
 
     @Test
     public void test7() throws IOException {
         String query = "CONDITION SUM(id) >= 3 WIN:LENGTH(2)";
-        engine.registerQuery(queryTransformer.transform(query), testListener);
+        engine.register(queryTransformer.transformQuery(query), testListener);
         sendEventAndWait(new DataSource[] { ds3, ds1, ds1, ds2, ds2 }, new int[] { 1, 2, 2, 3, 4 });
     }
 

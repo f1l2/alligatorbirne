@@ -14,12 +14,7 @@ import configuration.management.Application;
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
 @IntegrationTest("server.port:0")
-public class CMgmtManageEventProcessingTest extends AbstractTestRestCM {
-
-    @Test
-    public void getAll() {
-        // TODO
-    }
+public class CMgmtManageIoTDeviceTest extends AbstractTestRestCM {
 
     @Test
     public void register() {
@@ -27,8 +22,12 @@ public class CMgmtManageEventProcessingTest extends AbstractTestRestCM {
     }
 
     @Test
-    public void delegate() {
+    public void getAll() {
         // TODO
     }
 
+    @Test
+    public void registerDataSources() {
+        // TODO
+    }
 }

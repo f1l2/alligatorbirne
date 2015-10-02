@@ -32,15 +32,15 @@ public class QueryRepositoryTest {
     @Before
     public void before() throws IOException {
 
-        String strQuery = Query.KEYWORD.CONDITION.getKeyword() + " property = 21 AND abc = 21 " + Query.KEYWORD.FROM.getKeyword() + " Domain";
-        query = qf.parse(strQuery);
+        String input = Query.KEYWORD.CONDITION.getKeyword() + " property = 21 AND abc = 21 " + Query.KEYWORD.FROM.getKeyword() + " Domain";
+        query = qf.parse(input);
 
-        repo.save(query);
+        repo.save("test query", query);
     }
 
     @After
     public void after() {
-        repo.delete(query);
+        repo.delete("test query");
     }
 
     @Test
@@ -56,7 +56,7 @@ public class QueryRepositoryTest {
     @Test
     public void findOneQuey() {
 
-        Query result = repo.findOne(query.toString());
+        Query result = repo.findOne("test query");
 
         assertNotNull(result);
         assertEquals(query.toString(), result.toString());
@@ -65,7 +65,7 @@ public class QueryRepositoryTest {
     @Test
     public void deleteQuery() {
 
-        repo.delete(query);
+        repo.delete("test query");
 
         List<Query> allQueries = repo.findAll();
 

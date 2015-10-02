@@ -15,7 +15,7 @@ import common.data.configuration.XMLConfiguration;
 
 public class XMLParser {
 
-    private static final String PATH_TO_XSD = "src/main/xsd/configuration.xsd";
+    // private static final String PATH_TO_XSD = "src/main/xsd/configuration.xsd";
 
     public static XMLConfiguration unmarshal(final URI uri) throws JAXBException, MalformedURLException, SAXException {
 

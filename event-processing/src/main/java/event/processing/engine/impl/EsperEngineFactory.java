@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import event.processing.engine.Engine;
 import event.processing.engine.EngineFactory;
 import event.processing.engine.EngineListener;
-import event.processing.engine.QueryTransformer;
+import event.processing.engine.LanguageTransformer;
 
 @Component("esper")
 public class EsperEngineFactory extends EngineFactory {
@@ -18,7 +18,7 @@ public class EsperEngineFactory extends EngineFactory {
     protected EsperEngineListener listener;
 
     @Autowired
-    protected EsperQueryTransformer transformer;
+    protected EsperEPLTransformer transformer;
 
     @Override
     public Engine getEngine() {
@@ -31,7 +31,7 @@ public class EsperEngineFactory extends EngineFactory {
     }
 
     @Override
-    public QueryTransformer getQueryTransformer() {
+    public LanguageTransformer getTransformer() {
         return transformer;
     }
 

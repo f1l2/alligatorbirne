@@ -6,6 +6,6 @@ public abstract class EngineFactory {
 
     public abstract EngineListener getEngineListener();
 
-    public abstract QueryTransformer getQueryTransformer();
+    public abstract LanguageTransformer getTransformer();
 
 }

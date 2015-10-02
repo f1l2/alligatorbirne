@@ -13,7 +13,7 @@ import event.processing.Application;
 import event.processing.engine.ENGINE_TYPE;
 import event.processing.engine.Engine;
 import event.processing.engine.EngineListener;
-import event.processing.engine.QueryTransformer;
+import event.processing.engine.LanguageTransformer;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
@@ -44,7 +44,7 @@ public class EsperEngineFactoryTest extends AbstractTestEP {
     @Test
     public void testGetQueryTransformer() {
 
-        QueryTransformer transformer = factory.getQueryTransformer();
+        LanguageTransformer transformer = factory.getTransformer();
 
         assertNotNull(transformer);
     }

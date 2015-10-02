@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
 import org.springframework.core.type.filter.AssignableTypeFilter;
@@ -23,6 +24,8 @@ import common.data.DataSource;
 import event.processing.engine.ENGINE_TYPE;
 import event.processing.engine.Engine;
 import event.processing.engine.EngineListener;
+import event.processing.status.STATUS_TYPE;
+import event.processing.status.Status;
 
 @Component
 public class EsperEngine extends Engine {
@@ -32,6 +35,11 @@ public class EsperEngine extends Engine {
     private static EPRuntime EP_RUNTIME = null;
 
     private static EPServiceProvider EP_SP = null;
+
+    private static EPAdministrator EP_ADMIN = null;
+
+    @Autowired
+    private Status status;
 
     public EsperEngine() {
         super(ENGINE_TYPE.ESPER);
@@ -61,42 +69,64 @@ public class EsperEngine extends Engine {
 
         EP_RUNTIME = EP_SP.getEPRuntime();
 
+        EP_ADMIN = EP_SP.getEPAdministrator();
+
+        if (null == EP_SP) {
+            logger.error("Event processing: Service provider wasn't initialized properly");
+            status.setCurrent(STATUS_TYPE.ERROR);
+        }
+
+        if (null == EP_RUNTIME) {
+            logger.error("Event processing: Runtime wasn't initialized properly");
+            status.setCurrent(STATUS_TYPE.ERROR);
+        }
+
+        if (null == EP_ADMIN) {
+            logger.error("Event processing: Administrator wasn't initialized properly");
+            status.setCurrent(STATUS_TYPE.ERROR);
+        }
+
     }
 
     @Override
-    public void registerQuery(String query, EngineListener listener) {
-        EPAdministrator cepAdm = EP_SP.getEPAdministrator();
-        EPStatement cepStatement = cepAdm.createEPL(query);
-
+    public void register(String epl, EngineListener listener) {
+        EPStatement cepStatement = EP_ADMIN.createEPL(epl);
         cepStatement.addListener((UpdateListener) listener);
     }
 
-    private void registerQuery(String query) {
-        EPAdministrator cepAdm = EP_SP.getEPAdministrator();
-        cepAdm.createEPL(query);
-    }
-
     @Override
-    public void registerQuery(List<String> query, EngineListener listener) {
+    public void register(List<String> query, EngineListener listener) {
 
         for (int i = 0; i < (query.size() - 1); i++) {
-            registerQuery(query.get(i));
+            register(query.get(i));
         }
-        registerQuery(query.get(query.size() - 1), listener);
+        register(query.get(query.size() - 1), listener);
+    }
+
+    private void register(String eql) {
+        EPAdministrator cepAdm = EP_SP.getEPAdministrator();
+        cepAdm.createEPL(eql);
     }
 
     @Override
-    public void sendEvent(DataSource dataSource) {
-        if (null != EP_RUNTIME) {
-            EP_RUNTIME.sendEvent(dataSource);
-        } else {
-            logger.error("Event couldn't be proccesed due engine wasn't initialized properly");
-        }
+    public void send(DataSource dataSource) {
+        EP_RUNTIME.sendEvent(dataSource);
     }
 
     @Override
-    public void unregisterQuery(String query) {
+    public void unregister(List<String> query) {
+        query.forEach(item -> unregister(query));
+    }
 
+    @Override
+    public void unregister(String query) {
+
+    }
+
+    @Override
+    public void unregisterAll() {
+        EPAdministrator cepAdm = EP_SP.getEPAdministrator();
+        cepAdm.destroyAllStatements();
     }
 
     public EPRuntime getCepRT() {
@@ -105,16 +135,5 @@ public class EsperEngine extends Engine {
 
     public EPServiceProvider getCep() {
         return EP_SP;
-    }
-
-    @Override
-    public void unregisterQuery(List<String> query) {
-        query.forEach(item -> unregisterQuery(query));
-    }
-
-    @Override
-    public void unregisterAll() {
-        EPAdministrator cepAdm = EP_SP.getEPAdministrator();
-        cepAdm.destroyAllStatements();
     }
 }

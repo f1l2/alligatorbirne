@@ -10,15 +10,15 @@ public abstract class Engine {
 
     protected abstract void initialize();
 
-    public abstract void registerQuery(String query, EngineListener listener);
+    public abstract void register(String query, EngineListener listener);
 
-    public abstract void registerQuery(List<String> query, EngineListener listener);
+    public abstract void register(List<String> query, EngineListener listener);
 
-    public abstract void unregisterQuery(String query);
+    public abstract void unregister(String query);
 
-    public abstract void unregisterQuery(List<String> query);
+    public abstract void unregister(List<String> query);
 
-    public abstract void sendEvent(DataSource dataSource);
+    public abstract void send(DataSource dataSource);
 
     public ENGINE_TYPE getType() {
         return type;

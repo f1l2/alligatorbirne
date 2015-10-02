@@ -8,38 +8,39 @@ import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
-import event.processing.query.Query;
+import event.processing.rule.Rule;
 
 @Component
-public class QueryRepositoryImpl implements QueryRepository {
+public class RuleRepositoryImpl implements RuleRepository {
 
-    private Map<String, Query> repo = new LinkedHashMap<String, Query>();
+    private Map<String, Rule> repo = new LinkedHashMap<String, Rule>();
 
     @Override
-    public Query findOne(String name) {
+    public Rule findOne(String name) {
 
         if (repo.containsKey(name)) {
             return repo.get(name);
         }
+
         return null;
     }
 
     @Override
-    public List<Query> findAll() {
+    public List<Rule> findAll() {
 
-        List<Query> queries = new ArrayList<Query>();
+        List<Rule> rules = new ArrayList<Rule>();
 
-        Iterator<Query> it = repo.values().iterator();
+        Iterator<Rule> it = repo.values().iterator();
         while (it.hasNext()) {
-            queries.add(it.next());
+            rules.add(it.next());
         }
 
-        return queries;
+        return rules;
     }
 
     @Override
-    public void save(String name, Query query) {
-        repo.put(name, query);
+    public void save(String name, Rule rule) {
+        repo.put(name, rule);
     }
 
     @Override

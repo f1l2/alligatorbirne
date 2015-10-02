@@ -26,17 +26,19 @@ public enum RESOURCE_NAMING {
     //
     EPROCESSING_SEND("/send", RequestMethod.POST),
     //
-    EPROCESSING_REGISTRATION_QUERY("/registrations/query", RequestMethod.POST),
+    EPROCESSING_REGISTRATION_QUERY("/registrations/query/{name}", RequestMethod.POST),
     //
     EPROCESSING_UNREGISTRATION_QUERY("/unregistrations/query", RequestMethod.POST),
     //
-    EPROCESSING_REGISTRATION_RULE("/registrations/rule", RequestMethod.POST),
+    EPROCESSING_REGISTRATION_RULE("/registrations/rule/{name}", RequestMethod.POST),
     //
     EPROCESSING_UNREGISTRATION_RULE("/unregistrations/rule", RequestMethod.POST),
     //
     EPROCESSING_GET_ALL_QUERIES("/registrations/queries", RequestMethod.GET),
     //
-    EPROCESSING_GET_ALL_RULES("/registrations/rules", RequestMethod.GET);
+    EPROCESSING_GET_ALL_RULES("/registrations/rules", RequestMethod.GET),
+    //
+    EPROCESSING_ACTIVATIONS_RULE("/activations/rule/{name}", RequestMethod.POST);
 
     private String path;
 

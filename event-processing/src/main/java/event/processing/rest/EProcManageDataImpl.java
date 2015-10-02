@@ -30,7 +30,7 @@ public class EProcManageDataImpl implements EProcManageData {
 
         Engine engine = factory.getEngine();
 
-        engine.sendEvent(dataSource);
+        engine.send(dataSource);
 
     }
 }

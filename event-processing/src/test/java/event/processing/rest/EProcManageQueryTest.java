@@ -9,6 +9,7 @@ import static org.junit.Assert.assertNotNull;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.IntegrationTest;
@@ -46,49 +47,106 @@ public class EProcManageQueryTest extends AbstractTestRestEP {
     @Test
     public void getAllQueries2() {
 
-        when()
-                //
-                .get(RESOURCE_NAMING.EPROCESSING_GET_ALL_QUERIES.getPath())
+        when().get(RESOURCE_NAMING.EPROCESSING_GET_ALL_QUERIES.getPath())
 
-        .then()
-                //
-                .statusCode(200);
+        .then().statusCode(200);
     }
 
     @Test
     public void registerQuery() {
 
-        String query1 = "CONDITION name = 'device1'";
+        String query = "CONDITION name = 'device1'";
+        String path = new String(RESOURCE_NAMING.EPROCESSING_REGISTRATION_QUERY.getPath());
+        path = StringUtils.replace(path, "{name}", "query1");
 
-        given()
-                //
-                .body(query1)
+        given().body(query).when().post(path)
 
-        .when()
-                //
-                .post(RESOURCE_NAMING.EPROCESSING_REGISTRATION_QUERY.getPath())
-
-        .then()
-                //
-                .statusCode(200);
+        .then().statusCode(HttpStatus.OK.value());
     }
 
     @Test
-    public void registerQueryFail() {
+    public void registerQueryParseError() {
 
-        String query1 = "AVC name = 'device1'";
+        String query = "AVC name = 'device1'";
+        String path = new String(RESOURCE_NAMING.EPROCESSING_REGISTRATION_QUERY.getPath());
+        path = StringUtils.replace(path, "{name}", "query1");
 
-        given()
-                //
-                .body(query1)
+        given().body(query).when().post(path)
 
-        .when()
-                //
-                .post(RESOURCE_NAMING.EPROCESSING_REGISTRATION_QUERY.getPath())
+        .then().statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
+    }
 
-        .then()
-                //
-                .statusCode(HttpStatus.NOT_ACCEPTABLE.value());
+    @Test
+    public void registerQueryQueryExistsError() {
+
+        String query = "CONDITION name = 'device1'";
+        String path = new String(RESOURCE_NAMING.EPROCESSING_REGISTRATION_QUERY.getPath());
+        path = StringUtils.replace(path, "{name}", "query2");
+
+        given().body(query).when().post(path)
+
+        .then().statusCode(HttpStatus.OK.value());
+
+        given().body(query).when().post(path)
+
+        .then().statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
+    }
+
+    @Test
+    public void registerRule() {
+
+        String rule = "query TRIGGERS device1, domain1, configurationManagement1";
+        String path = new String(RESOURCE_NAMING.EPROCESSING_REGISTRATION_RULE.getPath());
+        path = StringUtils.replace(path, "{name}", "rule1");
+
+        given().body(rule).when().post(path)
+
+        .then().statusCode(HttpStatus.OK.value());
+    }
+
+    @Test
+    public void registerRuleExistsError() {
+
+        String rule = "query TRIGGERS device1, domain1, configurationManagement1";
+        String path = new String(RESOURCE_NAMING.EPROCESSING_REGISTRATION_RULE.getPath());
+        path = StringUtils.replace(path, "{name}", "rule2");
+
+        given().body(rule).when().post(path)
+
+        .then().statusCode(HttpStatus.OK.value());
+
+        given().body(rule).when().post(path)
+
+        .then().statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
+
+    }
+
+    @Test
+    public void activateRule() {
+
+        String query = "CONDITION name = 'device1'";
+        String pathQuery = new String(RESOURCE_NAMING.EPROCESSING_REGISTRATION_QUERY.getPath());
+        pathQuery = StringUtils.replace(pathQuery, "{name}", "query3");
+
+        given().body(query).when().post(pathQuery)
+
+        .then().statusCode(HttpStatus.OK.value());
+
+        String rule = "query3 TRIGGERS device1, domain1, configurationManagement1";
+        String pathRule = new String(RESOURCE_NAMING.EPROCESSING_REGISTRATION_RULE.getPath());
+        pathRule = StringUtils.replace(pathRule, "{name}", "rule3");
+
+        given().body(rule).when().post(pathRule)
+
+        .then().statusCode(HttpStatus.OK.value());
+
+        String pathActivate = new String(RESOURCE_NAMING.EPROCESSING_ACTIVATIONS_RULE.getPath());
+        pathActivate = StringUtils.replace(pathActivate, "{name}", "rule3");
+
+        when().post(pathActivate)
+
+        .then().statusCode(HttpStatus.OK.value());
+
     }
 
 }

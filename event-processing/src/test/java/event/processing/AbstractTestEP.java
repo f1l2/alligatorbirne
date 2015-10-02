@@ -12,7 +12,7 @@ import common.data.DeviceInformation;
 import common.data.DomainInformation;
 import event.processing.engine.Engine;
 import event.processing.engine.EngineFactory;
-import event.processing.engine.QueryTransformer;
+import event.processing.engine.LanguageTransformer;
 import event.processing.query.esper.TestListener;
 
 public abstract class AbstractTestEP {
@@ -23,7 +23,7 @@ public abstract class AbstractTestEP {
 
     protected Engine engine;
 
-    protected QueryTransformer queryTransformer;
+    protected LanguageTransformer queryTransformer;
 
     protected DataSource ds1, ds2, ds3;
 
@@ -40,7 +40,7 @@ public abstract class AbstractTestEP {
 
         engine = factory.getEngine();
 
-        queryTransformer = factory.getQueryTransformer();
+        queryTransformer = factory.getTransformer();
 
         testListener = new TestListener();
     }
@@ -51,7 +51,7 @@ public abstract class AbstractTestEP {
     }
 
     protected void sendEventAndWait(DataSource dataSource, long time) {
-        engine.sendEvent(dataSource);
+        engine.send(dataSource);
         delay(time);
     }
 
