@@ -3,9 +3,10 @@ package event.processing.rule;
 import java.util.ArrayList;
 import java.util.List;
 
+import event.processing.engine.EngineListener;
 import event.processing.rule.model.Reaction;
 
-public class Rule {
+public class Rule extends EngineListener {
 
     /**
      * Enum Keywords
@@ -51,6 +52,12 @@ public class Rule {
 
     public void setReactions(List<Reaction> reactions) {
         this.reactions = reactions;
+    }
+
+    @Override
+    public void trigger() {
+        // TODO Auto-generated method stub
+
     }
 
 }

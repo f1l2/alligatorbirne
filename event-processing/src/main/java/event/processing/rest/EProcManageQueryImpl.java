@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import common.rest.RESOURCE_NAMING;
 import common.rest.UtilsResource;
 import event.processing.engine.EngineFactory;
+import event.processing.engine.impl.EsperEngineListener;
 import event.processing.query.Query;
 import event.processing.query.QueryFactory;
 import event.processing.repo.QueryRepository;
@@ -146,7 +147,11 @@ public class EProcManageQueryImpl implements EProcManageQuery {
 
         try {
             List<String> epls = factory.getTransformer().transformQuery(query);
-            factory.getEngine().register(epls, factory.getEngineListener());
+
+            EsperEngineListener engineListener = (EsperEngineListener) factory.getEngineListener();
+            engineListener.addRuleListener(rule);
+
+            factory.getEngine().register(epls, engineListener);
         } catch (Exception e) {
             logger.error(ERROR_REGISTER_QUERY);
             return new ResponseEntity<String>(ERROR_REGISTER_QUERY, HttpStatus.INTERNAL_SERVER_ERROR);

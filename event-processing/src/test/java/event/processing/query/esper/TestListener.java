@@ -15,7 +15,7 @@ public class TestListener extends EngineListener implements UpdateListener {
     }
 
     @Override
-    public void update() {
+    public void trigger() {
 
     }
 

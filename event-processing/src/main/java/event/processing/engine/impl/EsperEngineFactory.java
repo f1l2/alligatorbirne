@@ -15,10 +15,10 @@ public class EsperEngineFactory extends EngineFactory {
     protected EsperEngine engine;
 
     @Autowired
-    protected EsperEngineListener listener;
+    protected EsperEPLTransformer transformer;
 
     @Autowired
-    protected EsperEPLTransformer transformer;
+    protected EsperEngineListener listener;
 
     @Override
     public Engine getEngine() {
