@@ -9,12 +9,12 @@ import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
 import org.springframework.stereotype.Component;
 
-import event.processing.query.language.RuleBaseListener;
-import event.processing.query.language.RuleLexer;
-import event.processing.query.language.RuleParser;
-import event.processing.query.language.RuleParser.CMContext;
-import event.processing.query.language.RuleParser.DevInfoContext;
-import event.processing.query.language.RuleParser.DomainInfoContext;
+import event.processing.gen.language.RuleBaseListener;
+import event.processing.gen.language.RuleLexer;
+import event.processing.gen.language.RuleParser;
+import event.processing.gen.language.RuleParser.CMContext;
+import event.processing.gen.language.RuleParser.DevInfoContext;
+import event.processing.gen.language.RuleParser.DomainInfoContext;
 import event.processing.rule.model.Reaction;
 
 @Component

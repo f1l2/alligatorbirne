@@ -1,0 +1,12 @@
+T__0=1
+T__1=2
+T__2=3
+VARIABLE=4
+STRING=5
+INT=6
+COMMA=7
+WS=8
+NL=9
+'TRIGGERS'=1
+';'=2
+','=3

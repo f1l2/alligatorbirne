@@ -3,7 +3,7 @@ package event.processing.engine.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
+import org.springframework.util.StringUtils;
 
 import event.processing.query.Query;
 import event.processing.query.model.AggregateCondition;

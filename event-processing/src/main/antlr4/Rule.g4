@@ -1,7 +1,7 @@
 grammar Rule;
 
 @header {
-	package event.processing.query.language;
+	package event.processing.gen.language;
 }
 
 structure: query WS 'TRIGGERS' WS reactions;

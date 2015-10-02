@@ -1,7 +1,7 @@
 grammar Query;
 
 @header {
-	package event.processing.query.language;
+	package event.processing.gen.language;
 }
 
 query: conditions domains? window?;
