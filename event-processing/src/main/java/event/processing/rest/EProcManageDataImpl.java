@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import common.data.DataSource;
-import event.processing.engine.Engine;
+import common.rest.RESOURCE_NAMING;
+import common.rest.UtilsResource;
 import event.processing.engine.EngineFactory;
 
 @RestController
@@ -26,11 +27,9 @@ public class EProcManageDataImpl implements EProcManageData {
     @RequestMapping(value = "/send", method = RequestMethod.POST)
     public void receive(@RequestBody DataSource dataSource) {
 
-        logger.info("");
+        logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.EPROCESSING_SEND));
 
-        Engine engine = factory.getEngine();
-
-        engine.send(dataSource);
+        factory.getEngine().send(dataSource);
 
     }
 }
