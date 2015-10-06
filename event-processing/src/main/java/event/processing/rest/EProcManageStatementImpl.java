@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 import common.rest.RESOURCE_NAMING;
 import common.rest.UtilsResource;
 import event.processing.engine.EngineFactory;
+import event.processing.engine.EngineListener;
+import event.processing.engine.impl.EsperEngineListener;
 import event.processing.query.Query;
 import event.processing.query.QueryFactory;
 import event.processing.repo.QueryRepository;
@@ -137,7 +139,11 @@ public class EProcManageStatementImpl implements EProcManageStatement {
          */
         try {
             List<String> epls = factory.getTransformer().transformQuery(query);
-            factory.getEngine().register(epls, factory.getEngineListener());
+
+            EngineListener engineListener = factory.getEngineListener();
+            ((EsperEngineListener) engineListener).addListener(rule);
+
+            factory.getEngine().register(epls, engineListener);
         } catch (Exception e) {
             return EPROC_ERROR_CODES.ERROR_ACTIVATE.getErrorResponse();
         }

@@ -3,9 +3,20 @@ package event.processing.rule;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.web.client.RestTemplate;
+
+import common.data.ConfigurationDelegation;
+import common.data.ConfigurationModification;
+import common.data.Connection;
+import common.data.DeviceInformation;
+import common.data.DomainInformation;
+import common.data.config.UtilsConfiguration;
+import common.rest.RESOURCE_NAMING;
+import common.rest.UtilsResource;
+import event.processing.engine.EngineListener;
 import event.processing.rule.model.Reaction;
 
-public class Rule {
+public class Rule extends EngineListener {
 
     /**
      * Enum Keywords
@@ -63,4 +74,43 @@ public class Rule {
         this.isActivated = isActivated;
     }
 
+    @Override
+    public void update() {
+
+        try {
+
+            Connection local = UtilsConfiguration.getLocalConnection();
+            Connection cm = UtilsConfiguration.getCMConnection();
+
+            String url = UtilsResource.getUrl(RESOURCE_NAMING.CMGMT_DELEGATION, cm);
+
+            RestTemplate restTemplate = new RestTemplate();
+
+            for (Reaction reaction : reactions) {
+                restTemplate.postForEntity(url, getConfiguraitonDelegation(reaction, local), Connection.class);
+            }
+
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+
+    }
+
+    private ConfigurationDelegation getConfiguraitonDelegation(Reaction reaction, Connection local) {
+
+        DeviceInformation deviceInformation = new DeviceInformation();
+        deviceInformation.setName(reaction.getDeviceInformation());
+        DomainInformation domainInformation = new DomainInformation();
+        domainInformation.setName(reaction.getDomainInformation());
+        ConfigurationModification configuraitonModification = new ConfigurationModification();
+        configuraitonModification.setName(reaction.getConfigurationModification());
+
+        ConfigurationDelegation cd = new ConfigurationDelegation();
+        cd.setDeviceInformation(deviceInformation);
+        cd.setDomainInformation(domainInformation);
+        cd.setConfigurationModification(configuraitonModification);
+        cd.setEpURL(local);
+
+        return cd;
+    }
 }

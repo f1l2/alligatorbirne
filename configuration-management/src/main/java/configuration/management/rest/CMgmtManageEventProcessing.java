@@ -2,8 +2,8 @@ package configuration.management.rest;
 
 import java.util.List;
 
+import common.data.ConfigurationDelegation;
 import common.data.Connection;
-import common.data.DataSources;
 
 /**
  * Interface definition
@@ -19,6 +19,6 @@ public interface CMgmtManageEventProcessing {
 
     public void heartBeat(Long id);
 
-    public void delegate(Long id, DataSources data);
+    public void delegate(Long id, ConfigurationDelegation data);
 
 }
