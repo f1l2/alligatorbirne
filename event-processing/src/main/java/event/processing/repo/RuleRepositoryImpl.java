@@ -48,4 +48,25 @@ public class RuleRepositoryImpl implements RuleRepository {
         repo.remove(name);
     }
 
+    @Override
+    public List<Rule> findRulesByQueryName(String queryName) {
+
+        List<Rule> rules = new ArrayList<Rule>();
+
+        if (null == queryName) {
+            return rules;
+        }
+
+        Iterator<Rule> it = repo.values().iterator();
+        while (it.hasNext()) {
+
+            Rule rule = it.next();
+            if (queryName.equals(rule.getQuery())) {
+                rules.add(rule);
+            }
+        }
+
+        return rules;
+    }
+
 }

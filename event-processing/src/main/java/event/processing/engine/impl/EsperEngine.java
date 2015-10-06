@@ -90,22 +90,21 @@ public class EsperEngine extends Engine {
 
     @Override
     public void register(String epl, EngineListener listener) {
-        EPStatement cepStatement = EP_ADMIN.createEPL(epl);
+
+        EPStatement cepStatement = EP_ADMIN.createEPL(epl, epl);
         cepStatement.addListener((UpdateListener) listener);
     }
 
     @Override
     public void register(List<String> query, EngineListener listener) {
-
         for (int i = 0; i < (query.size() - 1); i++) {
             register(query.get(i));
         }
         register(query.get(query.size() - 1), listener);
     }
 
-    private void register(String eql) {
-        EPAdministrator cepAdm = EP_SP.getEPAdministrator();
-        cepAdm.createEPL(eql);
+    private void register(String epl) {
+        EP_ADMIN.createEPL(epl, epl);
     }
 
     @Override
@@ -115,12 +114,12 @@ public class EsperEngine extends Engine {
 
     @Override
     public void unregister(List<String> query) {
-        query.forEach(item -> unregister(query));
+        query.forEach(item -> unregister(item));
     }
 
     @Override
-    public void unregister(String query) {
-
+    public void unregister(String epl) {
+        EP_ADMIN.getStatement(epl).destroy();
     }
 
     @Override

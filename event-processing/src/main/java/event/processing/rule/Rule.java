@@ -28,6 +28,8 @@ public class Rule {
         }
     }
 
+    private Boolean isActivated = false;
+
     private String query;
 
     private List<Reaction> reactions;
@@ -51,6 +53,14 @@ public class Rule {
 
     public void setReactions(List<Reaction> reactions) {
         this.reactions = reactions;
+    }
+
+    public Boolean getIsActivated() {
+        return isActivated;
+    }
+
+    public void setIsActivated(Boolean isActivated) {
+        this.isActivated = isActivated;
     }
 
 }
