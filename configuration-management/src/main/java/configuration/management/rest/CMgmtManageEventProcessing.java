@@ -15,9 +15,9 @@ import common.data.Connection;
  */
 public interface CMgmtManageEventProcessing {
 
-    public List<Connection> getAll();
+    public ResponseEntity<List<Connection>> getAll();
 
-    public Connection register(Connection connection);
+    public ResponseEntity<Connection> register(Connection connection);
 
     public ResponseEntity<String> heartBeat(Long id);
 

@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-public enum EPROC_ERROR_CODES {
+public enum EP_ERROR_CODES {
 
     ERROR_MISSING_QUERY_NAME("Missing query name.", HttpStatus.INTERNAL_SERVER_ERROR),
 
@@ -35,9 +35,9 @@ public enum EPROC_ERROR_CODES {
 
     private HttpStatus httpStatus;
 
-    private static final Logger logger = LoggerFactory.getLogger(EPROC_ERROR_CODES.class);
+    private static final Logger logger = LoggerFactory.getLogger(EP_ERROR_CODES.class);
 
-    EPROC_ERROR_CODES(String message, HttpStatus httpStatus) {
+    EP_ERROR_CODES(String message, HttpStatus httpStatus) {
         this.setMessage(message);
         this.setHttpStatus(httpStatus);
     }

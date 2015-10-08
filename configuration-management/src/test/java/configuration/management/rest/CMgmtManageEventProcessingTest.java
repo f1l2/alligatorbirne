@@ -22,8 +22,8 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import com.jayway.restassured.response.Response;
 
 import common.data.Connection;
+import common.data.type.COMPONENT_TYPE;
 import common.rest.RESOURCE_NAMING;
-import common.transformer.Transformer;
 import configuration.management.AbstractTestRestCM;
 import configuration.management.Application;
 
@@ -42,11 +42,11 @@ public class CMgmtManageEventProcessingTest extends AbstractTestRestCM {
 
     }
 
-    private static Integer i;
-
     @Test
     @Transactional
     public void getAll2() {
+
+        given().body(connection).contentType("application/json");
 
         Response response = get(RESOURCE_NAMING.CMGMT_GET_ALL_EVENT_PROCESSING.getPath());
 
@@ -54,14 +54,32 @@ public class CMgmtManageEventProcessingTest extends AbstractTestRestCM {
 
         assertEquals(200, response.getStatusCode());
         assertNotNull(result);
-        assertEquals(1, Transformer.makeCollection(this.deviceRepo.findAll()).size());
         assertEquals(1, result.size());
-        assertEquals(device.getName(), result.get(0).getName());
+        assertNotNull(result.get(0).getId());
+
     }
 
     @Test
     public void register() {
-        given().body(" ").when().post(" ")
+
+        connection.setComponentType(COMPONENT_TYPE.EVENT_PROCESSING);
+
+        given().body(connection).contentType("application/json")
+
+        .when().post(RESOURCE_NAMING.CMGMT_REGISTER_EVENT_PROCESSING.getPath())
+
+        .then().statusCode(HttpStatus.OK.value());
+
+    }
+
+    @Test
+    public void registerFailMissingAuthority() {
+
+        connection.setUrl(null);
+
+        given().body(connection).contentType("application/json")
+
+        .when().post(RESOURCE_NAMING.CMGMT_REGISTER_EVENT_PROCESSING.getPath())
 
         .then().statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
 

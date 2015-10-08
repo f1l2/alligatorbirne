@@ -59,9 +59,9 @@ public class EProcManageStatementImpl implements EProcManageStatement {
          * Make sure that parameter 'name' is not empty or that it isn't already awarded.
          */
         if (StringUtils.isEmpty(name)) {
-            return EPROC_ERROR_CODES.ERROR_MISSING_QUERY_NAME.getErrorResponse();
+            return EP_ERROR_CODES.ERROR_MISSING_QUERY_NAME.getErrorResponse();
         } else if ((null != queryRepository.findOne(name))) {
-            return EPROC_ERROR_CODES.ERROR_EXISTING_QUERY.getErrorResponse();
+            return EP_ERROR_CODES.ERROR_EXISTING_QUERY.getErrorResponse();
         }
 
         /**
@@ -72,7 +72,7 @@ public class EProcManageStatementImpl implements EProcManageStatement {
             queryRepository.save(name, q);
 
         } catch (Exception e) {
-            return EPROC_ERROR_CODES.ERROR_PARSING_QUERY.getErrorResponse();
+            return EP_ERROR_CODES.ERROR_PARSING_QUERY.getErrorResponse();
         }
 
         return new ResponseEntity<String>(OK, HttpStatus.OK);
@@ -88,9 +88,9 @@ public class EProcManageStatementImpl implements EProcManageStatement {
          * Make sure that parameter 'name' is not empty or that it isn't already awarded.
          */
         if (StringUtils.isEmpty(name)) {
-            return EPROC_ERROR_CODES.ERROR_MISSING_RULE_NAME.getErrorResponse();
+            return EP_ERROR_CODES.ERROR_MISSING_RULE_NAME.getErrorResponse();
         } else if ((null != ruleRepository.findOne(name))) {
-            return EPROC_ERROR_CODES.ERROR_EXISTING_RULE.getErrorResponse();
+            return EP_ERROR_CODES.ERROR_EXISTING_RULE.getErrorResponse();
         }
 
         /**
@@ -100,7 +100,7 @@ public class EProcManageStatementImpl implements EProcManageStatement {
             Rule r = ruleFactory.parse(rule);
             ruleRepository.save(name, r);
         } catch (Exception e) {
-            return EPROC_ERROR_CODES.ERROR_PARSING_RULE.getErrorResponse();
+            return EP_ERROR_CODES.ERROR_PARSING_RULE.getErrorResponse();
         }
 
         return new ResponseEntity<String>(OK, HttpStatus.OK);
@@ -115,7 +115,7 @@ public class EProcManageStatementImpl implements EProcManageStatement {
          * Make sure that parameter 'name' is not empty.
          */
         if (StringUtils.isEmpty(name)) {
-            return EPROC_ERROR_CODES.ERROR_MISSING_RULE_NAME.getErrorResponse();
+            return EP_ERROR_CODES.ERROR_MISSING_RULE_NAME.getErrorResponse();
         }
 
         /**
@@ -123,7 +123,7 @@ public class EProcManageStatementImpl implements EProcManageStatement {
          */
         Rule rule = ruleRepository.findOne(name);
         if (null == rule) {
-            return EPROC_ERROR_CODES.ERROR_NON_EXISTING_RULE.getErrorResponse();
+            return EP_ERROR_CODES.ERROR_NON_EXISTING_RULE.getErrorResponse();
         }
 
         /**
@@ -131,7 +131,7 @@ public class EProcManageStatementImpl implements EProcManageStatement {
          */
         Query query = queryRepository.findOne(rule.getQuery());
         if (null == query) {
-            return EPROC_ERROR_CODES.ERROR_NON_EXISTING_QUERY.getErrorResponse();
+            return EP_ERROR_CODES.ERROR_NON_EXISTING_QUERY.getErrorResponse();
         }
 
         /**
@@ -145,7 +145,7 @@ public class EProcManageStatementImpl implements EProcManageStatement {
 
             factory.getEngine().register(epls, engineListener);
         } catch (Exception e) {
-            return EPROC_ERROR_CODES.ERROR_ACTIVATE.getErrorResponse();
+            return EP_ERROR_CODES.ERROR_ACTIVATE.getErrorResponse();
         }
 
         rule.setIsActivated(true);
@@ -161,7 +161,7 @@ public class EProcManageStatementImpl implements EProcManageStatement {
          * Make sure that parameter 'name' is not empty.
          */
         if (StringUtils.isEmpty(name)) {
-            return EPROC_ERROR_CODES.ERROR_MISSING_RULE_NAME.getErrorResponse();
+            return EP_ERROR_CODES.ERROR_MISSING_RULE_NAME.getErrorResponse();
         }
 
         /**
@@ -169,7 +169,7 @@ public class EProcManageStatementImpl implements EProcManageStatement {
          */
         Rule rule = ruleRepository.findOne(name);
         if (null == rule) {
-            return EPROC_ERROR_CODES.ERROR_NON_EXISTING_RULE.getErrorResponse();
+            return EP_ERROR_CODES.ERROR_NON_EXISTING_RULE.getErrorResponse();
         }
 
         /**
@@ -178,7 +178,7 @@ public class EProcManageStatementImpl implements EProcManageStatement {
          */
         Query query = queryRepository.findOne(rule.getQuery());
         if (null == query) {
-            return EPROC_ERROR_CODES.ERROR_NON_EXISTING_QUERY.getErrorResponse();
+            return EP_ERROR_CODES.ERROR_NON_EXISTING_QUERY.getErrorResponse();
         }
 
         /**
@@ -189,7 +189,7 @@ public class EProcManageStatementImpl implements EProcManageStatement {
             factory.getEngine().unregister(epls);
         } catch (Exception e) {
             System.out.println(e);
-            return EPROC_ERROR_CODES.ERROR_DEACTIVATE.getErrorResponse();
+            return EP_ERROR_CODES.ERROR_DEACTIVATE.getErrorResponse();
         }
 
         rule.setIsActivated(false);
@@ -205,7 +205,7 @@ public class EProcManageStatementImpl implements EProcManageStatement {
          * Make sure that parameter 'name' is not empty.
          */
         if (StringUtils.isEmpty(name)) {
-            return EPROC_ERROR_CODES.ERROR_MISSING_QUERY_NAME.getErrorResponse();
+            return EP_ERROR_CODES.ERROR_MISSING_QUERY_NAME.getErrorResponse();
         }
 
         /**
@@ -214,7 +214,7 @@ public class EProcManageStatementImpl implements EProcManageStatement {
          */
         Query query = queryRepository.findOne(name);
         if (null == query) {
-            return EPROC_ERROR_CODES.ERROR_NON_EXISTING_QUERY.getErrorResponse();
+            return EP_ERROR_CODES.ERROR_NON_EXISTING_QUERY.getErrorResponse();
         }
 
         /**
@@ -222,7 +222,7 @@ public class EProcManageStatementImpl implements EProcManageStatement {
          * 
          */
         if (!CollectionUtils.isEmpty(ruleRepository.findRulesByQueryName(name))) {
-            return EPROC_ERROR_CODES.ERROR_DEREGISTER_ASSIGNED.getErrorResponse();
+            return EP_ERROR_CODES.ERROR_DEREGISTER_ASSIGNED.getErrorResponse();
         }
 
         ruleRepository.delete(name);
@@ -238,7 +238,7 @@ public class EProcManageStatementImpl implements EProcManageStatement {
          * Make sure that parameter 'name' is not empty.
          */
         if (StringUtils.isEmpty(name)) {
-            return EPROC_ERROR_CODES.ERROR_MISSING_RULE_NAME.getErrorResponse();
+            return EP_ERROR_CODES.ERROR_MISSING_RULE_NAME.getErrorResponse();
         }
 
         /**
@@ -246,14 +246,14 @@ public class EProcManageStatementImpl implements EProcManageStatement {
          */
         Rule rule = ruleRepository.findOne(name);
         if (null == rule) {
-            return EPROC_ERROR_CODES.ERROR_NON_EXISTING_RULE.getErrorResponse();
+            return EP_ERROR_CODES.ERROR_NON_EXISTING_RULE.getErrorResponse();
         }
 
         /**
          * Before deregistration make sure that rule is not active.
          */
         if (rule.getIsActivated()) {
-            return EPROC_ERROR_CODES.ERROR_DEREGISTER_ACTIVE.getErrorResponse();
+            return EP_ERROR_CODES.ERROR_DEREGISTER_ACTIVE.getErrorResponse();
         }
 
         this.ruleRepository.delete(name);

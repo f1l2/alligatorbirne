@@ -1,6 +1,5 @@
 package configuration.management.rest;
 
-import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -18,6 +17,7 @@ import org.springframework.web.client.RestTemplate;
 
 import common.data.ConfigurationDelegation;
 import common.data.Connection;
+import common.data.type.COMPONENT_TYPE;
 import common.rest.RESOURCE_NAMING;
 import common.rest.UtilsResource;
 import common.transformer.Transformer;
@@ -27,6 +27,8 @@ import configuration.management.repo.EventProcessingRepository;
 import configuration.management.repo.EventProcessingTransformer;
 import configuration.management.repo.IoTDeviceRepository;
 import configuration.management.repo.IoTDeviceTransformer;
+import configuration.management.rest.task.RegisterEP;
+import configuration.management.rest.task.ValidateConnection;
 
 @RestController
 public class CMgmtManageEventProcessingImpl implements CMgmtManageEventProcessing {
@@ -45,36 +47,31 @@ public class CMgmtManageEventProcessingImpl implements CMgmtManageEventProcessin
     @Autowired
     private IoTDeviceTransformer iotTransformer;
 
+    @Autowired
+    private ValidateConnection validateConnection;
+
+    @Autowired
+    private RegisterEP registerEP;
+
     @Override
     @RequestMapping(value = "/registrations/eventprocessing", method = RequestMethod.GET)
-    public @ResponseBody List<Connection> getAll() {
+    public @ResponseBody ResponseEntity<List<Connection>> getAll() {
 
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_GET_ALL_EVENT_PROCESSING));
-        return transformer.toRemote(Transformer.makeCollection(eventProcessingRepo.findAll()));
+        List<Connection> eps = transformer.toRemote(Transformer.makeCollection(eventProcessingRepo.findAll()));
+
+        return new ResponseEntity<List<Connection>>(eps, HttpStatus.OK);
     }
 
     @Override
     @RequestMapping(value = "/registrations/eventprocessing", method = RequestMethod.POST)
-    public Connection register(@RequestBody Connection connection) {
+    public ResponseEntity<Connection> register(@RequestBody Connection connection) {
 
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_REGISTER_EVENT_PROCESSING));
 
-        EventProcessingRO item = eventProcessingRepo.findByAuthority(connection.getUrl().getAuthority());
-        if (null != item) {
-            connection.setId(item.getId());
-            item.setUpdated(new Date());
-        } else {
-            item = new EventProcessingRO();
-            item.setCreated(new Date());
-            item.setUpdated(new Date());
-            item.setAuthority(connection.getUrl().getAuthority());
-            item = eventProcessingRepo.save(item);
-        }
-
-        item = eventProcessingRepo.save(item);
-        connection.setId(item.getId());
-
-        return connection;
+        validateConnection.setNextTask(registerEP);
+        validateConnection.setCt(COMPONENT_TYPE.EVENT_PROCESSING);
+        return validateConnection.doStep(connection);
     }
 
     @Override

@@ -2,6 +2,8 @@ package configuration.management.rest;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+
 import common.data.Connection;
 import common.data.DataSources;
 
@@ -13,12 +15,12 @@ import common.data.DataSources;
  */
 public interface CMgmtManageIoTDevice {
 
-    public Connection register(Connection connection);
+    public ResponseEntity<Connection> register(Connection connection);
 
-    public List<Connection> getAll();
+    public ResponseEntity<List<Connection>> getAll();
 
-    public void heartBeat(Long id);
+    public ResponseEntity<String> heartBeat(Long id);
 
-    public void registerDataSources(Long id, DataSources data);
+    public ResponseEntity<String> registerDataSources(Long id, DataSources data);
 
 }

@@ -6,6 +6,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import common.data.Connection;
 import common.data.DataSource;
 import common.data.DataSources;
+import common.data.type.COMPONENT_TYPE;
 import common.rest.RESOURCE_NAMING;
 import common.rest.UtilsResource;
 import common.transformer.Transformer;
@@ -24,6 +27,8 @@ import configuration.management.model.IoTDeviceRO;
 import configuration.management.repo.IoTDeviceDataSourceRepository;
 import configuration.management.repo.IoTDeviceRepository;
 import configuration.management.repo.IoTDeviceTransformer;
+import configuration.management.rest.task.RegisterIoTDevice;
+import configuration.management.rest.task.ValidateConnection;
 
 @RestController
 public class CMgmtManageIoTDeviceImpl implements CMgmtManageIoTDevice {
@@ -39,45 +44,41 @@ public class CMgmtManageIoTDeviceImpl implements CMgmtManageIoTDevice {
     @Autowired
     private IoTDeviceTransformer transformer;
 
+    @Autowired
+    private ValidateConnection validateConnection;
+
+    @Autowired
+    private RegisterIoTDevice registerIoTDevice;
+
     @Override
     @RequestMapping(value = "/registrations/devices", method = RequestMethod.GET)
-    public @ResponseBody List<Connection> getAll() {
+    public @ResponseBody ResponseEntity<List<Connection>> getAll() {
 
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_GET_ALL_DEVICES));
 
-        return transformer.toRemote(Transformer.makeCollection(deviceRepo.findAll()));
+        List<Connection> devices = transformer.toRemote(Transformer.makeCollection(deviceRepo.findAll()));
+
+        return new ResponseEntity<List<Connection>>(devices, HttpStatus.OK);
     }
 
     @Override
     @RequestMapping(value = "/registrations/devices", method = RequestMethod.POST)
-    public Connection register(@RequestBody Connection connection) {
+    public ResponseEntity<Connection> register(@RequestBody Connection connection) {
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_REGISTER_DEVICE));
 
         /**
          * If device with URL already exists, return existing values. Otherwise generate new values.
          */
 
-        IoTDeviceRO item = deviceRepo.findByAuthority(connection.getUrl().getAuthority());
-        if (null != item) {
-            connection.setId(item.getId());
-            item.setUpdated(new Date());
-        } else {
-            item = new IoTDeviceRO();
-            item.setCreated(new Date());
-            item.setUpdated(new Date());
-            item.setAuthority(connection.getUrl().getAuthority());
-            item = deviceRepo.save(item);
-        }
+        validateConnection.setNextTask(registerIoTDevice);
+        validateConnection.setCt(COMPONENT_TYPE.IOT_DEVICE);
 
-        item = deviceRepo.save(item);
-        connection.setId(item.getId());
-
-        return connection;
+        return validateConnection.doStep(connection);
     }
 
     @Override
     @RequestMapping(value = "/registrations/devices/sources/{id}", method = RequestMethod.POST)
-    public void registerDataSources(@PathVariable(value = "id") Long id, @RequestBody DataSources data) {
+    public ResponseEntity<String> registerDataSources(@PathVariable(value = "id") Long id, @RequestBody DataSources data) {
 
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_REGISTER_DEVICE_SOURCES));
 
@@ -92,11 +93,12 @@ public class CMgmtManageIoTDeviceImpl implements CMgmtManageIoTDevice {
             deviceDataSourceRepo.save(item);
         }
 
+        return new ResponseEntity<String>("", HttpStatus.OK);
     }
 
     @Override
     @RequestMapping(value = "/registrations/devices/{id}", method = RequestMethod.PUT)
-    public void heartBeat(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<String> heartBeat(@PathVariable(value = "id") Long id) {
 
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_HEART_BEAT_DEVICE));
 
@@ -106,5 +108,6 @@ public class CMgmtManageIoTDeviceImpl implements CMgmtManageIoTDevice {
             deviceRepo.save(item);
         }
 
+        return new ResponseEntity<String>("", HttpStatus.OK);
     }
 }
