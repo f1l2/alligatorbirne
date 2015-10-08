@@ -3,119 +3,92 @@ package configuration.management.repo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import configuration.management.AbstractTestCM;
 import configuration.management.Application;
-import configuration.management.model.IoTDeviceRO;
+import configuration.management.model.EventProcessingDataSourceRO;
+import configuration.management.model.EventProcessingRO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
-public class EventProcessingRepositoryTest extends AbstractTestCM {
+public class EventProcessingRepositoryTest {
+
+    @Autowired
+    private EventProcessingRepository eventProcessingRepo;
+
+    private EventProcessingRO ep1, ep2;
+
+    private EventProcessingDataSourceRO dataSource1;
+
+    @Before
+    public void before() {
+
+        this.eventProcessingRepo.deleteAll();
+
+        ep1 = new EventProcessingRO();
+        ep1.setCreated(new Date());
+        ep1.setUpdated(new Date());
+        ep1.setName("ep1");
+        ep1.setAuthority("http://url1.bla.bla.at");
+
+        ep1 = this.eventProcessingRepo.save(ep1);
+
+        ep2 = new EventProcessingRO();
+
+        ep2.setCreated(new Date());
+        ep2.setUpdated(new Date());
+        ep2.setName("ep2");
+        ep2.setAuthority("http://url2.bla.bla.at");
+
+        ep2 = this.eventProcessingRepo.save(ep2);
+
+        dataSource1 = new EventProcessingDataSourceRO();
+        dataSource1.setDevice("device");
+        dataSource1.setDomain("domain");
+
+    }
 
     @Test
     public void findByName() {
 
-        IoTDeviceRO result = this.deviceRepo.findByName(device1.getName());
-
-        System.out.println(result.getUpdated());
+        EventProcessingRO result = this.eventProcessingRepo.findByName(ep1.getName());
 
         assertNotNull(result);
-        assertEquals(device1.getId(), result.getId());
-        assertEquals(device1.getName(), result.getName());
-        assertEquals(device1.getAuthority(), result.getAuthority());
+        assertEquals(ep1.getId(), result.getId());
+        assertEquals(ep1.getName(), result.getName());
+        assertEquals(ep1.getAuthority(), result.getAuthority());
     }
 
     @Test
     @Transactional
     public void saveDataSource() {
 
-        IoTDeviceRO result = this.deviceRepo.findByName(device1.getName());
-        result.getIoTDeviceDataSources().add(dataSource1);
+        EventProcessingRO result = this.eventProcessingRepo.findByName(ep1.getName());
+        result.getEventProcessingDataSources().add(dataSource1);
 
-        result = this.deviceRepo.save(result);
+        result = this.eventProcessingRepo.save(result);
 
-        result = this.deviceRepo.findByName(device1.getName());
+        result = this.eventProcessingRepo.findByName(ep1.getName());
+
+        System.out.println(result);
 
         assertNotNull(result);
-        assertEquals(device1.getId(), result.getId());
-        assertEquals(device1.getName(), result.getName());
-        assertEquals(device1.getAuthority(), result.getAuthority());
+        assertEquals(ep1.getId(), result.getId());
+        assertEquals(ep1.getName(), result.getName());
+        assertEquals(ep1.getAuthority(), result.getAuthority());
 
-        assertNotNull(result.getIoTDeviceDataSources());
-        assertEquals(1, result.getIoTDeviceDataSources().size());
-        assertEquals(dataSource1.getDevice(), result.getIoTDeviceDataSources().get(0).getDevice());
-        assertEquals(dataSource1.getDomain(), result.getIoTDeviceDataSources().get(0).getDomain());
+        assertNotNull(result.getEventProcessingDataSources());
+        assertEquals(1, result.getEventProcessingDataSources().size());
+        assertEquals(dataSource1.getDevice(), result.getEventProcessingDataSources().get(0).getDevice());
+        assertEquals(dataSource1.getDomain(), result.getEventProcessingDataSources().get(0).getDomain());
     }
 
-    @Test
-    @Transactional
-    public void findByUpdatedLessThan1() {
-
-        Iterable<IoTDeviceRO> all = this.deviceRepo.findAll();
-
-        assertNotNull(all);
-        assertEquals(2, ((Collection<?>) all).size());
-
-        List<IoTDeviceRO> devices = this.deviceRepo.findByUpdatedBefore(new Date());
-
-        assertNotNull(devices);
-        assertEquals(2, devices.size());
-
-        this.deviceRepo.delete(devices);
-
-        all = this.deviceRepo.findAll();
-
-        assertNotNull(all);
-        assertEquals(0, ((Collection<?>) all).size());
-    }
-
-    @Test
-    @Transactional
-    public void findByUpdatedLessThan2() {
-
-        Iterable<IoTDeviceRO> all = this.deviceRepo.findAll();
-
-        assertNotNull(all);
-        assertEquals(2, ((Collection<?>) all).size());
-
-        IoTDeviceRO result = this.deviceRepo.findByName(device1.getName());
-        result.getIoTDeviceDataSources().add(dataSource1);
-
-        result = this.deviceRepo.save(result);
-
-        assertNotNull(result.getIoTDeviceDataSources());
-        assertEquals(1, result.getIoTDeviceDataSources().size());
-        assertEquals(dataSource1.getDevice(), result.getIoTDeviceDataSources().get(0).getDevice());
-        assertEquals(dataSource1.getDomain(), result.getIoTDeviceDataSources().get(0).getDomain());
-
-        List<IoTDeviceRO> devices = this.deviceRepo.findByUpdatedBefore(new Date());
-
-        assertNotNull(devices);
-        assertEquals(2, devices.size());
-
-    }
-
-    @Test
-    @Transactional
-    public void findByDataSource() {
-
-        IoTDeviceRO device = this.deviceRepo.findByName(device1.getName());
-        device.getIoTDeviceDataSources().add(dataSource1);
-        device = this.deviceRepo.save(device);
-
-        List<IoTDeviceRO> result = this.deviceRepo.findByIoTDeviceDataSources(dataSource1.getDevice(), dataSource1.getDomain());
-        //
-        // assertNotNull(result);
-        // assertEquals(1, result.size());
-
-    }
 }

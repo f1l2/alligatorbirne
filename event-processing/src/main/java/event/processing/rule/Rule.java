@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.web.client.RestTemplate;
 
+import common.data.ConfigurationDelegation;
 import common.data.ConfigurationModification;
 import common.data.Connection;
 import common.data.DeviceInformation;

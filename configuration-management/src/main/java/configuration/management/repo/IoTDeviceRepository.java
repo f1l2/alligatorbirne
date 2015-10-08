@@ -3,6 +3,7 @@ package configuration.management.repo;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
@@ -16,6 +17,7 @@ public interface IoTDeviceRepository extends CrudRepository<IoTDeviceRO, Long> {
 
     public List<IoTDeviceRO> findByUpdatedBefore(Date date);
 
-    public List<IoTDeviceRO> findByIoTDeviceDataSources(@Param("device") String device, @Param("domain") String domain);
+    @Query("select i from IoTDeviceRO as i left join i.ioTDeviceDataSources as ds where ds.device = ?1 and ds.domain = ?2")
+    public List<IoTDeviceRO> findByIoTDeviceDataSources(String device, String domain);
 
 }
