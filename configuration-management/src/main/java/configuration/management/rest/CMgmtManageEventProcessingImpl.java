@@ -6,6 +6,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -78,7 +79,7 @@ public class CMgmtManageEventProcessingImpl implements CMgmtManageEventProcessin
 
     @Override
     @RequestMapping(value = "/registrations/eventprocessing/{id}", method = RequestMethod.PUT)
-    public void heartBeat(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<String> heartBeat(@PathVariable(value = "id") Long id) {
 
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_HEART_BEAT_EVENT_PROCESSING));
 
@@ -87,28 +88,32 @@ public class CMgmtManageEventProcessingImpl implements CMgmtManageEventProcessin
             eventProcessingRepo.save(item);
             // TODO
         }
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @Override
     @RequestMapping(value = "/delegation/{id}", method = RequestMethod.POST)
-    public void delegate(@PathVariable(value = "id") Long id, @RequestBody ConfigurationDelegation data) {
+    public ResponseEntity<String> delegate(@PathVariable(value = "id") Long id, @RequestBody ConfigurationDelegation data) {
 
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_DELEGATION));
 
-        List<IoTDeviceRO> findByDataSource = deviceRepository.findByIoTDeviceDataSources(data.getDeviceInformation().getName(), data.getDomainInformation().getName());
+        List<IoTDeviceRO> devicesToBeContacted = deviceRepository.findByIoTDeviceDataSources(data.getDeviceInformation().getName(), data.getDomainInformation().getName());
 
-        List<Connection> remote = iotTransformer.toRemote(findByDataSource);
+        List<Connection> connectionsToBeContacted = iotTransformer.toRemote(devicesToBeContacted);
 
-        for (Connection remot : remote) {
+        for (Connection connection : connectionsToBeContacted) {
             try {
-                String url = UtilsResource.getUrl(RESOURCE_NAMING.IDEV_SET_CONFIGURATION, remot.getUrl().getAuthority());
                 RestTemplate restTemplate = new RestTemplate();
+                String url = UtilsResource.getUrl(RESOURCE_NAMING.IDEV_SET_CONFIGURATION, connection.getUrl().getAuthority());
                 ResponseEntity<String> response = restTemplate.postForEntity(url, data.getConfigurationModification(), String.class);
                 logger.info("Device notification - " + url + " Status: " + response.getStatusCode() + " Response body: " + response.getBody());
             } catch (Exception e) {
                 logger.error("{}", e);
             }
         }
+
+        return new ResponseEntity<>(HttpStatus.OK);
 
     }
 }

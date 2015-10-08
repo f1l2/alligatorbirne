@@ -2,6 +2,8 @@ package configuration.management.rest;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+
 import common.data.ConfigurationDelegation;
 import common.data.Connection;
 
@@ -17,8 +19,8 @@ public interface CMgmtManageEventProcessing {
 
     public Connection register(Connection connection);
 
-    public void heartBeat(Long id);
+    public ResponseEntity<String> heartBeat(Long id);
 
-    public void delegate(Long id, ConfigurationDelegation data);
+    public ResponseEntity<String> delegate(Long id, ConfigurationDelegation data);
 
 }
