@@ -29,7 +29,7 @@ import event.processing.query.Query;
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
 @IntegrationTest("server.port:0")
-public class EProcManageQueryTest extends AbstractTestRestEP {
+public class EProcManageStatementTest extends AbstractTestRestEP {
 
     @Test
     public void getAllQueries1() {
@@ -93,6 +93,17 @@ public class EProcManageQueryTest extends AbstractTestRestEP {
     }
 
     @Test
+    public void deregisterQuery() {
+
+        String pathDeregister = new String(RESOURCE_NAMING.EPROCESSING_DEREGISTRATION_QUERY.getPath());
+        pathDeregister = StringUtils.replace(pathDeregister, "{name}", "query1");
+
+        when().get(pathDeregister)
+
+        .then().statusCode(HttpStatus.OK.value());
+    }
+
+    @Test
     public void registerRule() {
 
         String rule = "query TRIGGERS device1, domain1, configurationManagement1";
@@ -122,6 +133,16 @@ public class EProcManageQueryTest extends AbstractTestRestEP {
     }
 
     @Test
+    public void deregisterRule() {
+        String pathDeregister = new String(RESOURCE_NAMING.EPROCESSING_DEREGISTRATION_RULE.getPath());
+        pathDeregister = StringUtils.replace(pathDeregister, "{name}", "rule1");
+
+        when().get(pathDeregister)
+
+        .then().statusCode(HttpStatus.OK.value());
+    }
+
+    @Test
     public void activateRule() {
 
         String query = "CONDITION name = 'device1'";
@@ -143,7 +164,19 @@ public class EProcManageQueryTest extends AbstractTestRestEP {
         String pathActivate = new String(RESOURCE_NAMING.EPROCESSING_ACTIVATIONS_RULE.getPath());
         pathActivate = StringUtils.replace(pathActivate, "{name}", "rule3");
 
-        when().post(pathActivate)
+        when().get(pathActivate)
+
+        .then().statusCode(HttpStatus.OK.value());
+
+    }
+
+    @Test
+    public void deactivateRule() {
+
+        String pathDeactivate = new String(RESOURCE_NAMING.EPROCESSING_DEACTIVATIONS_RULE.getPath());
+        pathDeactivate = StringUtils.replace(pathDeactivate, "{name}", "rule3");
+
+        when().get(pathDeactivate)
 
         .then().statusCode(HttpStatus.OK.value());
 

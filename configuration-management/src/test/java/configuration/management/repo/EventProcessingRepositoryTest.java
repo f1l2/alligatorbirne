@@ -103,4 +103,19 @@ public class EventProcessingRepositoryTest extends AbstractTestCM {
         assertEquals(2, devices.size());
 
     }
+
+    @Test
+    @Transactional
+    public void findByDataSource() {
+
+        IoTDeviceRO device = this.deviceRepo.findByName(device1.getName());
+        device.getIoTDeviceDataSources().add(dataSource1);
+        device = this.deviceRepo.save(device);
+
+        List<IoTDeviceRO> result = this.deviceRepo.findByIoTDeviceDataSources(dataSource1.getDevice(), dataSource1.getDomain());
+        //
+        // assertNotNull(result);
+        // assertEquals(1, result.size());
+
+    }
 }

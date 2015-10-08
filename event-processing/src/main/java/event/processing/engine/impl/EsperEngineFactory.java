@@ -17,17 +17,14 @@ public class EsperEngineFactory extends EngineFactory {
     @Autowired
     protected EsperEPLTransformer transformer;
 
-    @Autowired
-    protected EsperEngineListener listener;
-
     @Override
     public Engine getEngine() {
         return engine;
     }
 
-    @Override
+    @Autowired
     public EngineListener getEngineListener() {
-        return listener;
+        return new EsperEngineListener();
     }
 
     @Override

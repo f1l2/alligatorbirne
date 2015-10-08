@@ -1,9 +1,7 @@
 package configuration.management.rest;
 
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,22 +15,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import common.data.ConfigurationModification;
+import common.data.ConfigurationDelegation;
 import common.data.Connection;
-import common.data.DataSource;
-import common.data.DataSources;
 import common.rest.RESOURCE_NAMING;
 import common.rest.UtilsResource;
 import common.transformer.Transformer;
-import configuration.management.model.EventProcessingDataSourceRO;
 import configuration.management.model.EventProcessingRO;
-import configuration.management.model.IoTDeviceDataSourceRO;
 import configuration.management.model.IoTDeviceRO;
-import configuration.management.repo.EventProcessingDataSourceRepository;
 import configuration.management.repo.EventProcessingRepository;
 import configuration.management.repo.EventProcessingTransformer;
-import configuration.management.repo.IoTDeviceDataSourceRepository;
 import configuration.management.repo.IoTDeviceRepository;
+import configuration.management.repo.IoTDeviceTransformer;
 
 @RestController
 public class CMgmtManageEventProcessingImpl implements CMgmtManageEventProcessing {
@@ -43,16 +36,13 @@ public class CMgmtManageEventProcessingImpl implements CMgmtManageEventProcessin
     private EventProcessingRepository eventProcessingRepo;
 
     @Autowired
-    private EventProcessingDataSourceRepository eventProcessingDataSourceRepo;
-
-    @Autowired
     private IoTDeviceRepository deviceRepository;
 
     @Autowired
-    private IoTDeviceDataSourceRepository deviceDataSourceRepository;
+    private EventProcessingTransformer transformer;
 
     @Autowired
-    private EventProcessingTransformer transformer;
+    private IoTDeviceTransformer iotTransformer;
 
     @Override
     @RequestMapping(value = "/registrations/eventprocessing", method = RequestMethod.GET)
@@ -101,71 +91,24 @@ public class CMgmtManageEventProcessingImpl implements CMgmtManageEventProcessin
 
     @Override
     @RequestMapping(value = "/delegation/{id}", method = RequestMethod.POST)
-    public void delegate(@PathVariable(value = "id") Long id, @RequestBody DataSources data) {
+    public void delegate(@PathVariable(value = "id") Long id, @RequestBody ConfigurationDelegation data) {
 
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_DELEGATION));
 
-        EventProcessingRO ep = eventProcessingRepo.findOne(id);
+        List<IoTDeviceRO> findByDataSource = deviceRepository.findByIoTDeviceDataSources(data.getDeviceInformation().getName(), data.getDomainInformation().getName());
 
-        for (DataSource point : data.getDataSources()) {
+        List<Connection> remote = iotTransformer.toRemote(findByDataSource);
 
-            EventProcessingDataSourceRO item = new EventProcessingDataSourceRO();
-            // TODO Manuel
-            // item.setEventProcessingId(id);
-            item.setDomain(point.getDomainInformation().getName());
-            item.setDevice(point.getDeviceInformation().getName());
-
-            eventProcessingDataSourceRepo.save(item);
-        }
-
-        logger.info("Get device to notify ...");
-
-        Set<IoTDeviceDataSourceRO> devicesToNotify = getDevicesToNotify(ep);
-
-        logger.info("Number of devices to notify: " + devicesToNotify.size());
-
-        logger.info("Notify devices ... ");
-
-        notifyDevices(devicesToNotify, ep);
-
-    }
-
-    private void notifyDevices(Set<IoTDeviceDataSourceRO> devicesToNotify, EventProcessingRO ep) {
-
-        for (IoTDeviceDataSourceRO deviceJPA : devicesToNotify) {
-
-            ConfigurationModification cm = new ConfigurationModification();
-            cm.setEventProcessingId(ep.getId());
-            cm.setEpUrl(ep.getAuthority());
-
-            IoTDeviceRO device = deviceRepository.findOne(deviceJPA.getIoTDevice().getId());
-
-            String url = UtilsResource.getUrl(RESOURCE_NAMING.IDEV_SET_CONFIGURATION, device.getAuthority());
-
+        for (Connection remot : remote) {
             try {
+                String url = UtilsResource.getUrl(RESOURCE_NAMING.IDEV_SET_CONFIGURATION, remot.getUrl().getAuthority());
                 RestTemplate restTemplate = new RestTemplate();
-                ResponseEntity<String> response = restTemplate.postForEntity(url, cm, String.class);
+                ResponseEntity<String> response = restTemplate.postForEntity(url, data.getConfigurationModification(), String.class);
                 logger.info("Device notification - " + url + " Status: " + response.getStatusCode() + " Response body: " + response.getBody());
-            } catch (Exception ex) {
-                // TODO
-                logger.error("Register error.");
+            } catch (Exception e) {
+                logger.error("{}", e);
             }
-
         }
-
-    }
-
-    private Set<IoTDeviceDataSourceRO> getDevicesToNotify(EventProcessingRO ep) {
-
-        List<EventProcessingDataSourceRO> eProcDataSources = eventProcessingDataSourceRepo.findByEventProcessingId(ep.getId());
-
-        Set<IoTDeviceDataSourceRO> deviceDataSources = new HashSet<IoTDeviceDataSourceRO>();
-
-        for (EventProcessingDataSourceRO eProcDataSource : eProcDataSources) {
-            deviceDataSources.addAll(deviceDataSourceRepository.findByDomainAndDevice(eProcDataSource.getDomain(), eProcDataSource.getDevice()));
-        }
-
-        return deviceDataSources;
 
     }
 }

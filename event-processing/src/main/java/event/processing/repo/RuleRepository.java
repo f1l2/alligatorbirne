@@ -14,4 +14,6 @@ public interface RuleRepository {
 
     public void delete(String name);
 
+    public List<Rule> findRulesByQueryName(String queryName);
+
 }

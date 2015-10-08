@@ -16,4 +16,6 @@ public interface IoTDeviceRepository extends CrudRepository<IoTDeviceRO, Long> {
 
     public List<IoTDeviceRO> findByUpdatedBefore(Date date);
 
+    public List<IoTDeviceRO> findByIoTDeviceDataSources(@Param("device") String device, @Param("domain") String domain);
+
 }

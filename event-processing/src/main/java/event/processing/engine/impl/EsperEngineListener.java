@@ -5,16 +5,12 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
 import com.espertech.esper.client.EventBean;
 import com.espertech.esper.client.UpdateListener;
 
 import event.processing.engine.EngineListener;
 
-@Component()
-@Scope("prototype")
 public class EsperEngineListener extends EngineListener implements UpdateListener {
 
     private List<EngineListener> ruleListeners = new ArrayList<EngineListener>();
@@ -36,5 +32,4 @@ public class EsperEngineListener extends EngineListener implements UpdateListene
     public void trigger() {
         // NOT USED
     }
-
 }
