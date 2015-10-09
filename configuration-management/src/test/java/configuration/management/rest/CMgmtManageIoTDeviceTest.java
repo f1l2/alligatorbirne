@@ -4,8 +4,10 @@ import static com.jayway.restassured.RestAssured.get;
 import static com.jayway.restassured.RestAssured.given;
 import static com.jayway.restassured.RestAssured.when;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 
@@ -22,8 +24,15 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import com.jayway.restassured.response.Response;
 
 import common.data.Connection;
+import common.data.DataSource;
+import common.data.DataSources;
+import common.data.DeviceInformation;
+import common.data.DomainInformation;
 import common.data.type.COMPONENT_TYPE;
+import common.data.type.DEVICE_INFORMATION_TYPE;
+import common.data.type.DOMAIN_INFORMATION_TYPE;
 import common.rest.RESOURCE_NAMING;
+import common.rest.UtilsUrl;
 import configuration.management.AbstractTestRestCM;
 import configuration.management.Application;
 
@@ -45,7 +54,7 @@ public class CMgmtManageIoTDeviceTest extends AbstractTestRestCM {
     @Transactional
     public void getAll2() {
 
-        given().body(connection).contentType("application/json");
+        register(null);
 
         Response response = get(RESOURCE_NAMING.CMGMT_GET_ALL_DEVICES.getPath());
 
@@ -53,23 +62,117 @@ public class CMgmtManageIoTDeviceTest extends AbstractTestRestCM {
 
         assertEquals(200, response.getStatusCode());
         assertNotNull(result);
-        assertEquals(1, result.size());
+        assertNotEquals(0, result.size());
         assertNotNull(result.get(0).getId());
     }
 
     @Test
-    public void register() {
+    @Transactional
+    public void registerDataSources() {
+
+        URL url = UtilsUrl.parseUrl("localhost:5003");
+
+        Connection connection = new Connection();
         connection.setComponentType(COMPONENT_TYPE.IOT_DEVICE);
+        connection.setName("DEV_NAME3");
+        connection.setUrl(url);
 
-        given().body(connection).contentType("application/json")
+        Connection register = register(connection);
 
-        .when().post(RESOURCE_NAMING.CMGMT_REGISTER_DEVICE.getPath())
+        DeviceInformation dev = new DeviceInformation();
+        dev.setName("device");
+        dev.setType(DEVICE_INFORMATION_TYPE.SENSOR);
+        DomainInformation domain = new DomainInformation();
+        domain.setName("domain");
+        domain.setType(DOMAIN_INFORMATION_TYPE.FIRST_FLOOR);
 
-        .then().statusCode(HttpStatus.OK.value());
+        DataSource dataSource = new DataSource();
+        dataSource.setDeviceInformation(dev);
+        dataSource.setDomainInformation(domain);
+
+        DataSources dataSources = new DataSources();
+        dataSources.add(dataSource);
+        dataSources.add(dataSource);
+
+        String path = RESOURCE_NAMING.CMGMT_REGISTER_DEVICE_SOURCES.getPath();
+        path = path.replace("{id}", Long.toString(register.getId()));
+
+        Response response = given().body(dataSources).contentType("application/json").post(path);
+
+        assertEquals(HttpStatus.OK.value(), response.getStatusCode());
+
     }
 
     @Test
-    public void registerDataSources() {
-        // TODO
+    public void heartbeat() {
+
+        URL url = UtilsUrl.parseUrl("localhost:5005");
+
+        Connection connection = new Connection();
+        connection.setComponentType(COMPONENT_TYPE.IOT_DEVICE);
+        connection.setName("EP_NAME5");
+        connection.setUrl(url);
+
+        // first register device
+        register(connection);
+
+        // send heart beat
+        Response response = given().body(connection).contentType("application/json")
+                //
+                .when().put(RESOURCE_NAMING.CMGMT_HEART_BEAT_DEVICE.getPath());
+
+        response.getBody().as(Connection.class);
+
+        assertEquals(HttpStatus.OK.value(), response.getStatusCode());
+
+    }
+
+    @Test
+    public void heartbeatFailMissingRegistration() {
+
+        URL url = UtilsUrl.parseUrl("localhost:5004");
+
+        Connection connection = new Connection();
+        connection.setComponentType(COMPONENT_TYPE.IOT_DEVICE);
+        connection.setName("EP_NAME4");
+        connection.setUrl(url);
+
+        // send heart beat
+
+        Response response = given().body(connection).contentType("application/json")
+                //
+                .when().put(RESOURCE_NAMING.CMGMT_HEART_BEAT_DEVICE.getPath());
+
+        response.getBody().as(Connection.class);
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR.value(), response.getStatusCode());
+
+    }
+
+    private Connection register(Connection connection) {
+
+        if (null == connection) {
+            URL url = UtilsUrl.parseUrl("localhost:4999");
+
+            connection = new Connection();
+            connection.setComponentType(COMPONENT_TYPE.IOT_DEVICE);
+            connection.setName("DEV_NAME");
+            connection.setUrl(url);
+        }
+
+        Response response = given().body(connection).contentType("application/json")
+                //
+                .when().post(RESOURCE_NAMING.CMGMT_REGISTER_DEVICE.getPath());
+
+        Connection result = response.getBody().as(Connection.class);
+
+        assertEquals(HttpStatus.OK.value(), response.getStatusCode());
+        assertNotNull(result);
+        assertNotNull(result.getId());
+        assertEquals(COMPONENT_TYPE.IOT_DEVICE, result.getComponentType());
+        assertNotNull(result.getUrl());
+        assertEquals(result.getUrl().getAuthority(), connection.getUrl().getAuthority());
+
+        return result;
     }
 }

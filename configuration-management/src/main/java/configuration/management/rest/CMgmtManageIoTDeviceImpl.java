@@ -1,6 +1,5 @@
 package configuration.management.rest;
 
-import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -23,10 +22,10 @@ import common.rest.RESOURCE_NAMING;
 import common.rest.UtilsResource;
 import common.transformer.Transformer;
 import configuration.management.model.IoTDeviceDataSourceRO;
-import configuration.management.model.IoTDeviceRO;
 import configuration.management.repo.IoTDeviceDataSourceRepository;
 import configuration.management.repo.IoTDeviceRepository;
 import configuration.management.repo.IoTDeviceTransformer;
+import configuration.management.rest.task.HeartbeatIoTDevice;
 import configuration.management.rest.task.RegisterIoTDevice;
 import configuration.management.rest.task.ValidateConnection;
 
@@ -48,7 +47,10 @@ public class CMgmtManageIoTDeviceImpl implements CMgmtManageIoTDevice {
     private ValidateConnection validateConnection;
 
     @Autowired
-    private RegisterIoTDevice registerIoTDevice;
+    private RegisterIoTDevice register;
+
+    @Autowired
+    private HeartbeatIoTDevice heartbeat;
 
     @Override
     @RequestMapping(value = "/registrations/devices", method = RequestMethod.GET)
@@ -70,7 +72,7 @@ public class CMgmtManageIoTDeviceImpl implements CMgmtManageIoTDevice {
          * If device with URL already exists, return existing values. Otherwise generate new values.
          */
 
-        validateConnection.setNextTask(registerIoTDevice);
+        validateConnection.setNextTask(register);
         validateConnection.setCt(COMPONENT_TYPE.IOT_DEVICE);
 
         return validateConnection.doStep(connection);
@@ -97,17 +99,14 @@ public class CMgmtManageIoTDeviceImpl implements CMgmtManageIoTDevice {
     }
 
     @Override
-    @RequestMapping(value = "/registrations/devices/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<String> heartBeat(@PathVariable(value = "id") Long id) {
+    @RequestMapping(value = "/registrations/devices/", method = RequestMethod.PUT)
+    public ResponseEntity<Connection> heartbeat(@RequestBody Connection connection) {
 
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_HEART_BEAT_DEVICE));
 
-        IoTDeviceRO item = deviceRepo.findOne(id);
-        if (item != null) {
-            item.setCreated(new Date());
-            deviceRepo.save(item);
-        }
+        validateConnection.setNextTask(heartbeat);
+        validateConnection.setCt(COMPONENT_TYPE.IOT_DEVICE);
 
-        return new ResponseEntity<String>("", HttpStatus.OK);
+        return validateConnection.doStep(connection);
     }
 }

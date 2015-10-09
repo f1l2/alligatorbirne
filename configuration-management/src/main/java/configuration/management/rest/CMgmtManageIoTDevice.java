@@ -19,7 +19,7 @@ public interface CMgmtManageIoTDevice {
 
     public ResponseEntity<List<Connection>> getAll();
 
-    public ResponseEntity<String> heartBeat(Long id);
+    public ResponseEntity<Connection> heartbeat(Connection connection);
 
     public ResponseEntity<String> registerDataSources(Long id, DataSources data);
 

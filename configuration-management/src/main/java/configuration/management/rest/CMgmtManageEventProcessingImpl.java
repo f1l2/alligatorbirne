@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 import common.data.ConfigurationDelegation;
 import common.data.Connection;
@@ -21,13 +20,12 @@ import common.data.type.COMPONENT_TYPE;
 import common.rest.RESOURCE_NAMING;
 import common.rest.UtilsResource;
 import common.transformer.Transformer;
-import configuration.management.model.EventProcessingRO;
-import configuration.management.model.IoTDeviceRO;
 import configuration.management.repo.EventProcessingRepository;
 import configuration.management.repo.EventProcessingTransformer;
-import configuration.management.repo.IoTDeviceRepository;
-import configuration.management.repo.IoTDeviceTransformer;
+import configuration.management.rest.task.DelegateConfigChange;
+import configuration.management.rest.task.HeartbeatEP;
 import configuration.management.rest.task.RegisterEP;
+import configuration.management.rest.task.ValidateConfigDelegation;
 import configuration.management.rest.task.ValidateConnection;
 
 @RestController
@@ -39,25 +37,29 @@ public class CMgmtManageEventProcessingImpl implements CMgmtManageEventProcessin
     private EventProcessingRepository eventProcessingRepo;
 
     @Autowired
-    private IoTDeviceRepository deviceRepository;
-
-    @Autowired
     private EventProcessingTransformer transformer;
-
-    @Autowired
-    private IoTDeviceTransformer iotTransformer;
 
     @Autowired
     private ValidateConnection validateConnection;
 
     @Autowired
-    private RegisterEP registerEP;
+    private ValidateConfigDelegation validateConfigDelegation;
+
+    @Autowired
+    private RegisterEP register;
+
+    @Autowired
+    private HeartbeatEP heartBeat;
+
+    @Autowired
+    private DelegateConfigChange delegatConfigChange;
 
     @Override
     @RequestMapping(value = "/registrations/eventprocessing", method = RequestMethod.GET)
     public @ResponseBody ResponseEntity<List<Connection>> getAll() {
 
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_GET_ALL_EVENT_PROCESSING));
+
         List<Connection> eps = transformer.toRemote(Transformer.makeCollection(eventProcessingRepo.findAll()));
 
         return new ResponseEntity<List<Connection>>(eps, HttpStatus.OK);
@@ -69,48 +71,34 @@ public class CMgmtManageEventProcessingImpl implements CMgmtManageEventProcessin
 
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_REGISTER_EVENT_PROCESSING));
 
-        validateConnection.setNextTask(registerEP);
+        validateConnection.setNextTask(register);
         validateConnection.setCt(COMPONENT_TYPE.EVENT_PROCESSING);
+
         return validateConnection.doStep(connection);
     }
 
     @Override
-    @RequestMapping(value = "/registrations/eventprocessing/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<String> heartBeat(@PathVariable(value = "id") Long id) {
+    @RequestMapping(value = "/registrations/eventprocessing", method = RequestMethod.PUT)
+    public ResponseEntity<Connection> heartbeat(@RequestBody Connection connection) {
 
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_HEART_BEAT_EVENT_PROCESSING));
 
-        EventProcessingRO item = eventProcessingRepo.findOne(id);
-        if (item != null) {
-            eventProcessingRepo.save(item);
-            // TODO
-        }
+        validateConnection.setNextTask(heartBeat);
+        validateConnection.setCt(COMPONENT_TYPE.EVENT_PROCESSING);
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return validateConnection.doStep(connection);
+
     }
 
     @Override
     @RequestMapping(value = "/delegation/{id}", method = RequestMethod.POST)
-    public ResponseEntity<String> delegate(@PathVariable(value = "id") Long id, @RequestBody ConfigurationDelegation data) {
+    public ResponseEntity<ConfigurationDelegation> delegate(@PathVariable(value = "id") Long id, @RequestBody ConfigurationDelegation data) {
 
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_DELEGATION));
 
-        List<IoTDeviceRO> devicesToBeContacted = deviceRepository.findByIoTDeviceDataSources(data.getDeviceInformation().getName(), data.getDomainInformation().getName());
+        validateConfigDelegation.setNextTask(delegatConfigChange);
 
-        List<Connection> connectionsToBeContacted = iotTransformer.toRemote(devicesToBeContacted);
-
-        for (Connection connection : connectionsToBeContacted) {
-            try {
-                RestTemplate restTemplate = new RestTemplate();
-                String url = UtilsResource.getUrl(RESOURCE_NAMING.IDEV_SET_CONFIGURATION, connection.getUrl().getAuthority());
-                ResponseEntity<String> response = restTemplate.postForEntity(url, data.getConfigurationModification(), String.class);
-                logger.info("Device notification - " + url + " Status: " + response.getStatusCode() + " Response body: " + response.getBody());
-            } catch (Exception e) {
-                logger.error("{}", e);
-            }
-        }
-
-        return new ResponseEntity<>(HttpStatus.OK);
+        return validateConfigDelegation.doStep(data);
 
     }
 }

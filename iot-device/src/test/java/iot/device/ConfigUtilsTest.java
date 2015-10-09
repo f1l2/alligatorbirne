@@ -1,4 +1,4 @@
-package at.prototype.iot.device;
+package iot.device;
 
 import org.junit.Assert;
 import org.junit.Test;
