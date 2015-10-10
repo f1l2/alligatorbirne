@@ -104,12 +104,12 @@ public class Rule extends EngineListener {
         domainInformation.setName(reaction.getDomainInformation());
         ConfigurationModification configuraitonModification = new ConfigurationModification();
         configuraitonModification.setName(reaction.getConfigurationModification());
+        configuraitonModification.setDataSink(local);
 
         ConfigurationDelegation cd = new ConfigurationDelegation();
         cd.setDeviceInformation(deviceInformation);
         cd.setDomainInformation(domainInformation);
         cd.setConfigurationModification(configuraitonModification);
-        cd.setEpURL(local);
 
         return cd;
     }

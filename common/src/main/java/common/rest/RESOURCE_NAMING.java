@@ -4,7 +4,7 @@ public enum RESOURCE_NAMING {
 
     IDEV_GET_ALL_CONFIGURATION("/configurations", RequestMethod.GET),
     //
-    IDEV_GET_CONFIGURATION_BY_EP("/configurations/{id}", RequestMethod.GET),
+    IDEV_GET_CONFIGURATION_BY_EP("/configurations/{authority}", RequestMethod.GET),
     //
     IDEV_SET_CONFIGURATION("/configurations", RequestMethod.POST),
     //

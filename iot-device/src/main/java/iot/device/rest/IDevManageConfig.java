@@ -1,10 +1,11 @@
 package iot.device.rest;
 
-import iot.device.repo.DeliveryTaskRO;
-
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+
 import common.data.ConfigurationModification;
+import iot.device.repo.DeliveryTaskRO;
 
 /**
  * Interface definition
@@ -14,12 +15,10 @@ import common.data.ConfigurationModification;
  */
 public interface IDevManageConfig {
 
-    public List<ConfigurationModification> getAllConfiguration();
+    public ResponseEntity<List<DeliveryTaskRO>> getAllConfiguration();
 
-    public DeliveryTaskRO getConfigurationByEventProcessingId(Long id);
+    public ResponseEntity<DeliveryTaskRO> getConfigurationByEPAuthority(String authority);
 
-    public void setConfiguration(ConfigurationModification configurationModification);
-
-    public void setConfiguration1();
+    public ResponseEntity<String> setConfiguration(ConfigurationModification configurationModification);
 
 }

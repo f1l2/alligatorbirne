@@ -1,41 +1,18 @@
 package iot.device.repo;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
+import java.net.URL;
 import java.util.List;
-import java.util.Map;
 
-import org.springframework.stereotype.Component;
+public interface DeliveryTaskRepository {
 
-@Component
-public class DeliveryTaskRepository {
+    public DeliveryTaskRO findByAuthority(String authority);
 
-    private Map<Long, DeliveryTaskRO> repo = new LinkedHashMap<Long, DeliveryTaskRO>();
+    public DeliveryTaskRO findByUrl(URL url);
 
-    public DeliveryTaskRO findOne(Long id) {
+    public List<DeliveryTaskRO> findAll();
 
-        if (repo.containsKey(id)) {
-            return repo.get(id);
-        }
+    public void save(DeliveryTaskRO task);
 
-        return null;
-    }
-
-    public List<DeliveryTaskRO> findAll() {
-
-        List<DeliveryTaskRO> jobs = new ArrayList<DeliveryTaskRO>();
-
-        Iterator<DeliveryTaskRO> it = repo.values().iterator();
-        while (it.hasNext()) {
-            jobs.add(it.next());
-        }
-
-        return jobs;
-    }
-
-    public void save(DeliveryTaskRO job) {
-        repo.put(job.getEventProcessingId(), job);
-    }
+    public void delete(DeliveryTaskRO task);
 
 }

@@ -28,7 +28,7 @@ public class DeliveryTask implements Runnable {
 
             try {
 
-                String url = UtilsResource.getUrl(RESOURCE_NAMING.EPROCESSING_SEND, deliveryTask.getEventProcessingUrl());
+                String url = UtilsResource.getUrl(RESOURCE_NAMING.EPROCESSING_SEND, deliveryTask.getUrlDataSink().getAuthority());
 
                 DeviceInformation deviceInformation = new DeviceInformation();
                 deviceInformation.setName("Name");
@@ -49,6 +49,10 @@ public class DeliveryTask implements Runnable {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void stop() {
+
     }
 
 }
