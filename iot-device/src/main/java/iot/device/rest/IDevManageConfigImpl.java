@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -59,7 +60,7 @@ public class IDevManageConfigImpl implements IDevManageConfig {
 
     @Override
     @RequestMapping(value = "/configurations", method = RequestMethod.POST)
-    public ResponseEntity<String> setConfiguration(ConfigurationModification configurationModification) {
+    public ResponseEntity<String> setConfiguration(@RequestBody ConfigurationModification configurationModification) {
 
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.IDEV_SET_CONFIGURATION));
 
@@ -75,7 +76,7 @@ public class IDevManageConfigImpl implements IDevManageConfig {
              * 
              */
 
-            if (taskExecutor.getActiveCount() > ApplicationConfig.MAX_TASKS) {
+            if (taskExecutor.getActiveCount() < ApplicationConfig.MAX_TASKS) {
                 taskRO = transformer.toLocal(configurationModification);
                 repo.save(taskRO);
 
@@ -83,6 +84,7 @@ public class IDevManageConfigImpl implements IDevManageConfig {
 
                 taskExecutor.execute(task);
             } else {
+
                 return new ResponseEntity<String>("Device has no free slot.", HttpStatus.INTERNAL_SERVER_ERROR);
             }
 
@@ -97,7 +99,9 @@ public class IDevManageConfigImpl implements IDevManageConfig {
 
         }
 
-        return new ResponseEntity<String>("OK", HttpStatus.OK);
+        ResponseEntity<String> response = new ResponseEntity<String>("OK", HttpStatus.OK);
+
+        return response;
     }
 
 }
