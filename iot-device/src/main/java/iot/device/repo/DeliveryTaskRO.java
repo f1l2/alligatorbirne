@@ -1,14 +1,13 @@
 package iot.device.repo;
 
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Properties;
 
 public class DeliveryTaskRO {
 
     private URL urlDataSink;
 
-    private Map<String, String> properties = new HashMap<String, String>();
+    private Properties properties = new Properties();
 
     public URL getUrlDataSink() {
         return urlDataSink;
@@ -18,11 +17,12 @@ public class DeliveryTaskRO {
         this.urlDataSink = urlDataSink;
     }
 
-    public Map<String, String> getProperties() {
+    public Properties getProperties() {
         return properties;
     }
 
-    public void setProperties(Map<String, String> properties) {
+    public void setProperties(Properties properties) {
         this.properties = properties;
     }
+
 }

@@ -77,6 +77,7 @@ public class IDevManageConfigImpl implements IDevManageConfig {
              */
 
             if (taskExecutor.getActiveCount() < ApplicationConfig.MAX_TASKS) {
+
                 taskRO = transformer.toLocal(configurationModification);
                 repo.save(taskRO);
 

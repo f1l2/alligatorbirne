@@ -5,9 +5,8 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import java.net.URL;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Properties;
 
 import org.junit.After;
 import org.junit.Before;
@@ -39,7 +38,7 @@ public class DeliveryTaskRepositoryTest {
 
         URL url = UtilsUrl.parseUrl("host:2000");
 
-        Map<String, String> properties = new HashMap<String, String>();
+        Properties properties = new Properties();
         properties.put("property1Key", "property1Value");
         properties.put("property2Key", "property2Value");
 

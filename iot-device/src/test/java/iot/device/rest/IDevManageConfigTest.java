@@ -7,9 +7,8 @@ import static org.junit.Assert.assertNotNull;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Properties;
 
 import org.junit.After;
 import org.junit.Before;
@@ -59,7 +58,7 @@ public class IDevManageConfigTest {
         dataSink.setName("name ep");
         dataSink.setUrl(UtilsUrl.parseUrl("host:1234"));
 
-        Map<String, String> properties = new HashMap<String, String>();
+        Properties properties = new Properties();
         properties.put("key", "value");
 
         cm = new ConfigurationModification();

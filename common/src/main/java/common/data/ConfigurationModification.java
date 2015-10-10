@@ -1,13 +1,12 @@
 package common.data;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Properties;
 
 public class ConfigurationModification extends DataModel {
 
     private Connection dataSink;
 
-    private Map<String, String> properties = new HashMap<String, String>();
+    private Properties properties = new Properties();
 
     public Connection getDataSink() {
         return dataSink;
@@ -17,11 +16,11 @@ public class ConfigurationModification extends DataModel {
         this.dataSink = dataSink;
     }
 
-    public Map<String, String> getProperties() {
+    public Properties getProperties() {
         return properties;
     }
 
-    public void setProperties(Map<String, String> properties) {
+    public void setProperties(Properties properties) {
         this.properties = properties;
     }
 
