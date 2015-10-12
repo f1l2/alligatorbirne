@@ -2,7 +2,7 @@ package common.data;
 
 import java.util.List;
 
-public class Configuration {
+public class Setting {
 
     private List<Connection> connections;
 

@@ -11,41 +11,41 @@ import org.junit.Before;
 import org.junit.Test;
 
 import common.data.DataSource;
-import common.data.configuration.XMLConfiguration;
-import common.data.configuration.XMLConnections;
-import common.data.configuration.XMLDataSource;
-import common.data.configuration.XMLDataSources;
-import common.data.configuration.XMLDeviceInformation;
-import common.data.configuration.XMLDomainInformation;
+import common.data.setting.XMLConnections;
+import common.data.setting.XMLDataSource;
+import common.data.setting.XMLDataSources;
+import common.data.setting.XMLDeviceInformation;
+import common.data.setting.XMLDomainInformation;
+import common.data.setting.XMLSetting;
 import common.transformer.XMLDataSourceTransformer;
 import common.transformer.XMLParser;
 
 public class TransformXMLTest {
 
-    private static final String PATH_TO_CONFIGURATION_FILE = "src/test/resources/configuration.xml";
+    private static final String PATH_TO_SETTING_FILE = "src/test/resources/setting.xml";
 
-    private static final String PATH_TO_TEST_OUTPUT = "target/configuration_test_output.xml";
+    private static final String PATH_TO_TEST_OUTPUT = "target/setting_test_output.xml";
 
-    private File configurationFile;
+    private File settingFile;
 
-    private URI configurationURI;
+    private URI settingURI;
 
     private XMLDataSourceTransformer transformerConfig = new XMLDataSourceTransformer();
 
     @Before
     public void before() {
-        configurationFile = new File(PATH_TO_CONFIGURATION_FILE);
-        configurationURI = configurationFile.toURI();
-        configurationURI = configurationURI.normalize();
+        settingFile = new File(PATH_TO_SETTING_FILE);
+        settingURI = settingFile.toURI();
+        settingURI = settingURI.normalize();
     }
 
     @Test
     public void testUnmarshal() throws Exception {
 
-        XMLConfiguration configuration = XMLParser.unmarshal(configurationURI);
+        XMLSetting setting = XMLParser.unmarshal(settingURI);
 
-        XMLDataSources measurementData = configuration.getDataSources();
-        XMLConnections connections = configuration.getConnections();
+        XMLDataSources measurementData = setting.getDataSources();
+        XMLConnections connections = setting.getConnections();
 
         Assert.assertNotNull(measurementData.getDataSource());
         Assert.assertEquals(1, measurementData.getDataSource().size());
@@ -69,19 +69,19 @@ public class TransformXMLTest {
     public void testUnmarshalFailure() throws Exception {
 
         String pathToUnexistingFile = "src/test/resources/blabla.xml";
-        configurationFile = new File(pathToUnexistingFile);
+        settingFile = new File(pathToUnexistingFile);
 
-        configurationURI = configurationFile.toURI();
-        configurationURI = configurationURI.normalize();
+        settingURI = settingFile.toURI();
+        settingURI = settingURI.normalize();
 
-        XMLParser.unmarshal(configurationURI);
+        XMLParser.unmarshal(settingURI);
 
     }
 
     @Test
     public void testMarshal() throws Exception {
 
-        XMLConfiguration unmarshal = XMLParser.unmarshal(configurationURI);
+        XMLSetting unmarshal = XMLParser.unmarshal(settingURI);
 
         XMLDeviceInformation deviceInformation = new XMLDeviceInformation();
         deviceInformation.setName("ALARM");
@@ -102,9 +102,9 @@ public class TransformXMLTest {
     @Test
     public void testTransformConfiguration() throws Exception {
 
-        XMLConfiguration configuration = XMLParser.unmarshal(configurationURI);
+        XMLSetting setting = XMLParser.unmarshal(settingURI);
 
-        List<DataSource> remote = transformerConfig.toRemote(configuration.getDataSources().getDataSource());
+        List<DataSource> remote = transformerConfig.toRemote(setting.getDataSources().getDataSource());
 
         Assert.assertNotNull(remote);
         Assert.assertNotNull(remote.get(0));

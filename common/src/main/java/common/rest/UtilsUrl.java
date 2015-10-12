@@ -40,7 +40,7 @@ public class UtilsUrl {
             url = new URL("http", parseHost(authority), Integer.parseInt(parsePort(authority)), "/");
 
         } catch (Exception ex) {
-            logger.error("Error parsing configuration file (connection element). {}", ex);
+            logger.error("Error parsing setting file (connection element). {}", ex);
         }
 
         return url;

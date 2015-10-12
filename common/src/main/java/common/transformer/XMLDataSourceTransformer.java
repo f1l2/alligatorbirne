@@ -3,9 +3,9 @@ package common.transformer;
 import common.data.DataSource;
 import common.data.DeviceInformation;
 import common.data.DomainInformation;
-import common.data.configuration.XMLDataSource;
-import common.data.configuration.XMLDeviceInformation;
-import common.data.configuration.XMLDomainInformation;
+import common.data.setting.XMLDataSource;
+import common.data.setting.XMLDeviceInformation;
+import common.data.setting.XMLDomainInformation;
 
 public class XMLDataSourceTransformer extends Transformer<XMLDataSource, DataSource> {
 

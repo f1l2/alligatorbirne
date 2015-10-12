@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="configuration ../src/main/xsd/configuration.xsd">
+<setting xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="setting ../src/main/xsd/setting.xsd">
     <dataSources>
         <dataSource>
             <deviceInformation>
@@ -24,7 +24,7 @@
         <connection component="LOCAL">
             <name>localConnection</name>
             <host>10.241.100.104</host>
-            <port>32136</port>
+            <port>32396</port>
         </connection>
     </connections>
-</configuration>
+</setting>

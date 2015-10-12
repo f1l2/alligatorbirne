@@ -4,14 +4,14 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import common.data.Connection;
-import common.data.config.UtilsConfiguration;
+import common.data.setting.SettingUtils;
 
 public class ConfigUtilsTest {
 
     @Test
     public void testLoadCMConnection() throws Exception {
 
-        Connection connection = UtilsConfiguration.getCMConnection();
+        Connection connection = SettingUtils.getCMConnection();
 
         Assert.assertNotNull(connection);
         Assert.assertEquals("127.0.0.1", connection.getUrl().getHost());
@@ -22,7 +22,7 @@ public class ConfigUtilsTest {
     @Test
     public void testLoadIoTDevicesConnection() throws Exception {
 
-        Connection connection = UtilsConfiguration.getLocalConnection();
+        Connection connection = SettingUtils.getLocalConnection();
 
         Assert.assertNotNull(connection);
 

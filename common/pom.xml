@@ -40,9 +40,9 @@
 						<xsdOptions>
 						
 							<xsdOption>
-    							<bindingFile>${basedir}/src/main/xsd/configuration.xjb</bindingFile>
-								<packagename>common.data.configuration</packagename>
-								<xsd>${basedir}/src/main/xsd/configuration.xsd</xsd>
+    							<bindingFile>${basedir}/src/main/xsd/setting.xjb</bindingFile>
+								<packagename>common.data.setting</packagename>
+								<xsd>${basedir}/src/main/xsd/setting.xsd</xsd>
 								<extensionArgs>
 									<extensionArg>-target</extensionArg>
 									<extensionArg>2.0</extensionArg>

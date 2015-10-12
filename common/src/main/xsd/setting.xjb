@@ -4,7 +4,7 @@
   xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" 
   jxb:extensionBindingPrefixes="xjc">
 
-    <jxb:bindings schemaLocation="configuration.xsd" node="/xs:schema">
+    <jxb:bindings schemaLocation="setting.xsd" node="/xs:schema">
         <jxb:schemaBindings>
             <jxb:nameXmlTransform>
             	<jxb:typeName prefix="XML"/>

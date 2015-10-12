@@ -1,6 +1,6 @@
 package common.data.type;
 
-import common.data.configuration.XMLComponent;
+import common.data.setting.XMLComponent;
 
 public enum COMPONENT_TYPE {
 

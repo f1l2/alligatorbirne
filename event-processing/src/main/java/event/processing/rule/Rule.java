@@ -10,7 +10,7 @@ import common.data.ConfigurationModification;
 import common.data.Connection;
 import common.data.DeviceInformation;
 import common.data.DomainInformation;
-import common.data.config.UtilsConfiguration;
+import common.data.setting.SettingUtils;
 import common.rest.RESOURCE_NAMING;
 import common.rest.UtilsResource;
 import event.processing.engine.EngineListener;
@@ -79,8 +79,8 @@ public class Rule extends EngineListener {
 
         try {
 
-            Connection local = UtilsConfiguration.getLocalConnection();
-            Connection cm = UtilsConfiguration.getCMConnection();
+            Connection local = SettingUtils.getLocalConnection();
+            Connection cm = SettingUtils.getCMConnection();
 
             String url = UtilsResource.getUrl(RESOURCE_NAMING.CMGMT_DELEGATION, cm);
 

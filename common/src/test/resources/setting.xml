@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE xml>
-<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="configuration.xsd">
+<setting xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="configuration.xsd">
 	<dataSources>
 		<dataSource>
 			<deviceInformation>
@@ -23,5 +23,5 @@
 			<port>5000</port>
 		</connection>
 	</connections>
-</configuration>
+</setting>
 

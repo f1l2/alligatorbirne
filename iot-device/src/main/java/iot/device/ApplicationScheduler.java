@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 
 import common.data.Connection;
 import common.data.DataSources;
-import common.data.config.UtilsConfiguration;
+import common.data.setting.SettingUtils;
 import common.rest.RESOURCE_NAMING;
 import common.rest.UtilsResource;
 import iot.device.status.STATUS_TYPE;
@@ -36,14 +36,14 @@ public class ApplicationScheduler {
                 /**
                  * Load connection data.
                  */
-                local = UtilsConfiguration.getLocalConnection();
+                local = SettingUtils.getLocalConnection();
                 logger.info("Retrieve local connection data ... ");
                 logger.info(local.toString());
 
                 /**
                  * Load CM connection data
                  */
-                cm = UtilsConfiguration.getCMConnection();
+                cm = SettingUtils.getCMConnection();
                 logger.info("Load CM connection data ...");
                 logger.info(cm.toString());
 
@@ -83,9 +83,9 @@ public class ApplicationScheduler {
 
                 logger.info("Convey data sources ...");
 
-                DataSources data = UtilsConfiguration.loadMeasurementData();
+                DataSources data = SettingUtils.loadMeasurementData();
 
-                Connection cmConnection = UtilsConfiguration.getCMConnection();
+                Connection cmConnection = SettingUtils.getCMConnection();
                 String url = UtilsResource.getUrl(RESOURCE_NAMING.CMGMT_REGISTER_DEVICE_SOURCES, cmConnection);
                 url = url.replace("{id}", String.valueOf(local.getId()));
 

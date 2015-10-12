@@ -1,7 +1,7 @@
 package common.transformer;
 
 import common.data.DeviceInformation;
-import common.data.configuration.XMLDeviceInformation;
+import common.data.setting.XMLDeviceInformation;
 
 public class XMLDeviceInformationTranformer extends Transformer<XMLDeviceInformation, DeviceInformation> {
 

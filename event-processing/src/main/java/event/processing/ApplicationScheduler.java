@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import common.data.Connection;
-import common.data.config.UtilsConfiguration;
+import common.data.setting.SettingUtils;
 import common.rest.RESOURCE_NAMING;
 import common.rest.UtilsResource;
 import event.processing.status.STATUS_TYPE;
@@ -35,14 +35,14 @@ public class ApplicationScheduler {
                 /**
                  * Load connection data.
                  */
-                local = UtilsConfiguration.getLocalConnection();
+                local = SettingUtils.getLocalConnection();
                 logger.info("Retrieve local connection data ... ");
                 logger.info(local.toString());
 
                 /**
                  * Load CM connection data
                  */
-                cm = UtilsConfiguration.getCMConnection();
+                cm = SettingUtils.getCMConnection();
                 logger.info("Load CM connection data ...");
                 logger.info(cm.toString());
 

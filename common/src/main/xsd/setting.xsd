@@ -4,7 +4,7 @@
         xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
         jaxb:version="2.1">
   
-  <xs:element name="configuration">
+  <xs:element name="setting">
 	<xs:complexType>
 		<xs:all>
 			<xs:element ref="dataSources" />

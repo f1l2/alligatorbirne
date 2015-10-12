@@ -3,8 +3,8 @@ package common.transformer;
 import java.net.URL;
 
 import common.data.Connection;
-import common.data.configuration.XMLComponent;
-import common.data.configuration.XMLConnection;
+import common.data.setting.XMLComponent;
+import common.data.setting.XMLConnection;
 import common.data.type.COMPONENT_TYPE;
 
 public class XMLConnectionTransformer extends Transformer<XMLConnection, Connection> {
@@ -45,7 +45,7 @@ public class XMLConnectionTransformer extends Transformer<XMLConnection, Connect
         try {
             url = new URL("http", local.getHost(), Integer.parseInt(local.getPort()), "/");
         } catch (Exception ex) {
-            logger.error("Error parsing configuration file (connection element). {}", ex);
+            logger.error("Error parsing setting file (connection element). {}", ex);
         }
 
         Connection connection = new Connection();
