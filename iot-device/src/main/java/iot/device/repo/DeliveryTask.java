@@ -8,7 +8,6 @@ import org.springframework.web.client.RestTemplate;
 import common.data.DeviceInformation;
 import common.rest.RESOURCE_NAMING;
 import common.rest.UtilsResource;
-import iot.device.sensor.SensorFactory;
 
 public class DeliveryTask implements Runnable {
 
@@ -24,8 +23,6 @@ public class DeliveryTask implements Runnable {
     public void run() {
 
         RestTemplate restTemplate = new RestTemplate();
-
-        SensorFactory factory = SensorFactory.getInstance();
 
         for (;;) {
 

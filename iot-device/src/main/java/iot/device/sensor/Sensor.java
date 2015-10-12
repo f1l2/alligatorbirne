@@ -1,20 +1,28 @@
 package iot.device.sensor;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import iot.device.property.Configuration;
+
+@Component("sensor")
 public abstract class Sensor<T> {
 
-    private Sensor<T> instance = null;
-
-    public Sensor<T> getInstance() {
-        if (instance == null) {
-            instance = newInstance();
-        }
-        return instance;
-    }
-
-    public abstract String getName();
+    @Autowired
+    private Configuration property;
 
     public abstract T getValue();
 
-    public abstract Sensor<T> newInstance();
+    public Configuration getProperty() {
+        return property;
+    }
 
+    public void setProperty(Configuration property) {
+        this.property = property;
+    }
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName();
+    }
 }

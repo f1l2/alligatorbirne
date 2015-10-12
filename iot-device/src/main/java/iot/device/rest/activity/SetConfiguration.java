@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import common.data.ConfigurationModification;
 import iot.device.ApplicationConfig;
+import iot.device.property.Configuration;
 import iot.device.repo.DeliveryTask;
 import iot.device.repo.DeliveryTaskRO;
 import iot.device.repo.DeliveryTaskRepositoryImpl;
@@ -29,6 +30,9 @@ public class SetConfiguration extends Activity<String, ConfigurationModification
     @Autowired
     private DeliveryTaskTransformer transformer;
 
+    @Autowired
+    private Configuration configuration;
+
     @Override
     public ResponseEntity<String> doStep(ConfigurationModification cm) {
 
@@ -39,13 +43,13 @@ public class SetConfiguration extends Activity<String, ConfigurationModification
              * Update properties.
              */
 
-            // mergeProperties(taskRO.getProperties(), cm.getProperties());
+            configuration.mergeProperties(cm.getProperties());
 
             taskRO.setProperties(cm.getProperties());
             repo.save(taskRO);
         }
 
-        else if (taskExecutor.getActiveCount() < ApplicationConfig.MAX_TASKS) {
+        else if (taskExecutor.getActiveCount() >= ApplicationConfig.MAX_TASKS) {
 
             /**
              * According to the settings the limit for the number of maximal tasks is reached.

@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import common.data.ConfigurationModification;
+import common.data.type.COMPONENT_TYPE;
 import common.rest.RESOURCE_NAMING;
 import common.rest.UtilsResource;
 import iot.device.repo.DeliveryTaskRO;
 import iot.device.repo.DeliveryTaskRepositoryImpl;
 import iot.device.rest.activity.SetConfiguration;
-import iot.device.rest.activity.SetProperty;
 import iot.device.rest.activity.ValidateRequestBody;
 
 @RestController
@@ -35,9 +35,6 @@ public class IDevManageConfigImpl implements IDevManageConfig {
 
     @Autowired
     private SetConfiguration setConfig;
-
-    @Autowired
-    private SetProperty setProperty;
 
     @Override
     @RequestMapping(value = "/configurations", method = RequestMethod.GET)
@@ -70,7 +67,7 @@ public class IDevManageConfigImpl implements IDevManageConfig {
          * Build "to-do" chain
          */
         validateRB.setNextTask(setConfig);
-        setConfig.setNextTask(setProperty);
+        validateRB.setCt(COMPONENT_TYPE.EVENT_PROCESSING);
 
         return validateRB.doStep(configurationModification);
 
