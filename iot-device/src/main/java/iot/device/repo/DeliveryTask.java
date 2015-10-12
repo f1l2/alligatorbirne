@@ -8,6 +8,7 @@ import org.springframework.web.client.RestTemplate;
 import common.data.DeviceInformation;
 import common.rest.RESOURCE_NAMING;
 import common.rest.UtilsResource;
+import iot.device.sensor.SensorFactory;
 
 public class DeliveryTask implements Runnable {
 
@@ -15,14 +16,16 @@ public class DeliveryTask implements Runnable {
 
     private DeliveryTaskRO deliveryTask;
 
-    public DeliveryTask(DeliveryTaskRO job) {
-        this.deliveryTask = job;
+    public DeliveryTask(DeliveryTaskRO deliveryTask) {
+        this.deliveryTask = deliveryTask;
     }
 
     @Override
     public void run() {
 
         RestTemplate restTemplate = new RestTemplate();
+
+        SensorFactory factory = SensorFactory.getInstance();
 
         for (;;) {
 
@@ -38,9 +41,7 @@ public class DeliveryTask implements Runnable {
                 logger.info("Device data send. Status: " + responseRegistration.getStatusCode() + " Response body: ");
 
             } catch (Exception ex) {
-
-                logger.error("Error sending device data.");
-                logger.error(ex.getMessage());
+                logger.error("Error sending data. {}", ex.getMessage());
             }
 
             try {

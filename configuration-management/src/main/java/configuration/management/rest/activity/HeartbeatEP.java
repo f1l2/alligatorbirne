@@ -1,4 +1,4 @@
-package configuration.management.rest.task;
+package configuration.management.rest.activity;
 
 import java.util.Date;
 
@@ -14,7 +14,7 @@ import configuration.management.model.EventProcessingRO;
 import configuration.management.repo.EventProcessingRepository;
 
 @Component
-public class HeartbeatEP extends Task<Connection> {
+public class HeartbeatEP extends Activity<Connection> {
 
     final static Logger logger = LoggerFactory.getLogger(HeartbeatEP.class);
 

@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,11 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 import common.data.ConfigurationModification;
 import common.rest.RESOURCE_NAMING;
 import common.rest.UtilsResource;
-import iot.device.ApplicationConfig;
-import iot.device.repo.DeliveryTask;
 import iot.device.repo.DeliveryTaskRO;
 import iot.device.repo.DeliveryTaskRepositoryImpl;
-import iot.device.repo.DeliveryTaskTransformer;
+import iot.device.rest.activity.SetConfiguration;
+import iot.device.rest.activity.SetProperty;
+import iot.device.rest.activity.ValidateRequestBody;
 
 @RestController
 public class IDevManageConfigImpl implements IDevManageConfig {
@@ -32,10 +31,13 @@ public class IDevManageConfigImpl implements IDevManageConfig {
     private DeliveryTaskRepositoryImpl repo;
 
     @Autowired
-    private DeliveryTaskTransformer transformer;
+    private ValidateRequestBody validateRB;
 
     @Autowired
-    private ThreadPoolTaskExecutor taskExecutor;
+    private SetConfiguration setConfig;
+
+    @Autowired
+    private SetProperty setProperty;
 
     @Override
     @RequestMapping(value = "/configurations", method = RequestMethod.GET)
@@ -64,45 +66,14 @@ public class IDevManageConfigImpl implements IDevManageConfig {
 
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.IDEV_SET_CONFIGURATION));
 
-        DeliveryTaskRO taskRO = repo.findByUrl(configurationModification.getDataSink().getUrl());
+        /**
+         * Build "to-do" chain
+         */
+        validateRB.setNextTask(setConfig);
+        setConfig.setNextTask(setProperty);
 
-        if (null == taskRO) {
+        return validateRB.doStep(configurationModification);
 
-            /**
-             * Create new task for EP
-             */
-
-            /**
-             * 
-             */
-
-            if (taskExecutor.getActiveCount() < ApplicationConfig.MAX_TASKS) {
-
-                taskRO = transformer.toLocal(configurationModification);
-                repo.save(taskRO);
-
-                DeliveryTask task = new DeliveryTask(taskRO);
-
-                taskExecutor.execute(task);
-            } else {
-
-                return new ResponseEntity<String>("Device has no free slot.", HttpStatus.INTERNAL_SERVER_ERROR);
-            }
-
-        } else {
-
-            /**
-             * Update properties
-             */
-
-            taskRO.setProperties(configurationModification.getProperties());
-            repo.save(taskRO);
-
-        }
-
-        ResponseEntity<String> response = new ResponseEntity<String>("OK", HttpStatus.OK);
-
-        return response;
     }
 
 }

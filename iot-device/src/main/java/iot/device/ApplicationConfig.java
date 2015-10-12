@@ -21,7 +21,7 @@ import iot.device.status.Status;
 @EnableScheduling
 public class ApplicationConfig implements SchedulingConfigurer {
 
-    public final static int MAX_TASKS = 10;
+    public final static int MAX_TASKS = 5;
 
     private final static int MAX_DELAY = 120 * 1000;
 

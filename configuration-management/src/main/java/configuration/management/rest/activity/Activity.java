@@ -1,15 +1,15 @@
-package configuration.management.rest.task;
+package configuration.management.rest.activity;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 @Component
-public abstract class Task<T> {
+public abstract class Activity<T> {
 
     private ResponseEntity<T> errorResponse;
 
-    private Task<T> nextTask;
+    private Activity<T> nextTask;
 
     public abstract ResponseEntity<T> doStep(T item);
 
@@ -24,11 +24,11 @@ public abstract class Task<T> {
         }
     }
 
-    public Task<T> getNextTask() {
+    public Activity<T> getNextTask() {
         return nextTask;
     }
 
-    public void setNextTask(Task<T> nextStep) {
+    public void setNextTask(Activity<T> nextStep) {
         this.nextTask = nextStep;
     }
 

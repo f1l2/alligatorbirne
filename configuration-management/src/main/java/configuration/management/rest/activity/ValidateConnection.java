@@ -1,4 +1,4 @@
-package configuration.management.rest.task;
+package configuration.management.rest.activity;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +11,7 @@ import common.data.Connection;
 import common.data.type.COMPONENT_TYPE;
 
 @Component
-public class ValidateConnection extends Task<Connection> {
+public class ValidateConnection extends Activity<Connection> {
 
     final static Logger logger = LoggerFactory.getLogger(ValidateConnection.class);
 

@@ -25,9 +25,9 @@ import configuration.management.model.IoTDeviceDataSourceRO;
 import configuration.management.repo.IoTDeviceDataSourceRepository;
 import configuration.management.repo.IoTDeviceRepository;
 import configuration.management.repo.IoTDeviceTransformer;
-import configuration.management.rest.task.HeartbeatIoTDevice;
-import configuration.management.rest.task.RegisterIoTDevice;
-import configuration.management.rest.task.ValidateConnection;
+import configuration.management.rest.activity.HeartbeatIoTDevice;
+import configuration.management.rest.activity.RegisterIoTDevice;
+import configuration.management.rest.activity.ValidateConnection;
 
 @RestController
 public class CMgmtManageIoTDeviceImpl implements CMgmtManageIoTDevice {

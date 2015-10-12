@@ -1,13 +1,10 @@
 package iot.device.rest;
 
-import static com.jayway.restassured.RestAssured.get;
 import static com.jayway.restassured.RestAssured.given;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Properties;
 
 import org.junit.After;
@@ -22,7 +19,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.http.ContentType;
-import com.jayway.restassured.response.Response;
 import com.jayway.restassured.response.ResponseBodyExtractionOptions;
 
 import common.data.ConfigurationModification;
@@ -30,14 +26,14 @@ import common.data.Connection;
 import common.data.type.COMPONENT_TYPE;
 import common.rest.RESOURCE_NAMING;
 import common.rest.UtilsUrl;
-import iot.device.ApplicationTestContext1;
-import iot.device.repo.DeliveryTaskRO;
+import iot.device.ApplicationConfig;
+import iot.device.ApplicationTestContext2;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = ApplicationTestContext1.class)
+@SpringApplicationConfiguration(classes = ApplicationTestContext2.class)
 @WebAppConfiguration
 @IntegrationTest("server.port:0")
-public class IDevManageConfigTest {
+public class IDevManageConfigFailTest {
 
     private ConfigurationModification cm;
 
@@ -84,30 +80,56 @@ public class IDevManageConfigTest {
     }
 
     @Test
-    public void getAllConfiguration() {
+    public void setConfigurationFailedDueExceedMax() {
 
-        Response response = get(RESOURCE_NAMING.IDEV_GET_ALL_CONFIGURATION.getPath());
+        for (int i = 0; i < ApplicationConfig.MAX_TASKS; i++) {
+            Connection dataSink = new Connection();
+            dataSink.setComponentType(COMPONENT_TYPE.EVENT_PROCESSING);
+            dataSink.setName("name ep");
+            dataSink.setUrl(UtilsUrl.parseUrl("host:123" + i));
 
-        List<DeliveryTaskRO> result = Arrays.asList(response.getBody().as(DeliveryTaskRO[].class));
+            Properties properties = new Properties();
+            properties.put("key", "value");
 
-        assertNotNull(result);
-        assertEquals(1, result.size());
-        assertEquals(cm.getDataSink().getUrl(), result.get(0).getUrlDataSink());
+            cm = new ConfigurationModification();
+            cm.setDataSink(dataSink);
+            cm.setProperties(properties);
 
+            ResponseBodyExtractionOptions response = given().body(cm).contentType(ContentType.JSON).post(RESOURCE_NAMING.IDEV_SET_CONFIGURATION.getPath())
+                    //
+                    .then().contentType(ContentType.TEXT)
+                    //
+                    .extract().body();
+
+            response.asString();
+
+            assertNotNull(response);
+            assertEquals("OK", response.asString());
+
+        }
+
+        Connection dataSink = new Connection();
+        dataSink.setComponentType(COMPONENT_TYPE.EVENT_PROCESSING);
+        dataSink.setName("name ep");
+        dataSink.setUrl(UtilsUrl.parseUrl("host:1251"));
+
+        Properties properties = new Properties();
+        properties.put("key", "value");
+
+        cm = new ConfigurationModification();
+        cm.setDataSink(dataSink);
+        cm.setProperties(properties);
+
+        ResponseBodyExtractionOptions response = given().body(cm).contentType(ContentType.JSON).post(RESOURCE_NAMING.IDEV_SET_CONFIGURATION.getPath())
+                //
+                .then().contentType(ContentType.TEXT)
+                //
+                .extract().body();
+
+        response.asString();
+
+        assertNotNull(response);
+        assertEquals("Device has no free slot.", response.asString());
     }
 
-    @Test
-    public void getConfigurationByEPAuthority() {
-
-        String path = RESOURCE_NAMING.IDEV_GET_CONFIGURATION_BY_EP.getPath();
-        path = path.replace("{authority}", cm.getDataSink().getUrl().getAuthority());
-
-        Response response = get(path);
-
-        DeliveryTaskRO result = response.getBody().as(DeliveryTaskRO.class);
-
-        assertNotNull(result);
-        assertEquals(cm.getDataSink().getUrl(), result.getUrlDataSink());
-
-    }
 }

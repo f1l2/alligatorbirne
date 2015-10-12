@@ -1,4 +1,4 @@
-package configuration.management.rest.task;
+package configuration.management.rest.activity;
 
 import java.util.Date;
 
@@ -14,7 +14,7 @@ import configuration.management.model.IoTDeviceRO;
 import configuration.management.repo.IoTDeviceRepository;
 
 @Component
-public class HeartbeatIoTDevice extends Task<Connection> {
+public class HeartbeatIoTDevice extends Activity<Connection> {
 
     final static Logger logger = LoggerFactory.getLogger(HeartbeatIoTDevice.class);
 

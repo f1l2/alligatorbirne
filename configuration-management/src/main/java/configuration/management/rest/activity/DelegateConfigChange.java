@@ -1,4 +1,4 @@
-package configuration.management.rest.task;
+package configuration.management.rest.activity;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ import configuration.management.repo.IoTDeviceRepository;
 import configuration.management.repo.IoTDeviceTransformer;
 
 @Component
-public class DelegateConfigChange extends Task<ConfigurationDelegation> {
+public class DelegateConfigChange extends Activity<ConfigurationDelegation> {
 
     final static Logger logger = LoggerFactory.getLogger(DelegateConfigChange.class);
     @Autowired

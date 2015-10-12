@@ -1,4 +1,4 @@
-package iot.device.rest.task;
+package configuration.management.rest.activity;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import common.data.ConfigurationDelegation;
 
 @Component
-public class ValidateConfigDelegation extends Task<ConfigurationDelegation> {
+public class ValidateConfigDelegation extends Activity<ConfigurationDelegation> {
 
     final static Logger logger = LoggerFactory.getLogger(ValidateConfigDelegation.class);
 

@@ -22,11 +22,11 @@ import common.rest.UtilsResource;
 import common.transformer.Transformer;
 import configuration.management.repo.EventProcessingRepository;
 import configuration.management.repo.EventProcessingTransformer;
-import configuration.management.rest.task.DelegateConfigChange;
-import configuration.management.rest.task.HeartbeatEP;
-import configuration.management.rest.task.RegisterEP;
-import configuration.management.rest.task.ValidateConfigDelegation;
-import configuration.management.rest.task.ValidateConnection;
+import configuration.management.rest.activity.DelegateConfigChange;
+import configuration.management.rest.activity.HeartbeatEP;
+import configuration.management.rest.activity.RegisterEP;
+import configuration.management.rest.activity.ValidateConfigDelegation;
+import configuration.management.rest.activity.ValidateConnection;
 
 @RestController
 public class CMgmtManageEventProcessingImpl implements CMgmtManageEventProcessing {

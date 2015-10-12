@@ -1,4 +1,4 @@
-package configuration.management.rest.task;
+package configuration.management.rest.activity;
 
 import java.util.Date;
 
@@ -9,35 +9,40 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import common.data.Connection;
-import configuration.management.model.EventProcessingRO;
-import configuration.management.repo.EventProcessingRepository;
+import configuration.management.model.IoTDeviceRO;
+import configuration.management.repo.IoTDeviceRepository;
 
 @Component
-public class RegisterEP extends Task<Connection> {
+public class RegisterIoTDevice extends Activity<Connection> {
 
-    final static Logger logger = LoggerFactory.getLogger(RegisterEP.class);
+    final static Logger logger = LoggerFactory.getLogger(RegisterIoTDevice.class);
 
     @Autowired
-    private EventProcessingRepository eventProcessingRepo;
+    private IoTDeviceRepository deviceRepo;
 
     @Override
     public ResponseEntity<Connection> doStep(Connection connection) {
 
-        EventProcessingRO item = eventProcessingRepo.findByAuthority(connection.getUrl().getAuthority());
+        /**
+         * If device with URL already exists, return existing values. Otherwise generate new values.
+         */
+
+        IoTDeviceRO item = deviceRepo.findByAuthority(connection.getUrl().getAuthority());
         if (null != item) {
             connection.setId(item.getId());
             item.setUpdated(new Date());
         } else {
-            item = new EventProcessingRO();
+            item = new IoTDeviceRO();
             item.setCreated(new Date());
             item.setUpdated(new Date());
             item.setAuthority(connection.getUrl().getAuthority());
-            item = eventProcessingRepo.save(item);
+            item = deviceRepo.save(item);
         }
 
-        item = eventProcessingRepo.save(item);
+        item = deviceRepo.save(item);
         connection.setId(item.getId());
 
         return next(connection);
     }
+
 }
