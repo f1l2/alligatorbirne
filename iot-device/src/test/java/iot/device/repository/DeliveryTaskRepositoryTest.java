@@ -18,6 +18,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import common.rest.UtilsUrl;
 import iot.device.Application;
+import iot.device.property.Configuration;
 import iot.device.repo.DeliveryTaskRO;
 import iot.device.repo.DeliveryTaskRepositoryImpl;
 
@@ -42,15 +43,18 @@ public class DeliveryTaskRepositoryTest {
         properties.put("property1Key", "property1Value");
         properties.put("property2Key", "property2Value");
 
+        Configuration configuration = new Configuration();
+        configuration.setProperties(properties);
+
         task1 = new DeliveryTaskRO();
         task1.setUrlDataSink(url);
-        task1.setProperties(properties);
+        task1.setConfiguration(configuration);
 
         repo.save(task1);
 
         task2 = new DeliveryTaskRO();
         task2.setUrlDataSink(UtilsUrl.parseUrl("host:2001"));
-        task2.setProperties(properties);
+        task2.setConfiguration(configuration);
 
         repo.save(task2);
     }

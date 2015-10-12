@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import common.data.ConfigurationModification;
 import common.data.Connection;
 import common.transformer.Transformer;
+import iot.device.property.Configuration;
 
 @Component
 public class DeliveryTaskTransformer extends Transformer<DeliveryTaskRO, ConfigurationModification> {
@@ -12,8 +13,11 @@ public class DeliveryTaskTransformer extends Transformer<DeliveryTaskRO, Configu
     @Override
     public DeliveryTaskRO toLocal(ConfigurationModification remote) {
 
+        Configuration configuration = new Configuration();
+        configuration.mergeProperties(remote.getProperties());
+
         DeliveryTaskRO item = new DeliveryTaskRO();
-        item.setProperties(remote.getProperties());
+        item.setConfiguration(configuration);
         item.setUrlDataSink(remote.getDataSink().getUrl());
 
         return item;
@@ -27,8 +31,10 @@ public class DeliveryTaskTransformer extends Transformer<DeliveryTaskRO, Configu
 
         ConfigurationModification item = new ConfigurationModification();
         item.setDataSink(dataSink);
-        item.setProperties(local.getProperties());
 
+        if (null != local.getConfiguration()) {
+            item.setProperties(local.getConfiguration().getProperties());
+        }
         return item;
     }
 }

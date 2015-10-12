@@ -8,19 +8,24 @@ import org.springframework.web.client.RestTemplate;
 import common.data.DeviceInformation;
 import common.rest.RESOURCE_NAMING;
 import common.rest.UtilsResource;
+import iot.device.property.Configuration;
+import iot.device.property.SystemReservedProperty;
 
 public class DeliveryTask implements Runnable {
 
     final static Logger logger = LoggerFactory.getLogger(DeliveryTask.class);
 
-    private DeliveryTaskRO deliveryTask;
+    private DeliveryTaskRO deliveryTaskRO;
 
     public DeliveryTask(DeliveryTaskRO deliveryTask) {
-        this.deliveryTask = deliveryTask;
+        this.deliveryTaskRO = deliveryTask;
     }
 
     @Override
     public void run() {
+
+        Configuration configuration = deliveryTaskRO.getConfiguration();
+        int sleepTime = configuration.getValue(SystemReservedProperty.TASK_INTERVAL_MS);
 
         RestTemplate restTemplate = new RestTemplate();
 
@@ -28,7 +33,7 @@ public class DeliveryTask implements Runnable {
 
             try {
 
-                String url = UtilsResource.getUrl(RESOURCE_NAMING.EPROCESSING_SEND, deliveryTask.getUrlDataSink().getAuthority());
+                String url = UtilsResource.getUrl(RESOURCE_NAMING.EPROCESSING_SEND, deliveryTaskRO.getUrlDataSink().getAuthority());
 
                 DeviceInformation deviceInformation = new DeviceInformation();
                 deviceInformation.setName("Name");
@@ -42,7 +47,7 @@ public class DeliveryTask implements Runnable {
             }
 
             try {
-                Thread.sleep(5000);
+                Thread.sleep(sleepTime);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

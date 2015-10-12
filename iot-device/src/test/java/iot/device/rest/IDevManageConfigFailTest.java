@@ -97,7 +97,7 @@ public class IDevManageConfigFailTest {
 
             ResponseBodyExtractionOptions response = given().body(cm).contentType(ContentType.JSON).post(RESOURCE_NAMING.IDEV_SET_CONFIGURATION.getPath())
                     //
-                    .then().contentType(ContentType.TEXT)
+                    .then()
                     //
                     .extract().body();
 

@@ -24,6 +24,10 @@ public class Configuration {
         this.properties = properties;
     }
 
+    public int getValue(SystemReservedProperty srp) {
+        return (int) properties.get(srp.getName());
+    }
+
     public void mergeProperties(Properties prop) {
 
         Properties systemReservedProperties = new Properties();
@@ -34,7 +38,7 @@ public class Configuration {
          */
 
         for (Object key : prop.keySet()) {
-            if ((key instanceof String) && (properties.containsKey(key))) {
+            if ((key instanceof String) && (SystemReservedProperty.getSystemReservedProperty().containsKey(key))) {
                 systemReservedProperties.put(key, prop.get(key));
             } else {
                 customProperties.put(key, prop.get(key));

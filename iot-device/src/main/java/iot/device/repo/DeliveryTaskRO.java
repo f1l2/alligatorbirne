@@ -1,13 +1,14 @@
 package iot.device.repo;
 
 import java.net.URL;
-import java.util.Properties;
+
+import iot.device.property.Configuration;
 
 public class DeliveryTaskRO {
 
     private URL urlDataSink;
 
-    private Properties properties = new Properties();
+    private Configuration configuration = new Configuration();
 
     public URL getUrlDataSink() {
         return urlDataSink;
@@ -17,12 +18,12 @@ public class DeliveryTaskRO {
         this.urlDataSink = urlDataSink;
     }
 
-    public Properties getProperties() {
-        return properties;
+    public Configuration getConfiguration() {
+        return configuration;
     }
 
-    public void setProperties(Properties properties) {
-        this.properties = properties;
+    public void setConfiguration(Configuration configuration) {
+        this.configuration = configuration;
     }
 
 }
