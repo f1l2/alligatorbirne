@@ -44,7 +44,7 @@ public class DeliveryTaskRepositoryTest {
         properties.put("property2Key", "property2Value");
 
         Configuration configuration = new Configuration();
-        configuration.setProperties(properties);
+        configuration.setAndUpdateProperties(properties);
 
         task1 = new DeliveryTaskRO();
         task1.setUrlDataSink(url);

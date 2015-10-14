@@ -14,7 +14,7 @@ public class DeliveryTaskTransformer extends Transformer<DeliveryTaskRO, Configu
     public DeliveryTaskRO toLocal(ConfigurationModification remote) {
 
         Configuration configuration = new Configuration();
-        configuration.mergeProperties(remote.getProperties());
+        configuration.setAndUpdateProperties(remote.getProperties());
 
         DeliveryTaskRO item = new DeliveryTaskRO();
         item.setConfiguration(configuration);

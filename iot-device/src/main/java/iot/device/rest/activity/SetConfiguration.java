@@ -39,7 +39,7 @@ public class SetConfiguration extends Activity<String, ConfigurationModification
              * Update properties.
              */
 
-            taskRO.getConfiguration().mergeProperties(cm.getProperties());
+            taskRO.getConfiguration().setAndUpdateProperties(cm.getProperties());
 
             repo.save(taskRO);
         }

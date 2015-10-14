@@ -8,8 +8,14 @@ import iot.device.sensor.Sensor;
 public class Temperatur extends Sensor<Integer> {
 
     @Override
-    public Integer getValue() {
+    public Integer getRawValue() {
 
-        return null;
+        return 5;
+    }
+
+    @Override
+    public String getValue() {
+
+        return "5";
     }
 }

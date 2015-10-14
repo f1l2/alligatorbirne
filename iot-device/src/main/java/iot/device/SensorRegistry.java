@@ -34,7 +34,6 @@ public class SensorRegistry implements BeanDefinitionRegistryPostProcessor {
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
         this.beanFactory = beanFactory;
-
     }
 
     public void instantiate() {

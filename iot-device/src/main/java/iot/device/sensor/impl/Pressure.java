@@ -8,9 +8,15 @@ import iot.device.sensor.Sensor;
 public class Pressure extends Sensor<Integer> {
 
     @Override
-    public Integer getValue() {
+    public String getValue() {
 
-        return null;
+        return "5";
+    }
+
+    @Override
+    public Integer getRawValue() {
+
+        return 5;
     }
 
 }

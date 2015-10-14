@@ -9,7 +9,7 @@ public abstract class Activity<T1, T2> {
 
     private ResponseEntity<T1> errorResponse;
 
-    private Activity<T1, T2> nextTask;
+    private Activity<T1, T2> nextActivity;
 
     public abstract ResponseEntity<T1> doStep(T2 item);
 
@@ -17,19 +17,19 @@ public abstract class Activity<T1, T2> {
 
         if (null != errorResponse) {
             return errorResponse;
-        } else if (null != nextTask) {
-            return nextTask.doStep(item);
+        } else if (null != nextActivity) {
+            return nextActivity.doStep(item);
         } else {
             return new ResponseEntity<T1>(response, HttpStatus.OK);
         }
     }
 
-    public Activity<T1, T2> getNextTask() {
-        return nextTask;
+    public Activity<T1, T2> getNextActivity() {
+        return nextActivity;
     }
 
-    public void setNextTask(Activity<T1, T2> nextStep) {
-        this.nextTask = nextStep;
+    public void setNextActivity(Activity<T1, T2> nextStep) {
+        this.nextActivity = nextStep;
     }
 
     public ResponseEntity<T1> getErrorResponse() {

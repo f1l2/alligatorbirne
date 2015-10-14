@@ -2,6 +2,8 @@ package iot.device.status;
 
 public enum STATUS_TYPE {
 
+    TEST("testing", "Device is under test.", 1),
+
     BOOTING("booting", "Device is booting.", 1),
 
     STARTED_UP("s_up", "Device started up.", 1),

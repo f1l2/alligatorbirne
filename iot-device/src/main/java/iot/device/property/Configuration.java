@@ -1,6 +1,10 @@
 package iot.device.property;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
@@ -11,62 +15,93 @@ public class Configuration {
      * Set system reserved properties
      */
     public Configuration() {
-        properties.putAll(SystemReservedProperty.getSystemReservedProperty());
+        systemReservedProperties.putAll(SystemReservedProperty.getSystemReservedProperty());
     }
 
-    private Properties properties = new Properties();
+    /**
+     * (String, Integer)
+     */
+    private Map<String, Integer> systemReservedProperties = new HashMap<String, Integer>();
 
-    public Properties getProperties() {
-        return properties;
-    }
+    /**
+     * (String, String)
+     */
+    private Map<String, String> supplyingSensor = new HashMap<String, String>();
 
-    public void setProperties(Properties properties) {
-        this.properties = properties;
-    }
+    /**
+     * (Object, Object)
+     */
+    private Map<Object, Object> otherProperties = new HashMap<Object, Object>();
+
+    /**
+     * Get srp value. By design of datatype int.
+     * 
+     */
 
     public int getValue(SystemReservedProperty srp) {
-        return (int) properties.get(srp.getName());
+        return systemReservedProperties.get(srp.getName());
     }
 
-    public void mergeProperties(Properties prop) {
+    public Set<String> getSupplyingSensor() {
+        return supplyingSensor.values().stream().collect(Collectors.toSet());
+    }
 
-        Properties systemReservedProperties = new Properties();
-        Properties customProperties = new Properties();
+    public void setAndUpdateProperties(Properties prop) {
 
         /**
          * Split properties
          */
-
         for (Object key : prop.keySet()) {
-            if ((key instanceof String) && (SystemReservedProperty.getSystemReservedProperty().containsKey(key))) {
-                systemReservedProperties.put(key, prop.get(key));
+
+            Object value = prop.get(key);
+
+            if ((key instanceof String) && (SystemReservedProperty.getSystemReservedProperty().containsKey((String) key))) {
+
+                try {
+                    mergeSystemReservedProperties((String) key, (int) value);
+                } catch (Exception e) {
+
+                }
+
+            } else if ((key instanceof String) && (SensorReservedProperty.SUPPLY_REQ.name().equals((String) key))) {
+
+                try {
+                    mergeSupplyingSensorProperties((String) key, (String) value);
+                } catch (Exception e) {
+
+                }
+
             } else {
-                customProperties.put(key, prop.get(key));
-            }
-        }
-
-        this.mergeSystemReservedProperties(systemReservedProperties);
-        this.mergeCustomProperties(customProperties);
-    }
-
-    private void mergeSystemReservedProperties(Properties prop) {
-
-        for (Object key : prop.keySet()) {
-
-            int value = (int) prop.get(key);
-            int min = SystemReservedProperty.getSystemReservedPropertyByName((String) key).getMin();
-            int max = SystemReservedProperty.getSystemReservedPropertyByName((String) key).getMax();
-
-            if ((compare(min, value, isSmaller) && (this.compare(max, value, isGreater)))) {
-
-                this.properties.put(key, prop.get(key));
+                otherProperties.put(key, prop.get(key));
             }
         }
 
     }
 
-    private void mergeCustomProperties(Properties prop) {
-        this.properties.putAll(prop);
+    public Properties getProperties() {
+
+        Properties prop = new Properties();
+        prop.putAll(systemReservedProperties);
+        prop.putAll(supplyingSensor);
+        prop.putAll(otherProperties);
+
+        return prop;
+
+    }
+
+    private void mergeSystemReservedProperties(String key, int value) {
+
+        int min = SystemReservedProperty.getSystemReservedPropertyByName(key).getMin();
+        int max = SystemReservedProperty.getSystemReservedPropertyByName(key).getMax();
+
+        if ((compare(min, value, isSmaller) && (this.compare(max, value, isGreater)))) {
+            systemReservedProperties.put(key, value);
+        }
+
+    }
+
+    private void mergeSupplyingSensorProperties(String key, String value) {
+        supplyingSensor.put(key, value);
     }
 
     private Operation isGreater = new Operation() {

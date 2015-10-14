@@ -26,7 +26,7 @@ public class PropertyTest {
         Properties newProperties = new Properties();
         newProperties.put(SystemReservedProperty.TASK_INTERVAL_MS.getName(), 5 * 1000);
 
-        configuration.mergeProperties(newProperties);
+        configuration.setAndUpdateProperties(newProperties);
 
         Assert.assertEquals(5 * 1000, configuration.getProperties().get(SystemReservedProperty.TASK_INTERVAL_MS.getName()));
 
@@ -37,7 +37,7 @@ public class PropertyTest {
         newProperties = new Properties();
         newProperties.put(SystemReservedProperty.TASK_INTERVAL_MS.getName(), 4 * 1000);
 
-        configuration.mergeProperties(newProperties);
+        configuration.setAndUpdateProperties(newProperties);
 
         Assert.assertEquals(5 * 1000, configuration.getProperties().get(SystemReservedProperty.TASK_INTERVAL_MS.getName()));
 
@@ -47,7 +47,7 @@ public class PropertyTest {
         newProperties = new Properties();
         newProperties.put(SystemReservedProperty.TASK_INTERVAL_MS.getName(), 5001 * 1000);
 
-        configuration.mergeProperties(newProperties);
+        configuration.setAndUpdateProperties(newProperties);
 
         Assert.assertEquals(5 * 1000, configuration.getProperties().get(SystemReservedProperty.TASK_INTERVAL_MS.getName()));
 

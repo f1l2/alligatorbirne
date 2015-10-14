@@ -66,7 +66,7 @@ public class IDevManageConfigImpl implements IDevManageConfig {
         /**
          * Build "to-do" chain
          */
-        validateRB.setNextTask(setConfig);
+        validateRB.setNextActivity(setConfig);
         validateRB.setCt(COMPONENT_TYPE.EVENT_PROCESSING);
 
         return validateRB.doStep(configurationModification);
