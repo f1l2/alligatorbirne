@@ -29,6 +29,7 @@ import common.rest.RESOURCE_NAMING;
 import common.rest.UtilsUrl;
 import iot.device.ApplicationTestContext1;
 import iot.device.property.SensorReservedProperty;
+import iot.device.property.SystemReservedProperty;
 import iot.device.status.STATUS_TYPE;
 import iot.device.status.Status;
 import iot.device.vt.VtEP;
@@ -64,6 +65,7 @@ public class IDevManageSetConfigTest {
 
         Properties properties = new Properties();
         properties.put(SensorReservedProperty.SUPPLY_REQ, "Pressure");
+        properties.put(SystemReservedProperty.TASK_INTERVAL_MS.name(), 500);
 
         cm = new ConfigurationModification();
         cm.setDataSink(dataSink);
@@ -89,9 +91,45 @@ public class IDevManageSetConfigTest {
     }
 
     @Test
-    public void setConfiguration() {
+    public void setConfiguration() throws InterruptedException {
 
         assertEquals(1, VtEP.getData().size());
+
+        Thread.sleep(600);
+
+        assertEquals(2, VtEP.getData().size());
+
+        Thread.sleep(600);
+
+        assertEquals(3, VtEP.getData().size());
+
+        Properties properties = new Properties();
+        properties.put(SystemReservedProperty.TASK_INTERVAL_MS.name(), 1200);
+
+        cm.setProperties(properties);
+
+        ResponseBodyExtractionOptions response = given().body(cm).contentType(ContentType.JSON).post(RESOURCE_NAMING.IDEV_SET_CONFIGURATION.getPath())
+                //
+                .then().contentType(ContentType.TEXT)
+                //
+                .extract().body();
+
+        response.asString();
+
+        assertNotNull(response);
+        assertEquals("OK", response.asString());
+
+        Thread.sleep(600);
+
+        assertEquals(4, VtEP.getData().size());
+
+        Thread.sleep(600);
+
+        assertEquals(4, VtEP.getData().size());
+
+        Thread.sleep(600);
+
+        assertEquals(5, VtEP.getData().size());
 
     }
 

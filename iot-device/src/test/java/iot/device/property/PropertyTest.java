@@ -21,35 +21,35 @@ public class PropertyTest {
     @Test
     public void mergeProperties() {
 
-        Assert.assertEquals(10 * 1000, configuration.getProperties().get(SystemReservedProperty.TASK_INTERVAL_MS.getName()));
+        Assert.assertEquals(10 * 1000, configuration.getProperties().get(SystemReservedProperty.TASK_INTERVAL_MS.name()));
 
         Properties newProperties = new Properties();
-        newProperties.put(SystemReservedProperty.TASK_INTERVAL_MS.getName(), 5 * 1000);
+        newProperties.put(SystemReservedProperty.TASK_INTERVAL_MS.name(), 5 * 1000);
 
         configuration.setAndUpdateProperties(newProperties);
 
-        Assert.assertEquals(5 * 1000, configuration.getProperties().get(SystemReservedProperty.TASK_INTERVAL_MS.getName()));
+        Assert.assertEquals(5 * 1000, configuration.getProperties().get(SystemReservedProperty.TASK_INTERVAL_MS.name()));
 
         /**
          * Below defined minimum
          */
 
         newProperties = new Properties();
-        newProperties.put(SystemReservedProperty.TASK_INTERVAL_MS.getName(), 4 * 1000);
+        newProperties.put(SystemReservedProperty.TASK_INTERVAL_MS.name(), 4 * 1000);
 
         configuration.setAndUpdateProperties(newProperties);
 
-        Assert.assertEquals(5 * 1000, configuration.getProperties().get(SystemReservedProperty.TASK_INTERVAL_MS.getName()));
+        Assert.assertEquals(5 * 1000, configuration.getProperties().get(SystemReservedProperty.TASK_INTERVAL_MS.name()));
 
         /**
          * Over defined maximum
          */
         newProperties = new Properties();
-        newProperties.put(SystemReservedProperty.TASK_INTERVAL_MS.getName(), 5001 * 1000);
+        newProperties.put(SystemReservedProperty.TASK_INTERVAL_MS.name(), 5001 * 1000);
 
         configuration.setAndUpdateProperties(newProperties);
 
-        Assert.assertEquals(5 * 1000, configuration.getProperties().get(SystemReservedProperty.TASK_INTERVAL_MS.getName()));
+        Assert.assertEquals(5 * 1000, configuration.getProperties().get(SystemReservedProperty.TASK_INTERVAL_MS.name()));
 
     }
 

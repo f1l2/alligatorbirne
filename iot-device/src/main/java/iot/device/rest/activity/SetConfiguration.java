@@ -10,7 +10,8 @@ import org.springframework.stereotype.Component;
 
 import common.data.ConfigurationModification;
 import iot.device.ApplicationConfig;
-import iot.device.repo.DeliveryTask;
+import iot.device.delivery.task.DeliveryTask;
+import iot.device.delivery.task.DynamicDeliveryTaskFactory;
 import iot.device.repo.DeliveryTaskRO;
 import iot.device.repo.DeliveryTaskRepositoryImpl;
 import iot.device.repo.DeliveryTaskTransformer;
@@ -28,6 +29,9 @@ public class SetConfiguration extends Activity<String, ConfigurationModification
 
     @Autowired
     private DeliveryTaskTransformer transformer;
+
+    @Autowired
+    private DynamicDeliveryTaskFactory ddtf;
 
     @Override
     public ResponseEntity<String> doStep(ConfigurationModification cm) {
@@ -61,7 +65,7 @@ public class SetConfiguration extends Activity<String, ConfigurationModification
             taskRO = transformer.toLocal(cm);
             repo.save(taskRO);
 
-            DeliveryTask task = new DeliveryTask(taskRO);
+            DeliveryTask task = ddtf.createBean(taskRO);
             taskExecutor.execute(task);
         }
 

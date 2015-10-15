@@ -39,7 +39,7 @@ public class Configuration {
      */
 
     public int getValue(SystemReservedProperty srp) {
-        return systemReservedProperties.get(srp.getName());
+        return systemReservedProperties.get(srp.name());
     }
 
     public Set<String> getSupplyingSensor() {
