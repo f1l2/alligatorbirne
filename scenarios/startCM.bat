@@ -1,2 +1,3 @@
-cd M:\WorkspaceTU_Master\alligatorbirne\configuration-management
+cd ..
+cd target/build
 call mvn spring-boot:run

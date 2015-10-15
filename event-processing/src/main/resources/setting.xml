@@ -24,7 +24,7 @@
         <connection component="LOCAL">
             <name>localConnection</name>
             <host>10.241.100.104</host>
-            <port>32396</port>
+            <port>26044</port>
         </connection>
     </connections>
 </setting>
