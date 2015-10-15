@@ -35,7 +35,7 @@ public class PropertyTest {
          */
 
         newProperties = new Properties();
-        newProperties.put(SystemReservedProperty.TASK_INTERVAL_MS.name(), 4 * 1000);
+        newProperties.put(SystemReservedProperty.TASK_INTERVAL_MS.name(), 4 * 100);
 
         configuration.setAndUpdateProperties(newProperties);
 

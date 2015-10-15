@@ -1,6 +1,6 @@
 package iot.device.delivery.task;
 
-import java.util.Date;
+import java.time.Instant;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,8 +56,6 @@ public class DeliveryTask implements Runnable {
             Configuration configuration = deliveryTaskRO.getConfiguration();
             int sleepTime = configuration.getValue(SystemReservedProperty.TASK_INTERVAL_MS);
 
-            logger.info("Sleep time: {}", sleepTime);
-
             try {
 
                 for (String sensorData : configuration.getSupplyingSensor()) {
@@ -70,7 +68,7 @@ public class DeliveryTask implements Runnable {
                     deviceInformation.setValue(value);
 
                     if (STATUS_TYPE.TEST.equals(status.getCurrent())) {
-                        VtEP.send(new VtData(deviceInformation, deliveryUrl, new Date()));
+                        VtEP.send(new VtData(deviceInformation, deliveryUrl, Instant.now()));
                     } else {
                         ResponseEntity<Void> responseRegistration = restTemplate.postForEntity(deliveryUrl, deviceInformation, Void.class);
                         logger.info("Device data send. Status: " + responseRegistration.getStatusCode() + " Response body: ");

@@ -1,6 +1,6 @@
 package iot.device.vt;
 
-import java.util.Date;
+import java.time.Instant;
 
 import common.data.DeviceInformation;
 
@@ -10,9 +10,9 @@ public class VtData {
 
     private String url;
 
-    private Date timeStamp;
+    private Instant timeStamp;
 
-    public VtData(DeviceInformation devInfo, String url, Date timeStamp) {
+    public VtData(DeviceInformation devInfo, String url, Instant timeStamp) {
         this.devInfo = devInfo;
         this.url = url;
         this.timeStamp = timeStamp;
@@ -34,11 +34,12 @@ public class VtData {
         this.url = url;
     }
 
-    public Date getTimeStamp() {
+    public Instant getTimeStamp() {
         return timeStamp;
     }
 
-    public void setTimeStamp(Date timeStamp) {
+    public void setTimeStamp(Instant timeStamp) {
         this.timeStamp = timeStamp;
     }
+
 }

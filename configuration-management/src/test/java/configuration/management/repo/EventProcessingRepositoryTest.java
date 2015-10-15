@@ -78,8 +78,6 @@ public class EventProcessingRepositoryTest {
 
         result = this.eventProcessingRepo.findByName(ep1.getName());
 
-        System.out.println(result);
-
         assertNotNull(result);
         assertEquals(ep1.getId(), result.getId());
         assertEquals(ep1.getName(), result.getName());

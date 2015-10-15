@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Properties;
 
 import org.junit.After;
@@ -15,8 +16,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.util.LinkedMultiValueMap;
 
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.http.ContentType;
@@ -32,12 +36,14 @@ import iot.device.property.SensorReservedProperty;
 import iot.device.property.SystemReservedProperty;
 import iot.device.status.STATUS_TYPE;
 import iot.device.status.Status;
+import iot.device.vt.VtData;
 import iot.device.vt.VtEP;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = ApplicationTestContext1.class)
 @WebAppConfiguration
 @IntegrationTest("server.port:0")
+@DirtiesContext(classMode = ClassMode.AFTER_CLASS)
 public class IDevManageSetConfig2Test {
 
     private ConfigurationModification cm1, cm2;
@@ -93,8 +99,6 @@ public class IDevManageSetConfig2Test {
         assertNotNull(response);
         assertEquals("OK", response.asString());
 
-        Thread.sleep(100);
-
         response = given().body(cm2).contentType(ContentType.JSON).post(RESOURCE_NAMING.IDEV_SET_CONFIGURATION.getPath())
                 //
                 .then().contentType(ContentType.TEXT)
@@ -110,24 +114,15 @@ public class IDevManageSetConfig2Test {
 
     @After
     public void after() {
+        VtEP.setData(new ArrayList<VtData>());
+        VtEP.setMap(new LinkedMultiValueMap<String, VtData>());
     }
 
     @Test
     public void setConfiguration() throws InterruptedException {
 
-        Thread.sleep(100);
+        Thread.sleep(500);
 
-        assertEquals(2, VtEP.getData().size());
-        assertEquals(2, VtEP.getMap().size());
-
-        Thread.sleep(600);
-
-        assertEquals(4, VtEP.getData().size());
-        assertEquals(2, VtEP.getMap().size());
-
-        Thread.sleep(600);
-
-        assertEquals(6, VtEP.getData().size());
         assertEquals(2, VtEP.getMap().size());
 
     }

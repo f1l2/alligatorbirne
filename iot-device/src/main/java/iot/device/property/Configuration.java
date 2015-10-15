@@ -8,6 +8,11 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
+import iot.device.deserializer.ArrayMapDeserializerStringInteger;
+import iot.device.deserializer.ArrayMapDeserializerStringString;
+
 @Component
 public class Configuration {
 
@@ -21,11 +26,13 @@ public class Configuration {
     /**
      * (String, Integer)
      */
+    @JsonDeserialize(using = ArrayMapDeserializerStringInteger.class)
     private Map<String, Integer> systemReservedProperties = new HashMap<String, Integer>();
 
     /**
      * (String, String)
      */
+    @JsonDeserialize(using = ArrayMapDeserializerStringString.class)
     private Map<String, String> supplyingSensor = new HashMap<String, String>();
 
     /**
@@ -123,5 +130,4 @@ public class Configuration {
     interface Operation {
         boolean operate(int a, int b);
     }
-
 }

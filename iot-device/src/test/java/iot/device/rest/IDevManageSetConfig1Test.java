@@ -3,8 +3,11 @@ package iot.device.rest;
 import static com.jayway.restassured.RestAssured.given;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
+import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Properties;
 
 import org.junit.After;
@@ -15,8 +18,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.util.LinkedMultiValueMap;
 
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.http.ContentType;
@@ -32,12 +38,14 @@ import iot.device.property.SensorReservedProperty;
 import iot.device.property.SystemReservedProperty;
 import iot.device.status.STATUS_TYPE;
 import iot.device.status.Status;
+import iot.device.vt.VtData;
 import iot.device.vt.VtEP;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = ApplicationTestContext1.class)
 @WebAppConfiguration
 @IntegrationTest("server.port:0")
+@DirtiesContext(classMode = ClassMode.AFTER_CLASS)
 public class IDevManageSetConfig1Test {
 
     private ConfigurationModification cm;
@@ -79,8 +87,6 @@ public class IDevManageSetConfig1Test {
 
         response.asString();
 
-        // String result = response.getBody().as(String.class, ObjectMapper.JAXB);
-
         assertNotNull(response);
         assertEquals("OK", response.asString());
 
@@ -88,26 +94,28 @@ public class IDevManageSetConfig1Test {
 
     @After
     public void after() {
+
+        VtEP.setData(new ArrayList<VtData>());
+        VtEP.setMap(new LinkedMultiValueMap<String, VtData>());
+
     }
 
     @Test
     public void setConfiguration() throws InterruptedException {
 
-        assertEquals(1, VtEP.getData().size());
-        assertEquals(1, VtEP.getMap().size());
+        Thread.sleep(1500);
 
-        Thread.sleep(600);
+        VtData first = VtEP.getLast();
+        VtData second = VtEP.getSecondLast();
+        Instant between = first.getTimeStamp().minusNanos(second.getTimeStamp().getNano());
 
-        assertEquals(2, VtEP.getData().size());
-        assertEquals(1, VtEP.getMap().size());
+        int ms = between.getNano() / (1000 * 1000);
 
-        Thread.sleep(600);
-
-        assertEquals(3, VtEP.getData().size());
-        assertEquals(1, VtEP.getMap().size());
+        assertTrue(ms > 400);
+        assertTrue(ms < 600);
 
         Properties properties = new Properties();
-        properties.put(SystemReservedProperty.TASK_INTERVAL_MS.name(), 1200);
+        properties.put(SystemReservedProperty.TASK_INTERVAL_MS.name(), 1000);
 
         cm.setProperties(properties);
 
@@ -122,21 +130,14 @@ public class IDevManageSetConfig1Test {
         assertNotNull(response);
         assertEquals("OK", response.asString());
 
-        Thread.sleep(600);
+        Thread.sleep(2000);
 
-        assertEquals(4, VtEP.getData().size());
+        first = VtEP.getLast();
+        second = VtEP.getSecondLast();
+        between = first.getTimeStamp().minusSeconds(second.getTimeStamp().getEpochSecond());
+        assertEquals(1, between.getEpochSecond());
+
         assertEquals(1, VtEP.getMap().size());
-
-        Thread.sleep(600);
-
-        assertEquals(4, VtEP.getData().size());
-        assertEquals(1, VtEP.getMap().size());
-
-        Thread.sleep(600);
-
-        assertEquals(5, VtEP.getData().size());
-        assertEquals(1, VtEP.getMap().size());
-
     }
 
 }

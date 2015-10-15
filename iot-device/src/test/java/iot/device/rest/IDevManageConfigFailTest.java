@@ -14,6 +14,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
@@ -33,6 +35,7 @@ import iot.device.ApplicationTestContext2;
 @SpringApplicationConfiguration(classes = ApplicationTestContext2.class)
 @WebAppConfiguration
 @IntegrationTest("server.port:0")
+@DirtiesContext(classMode = ClassMode.AFTER_CLASS)
 public class IDevManageConfigFailTest {
 
     private ConfigurationModification cm;
