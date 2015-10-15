@@ -36,6 +36,8 @@ public class SetConfiguration extends Activity<String, ConfigurationModification
     @Override
     public ResponseEntity<String> doStep(ConfigurationModification cm) {
 
+        System.out.println(cm.getDataSink().getUrl());
+
         DeliveryTaskRO taskRO = repo.findByUrl(cm.getDataSink().getUrl());
 
         if (null != taskRO) {

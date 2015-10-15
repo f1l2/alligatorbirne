@@ -38,7 +38,7 @@ import iot.device.vt.VtEP;
 @SpringApplicationConfiguration(classes = ApplicationTestContext1.class)
 @WebAppConfiguration
 @IntegrationTest("server.port:0")
-public class IDevManageSetConfigTest {
+public class IDevManageSetConfig1Test {
 
     private ConfigurationModification cm;
 
@@ -94,14 +94,17 @@ public class IDevManageSetConfigTest {
     public void setConfiguration() throws InterruptedException {
 
         assertEquals(1, VtEP.getData().size());
+        assertEquals(1, VtEP.getMap().size());
 
         Thread.sleep(600);
 
         assertEquals(2, VtEP.getData().size());
+        assertEquals(1, VtEP.getMap().size());
 
         Thread.sleep(600);
 
         assertEquals(3, VtEP.getData().size());
+        assertEquals(1, VtEP.getMap().size());
 
         Properties properties = new Properties();
         properties.put(SystemReservedProperty.TASK_INTERVAL_MS.name(), 1200);
@@ -122,14 +125,17 @@ public class IDevManageSetConfigTest {
         Thread.sleep(600);
 
         assertEquals(4, VtEP.getData().size());
+        assertEquals(1, VtEP.getMap().size());
 
         Thread.sleep(600);
 
         assertEquals(4, VtEP.getData().size());
+        assertEquals(1, VtEP.getMap().size());
 
         Thread.sleep(600);
 
         assertEquals(5, VtEP.getData().size());
+        assertEquals(1, VtEP.getMap().size());
 
     }
 
