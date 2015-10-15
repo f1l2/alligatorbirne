@@ -1,6 +1,7 @@
 package common.data.setting;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.util.ArrayList;
@@ -10,15 +11,13 @@ import javax.xml.bind.JAXBException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.xml.sax.SAXException;
 
 import common.data.Connection;
 import common.data.DataSource;
 import common.data.DataSources;
 import common.data.Setting;
-import common.data.setting.XMLConnection;
-import common.data.setting.XMLConnections;
-import common.data.setting.XMLSetting;
 import common.data.type.COMPONENT_TYPE;
 import common.transformer.XMLConnectionTransformer;
 import common.transformer.XMLDataSourceTransformer;
@@ -29,15 +28,22 @@ public class SettingUtils {
 
     final static Logger logger = LoggerFactory.getLogger(SettingUtils.class);
 
-    private static String PATH_TO_SETTING_FILE = "src/main/resources/setting.xml";
+    private static String PATH_TO_SETTING_FILE = "classpath:setting.xml";
 
-    public static String getPATH_TO_SETTING_FILE() {
+    public static File getPATH_TO_SETTING_FILE() {
+        File file = null;
+        PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+        try {
+            file = resolver.getResources(PATH_TO_SETTING_FILE)[0].getFile();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
 
-        return PATH_TO_SETTING_FILE;
+        return file;
     }
 
     public static void setPATH_TO_SETTING_FILE(String pATH_TO_SETTING_FILE) {
-        PATH_TO_SETTING_FILE = pATH_TO_SETTING_FILE;
+        PATH_TO_SETTING_FILE = "classpath:" + pATH_TO_SETTING_FILE;
     }
 
     /**
@@ -176,7 +182,7 @@ public class SettingUtils {
      */
     public static XMLSetting loadSettingNative() throws MalformedURLException, JAXBException, SAXException {
 
-        final File settingFile = new File(PATH_TO_SETTING_FILE);
+        final File settingFile = SettingUtils.getPATH_TO_SETTING_FILE();
 
         URI settingURI = settingFile.toURI();
         settingURI = settingURI.normalize();
@@ -207,7 +213,7 @@ public class SettingUtils {
      */
     public static void saveSettingNative(XMLSetting setting) throws JAXBException, SAXException {
 
-        final File settingFile = new File(PATH_TO_SETTING_FILE);
+        final File settingFile = SettingUtils.getPATH_TO_SETTING_FILE();
 
         XMLParser.marshal(setting, settingFile);
 

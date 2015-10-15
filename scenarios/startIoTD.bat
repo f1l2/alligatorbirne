@@ -1,2 +1,3 @@
-cd M:\WorkspaceTU_Master\alligatorbirne\iot-device
-call mvn spring-boot:run
+cd ..
+cd target/build
+call java -jar iot-device-1.0.0-SNAPSHOT.jar

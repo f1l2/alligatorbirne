@@ -24,9 +24,9 @@ import common.data.type.DOMAIN_INFORMATION_TYPE;
 
 public class SettingUtilsTest {
 
-    private static final String PATH_TO_SETTING_FILE = "src/test/resources/setting.xml";
+    private static final String PATH_TO_SETTING_FILE = "setting.xml";
 
-    private static final String PATH_TO_TEST_OUTPUT = "target/setting_test_output.xml";
+    private static final String PATH_TO_TEST_OUTPUT = "setting_test_output.xml";
 
     private File settingFile;
 

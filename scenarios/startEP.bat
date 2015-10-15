@@ -1,2 +1,3 @@
-cd M:\WorkspaceTU_Master\alligatorbirne\event-processing
-call mvn spring-boot:run
+cd ..
+cd target/build
+call java -jar event-processing-1.0.0-SNAPSHOT.jar

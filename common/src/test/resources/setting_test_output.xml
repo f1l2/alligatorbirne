@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE xml>
+<setting xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="configuration.xsd">
+	<dataSources>
+		<dataSource>
+			<deviceInformation>
+				<name>SENSOR</name>
+			</deviceInformation>
+			<domainInformation>
+				<name>FLOOR1</name>
+			</domainInformation>
+		</dataSource>
+	</dataSources>
+	<connections>
+		<connection component="IOT_DEVICE">
+			<name>Name</name>
+			<host>127.0.0.1</host>
+			<port>5000</port>
+		</connection>
+		<connection component="CONFIGURATION_MANAGEMENT">
+			<name>Name</name>
+			<host>127.0.0.1</host>
+			<port>5000</port>
+		</connection>
+	</connections>
+</setting>
+
