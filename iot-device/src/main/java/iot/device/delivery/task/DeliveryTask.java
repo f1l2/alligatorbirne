@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import common.data.DeviceInformation;
+import common.data.model.DeviceInformation;
 import common.rest.RESOURCE_NAMING;
 import common.rest.UtilsResource;
 import iot.device.property.Configuration;

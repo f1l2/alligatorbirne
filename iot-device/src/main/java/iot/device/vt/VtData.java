@@ -2,7 +2,7 @@ package iot.device.vt;
 
 import java.time.Instant;
 
-import common.data.DeviceInformation;
+import common.data.model.DeviceInformation;
 
 public class VtData {
 

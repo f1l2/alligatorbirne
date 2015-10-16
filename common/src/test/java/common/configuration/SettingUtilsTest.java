@@ -1,8 +1,6 @@
 package common.configuration;
 
-import java.io.File;
 import java.net.MalformedURLException;
-import java.net.URI;
 import java.net.URL;
 
 import javax.xml.bind.JAXBException;
@@ -14,9 +12,9 @@ import org.xml.sax.SAXException;
 
 import common.data.Connection;
 import common.data.DataSource;
-import common.data.DeviceInformation;
-import common.data.DomainInformation;
 import common.data.Setting;
+import common.data.model.DeviceInformation;
+import common.data.model.DomainInformation;
 import common.data.setting.SettingUtils;
 import common.data.type.COMPONENT_TYPE;
 import common.data.type.DEVICE_INFORMATION_TYPE;
@@ -24,21 +22,14 @@ import common.data.type.DOMAIN_INFORMATION_TYPE;
 
 public class SettingUtilsTest {
 
-    private static final String PATH_TO_SETTING_FILE = "setting.xml";
+    private static final String PATH_TO_SETTING_FILE = "src/test/resources/setting.xml";
 
-    private static final String PATH_TO_TEST_OUTPUT = "setting_test_output.xml";
-
-    private File settingFile;
-
-    private URI settingURI;
+    private static final String PATH_TO_TEST_OUTPUT = "target/setting_test_output.xml";
 
     private Setting setting;
 
     @Before
     public void before() throws MalformedURLException, JAXBException, SAXException {
-        settingFile = new File(PATH_TO_SETTING_FILE);
-        settingURI = settingFile.toURI();
-        settingURI = settingURI.normalize();
 
         SettingUtils.setPATH_TO_SETTING_FILE(PATH_TO_SETTING_FILE);
 

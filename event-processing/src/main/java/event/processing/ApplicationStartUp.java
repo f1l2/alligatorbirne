@@ -8,6 +8,7 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
 import common.component.ApplicationStartUpUtils;
+import common.data.setting.SettingUtils;
 import event.processing.status.STATUS_TYPE;
 import event.processing.status.Status;
 
@@ -20,11 +21,16 @@ public class ApplicationStartUp implements ApplicationListener<EmbeddedServletCo
     private Status status;
 
     @Override
-    public void onApplicationEvent(EmbeddedServletContainerInitializedEvent arg0) {
+    public void onApplicationEvent(EmbeddedServletContainerInitializedEvent iEvent) {
+
         try {
-            ApplicationStartUpUtils.processLocalConnection(arg0);
+            String baseDirectory = ApplicationStartUpUtils.getBaseDirectory(Application.class);
+            SettingUtils.setPATH_TO_SETTING_FILE(baseDirectory + Application.RELATIVE_PATH_TO_CONFIG);
+            ApplicationStartUpUtils.processLocalConnection(iEvent);
+
         } catch (Exception e) {
             logger.error("Error retrieving local connection data.", e);
+            status.setCurrent(STATUS_TYPE.ERROR);
         } finally {
             status.setCurrent(STATUS_TYPE.STARTED_UP);
         }

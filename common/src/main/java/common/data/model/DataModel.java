@@ -1,4 +1,4 @@
-package common.data;
+package common.data.model;
 
 public abstract class DataModel {
 

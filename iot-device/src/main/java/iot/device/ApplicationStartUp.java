@@ -8,6 +8,7 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
 import common.component.ApplicationStartUpUtils;
+import common.data.setting.SettingUtils;
 import iot.device.status.STATUS_TYPE;
 import iot.device.status.Status;
 
@@ -25,6 +26,8 @@ public class ApplicationStartUp implements ApplicationListener<EmbeddedServletCo
     @Override
     public void onApplicationEvent(EmbeddedServletContainerInitializedEvent arg0) {
         try {
+            String baseDirectory = ApplicationStartUpUtils.getBaseDirectory(Application.class);
+            SettingUtils.setPATH_TO_SETTING_FILE(baseDirectory + Application.RELATIVE_PATH_TO_CONFIG);
             ApplicationStartUpUtils.processLocalConnection(arg0);
         } catch (Exception e) {
             logger.error("Error retrieving local connection data.", e);

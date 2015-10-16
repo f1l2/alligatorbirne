@@ -1,12 +1,18 @@
 package iot.device;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import common.data.Connection;
 import common.data.setting.SettingUtils;
 
 public class ConfigUtilsTest {
+
+    @Before
+    public void before() {
+        SettingUtils.setPATH_TO_SETTING_FILE("src/main/resources/setting/dev-setting.xml");
+    }
 
     @Test
     public void testLoadCMConnection() throws Exception {

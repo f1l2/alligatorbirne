@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import common.data.DataSource;
-import common.data.DeviceInformation;
-import common.data.DomainInformation;
+import common.data.model.DeviceInformation;
+import common.data.model.DomainInformation;
 import event.processing.engine.Engine;
 import event.processing.engine.EngineFactory;
 import event.processing.engine.LanguageTransformer;

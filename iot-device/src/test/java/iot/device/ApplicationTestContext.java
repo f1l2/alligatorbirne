@@ -6,7 +6,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableScheduling
-public class ApplicationTestContext2 {
+public class ApplicationTestContext {
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);

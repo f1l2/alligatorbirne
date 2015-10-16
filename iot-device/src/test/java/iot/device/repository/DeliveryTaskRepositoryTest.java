@@ -57,6 +57,7 @@ public class DeliveryTaskRepositoryTest {
         task2.setConfiguration(configuration);
 
         repo.save(task2);
+
     }
 
     /**

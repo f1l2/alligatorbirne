@@ -35,16 +35,10 @@
 	</modules>
 
     <dependencies>
-    	<dependency>
-			<groupId>javax.transaction</groupId>
-			<artifactId>javax.transaction-api</artifactId>
-		</dependency>
-		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
-	
 	</dependencies>
 			
 
@@ -94,9 +88,7 @@
 				<artifactId>commons-io</artifactId>
 				<version>${apache.commons.version}</version>
 			</dependency>
-			
-			
- 			
+	
 		</dependencies>
 	</dependencyManagement>
 
@@ -106,7 +98,6 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			  
       		<plugin>
         		<artifactId>maven-compiler-plugin</artifactId>
         		<configuration>
@@ -114,9 +105,7 @@
           			<target>${java.version}</target>	
         		</configuration>
       		</plugin>
-      		
-      		
-
+            
             <plugin>
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-dependency-plugin</artifactId>
@@ -136,11 +125,106 @@
                           <type>${project.packaging}</type>
                         </artifactItem>
                     </artifactItems>
-                    <outputDirectory>${main.basedir}\target\build</outputDirectory>
+                    <outputDirectory>${main.basedir}\workbench</outputDirectory>
                   </configuration>
                 </execution>
               </executions>
             </plugin>
-		</plugins>   
+            
+            <plugin>
+        		<artifactId>maven-resources-plugin</artifactId>
+        		<executions>
+          			
+          			<execution>
+	            		<id>copy-settings</id>
+	            		<phase>package</phase>
+	            		<goals>
+	              			<goal>copy-resources</goal>
+	            		</goals>
+	            		<configuration>
+	              			<outputDirectory>${main.basedir}/workbench/setting</outputDirectory>
+	              			<resources>          
+	                			<resource>
+	                  				<directory>src/main/resources/setting/</directory>
+	                  				<filtering>true</filtering>
+	                			</resource>
+	              			</resources>              
+	            		</configuration>            
+          			</execution>
+          			
+          			<execution>
+	            		<id>copy-settings-test</id>
+	            		<phase>validate</phase>
+	            		<goals>
+	              			<goal>copy-resources</goal>
+	            		</goals>
+	            		<configuration>
+	              			<outputDirectory>${project.basedir}/target/setting</outputDirectory>
+	              			<resources>          
+	                			<resource>
+	                  				<directory>${project.basedir}/src/main/resources/setting</directory>
+	                  				<filtering>true</filtering>
+	                			</resource>
+	                			
+	              			</resources>              
+	            		</configuration>            
+          			</execution>
+          			
+          			<execution>
+	            		<id>copy-examples</id>
+	            		<phase>package</phase>
+	            		<goals>
+	              			<goal>copy-resources</goal>
+	            		</goals>
+	            		<configuration>
+	              			<outputDirectory>${main.basedir}/workbench/examples</outputDirectory>
+	              			<resources>          
+	                			<resource>
+	                  				<directory>${project.basedir}/src/main/resources/examples</directory>
+	                  				<filtering>true</filtering>
+	                			</resource>
+	                			
+	              			</resources>              
+	            		</configuration>            
+          			</execution>
+          			
+        <!--   			<execution>
+	            		<id>copy-sensor-classes</id>
+	            		<phase>test</phase>
+	            		<goals>
+	              			<goal>copy-resources</goal>
+	            		</goals>
+	            		<configuration>
+	              			<outputDirectory>${main.basedir}/workbench/sensor</outputDirectory>
+	              			<resources>          
+	                			<resource>
+	                  				<directory>src/main/java/iot/device/sensor/impl</directory>
+	                  				<filtering>true</filtering>
+	                			</resource>
+	              			</resources>              
+	            		</configuration>            
+          			</execution>
+          			
+          			<execution>
+	            		<id>copy-model-classes</id>
+	            		<phase>package</phase>
+	            		<goals>
+	              			<goal>copy-resources</goal>
+	            		</goals>
+	            		<configuration>
+	              			<outputDirectory>${main.basedir}/workbench/model</outputDirectory>
+	              			<resources>          
+	                			<resource>
+	                  				<directory>src/main/java/common/data/model</directory>
+	                  				<filtering>true</filtering>
+	                			</resource>
+	              			</resources>              
+	            		</configuration>            
+          			</execution>
+         -->  			
+        		</executions>
+      		</plugin>
+      		
+    	</plugins>   
     </build>
 </project>

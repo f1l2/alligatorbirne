@@ -31,7 +31,7 @@ import common.data.Connection;
 import common.data.type.COMPONENT_TYPE;
 import common.rest.RESOURCE_NAMING;
 import common.rest.UtilsUrl;
-import iot.device.ApplicationTestContext1;
+import iot.device.ApplicationTestContext;
 import iot.device.property.SensorReservedProperty;
 import iot.device.property.SystemReservedProperty;
 import iot.device.status.STATUS_TYPE;
@@ -40,7 +40,7 @@ import iot.device.vt.VtData;
 import iot.device.vt.VtEP;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = ApplicationTestContext1.class)
+@SpringApplicationConfiguration(classes = ApplicationTestContext.class)
 @WebAppConfiguration
 @IntegrationTest("server.port:0")
 @DirtiesContext(classMode = ClassMode.AFTER_CLASS)

@@ -11,9 +11,9 @@ import org.springframework.context.annotation.ClassPathScanningCandidateComponen
 import org.springframework.core.type.filter.AssignableTypeFilter;
 
 import common.data.ConfigurationModification;
-import common.data.DataModel;
-import common.data.DeviceInformation;
-import common.data.DomainInformation;
+import common.data.model.DataModel;
+import common.data.model.DeviceInformation;
+import common.data.model.DomainInformation;
 
 public class ClassPathScanningTest {
 

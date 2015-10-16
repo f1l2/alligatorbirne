@@ -1,6 +1,8 @@
 package common.component;
 
+import java.io.File;
 import java.net.InetAddress;
+import java.net.URL;
 
 import org.springframework.boot.context.embedded.EmbeddedServletContainerInitializedEvent;
 
@@ -37,6 +39,20 @@ public class ApplicationStartUpUtils {
             Setting newSetting = SettingUtils.replaceConnection(settingConnection, COMPONENT_TYPE.LOCAL);
             SettingUtils.saveSetting(newSetting);
         }
+
+    }
+
+    public static String getBaseDirectory(Class<?> clazz) {
+        URL jarUrl = clazz.getProtectionDomain().getCodeSource().getLocation();
+
+        String baseDirectory = new File(jarUrl.getPath()).getParentFile().getPath();
+
+        if (baseDirectory.startsWith("file:")) {
+            baseDirectory = baseDirectory.substring(5);
+        }
+        baseDirectory = baseDirectory + File.separator;
+
+        return baseDirectory;
 
     }
 

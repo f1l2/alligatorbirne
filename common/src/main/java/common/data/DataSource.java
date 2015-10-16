@@ -1,5 +1,8 @@
 package common.data;
 
+import common.data.model.DeviceInformation;
+import common.data.model.DomainInformation;
+
 public class DataSource {
 
     private DomainInformation domainInformation;

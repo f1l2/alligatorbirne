@@ -29,10 +29,10 @@ import common.data.type.COMPONENT_TYPE;
 import common.rest.RESOURCE_NAMING;
 import common.rest.UtilsUrl;
 import iot.device.ApplicationConfig;
-import iot.device.ApplicationTestContext2;
+import iot.device.ApplicationTestContext;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = ApplicationTestContext2.class)
+@SpringApplicationConfiguration(classes = ApplicationTestContext.class)
 @WebAppConfiguration
 @IntegrationTest("server.port:0")
 @DirtiesContext(classMode = ClassMode.AFTER_CLASS)
@@ -49,6 +49,7 @@ public class IDevManageConfigFailTest {
      */
     @Before
     public void before() throws IOException {
+
         RestAssured.port = port;
 
         Connection dataSink = new Connection();

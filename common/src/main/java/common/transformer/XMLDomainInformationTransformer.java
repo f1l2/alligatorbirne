@@ -1,6 +1,6 @@
 package common.transformer;
 
-import common.data.DomainInformation;
+import common.data.model.DomainInformation;
 import common.data.setting.XMLDomainInformation;
 
 public class XMLDomainInformationTransformer extends Transformer<XMLDomainInformation, DomainInformation> {

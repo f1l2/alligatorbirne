@@ -10,8 +10,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import common.data.DataSource;
-import common.data.DeviceInformation;
-import common.data.DomainInformation;
+import common.data.model.DeviceInformation;
+import common.data.model.DomainInformation;
 import common.data.type.DEVICE_INFORMATION_TYPE;
 import common.data.type.DOMAIN_INFORMATION_TYPE;
 import common.rest.RESOURCE_NAMING;

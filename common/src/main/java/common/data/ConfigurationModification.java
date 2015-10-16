@@ -2,6 +2,8 @@ package common.data;
 
 import java.util.Properties;
 
+import common.data.model.DataModel;
+
 public class ConfigurationModification extends DataModel {
 
     private Connection dataSink;

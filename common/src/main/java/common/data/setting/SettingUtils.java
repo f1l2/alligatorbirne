@@ -1,7 +1,6 @@
 package common.data.setting;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.util.ArrayList;
@@ -11,7 +10,6 @@ import javax.xml.bind.JAXBException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.xml.sax.SAXException;
 
 import common.data.Connection;
@@ -28,22 +26,17 @@ public class SettingUtils {
 
     final static Logger logger = LoggerFactory.getLogger(SettingUtils.class);
 
-    private static String PATH_TO_SETTING_FILE = "classpath:setting.xml";
+    private static String PATH_TO_SETTING_FILE = "setting.xml";
 
     public static File getPATH_TO_SETTING_FILE() {
-        File file = null;
-        PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-        try {
-            file = resolver.getResources(PATH_TO_SETTING_FILE)[0].getFile();
-        } catch (IOException e) {
-            System.out.println(e);
-        }
+
+        File file = new File(PATH_TO_SETTING_FILE);
 
         return file;
     }
 
     public static void setPATH_TO_SETTING_FILE(String pATH_TO_SETTING_FILE) {
-        PATH_TO_SETTING_FILE = "classpath:" + pATH_TO_SETTING_FILE;
+        PATH_TO_SETTING_FILE = pATH_TO_SETTING_FILE;
     }
 
     /**

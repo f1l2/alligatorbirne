@@ -1,4 +1,4 @@
-package common.data;
+package common.data.model;
 
 import common.data.type.DOMAIN_INFORMATION_TYPE;
 

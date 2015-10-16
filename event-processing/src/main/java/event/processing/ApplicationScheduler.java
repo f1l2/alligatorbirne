@@ -9,6 +9,7 @@ import org.springframework.web.client.RestTemplate;
 
 import common.data.Connection;
 import common.data.setting.SettingUtils;
+import common.data.type.COMPONENT_TYPE;
 import common.rest.RESOURCE_NAMING;
 import common.rest.UtilsResource;
 import event.processing.status.STATUS_TYPE;
@@ -36,6 +37,7 @@ public class ApplicationScheduler {
                  * Load connection data.
                  */
                 local = SettingUtils.getLocalConnection();
+                local.setComponentType(COMPONENT_TYPE.EVENT_PROCESSING);
                 logger.info("Retrieve local connection data ... ");
                 logger.info(local.toString());
 
@@ -67,6 +69,8 @@ public class ApplicationScheduler {
                 local = responseRegistration.getBody();
 
                 logger.info("EP registered. Status: " + responseRegistration.getStatusCode() + " Response body: " + local);
+
+                status.setCurrent(STATUS_TYPE.WORKING);
 
             } catch (Exception ex) {
                 logger.error("Register error. Exception: {}", ex.getMessage());

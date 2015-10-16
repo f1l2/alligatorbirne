@@ -1,6 +1,4 @@
-package common.data;
-
-
+package common;
 
 public class Application {
 	
