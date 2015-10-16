@@ -1,6 +1,9 @@
 package monitoring.client.commando;
 
 import java.lang.reflect.Field;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 import javax.swing.table.DefaultTableModel;
@@ -10,7 +13,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.shell.core.CommandMarker;
 import org.springframework.shell.core.annotation.CliCommand;
+import org.springframework.shell.core.annotation.CliOption;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
 
 import common.data.Connection;
@@ -82,6 +87,110 @@ public class MonitoringCommands implements CommandMarker {
         textTable.setAddRowNumbering(true);
         textTable.printTable();
         return "list-dev call successfully performed.";
+    }
+
+    @CliCommand(value = "rq", help = "Register query")
+    public String registerQuery(@CliOption(key = { "epId" }, mandatory = true, help = "id of EP") final long id,
+            @CliOption(key = { "queryName" }, mandatory = true, help = "name of query") final String queryName,
+            //
+            @CliOption(key = { "query" }, mandatory = true, help = "query") final String query) {
+
+        Optional<Connection> findById = getEPById(id);
+        if (findById == null) {
+            return "Couldn't locate EP with id = " + id;
+        }
+
+        String url = UtilsResource.getUrl(RESOURCE_NAMING.EPROCESSING_REGISTRATION_QUERY, findById.get());
+        url = StringUtils.replace(url, "{name}", queryName);
+
+        ResponseEntity<String> postForEntity = restTemplate.postForEntity(url, query, String.class);
+
+        return postForEntity.getBody();
+
+    }
+
+    @CliCommand(value = "list-rq", help = "list registered queries")
+    public String listRegisteredQuery(@CliOption(key = { "epId" }, mandatory = true, help = "id of EP") final long id) {
+
+        Optional<Connection> findById = getEPById(id);
+        if (findById == null) {
+            return "Couldn't locate EP with id = " + id;
+        }
+
+        String url = UtilsResource.getUrl(RESOURCE_NAMING.EPROCESSING_REGISTRATION_QUERY, findById.get());
+
+        ResponseEntity<Object[]> response = restTemplate.getForEntity(url, Object[].class);
+
+        TableModel tableModel;
+        try {
+            tableModel = transformArrayToTableModel(response.getBody());
+        } catch (IllegalAccessException e) {
+            return "EP has not delivered valid data.";
+        }
+
+        TextTable textTable = new TextTable(tableModel);
+        textTable.setAddRowNumbering(true);
+        textTable.printTable();
+        return "list-rq call successfully performed.";
+    }
+
+    @CliCommand(value = "rr", help = "Register rule")
+    public String registerRule(@CliOption(key = { "epId" }, mandatory = true, help = "id of EP") final long id,
+            @CliOption(key = { "ruleName" }, mandatory = true, help = "name of rule") final String ruleName,
+            //
+            @CliOption(key = { "rule" }, mandatory = true, help = "rule (contains name of query)") final String rule) {
+
+        Optional<Connection> findById = getEPById(id);
+        if (findById == null) {
+            return "Couldn't locate EP with id = " + id;
+        }
+
+        String url = UtilsResource.getUrl(RESOURCE_NAMING.EPROCESSING_REGISTRATION_RULE, findById.get());
+        url = StringUtils.replace(url, "{name}", ruleName);
+
+        ResponseEntity<String> postForEntity = restTemplate.postForEntity(url, rule, String.class);
+
+        return postForEntity.getBody();
+
+    }
+
+    @CliCommand(value = "list-rr", help = "list registered rules")
+    public String listRegisteredRule(@CliOption(key = { "epId" }, mandatory = true, help = "id of EP") final long id) {
+
+        Optional<Connection> findById = getEPById(id);
+        if (findById == null) {
+            return "Couldn't locate EP with id = " + id;
+        }
+
+        String url = UtilsResource.getUrl(RESOURCE_NAMING.EPROCESSING_REGISTRATION_RULE, findById.get());
+
+        ResponseEntity<Object[]> response = restTemplate.getForEntity(url, Object[].class);
+
+        TableModel tableModel;
+        try {
+            tableModel = transformArrayToTableModel(response.getBody());
+        } catch (IllegalAccessException e) {
+            return "EP has not delivered valid data.";
+        }
+
+        TextTable textTable = new TextTable(tableModel);
+        textTable.setAddRowNumbering(true);
+        textTable.printTable();
+        return "list-rr call successfully performed.";
+    }
+
+    private Optional<Connection> getEPById(Long id) {
+
+        String url = UtilsResource.getUrl(RESOURCE_NAMING.CMGMT_GET_ALL_EVENT_PROCESSING, cm);
+
+        ResponseEntity<Connection[]> responseEntity = restTemplate.getForEntity(url, Connection[].class);
+
+        List<Connection> list = Arrays.asList(responseEntity.getBody());
+
+        Optional<Connection> findById = list.stream().filter(item -> item.getId() == id).findFirst();
+
+        return findById;
+
     }
 
     /**

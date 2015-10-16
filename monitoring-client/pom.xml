@@ -16,6 +16,7 @@
     	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.shell.version>1.1.0.RELEASE</spring.shell.version>
         <jar.mainclass>org.springframework.shell.Bootstrap</jar.mainclass>    
+        <main.basedir>${project.parent.basedir}</main.basedir>
     </properties>
     
      <dependencies>
