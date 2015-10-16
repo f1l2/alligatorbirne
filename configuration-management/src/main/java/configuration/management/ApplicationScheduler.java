@@ -4,6 +4,8 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.transaction.Transactional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +31,8 @@ public class ApplicationScheduler {
     @Autowired
     private IoTDeviceRepository deviceRepo;
 
-    @Scheduled(fixedDelay = 60000)
+    @Scheduled(fixedDelay = 6000)
+    @Transactional
     public void carryOutActivity() {
 
         /**
