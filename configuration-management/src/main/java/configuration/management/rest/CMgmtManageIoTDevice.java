@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 
 import common.data.Connection;
+import common.data.DataSource;
 import common.data.DataSources;
 
 /**
@@ -23,6 +24,6 @@ public interface CMgmtManageIoTDevice {
 
     public ResponseEntity<String> heartbeat(Long id);
 
-    public ResponseEntity<DataSources> getDataSources(Long id);
+    public ResponseEntity<List<DataSource>> getDataSources(Long id);
 
 }

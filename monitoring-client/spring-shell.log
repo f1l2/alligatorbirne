@@ -1,0 +1,30 @@
+// Monitoring banner provider 1.1.0.RELEASE log opened at 2015-10-18 19:49:12
+help
+list-dev
+// [failed] list-ds --devId 1
+list-ep
+exit
+// Monitoring banner provider 1.1.0.RELEASE log closed at 2015-10-18 19:51:11
+// Monitoring banner provider 1.1.0.RELEASE log opened at 2015-10-18 19:51:28
+list-dev
+// [failed] list-ds --devId  1
+// [failed] list-ds --devId 1
+exit
+// Monitoring banner provider 1.1.0.RELEASE log closed at 2015-10-18 19:57:58
+// Monitoring banner provider 1.1.0.RELEASE log opened at 2015-10-18 19:58:14
+help
+list-ds --devId 1
+list-ep
+list-ep
+list-dev
+list-ep
+list-dev
+list-ep
+// [failed] rq --epId  1 --queryName query1 --query 'Condition id=1'
+rq --epId  1 --queryName query1 --query 'CONDITION id=1'
+rr --epId 1 --ruleName rule1 --rule 'query1 TRIGGERS device1, domain1, cm1'
+// [failed] list-rr --epId 1
+exit
+// Monitoring banner provider 1.1.0.RELEASE log closed at 2015-10-18 20:04:07
+// Monitoring banner provider 1.1.0.RELEASE log opened at 2015-10-18 20:04:33
+list-rr --epId 1

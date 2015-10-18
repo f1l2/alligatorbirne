@@ -12,7 +12,7 @@ public enum STATUS_TYPE {
 
     REGISTER_DATA_SOURCES("reg_ds", "Data sources registered at CM", 10),
 
-    WORKING("wor", "Device is working", 30),
+    WORKING("wor", "Device is working", 300),
 
     ERROR("err", "Device is in error state", 30);
 

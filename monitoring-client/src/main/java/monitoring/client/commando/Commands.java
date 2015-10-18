@@ -82,7 +82,7 @@ public class Commands implements CommandMarker {
      */
     @CliCommand(value = "list-dev", help = "Lists all running devices")
     public String listDev() {
-        String url = UtilsResource.getUrl(RESOURCE_NAMING.CMGMT_GET_ALL_EVENT_PROCESSING, cm);
+        String url = UtilsResource.getUrl(RESOURCE_NAMING.CMGMT_GET_ALL_DEVICES, cm);
 
         ResponseEntity<Connection[]> responseEntity = restTemplate.getForEntity(url, Connection[].class);
 
@@ -145,7 +145,7 @@ public class Commands implements CommandMarker {
             return "Couldn't locate EP with id = " + id;
         }
 
-        String url = UtilsResource.getUrl(RESOURCE_NAMING.EPROCESSING_REGISTRATION_QUERY, findById.get());
+        String url = UtilsResource.getUrl(RESOURCE_NAMING.EPROCESSING_GET_ALL_QUERIES, findById.get());
 
         ResponseEntity<Object[]> response = restTemplate.getForEntity(url, Object[].class);
 
@@ -208,7 +208,7 @@ public class Commands implements CommandMarker {
             return "Couldn't locate EP with id = " + id;
         }
 
-        String url = UtilsResource.getUrl(RESOURCE_NAMING.EPROCESSING_REGISTRATION_RULE, findById.get());
+        String url = UtilsResource.getUrl(RESOURCE_NAMING.EPROCESSING_GET_ALL_RULES, findById.get());
 
         ResponseEntity<Object[]> response = restTemplate.getForEntity(url, Object[].class);
 
@@ -223,6 +223,33 @@ public class Commands implements CommandMarker {
         textTable.setAddRowNumbering(true);
         textTable.printTable();
         return "list-rr call successfully performed.";
+    }
+
+    @CliCommand(value = "list-ds", help = "retrieves data sources by id")
+    public String dataSourcesById(@CliOption(key = { "devId" }, mandatory = true, help = "id of device") final long id) {
+
+        Optional<Connection> findById = getDeviceById(id);
+        if (findById == null) {
+            return "Couldn't locate device with id = " + id;
+        }
+
+        String url = UtilsResource.getUrl(RESOURCE_NAMING.CMGMT_GET_DEVICE_DATA_SOURCES, cm);
+        url = url.replace("{id}", Long.toString(findById.get().getId()));
+
+        ResponseEntity<Object[]> response = restTemplate.getForEntity(url, Object[].class);
+
+        TableModel tableModel;
+        try {
+            tableModel = transformArrayToTableModel(response.getBody());
+        } catch (IllegalAccessException e) {
+            return "Device has not delivered valid data.";
+        }
+
+        TextTable textTable = new TextTable(tableModel);
+        textTable.setAddRowNumbering(true);
+        textTable.printTable();
+        return "ds call successfully performed.";
+
     }
 
     /**
@@ -257,7 +284,7 @@ public class Commands implements CommandMarker {
         if (COMPONENT_TYPE.EVENT_PROCESSING.equals(ct)) {
             url = UtilsResource.getUrl(RESOURCE_NAMING.CMGMT_GET_ALL_EVENT_PROCESSING, cm);
         } else if (COMPONENT_TYPE.IOT_DEVICE.equals(ct)) {
-            url = UtilsResource.getUrl(RESOURCE_NAMING.IDEV_GET_ALL_CONFIGURATION, cm);
+            url = UtilsResource.getUrl(RESOURCE_NAMING.CMGMT_GET_ALL_DEVICES, cm);
         } else {
             return null;
         }

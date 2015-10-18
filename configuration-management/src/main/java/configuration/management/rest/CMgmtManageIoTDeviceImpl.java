@@ -103,7 +103,7 @@ public class CMgmtManageIoTDeviceImpl implements CMgmtManageIoTDevice {
 
     @Override
     @RequestMapping(value = "/registrations/devices/sources/{id}", method = RequestMethod.GET)
-    public ResponseEntity<DataSources> getDataSources(@PathVariable Long id) {
+    public ResponseEntity<List<DataSource>> getDataSources(@PathVariable Long id) {
 
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_GET_DEVICE_DATA_SOURCES));
 
@@ -111,15 +111,12 @@ public class CMgmtManageIoTDeviceImpl implements CMgmtManageIoTDevice {
 
         if (null == device) {
 
-            return new ResponseEntity<DataSources>(new DataSources(), HttpStatus.OK);
+            return null;
 
         } else {
             List<DataSource> dataSource = transformerDataSource.toRemote(device.getIoTDeviceDataSources());
 
-            DataSources dataSources = new DataSources();
-            dataSources.add(dataSource);
-
-            return new ResponseEntity<DataSources>(dataSources, HttpStatus.OK);
+            return new ResponseEntity<List<DataSource>>(dataSource, HttpStatus.OK);
         }
     }
 }

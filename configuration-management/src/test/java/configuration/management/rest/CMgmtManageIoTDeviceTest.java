@@ -151,6 +151,59 @@ public class CMgmtManageIoTDeviceTest extends AbstractTestRestCM {
 
     }
 
+    @Test
+    @Transactional
+    public void getDataSources() {
+
+        URL url = UtilsUrl.parseUrl("localhost:5005");
+
+        Connection connection = new Connection();
+        connection.setComponentType(COMPONENT_TYPE.IOT_DEVICE);
+        connection.setName("DEV_NAME5");
+        connection.setUrl(url);
+
+        Connection register = register(connection);
+
+        DeviceInformation dev = new DeviceInformation();
+        dev.setName("device");
+        dev.setType(DEVICE_INFORMATION_TYPE.SENSOR);
+        DomainInformation domain = new DomainInformation();
+        domain.setName("domain");
+        domain.setType(DOMAIN_INFORMATION_TYPE.FIRST_FLOOR);
+
+        DataSource dataSource = new DataSource();
+        dataSource.setDeviceInformation(dev);
+        dataSource.setDomainInformation(domain);
+
+        DataSources dataSources = new DataSources();
+        dataSources.add(dataSource);
+        dataSources.add(dataSource);
+
+        String path = RESOURCE_NAMING.CMGMT_REGISTER_DEVICE_SOURCES.getPath();
+        path = path.replace("{id}", Long.toString(register.getId()));
+
+        Response response = given().body(dataSources).contentType("application/json").post(path);
+
+        assertEquals(HttpStatus.OK.value(), response.getStatusCode());
+
+        // ask for data sources
+
+        path = RESOURCE_NAMING.CMGMT_GET_DEVICE_DATA_SOURCES.getPath();
+        path = path.replace("{id}", Long.toString(register.getId()));
+
+        response = given().get(path);
+
+        assertEquals(HttpStatus.OK.value(), response.getStatusCode());
+
+        List<DataSource> ds = Arrays.asList(response.getBody().as(DataSource[].class));
+
+        assertNotNull(ds);
+
+        assertEquals(2, ds.size());
+        assertEquals(dataSource.getDeviceInformation().getName(), ds.get(0).getDeviceInformation().getName());
+        assertEquals(dataSource.getDomainInformation().getName(), ds.get(0).getDomainInformation().getName());
+    }
+
     private Connection register(Connection connection) {
 
         if (null == connection) {
