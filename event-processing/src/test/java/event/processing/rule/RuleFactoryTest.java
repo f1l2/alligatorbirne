@@ -23,7 +23,7 @@ public class RuleFactoryTest {
     @Test
     public void test1() throws IOException {
 
-        String input = "query TRIGGERS deviceName, domainName, cMName";
+        String input = "query TRIGGERS deviceName, domainName, cMName = 1";
         Rule rule = test(input);
 
         assertNotNull(rule);
@@ -32,13 +32,13 @@ public class RuleFactoryTest {
         assertEquals(1, rule.getReactions().size());
         assertEquals("deviceName", rule.getReactions().get(0).getDeviceInformation());
         assertEquals("domainName", rule.getReactions().get(0).getDomainInformation());
-        assertEquals("cMName", rule.getReactions().get(0).getConfigurationModification());
+        assertEquals("1", rule.getReactions().get(0).getConfigurationModification().getProperty("cMName"));
     }
 
     @Test
     public void test2() throws IOException {
 
-        String input = "query TRIGGERS deviceName1, domainName1, cMName1; deviceName2, domainName2, cMName2";
+        String input = "query TRIGGERS deviceName1, domainName1, cMName1 = 1; deviceName2, domainName2, cMName2 = 2";
 
         Rule rule = test(input);
 
@@ -48,13 +48,13 @@ public class RuleFactoryTest {
         assertEquals(2, rule.getReactions().size());
         assertEquals("deviceName1", rule.getReactions().get(0).getDeviceInformation());
         assertEquals("domainName1", rule.getReactions().get(0).getDomainInformation());
-        assertEquals("cMName1", rule.getReactions().get(0).getConfigurationModification());
+        assertEquals("1", rule.getReactions().get(0).getConfigurationModification().getProperty("cMName1"));
 
     }
 
     @Test
     public void test3() throws IOException {
-        String input = "query TRIGGERS deviceName1, domainName1, cMName1; deviceName2, domainName2, cMName2; deviceName3, domainName3, cMName3;";
+        String input = "query TRIGGERS deviceName1, domainName1, cMName1 = 1; deviceName2, domainName2, cMName2 = 2; deviceName3, domainName3, cMName3 = 3;";
 
         Rule rule = test(input);
 
@@ -64,7 +64,7 @@ public class RuleFactoryTest {
         assertEquals(3, rule.getReactions().size());
         assertEquals("deviceName3", rule.getReactions().get(2).getDeviceInformation());
         assertEquals("domainName3", rule.getReactions().get(2).getDomainInformation());
-        assertEquals("cMName3", rule.getReactions().get(2).getConfigurationModification());
+        assertEquals("3", rule.getReactions().get(2).getConfigurationModification().getProperty("cMName3"));
     }
 
     private Rule test(String rule) throws IOException {

@@ -13,6 +13,9 @@ import event.processing.gen.language.RuleBaseListener;
 import event.processing.gen.language.RuleLexer;
 import event.processing.gen.language.RuleParser;
 import event.processing.gen.language.RuleParser.CMContext;
+import event.processing.gen.language.RuleParser.CMKeyContext;
+import event.processing.gen.language.RuleParser.CMPropertyContext;
+import event.processing.gen.language.RuleParser.CMValueContext;
 import event.processing.gen.language.RuleParser.DevInfoContext;
 import event.processing.gen.language.RuleParser.DomainInfoContext;
 import event.processing.rule.model.Reaction;
@@ -59,10 +62,22 @@ public class RuleFactory {
 
                 reaction.setDeviceInformation(devInfoContext.getChild(RuleParser.DevInfoNameContext.class, 0).getText());
                 reaction.setDomainInformation(domainInfoContext.getChild(RuleParser.DomainInfoNameContext.class, 0).getText());
-                reaction.setConfigurationModification(cMContext.getChild(RuleParser.CMNameContext.class, 0).getText());
+
+                CMPropertyContext cMPropertyContext = cMContext.getChild(RuleParser.CMPropertyContext.class, 0);
+                for (int i = 1; cMPropertyContext != null; i++) {
+
+                    String key = cMPropertyContext.getChild(CMKeyContext.class, 0).getText();
+                    String value = cMPropertyContext.getChild(CMValueContext.class, 0).getText();
+
+                    reaction.addConfigurationModification(key, value);
+
+                    cMPropertyContext = cMContext.getChild(RuleParser.CMPropertyContext.class, i);
+
+                }
 
                 rule.getReactions().add(reaction);
             }
+
         });
 
         ruleParser.structure();

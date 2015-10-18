@@ -100,13 +100,33 @@ public interface RuleListener extends ParseTreeListener {
 	 */
 	void exitCM(RuleParser.CMContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link RuleParser#cMName}.
+	 * Enter a parse tree produced by {@link RuleParser#cMProperty}.
 	 * @param ctx the parse tree
 	 */
-	void enterCMName(RuleParser.CMNameContext ctx);
+	void enterCMProperty(RuleParser.CMPropertyContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link RuleParser#cMName}.
+	 * Exit a parse tree produced by {@link RuleParser#cMProperty}.
 	 * @param ctx the parse tree
 	 */
-	void exitCMName(RuleParser.CMNameContext ctx);
+	void exitCMProperty(RuleParser.CMPropertyContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link RuleParser#cMValue}.
+	 * @param ctx the parse tree
+	 */
+	void enterCMValue(RuleParser.CMValueContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link RuleParser#cMValue}.
+	 * @param ctx the parse tree
+	 */
+	void exitCMValue(RuleParser.CMValueContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link RuleParser#cMKey}.
+	 * @param ctx the parse tree
+	 */
+	void enterCMKey(RuleParser.CMKeyContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link RuleParser#cMKey}.
+	 * @param ctx the parse tree
+	 */
+	void exitCMKey(RuleParser.CMKeyContext ctx);
 }

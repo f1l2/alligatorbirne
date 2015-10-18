@@ -126,13 +126,37 @@ public class RuleBaseListener implements RuleListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterCMName(RuleParser.CMNameContext ctx) { }
+	@Override public void enterCMProperty(RuleParser.CMPropertyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitCMName(RuleParser.CMNameContext ctx) { }
+	@Override public void exitCMProperty(RuleParser.CMPropertyContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCMValue(RuleParser.CMValueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCMValue(RuleParser.CMValueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCMKey(RuleParser.CMKeyContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCMKey(RuleParser.CMKeyContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

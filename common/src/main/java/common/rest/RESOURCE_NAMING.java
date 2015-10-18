@@ -24,17 +24,17 @@ public enum RESOURCE_NAMING {
     //
     CMGMT_HEART_BEAT_EVENT_PROCESSING("/registrations/eventprocessing/{id}", RequestMethod.PUT),
     //
-    CMGMT_DELEGATION("/delegation/{id}", RequestMethod.POST),
+    CMGMT_DELEGATION("/delegation", RequestMethod.POST),
     //
     EPROCESSING_SEND("/send", RequestMethod.POST),
     //
     EPROCESSING_REGISTRATION_QUERY("/registrations/query/{name}", RequestMethod.POST),
     //
-    EPROCESSING_DEREGISTRATION_QUERY("/deregistrations/query/{name}", RequestMethod.GET),
+    EPROCESSING_DEREGISTRATION_QUERY("/deregistrations/query/{name}", RequestMethod.DELETE),
     //
     EPROCESSING_REGISTRATION_RULE("/registrations/rule/{name}", RequestMethod.POST),
     //
-    EPROCESSING_DEREGISTRATION_RULE("/deregistrations/rule/{name}", RequestMethod.GET),
+    EPROCESSING_DEREGISTRATION_RULE("/deregistrations/rule/{name}", RequestMethod.DELETE),
     //
     EPROCESSING_GET_ALL_QUERIES("/registrations/queries", RequestMethod.GET),
     //

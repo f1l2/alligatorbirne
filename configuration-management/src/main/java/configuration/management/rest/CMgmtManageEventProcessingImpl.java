@@ -88,8 +88,8 @@ public class CMgmtManageEventProcessingImpl implements CMgmtManageEventProcessin
     }
 
     @Override
-    @RequestMapping(value = "/delegation/{id}", method = RequestMethod.POST)
-    public ResponseEntity<ConfigurationDelegation> delegate(@PathVariable(value = "id") Long id, @RequestBody ConfigurationDelegation data) {
+    @RequestMapping(value = "/delegation", method = RequestMethod.POST)
+    public ResponseEntity<ConfigurationDelegation> delegate(@RequestBody ConfigurationDelegation data) {
 
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_DELEGATION));
 

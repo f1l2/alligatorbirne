@@ -19,21 +19,23 @@ public class RuleParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, T__1=2, T__2=3, VARIABLE=4, STRING=5, INT=6, COMMA=7, WS=8, NL=9;
+		T__0=1, T__1=2, T__2=3, T__3=4, VARIABLE=5, STRING=6, INT=7, COMMA=8, 
+		WS=9, NL=10;
 	public static final int
 		RULE_structure = 0, RULE_query = 1, RULE_reactions = 2, RULE_reaction = 3, 
 		RULE_devInfo = 4, RULE_devInfoName = 5, RULE_domainInfo = 6, RULE_domainInfoName = 7, 
-		RULE_cM = 8, RULE_cMName = 9;
+		RULE_cM = 8, RULE_cMProperty = 9, RULE_cMValue = 10, RULE_cMKey = 11;
 	public static final String[] ruleNames = {
 		"structure", "query", "reactions", "reaction", "devInfo", "devInfoName", 
-		"domainInfo", "domainInfoName", "cM", "cMName"
+		"domainInfo", "domainInfoName", "cM", "cMProperty", "cMValue", "cMKey"
 	};
 
 	private static final String[] _LITERAL_NAMES = {
-		null, "'TRIGGERS'", "';'", "','"
+		null, "'TRIGGERS'", "';'", "','", "'='"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, null, null, null, "VARIABLE", "STRING", "INT", "COMMA", "WS", "NL"
+		null, null, null, null, null, "VARIABLE", "STRING", "INT", "COMMA", "WS", 
+		"NL"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -115,15 +117,15 @@ public class RuleParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(20);
-			query();
-			setState(21);
-			match(WS);
-			setState(22);
-			match(T__0);
-			setState(23);
-			match(WS);
 			setState(24);
+			query();
+			setState(25);
+			match(WS);
+			setState(26);
+			match(T__0);
+			setState(27);
+			match(WS);
+			setState(28);
 			reactions();
 			}
 		}
@@ -160,7 +162,7 @@ public class RuleParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(26);
+			setState(30);
 			match(VARIABLE);
 			}
 		}
@@ -207,45 +209,45 @@ public class RuleParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(42);
+			setState(46);
 			switch ( getInterpreter().adaptivePredict(_input,3,_ctx) ) {
 			case 1:
 				{
-				setState(28);
+				setState(32);
 				reaction();
-				setState(30);
+				setState(34);
 				_la = _input.LA(1);
 				if (_la==WS) {
-					{
-					setState(29);
-					match(WS);
-					}
-				}
-
-				setState(32);
-				match(T__1);
-				setState(34);
-				switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
-				case 1:
 					{
 					setState(33);
 					match(WS);
 					}
+				}
+
+				setState(36);
+				match(T__1);
+				setState(38);
+				switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
+				case 1:
+					{
+					setState(37);
+					match(WS);
+					}
 					break;
 				}
-				setState(36);
+				setState(40);
 				reactions();
 				}
 				break;
 			case 2:
 				{
-				setState(38);
+				setState(42);
 				reaction();
-				setState(40);
+				setState(44);
 				_la = _input.LA(1);
 				if (_la==T__1) {
 					{
-					setState(39);
+					setState(43);
 					match(T__1);
 					}
 				}
@@ -296,15 +298,15 @@ public class RuleParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(44);
-			devInfo();
-			setState(45);
-			match(T__2);
-			setState(46);
-			domainInfo();
-			setState(47);
-			match(T__2);
 			setState(48);
+			devInfo();
+			setState(49);
+			match(T__2);
+			setState(50);
+			domainInfo();
+			setState(51);
+			match(T__2);
+			setState(52);
 			cM();
 			}
 		}
@@ -348,22 +350,22 @@ public class RuleParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(51);
-			_la = _input.LA(1);
-			if (_la==WS) {
-				{
-				setState(50);
-				match(WS);
-				}
-			}
-
-			setState(53);
-			devInfoName();
 			setState(55);
 			_la = _input.LA(1);
 			if (_la==WS) {
 				{
 				setState(54);
+				match(WS);
+				}
+			}
+
+			setState(57);
+			devInfoName();
+			setState(59);
+			_la = _input.LA(1);
+			if (_la==WS) {
+				{
+				setState(58);
 				match(WS);
 				}
 			}
@@ -403,7 +405,7 @@ public class RuleParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(57);
+			setState(61);
 			match(VARIABLE);
 			}
 		}
@@ -447,22 +449,22 @@ public class RuleParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(60);
-			_la = _input.LA(1);
-			if (_la==WS) {
-				{
-				setState(59);
-				match(WS);
-				}
-			}
-
-			setState(62);
-			domainInfoName();
 			setState(64);
 			_la = _input.LA(1);
 			if (_la==WS) {
 				{
 				setState(63);
+				match(WS);
+				}
+			}
+
+			setState(66);
+			domainInfoName();
+			setState(68);
+			_la = _input.LA(1);
+			if (_la==WS) {
+				{
+				setState(67);
 				match(WS);
 				}
 			}
@@ -502,7 +504,7 @@ public class RuleParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(66);
+			setState(70);
 			match(VARIABLE);
 			}
 		}
@@ -518,12 +520,8 @@ public class RuleParser extends Parser {
 	}
 
 	public static class CMContext extends ParserRuleContext {
-		public CMNameContext cMName() {
-			return getRuleContext(CMNameContext.class,0);
-		}
-		public List<TerminalNode> WS() { return getTokens(RuleParser.WS); }
-		public TerminalNode WS(int i) {
-			return getToken(RuleParser.WS, i);
+		public CMPropertyContext cMProperty() {
+			return getRuleContext(CMPropertyContext.class,0);
 		}
 		public CMContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -542,26 +540,94 @@ public class RuleParser extends Parser {
 	public final CMContext cM() throws RecognitionException {
 		CMContext _localctx = new CMContext(_ctx, getState());
 		enterRule(_localctx, 16, RULE_cM);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(72);
+			cMProperty();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class CMPropertyContext extends ParserRuleContext {
+		public CMKeyContext cMKey() {
+			return getRuleContext(CMKeyContext.class,0);
+		}
+		public CMValueContext cMValue() {
+			return getRuleContext(CMValueContext.class,0);
+		}
+		public List<TerminalNode> WS() { return getTokens(RuleParser.WS); }
+		public TerminalNode WS(int i) {
+			return getToken(RuleParser.WS, i);
+		}
+		public CMPropertyContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_cMProperty; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof RuleListener ) ((RuleListener)listener).enterCMProperty(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof RuleListener ) ((RuleListener)listener).exitCMProperty(this);
+		}
+	}
+
+	public final CMPropertyContext cMProperty() throws RecognitionException {
+		CMPropertyContext _localctx = new CMPropertyContext(_ctx, getState());
+		enterRule(_localctx, 18, RULE_cMProperty);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(69);
+			setState(75);
 			_la = _input.LA(1);
 			if (_la==WS) {
 				{
-				setState(68);
+				setState(74);
 				match(WS);
 				}
 			}
 
-			setState(71);
-			cMName();
-			setState(73);
-			switch ( getInterpreter().adaptivePredict(_input,9,_ctx) ) {
+			setState(77);
+			cMKey();
+			setState(79);
+			_la = _input.LA(1);
+			if (_la==WS) {
+				{
+				setState(78);
+				match(WS);
+				}
+			}
+
+			setState(81);
+			match(T__3);
+			setState(83);
+			_la = _input.LA(1);
+			if (_la==WS) {
+				{
+				setState(82);
+				match(WS);
+				}
+			}
+
+			setState(85);
+			cMValue();
+			setState(87);
+			switch ( getInterpreter().adaptivePredict(_input,11,_ctx) ) {
 			case 1:
 				{
-				setState(72);
+				setState(86);
 				match(WS);
 				}
 				break;
@@ -579,29 +645,66 @@ public class RuleParser extends Parser {
 		return _localctx;
 	}
 
-	public static class CMNameContext extends ParserRuleContext {
-		public TerminalNode VARIABLE() { return getToken(RuleParser.VARIABLE, 0); }
-		public CMNameContext(ParserRuleContext parent, int invokingState) {
+	public static class CMValueContext extends ParserRuleContext {
+		public TerminalNode INT() { return getToken(RuleParser.INT, 0); }
+		public CMValueContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_cMName; }
+		@Override public int getRuleIndex() { return RULE_cMValue; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof RuleListener ) ((RuleListener)listener).enterCMName(this);
+			if ( listener instanceof RuleListener ) ((RuleListener)listener).enterCMValue(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof RuleListener ) ((RuleListener)listener).exitCMName(this);
+			if ( listener instanceof RuleListener ) ((RuleListener)listener).exitCMValue(this);
 		}
 	}
 
-	public final CMNameContext cMName() throws RecognitionException {
-		CMNameContext _localctx = new CMNameContext(_ctx, getState());
-		enterRule(_localctx, 18, RULE_cMName);
+	public final CMValueContext cMValue() throws RecognitionException {
+		CMValueContext _localctx = new CMValueContext(_ctx, getState());
+		enterRule(_localctx, 20, RULE_cMValue);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(75);
+			setState(89);
+			match(INT);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class CMKeyContext extends ParserRuleContext {
+		public TerminalNode VARIABLE() { return getToken(RuleParser.VARIABLE, 0); }
+		public CMKeyContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_cMKey; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof RuleListener ) ((RuleListener)listener).enterCMKey(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof RuleListener ) ((RuleListener)listener).exitCMKey(this);
+		}
+	}
+
+	public final CMKeyContext cMKey() throws RecognitionException {
+		CMKeyContext _localctx = new CMKeyContext(_ctx, getState());
+		enterRule(_localctx, 22, RULE_cMKey);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(91);
 			match(VARIABLE);
 			}
 		}
@@ -617,25 +720,29 @@ public class RuleParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\13P\4\2\t\2\4\3\t"+
-		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\3"+
-		"\2\3\2\3\2\3\2\3\2\3\2\3\3\3\3\3\4\3\4\5\4!\n\4\3\4\3\4\5\4%\n\4\3\4\3"+
-		"\4\3\4\3\4\5\4+\n\4\5\4-\n\4\3\5\3\5\3\5\3\5\3\5\3\5\3\6\5\6\66\n\6\3"+
-		"\6\3\6\5\6:\n\6\3\7\3\7\3\b\5\b?\n\b\3\b\3\b\5\bC\n\b\3\t\3\t\3\n\5\n"+
-		"H\n\n\3\n\3\n\5\nL\n\n\3\13\3\13\3\13\2\2\f\2\4\6\b\n\f\16\20\22\24\2"+
-		"\2O\2\26\3\2\2\2\4\34\3\2\2\2\6,\3\2\2\2\b.\3\2\2\2\n\65\3\2\2\2\f;\3"+
-		"\2\2\2\16>\3\2\2\2\20D\3\2\2\2\22G\3\2\2\2\24M\3\2\2\2\26\27\5\4\3\2\27"+
-		"\30\7\n\2\2\30\31\7\3\2\2\31\32\7\n\2\2\32\33\5\6\4\2\33\3\3\2\2\2\34"+
-		"\35\7\6\2\2\35\5\3\2\2\2\36 \5\b\5\2\37!\7\n\2\2 \37\3\2\2\2 !\3\2\2\2"+
-		"!\"\3\2\2\2\"$\7\4\2\2#%\7\n\2\2$#\3\2\2\2$%\3\2\2\2%&\3\2\2\2&\'\5\6"+
-		"\4\2\'-\3\2\2\2(*\5\b\5\2)+\7\4\2\2*)\3\2\2\2*+\3\2\2\2+-\3\2\2\2,\36"+
-		"\3\2\2\2,(\3\2\2\2-\7\3\2\2\2./\5\n\6\2/\60\7\5\2\2\60\61\5\16\b\2\61"+
-		"\62\7\5\2\2\62\63\5\22\n\2\63\t\3\2\2\2\64\66\7\n\2\2\65\64\3\2\2\2\65"+
-		"\66\3\2\2\2\66\67\3\2\2\2\679\5\f\7\28:\7\n\2\298\3\2\2\29:\3\2\2\2:\13"+
-		"\3\2\2\2;<\7\6\2\2<\r\3\2\2\2=?\7\n\2\2>=\3\2\2\2>?\3\2\2\2?@\3\2\2\2"+
-		"@B\5\20\t\2AC\7\n\2\2BA\3\2\2\2BC\3\2\2\2C\17\3\2\2\2DE\7\6\2\2E\21\3"+
-		"\2\2\2FH\7\n\2\2GF\3\2\2\2GH\3\2\2\2HI\3\2\2\2IK\5\24\13\2JL\7\n\2\2K"+
-		"J\3\2\2\2KL\3\2\2\2L\23\3\2\2\2MN\7\6\2\2N\25\3\2\2\2\f $*,\659>BGK";
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\f`\4\2\t\2\4\3\t"+
+		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4"+
+		"\f\t\f\4\r\t\r\3\2\3\2\3\2\3\2\3\2\3\2\3\3\3\3\3\4\3\4\5\4%\n\4\3\4\3"+
+		"\4\5\4)\n\4\3\4\3\4\3\4\3\4\5\4/\n\4\5\4\61\n\4\3\5\3\5\3\5\3\5\3\5\3"+
+		"\5\3\6\5\6:\n\6\3\6\3\6\5\6>\n\6\3\7\3\7\3\b\5\bC\n\b\3\b\3\b\5\bG\n\b"+
+		"\3\t\3\t\3\n\3\n\3\13\5\13N\n\13\3\13\3\13\5\13R\n\13\3\13\3\13\5\13V"+
+		"\n\13\3\13\3\13\5\13Z\n\13\3\f\3\f\3\r\3\r\3\r\2\2\16\2\4\6\b\n\f\16\20"+
+		"\22\24\26\30\2\2_\2\32\3\2\2\2\4 \3\2\2\2\6\60\3\2\2\2\b\62\3\2\2\2\n"+
+		"9\3\2\2\2\f?\3\2\2\2\16B\3\2\2\2\20H\3\2\2\2\22J\3\2\2\2\24M\3\2\2\2\26"+
+		"[\3\2\2\2\30]\3\2\2\2\32\33\5\4\3\2\33\34\7\13\2\2\34\35\7\3\2\2\35\36"+
+		"\7\13\2\2\36\37\5\6\4\2\37\3\3\2\2\2 !\7\7\2\2!\5\3\2\2\2\"$\5\b\5\2#"+
+		"%\7\13\2\2$#\3\2\2\2$%\3\2\2\2%&\3\2\2\2&(\7\4\2\2\')\7\13\2\2(\'\3\2"+
+		"\2\2()\3\2\2\2)*\3\2\2\2*+\5\6\4\2+\61\3\2\2\2,.\5\b\5\2-/\7\4\2\2.-\3"+
+		"\2\2\2./\3\2\2\2/\61\3\2\2\2\60\"\3\2\2\2\60,\3\2\2\2\61\7\3\2\2\2\62"+
+		"\63\5\n\6\2\63\64\7\5\2\2\64\65\5\16\b\2\65\66\7\5\2\2\66\67\5\22\n\2"+
+		"\67\t\3\2\2\28:\7\13\2\298\3\2\2\29:\3\2\2\2:;\3\2\2\2;=\5\f\7\2<>\7\13"+
+		"\2\2=<\3\2\2\2=>\3\2\2\2>\13\3\2\2\2?@\7\7\2\2@\r\3\2\2\2AC\7\13\2\2B"+
+		"A\3\2\2\2BC\3\2\2\2CD\3\2\2\2DF\5\20\t\2EG\7\13\2\2FE\3\2\2\2FG\3\2\2"+
+		"\2G\17\3\2\2\2HI\7\7\2\2I\21\3\2\2\2JK\5\24\13\2K\23\3\2\2\2LN\7\13\2"+
+		"\2ML\3\2\2\2MN\3\2\2\2NO\3\2\2\2OQ\5\30\r\2PR\7\13\2\2QP\3\2\2\2QR\3\2"+
+		"\2\2RS\3\2\2\2SU\7\6\2\2TV\7\13\2\2UT\3\2\2\2UV\3\2\2\2VW\3\2\2\2WY\5"+
+		"\26\f\2XZ\7\13\2\2YX\3\2\2\2YZ\3\2\2\2Z\25\3\2\2\2[\\\7\t\2\2\\\27\3\2"+
+		"\2\2]^\7\7\2\2^\31\3\2\2\2\16$(.\609=BFMQUY";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

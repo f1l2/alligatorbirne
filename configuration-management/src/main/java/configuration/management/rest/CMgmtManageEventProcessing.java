@@ -19,7 +19,7 @@ public interface CMgmtManageEventProcessing {
 
     public ResponseEntity<Connection> register(Connection connection);
 
-    public ResponseEntity<ConfigurationDelegation> delegate(Long id, ConfigurationDelegation data);
+    public ResponseEntity<ConfigurationDelegation> delegate(ConfigurationDelegation data);
 
     public ResponseEntity<String> heartbeat(Long id);
 

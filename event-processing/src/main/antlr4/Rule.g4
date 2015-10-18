@@ -20,9 +20,13 @@ domainInfo: WS? domainInfoName  WS?;
 
 domainInfoName: VARIABLE;
 
-cM: WS? cMName WS? ;
+cM: cMProperty;
 
-cMName:  VARIABLE;
+cMProperty: WS? cMKey WS? '=' WS? cMValue WS?;
+
+cMValue: INT;
+
+cMKey:  VARIABLE;
 
 VARIABLE: ('A'..'Z' | 'a'..'z') ('A'..'Z' | 'a'..'z' | '0'..'9' | '-' | '_' )+;
 

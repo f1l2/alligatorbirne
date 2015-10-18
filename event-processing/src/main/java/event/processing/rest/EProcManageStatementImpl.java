@@ -16,7 +16,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
+import common.data.ConfigurationDelegation;
+import common.data.ConfigurationModification;
+import common.data.Connection;
+import common.data.model.DeviceInformation;
+import common.data.model.DomainInformation;
+import common.data.setting.SettingUtils;
 import common.rest.RESOURCE_NAMING;
 import common.rest.UtilsResource;
 import event.processing.engine.EngineFactory;
@@ -28,6 +35,7 @@ import event.processing.repo.QueryRepository;
 import event.processing.repo.RuleRepository;
 import event.processing.rule.Rule;
 import event.processing.rule.RuleFactory;
+import event.processing.rule.model.Reaction;
 
 @RestController
 public class EProcManageStatementImpl implements EProcManageStatement {
@@ -144,6 +152,18 @@ public class EProcManageStatementImpl implements EProcManageStatement {
             ((EsperEngineListener) engineListener).addRuleListener(rule);
 
             factory.getEngine().register(epls, engineListener);
+
+            RestTemplate restTemplate = new RestTemplate();
+
+            Connection local = SettingUtils.getLocalConnection();
+            Connection cm = SettingUtils.getCMConnection();
+
+            String url = UtilsResource.getUrl(RESOURCE_NAMING.CMGMT_DELEGATION, cm);
+
+            for (Reaction reaction : rule.getReactions()) {
+                restTemplate.postForEntity(url, createCD(reaction, local), Connection.class);
+            }
+
         } catch (Exception e) {
             return EP_ERROR_CODES.ERROR_ACTIVATE.getErrorResponse();
         }
@@ -197,7 +217,7 @@ public class EProcManageStatementImpl implements EProcManageStatement {
     }
 
     @Override
-    @RequestMapping(value = "/deregistrations/query/{name}", method = RequestMethod.GET)
+    @RequestMapping(value = "/deregistrations/query/{name}", method = RequestMethod.DELETE)
     public ResponseEntity<String> withdrawQuery(@PathVariable("name") String name) {
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.EPROCESSING_DEREGISTRATION_QUERY));
 
@@ -230,7 +250,7 @@ public class EProcManageStatementImpl implements EProcManageStatement {
     }
 
     @Override
-    @RequestMapping(value = "/deregistrations/rule/{name}", method = RequestMethod.GET)
+    @RequestMapping(value = "/deregistrations/rule/{name}", method = RequestMethod.DELETE)
     public ResponseEntity<String> withdrawRule(@PathVariable("name") String name) {
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.EPROCESSING_DEREGISTRATION_RULE));
 
@@ -275,6 +295,26 @@ public class EProcManageStatementImpl implements EProcManageStatement {
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.EPROCESSING_GET_ALL_RULES));
 
         return ruleRepository.findAll();
+    }
+
+    private ConfigurationDelegation createCD(Reaction reaction, Connection c) {
+
+        DeviceInformation devInfo = new DeviceInformation();
+        devInfo.setName(reaction.getDeviceInformation());
+
+        DomainInformation domInfo = new DomainInformation();
+        domInfo.setName(reaction.getDomainInformation());
+
+        ConfigurationModification cm = new ConfigurationModification();
+        cm.setDataSink(c);
+        cm.setProperties(reaction.getConfigurationModification());
+
+        ConfigurationDelegation cd = new ConfigurationDelegation();
+        cd.setConfigurationModification(cm);
+        cd.setDeviceInformation(devInfo);
+        cd.setDomainInformation(domInfo);
+        return cd;
+
     }
 
 }

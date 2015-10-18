@@ -103,7 +103,7 @@ public class Rule extends EngineListener {
         DomainInformation domainInformation = new DomainInformation();
         domainInformation.setName(reaction.getDomainInformation());
         ConfigurationModification configuraitonModification = new ConfigurationModification();
-        configuraitonModification.setName(reaction.getConfigurationModification());
+        configuraitonModification.setProperties(reaction.getConfigurationModification());
         configuraitonModification.setDataSink(local);
 
         ConfigurationDelegation cd = new ConfigurationDelegation();

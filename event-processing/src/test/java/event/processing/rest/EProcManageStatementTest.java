@@ -98,7 +98,7 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
         String pathDeregister = new String(RESOURCE_NAMING.EPROCESSING_DEREGISTRATION_QUERY.getPath());
         pathDeregister = StringUtils.replace(pathDeregister, "{name}", "query1");
 
-        when().get(pathDeregister)
+        when().delete(pathDeregister)
 
         .then().statusCode(HttpStatus.OK.value());
     }
@@ -106,7 +106,7 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
     @Test
     public void registerRule() {
 
-        String rule = "query TRIGGERS device1, domain1, configurationManagement1";
+        String rule = "query TRIGGERS device1, domain1, configurationManagement1 = 1";
         String path = new String(RESOURCE_NAMING.EPROCESSING_REGISTRATION_RULE.getPath());
         path = StringUtils.replace(path, "{name}", "rule1");
 
@@ -118,7 +118,7 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
     @Test
     public void registerRuleExistsError() {
 
-        String rule = "query TRIGGERS device1, domain1, configurationManagement1";
+        String rule = "query TRIGGERS device1, domain1, configurationManagement1 = 1";
         String path = new String(RESOURCE_NAMING.EPROCESSING_REGISTRATION_RULE.getPath());
         path = StringUtils.replace(path, "{name}", "rule2");
 
@@ -137,7 +137,7 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
         String pathDeregister = new String(RESOURCE_NAMING.EPROCESSING_DEREGISTRATION_RULE.getPath());
         pathDeregister = StringUtils.replace(pathDeregister, "{name}", "rule1");
 
-        when().get(pathDeregister)
+        when().delete(pathDeregister)
 
         .then().statusCode(HttpStatus.OK.value());
     }
@@ -153,7 +153,7 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
 
         .then().statusCode(HttpStatus.OK.value());
 
-        String rule = "query3 TRIGGERS device1, domain1, configurationManagement1";
+        String rule = "query3 TRIGGERS device1, domain1, configurationManagement1 = 1";
         String pathRule = new String(RESOURCE_NAMING.EPROCESSING_REGISTRATION_RULE.getPath());
         pathRule = StringUtils.replace(pathRule, "{name}", "rule3");
 
