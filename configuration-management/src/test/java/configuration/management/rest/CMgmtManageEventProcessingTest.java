@@ -72,7 +72,7 @@ public class CMgmtManageEventProcessingTest extends AbstractTestRestCM {
                 //
                 .when().post(RESOURCE_NAMING.CMGMT_REGISTER_EVENT_PROCESSING.getPath())
                 //
-                .then().statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
+                .then().statusCode(HttpStatus.BAD_REQUEST.value());
 
     }
 
