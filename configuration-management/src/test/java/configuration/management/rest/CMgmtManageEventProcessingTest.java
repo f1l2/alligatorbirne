@@ -88,15 +88,16 @@ public class CMgmtManageEventProcessingTest extends AbstractTestRestCM {
 
         // first register ep
 
-        register(connection);
+        connection = register(connection);
 
         // send heart beat
 
-        Response response = given().body(connection).contentType("application/json")
-                //
-                .when().put(RESOURCE_NAMING.CMGMT_HEART_BEAT_EVENT_PROCESSING.getPath());
+        String path = RESOURCE_NAMING.CMGMT_HEART_BEAT_EVENT_PROCESSING.getPath();
+        path = path.replace("{id}", Long.toString(connection.getId()));
 
-        response.getBody().as(Connection.class);
+        Response response = given()
+                //
+                .when().put(path);
 
         assertEquals(HttpStatus.OK.value(), response.getStatusCode());
 
@@ -113,18 +114,18 @@ public class CMgmtManageEventProcessingTest extends AbstractTestRestCM {
         connection.setUrl(url);
 
         // send heart beat
+        String path = RESOURCE_NAMING.CMGMT_HEART_BEAT_EVENT_PROCESSING.getPath();
+        path = path.replace("{id}", "123");
 
-        Response response = given().body(connection).contentType("application/json")
+        Response response = given()
                 //
-                .when().put(RESOURCE_NAMING.CMGMT_HEART_BEAT_EVENT_PROCESSING.getPath());
+                .when().put(path);
 
-        response.getBody().as(Connection.class);
-
-        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR.value(), response.getStatusCode());
+        assertEquals(HttpStatus.BAD_REQUEST.value(), response.getStatusCode());
 
     }
 
-    private void register(Connection connection) {
+    private Connection register(Connection connection) {
 
         if (null == connection) {
             URL url = UtilsUrl.parseUrl("localhost:3999");
@@ -135,12 +136,13 @@ public class CMgmtManageEventProcessingTest extends AbstractTestRestCM {
             connection.setUrl(url);
         }
 
-        given().body(connection).contentType("application/json")
+        Response response = given().body(connection).contentType("application/json")
                 //
-                .when().post(RESOURCE_NAMING.CMGMT_REGISTER_EVENT_PROCESSING.getPath())
-                //
-                .then().statusCode(HttpStatus.OK.value());
+                .when().post(RESOURCE_NAMING.CMGMT_REGISTER_EVENT_PROCESSING.getPath());
 
+        assertEquals(HttpStatus.OK.value(), response.getStatusCode());
+
+        return response.getBody().as(Connection.class);
     }
 
     @Test

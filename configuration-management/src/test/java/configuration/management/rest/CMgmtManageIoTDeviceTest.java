@@ -114,14 +114,15 @@ public class CMgmtManageIoTDeviceTest extends AbstractTestRestCM {
         connection.setUrl(url);
 
         // first register device
-        register(connection);
+        connection = register(connection);
+
+        String path = RESOURCE_NAMING.CMGMT_HEART_BEAT_DEVICE.getPath();
+        path = path.replace("{id}", Long.toString(connection.getId()));
 
         // send heart beat
-        Response response = given().body(connection).contentType("application/json")
+        Response response = given()
                 //
-                .when().put(RESOURCE_NAMING.CMGMT_HEART_BEAT_DEVICE.getPath());
-
-        response.getBody().as(Connection.class);
+                .when().put(path);
 
         assertEquals(HttpStatus.OK.value(), response.getStatusCode());
 
@@ -139,13 +140,14 @@ public class CMgmtManageIoTDeviceTest extends AbstractTestRestCM {
 
         // send heart beat
 
-        Response response = given().body(connection).contentType("application/json")
+        String path = RESOURCE_NAMING.CMGMT_HEART_BEAT_DEVICE.getPath();
+        path = path.replace("{id}", "1234");
+
+        Response response = given()
                 //
-                .when().put(RESOURCE_NAMING.CMGMT_HEART_BEAT_DEVICE.getPath());
+                .when().put(path);
 
-        response.getBody().as(Connection.class);
-
-        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR.value(), response.getStatusCode());
+        assertEquals(HttpStatus.BAD_REQUEST.value(), response.getStatusCode());
 
     }
 

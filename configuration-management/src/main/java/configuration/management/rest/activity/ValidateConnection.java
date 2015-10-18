@@ -11,7 +11,7 @@ import common.data.Connection;
 import common.data.type.COMPONENT_TYPE;
 
 @Component
-public class ValidateConnection extends Activity<Connection> {
+public class ValidateConnection extends Activity<Connection, Connection> {
 
     final static Logger logger = LoggerFactory.getLogger(ValidateConnection.class);
 
@@ -21,15 +21,15 @@ public class ValidateConnection extends Activity<Connection> {
     public ResponseEntity<Connection> doStep(Connection connection) {
         if ((null == connection.getUrl()) || (StringUtils.isEmpty(connection.getUrl().getAuthority()))) {
             logger.error("Registration failed due missing URL authority");
-            return new ResponseEntity<Connection>(connection, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<Connection>(connection, HttpStatus.BAD_REQUEST);
         }
 
         if ((null == connection.getComponentType()) || (!connection.getComponentType().equals(ct))) {
             logger.error("Registration failed due wrong component type");
-            return new ResponseEntity<Connection>(connection, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<Connection>(connection, HttpStatus.BAD_REQUEST);
         }
 
-        return next(connection);
+        return next(connection, connection);
     }
 
     public void setCt(COMPONENT_TYPE ct) {

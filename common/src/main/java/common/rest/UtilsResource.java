@@ -15,7 +15,7 @@ public class UtilsResource {
     }
 
     public static String getLogMessage(RESOURCE_NAMING resourceNaming) {
-        return String.format("://%s %s is invoked.", resourceNaming.getRequestMethod(), resourceNaming.getPath());
+        return String.format("%s %s is invoked.", resourceNaming.getRequestMethod(), resourceNaming.getPath());
     }
 
 }

@@ -13,7 +13,7 @@ import configuration.management.model.IoTDeviceRO;
 import configuration.management.repo.IoTDeviceRepository;
 
 @Component
-public class RegisterIoTDevice extends Activity<Connection> {
+public class RegisterIoTDevice extends Activity<Connection, Connection> {
 
     final static Logger logger = LoggerFactory.getLogger(RegisterIoTDevice.class);
 
@@ -42,7 +42,7 @@ public class RegisterIoTDevice extends Activity<Connection> {
         item = deviceRepo.save(item);
         connection.setId(item.getId());
 
-        return next(connection);
+        return next(connection, connection);
     }
 
 }

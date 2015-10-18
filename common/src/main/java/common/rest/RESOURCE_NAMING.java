@@ -12,15 +12,17 @@ public enum RESOURCE_NAMING {
     //
     CMGMT_REGISTER_DEVICE_SOURCES("/registrations/devices/sources/{id}", RequestMethod.POST),
     //
+    CMGMT_GET_DEVICE_DATA_SOURCES("/registrations/devices/sources/{id}", RequestMethod.GET),
+    //
     CMGMT_REGISTER_DEVICE("/registrations/devices", RequestMethod.POST),
     //
-    CMGMT_HEART_BEAT_DEVICE("/registrations/devices/", RequestMethod.PUT),
+    CMGMT_HEART_BEAT_DEVICE("/registrations/devices/{id}", RequestMethod.PUT),
     //
     CMGMT_GET_ALL_EVENT_PROCESSING("/registrations/eventprocessing", RequestMethod.GET),
     //
     CMGMT_REGISTER_EVENT_PROCESSING("/registrations/eventprocessing", RequestMethod.POST),
     //
-    CMGMT_HEART_BEAT_EVENT_PROCESSING("/registrations/eventprocessing", RequestMethod.PUT),
+    CMGMT_HEART_BEAT_EVENT_PROCESSING("/registrations/eventprocessing/{id}", RequestMethod.PUT),
     //
     CMGMT_DELEGATION("/delegation/{id}", RequestMethod.POST),
     //

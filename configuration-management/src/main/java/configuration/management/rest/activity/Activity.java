@@ -5,38 +5,38 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 @Component
-public abstract class Activity<T> {
+public abstract class Activity<T1, T2> {
 
-    private ResponseEntity<T> errorResponse;
+    private ResponseEntity<T1> errorResponse;
 
-    private Activity<T> nextTask;
+    private Activity<T1, T2> nextActivity;
 
-    public abstract ResponseEntity<T> doStep(T item);
+    public abstract ResponseEntity<T1> doStep(T2 item);
 
-    public ResponseEntity<T> next(T item) {
+    public ResponseEntity<T1> next(T1 content, T2 item) {
 
         if (null != errorResponse) {
             return errorResponse;
-        } else if (null != nextTask) {
-            return nextTask.doStep(item);
+        } else if (null != nextActivity) {
+            return nextActivity.doStep(item);
         } else {
-            return new ResponseEntity<T>(item, HttpStatus.OK);
+            return new ResponseEntity<T1>(content, HttpStatus.OK);
         }
     }
 
-    public Activity<T> getNextTask() {
-        return nextTask;
+    public Activity<T1, T2> getNextActivity() {
+        return nextActivity;
     }
 
-    public void setNextTask(Activity<T> nextStep) {
-        this.nextTask = nextStep;
+    public void setNextActivity(Activity<T1, T2> nextStep) {
+        this.nextActivity = nextStep;
     }
 
-    public ResponseEntity<T> getErrorResponse() {
+    public ResponseEntity<T1> getErrorResponse() {
         return errorResponse;
     }
 
-    public void setErrorResponse(ResponseEntity<T> errorResponse) {
+    public void setErrorResponse(ResponseEntity<T1> errorResponse) {
         this.errorResponse = errorResponse;
     }
 }

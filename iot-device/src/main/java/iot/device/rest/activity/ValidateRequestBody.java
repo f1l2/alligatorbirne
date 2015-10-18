@@ -23,19 +23,19 @@ public class ValidateRequestBody extends Activity<String, ConfigurationModificat
         if ((null == cm) || (null == cm.getDataSink())) {
             String error = "Set configuration failed due missing data sink.";
             logger.error(error);
-            return new ResponseEntity<String>(error, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<String>(error, HttpStatus.BAD_REQUEST);
         }
 
         else if ((null == cm.getDataSink().getUrl()) || (StringUtils.isEmpty(cm.getDataSink().getUrl().getAuthority()))) {
             String error = "Set configuration failed due missing URL authority.";
             logger.error(error);
-            return new ResponseEntity<String>(error, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<String>(error, HttpStatus.BAD_REQUEST);
         }
 
         else if ((null == cm.getDataSink().getComponentType()) || (!cm.getDataSink().getComponentType().equals(ct))) {
             String error = "Set configuraiton failed due wrong component type";
             logger.error(error);
-            return new ResponseEntity<String>(error, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<String>(error, HttpStatus.BAD_REQUEST);
         }
 
         return next("OK", cm);

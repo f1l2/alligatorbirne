@@ -21,12 +21,13 @@ import common.data.type.COMPONENT_TYPE;
 import common.rest.RESOURCE_NAMING;
 import common.rest.UtilsResource;
 import common.transformer.Transformer;
-import configuration.management.model.IoTDeviceDataSourceRO;
-import configuration.management.repo.IoTDeviceDataSourceRepository;
+import configuration.management.model.IoTDeviceRO;
+import configuration.management.repo.IoTDeviceDataSourceTransformer;
 import configuration.management.repo.IoTDeviceRepository;
 import configuration.management.repo.IoTDeviceTransformer;
 import configuration.management.rest.activity.HeartbeatIoTDevice;
 import configuration.management.rest.activity.RegisterIoTDevice;
+import configuration.management.rest.activity.RegisterIoTDeviceDataSources;
 import configuration.management.rest.activity.ValidateConnection;
 
 @RestController
@@ -38,16 +39,19 @@ public class CMgmtManageIoTDeviceImpl implements CMgmtManageIoTDevice {
     private IoTDeviceRepository deviceRepo;
 
     @Autowired
-    private IoTDeviceDataSourceRepository deviceDataSourceRepo;
+    private IoTDeviceTransformer transformer;
 
     @Autowired
-    private IoTDeviceTransformer transformer;
+    private IoTDeviceDataSourceTransformer transformerDataSource;
 
     @Autowired
     private ValidateConnection validateConnection;
 
     @Autowired
     private RegisterIoTDevice register;
+
+    @Autowired
+    private RegisterIoTDeviceDataSources registerDataSources;
 
     @Autowired
     private HeartbeatIoTDevice heartbeat;
@@ -72,7 +76,7 @@ public class CMgmtManageIoTDeviceImpl implements CMgmtManageIoTDevice {
          * If device with URL already exists, return existing values. Otherwise generate new values.
          */
 
-        validateConnection.setNextTask(register);
+        validateConnection.setNextActivity(register);
         validateConnection.setCt(COMPONENT_TYPE.IOT_DEVICE);
 
         return validateConnection.doStep(connection);
@@ -84,29 +88,38 @@ public class CMgmtManageIoTDeviceImpl implements CMgmtManageIoTDevice {
 
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_REGISTER_DEVICE_SOURCES));
 
-        for (DataSource dataSource : data.getDataSources()) {
+        registerDataSources.setId(id);
 
-            IoTDeviceDataSourceRO item = new IoTDeviceDataSourceRO();
-            // TODO Manuel
-            // item.setDeviceId(id);
-            item.setDevice(dataSource.getDeviceInformation().getName());
-            item.setDomain(dataSource.getDomainInformation().getName());
-
-            deviceDataSourceRepo.save(item);
-        }
-
-        return new ResponseEntity<String>("", HttpStatus.OK);
+        return registerDataSources.doStep(data);
     }
 
     @Override
-    @RequestMapping(value = "/registrations/devices/", method = RequestMethod.PUT)
-    public ResponseEntity<Connection> heartbeat(@RequestBody Connection connection) {
+    @RequestMapping(value = "/registrations/devices/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<String> heartbeat(@PathVariable Long id) {
 
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_HEART_BEAT_DEVICE));
+        return heartbeat.doStep(id);
+    }
 
-        validateConnection.setNextTask(heartbeat);
-        validateConnection.setCt(COMPONENT_TYPE.IOT_DEVICE);
+    @Override
+    @RequestMapping(value = "/registrations/devices/sources/{id}", method = RequestMethod.GET)
+    public ResponseEntity<DataSources> getDataSources(@PathVariable Long id) {
 
-        return validateConnection.doStep(connection);
+        logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_GET_DEVICE_DATA_SOURCES));
+
+        IoTDeviceRO device = deviceRepo.findOne(id);
+
+        if (null == device) {
+
+            return new ResponseEntity<DataSources>(new DataSources(), HttpStatus.OK);
+
+        } else {
+            List<DataSource> dataSource = transformerDataSource.toRemote(device.getIoTDeviceDataSources());
+
+            DataSources dataSources = new DataSources();
+            dataSources.add(dataSource);
+
+            return new ResponseEntity<DataSources>(dataSources, HttpStatus.OK);
+        }
     }
 }

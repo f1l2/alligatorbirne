@@ -21,6 +21,6 @@ public interface CMgmtManageEventProcessing {
 
     public ResponseEntity<ConfigurationDelegation> delegate(Long id, ConfigurationDelegation data);
 
-    public ResponseEntity<Connection> heartbeat(Connection connection);
+    public ResponseEntity<String> heartbeat(Long id);
 
 }

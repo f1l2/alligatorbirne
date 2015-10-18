@@ -172,13 +172,13 @@
           			</execution>
           			
           			<execution>
-	            		<id>copy-examples</id>
+	            		<id>copy-scripts</id>
 	            		<phase>package</phase>
 	            		<goals>
 	              			<goal>copy-resources</goal>
 	            		</goals>
 	            		<configuration>
-	              			<outputDirectory>${main.basedir}/workbench/examples</outputDirectory>
+	              			<outputDirectory>${main.basedir}/workbench</outputDirectory>
 	              			<resources>          
 	                			<resource>
 	                  				<directory>${project.basedir}/src/main/resources/examples</directory>

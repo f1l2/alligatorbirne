@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import common.data.ConfigurationDelegation;
 
 @Component
-public class ValidateConfigDelegation extends Activity<ConfigurationDelegation> {
+public class ValidateConfigDelegation extends Activity<ConfigurationDelegation, ConfigurationDelegation> {
 
     final static Logger logger = LoggerFactory.getLogger(ValidateConfigDelegation.class);
 
@@ -18,10 +18,10 @@ public class ValidateConfigDelegation extends Activity<ConfigurationDelegation> 
 
         if (null == item.getConfigurationModification()) {
             logger.error("Delegation failed due missing ConfigurationModification authority");
-            return new ResponseEntity<ConfigurationDelegation>(item, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<ConfigurationDelegation>(item, HttpStatus.BAD_REQUEST);
         }
 
-        return next(item);
+        return next(item, item);
     }
 
 }

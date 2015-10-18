@@ -13,7 +13,7 @@ import configuration.management.model.EventProcessingRO;
 import configuration.management.repo.EventProcessingRepository;
 
 @Component
-public class RegisterEP extends Activity<Connection> {
+public class RegisterEP extends Activity<Connection, Connection> {
 
     final static Logger logger = LoggerFactory.getLogger(RegisterEP.class);
 
@@ -38,6 +38,6 @@ public class RegisterEP extends Activity<Connection> {
         item = eventProcessingRepo.save(item);
         connection.setId(item.getId());
 
-        return next(connection);
+        return next(connection, connection);
     }
 }

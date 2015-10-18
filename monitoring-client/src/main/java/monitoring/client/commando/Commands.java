@@ -26,7 +26,7 @@ import common.rest.UtilsUrl;
 import monitoring.client.text.table.TextTable;
 
 @Component
-public class MonitoringCommands implements CommandMarker {
+public class Commands implements CommandMarker {
 
     private RestTemplate restTemplate;
 
@@ -50,6 +50,11 @@ public class MonitoringCommands implements CommandMarker {
         cm.setUrl(UtilsUrl.parseUrl(host + ":" + Integer.toString(port)));
     }
 
+    /**
+     * Command for retrieving all running EP instances.
+     * 
+     * @return
+     */
     @CliCommand(value = "list-ep", help = "Lists all running event processing instances.")
     public String listEP() {
 
@@ -70,6 +75,11 @@ public class MonitoringCommands implements CommandMarker {
         return "list-ep call successfully performed.";
     }
 
+    /**
+     * Command for retrieving all running devices.
+     * 
+     * @return
+     */
     @CliCommand(value = "list-dev", help = "Lists all running devices")
     public String listDev() {
         String url = UtilsResource.getUrl(RESOURCE_NAMING.CMGMT_GET_ALL_EVENT_PROCESSING, cm);
@@ -89,6 +99,17 @@ public class MonitoringCommands implements CommandMarker {
         return "list-dev call successfully performed.";
     }
 
+    /**
+     * Command for registration of a query.
+     * 
+     * @param id
+     *            of EP.
+     * @param queryName
+     *            name of query. Used for identification.
+     * @param query
+     *            query, which complies with the syntax defined by the framework.
+     * @return
+     */
     @CliCommand(value = "rq", help = "Register query")
     public String registerQuery(@CliOption(key = { "epId" }, mandatory = true, help = "id of EP") final long id,
             @CliOption(key = { "queryName" }, mandatory = true, help = "name of query") final String queryName,
@@ -109,7 +130,14 @@ public class MonitoringCommands implements CommandMarker {
 
     }
 
-    @CliCommand(value = "list-rq", help = "list registered queries")
+    /**
+     * Command for retrieving all registered queries.
+     * 
+     * @param id
+     *            of EP.
+     * @return
+     */
+    @CliCommand(value = "list-rq", help = "list all registered queries")
     public String listRegisteredQuery(@CliOption(key = { "epId" }, mandatory = true, help = "id of EP") final long id) {
 
         Optional<Connection> findById = getEPById(id);
@@ -134,6 +162,17 @@ public class MonitoringCommands implements CommandMarker {
         return "list-rq call successfully performed.";
     }
 
+    /**
+     * Command for registration of a rule.
+     * 
+     * @param id
+     *            of EP.
+     * @param ruleName
+     *            name of rule. Used for identification.
+     * @param rule
+     *            rule, which complies with the syntax defined by the framework.
+     * @return
+     */
     @CliCommand(value = "rr", help = "Register rule")
     public String registerRule(@CliOption(key = { "epId" }, mandatory = true, help = "id of EP") final long id,
             @CliOption(key = { "ruleName" }, mandatory = true, help = "name of rule") final String ruleName,
@@ -154,6 +193,13 @@ public class MonitoringCommands implements CommandMarker {
 
     }
 
+    /**
+     * Command for retrieving all registered rules.
+     * 
+     * @param id
+     *            of EP.
+     * @return
+     */
     @CliCommand(value = "list-rr", help = "list registered rules")
     public String listRegisteredRule(@CliOption(key = { "epId" }, mandatory = true, help = "id of EP") final long id) {
 
@@ -179,9 +225,42 @@ public class MonitoringCommands implements CommandMarker {
         return "list-rr call successfully performed.";
     }
 
+    /**
+     * Yields EP by Id.
+     * 
+     * @param id
+     * @return
+     */
     private Optional<Connection> getEPById(Long id) {
+        return getById(id, COMPONENT_TYPE.EVENT_PROCESSING);
+    }
 
-        String url = UtilsResource.getUrl(RESOURCE_NAMING.CMGMT_GET_ALL_EVENT_PROCESSING, cm);
+    /**
+     * Yields Device by Id.
+     * 
+     * @param id
+     * @return
+     */
+    private Optional<Connection> getDeviceById(Long id) {
+        return getById(id, COMPONENT_TYPE.IOT_DEVICE);
+    }
+
+    /**
+     * Yields Instance by Id.
+     * 
+     * @param id
+     * @param ct
+     * @return
+     */
+    private Optional<Connection> getById(Long id, COMPONENT_TYPE ct) {
+        String url;
+        if (COMPONENT_TYPE.EVENT_PROCESSING.equals(ct)) {
+            url = UtilsResource.getUrl(RESOURCE_NAMING.CMGMT_GET_ALL_EVENT_PROCESSING, cm);
+        } else if (COMPONENT_TYPE.IOT_DEVICE.equals(ct)) {
+            url = UtilsResource.getUrl(RESOURCE_NAMING.IDEV_GET_ALL_CONFIGURATION, cm);
+        } else {
+            return null;
+        }
 
         ResponseEntity<Connection[]> responseEntity = restTemplate.getForEntity(url, Connection[].class);
 
@@ -190,7 +269,6 @@ public class MonitoringCommands implements CommandMarker {
         Optional<Connection> findById = list.stream().filter(item -> item.getId() == id).findFirst();
 
         return findById;
-
     }
 
     /**

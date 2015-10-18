@@ -80,8 +80,12 @@ public class ApplicationScheduler {
 
         case WORKING:
 
-            // TODO send heart beat
             logger.info("Send heart beat");
+
+            String url = UtilsResource.getUrl(RESOURCE_NAMING.CMGMT_HEART_BEAT_EVENT_PROCESSING, cm);
+            url = url.replace("{id}", Long.toString(local.getId()));
+
+            restTemplate.put(url, null);
 
             break;
 

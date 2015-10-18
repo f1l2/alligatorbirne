@@ -71,22 +71,19 @@ public class CMgmtManageEventProcessingImpl implements CMgmtManageEventProcessin
 
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_REGISTER_EVENT_PROCESSING));
 
-        validateConnection.setNextTask(register);
+        validateConnection.setNextActivity(register);
         validateConnection.setCt(COMPONENT_TYPE.EVENT_PROCESSING);
 
         return validateConnection.doStep(connection);
     }
 
     @Override
-    @RequestMapping(value = "/registrations/eventprocessing", method = RequestMethod.PUT)
-    public ResponseEntity<Connection> heartbeat(@RequestBody Connection connection) {
+    @RequestMapping(value = "/registrations/eventprocessing/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<String> heartbeat(@PathVariable Long id) {
 
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_HEART_BEAT_EVENT_PROCESSING));
 
-        validateConnection.setNextTask(heartBeat);
-        validateConnection.setCt(COMPONENT_TYPE.EVENT_PROCESSING);
-
-        return validateConnection.doStep(connection);
+        return heartBeat.doStep(id);
 
     }
 
@@ -96,7 +93,7 @@ public class CMgmtManageEventProcessingImpl implements CMgmtManageEventProcessin
 
         logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_DELEGATION));
 
-        validateConfigDelegation.setNextTask(delegatConfigChange);
+        validateConfigDelegation.setNextActivity(delegatConfigChange);
 
         return validateConfigDelegation.doStep(data);
 

@@ -19,7 +19,7 @@ import configuration.management.repo.IoTDeviceRepository;
 import configuration.management.repo.IoTDeviceTransformer;
 
 @Component
-public class DelegateConfigChange extends Activity<ConfigurationDelegation> {
+public class DelegateConfigChange extends Activity<ConfigurationDelegation, ConfigurationDelegation> {
 
     final static Logger logger = LoggerFactory.getLogger(DelegateConfigChange.class);
     @Autowired
@@ -43,10 +43,10 @@ public class DelegateConfigChange extends Activity<ConfigurationDelegation> {
                 logger.info("Device notification - " + url + " Status: " + response.getStatusCode() + " Response body: " + response.getBody());
             } catch (Exception e) {
                 logger.error("{}", e);
-                this.setErrorResponse(new ResponseEntity<ConfigurationDelegation>(item, HttpStatus.INTERNAL_SERVER_ERROR));
+                this.setErrorResponse(new ResponseEntity<ConfigurationDelegation>(item, HttpStatus.BAD_REQUEST));
             }
         }
-        return next(item);
+        return next(item, item);
     }
 
 }

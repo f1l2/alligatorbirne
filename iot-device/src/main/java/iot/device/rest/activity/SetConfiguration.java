@@ -54,7 +54,7 @@ public class SetConfiguration extends Activity<String, ConfigurationModification
              * According to the settings the limit for the number of maximal tasks is reached.
              */
 
-            return new ResponseEntity<String>("Device has no free slot.", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<String>("Device has no free slot.", HttpStatus.BAD_REQUEST);
 
         } else {
 

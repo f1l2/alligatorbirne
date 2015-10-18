@@ -73,7 +73,7 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
 
         given().body(query).when().post(path)
 
-        .then().statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
+        .then().statusCode(HttpStatus.BAD_REQUEST.value());
     }
 
     @Test
@@ -89,7 +89,7 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
 
         given().body(query).when().post(path)
 
-        .then().statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
+        .then().statusCode(HttpStatus.BAD_REQUEST.value());
     }
 
     @Test
@@ -128,7 +128,7 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
 
         given().body(rule).when().post(path)
 
-        .then().statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
+        .then().statusCode(HttpStatus.BAD_REQUEST.value());
 
     }
 
