@@ -14,6 +14,8 @@ public enum RESOURCE_NAMING {
     //
     CMGMT_GET_DEVICE_DATA_SOURCES("/registrations/devices/sources/{id}", RequestMethod.GET),
     //
+    CMGGT_GET_DEVICE_BY_DATA_SOURCES("/registrations/devices/sources/{devInfo}/{domainInfo}", RequestMethod.GET),
+    //
     CMGMT_REGISTER_DEVICE("/registrations/devices", RequestMethod.POST),
     //
     CMGMT_HEART_BEAT_DEVICE("/registrations/devices/{id}", RequestMethod.PUT),

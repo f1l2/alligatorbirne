@@ -26,4 +26,6 @@ public interface CMgmtManageIoTDevice {
 
     public ResponseEntity<List<DataSource>> getDataSources(Long id);
 
+    public ResponseEntity<List<Connection>> getDeviceByDataSource(String devInfo, String domainInfo);
+
 }

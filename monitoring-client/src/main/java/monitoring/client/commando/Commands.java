@@ -19,6 +19,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
 
 import common.data.Connection;
+import common.data.DataSource;
 import common.data.type.COMPONENT_TYPE;
 import common.rest.RESOURCE_NAMING;
 import common.rest.ResourceUtils;
@@ -55,24 +56,20 @@ public class Commands implements CommandMarker {
      * 
      * @return
      */
-    @CliCommand(value = "list-ep", help = "Lists all running event processing instances.")
+    @CliCommand(value = "list-ep", help = "lists all running event processing instances.")
     public String listEP() {
 
-        String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_GET_ALL_EVENT_PROCESSING, cm);
-
-        ResponseEntity<Connection[]> responseEntity = restTemplate.getForEntity(url, Connection[].class);
-
-        TableModel tableModel;
         try {
-            tableModel = transformArrayToTableModel(responseEntity.getBody());
-        } catch (IllegalAccessException e) {
-            return "CM has not delivered valid data.";
-        }
+            String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_GET_ALL_EVENT_PROCESSING, cm);
 
-        TextTable textTable = new TextTable(tableModel);
-        textTable.setAddRowNumbering(true);
-        textTable.printTable();
-        return "list-ep call successfully performed.";
+            ResponseEntity<Connection[]> response = restTemplate.getForEntity(url, Connection[].class);
+
+            printTable(response.getBody());
+            return "list-ep successfully terminated.";
+
+        } catch (CommandsException e) {
+            return e.getMessage();
+        }
     }
 
     /**
@@ -82,21 +79,19 @@ public class Commands implements CommandMarker {
      */
     @CliCommand(value = "list-dev", help = "Lists all running devices")
     public String listDev() {
-        String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_GET_ALL_DEVICES, cm);
 
-        ResponseEntity<Connection[]> responseEntity = restTemplate.getForEntity(url, Connection[].class);
-
-        TableModel tableModel;
         try {
-            tableModel = transformArrayToTableModel(responseEntity.getBody());
-        } catch (IllegalAccessException e) {
-            return "CM has not delivered valid data.";
+            String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_GET_ALL_DEVICES, cm);
+
+            ResponseEntity<Connection[]> response = restTemplate.getForEntity(url, Connection[].class);
+
+            printTable(response.getBody());
+        } catch (CommandsException e) {
+            return e.getMessage();
         }
 
-        TextTable textTable = new TextTable(tableModel);
-        textTable.setAddRowNumbering(true);
-        textTable.printTable();
-        return "list-dev call successfully performed.";
+        return "list-dev successfully terminated";
+
     }
 
     /**
@@ -116,18 +111,16 @@ public class Commands implements CommandMarker {
             //
             @CliOption(key = { "query" }, mandatory = true, help = "query") final String query) {
 
-        Optional<Connection> findById = getEPById(id);
-        if (findById == null) {
-            return "Couldn't locate EP with id = " + id;
+        try {
+            String url = ResourceUtils.getUrl(RESOURCE_NAMING.EPROCESSING_REGISTRATION_QUERY, getEPById(id));
+            url = StringUtils.replace(url, "{name}", queryName);
+
+            ResponseEntity<String> postForEntity = restTemplate.postForEntity(url, query, String.class);
+
+            return postForEntity.getBody();
+        } catch (CommandsException e) {
+            return e.getMessage();
         }
-
-        String url = ResourceUtils.getUrl(RESOURCE_NAMING.EPROCESSING_REGISTRATION_QUERY, findById.get());
-        url = StringUtils.replace(url, "{name}", queryName);
-
-        ResponseEntity<String> postForEntity = restTemplate.postForEntity(url, query, String.class);
-
-        return postForEntity.getBody();
-
     }
 
     /**
@@ -140,26 +133,17 @@ public class Commands implements CommandMarker {
     @CliCommand(value = "list-rq", help = "list all registered queries")
     public String listRegisteredQuery(@CliOption(key = { "epId" }, mandatory = true, help = "id of EP") final long id) {
 
-        Optional<Connection> findById = getEPById(id);
-        if (findById == null) {
-            return "Couldn't locate EP with id = " + id;
-        }
-
-        String url = ResourceUtils.getUrl(RESOURCE_NAMING.EPROCESSING_GET_ALL_QUERIES, findById.get());
-
-        ResponseEntity<Object[]> response = restTemplate.getForEntity(url, Object[].class);
-
-        TableModel tableModel;
         try {
-            tableModel = transformArrayToTableModel(response.getBody());
-        } catch (IllegalAccessException e) {
-            return "EP has not delivered valid data.";
+            String url = ResourceUtils.getUrl(RESOURCE_NAMING.EPROCESSING_GET_ALL_QUERIES, getEPById(id));
+
+            ResponseEntity<Object[]> response = restTemplate.getForEntity(url, Object[].class);
+
+            printTable(response.getBody());
+        } catch (CommandsException e) {
+            return e.getMessage();
         }
 
-        TextTable textTable = new TextTable(tableModel);
-        textTable.setAddRowNumbering(true);
-        textTable.printTable();
-        return "list-rq call successfully performed.";
+        return "list-rq successfully terminated";
     }
 
     /**
@@ -179,18 +163,16 @@ public class Commands implements CommandMarker {
             //
             @CliOption(key = { "rule" }, mandatory = true, help = "rule (contains name of query)") final String rule) {
 
-        Optional<Connection> findById = getEPById(id);
-        if (findById == null) {
-            return "Couldn't locate EP with id = " + id;
+        try {
+            String url = ResourceUtils.getUrl(RESOURCE_NAMING.EPROCESSING_REGISTRATION_RULE, getEPById(id));
+            url = StringUtils.replace(url, "{name}", ruleName);
+
+            ResponseEntity<String> postForEntity = restTemplate.postForEntity(url, rule, String.class);
+
+            return postForEntity.getBody();
+        } catch (CommandsException e) {
+            return e.getMessage();
         }
-
-        String url = ResourceUtils.getUrl(RESOURCE_NAMING.EPROCESSING_REGISTRATION_RULE, findById.get());
-        url = StringUtils.replace(url, "{name}", ruleName);
-
-        ResponseEntity<String> postForEntity = restTemplate.postForEntity(url, rule, String.class);
-
-        return postForEntity.getBody();
-
     }
 
     /**
@@ -203,53 +185,70 @@ public class Commands implements CommandMarker {
     @CliCommand(value = "list-rr", help = "list registered rules")
     public String listRegisteredRule(@CliOption(key = { "epId" }, mandatory = true, help = "id of EP") final long id) {
 
-        Optional<Connection> findById = getEPById(id);
-        if (findById == null) {
-            return "Couldn't locate EP with id = " + id;
-        }
-
-        String url = ResourceUtils.getUrl(RESOURCE_NAMING.EPROCESSING_GET_ALL_RULES, findById.get());
-
-        ResponseEntity<Object[]> response = restTemplate.getForEntity(url, Object[].class);
-
-        TableModel tableModel;
         try {
-            tableModel = transformArrayToTableModel(response.getBody());
-        } catch (IllegalAccessException e) {
-            return "EP has not delivered valid data.";
+            String url = ResourceUtils.getUrl(RESOURCE_NAMING.EPROCESSING_GET_ALL_RULES, getEPById(id));
+            ResponseEntity<Object[]> response = restTemplate.getForEntity(url, Object[].class);
+
+            printTable(response.getBody());
+        } catch (CommandsException e) {
+            return e.getMessage();
         }
 
-        TextTable textTable = new TextTable(tableModel);
-        textTable.setAddRowNumbering(true);
-        textTable.printTable();
-        return "list-rr call successfully performed.";
+        return "list-rr successfully terminated";
     }
 
     @CliCommand(value = "list-ds", help = "retrieves data sources by id")
     public String dataSourcesById(@CliOption(key = { "devId" }, mandatory = true, help = "id of device") final long id) {
 
-        Optional<Connection> findById = getDeviceById(id);
-        if (findById == null) {
-            return "Couldn't locate device with id = " + id;
-        }
-
-        String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_GET_DEVICE_DATA_SOURCES, cm);
-        url = url.replace("{id}", Long.toString(findById.get().getId()));
-
-        ResponseEntity<Object[]> response = restTemplate.getForEntity(url, Object[].class);
-
-        TableModel tableModel;
         try {
-            tableModel = transformArrayToTableModel(response.getBody());
-        } catch (IllegalAccessException e) {
-            return "Device has not delivered valid data.";
+
+            String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_GET_DEVICE_DATA_SOURCES, cm, getDeviceById(id).getId());
+
+            ResponseEntity<DataSource[]> response = restTemplate.getForEntity(url, DataSource[].class);
+
+            printTable(Arrays.asList(response.getBody()));
+
+        } catch (CommandsException e) {
+            return e.getMessage();
         }
 
-        TextTable textTable = new TextTable(tableModel);
-        textTable.setAddRowNumbering(true);
-        textTable.printTable();
-        return "ds call successfully performed.";
+        return "list-ds successfully terminated";
+    }
 
+    @CliCommand(value = "activate-rule", help = "activate rule")
+    public String activateRule(@CliOption(key = { "epId" }, mandatory = true, help = "id of EP") final long id,
+            @CliOption(key = { "ruleName" }, mandatory = true, help = "name of rule") final String ruleName) {
+
+        try {
+            String url = ResourceUtils.getUrl(RESOURCE_NAMING.EPROCESSING_ACTIVATIONS_RULE, getEPById(id), ruleName);
+
+            ResponseEntity<String> result = restTemplate.getForEntity(url, String.class);
+
+            return result.getBody();
+
+        } catch (CommandsException e) {
+            return e.getMessage();
+        }
+
+    }
+
+    @CliCommand(value = "list-dev-by", help = "retrieves data sources by id")
+    public String dataSourcesByIdDevInfoDomainInfo(@CliOption(key = { "devInfo" }, mandatory = true, help = "name of dev info") String devInfo,
+            //
+            @CliOption(key = { "domInfo" }, mandatory = true, help = "name of dom info") String domInfo) {
+
+        try {
+            String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGGT_GET_DEVICE_BY_DATA_SOURCES, cm, devInfo, domInfo);
+
+            ResponseEntity<Connection[]> response = restTemplate.getForEntity(url, Connection[].class);
+
+            printTable(response.getBody());
+
+        } catch (CommandsException e) {
+            return e.getMessage();
+        }
+
+        return "list-dev-by successfully terminated.";
     }
 
     /**
@@ -257,8 +256,9 @@ public class Commands implements CommandMarker {
      * 
      * @param id
      * @return
+     * @throws CommandsException
      */
-    private Optional<Connection> getEPById(Long id) {
+    private Connection getEPById(Long id) throws CommandsException {
         return getById(id, COMPONENT_TYPE.EVENT_PROCESSING);
     }
 
@@ -267,8 +267,9 @@ public class Commands implements CommandMarker {
      * 
      * @param id
      * @return
+     * @throws CommandsException
      */
-    private Optional<Connection> getDeviceById(Long id) {
+    private Connection getDeviceById(Long id) throws CommandsException {
         return getById(id, COMPONENT_TYPE.IOT_DEVICE);
     }
 
@@ -278,8 +279,9 @@ public class Commands implements CommandMarker {
      * @param id
      * @param ct
      * @return
+     * @throws CommandsException
      */
-    private Optional<Connection> getById(Long id, COMPONENT_TYPE ct) {
+    private Connection getById(Long id, COMPONENT_TYPE ct) throws CommandsException {
         String url;
         if (COMPONENT_TYPE.EVENT_PROCESSING.equals(ct)) {
             url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_GET_ALL_EVENT_PROCESSING, cm);
@@ -295,7 +297,11 @@ public class Commands implements CommandMarker {
 
         Optional<Connection> findById = list.stream().filter(item -> item.getId() == id).findFirst();
 
-        return findById;
+        if (findById == null) {
+            throw new CommandsException("Couldn't locate EP with id = " + id);
+        }
+
+        return findById.get();
     }
 
     /**
@@ -334,5 +340,71 @@ public class Commands implements CommandMarker {
             defaultTableModel.addRow(rowData);
         }
         return defaultTableModel;
+    }
+
+    private String printTable(Object[] objects) throws CommandsException {
+
+        if (0 == objects.length) {
+            throw new CommandsException("No instance.");
+        }
+
+        TableModel tableModel;
+        try {
+            tableModel = transformArrayToTableModel(objects);
+        } catch (IllegalAccessException e) {
+            throw new CommandsException("No printable data received.");
+        }
+
+        TextTable textTable = new TextTable(tableModel);
+        textTable.setAddRowNumbering(true);
+        textTable.printTable();
+
+        return "";
+    }
+
+    private String printTable(List<DataSource> ds) throws CommandsException {
+
+        if (0 == ds.size()) {
+            throw new CommandsException("No instance.");
+        }
+
+        DefaultTableModel tableModel = new DefaultTableModel();
+
+        tableModel.addColumn("devInfo");
+        tableModel.addColumn("domainInfo");
+
+        for (DataSource dataSource : ds) {
+            Object[] rowData = new Object[2];
+            rowData[0] = dataSource.getDeviceInformation().getName();
+            rowData[1] = dataSource.getDomainInformation().getName();
+            tableModel.addRow(rowData);
+        }
+
+        TextTable textTable = new TextTable(tableModel);
+        textTable.setAddRowNumbering(true);
+        textTable.printTable();
+
+        return host;
+
+    }
+
+    class CommandsException extends Exception {
+
+        private static final long serialVersionUID = 7334900954607158440L;
+
+        private String message;
+
+        public CommandsException(String message) {
+            this.setMessage(message);
+        }
+
+        public String getMessage() {
+            return message;
+        }
+
+        public void setMessage(String message) {
+            this.message = message;
+        }
+
     }
 }

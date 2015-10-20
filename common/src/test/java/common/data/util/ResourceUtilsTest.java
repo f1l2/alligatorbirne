@@ -34,7 +34,7 @@ public class ResourceUtilsTest {
     }
 
     @Test
-    public void testGetUrlWithParameter() {
+    public void testGetUrlWithParameter1() {
 
         String authority = "localhost:8080";
 
@@ -44,6 +44,20 @@ public class ResourceUtilsTest {
         String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_REGISTER_DEVICE_SOURCES, connection, "123");
 
         assertEquals("http://localhost:8080/registrations/devices/sources/123", url);
+
+    }
+
+    @Test
+    public void testGetUrlWithParameter2() {
+
+        String authority = "localhost:8080";
+
+        Connection connection = new Connection();
+        connection.setUrl(UrlUtils.parseUrl(authority));
+
+        String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGGT_GET_DEVICE_BY_DATA_SOURCES, connection, "dev", "dom");
+
+        assertEquals("http://localhost:8080/registrations/devices/sources/dev/dom", url);
 
     }
 

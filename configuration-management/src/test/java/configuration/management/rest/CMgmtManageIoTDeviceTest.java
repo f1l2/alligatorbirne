@@ -25,12 +25,7 @@ import com.jayway.restassured.response.Response;
 
 import common.data.Connection;
 import common.data.DataSource;
-import common.data.DataSources;
-import common.data.model.DeviceInformation;
-import common.data.model.DomainInformation;
 import common.data.type.COMPONENT_TYPE;
-import common.data.type.DEVICE_INFORMATION_TYPE;
-import common.data.type.DOMAIN_INFORMATION_TYPE;
 import common.rest.RESOURCE_NAMING;
 import common.rest.ResourceUtils;
 import common.rest.UrlUtils;
@@ -55,7 +50,7 @@ public class CMgmtManageIoTDeviceTest extends AbstractTestRestCM {
     @Transactional
     public void getAll2() {
 
-        register(null);
+        register();
 
         Response response = get(RESOURCE_NAMING.CMGMT_GET_ALL_DEVICES.getPath());
 
@@ -71,29 +66,7 @@ public class CMgmtManageIoTDeviceTest extends AbstractTestRestCM {
     @Transactional
     public void registerDataSources() {
 
-        URL url = UrlUtils.parseUrl("localhost:5003");
-
-        Connection connection = new Connection();
-        connection.setComponentType(COMPONENT_TYPE.IOT_DEVICE);
-        connection.setName("DEV_NAME3");
-        connection.setUrl(url);
-
-        Connection register = register(connection);
-
-        DeviceInformation dev = new DeviceInformation();
-        dev.setName("device");
-        dev.setType(DEVICE_INFORMATION_TYPE.SENSOR);
-        DomainInformation domain = new DomainInformation();
-        domain.setName("domain");
-        domain.setType(DOMAIN_INFORMATION_TYPE.FIRST_FLOOR);
-
-        DataSource dataSource = new DataSource();
-        dataSource.setDeviceInformation(dev);
-        dataSource.setDomainInformation(domain);
-
-        DataSources dataSources = new DataSources();
-        dataSources.add(dataSource);
-        dataSources.add(dataSource);
+        Connection register = register();
 
         Response response = given().body(dataSources).contentType("application/json").post(ResourceUtils.getPath(RESOURCE_NAMING.CMGMT_REGISTER_DEVICE_SOURCES, register.getId()));
 
@@ -104,15 +77,8 @@ public class CMgmtManageIoTDeviceTest extends AbstractTestRestCM {
     @Test
     public void heartbeat() {
 
-        URL url = UrlUtils.parseUrl("localhost:5005");
-
-        Connection connection = new Connection();
-        connection.setComponentType(COMPONENT_TYPE.IOT_DEVICE);
-        connection.setName("EP_NAME5");
-        connection.setUrl(url);
-
         // first register device
-        connection = register(connection);
+        Connection connection = register();
 
         // send heart beat
         Response response = given()
@@ -126,12 +92,7 @@ public class CMgmtManageIoTDeviceTest extends AbstractTestRestCM {
     @Test
     public void heartbeatFailMissingRegistration() {
 
-        URL url = UrlUtils.parseUrl("localhost:5004");
-
-        Connection connection = new Connection();
-        connection.setComponentType(COMPONENT_TYPE.IOT_DEVICE);
-        connection.setName("EP_NAME4");
-        connection.setUrl(url);
+        register();
 
         // send heart beat
         Response response = given()
@@ -144,31 +105,9 @@ public class CMgmtManageIoTDeviceTest extends AbstractTestRestCM {
 
     @Test
     @Transactional
-    public void getDataSources() {
+    public void getDataSourcesByDevice() {
 
-        URL url = UrlUtils.parseUrl("localhost:5005");
-
-        Connection connection = new Connection();
-        connection.setComponentType(COMPONENT_TYPE.IOT_DEVICE);
-        connection.setName("DEV_NAME5");
-        connection.setUrl(url);
-
-        Connection register = register(connection);
-
-        DeviceInformation dev = new DeviceInformation();
-        dev.setName("device");
-        dev.setType(DEVICE_INFORMATION_TYPE.SENSOR);
-        DomainInformation domain = new DomainInformation();
-        domain.setName("domain");
-        domain.setType(DOMAIN_INFORMATION_TYPE.FIRST_FLOOR);
-
-        DataSource dataSource = new DataSource();
-        dataSource.setDeviceInformation(dev);
-        dataSource.setDomainInformation(domain);
-
-        DataSources dataSources = new DataSources();
-        dataSources.add(dataSource);
-        dataSources.add(dataSource);
+        Connection register = register();
 
         Response response = given().body(dataSources).contentType("application/json").post(ResourceUtils.getPath(RESOURCE_NAMING.CMGMT_REGISTER_DEVICE_SOURCES, register.getId()));
 
@@ -185,20 +124,46 @@ public class CMgmtManageIoTDeviceTest extends AbstractTestRestCM {
         assertNotNull(ds);
 
         assertEquals(2, ds.size());
+
+        DataSource dataSource = dataSources.getDataSources().get(0);
+
         assertEquals(dataSource.getDeviceInformation().getName(), ds.get(0).getDeviceInformation().getName());
         assertEquals(dataSource.getDomainInformation().getName(), ds.get(0).getDomainInformation().getName());
     }
 
-    private Connection register(Connection connection) {
+    @Test
+    @Transactional
+    public void getDevicesByDataSource() {
 
-        if (null == connection) {
-            URL url = UrlUtils.parseUrl("localhost:4999");
+        Connection register = register();
 
-            connection = new Connection();
-            connection.setComponentType(COMPONENT_TYPE.IOT_DEVICE);
-            connection.setName("DEV_NAME");
-            connection.setUrl(url);
-        }
+        Response response = given().body(dataSources).contentType("application/json").post(ResourceUtils.getPath(RESOURCE_NAMING.CMGMT_REGISTER_DEVICE_SOURCES, register.getId()));
+
+        assertEquals(HttpStatus.OK.value(), response.getStatusCode());
+
+        // ask for data sources
+
+        String path = ResourceUtils.getPath(RESOURCE_NAMING.CMGGT_GET_DEVICE_BY_DATA_SOURCES, "device", "domain");
+
+        response = given().get(path);
+
+        assertEquals(HttpStatus.OK.value(), response.getStatusCode());
+
+        List<Connection> connections = Arrays.asList(response.getBody().as(Connection[].class));
+
+        assertNotNull(connections);
+        assertEquals(2, connections.size());
+        assertEquals(register.getUrl().getAuthority(), connections.get(0).getUrl().getAuthority());
+    }
+
+    private Connection register() {
+
+        URL url = UrlUtils.parseUrl(authority);
+
+        Connection connection = new Connection();
+        connection.setComponentType(COMPONENT_TYPE.IOT_DEVICE);
+        connection.setName("DEV_NAME");
+        connection.setUrl(url);
 
         Response response = given().body(connection).contentType("application/json")
                 //

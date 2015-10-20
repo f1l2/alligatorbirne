@@ -21,6 +21,13 @@ public class ResourceUtils {
         return replacePlaceHolder(url, parameters);
     }
 
+    public static String getUrl(RESOURCE_NAMING resourceNaming, Connection connection, Long... parameters) {
+
+        String url = String.format(HTTP_PROTOCOL + "://%s%s", connection.getUrl().getAuthority(), resourceNaming.getPath());
+
+        return replacePlaceHolder(url, parameters);
+    }
+
     public static String getUrl(RESOURCE_NAMING resourceNaming, String authority) {
         return String.format(HTTP_PROTOCOL + "://%s%s", authority, resourceNaming.getPath());
     }
@@ -54,7 +61,7 @@ public class ResourceUtils {
         }
 
         for (String parameter : parameters) {
-            url = url.replaceFirst("\\{.+\\}", parameter);
+            url = url.replaceFirst("\\{[^/]+\\}", parameter);
         }
         return url;
     }
@@ -66,13 +73,13 @@ public class ResourceUtils {
         }
 
         for (Long parameter : parameters) {
-            url = url.replaceFirst("\\{.+\\}", Long.toString(parameter));
+            url = url.replaceFirst("\\{[^/]+\\}", Long.toString(parameter));
         }
         return url;
     }
 
     private static int countNumberOfPlaceholders(String url) {
-        Pattern pattern = Pattern.compile("\\{.+\\}");
+        Pattern pattern = Pattern.compile("\\{[^/]+\\}");
         Matcher matcher = pattern.matcher(url);
 
         int count = 0;
