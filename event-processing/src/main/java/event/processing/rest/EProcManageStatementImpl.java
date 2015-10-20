@@ -172,11 +172,14 @@ public class EProcManageStatementImpl implements EProcManageStatement {
             } else {
 
                 for (Reaction reaction : rule.getReactions()) {
-                    restTemplate.postForEntity(url, createCD(reaction, local), Connection.class);
+
+                    ConfigurationDelegation createCD = createCD(reaction, local);
+                    restTemplate.postForEntity(url, createCD(reaction, local), ConfigurationDelegation.class);
                 }
             }
 
         } catch (Exception e) {
+            logger.error(e.getMessage());
             return EP_ERROR_CODES.ERROR_ACTIVATE.getErrorResponse();
         }
 

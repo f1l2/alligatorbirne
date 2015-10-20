@@ -28,34 +28,34 @@ public class DynamicDeliveryTaskFactory implements BeanDefinitionRegistryPostPro
         this.beanFactory = beanFactory;
     }
 
-    public DeliveryTask createBean(final DeliveryTaskRO deliveryTask) {
+    public DelegationTask createBean(final DeliveryTaskRO deliveryTask) {
 
         final String beanName = String.format("deliveryTask_%s", Arrays.hashCode(new Object[] { deliveryTask.getUrlDataSink().getAuthority() }));
 
-        DeliveryTask dt = null;
+        DelegationTask dt = null;
         synchronized (beanName.intern()) {
             try {
-                dt = (DeliveryTask) beanFactory.getBean(beanName);
+                dt = (DelegationTask) beanFactory.getBean(beanName);
             } catch (final NoSuchBeanDefinitionException ex) {
 
                 beanDefinitionRegistry.registerBeanDefinition(beanName, BeanDefinitionBuilder//
-                        .genericBeanDefinition(DeliveryTask.class).addConstructorArgValue(deliveryTask).getBeanDefinition());
+                        .genericBeanDefinition(DelegationTask.class).addConstructorArgValue(deliveryTask).getBeanDefinition());
 
-                dt = (DeliveryTask) beanFactory.getBean(beanName);
+                dt = (DelegationTask) beanFactory.getBean(beanName);
             }
         }
 
         return dt;
     }
 
-    public DeliveryTask getBean(final DeliveryTaskRO deliveryTask) {
+    public DelegationTask getBean(final DeliveryTaskRO deliveryTask) {
 
         final String beanName = String.format("deliveryTask_%s", Arrays.hashCode(new Object[] { deliveryTask.getUrlDataSink().getAuthority() }));
 
-        DeliveryTask dt = null;
+        DelegationTask dt = null;
         synchronized (beanName.intern()) {
             try {
-                dt = (DeliveryTask) beanFactory.getBean(beanName);
+                dt = (DelegationTask) beanFactory.getBean(beanName);
             } catch (final NoSuchBeanDefinitionException ex) {
 
             }

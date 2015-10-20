@@ -5,15 +5,12 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
 
 import common.data.ConfigurationDelegation;
 import common.data.Connection;
-import common.rest.RESOURCE_NAMING;
-import common.rest.ResourceUtils;
 import configuration.management.model.IoTDeviceRO;
 import configuration.management.repo.IoTDeviceRepository;
 import configuration.management.repo.IoTDeviceTransformer;
@@ -28,6 +25,9 @@ public class DelegateConfigChange extends Activity<ConfigurationDelegation, Conf
     @Autowired
     private IoTDeviceTransformer transformer;
 
+    @Autowired
+    private ThreadPoolTaskExecutor taskExecutor;
+
     @Override
     public ResponseEntity<ConfigurationDelegation> doStep(ConfigurationDelegation item) {
 
@@ -35,17 +35,8 @@ public class DelegateConfigChange extends Activity<ConfigurationDelegation, Conf
 
         List<Connection> connectionsToBeContacted = transformer.toRemote(devicesToBeContacted);
 
-        for (Connection connection : connectionsToBeContacted) {
-            try {
-                RestTemplate restTemplate = new RestTemplate();
-                String url = ResourceUtils.getUrl(RESOURCE_NAMING.IDEV_SET_CONFIGURATION, connection.getUrl().getAuthority());
-                ResponseEntity<String> response = restTemplate.postForEntity(url, item.getConfigurationModification(), String.class);
-                logger.info("Device notification - " + url + " Status: " + response.getStatusCode() + " Response body: " + response.getBody());
-            } catch (Exception e) {
-                logger.error("{}", e);
-                this.setErrorResponse(new ResponseEntity<ConfigurationDelegation>(item, HttpStatus.BAD_REQUEST));
-            }
-        }
+        taskExecutor.execute(new DelegationTask(item.getConfigurationModification(), connectionsToBeContacted));
+
         return next(item, item);
     }
 

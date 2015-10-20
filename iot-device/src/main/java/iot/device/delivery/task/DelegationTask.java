@@ -23,9 +23,9 @@ import iot.device.vt.VtData;
 import iot.device.vt.VtEP;
 
 @Component
-public class DeliveryTask implements Runnable {
+public class DelegationTask implements Runnable {
 
-    final static Logger logger = LoggerFactory.getLogger(DeliveryTask.class);
+    final static Logger logger = LoggerFactory.getLogger(DelegationTask.class);
 
     private DeliveryTaskRO deliveryTaskRO;
 
@@ -37,11 +37,11 @@ public class DeliveryTask implements Runnable {
     @Autowired
     private DynamicSensorFactory dsf;
 
-    public DeliveryTask() {
+    public DelegationTask() {
 
     }
 
-    public DeliveryTask(DeliveryTaskRO deliveryTask) {
+    public DelegationTask(DeliveryTaskRO deliveryTask) {
         this.deliveryTaskRO = deliveryTask;
         this.deliveryUrl = ResourceUtils.getUrl(RESOURCE_NAMING.EPROCESSING_SEND, deliveryTaskRO.getUrlDataSink().getAuthority());
     }
