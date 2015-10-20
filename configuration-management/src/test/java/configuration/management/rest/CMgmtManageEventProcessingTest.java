@@ -25,7 +25,8 @@ import com.jayway.restassured.response.Response;
 import common.data.Connection;
 import common.data.type.COMPONENT_TYPE;
 import common.rest.RESOURCE_NAMING;
-import common.rest.UtilsUrl;
+import common.rest.ResourceUtils;
+import common.rest.UrlUtils;
 import configuration.management.AbstractTestRestCM;
 import configuration.management.Application;
 
@@ -79,7 +80,7 @@ public class CMgmtManageEventProcessingTest extends AbstractTestRestCM {
     @Test
     public void heartbeat() {
 
-        URL url = UtilsUrl.parseUrl("localhost:4005");
+        URL url = UrlUtils.parseUrl("localhost:4005");
 
         Connection connection = new Connection();
         connection.setComponentType(COMPONENT_TYPE.EVENT_PROCESSING);
@@ -92,12 +93,9 @@ public class CMgmtManageEventProcessingTest extends AbstractTestRestCM {
 
         // send heart beat
 
-        String path = RESOURCE_NAMING.CMGMT_HEART_BEAT_EVENT_PROCESSING.getPath();
-        path = path.replace("{id}", Long.toString(connection.getId()));
-
         Response response = given()
                 //
-                .when().put(path);
+                .when().put(ResourceUtils.getPath(RESOURCE_NAMING.CMGMT_HEART_BEAT_EVENT_PROCESSING, Long.toString(connection.getId())));
 
         assertEquals(HttpStatus.OK.value(), response.getStatusCode());
 
@@ -106,7 +104,7 @@ public class CMgmtManageEventProcessingTest extends AbstractTestRestCM {
     @Test
     public void heartbeatFailMissingRegistration() {
 
-        URL url = UtilsUrl.parseUrl("localhost:4006");
+        URL url = UrlUtils.parseUrl("localhost:4006");
 
         Connection connection = new Connection();
         connection.setComponentType(COMPONENT_TYPE.EVENT_PROCESSING);
@@ -114,12 +112,9 @@ public class CMgmtManageEventProcessingTest extends AbstractTestRestCM {
         connection.setUrl(url);
 
         // send heart beat
-        String path = RESOURCE_NAMING.CMGMT_HEART_BEAT_EVENT_PROCESSING.getPath();
-        path = path.replace("{id}", "123");
-
         Response response = given()
                 //
-                .when().put(path);
+                .when().put(ResourceUtils.getPath(RESOURCE_NAMING.CMGMT_HEART_BEAT_EVENT_PROCESSING, "123"));
 
         assertEquals(HttpStatus.BAD_REQUEST.value(), response.getStatusCode());
 
@@ -128,7 +123,7 @@ public class CMgmtManageEventProcessingTest extends AbstractTestRestCM {
     private Connection register(Connection connection) {
 
         if (null == connection) {
-            URL url = UtilsUrl.parseUrl("localhost:3999");
+            URL url = UrlUtils.parseUrl("localhost:3999");
 
             connection = new Connection();
             connection.setComponentType(COMPONENT_TYPE.EVENT_PROCESSING);

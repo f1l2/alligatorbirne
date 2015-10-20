@@ -11,7 +11,7 @@ import common.data.Connection;
 import common.data.setting.SettingUtils;
 import common.data.type.COMPONENT_TYPE;
 import common.rest.RESOURCE_NAMING;
-import common.rest.UtilsResource;
+import common.rest.ResourceUtils;
 import event.processing.status.STATUS_TYPE;
 import event.processing.status.Status;
 
@@ -62,7 +62,7 @@ public class ApplicationScheduler {
 
                 logger.info("Try to register ep ...");
 
-                String url = UtilsResource.getUrl(RESOURCE_NAMING.CMGMT_REGISTER_EVENT_PROCESSING, cm);
+                String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_REGISTER_EVENT_PROCESSING, cm);
                 logger.info(url);
 
                 ResponseEntity<Connection> responseRegistration = restTemplate.postForEntity(url, local, Connection.class);
@@ -82,7 +82,7 @@ public class ApplicationScheduler {
 
             logger.info("Send heart beat");
 
-            String url = UtilsResource.getUrl(RESOURCE_NAMING.CMGMT_HEART_BEAT_EVENT_PROCESSING, cm);
+            String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_HEART_BEAT_EVENT_PROCESSING, cm);
             url = url.replace("{id}", Long.toString(local.getId()));
 
             restTemplate.put(url, null);

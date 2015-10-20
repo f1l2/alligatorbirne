@@ -10,7 +10,7 @@ import common.data.Connection;
 import common.data.Setting;
 import common.data.setting.SettingUtils;
 import common.data.type.COMPONENT_TYPE;
-import common.rest.UtilsUrl;
+import common.rest.UrlUtils;
 
 public class ApplicationStartUpUtils {
 
@@ -26,9 +26,9 @@ public class ApplicationStartUpUtils {
         authority.append(":");
         authority.append(String.valueOf(arg0.getEmbeddedServletContainer().getPort()));
 
-        UtilsUrl.parseUrl(authority.toString());
+        UrlUtils.parseUrl(authority.toString());
         Connection localConnection = new Connection();
-        localConnection.setUrl(UtilsUrl.parseUrl(authority.toString()));
+        localConnection.setUrl(UrlUtils.parseUrl(authority.toString()));
 
         Connection settingConnection = SettingUtils.getLocalConnection();
 

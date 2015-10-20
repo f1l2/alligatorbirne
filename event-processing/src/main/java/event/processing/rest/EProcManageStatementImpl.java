@@ -25,7 +25,7 @@ import common.data.model.DeviceInformation;
 import common.data.model.DomainInformation;
 import common.data.setting.SettingUtils;
 import common.rest.RESOURCE_NAMING;
-import common.rest.UtilsResource;
+import common.rest.ResourceUtils;
 import event.processing.engine.EngineFactory;
 import event.processing.engine.EngineListener;
 import event.processing.engine.impl.EsperEngineListener;
@@ -36,6 +36,8 @@ import event.processing.repo.RuleRepository;
 import event.processing.rule.Rule;
 import event.processing.rule.RuleFactory;
 import event.processing.rule.model.Reaction;
+import event.processing.status.STATUS_TYPE;
+import event.processing.status.Status;
 
 @RestController
 public class EProcManageStatementImpl implements EProcManageStatement {
@@ -58,10 +60,13 @@ public class EProcManageStatementImpl implements EProcManageStatement {
     @Autowired
     private RuleFactory ruleFactory;
 
+    @Autowired
+    private Status status;
+
     @Override
     @RequestMapping(value = "/registrations/query/{name}", method = RequestMethod.POST)
     public ResponseEntity<String> registerQuery(@PathVariable("name") String name, @RequestBody String query) {
-        logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.EPROCESSING_REGISTRATION_QUERY));
+        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.EPROCESSING_REGISTRATION_QUERY));
 
         /**
          * Make sure that parameter 'name' is not empty or that it isn't already awarded.
@@ -90,7 +95,7 @@ public class EProcManageStatementImpl implements EProcManageStatement {
     @Override
     @RequestMapping(value = "/registrations/rule/{name}", method = RequestMethod.POST)
     public ResponseEntity<String> registerRule(@PathVariable("name") String name, @RequestBody String rule) {
-        logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.EPROCESSING_REGISTRATION_RULE));
+        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.EPROCESSING_REGISTRATION_RULE));
 
         /**
          * Make sure that parameter 'name' is not empty or that it isn't already awarded.
@@ -117,7 +122,7 @@ public class EProcManageStatementImpl implements EProcManageStatement {
     @Override
     @RequestMapping(value = "/activations/rule/{name}", method = RequestMethod.GET)
     public ResponseEntity<String> activateRule(@PathVariable("name") String name) {
-        logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.EPROCESSING_ACTIVATIONS_RULE));
+        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.EPROCESSING_ACTIVATIONS_RULE));
 
         /**
          * Make sure that parameter 'name' is not empty.
@@ -158,10 +163,17 @@ public class EProcManageStatementImpl implements EProcManageStatement {
             Connection local = SettingUtils.getLocalConnection();
             Connection cm = SettingUtils.getCMConnection();
 
-            String url = UtilsResource.getUrl(RESOURCE_NAMING.CMGMT_DELEGATION, cm);
+            String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_DELEGATION, cm);
 
-            for (Reaction reaction : rule.getReactions()) {
-                restTemplate.postForEntity(url, createCD(reaction, local), Connection.class);
+            if (STATUS_TYPE.TEST.equals(status.getCurrent())) {
+                /**
+                 * Is instance in test modus, don't do anything. Normally, CM wouldn't be online and test fails.
+                 */
+            } else {
+
+                for (Reaction reaction : rule.getReactions()) {
+                    restTemplate.postForEntity(url, createCD(reaction, local), Connection.class);
+                }
             }
 
         } catch (Exception e) {
@@ -175,7 +187,7 @@ public class EProcManageStatementImpl implements EProcManageStatement {
     @Override
     @RequestMapping(value = "/deactivations/rule/{name}", method = RequestMethod.GET)
     public ResponseEntity<String> deactivateRule(@PathVariable("name") String name) {
-        logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.EPROCESSING_DEACTIVATIONS_RULE));
+        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.EPROCESSING_DEACTIVATIONS_RULE));
 
         /**
          * Make sure that parameter 'name' is not empty.
@@ -219,7 +231,7 @@ public class EProcManageStatementImpl implements EProcManageStatement {
     @Override
     @RequestMapping(value = "/deregistrations/query/{name}", method = RequestMethod.DELETE)
     public ResponseEntity<String> withdrawQuery(@PathVariable("name") String name) {
-        logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.EPROCESSING_DEREGISTRATION_QUERY));
+        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.EPROCESSING_DEREGISTRATION_QUERY));
 
         /**
          * Make sure that parameter 'name' is not empty.
@@ -252,7 +264,7 @@ public class EProcManageStatementImpl implements EProcManageStatement {
     @Override
     @RequestMapping(value = "/deregistrations/rule/{name}", method = RequestMethod.DELETE)
     public ResponseEntity<String> withdrawRule(@PathVariable("name") String name) {
-        logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.EPROCESSING_DEREGISTRATION_RULE));
+        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.EPROCESSING_DEREGISTRATION_RULE));
 
         /**
          * Make sure that parameter 'name' is not empty.
@@ -284,7 +296,7 @@ public class EProcManageStatementImpl implements EProcManageStatement {
     @Override
     @RequestMapping(value = "/registrations/queries", method = RequestMethod.GET)
     public @ResponseBody List<Query> getAllQueries() {
-        logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.EPROCESSING_GET_ALL_QUERIES));
+        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.EPROCESSING_GET_ALL_QUERIES));
 
         return queryRepository.findAll();
     }
@@ -292,7 +304,7 @@ public class EProcManageStatementImpl implements EProcManageStatement {
     @Override
     @RequestMapping(value = "/registrations/rules", method = RequestMethod.GET)
     public @ResponseBody List<Rule> getAllRules() {
-        logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.EPROCESSING_GET_ALL_RULES));
+        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.EPROCESSING_GET_ALL_RULES));
 
         return ruleRepository.findAll();
     }

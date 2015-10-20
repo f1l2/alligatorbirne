@@ -32,7 +32,7 @@ public class RuleRepositoryTest {
     @Before
     public void before() throws IOException {
 
-        String input = "query TRIGGERS deviceName, domainName, cMName";
+        String input = "query TRIGGERS deviceName, domainName, cMName = 1";
         rule = qf.parse(input);
 
         repo.save("test rule", rule);

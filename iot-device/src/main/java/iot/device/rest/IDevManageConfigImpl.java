@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import common.data.ConfigurationModification;
 import common.data.type.COMPONENT_TYPE;
 import common.rest.RESOURCE_NAMING;
-import common.rest.UtilsResource;
+import common.rest.ResourceUtils;
 import iot.device.repo.DeliveryTaskRO;
 import iot.device.repo.DeliveryTaskRepositoryImpl;
 import iot.device.rest.activity.SetConfiguration;
@@ -40,7 +40,7 @@ public class IDevManageConfigImpl implements IDevManageConfig {
     @RequestMapping(value = "/configurations", method = RequestMethod.GET)
     public ResponseEntity<List<DeliveryTaskRO>> getAllConfiguration() {
 
-        logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.IDEV_GET_ALL_CONFIGURATION));
+        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.IDEV_GET_ALL_CONFIGURATION));
 
         List<DeliveryTaskRO> result = repo.findAll();
         return new ResponseEntity<List<DeliveryTaskRO>>(result, HttpStatus.OK);
@@ -50,7 +50,7 @@ public class IDevManageConfigImpl implements IDevManageConfig {
     @RequestMapping(value = "/configurations/{authority}", method = RequestMethod.GET)
     public ResponseEntity<DeliveryTaskRO> getConfigurationByEPAuthority(@PathVariable("authority") String authority) {
 
-        logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.IDEV_GET_CONFIGURATION_BY_EP));
+        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.IDEV_GET_CONFIGURATION_BY_EP));
 
         DeliveryTaskRO result = repo.findByAuthority(authority);
 
@@ -61,7 +61,7 @@ public class IDevManageConfigImpl implements IDevManageConfig {
     @RequestMapping(value = "/configurations", method = RequestMethod.POST)
     public ResponseEntity<String> setConfiguration(@RequestBody ConfigurationModification configurationModification) {
 
-        logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.IDEV_SET_CONFIGURATION));
+        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.IDEV_SET_CONFIGURATION));
 
         /**
          * Build "to-do" chain

@@ -32,7 +32,8 @@ import common.data.type.COMPONENT_TYPE;
 import common.data.type.DEVICE_INFORMATION_TYPE;
 import common.data.type.DOMAIN_INFORMATION_TYPE;
 import common.rest.RESOURCE_NAMING;
-import common.rest.UtilsUrl;
+import common.rest.ResourceUtils;
+import common.rest.UrlUtils;
 import configuration.management.AbstractTestRestCM;
 import configuration.management.Application;
 
@@ -70,7 +71,7 @@ public class CMgmtManageIoTDeviceTest extends AbstractTestRestCM {
     @Transactional
     public void registerDataSources() {
 
-        URL url = UtilsUrl.parseUrl("localhost:5003");
+        URL url = UrlUtils.parseUrl("localhost:5003");
 
         Connection connection = new Connection();
         connection.setComponentType(COMPONENT_TYPE.IOT_DEVICE);
@@ -94,10 +95,7 @@ public class CMgmtManageIoTDeviceTest extends AbstractTestRestCM {
         dataSources.add(dataSource);
         dataSources.add(dataSource);
 
-        String path = RESOURCE_NAMING.CMGMT_REGISTER_DEVICE_SOURCES.getPath();
-        path = path.replace("{id}", Long.toString(register.getId()));
-
-        Response response = given().body(dataSources).contentType("application/json").post(path);
+        Response response = given().body(dataSources).contentType("application/json").post(ResourceUtils.getPath(RESOURCE_NAMING.CMGMT_REGISTER_DEVICE_SOURCES, register.getId()));
 
         assertEquals(HttpStatus.OK.value(), response.getStatusCode());
 
@@ -106,7 +104,7 @@ public class CMgmtManageIoTDeviceTest extends AbstractTestRestCM {
     @Test
     public void heartbeat() {
 
-        URL url = UtilsUrl.parseUrl("localhost:5005");
+        URL url = UrlUtils.parseUrl("localhost:5005");
 
         Connection connection = new Connection();
         connection.setComponentType(COMPONENT_TYPE.IOT_DEVICE);
@@ -116,13 +114,10 @@ public class CMgmtManageIoTDeviceTest extends AbstractTestRestCM {
         // first register device
         connection = register(connection);
 
-        String path = RESOURCE_NAMING.CMGMT_HEART_BEAT_DEVICE.getPath();
-        path = path.replace("{id}", Long.toString(connection.getId()));
-
         // send heart beat
         Response response = given()
                 //
-                .when().put(path);
+                .when().put(ResourceUtils.getPath(RESOURCE_NAMING.CMGMT_HEART_BEAT_DEVICE, connection.getId()));
 
         assertEquals(HttpStatus.OK.value(), response.getStatusCode());
 
@@ -131,7 +126,7 @@ public class CMgmtManageIoTDeviceTest extends AbstractTestRestCM {
     @Test
     public void heartbeatFailMissingRegistration() {
 
-        URL url = UtilsUrl.parseUrl("localhost:5004");
+        URL url = UrlUtils.parseUrl("localhost:5004");
 
         Connection connection = new Connection();
         connection.setComponentType(COMPONENT_TYPE.IOT_DEVICE);
@@ -139,13 +134,9 @@ public class CMgmtManageIoTDeviceTest extends AbstractTestRestCM {
         connection.setUrl(url);
 
         // send heart beat
-
-        String path = RESOURCE_NAMING.CMGMT_HEART_BEAT_DEVICE.getPath();
-        path = path.replace("{id}", "1234");
-
         Response response = given()
                 //
-                .when().put(path);
+                .when().put(ResourceUtils.getPath(RESOURCE_NAMING.CMGMT_HEART_BEAT_DEVICE, "1234"));
 
         assertEquals(HttpStatus.BAD_REQUEST.value(), response.getStatusCode());
 
@@ -155,7 +146,7 @@ public class CMgmtManageIoTDeviceTest extends AbstractTestRestCM {
     @Transactional
     public void getDataSources() {
 
-        URL url = UtilsUrl.parseUrl("localhost:5005");
+        URL url = UrlUtils.parseUrl("localhost:5005");
 
         Connection connection = new Connection();
         connection.setComponentType(COMPONENT_TYPE.IOT_DEVICE);
@@ -179,19 +170,13 @@ public class CMgmtManageIoTDeviceTest extends AbstractTestRestCM {
         dataSources.add(dataSource);
         dataSources.add(dataSource);
 
-        String path = RESOURCE_NAMING.CMGMT_REGISTER_DEVICE_SOURCES.getPath();
-        path = path.replace("{id}", Long.toString(register.getId()));
-
-        Response response = given().body(dataSources).contentType("application/json").post(path);
+        Response response = given().body(dataSources).contentType("application/json").post(ResourceUtils.getPath(RESOURCE_NAMING.CMGMT_REGISTER_DEVICE_SOURCES, register.getId()));
 
         assertEquals(HttpStatus.OK.value(), response.getStatusCode());
 
         // ask for data sources
 
-        path = RESOURCE_NAMING.CMGMT_GET_DEVICE_DATA_SOURCES.getPath();
-        path = path.replace("{id}", Long.toString(register.getId()));
-
-        response = given().get(path);
+        response = given().get(ResourceUtils.getPath(RESOURCE_NAMING.CMGMT_GET_DEVICE_DATA_SOURCES, register.getId()));
 
         assertEquals(HttpStatus.OK.value(), response.getStatusCode());
 
@@ -207,7 +192,7 @@ public class CMgmtManageIoTDeviceTest extends AbstractTestRestCM {
     private Connection register(Connection connection) {
 
         if (null == connection) {
-            URL url = UtilsUrl.parseUrl("localhost:4999");
+            URL url = UrlUtils.parseUrl("localhost:4999");
 
             connection = new Connection();
             connection.setComponentType(COMPONENT_TYPE.IOT_DEVICE);

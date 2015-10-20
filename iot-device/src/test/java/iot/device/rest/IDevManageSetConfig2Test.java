@@ -30,7 +30,7 @@ import common.data.ConfigurationModification;
 import common.data.Connection;
 import common.data.type.COMPONENT_TYPE;
 import common.rest.RESOURCE_NAMING;
-import common.rest.UtilsUrl;
+import common.rest.UrlUtils;
 import iot.device.ApplicationTestContext;
 import iot.device.property.SensorReservedProperty;
 import iot.device.property.SystemReservedProperty;
@@ -69,12 +69,12 @@ public class IDevManageSetConfig2Test {
         Connection dataSink1 = new Connection();
         dataSink1.setComponentType(COMPONENT_TYPE.EVENT_PROCESSING);
         dataSink1.setName("name ep1");
-        dataSink1.setUrl(UtilsUrl.parseUrl("host:1234"));
+        dataSink1.setUrl(UrlUtils.parseUrl("host:1234"));
 
         Connection dataSink2 = new Connection();
         dataSink2.setComponentType(COMPONENT_TYPE.EVENT_PROCESSING);
         dataSink2.setName("name ep2");
-        dataSink2.setUrl(UtilsUrl.parseUrl("host:1235"));
+        dataSink2.setUrl(UrlUtils.parseUrl("host:1235"));
 
         Properties properties = new Properties();
         properties.put(SensorReservedProperty.SUPPLY_REQ, "Pressure");

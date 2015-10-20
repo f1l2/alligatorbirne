@@ -9,7 +9,6 @@ import static org.junit.Assert.assertNotNull;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.IntegrationTest;
@@ -21,6 +20,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import com.jayway.restassured.response.Response;
 
 import common.rest.RESOURCE_NAMING;
+import common.rest.ResourceUtils;
 import event.processing.AbstractTestRestEP;
 import event.processing.Application;
 import event.processing.query.Query;
@@ -56,10 +56,8 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
     public void registerQuery() {
 
         String query = "CONDITION name = 'device1'";
-        String path = new String(RESOURCE_NAMING.EPROCESSING_REGISTRATION_QUERY.getPath());
-        path = StringUtils.replace(path, "{name}", "query1");
 
-        given().body(query).when().post(path)
+        given().body(query).when().post(ResourceUtils.getPath(RESOURCE_NAMING.EPROCESSING_REGISTRATION_QUERY, queryName))
 
         .then().statusCode(HttpStatus.OK.value());
     }
@@ -68,10 +66,8 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
     public void registerQueryParseError() {
 
         String query = "AVC name = 'device1'";
-        String path = new String(RESOURCE_NAMING.EPROCESSING_REGISTRATION_QUERY.getPath());
-        path = StringUtils.replace(path, "{name}", "query1");
 
-        given().body(query).when().post(path)
+        given().body(query).when().post(ResourceUtils.getPath(RESOURCE_NAMING.EPROCESSING_REGISTRATION_QUERY, queryName))
 
         .then().statusCode(HttpStatus.BAD_REQUEST.value());
     }
@@ -80,8 +76,8 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
     public void registerQueryQueryExistsError() {
 
         String query = "CONDITION name = 'device1'";
-        String path = new String(RESOURCE_NAMING.EPROCESSING_REGISTRATION_QUERY.getPath());
-        path = StringUtils.replace(path, "{name}", "query2");
+
+        String path = ResourceUtils.getPath(RESOURCE_NAMING.EPROCESSING_REGISTRATION_QUERY, queryName);
 
         given().body(query).when().post(path)
 
@@ -95,10 +91,9 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
     @Test
     public void deregisterQuery() {
 
-        String pathDeregister = new String(RESOURCE_NAMING.EPROCESSING_DEREGISTRATION_QUERY.getPath());
-        pathDeregister = StringUtils.replace(pathDeregister, "{name}", "query1");
+        registerQuery();
 
-        when().delete(pathDeregister)
+        when().delete(ResourceUtils.getPath(RESOURCE_NAMING.EPROCESSING_DEREGISTRATION_QUERY, queryName))
 
         .then().statusCode(HttpStatus.OK.value());
     }
@@ -107,10 +102,8 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
     public void registerRule() {
 
         String rule = "query TRIGGERS device1, domain1, configurationManagement1 = 1";
-        String path = new String(RESOURCE_NAMING.EPROCESSING_REGISTRATION_RULE.getPath());
-        path = StringUtils.replace(path, "{name}", "rule1");
 
-        given().body(rule).when().post(path)
+        given().body(rule).when().post(ResourceUtils.getPath(RESOURCE_NAMING.EPROCESSING_REGISTRATION_RULE, ruleName))
 
         .then().statusCode(HttpStatus.OK.value());
     }
@@ -119,14 +112,12 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
     public void registerRuleExistsError() {
 
         String rule = "query TRIGGERS device1, domain1, configurationManagement1 = 1";
-        String path = new String(RESOURCE_NAMING.EPROCESSING_REGISTRATION_RULE.getPath());
-        path = StringUtils.replace(path, "{name}", "rule2");
 
-        given().body(rule).when().post(path)
+        given().body(rule).when().post(ResourceUtils.getPath(RESOURCE_NAMING.EPROCESSING_REGISTRATION_RULE, ruleName))
 
         .then().statusCode(HttpStatus.OK.value());
 
-        given().body(rule).when().post(path)
+        given().body(rule).when().post(ResourceUtils.getPath(RESOURCE_NAMING.EPROCESSING_REGISTRATION_RULE, ruleName))
 
         .then().statusCode(HttpStatus.BAD_REQUEST.value());
 
@@ -134,10 +125,10 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
 
     @Test
     public void deregisterRule() {
-        String pathDeregister = new String(RESOURCE_NAMING.EPROCESSING_DEREGISTRATION_RULE.getPath());
-        pathDeregister = StringUtils.replace(pathDeregister, "{name}", "rule1");
 
-        when().delete(pathDeregister)
+        registerRule();
+
+        when().delete(ResourceUtils.getPath(RESOURCE_NAMING.EPROCESSING_DEREGISTRATION_RULE, ruleName))
 
         .then().statusCode(HttpStatus.OK.value());
     }
@@ -146,25 +137,18 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
     public void activateRule() {
 
         String query = "CONDITION name = 'device1'";
-        String pathQuery = new String(RESOURCE_NAMING.EPROCESSING_REGISTRATION_QUERY.getPath());
-        pathQuery = StringUtils.replace(pathQuery, "{name}", "query3");
 
-        given().body(query).when().post(pathQuery)
+        given().body(query).when().post(ResourceUtils.getPath(RESOURCE_NAMING.EPROCESSING_REGISTRATION_QUERY, queryName))
 
         .then().statusCode(HttpStatus.OK.value());
 
-        String rule = "query3 TRIGGERS device1, domain1, configurationManagement1 = 1";
-        String pathRule = new String(RESOURCE_NAMING.EPROCESSING_REGISTRATION_RULE.getPath());
-        pathRule = StringUtils.replace(pathRule, "{name}", "rule3");
+        String rule = queryName + " TRIGGERS device1, domain1, configurationManagement1 = 1";
 
-        given().body(rule).when().post(pathRule)
+        given().body(rule).when().post(ResourceUtils.getPath(RESOURCE_NAMING.EPROCESSING_REGISTRATION_RULE, ruleName))
 
         .then().statusCode(HttpStatus.OK.value());
 
-        String pathActivate = new String(RESOURCE_NAMING.EPROCESSING_ACTIVATIONS_RULE.getPath());
-        pathActivate = StringUtils.replace(pathActivate, "{name}", "rule3");
-
-        when().get(pathActivate)
+        when().get(ResourceUtils.getPath(RESOURCE_NAMING.EPROCESSING_ACTIVATIONS_RULE, ruleName))
 
         .then().statusCode(HttpStatus.OK.value());
 
@@ -173,10 +157,9 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
     @Test
     public void deactivateRule() {
 
-        String pathDeactivate = new String(RESOURCE_NAMING.EPROCESSING_DEACTIVATIONS_RULE.getPath());
-        pathDeactivate = StringUtils.replace(pathDeactivate, "{name}", "rule3");
+        activateRule();
 
-        when().get(pathDeactivate)
+        when().get(ResourceUtils.getPath(RESOURCE_NAMING.EPROCESSING_DEACTIVATIONS_RULE), ruleName)
 
         .then().statusCode(HttpStatus.OK.value());
 

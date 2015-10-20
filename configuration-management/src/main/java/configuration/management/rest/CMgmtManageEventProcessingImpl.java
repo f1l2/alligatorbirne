@@ -18,7 +18,7 @@ import common.data.ConfigurationDelegation;
 import common.data.Connection;
 import common.data.type.COMPONENT_TYPE;
 import common.rest.RESOURCE_NAMING;
-import common.rest.UtilsResource;
+import common.rest.ResourceUtils;
 import common.transformer.Transformer;
 import configuration.management.repo.EventProcessingRepository;
 import configuration.management.repo.EventProcessingTransformer;
@@ -58,7 +58,7 @@ public class CMgmtManageEventProcessingImpl implements CMgmtManageEventProcessin
     @RequestMapping(value = "/registrations/eventprocessing", method = RequestMethod.GET)
     public @ResponseBody ResponseEntity<List<Connection>> getAll() {
 
-        logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_GET_ALL_EVENT_PROCESSING));
+        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.CMGMT_GET_ALL_EVENT_PROCESSING));
 
         List<Connection> eps = transformer.toRemote(Transformer.makeCollection(eventProcessingRepo.findAll()));
 
@@ -69,7 +69,7 @@ public class CMgmtManageEventProcessingImpl implements CMgmtManageEventProcessin
     @RequestMapping(value = "/registrations/eventprocessing", method = RequestMethod.POST)
     public ResponseEntity<Connection> register(@RequestBody Connection connection) {
 
-        logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_REGISTER_EVENT_PROCESSING));
+        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.CMGMT_REGISTER_EVENT_PROCESSING));
 
         validateConnection.setNextActivity(register);
         validateConnection.setCt(COMPONENT_TYPE.EVENT_PROCESSING);
@@ -81,7 +81,7 @@ public class CMgmtManageEventProcessingImpl implements CMgmtManageEventProcessin
     @RequestMapping(value = "/registrations/eventprocessing/{id}", method = RequestMethod.PUT)
     public ResponseEntity<String> heartbeat(@PathVariable Long id) {
 
-        logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_HEART_BEAT_EVENT_PROCESSING));
+        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.CMGMT_HEART_BEAT_EVENT_PROCESSING));
 
         return heartBeat.doStep(id);
 
@@ -91,7 +91,7 @@ public class CMgmtManageEventProcessingImpl implements CMgmtManageEventProcessin
     @RequestMapping(value = "/delegation", method = RequestMethod.POST)
     public ResponseEntity<ConfigurationDelegation> delegate(@RequestBody ConfigurationDelegation data) {
 
-        logger.info(UtilsResource.getLogMessage(RESOURCE_NAMING.CMGMT_DELEGATION));
+        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.CMGMT_DELEGATION));
 
         validateConfigDelegation.setNextActivity(delegatConfigChange);
 

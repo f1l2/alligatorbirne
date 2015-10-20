@@ -33,6 +33,10 @@ public abstract class AbstractTestRestEP {
     @Value("${local.server.port}")
     protected int port;
 
+    protected String queryName, ruleName;
+
+    protected static int count = 0;
+
     @Before
     public void before() throws IOException {
 
@@ -43,10 +47,19 @@ public abstract class AbstractTestRestEP {
         repo.save("test query", query);
 
         RestAssured.port = port;
+
+        queryName = getUniqueName();
+
+        ruleName = getUniqueName();
     }
 
     @After
     public void after() {
         repo.delete("test query");
+    }
+
+    private String getUniqueName() {
+        count++;
+        return "alligatorbirne" + Integer.toString(count);
     }
 }

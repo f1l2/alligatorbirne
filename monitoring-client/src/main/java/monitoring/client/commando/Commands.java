@@ -21,8 +21,8 @@ import org.springframework.web.client.RestTemplate;
 import common.data.Connection;
 import common.data.type.COMPONENT_TYPE;
 import common.rest.RESOURCE_NAMING;
-import common.rest.UtilsResource;
-import common.rest.UtilsUrl;
+import common.rest.ResourceUtils;
+import common.rest.UrlUtils;
 import monitoring.client.text.table.TextTable;
 
 @Component
@@ -42,12 +42,12 @@ public class Commands implements CommandMarker {
     public void postConstruct() {
         restTemplate = new RestTemplate();
 
-        UtilsUrl.parseUrl(host + ":" + Integer.toString(port));
+        UrlUtils.parseUrl(host + ":" + Integer.toString(port));
 
         cm = new Connection();
         cm.setComponentType(COMPONENT_TYPE.CONFIGURATION_MANAGEMENT);
         cm.setName("CM");
-        cm.setUrl(UtilsUrl.parseUrl(host + ":" + Integer.toString(port)));
+        cm.setUrl(UrlUtils.parseUrl(host + ":" + Integer.toString(port)));
     }
 
     /**
@@ -58,7 +58,7 @@ public class Commands implements CommandMarker {
     @CliCommand(value = "list-ep", help = "Lists all running event processing instances.")
     public String listEP() {
 
-        String url = UtilsResource.getUrl(RESOURCE_NAMING.CMGMT_GET_ALL_EVENT_PROCESSING, cm);
+        String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_GET_ALL_EVENT_PROCESSING, cm);
 
         ResponseEntity<Connection[]> responseEntity = restTemplate.getForEntity(url, Connection[].class);
 
@@ -82,7 +82,7 @@ public class Commands implements CommandMarker {
      */
     @CliCommand(value = "list-dev", help = "Lists all running devices")
     public String listDev() {
-        String url = UtilsResource.getUrl(RESOURCE_NAMING.CMGMT_GET_ALL_DEVICES, cm);
+        String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_GET_ALL_DEVICES, cm);
 
         ResponseEntity<Connection[]> responseEntity = restTemplate.getForEntity(url, Connection[].class);
 
@@ -121,7 +121,7 @@ public class Commands implements CommandMarker {
             return "Couldn't locate EP with id = " + id;
         }
 
-        String url = UtilsResource.getUrl(RESOURCE_NAMING.EPROCESSING_REGISTRATION_QUERY, findById.get());
+        String url = ResourceUtils.getUrl(RESOURCE_NAMING.EPROCESSING_REGISTRATION_QUERY, findById.get());
         url = StringUtils.replace(url, "{name}", queryName);
 
         ResponseEntity<String> postForEntity = restTemplate.postForEntity(url, query, String.class);
@@ -145,7 +145,7 @@ public class Commands implements CommandMarker {
             return "Couldn't locate EP with id = " + id;
         }
 
-        String url = UtilsResource.getUrl(RESOURCE_NAMING.EPROCESSING_GET_ALL_QUERIES, findById.get());
+        String url = ResourceUtils.getUrl(RESOURCE_NAMING.EPROCESSING_GET_ALL_QUERIES, findById.get());
 
         ResponseEntity<Object[]> response = restTemplate.getForEntity(url, Object[].class);
 
@@ -184,7 +184,7 @@ public class Commands implements CommandMarker {
             return "Couldn't locate EP with id = " + id;
         }
 
-        String url = UtilsResource.getUrl(RESOURCE_NAMING.EPROCESSING_REGISTRATION_RULE, findById.get());
+        String url = ResourceUtils.getUrl(RESOURCE_NAMING.EPROCESSING_REGISTRATION_RULE, findById.get());
         url = StringUtils.replace(url, "{name}", ruleName);
 
         ResponseEntity<String> postForEntity = restTemplate.postForEntity(url, rule, String.class);
@@ -208,7 +208,7 @@ public class Commands implements CommandMarker {
             return "Couldn't locate EP with id = " + id;
         }
 
-        String url = UtilsResource.getUrl(RESOURCE_NAMING.EPROCESSING_GET_ALL_RULES, findById.get());
+        String url = ResourceUtils.getUrl(RESOURCE_NAMING.EPROCESSING_GET_ALL_RULES, findById.get());
 
         ResponseEntity<Object[]> response = restTemplate.getForEntity(url, Object[].class);
 
@@ -233,7 +233,7 @@ public class Commands implements CommandMarker {
             return "Couldn't locate device with id = " + id;
         }
 
-        String url = UtilsResource.getUrl(RESOURCE_NAMING.CMGMT_GET_DEVICE_DATA_SOURCES, cm);
+        String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_GET_DEVICE_DATA_SOURCES, cm);
         url = url.replace("{id}", Long.toString(findById.get().getId()));
 
         ResponseEntity<Object[]> response = restTemplate.getForEntity(url, Object[].class);
@@ -282,9 +282,9 @@ public class Commands implements CommandMarker {
     private Optional<Connection> getById(Long id, COMPONENT_TYPE ct) {
         String url;
         if (COMPONENT_TYPE.EVENT_PROCESSING.equals(ct)) {
-            url = UtilsResource.getUrl(RESOURCE_NAMING.CMGMT_GET_ALL_EVENT_PROCESSING, cm);
+            url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_GET_ALL_EVENT_PROCESSING, cm);
         } else if (COMPONENT_TYPE.IOT_DEVICE.equals(ct)) {
-            url = UtilsResource.getUrl(RESOURCE_NAMING.CMGMT_GET_ALL_DEVICES, cm);
+            url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_GET_ALL_DEVICES, cm);
         } else {
             return null;
         }

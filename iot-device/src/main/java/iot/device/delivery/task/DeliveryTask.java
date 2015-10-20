@@ -11,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
 
 import common.data.model.DeviceInformation;
 import common.rest.RESOURCE_NAMING;
-import common.rest.UtilsResource;
+import common.rest.ResourceUtils;
 import iot.device.property.Configuration;
 import iot.device.property.SystemReservedProperty;
 import iot.device.repo.DeliveryTaskRO;
@@ -43,7 +43,7 @@ public class DeliveryTask implements Runnable {
 
     public DeliveryTask(DeliveryTaskRO deliveryTask) {
         this.deliveryTaskRO = deliveryTask;
-        this.deliveryUrl = UtilsResource.getUrl(RESOURCE_NAMING.EPROCESSING_SEND, deliveryTaskRO.getUrlDataSink().getAuthority());
+        this.deliveryUrl = ResourceUtils.getUrl(RESOURCE_NAMING.EPROCESSING_SEND, deliveryTaskRO.getUrlDataSink().getAuthority());
     }
 
     @Override

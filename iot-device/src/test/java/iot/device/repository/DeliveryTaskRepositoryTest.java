@@ -16,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import common.rest.UtilsUrl;
+import common.rest.UrlUtils;
 import iot.device.Application;
 import iot.device.property.Configuration;
 import iot.device.repo.DeliveryTaskRO;
@@ -37,7 +37,7 @@ public class DeliveryTaskRepositoryTest {
     @Before
     public void before() {
 
-        URL url = UtilsUrl.parseUrl("host:2000");
+        URL url = UrlUtils.parseUrl("host:2000");
 
         Properties properties = new Properties();
         properties.put("property1Key", "property1Value");
@@ -53,7 +53,7 @@ public class DeliveryTaskRepositoryTest {
         repo.save(task1);
 
         task2 = new DeliveryTaskRO();
-        task2.setUrlDataSink(UtilsUrl.parseUrl("host:2001"));
+        task2.setUrlDataSink(UrlUtils.parseUrl("host:2001"));
         task2.setConfiguration(configuration);
 
         repo.save(task2);
@@ -78,7 +78,7 @@ public class DeliveryTaskRepositoryTest {
         assertNotNull(results);
         assertEquals(2, results.size());
 
-        task1.setUrlDataSink(UtilsUrl.parseUrl("host:2002"));
+        task1.setUrlDataSink(UrlUtils.parseUrl("host:2002"));
 
         repo.save(task1);
 

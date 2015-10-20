@@ -31,7 +31,7 @@ import common.data.ConfigurationModification;
 import common.data.Connection;
 import common.data.type.COMPONENT_TYPE;
 import common.rest.RESOURCE_NAMING;
-import common.rest.UtilsUrl;
+import common.rest.UrlUtils;
 import iot.device.ApplicationTestContext;
 import iot.device.repo.DeliveryTaskRO;
 
@@ -59,7 +59,7 @@ public class IDevManageConfigTest {
         Connection dataSink = new Connection();
         dataSink.setComponentType(COMPONENT_TYPE.EVENT_PROCESSING);
         dataSink.setName("name ep");
-        dataSink.setUrl(UtilsUrl.parseUrl("host:1234"));
+        dataSink.setUrl(UrlUtils.parseUrl("host:1234"));
 
         Properties properties = new Properties();
         properties.put("key", "value");

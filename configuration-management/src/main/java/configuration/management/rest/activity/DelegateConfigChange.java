@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 import common.data.ConfigurationDelegation;
 import common.data.Connection;
 import common.rest.RESOURCE_NAMING;
-import common.rest.UtilsResource;
+import common.rest.ResourceUtils;
 import configuration.management.model.IoTDeviceRO;
 import configuration.management.repo.IoTDeviceRepository;
 import configuration.management.repo.IoTDeviceTransformer;
@@ -38,7 +38,7 @@ public class DelegateConfigChange extends Activity<ConfigurationDelegation, Conf
         for (Connection connection : connectionsToBeContacted) {
             try {
                 RestTemplate restTemplate = new RestTemplate();
-                String url = UtilsResource.getUrl(RESOURCE_NAMING.IDEV_SET_CONFIGURATION, connection.getUrl().getAuthority());
+                String url = ResourceUtils.getUrl(RESOURCE_NAMING.IDEV_SET_CONFIGURATION, connection.getUrl().getAuthority());
                 ResponseEntity<String> response = restTemplate.postForEntity(url, item.getConfigurationModification(), String.class);
                 logger.info("Device notification - " + url + " Status: " + response.getStatusCode() + " Response body: " + response.getBody());
             } catch (Exception e) {
