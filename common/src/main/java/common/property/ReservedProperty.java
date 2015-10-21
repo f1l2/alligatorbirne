@@ -1,4 +1,4 @@
-package iot.device.property;
+package common.property;
 
 public enum ReservedProperty {
 

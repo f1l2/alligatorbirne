@@ -1,11 +1,15 @@
 package iot.device.rest.activity;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 @Component
 public abstract class Activity<T1, T2> {
+
+    final static Logger logger = LoggerFactory.getLogger(Activity.class);
 
     private ResponseEntity<T1> errorResponse;
 
@@ -16,8 +20,14 @@ public abstract class Activity<T1, T2> {
     public ResponseEntity<T1> next(T1 response, T2 item) {
 
         if (null != errorResponse) {
+
+            logger.error("{}", errorResponse);
+
             return errorResponse;
         } else if (null != nextActivity) {
+
+            logger.info("Do next step in chain: {}", nextActivity.getClass().getSimpleName());
+
             return nextActivity.doStep(item);
         } else {
             return new ResponseEntity<T1>(response, HttpStatus.OK);

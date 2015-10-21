@@ -1,4 +1,4 @@
-package iot.device.property;
+package common.property;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -18,9 +18,14 @@ public class ValidateConfigDelegation extends Activity<ConfigurationDelegation, 
 
         if (null == item.getConfigurationModification()) {
             logger.error("Delegation failed due missing ConfigurationModification authority");
-            return new ResponseEntity<ConfigurationDelegation>(item, HttpStatus.BAD_REQUEST);
+            this.setErrorResponse(new ResponseEntity<ConfigurationDelegation>(item, HttpStatus.BAD_REQUEST));
+        } else if ((null == item.getDeviceInformation()) || (null == item.getDeviceInformation().getName())) {
+            logger.error("Delegation failed due missing DeviceInformation");
+            this.setErrorResponse(new ResponseEntity<ConfigurationDelegation>(item, HttpStatus.BAD_REQUEST));
+        } else if ((null == item.getDomainInformation()) || (null == item.getDomainInformation().getName())) {
+            logger.error("Delegation failed due missing DomainInformation");
+            this.setErrorResponse(new ResponseEntity<ConfigurationDelegation>(item, HttpStatus.BAD_REQUEST));
         }
-
         return next(item, item);
     }
 

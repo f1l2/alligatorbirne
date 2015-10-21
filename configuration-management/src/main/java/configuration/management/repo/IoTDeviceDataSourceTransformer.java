@@ -19,8 +19,20 @@ public class IoTDeviceDataSourceTransformer extends Transformer<IoTDeviceDataSou
     public IoTDeviceDataSourceRO toLocal(DataSource remote) {
 
         IoTDeviceDataSourceRO item = new IoTDeviceDataSourceRO();
-        item.setDevice(remote.getDeviceInformation().getName());
-        item.setDomain(remote.getDomainInformation().getName());
+
+        /**
+         * 
+         * Everything to lower case to be not case sensitive.
+         */
+
+        String name = remote.getDeviceInformation().getName();
+        if (null != name) {
+            item.setDevice(name.toLowerCase());
+        }
+        name = remote.getDomainInformation().getName();
+        if (null != name) {
+            item.setDomain(name.toLowerCase());
+        }
 
         return item;
     }

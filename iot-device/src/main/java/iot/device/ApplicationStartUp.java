@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import common.component.ApplicationStartUpUtils;
 import common.data.setting.SettingUtils;
+import iot.device.sensor.DynamicSensorFactory;
 import iot.device.status.STATUS_TYPE;
 import iot.device.status.Status;
 
@@ -21,7 +22,7 @@ public class ApplicationStartUp implements ApplicationListener<EmbeddedServletCo
     private Status status;
 
     @Autowired
-    private SensorRegistry sensorRegistry;
+    private DynamicSensorFactory dsf;
 
     @Override
     public void onApplicationEvent(EmbeddedServletContainerInitializedEvent arg0) {
@@ -41,7 +42,7 @@ public class ApplicationStartUp implements ApplicationListener<EmbeddedServletCo
          * For further use, objects get addressed via class name.
          *
          **/
-        sensorRegistry.instantiate();
+        dsf.instantiate();
     }
 
 }

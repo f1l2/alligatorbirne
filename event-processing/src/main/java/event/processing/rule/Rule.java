@@ -3,13 +3,12 @@ package event.processing.rule;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.client.RestTemplate;
 
-import common.data.ConfigurationDelegation;
-import common.data.ConfigurationModification;
 import common.data.Connection;
-import common.data.model.DeviceInformation;
-import common.data.model.DomainInformation;
+import common.data.builder.CDBuilder;
 import common.data.setting.SettingUtils;
 import common.rest.RESOURCE_NAMING;
 import common.rest.ResourceUtils;
@@ -17,6 +16,8 @@ import event.processing.engine.EngineListener;
 import event.processing.rule.model.Reaction;
 
 public class Rule extends EngineListener {
+
+    private static final Logger logger = LoggerFactory.getLogger(Rule.class);
 
     /**
      * Enum Keywords
@@ -77,6 +78,8 @@ public class Rule extends EngineListener {
     @Override
     public void trigger() {
 
+        logger.info("Rule is triggered. Rule: {}", this.toString());
+
         try {
 
             Connection local = SettingUtils.getLocalConnection();
@@ -87,30 +90,20 @@ public class Rule extends EngineListener {
             RestTemplate restTemplate = new RestTemplate();
 
             for (Reaction reaction : reactions) {
-                restTemplate.postForEntity(url, getConfiguraitonDelegation(reaction, local), Connection.class);
+                CDBuilder cDBuilder = new CDBuilder();
+                cDBuilder.buildDeviceInformation(reaction.getDeviceInformation())
+                        //
+                        .buildDomainInformation(reaction.getDomainInformation())
+                        //
+                        .buildConfigurationModification(local, reaction.getConfigurationModification());
+
+                restTemplate.postForEntity(url, cDBuilder.getResult(), Connection.class);
             }
 
         } catch (Exception ex) {
-            System.out.println(ex);
+            logger.error("Error telling CM that Rule was triggered. Rule: {}", this.toString());
         }
 
     }
 
-    private ConfigurationDelegation getConfiguraitonDelegation(Reaction reaction, Connection local) {
-
-        DeviceInformation deviceInformation = new DeviceInformation();
-        deviceInformation.setName(reaction.getDeviceInformation());
-        DomainInformation domainInformation = new DomainInformation();
-        domainInformation.setName(reaction.getDomainInformation());
-        ConfigurationModification configuraitonModification = new ConfigurationModification();
-        configuraitonModification.setProperties(reaction.getConfigurationModification());
-        configuraitonModification.setDataSink(local);
-
-        ConfigurationDelegation cd = new ConfigurationDelegation();
-        cd.setDeviceInformation(deviceInformation);
-        cd.setDomainInformation(domainInformation);
-        cd.setConfigurationModification(configuraitonModification);
-
-        return cd;
-    }
 }

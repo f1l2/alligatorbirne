@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import iot.device.sensor.Sensor;
 
 @Component
-public class Temperatur extends Sensor<Integer> {
+public class Temperature extends Sensor<Integer> {
 
     @Override
     public Integer getRawValue() {

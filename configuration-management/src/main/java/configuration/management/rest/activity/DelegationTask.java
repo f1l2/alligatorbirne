@@ -31,6 +31,9 @@ public class DelegationTask implements Runnable {
         RestTemplate restTemplate = new RestTemplate();
 
         for (Connection connection : connections) {
+
+            logger.info("Delegate configuration modification for {}", connection.getUrl().getAuthority());
+
             try {
                 String url = ResourceUtils.getUrl(RESOURCE_NAMING.IDEV_SET_CONFIGURATION, connection.getUrl().getAuthority());
                 ResponseEntity<String> response = restTemplate.postForEntity(url, cm, String.class);

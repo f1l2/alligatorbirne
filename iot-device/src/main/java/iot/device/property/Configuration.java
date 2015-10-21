@@ -1,15 +1,18 @@
 package iot.device.property;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Properties;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+import common.property.SensorReservedProperty;
+import common.property.SystemReservedProperty;
 import iot.device.deserializer.ArrayMapDeserializerStringInteger;
 import iot.device.deserializer.ArrayMapDeserializerStringString;
 
@@ -49,8 +52,9 @@ public class Configuration {
         return systemReservedProperties.get(srp.name());
     }
 
-    public Set<String> getSupplyingSensor() {
-        return supplyingSensor.values().stream().collect(Collectors.toSet());
+    public List<String> getSupplyingSensor() {
+
+        return supplyingSensor.entrySet().stream().map(Map.Entry::getValue).collect(Collectors.toList());
     }
 
     public void setAndUpdateProperties(Properties prop) {
@@ -70,7 +74,7 @@ public class Configuration {
 
                 }
 
-            } else if ((key instanceof String) && (SensorReservedProperty.SUPPLY_REQ.name().equals((String) key))) {
+            } else if ((key instanceof String) && (SensorReservedProperty.SUPPLY_REQ.getName().equals((String) key))) {
 
                 try {
                     mergeSupplyingSensorProperties((String) key, (String) value);
@@ -94,6 +98,21 @@ public class Configuration {
 
         return prop;
 
+    }
+
+    @Override
+    public String toString() {
+
+        StringBuilder sb = new StringBuilder();
+
+        for (Entry<Object, Object> e : getProperties().entrySet()) {
+            sb.append(e.getKey());
+            sb.append(" - ");
+            sb.append(e.getValue());
+            sb.append("\n");
+        }
+
+        return sb.toString();
     }
 
     private void mergeSystemReservedProperties(String key, int value) {

@@ -31,7 +31,13 @@ public class DelegateConfigChange extends Activity<ConfigurationDelegation, Conf
     @Override
     public ResponseEntity<ConfigurationDelegation> doStep(ConfigurationDelegation item) {
 
-        List<IoTDeviceRO> devicesToBeContacted = deviceRepo.findByIoTDeviceDataSources(item.getDeviceInformation().getName(), item.getDomainInformation().getName());
+        /**
+         * No worry about NPE because item was already checked during validations step.
+         */
+
+        List<IoTDeviceRO> devicesToBeContacted = deviceRepo.findByIoTDeviceDataSources(item.getDeviceInformation().getName().toLowerCase(),
+                //
+                item.getDomainInformation().getName().toLowerCase());
 
         List<Connection> connectionsToBeContacted = transformer.toRemote(devicesToBeContacted);
 

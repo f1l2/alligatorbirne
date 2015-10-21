@@ -9,7 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import common.property.SensorReservedProperty;
+import common.property.SystemReservedProperty;
 import iot.device.ApplicationTestContext;
+import iot.device.sensor.SensorUtils;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = ApplicationTestContext.class)
@@ -50,6 +53,27 @@ public class PropertyTest {
         configuration.setAndUpdateProperties(newProperties);
 
         Assert.assertEquals(5 * 1000, configuration.getProperties().get(SystemReservedProperty.TASK_INTERVAL_MS.name()));
+
+    }
+
+    @Test
+    public void getSensorReservedProperties() {
+
+        Properties newProperties = new Properties();
+        newProperties.put(SensorReservedProperty.SUPPLY_REQ.getName(), "TEMPERATURE");
+
+        configuration.setAndUpdateProperties(newProperties);
+
+        Assert.assertEquals(1, configuration.getSupplyingSensor().size());
+
+    }
+
+    @Test
+    public void convertToClassName() {
+
+        Assert.assertEquals("Sensor", SensorUtils.convertToClassName("SENSOR"));
+        Assert.assertEquals("Sensor", SensorUtils.convertToClassName("seNSOR"));
+        Assert.assertEquals("S", SensorUtils.convertToClassName("s"));
 
     }
 

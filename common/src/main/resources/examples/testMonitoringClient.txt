@@ -4,8 +4,10 @@ list-ep
 
 list-ds --devId 1
 
-list-dev-by --devInfo SENSOR --domInfo FLOOR1
+list-dev-by --devInfo Temperture --domInfo FLOOR1
 
-rq --epId 1 --query "CONDITION name = 'SENSOR'" --queryName query1
+rq --epId 1 --query "CONDITION name = 'Temperature'" --queryName query1
 
-rr --epId 1 --rule 'query1 TRIGGERS SENSOR, FLOOR1, property = 1' --ruleName rule1
+rr --epId 1 --rule 'query1 TRIGGERS Temperature, FLOOR1, property = 1' --ruleName rule1
+
+activate-rule --epId 1 --ruleName rule1

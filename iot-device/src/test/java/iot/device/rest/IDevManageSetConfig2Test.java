@@ -29,11 +29,11 @@ import com.jayway.restassured.response.ResponseBodyExtractionOptions;
 import common.data.ConfigurationModification;
 import common.data.Connection;
 import common.data.type.COMPONENT_TYPE;
+import common.property.SensorReservedProperty;
+import common.property.SystemReservedProperty;
 import common.rest.RESOURCE_NAMING;
 import common.rest.UrlUtils;
 import iot.device.ApplicationTestContext;
-import iot.device.property.SensorReservedProperty;
-import iot.device.property.SystemReservedProperty;
 import iot.device.status.STATUS_TYPE;
 import iot.device.status.Status;
 import iot.device.vt.VtData;
@@ -77,7 +77,7 @@ public class IDevManageSetConfig2Test {
         dataSink2.setUrl(UrlUtils.parseUrl("host:1235"));
 
         Properties properties = new Properties();
-        properties.put(SensorReservedProperty.SUPPLY_REQ, "Pressure");
+        properties.put(SensorReservedProperty.SUPPLY_REQ.getName(), "pressure");
         properties.put(SystemReservedProperty.TASK_INTERVAL_MS.name(), 500);
 
         cm1 = new ConfigurationModification();

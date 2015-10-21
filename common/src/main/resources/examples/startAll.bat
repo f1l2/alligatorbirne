@@ -1,5 +1,5 @@
-start cmd.exe /k "startCM"
+/k "startCM"
 TIMEOUT 5
-start cmd.exe /k "startEP"
+/k "startEP"
 TIMEOUT 5
-start cmd.exe /k "startIoTD"
+/k "startIoTD"

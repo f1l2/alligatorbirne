@@ -3,7 +3,7 @@
     <dataSources>
         <dataSource>
             <deviceInformation>
-                <name>SENSOR</name>
+                <name>Temperature</name>
             </deviceInformation>
             <domainInformation>
                 <name>FLOOR1</name>

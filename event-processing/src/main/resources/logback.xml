@@ -8,7 +8,7 @@
 	</appender>
 
 	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>logback.log</file>
+		<file>logs/ep.log</file>
 
 	    <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
 	      <fileNamePattern>${logback.file}.%i.zip</fileNamePattern>
@@ -29,7 +29,7 @@
 
 	<root>
 		<level value="ERROR" />
-		<appender-ref ref="CON" />
+		<appender-ref ref="FILE" />
 	</root>
 	 	
 </configuration>

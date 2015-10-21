@@ -19,11 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import common.data.ConfigurationDelegation;
-import common.data.ConfigurationModification;
 import common.data.Connection;
-import common.data.model.DeviceInformation;
-import common.data.model.DomainInformation;
+import common.data.builder.CDBuilder;
 import common.data.setting.SettingUtils;
+import common.data.type.COMPONENT_TYPE;
 import common.rest.RESOURCE_NAMING;
 import common.rest.ResourceUtils;
 import event.processing.engine.EngineFactory;
@@ -161,6 +160,7 @@ public class EProcManageStatementImpl implements EProcManageStatement {
             RestTemplate restTemplate = new RestTemplate();
 
             Connection local = SettingUtils.getLocalConnection();
+            local.setComponentType(COMPONENT_TYPE.EVENT_PROCESSING);
             Connection cm = SettingUtils.getCMConnection();
 
             String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_DELEGATION, cm);
@@ -173,13 +173,23 @@ public class EProcManageStatementImpl implements EProcManageStatement {
 
                 for (Reaction reaction : rule.getReactions()) {
 
-                    ConfigurationDelegation createCD = createCD(reaction, local);
-                    restTemplate.postForEntity(url, createCD(reaction, local), ConfigurationDelegation.class);
+                    /**
+                     * First configuration change is used for startup. Therefore ignore property part in reaction.
+                     */
+
+                    CDBuilder cDBuilder = new CDBuilder();
+                    cDBuilder.buildDeviceInformation(reaction.getDeviceInformation())
+                            //
+                            .buildDomainInformation(reaction.getDomainInformation())
+                            //
+                            .buildConfigurationModification(local, reaction.getDeviceInformation());
+
+                    restTemplate.postForEntity(url, cDBuilder.getResult(), ConfigurationDelegation.class);
                 }
             }
 
         } catch (Exception e) {
-            logger.error(e.getMessage());
+            logger.error("{}", e);
             return EP_ERROR_CODES.ERROR_ACTIVATE.getErrorResponse();
         }
 
@@ -311,25 +321,4 @@ public class EProcManageStatementImpl implements EProcManageStatement {
 
         return ruleRepository.findAll();
     }
-
-    private ConfigurationDelegation createCD(Reaction reaction, Connection c) {
-
-        DeviceInformation devInfo = new DeviceInformation();
-        devInfo.setName(reaction.getDeviceInformation());
-
-        DomainInformation domInfo = new DomainInformation();
-        domInfo.setName(reaction.getDomainInformation());
-
-        ConfigurationModification cm = new ConfigurationModification();
-        cm.setDataSink(c);
-        cm.setProperties(reaction.getConfigurationModification());
-
-        ConfigurationDelegation cd = new ConfigurationDelegation();
-        cd.setConfigurationModification(cm);
-        cd.setDeviceInformation(devInfo);
-        cd.setDomainInformation(domInfo);
-        return cd;
-
-    }
-
 }

@@ -1,4 +1,4 @@
-package iot.device.property;
+package common.property;
 
 public enum SensorReservedProperty {
     SUPPLY_REQ("SUPPLYING");

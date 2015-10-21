@@ -177,14 +177,14 @@
 	            		<goals>
 	              			<goal>copy-resources</goal>
 	            		</goals>
-	            		<configuration>
+	            		<configuration>            	
 	              			<outputDirectory>${main.basedir}/workbench</outputDirectory>
+	              			
 	              			<resources>          
 	                			<resource>
 	                  				<directory>${project.basedir}/src/main/resources/examples</directory>
 	                  				<filtering>true</filtering>
 	                			</resource>
-	                			
 	              			</resources>              
 	            		</configuration>            
           			</execution>
@@ -224,8 +224,7 @@
           			</execution>
          -->  			
         		</executions>
-      		</plugin>
-      		
+      		</plugin> 
     	</plugins>   
     </build>
 </project>
