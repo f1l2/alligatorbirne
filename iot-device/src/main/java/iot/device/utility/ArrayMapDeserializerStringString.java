@@ -1,4 +1,4 @@
-package iot.device.deserializer;
+package iot.device.utility;
 
 import java.io.IOException;
 import java.util.HashMap;

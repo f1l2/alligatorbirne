@@ -15,6 +15,8 @@ public abstract class Transformer<LOCAL, REMOTE> {
 
     final static Logger logger = LoggerFactory.getLogger(Transformer.class);
 
+    protected static final String nullString = "null";
+
     public abstract LOCAL toLocal(REMOTE remote);
 
     public abstract REMOTE toRemote(LOCAL local);

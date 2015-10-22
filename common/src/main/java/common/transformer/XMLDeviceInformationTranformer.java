@@ -21,12 +21,12 @@ public class XMLDeviceInformationTranformer extends Transformer<XMLDeviceInforma
     @Override
     public DeviceInformation toRemote(XMLDeviceInformation local) {
 
-        if (null == local) {
-            return null;
-        }
-
         DeviceInformation deviceInformation = new DeviceInformation();
-        deviceInformation.setName(local.getName());
+        if (null == local) {
+            deviceInformation.setName(nullString);
+        } else {
+            deviceInformation.setName(local.getName());
+        }
 
         return deviceInformation;
     }

@@ -7,7 +7,7 @@ public abstract class Sensor<T> {
 
     public abstract T getRawValue();
 
-    public abstract String getValue();
+    public abstract Integer getValue();
 
     @Override
     public String toString() {

@@ -13,4 +13,9 @@ public class DomainInformation extends DataModel {
     public void setType(DOMAIN_INFORMATION_TYPE type) {
         this.type = type;
     }
+
+    @Override
+    public String toString() {
+        return "DomainInformation [id=" + id + ", name=" + name + ", type=" + type + "]";
+    }
 }

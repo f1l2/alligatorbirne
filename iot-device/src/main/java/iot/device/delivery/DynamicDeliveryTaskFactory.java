@@ -1,4 +1,4 @@
-package iot.device.delivery.task;
+package iot.device.delivery;
 
 import java.util.Arrays;
 

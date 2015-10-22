@@ -5,6 +5,7 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.xml.bind.JAXBException;
 
@@ -155,7 +156,7 @@ public class SettingUtils {
      * 
      * @throws SAXException
      */
-    public static DataSources loadMeasurementData() throws MalformedURLException, JAXBException, SAXException {
+    public static DataSources loadDataSources() throws MalformedURLException, JAXBException, SAXException {
 
         final XMLSetting xMLsetting = loadSettingNative();
         final XMLDataSourceTransformer transformer = new XMLDataSourceTransformer();
@@ -224,4 +225,15 @@ public class SettingUtils {
         SettingUtils.saveSettingNative(transformer.toLocal(setting));
     }
 
+    public static List<DataSource> loadDataSourcesByDeviceInformation(String deviceInformation) throws MalformedURLException, JAXBException, SAXException {
+
+        List<DataSource> dataSources = loadDataSources().getDataSources();
+
+        final String devInfo = deviceInformation.toLowerCase();
+
+        List<DataSource> result = dataSources.stream().filter(item -> devInfo.equals(item.getDeviceInformation().getName().toLowerCase())).collect(Collectors.toList());
+
+        return result;
+
+    }
 }

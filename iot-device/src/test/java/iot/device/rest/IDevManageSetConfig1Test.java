@@ -38,8 +38,8 @@ import common.rest.UrlUtils;
 import iot.device.ApplicationTestContext;
 import iot.device.status.STATUS_TYPE;
 import iot.device.status.Status;
-import iot.device.vt.VtData;
-import iot.device.vt.VtEP;
+import iot.device.utility.VirtualData;
+import iot.device.utility.VirtualEP;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = ApplicationTestContext.class)
@@ -95,8 +95,8 @@ public class IDevManageSetConfig1Test {
     @After
     public void after() {
 
-        VtEP.setData(new ArrayList<VtData>());
-        VtEP.setMap(new LinkedMultiValueMap<String, VtData>());
+        VirtualEP.setData(new ArrayList<VirtualData>());
+        VirtualEP.setMap(new LinkedMultiValueMap<String, VirtualData>());
 
     }
 
@@ -105,8 +105,8 @@ public class IDevManageSetConfig1Test {
 
         Thread.sleep(1500);
 
-        VtData first = VtEP.getLast();
-        VtData second = VtEP.getSecondLast();
+        VirtualData first = VirtualEP.getLast();
+        VirtualData second = VirtualEP.getSecondLast();
         Instant between = first.getTimeStamp().minusNanos(second.getTimeStamp().getNano());
 
         int ms = between.getNano() / (1000 * 1000);
@@ -132,12 +132,12 @@ public class IDevManageSetConfig1Test {
 
         Thread.sleep(2000);
 
-        first = VtEP.getLast();
-        second = VtEP.getSecondLast();
+        first = VirtualEP.getLast();
+        second = VirtualEP.getSecondLast();
         between = first.getTimeStamp().minusSeconds(second.getTimeStamp().getEpochSecond());
         assertEquals(1, between.getEpochSecond());
 
-        assertEquals(1, VtEP.getMap().size());
+        assertEquals(1, VirtualEP.getMap().size());
     }
 
 }

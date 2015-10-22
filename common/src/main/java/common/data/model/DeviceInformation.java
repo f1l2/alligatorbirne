@@ -4,7 +4,7 @@ import common.data.type.DEVICE_INFORMATION_TYPE;
 
 public class DeviceInformation extends DataModel {
 
-    private String value;
+    private Integer value;
 
     private DEVICE_INFORMATION_TYPE type;
 
@@ -16,12 +16,16 @@ public class DeviceInformation extends DataModel {
         this.type = type;
     }
 
-    public String getValue() {
+    public Integer getValue() {
         return value;
     }
 
-    public void setValue(String value) {
+    public void setValue(Integer value) {
         this.value = value;
     }
 
+    @Override
+    public String toString() {
+        return "DeviceInformation [id=" + id + ", name=" + name + ", value=" + value + ", type=" + type + "]";
+    }
 }

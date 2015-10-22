@@ -229,7 +229,6 @@ public class Commands implements CommandMarker {
         } catch (CommandsException e) {
             return e.getMessage();
         }
-
     }
 
     @CliCommand(value = "list-dev-by", help = "retrieves data sources by id")

@@ -85,7 +85,7 @@ public class ApplicationScheduler {
 
                 logger.info("Convey data sources ...");
 
-                DataSources data = SettingUtils.loadMeasurementData();
+                DataSources data = SettingUtils.loadDataSources();
 
                 Connection cmConnection = SettingUtils.getCMConnection();
                 String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_REGISTER_DEVICE_SOURCES, cmConnection);

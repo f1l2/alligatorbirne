@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 
 import common.data.ConfigurationModification;
 import iot.device.ApplicationConfig;
-import iot.device.delivery.task.DeliveryTask;
-import iot.device.delivery.task.DynamicDeliveryTaskFactory;
+import iot.device.delivery.DeliveryTask;
+import iot.device.delivery.DynamicDeliveryTaskFactory;
 import iot.device.repo.DeliveryTaskRO;
 import iot.device.repo.DeliveryTaskRepositoryImpl;
 import iot.device.repo.DeliveryTaskTransformer;

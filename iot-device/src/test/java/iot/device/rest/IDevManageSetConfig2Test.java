@@ -36,8 +36,8 @@ import common.rest.UrlUtils;
 import iot.device.ApplicationTestContext;
 import iot.device.status.STATUS_TYPE;
 import iot.device.status.Status;
-import iot.device.vt.VtData;
-import iot.device.vt.VtEP;
+import iot.device.utility.VirtualData;
+import iot.device.utility.VirtualEP;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = ApplicationTestContext.class)
@@ -114,8 +114,8 @@ public class IDevManageSetConfig2Test {
 
     @After
     public void after() {
-        VtEP.setData(new ArrayList<VtData>());
-        VtEP.setMap(new LinkedMultiValueMap<String, VtData>());
+        VirtualEP.setData(new ArrayList<VirtualData>());
+        VirtualEP.setMap(new LinkedMultiValueMap<String, VirtualData>());
     }
 
     @Test
@@ -123,7 +123,7 @@ public class IDevManageSetConfig2Test {
 
         Thread.sleep(500);
 
-        assertEquals(2, VtEP.getMap().size());
+        assertEquals(2, VirtualEP.getMap().size());
 
     }
 

@@ -17,7 +17,7 @@ public class XMLDataSourceTransformer extends Transformer<XMLDataSource, DataSou
     public DataSource toRemote(XMLDataSource local) {
 
         if (null == local) {
-            return null;
+            return new DataSource();
         }
 
         DataSource dataSource = new DataSource();

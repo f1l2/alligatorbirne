@@ -1,10 +1,10 @@
-package iot.device.vt;
+package iot.device.utility;
 
 import java.time.Instant;
 
 import common.data.model.DeviceInformation;
 
-public class VtData {
+public class VirtualData {
 
     private DeviceInformation devInfo;
 
@@ -12,7 +12,7 @@ public class VtData {
 
     private Instant timeStamp;
 
-    public VtData(DeviceInformation devInfo, String url, Instant timeStamp) {
+    public VirtualData(DeviceInformation devInfo, String url, Instant timeStamp) {
         this.devInfo = devInfo;
         this.url = url;
         this.timeStamp = timeStamp;

@@ -29,6 +29,12 @@ public class EProcManageDataImpl implements EProcManageData {
 
         logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.EPROCESSING_SEND));
 
+        if ((null != dataSource) && (null != dataSource.getDeviceInformation())) {
+            logger.info(dataSource.getDeviceInformation().toString());
+        } else {
+            logger.info("DeviceInformation is null.");
+        }
+
         factory.getEngine().send(dataSource);
 
     }

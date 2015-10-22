@@ -13,8 +13,8 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import common.property.SensorReservedProperty;
 import common.property.SystemReservedProperty;
-import iot.device.deserializer.ArrayMapDeserializerStringInteger;
-import iot.device.deserializer.ArrayMapDeserializerStringString;
+import iot.device.utility.ArrayMapDeserializerStringInteger;
+import iot.device.utility.ArrayMapDeserializerStringString;
 
 @Component
 public class Configuration {
@@ -109,7 +109,7 @@ public class Configuration {
             sb.append(e.getKey());
             sb.append(" - ");
             sb.append(e.getValue());
-            sb.append("\n");
+            sb.append("; ");
         }
 
         return sb.toString();

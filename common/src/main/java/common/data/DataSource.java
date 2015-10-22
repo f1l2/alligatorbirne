@@ -33,4 +33,9 @@ public class DataSource {
     public void setDeviceInformation(DeviceInformation deviceInformation) {
         this.deviceInformation = deviceInformation;
     }
+
+    @Override
+    public String toString() {
+        return "DataSource [domainInformation=" + domainInformation + ", deviceInformation=" + deviceInformation + "]";
+    }
 }
