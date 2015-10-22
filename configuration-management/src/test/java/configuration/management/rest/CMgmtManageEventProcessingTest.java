@@ -140,9 +140,4 @@ public class CMgmtManageEventProcessingTest extends AbstractTestRestCM {
         return response.getBody().as(Connection.class);
     }
 
-    @Test
-    public void delegate() {
-        // TODO
-    }
-
 }

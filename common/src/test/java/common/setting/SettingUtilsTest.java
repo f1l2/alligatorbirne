@@ -1,4 +1,4 @@
-package common.configuration;
+package common.setting;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -202,6 +202,37 @@ public class SettingUtilsTest {
 
         Assert.assertNotNull(result);
         Assert.assertEquals(2, result.size());
+
+    }
+
+    @Test
+    public void loadDomainsByDeviceInformation() throws JAXBException, SAXException, MalformedURLException {
+
+        String name = "blablablablablabla";
+
+        DeviceInformation deviceInformation = new DeviceInformation();
+        deviceInformation.setName(name);
+        deviceInformation.setType(DEVICE_INFORMATION_TYPE.SENSOR);
+
+        DomainInformation domainInformation = new DomainInformation();
+        domainInformation.setName("DOMAIN 1");
+        domainInformation.setType(DOMAIN_INFORMATION_TYPE.FIRST_FLOOR);
+
+        DataSource dataSource = new DataSource();
+        dataSource.setDeviceInformation(deviceInformation);
+        dataSource.setDomainInformation(domainInformation);
+
+        setting.getDataSources().add(dataSource);
+
+        SettingUtils.setPATH_TO_SETTING_FILE(PATH_TO_TEST_OUTPUT);
+
+        SettingUtils.saveSetting(setting);
+
+        List<DomainInformation> result = SettingUtils.loadDomainsByDeviceInformation(name);
+
+        Assert.assertNotNull(result);
+        Assert.assertEquals(1, result.size());
+        Assert.assertEquals("DOMAIN 1", result.get(0).getName());
 
     }
 

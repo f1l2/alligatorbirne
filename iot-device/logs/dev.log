@@ -693,3 +693,1291 @@ SUPPLYING - Pressure
  
 21.10.2015 18:47:27.585 [INFO ] [taskExecutor-1 ] ice.delivery.task.DeliveryTask - Status: TEST 
 21.10.2015 18:47:27.585 [INFO ] [taskExecutor-1 ] ice.delivery.task.DeliveryTask - pressure 
+22.10.2015 17:07:46.914 [INFO ] [main           ] t.device.property.PropertyTest - Starting PropertyTest on Manuel-PC with PID 4376 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+22.10.2015 17:07:48.879 [INFO ] [main           ] t.device.property.PropertyTest - Started PropertyTest in 2.131 seconds (JVM running for 2.952) 
+22.10.2015 17:07:48.991 [INFO ] [main           ] d.r.DeliveryTaskRepositoryTest - Starting DeliveryTaskRepositoryTest on Manuel-PC with PID 4376 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+22.10.2015 17:07:49.320 [INFO ] [main           ] d.r.DeliveryTaskRepositoryTest - Started DeliveryTaskRepositoryTest in 0.356 seconds (JVM running for 3.393) 
+22.10.2015 17:07:51.949 [INFO ] [main           ] .rest.IDevManageConfigFailTest - Starting IDevManageConfigFailTest on Manuel-PC with PID 4376 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+22.10.2015 17:07:54.808 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+22.10.2015 17:07:54.809 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+22.10.2015 17:07:54.809 [INFO ] [main           ] .rest.IDevManageConfigFailTest - Started IDevManageConfigFailTest in 2.905 seconds (JVM running for 8.881) 
+22.10.2015 17:07:55.012 [INFO ] [pool-3-thread-1] ot.device.ApplicationScheduler - Retrieve local connection data ...  
+22.10.2015 17:07:55.013 [INFO ] [pool-3-thread-1] ot.device.ApplicationScheduler - Connection [id=0, name=localConnection, url=http://192.168.56.1:2005/, type=IOT_DEVICE] 
+22.10.2015 17:07:55.028 [INFO ] [pool-3-thread-1] ot.device.ApplicationScheduler - Load CM connection data ... 
+22.10.2015 17:07:55.028 [INFO ] [pool-3-thread-1] ot.device.ApplicationScheduler - Connection [id=0, name=Name, url=http://127.0.0.1:5000/, type=CONFIGURATION_MANAGEMENT] 
+22.10.2015 17:07:56.001 [INFO ] [pool-3-thread-1] ot.device.ApplicationScheduler - Try to register device ... 
+22.10.2015 17:07:56.001 [INFO ] [pool-3-thread-1] ot.device.ApplicationScheduler - http://127.0.0.1:5000/registrations/devices 
+22.10.2015 17:07:56.420 [INFO ] [o-auto-1-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:07:56.420 [INFO ] [o-auto-1-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:07:56.423 [INFO ] [o-auto-1-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+22.10.2015 17:07:56.428 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:07:56.428 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: key - value; TASK_INTERVAL_MS - 10000;  
+22.10.2015 17:07:56.428 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: REGISTER_DEVICE 
+22.10.2015 17:07:56.554 [INFO ] [o-auto-1-exec-2] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:07:56.554 [INFO ] [o-auto-1-exec-2] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:07:56.555 [INFO ] [o-auto-1-exec-2] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488145 is created. Execution starts ... 
+22.10.2015 17:07:56.560 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488145 is executed. 
+22.10.2015 17:07:56.560 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: key - value; TASK_INTERVAL_MS - 10000;  
+22.10.2015 17:07:56.560 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: REGISTER_DEVICE 
+22.10.2015 17:07:56.577 [INFO ] [o-auto-1-exec-3] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:07:56.577 [INFO ] [o-auto-1-exec-3] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:07:56.578 [INFO ] [o-auto-1-exec-3] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488144 is created. Execution starts ... 
+22.10.2015 17:07:56.582 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488144 is executed. 
+22.10.2015 17:07:56.582 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - Configuration: key - value; TASK_INTERVAL_MS - 10000;  
+22.10.2015 17:07:56.582 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - Status: REGISTER_DEVICE 
+22.10.2015 17:07:56.594 [INFO ] [o-auto-1-exec-4] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:07:56.594 [INFO ] [o-auto-1-exec-4] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:07:56.595 [INFO ] [o-auto-1-exec-4] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488143 is created. Execution starts ... 
+22.10.2015 17:07:56.599 [INFO ] [taskExecutor-4 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488143 is executed. 
+22.10.2015 17:07:56.599 [INFO ] [taskExecutor-4 ] t.device.delivery.DeliveryTask - Configuration: key - value; TASK_INTERVAL_MS - 10000;  
+22.10.2015 17:07:56.599 [INFO ] [taskExecutor-4 ] t.device.delivery.DeliveryTask - Status: REGISTER_DEVICE 
+22.10.2015 17:07:56.611 [INFO ] [o-auto-1-exec-5] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:07:56.612 [INFO ] [o-auto-1-exec-5] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:07:56.612 [INFO ] [o-auto-1-exec-5] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488142 is created. Execution starts ... 
+22.10.2015 17:07:56.617 [INFO ] [taskExecutor-5 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488142 is executed. 
+22.10.2015 17:07:56.617 [INFO ] [taskExecutor-5 ] t.device.delivery.DeliveryTask - Configuration: key - value; TASK_INTERVAL_MS - 10000;  
+22.10.2015 17:07:56.617 [INFO ] [taskExecutor-5 ] t.device.delivery.DeliveryTask - Status: REGISTER_DEVICE 
+22.10.2015 17:07:56.629 [INFO ] [o-auto-1-exec-6] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:07:56.629 [INFO ] [o-auto-1-exec-6] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:07:56.629 [INFO ] [o-auto-1-exec-6] rest.activity.SetConfiguration - Data Sinks gets already supplied. Configuration changed. 
+22.10.2015 17:07:56.643 [INFO ] [o-auto-1-exec-7] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:07:56.644 [INFO ] [o-auto-1-exec-7] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:07:56.758 [INFO ] [main           ] vice.rest.IDevManageConfigTest - Starting IDevManageConfigTest on Manuel-PC with PID 4376 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+22.10.2015 17:07:57.088 [ERROR] [pool-3-thread-1] ot.device.ApplicationScheduler - Register error. Exception: I/O error on POST request for "http://127.0.0.1:5000/registrations/devices":Connection refused: connect; nested exception is java.net.ConnectException: Connection refused: connect 
+22.10.2015 17:07:57.617 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+22.10.2015 17:07:57.617 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+22.10.2015 17:07:57.618 [INFO ] [main           ] vice.rest.IDevManageConfigTest - Started IDevManageConfigTest in 0.89 seconds (JVM running for 11.69) 
+22.10.2015 17:07:57.645 [INFO ] [o-auto-2-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:07:57.645 [INFO ] [o-auto-2-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:07:57.648 [INFO ] [o-auto-2-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+22.10.2015 17:07:57.652 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:07:57.652 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: key - value; TASK_INTERVAL_MS - 10000;  
+22.10.2015 17:07:57.652 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: STARTED_UP 
+22.10.2015 17:07:57.678 [INFO ] [o-auto-2-exec-2] vice.rest.IDevManageConfigImpl - GET /configurations/{authority} is invoked. 
+22.10.2015 17:07:57.747 [INFO ] [o-auto-2-exec-3] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:07:57.747 [INFO ] [o-auto-2-exec-3] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:07:57.747 [INFO ] [o-auto-2-exec-3] rest.activity.SetConfiguration - Data Sinks gets already supplied. Configuration changed. 
+22.10.2015 17:07:57.760 [INFO ] [o-auto-2-exec-4] vice.rest.IDevManageConfigImpl - GET /configurations is invoked. 
+22.10.2015 17:07:57.869 [INFO ] [main           ] .rest.IDevManageSetConfig1Test - Starting IDevManageSetConfig1Test on Manuel-PC with PID 4376 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+22.10.2015 17:07:58.726 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+22.10.2015 17:07:58.726 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+22.10.2015 17:07:58.726 [INFO ] [main           ] .rest.IDevManageSetConfig1Test - Started IDevManageSetConfig1Test in 0.89 seconds (JVM running for 12.799) 
+22.10.2015 17:07:58.750 [INFO ] [o-auto-3-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:07:58.750 [INFO ] [o-auto-3-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:07:58.752 [INFO ] [o-auto-3-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+22.10.2015 17:07:58.756 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:07:58.757 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - Pressure;  
+22.10.2015 17:07:58.757 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:07:58.761 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[common-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:07:59.262 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:07:59.262 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - Pressure;  
+22.10.2015 17:07:59.262 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:07:59.263 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[common-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:07:59.763 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:07:59.763 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - Pressure;  
+22.10.2015 17:07:59.763 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:07:59.764 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[common-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:08:00.264 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:08:00.264 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - Pressure;  
+22.10.2015 17:08:00.264 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:08:00.264 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[common-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:08:00.400 [INFO ] [main           ] .rest.IDevManageSetConfig2Test - Starting IDevManageSetConfig2Test on Manuel-PC with PID 4376 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+22.10.2015 17:08:00.765 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:08:00.765 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - Pressure;  
+22.10.2015 17:08:00.765 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:08:00.766 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[common-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:08:01.266 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:08:01.266 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - Pressure;  
+22.10.2015 17:08:01.266 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:08:01.266 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[common-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:08:01.532 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+22.10.2015 17:08:01.532 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+22.10.2015 17:08:01.533 [INFO ] [main           ] .rest.IDevManageSetConfig2Test - Started IDevManageSetConfig2Test in 1.187 seconds (JVM running for 15.605) 
+22.10.2015 17:08:01.569 [INFO ] [o-auto-4-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:08:01.570 [INFO ] [o-auto-4-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:08:01.572 [INFO ] [o-auto-4-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+22.10.2015 17:08:01.577 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:08:01.578 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:08:01.578 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:08:01.578 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[common-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:08:01.593 [INFO ] [o-auto-4-exec-2] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:08:01.594 [INFO ] [o-auto-4-exec-2] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:08:01.595 [INFO ] [o-auto-4-exec-2] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488140 is created. Execution starts ... 
+22.10.2015 17:08:01.600 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+22.10.2015 17:08:01.600 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:08:01.600 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:08:01.601 [ERROR] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[common-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:08:01.766 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:08:01.766 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - Pressure;  
+22.10.2015 17:08:01.766 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:08:01.766 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[common-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:08:02.079 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:08:02.079 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:08:02.079 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:08:02.080 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[common-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:08:02.101 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+22.10.2015 17:08:02.101 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:08:02.101 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:08:02.101 [ERROR] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[common-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:13:04.185 [INFO ] [main           ] .rest.IDevManageSetConfig1Test - Starting IDevManageSetConfig1Test on Manuel-PC with PID 4776 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+22.10.2015 17:13:08.607 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+22.10.2015 17:13:08.608 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+22.10.2015 17:13:08.609 [INFO ] [main           ] .rest.IDevManageSetConfig1Test - Started IDevManageSetConfig1Test in 4.631 seconds (JVM running for 5.356) 
+22.10.2015 17:13:09.821 [INFO ] [o-auto-1-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:13:09.822 [INFO ] [o-auto-1-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:13:09.826 [INFO ] [o-auto-1-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+22.10.2015 17:13:09.830 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:13:09.830 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - Pressure;  
+22.10.2015 17:13:09.830 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:13:09.841 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:13:10.341 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:13:10.341 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - Pressure;  
+22.10.2015 17:13:10.341 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:13:10.342 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:13:10.842 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:13:10.842 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - Pressure;  
+22.10.2015 17:13:10.843 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:13:10.844 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:13:11.344 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:13:11.344 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - Pressure;  
+22.10.2015 17:13:11.344 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:13:11.345 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:14:02.598 [INFO ] [main           ] .rest.IDevManageSetConfig2Test - Starting IDevManageSetConfig2Test on Manuel-PC with PID 4960 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+22.10.2015 17:14:06.489 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+22.10.2015 17:14:06.489 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+22.10.2015 17:14:06.491 [INFO ] [main           ] .rest.IDevManageSetConfig2Test - Started IDevManageSetConfig2Test in 4.065 seconds (JVM running for 4.726) 
+22.10.2015 17:14:07.677 [INFO ] [o-auto-1-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:14:07.678 [INFO ] [o-auto-1-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:14:07.681 [INFO ] [o-auto-1-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+22.10.2015 17:14:07.685 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:14:07.685 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:14:07.685 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:14:07.697 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:14:07.799 [INFO ] [o-auto-1-exec-2] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:14:07.799 [INFO ] [o-auto-1-exec-2] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:14:07.800 [INFO ] [o-auto-1-exec-2] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488140 is created. Execution starts ... 
+22.10.2015 17:14:07.803 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+22.10.2015 17:14:07.804 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:14:07.804 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:14:07.804 [ERROR] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:14:08.197 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:14:08.197 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:14:08.197 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:14:08.198 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:14:08.304 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+22.10.2015 17:14:08.304 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:14:08.304 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:14:08.305 [ERROR] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:17:35.332 [INFO ] [main           ] .rest.IDevManageSetConfig1Test - Starting IDevManageSetConfig1Test on Manuel-PC with PID 3280 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+22.10.2015 17:17:40.152 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+22.10.2015 17:17:40.153 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+22.10.2015 17:17:40.154 [INFO ] [main           ] .rest.IDevManageSetConfig1Test - Started IDevManageSetConfig1Test in 5.08 seconds (JVM running for 6.102) 
+22.10.2015 17:17:41.653 [INFO ] [o-auto-1-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:17:41.653 [INFO ] [o-auto-1-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:17:41.657 [INFO ] [o-auto-1-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+22.10.2015 17:17:41.663 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:17:41.664 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - Pressure;  
+22.10.2015 17:17:41.664 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:19:55.420 [INFO ] [main           ] .rest.IDevManageSetConfig1Test - Starting IDevManageSetConfig1Test on Manuel-PC with PID 1236 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+22.10.2015 17:20:00.440 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+22.10.2015 17:20:00.440 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+22.10.2015 17:20:00.442 [INFO ] [main           ] .rest.IDevManageSetConfig1Test - Started IDevManageSetConfig1Test in 5.255 seconds (JVM running for 6.049) 
+22.10.2015 17:20:01.863 [INFO ] [o-auto-1-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:20:01.863 [INFO ] [o-auto-1-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:20:01.867 [INFO ] [o-auto-1-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+22.10.2015 17:20:01.876 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:20:01.876 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - Pressure;  
+22.10.2015 17:20:01.876 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:20:36.127 [INFO ] [main           ] .rest.IDevManageSetConfig1Test - Starting IDevManageSetConfig1Test on Manuel-PC with PID 3748 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+22.10.2015 17:20:40.676 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+22.10.2015 17:20:40.677 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+22.10.2015 17:20:40.679 [INFO ] [main           ] .rest.IDevManageSetConfig1Test - Started IDevManageSetConfig1Test in 4.758 seconds (JVM running for 5.535) 
+22.10.2015 17:20:42.148 [INFO ] [o-auto-1-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:20:42.148 [INFO ] [o-auto-1-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:20:42.153 [INFO ] [o-auto-1-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+22.10.2015 17:20:42.160 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:20:42.160 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - Pressure;  
+22.10.2015 17:20:42.160 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:20:42.175 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:20:42.675 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:20:42.675 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - Pressure;  
+22.10.2015 17:20:42.675 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:20:42.675 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:20:43.175 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:20:43.175 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - Pressure;  
+22.10.2015 17:20:43.175 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:20:43.176 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:20:43.676 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:20:43.676 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - Pressure;  
+22.10.2015 17:20:43.676 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:20:43.677 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:20:55.748 [INFO ] [main           ] .rest.IDevManageSetConfig1Test - Starting IDevManageSetConfig1Test on Manuel-PC with PID 3980 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+22.10.2015 17:20:59.774 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+22.10.2015 17:20:59.775 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+22.10.2015 17:20:59.776 [INFO ] [main           ] .rest.IDevManageSetConfig1Test - Started IDevManageSetConfig1Test in 4.206 seconds (JVM running for 4.843) 
+22.10.2015 17:21:00.946 [INFO ] [o-auto-1-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:21:00.946 [INFO ] [o-auto-1-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:21:00.951 [INFO ] [o-auto-1-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+22.10.2015 17:21:00.954 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:21:00.955 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - Pressure;  
+22.10.2015 17:21:00.955 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:21:00.968 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:21:01.468 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:21:01.468 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - Pressure;  
+22.10.2015 17:21:01.468 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:21:01.469 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:21:01.969 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:21:01.969 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - Pressure;  
+22.10.2015 17:21:01.969 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:21:01.970 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:21:02.470 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:21:02.470 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - Pressure;  
+22.10.2015 17:21:02.470 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:21:02.471 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:21:39.424 [INFO ] [main           ] .rest.IDevManageSetConfig2Test - Starting IDevManageSetConfig2Test on Manuel-PC with PID 4064 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+22.10.2015 17:21:43.395 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+22.10.2015 17:21:43.395 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+22.10.2015 17:21:43.396 [INFO ] [main           ] .rest.IDevManageSetConfig2Test - Started IDevManageSetConfig2Test in 4.165 seconds (JVM running for 4.815) 
+22.10.2015 17:21:44.490 [INFO ] [o-auto-1-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:21:44.490 [INFO ] [o-auto-1-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:21:44.495 [INFO ] [o-auto-1-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+22.10.2015 17:21:44.501 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:21:44.501 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:21:44.501 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:21:44.514 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:21:44.613 [INFO ] [o-auto-1-exec-2] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:21:44.613 [INFO ] [o-auto-1-exec-2] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:21:44.614 [INFO ] [o-auto-1-exec-2] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488140 is created. Execution starts ... 
+22.10.2015 17:21:44.620 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+22.10.2015 17:21:44.620 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:21:44.620 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:21:44.620 [ERROR] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:21:45.014 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:21:45.014 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:21:45.014 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:21:45.015 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:21:45.120 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+22.10.2015 17:21:45.121 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:21:45.121 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:21:45.122 [ERROR] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:21:45.515 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:21:45.515 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:21:45.515 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:21:45.516 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:21:45.622 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+22.10.2015 17:21:45.622 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:21:45.622 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:21:45.623 [ERROR] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:21:46.016 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:21:46.016 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:21:46.016 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:21:46.017 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:21:46.123 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+22.10.2015 17:21:46.123 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:21:46.123 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:21:46.124 [ERROR] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:21:46.517 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:21:46.517 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:21:46.517 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:21:46.518 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:21:46.624 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+22.10.2015 17:21:46.624 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:21:46.624 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:21:46.625 [ERROR] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:21:47.018 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:21:47.018 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:21:47.018 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:21:47.019 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:21:47.125 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+22.10.2015 17:21:47.125 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:21:47.125 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:21:47.126 [ERROR] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:21:47.519 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:21:47.519 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:21:47.519 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:21:47.520 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:21:47.626 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+22.10.2015 17:21:47.626 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:21:47.626 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:21:47.627 [ERROR] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:21:48.020 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:21:48.020 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:21:48.020 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:21:48.021 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:21:48.127 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+22.10.2015 17:21:48.127 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:21:48.127 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:21:48.128 [ERROR] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:21:48.521 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:21:48.521 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:21:48.521 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:21:48.522 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:21:48.628 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+22.10.2015 17:21:48.628 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:21:48.628 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:21:48.629 [ERROR] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:21:49.022 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:21:49.022 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:21:49.022 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:21:49.023 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:21:49.129 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+22.10.2015 17:21:49.129 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:21:49.129 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:21:49.129 [ERROR] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:21:54.027 [INFO ] [main           ] .rest.IDevManageSetConfig2Test - Starting IDevManageSetConfig2Test on Manuel-PC with PID 2496 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+22.10.2015 17:21:58.796 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+22.10.2015 17:21:58.796 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+22.10.2015 17:21:58.798 [INFO ] [main           ] .rest.IDevManageSetConfig2Test - Started IDevManageSetConfig2Test in 4.995 seconds (JVM running for 5.752) 
+22.10.2015 17:22:00.305 [INFO ] [o-auto-1-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:22:00.305 [INFO ] [o-auto-1-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:22:00.309 [INFO ] [o-auto-1-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+22.10.2015 17:22:00.318 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:22:00.319 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:22:00.319 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:22:00.336 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:22:00.450 [INFO ] [o-auto-1-exec-2] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:22:00.450 [INFO ] [o-auto-1-exec-2] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:22:00.452 [INFO ] [o-auto-1-exec-2] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488140 is created. Execution starts ... 
+22.10.2015 17:22:00.458 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+22.10.2015 17:22:00.458 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:22:00.459 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:22:00.459 [ERROR] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:22:00.836 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:22:00.836 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:22:00.836 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:22:00.836 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:22:00.959 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+22.10.2015 17:22:00.959 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:22:00.959 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:22:00.959 [ERROR] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:22:01.336 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:22:01.336 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:22:01.336 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:22:01.337 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:22:01.459 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+22.10.2015 17:22:01.459 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:22:01.459 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:22:01.460 [ERROR] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:22:01.837 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:22:01.837 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:22:01.837 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:22:01.838 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:22:01.960 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+22.10.2015 17:22:01.960 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:22:01.960 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:22:01.961 [ERROR] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:22:02.338 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:22:02.338 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:22:02.338 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:22:02.339 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:22:02.461 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+22.10.2015 17:22:02.461 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:22:02.461 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:22:02.462 [ERROR] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:22:02.839 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:22:02.839 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:22:02.839 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:22:02.840 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:22:02.962 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+22.10.2015 17:22:02.962 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:22:02.962 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:22:02.963 [ERROR] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:22:03.340 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:22:03.340 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:22:03.340 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:22:03.341 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:22:03.463 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+22.10.2015 17:22:03.463 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:22:03.463 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:22:03.464 [ERROR] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:22:03.841 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:22:03.841 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:22:03.841 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:22:03.842 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:22:03.964 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+22.10.2015 17:22:03.964 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:22:03.964 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:22:03.965 [ERROR] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:22:04.342 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:22:04.342 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:22:04.342 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:22:04.343 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:22:04.465 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+22.10.2015 17:22:04.465 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:22:04.465 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:22:04.466 [ERROR] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:22:04.843 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:22:04.843 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:22:04.843 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:22:04.844 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:22:04.966 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+22.10.2015 17:22:04.966 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:22:04.966 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:22:04.967 [ERROR] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.NullPointerException: null
+	at common.data.builder.DDBuilder.buildDeviceInformation(DDBuilder.java:19) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:77) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:22:27.106 [INFO ] [main           ] .rest.IDevManageSetConfig2Test - Starting IDevManageSetConfig2Test on Manuel-PC with PID 2112 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+22.10.2015 17:22:31.757 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+22.10.2015 17:22:31.758 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+22.10.2015 17:22:31.759 [INFO ] [main           ] .rest.IDevManageSetConfig2Test - Started IDevManageSetConfig2Test in 4.868 seconds (JVM running for 5.63) 
+22.10.2015 17:22:33.331 [INFO ] [o-auto-1-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:22:33.332 [INFO ] [o-auto-1-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:22:33.337 [INFO ] [o-auto-1-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+22.10.2015 17:22:33.346 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:22:33.347 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:22:33.347 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:22:33.534 [INFO ] [o-auto-1-exec-2] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:22:33.534 [INFO ] [o-auto-1-exec-2] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:22:33.536 [INFO ] [o-auto-1-exec-2] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488140 is created. Execution starts ... 
+22.10.2015 17:22:33.543 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+22.10.2015 17:22:33.544 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:22:33.544 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:23:30.899 [INFO ] [main           ] .rest.IDevManageSetConfig2Test - Starting IDevManageSetConfig2Test on Manuel-PC with PID 3008 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+22.10.2015 17:23:34.943 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+22.10.2015 17:23:34.943 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+22.10.2015 17:23:34.944 [INFO ] [main           ] .rest.IDevManageSetConfig2Test - Started IDevManageSetConfig2Test in 4.23 seconds (JVM running for 4.921) 
+22.10.2015 17:23:36.170 [INFO ] [o-auto-1-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:23:36.170 [INFO ] [o-auto-1-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:23:36.174 [INFO ] [o-auto-1-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+22.10.2015 17:23:36.180 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:23:36.180 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:23:36.180 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:23:36.304 [INFO ] [o-auto-1-exec-2] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:23:36.304 [INFO ] [o-auto-1-exec-2] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:23:36.305 [INFO ] [o-auto-1-exec-2] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488140 is created. Execution starts ... 
+22.10.2015 17:23:36.308 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+22.10.2015 17:23:36.309 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:23:36.309 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:23:36.714 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:23:36.714 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:23:36.714 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:23:36.822 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+22.10.2015 17:23:36.822 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:23:36.822 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:25:44.450 [INFO ] [main           ] .rest.IDevManageSetConfig2Test - Starting IDevManageSetConfig2Test on Manuel-PC with PID 3152 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+22.10.2015 17:25:48.502 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+22.10.2015 17:25:48.502 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+22.10.2015 17:25:48.503 [INFO ] [main           ] .rest.IDevManageSetConfig2Test - Started IDevManageSetConfig2Test in 4.239 seconds (JVM running for 4.89) 
+22.10.2015 17:25:49.578 [INFO ] [o-auto-1-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:25:49.578 [INFO ] [o-auto-1-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:25:49.582 [INFO ] [o-auto-1-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+22.10.2015 17:25:49.586 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:25:49.587 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:25:49.587 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:25:49.703 [INFO ] [o-auto-1-exec-2] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:25:49.703 [INFO ] [o-auto-1-exec-2] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:25:49.704 [INFO ] [o-auto-1-exec-2] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488140 is created. Execution starts ... 
+22.10.2015 17:25:49.709 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+22.10.2015 17:25:49.710 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:25:49.710 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:25:50.124 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:25:50.124 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:25:50.124 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:25:50.229 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+22.10.2015 17:25:50.229 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:25:50.229 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:26:12.477 [INFO ] [main           ] t.device.property.PropertyTest - Starting PropertyTest on Manuel-PC with PID 1732 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+22.10.2015 17:26:14.199 [INFO ] [main           ] t.device.property.PropertyTest - Started PropertyTest in 1.885 seconds (JVM running for 2.641) 
+22.10.2015 17:26:14.298 [INFO ] [main           ] d.r.DeliveryTaskRepositoryTest - Starting DeliveryTaskRepositoryTest on Manuel-PC with PID 1732 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+22.10.2015 17:26:14.649 [INFO ] [main           ] d.r.DeliveryTaskRepositoryTest - Started DeliveryTaskRepositoryTest in 0.378 seconds (JVM running for 3.092) 
+22.10.2015 17:26:17.254 [INFO ] [main           ] .rest.IDevManageConfigFailTest - Starting IDevManageConfigFailTest on Manuel-PC with PID 1732 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+22.10.2015 17:26:19.608 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+22.10.2015 17:26:19.608 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+22.10.2015 17:26:19.608 [INFO ] [main           ] .rest.IDevManageConfigFailTest - Started IDevManageConfigFailTest in 2.377 seconds (JVM running for 8.051) 
+22.10.2015 17:26:20.346 [INFO ] [pool-3-thread-1] ot.device.ApplicationScheduler - Retrieve local connection data ...  
+22.10.2015 17:26:20.347 [INFO ] [pool-3-thread-1] ot.device.ApplicationScheduler - Connection [id=0, name=localConnection, url=http://192.168.56.1:2436/, type=IOT_DEVICE] 
+22.10.2015 17:26:20.364 [INFO ] [pool-3-thread-1] ot.device.ApplicationScheduler - Load CM connection data ... 
+22.10.2015 17:26:20.364 [INFO ] [pool-3-thread-1] ot.device.ApplicationScheduler - Connection [id=0, name=Name, url=http://127.0.0.1:5000/, type=CONFIGURATION_MANAGEMENT] 
+22.10.2015 17:26:20.758 [INFO ] [o-auto-1-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:26:20.758 [INFO ] [o-auto-1-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:26:20.762 [INFO ] [o-auto-1-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+22.10.2015 17:26:20.768 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:26:20.768 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: key - value; TASK_INTERVAL_MS - 10000;  
+22.10.2015 17:26:20.768 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: REGISTER_DEVICE 
+22.10.2015 17:26:20.865 [INFO ] [o-auto-1-exec-2] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:26:20.866 [INFO ] [o-auto-1-exec-2] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:26:20.867 [INFO ] [o-auto-1-exec-2] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488145 is created. Execution starts ... 
+22.10.2015 17:26:20.870 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488145 is executed. 
+22.10.2015 17:26:20.870 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: key - value; TASK_INTERVAL_MS - 10000;  
+22.10.2015 17:26:20.870 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: REGISTER_DEVICE 
+22.10.2015 17:26:20.886 [INFO ] [o-auto-1-exec-3] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:26:20.886 [INFO ] [o-auto-1-exec-3] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:26:20.887 [INFO ] [o-auto-1-exec-3] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488144 is created. Execution starts ... 
+22.10.2015 17:26:20.891 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488144 is executed. 
+22.10.2015 17:26:20.891 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - Configuration: key - value; TASK_INTERVAL_MS - 10000;  
+22.10.2015 17:26:20.891 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - Status: REGISTER_DEVICE 
+22.10.2015 17:26:20.905 [INFO ] [o-auto-1-exec-4] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:26:20.905 [INFO ] [o-auto-1-exec-4] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:26:20.906 [INFO ] [o-auto-1-exec-4] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488143 is created. Execution starts ... 
+22.10.2015 17:26:20.909 [INFO ] [taskExecutor-4 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488143 is executed. 
+22.10.2015 17:26:20.909 [INFO ] [taskExecutor-4 ] t.device.delivery.DeliveryTask - Configuration: key - value; TASK_INTERVAL_MS - 10000;  
+22.10.2015 17:26:20.909 [INFO ] [taskExecutor-4 ] t.device.delivery.DeliveryTask - Status: REGISTER_DEVICE 
+22.10.2015 17:26:20.928 [INFO ] [o-auto-1-exec-5] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:26:20.928 [INFO ] [o-auto-1-exec-5] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:26:20.928 [INFO ] [o-auto-1-exec-5] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488142 is created. Execution starts ... 
+22.10.2015 17:26:20.933 [INFO ] [taskExecutor-5 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488142 is executed. 
+22.10.2015 17:26:20.933 [INFO ] [taskExecutor-5 ] t.device.delivery.DeliveryTask - Configuration: key - value; TASK_INTERVAL_MS - 10000;  
+22.10.2015 17:26:20.933 [INFO ] [taskExecutor-5 ] t.device.delivery.DeliveryTask - Status: REGISTER_DEVICE 
+22.10.2015 17:26:20.946 [INFO ] [o-auto-1-exec-6] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:26:20.947 [INFO ] [o-auto-1-exec-6] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:26:20.947 [INFO ] [o-auto-1-exec-6] rest.activity.SetConfiguration - Data Sinks gets already supplied. Configuration changed. 
+22.10.2015 17:26:20.964 [INFO ] [o-auto-1-exec-7] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:26:20.964 [INFO ] [o-auto-1-exec-7] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:26:21.088 [INFO ] [main           ] vice.rest.IDevManageConfigTest - Starting IDevManageConfigTest on Manuel-PC with PID 1732 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+22.10.2015 17:26:21.945 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+22.10.2015 17:26:21.946 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+22.10.2015 17:26:21.946 [INFO ] [main           ] vice.rest.IDevManageConfigTest - Started IDevManageConfigTest in 0.897 seconds (JVM running for 10.389) 
+22.10.2015 17:26:21.973 [INFO ] [o-auto-2-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:26:21.974 [INFO ] [o-auto-2-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:26:21.977 [INFO ] [o-auto-2-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+22.10.2015 17:26:21.981 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:26:21.981 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: key - value; TASK_INTERVAL_MS - 10000;  
+22.10.2015 17:26:21.981 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: STARTED_UP 
+22.10.2015 17:26:22.000 [INFO ] [o-auto-2-exec-2] vice.rest.IDevManageConfigImpl - GET /configurations/{authority} is invoked. 
+22.10.2015 17:26:22.056 [INFO ] [o-auto-2-exec-3] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:26:22.057 [INFO ] [o-auto-2-exec-3] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:26:22.057 [INFO ] [o-auto-2-exec-3] rest.activity.SetConfiguration - Data Sinks gets already supplied. Configuration changed. 
+22.10.2015 17:26:22.067 [INFO ] [o-auto-2-exec-4] vice.rest.IDevManageConfigImpl - GET /configurations is invoked. 
+22.10.2015 17:26:22.168 [INFO ] [main           ] .rest.IDevManageSetConfig1Test - Starting IDevManageSetConfig1Test on Manuel-PC with PID 1732 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+22.10.2015 17:26:22.968 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+22.10.2015 17:26:22.968 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+22.10.2015 17:26:22.968 [INFO ] [main           ] .rest.IDevManageSetConfig1Test - Started IDevManageSetConfig1Test in 0.828 seconds (JVM running for 11.411) 
+22.10.2015 17:26:22.995 [INFO ] [o-auto-3-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:26:22.996 [INFO ] [o-auto-3-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:26:22.997 [INFO ] [o-auto-3-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+22.10.2015 17:26:23.001 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:26:23.001 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - Pressure;  
+22.10.2015 17:26:23.001 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:26:23.516 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:26:23.516 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - Pressure;  
+22.10.2015 17:26:23.516 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:26:24.037 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:26:24.037 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - Pressure;  
+22.10.2015 17:26:24.037 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:26:24.524 [INFO ] [o-auto-3-exec-2] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:26:24.524 [INFO ] [o-auto-3-exec-2] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:26:24.524 [INFO ] [o-auto-3-exec-2] rest.activity.SetConfiguration - Data Sinks gets already supplied. Configuration changed. 
+22.10.2015 17:26:24.562 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:26:24.562 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 1000; SUPPLYING - Pressure;  
+22.10.2015 17:26:24.562 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:26:25.571 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:26:25.571 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 1000; SUPPLYING - Pressure;  
+22.10.2015 17:26:25.571 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:26:26.592 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:26:26.592 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 1000; SUPPLYING - Pressure;  
+22.10.2015 17:26:26.593 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:26:26.624 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [META-INF/services/javax.xml.bind.JAXBContext]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1327) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.loader.WebappClassLoaderBase.getResource(WebappClassLoaderBase.java:1023) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at javax.xml.bind.ContextFinder.find(ContextFinder.java:432) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:641) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:584) ~[na:1.8.0_45]
+	at common.transformer.XMLParser.unmarshal(XMLParser.java:27) ~[common-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at common.data.setting.SettingUtils.loadSettingNative(SettingUtils.java:185) ~[common-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at common.data.setting.SettingUtils.loadDataSources(SettingUtils.java:162) ~[common-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at common.data.setting.SettingUtils.loadDomainsByDeviceInformation(SettingUtils.java:243) ~[common-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:79) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:26:26.652 [INFO ] [main           ] .rest.IDevManageSetConfig2Test - Starting IDevManageSetConfig2Test on Manuel-PC with PID 1732 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+22.10.2015 17:26:27.423 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+22.10.2015 17:26:27.424 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+22.10.2015 17:26:27.424 [INFO ] [main           ] .rest.IDevManageSetConfig2Test - Started IDevManageSetConfig2Test in 0.817 seconds (JVM running for 15.867) 
+22.10.2015 17:26:27.444 [INFO ] [o-auto-4-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:26:27.444 [INFO ] [o-auto-4-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:26:27.446 [INFO ] [o-auto-4-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+22.10.2015 17:26:27.451 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:26:27.451 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:26:27.451 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:26:27.464 [INFO ] [o-auto-4-exec-2] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:26:27.465 [INFO ] [o-auto-4-exec-2] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:26:27.465 [INFO ] [o-auto-4-exec-2] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488140 is created. Execution starts ... 
+22.10.2015 17:26:27.469 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+22.10.2015 17:26:27.469 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:26:27.469 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:26:27.624 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:26:27.624 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 1000; SUPPLYING - Pressure;  
+22.10.2015 17:26:27.624 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:26:27.624 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [META-INF/services/javax.xml.bind.JAXBContext]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1327) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.loader.WebappClassLoaderBase.getResource(WebappClassLoaderBase.java:1023) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at javax.xml.bind.ContextFinder.find(ContextFinder.java:432) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:641) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:584) ~[na:1.8.0_45]
+	at common.transformer.XMLParser.unmarshal(XMLParser.java:27) ~[common-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at common.data.setting.SettingUtils.loadSettingNative(SettingUtils.java:185) ~[common-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at common.data.setting.SettingUtils.loadDataSources(SettingUtils.java:162) ~[common-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at common.data.setting.SettingUtils.loadDomainsByDeviceInformation(SettingUtils.java:243) ~[common-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:79) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:26:27.963 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:26:27.963 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:26:27.963 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:26:27.980 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+22.10.2015 17:26:27.980 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:26:27.980 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:39:44.388 [INFO ] [main           ] t.device.property.PropertyTest - Starting PropertyTest on Manuel-PC with PID 3488 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+22.10.2015 17:39:46.186 [INFO ] [main           ] t.device.property.PropertyTest - Started PropertyTest in 1.966 seconds (JVM running for 2.794) 
+22.10.2015 17:39:46.293 [INFO ] [main           ] d.r.DeliveryTaskRepositoryTest - Starting DeliveryTaskRepositoryTest on Manuel-PC with PID 3488 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+22.10.2015 17:39:46.634 [INFO ] [main           ] d.r.DeliveryTaskRepositoryTest - Started DeliveryTaskRepositoryTest in 0.372 seconds (JVM running for 3.241) 
+22.10.2015 17:39:49.235 [INFO ] [main           ] .rest.IDevManageConfigFailTest - Starting IDevManageConfigFailTest on Manuel-PC with PID 3488 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+22.10.2015 17:39:51.736 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+22.10.2015 17:39:51.737 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+22.10.2015 17:39:51.737 [INFO ] [main           ] .rest.IDevManageConfigFailTest - Started IDevManageConfigFailTest in 2.534 seconds (JVM running for 8.344) 
+22.10.2015 17:39:52.267 [INFO ] [pool-3-thread-1] ot.device.ApplicationScheduler - Retrieve local connection data ...  
+22.10.2015 17:39:52.268 [INFO ] [pool-3-thread-1] ot.device.ApplicationScheduler - Connection [id=0, name=localConnection, url=http://192.168.56.1:2598/, type=IOT_DEVICE] 
+22.10.2015 17:39:52.279 [INFO ] [pool-3-thread-1] ot.device.ApplicationScheduler - Load CM connection data ... 
+22.10.2015 17:39:52.279 [INFO ] [pool-3-thread-1] ot.device.ApplicationScheduler - Connection [id=0, name=Name, url=http://127.0.0.1:5000/, type=CONFIGURATION_MANAGEMENT] 
+22.10.2015 17:39:52.818 [INFO ] [o-auto-1-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:39:52.819 [INFO ] [o-auto-1-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:39:52.823 [INFO ] [o-auto-1-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+22.10.2015 17:39:52.828 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:39:52.828 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: key - value; TASK_INTERVAL_MS - 10000;  
+22.10.2015 17:39:52.828 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: REGISTER_DEVICE 
+22.10.2015 17:39:52.926 [INFO ] [o-auto-1-exec-2] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:39:52.926 [INFO ] [o-auto-1-exec-2] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:39:52.927 [INFO ] [o-auto-1-exec-2] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488145 is created. Execution starts ... 
+22.10.2015 17:39:52.931 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488145 is executed. 
+22.10.2015 17:39:52.931 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: key - value; TASK_INTERVAL_MS - 10000;  
+22.10.2015 17:39:52.931 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: REGISTER_DEVICE 
+22.10.2015 17:39:52.946 [INFO ] [o-auto-1-exec-3] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:39:52.946 [INFO ] [o-auto-1-exec-3] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:39:52.947 [INFO ] [o-auto-1-exec-3] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488144 is created. Execution starts ... 
+22.10.2015 17:39:52.951 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488144 is executed. 
+22.10.2015 17:39:52.951 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - Configuration: key - value; TASK_INTERVAL_MS - 10000;  
+22.10.2015 17:39:52.951 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - Status: REGISTER_DEVICE 
+22.10.2015 17:39:52.964 [INFO ] [o-auto-1-exec-4] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:39:52.964 [INFO ] [o-auto-1-exec-4] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:39:52.964 [INFO ] [o-auto-1-exec-4] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488143 is created. Execution starts ... 
+22.10.2015 17:39:52.968 [INFO ] [taskExecutor-4 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488143 is executed. 
+22.10.2015 17:39:52.969 [INFO ] [taskExecutor-4 ] t.device.delivery.DeliveryTask - Configuration: key - value; TASK_INTERVAL_MS - 10000;  
+22.10.2015 17:39:52.969 [INFO ] [taskExecutor-4 ] t.device.delivery.DeliveryTask - Status: REGISTER_DEVICE 
+22.10.2015 17:39:52.980 [INFO ] [o-auto-1-exec-5] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:39:52.980 [INFO ] [o-auto-1-exec-5] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:39:52.980 [INFO ] [o-auto-1-exec-5] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488142 is created. Execution starts ... 
+22.10.2015 17:39:52.983 [INFO ] [taskExecutor-5 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488142 is executed. 
+22.10.2015 17:39:52.984 [INFO ] [taskExecutor-5 ] t.device.delivery.DeliveryTask - Configuration: key - value; TASK_INTERVAL_MS - 10000;  
+22.10.2015 17:39:52.984 [INFO ] [taskExecutor-5 ] t.device.delivery.DeliveryTask - Status: REGISTER_DEVICE 
+22.10.2015 17:39:53.001 [INFO ] [o-auto-1-exec-6] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:39:53.001 [INFO ] [o-auto-1-exec-6] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:39:53.001 [INFO ] [o-auto-1-exec-6] rest.activity.SetConfiguration - Data Sinks gets already supplied. Configuration changed. 
+22.10.2015 17:39:53.017 [INFO ] [o-auto-1-exec-7] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:39:53.017 [INFO ] [o-auto-1-exec-7] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:39:53.135 [INFO ] [main           ] vice.rest.IDevManageConfigTest - Starting IDevManageConfigTest on Manuel-PC with PID 3488 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+22.10.2015 17:39:53.976 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+22.10.2015 17:39:53.977 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+22.10.2015 17:39:53.977 [INFO ] [main           ] vice.rest.IDevManageConfigTest - Started IDevManageConfigTest in 0.876 seconds (JVM running for 10.585) 
+22.10.2015 17:39:54.007 [INFO ] [o-auto-2-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:39:54.008 [INFO ] [o-auto-2-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:39:54.010 [INFO ] [o-auto-2-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+22.10.2015 17:39:54.015 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:39:54.015 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: key - value; TASK_INTERVAL_MS - 10000;  
+22.10.2015 17:39:54.015 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: STARTED_UP 
+22.10.2015 17:39:54.036 [INFO ] [o-auto-2-exec-2] vice.rest.IDevManageConfigImpl - GET /configurations/{authority} is invoked. 
+22.10.2015 17:39:54.083 [INFO ] [o-auto-2-exec-3] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:39:54.084 [INFO ] [o-auto-2-exec-3] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:39:54.084 [INFO ] [o-auto-2-exec-3] rest.activity.SetConfiguration - Data Sinks gets already supplied. Configuration changed. 
+22.10.2015 17:39:54.094 [INFO ] [o-auto-2-exec-4] vice.rest.IDevManageConfigImpl - GET /configurations is invoked. 
+22.10.2015 17:39:54.197 [INFO ] [main           ] .rest.IDevManageSetConfig1Test - Starting IDevManageSetConfig1Test on Manuel-PC with PID 3488 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+22.10.2015 17:39:55.073 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+22.10.2015 17:39:55.074 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+22.10.2015 17:39:55.074 [INFO ] [main           ] .rest.IDevManageSetConfig1Test - Started IDevManageSetConfig1Test in 0.905 seconds (JVM running for 11.681) 
+22.10.2015 17:39:55.097 [INFO ] [o-auto-3-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:39:55.098 [INFO ] [o-auto-3-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:39:55.100 [INFO ] [o-auto-3-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+22.10.2015 17:39:55.104 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:39:55.104 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - Pressure;  
+22.10.2015 17:39:55.104 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:39:55.630 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:39:55.630 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - Pressure;  
+22.10.2015 17:39:55.630 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:39:56.140 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:39:56.140 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - Pressure;  
+22.10.2015 17:39:56.140 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:39:56.626 [INFO ] [o-auto-3-exec-2] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:39:56.626 [INFO ] [o-auto-3-exec-2] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:39:56.626 [INFO ] [o-auto-3-exec-2] rest.activity.SetConfiguration - Data Sinks gets already supplied. Configuration changed. 
+22.10.2015 17:39:56.657 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:39:56.657 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 1000; SUPPLYING - Pressure;  
+22.10.2015 17:39:56.657 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:39:57.668 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:39:57.668 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 1000; SUPPLYING - Pressure;  
+22.10.2015 17:39:57.668 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:39:58.678 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:39:58.678 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 1000; SUPPLYING - Pressure;  
+22.10.2015 17:39:58.678 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:39:58.735 [INFO ] [main           ] .rest.IDevManageSetConfig2Test - Starting IDevManageSetConfig2Test on Manuel-PC with PID 3488 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+22.10.2015 17:39:59.507 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+22.10.2015 17:39:59.507 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+22.10.2015 17:39:59.508 [INFO ] [main           ] .rest.IDevManageSetConfig2Test - Started IDevManageSetConfig2Test in 0.802 seconds (JVM running for 16.114) 
+22.10.2015 17:39:59.530 [INFO ] [o-auto-4-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:39:59.531 [INFO ] [o-auto-4-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:39:59.533 [INFO ] [o-auto-4-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+22.10.2015 17:39:59.537 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:39:59.537 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:39:59.537 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:39:59.550 [INFO ] [o-auto-4-exec-2] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:39:59.550 [INFO ] [o-auto-4-exec-2] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:39:59.551 [INFO ] [o-auto-4-exec-2] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488140 is created. Execution starts ... 
+22.10.2015 17:39:59.555 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+22.10.2015 17:39:59.555 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:39:59.555 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:39:59.695 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:39:59.695 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 1000; SUPPLYING - Pressure;  
+22.10.2015 17:39:59.695 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:39:59.699 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [META-INF/services/javax.xml.bind.JAXBContext]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1327) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.loader.WebappClassLoaderBase.getResource(WebappClassLoaderBase.java:1023) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at javax.xml.bind.ContextFinder.find(ContextFinder.java:432) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:641) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:584) ~[na:1.8.0_45]
+	at common.transformer.XMLParser.unmarshal(XMLParser.java:27) ~[common-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at common.data.setting.SettingUtils.loadSettingNative(SettingUtils.java:185) ~[common-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at common.data.setting.SettingUtils.loadDataSources(SettingUtils.java:162) ~[common-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at common.data.setting.SettingUtils.loadDomainsByDeviceInformation(SettingUtils.java:243) ~[common-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:79) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:40:00.050 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:40:00.050 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:40:00.050 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:40:00.070 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+22.10.2015 17:40:00.070 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:40:00.070 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:47:39.606 [INFO ] [main           ] t.device.property.PropertyTest - Starting PropertyTest on Manuel-PC with PID 4240 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+22.10.2015 17:47:41.199 [INFO ] [main           ] t.device.property.PropertyTest - Started PropertyTest in 1.746 seconds (JVM running for 2.457) 
+22.10.2015 17:47:41.301 [INFO ] [main           ] d.r.DeliveryTaskRepositoryTest - Starting DeliveryTaskRepositoryTest on Manuel-PC with PID 4240 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+22.10.2015 17:47:41.684 [INFO ] [main           ] d.r.DeliveryTaskRepositoryTest - Started DeliveryTaskRepositoryTest in 0.41 seconds (JVM running for 2.942) 
+22.10.2015 17:47:44.302 [INFO ] [main           ] .rest.IDevManageConfigFailTest - Starting IDevManageConfigFailTest on Manuel-PC with PID 4240 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+22.10.2015 17:47:46.716 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+22.10.2015 17:47:46.717 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+22.10.2015 17:47:46.717 [INFO ] [main           ] .rest.IDevManageConfigFailTest - Started IDevManageConfigFailTest in 2.453 seconds (JVM running for 7.975) 
+22.10.2015 17:47:47.414 [INFO ] [pool-3-thread-1] ot.device.ApplicationScheduler - Retrieve local connection data ...  
+22.10.2015 17:47:47.415 [INFO ] [pool-3-thread-1] ot.device.ApplicationScheduler - Connection [id=0, name=localConnection, url=http://192.168.56.1:2703/, type=IOT_DEVICE] 
+22.10.2015 17:47:47.432 [INFO ] [pool-3-thread-1] ot.device.ApplicationScheduler - Load CM connection data ... 
+22.10.2015 17:47:47.432 [INFO ] [pool-3-thread-1] ot.device.ApplicationScheduler - Connection [id=0, name=Name, url=http://127.0.0.1:5000/, type=CONFIGURATION_MANAGEMENT] 
+22.10.2015 17:47:47.819 [INFO ] [o-auto-1-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:47:47.820 [INFO ] [o-auto-1-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:47:47.824 [INFO ] [o-auto-1-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+22.10.2015 17:47:47.829 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:47:47.829 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: key - value; TASK_INTERVAL_MS - 10000;  
+22.10.2015 17:47:47.829 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: REGISTER_DEVICE 
+22.10.2015 17:47:47.927 [INFO ] [o-auto-1-exec-2] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:47:47.927 [INFO ] [o-auto-1-exec-2] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:47:47.928 [INFO ] [o-auto-1-exec-2] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488145 is created. Execution starts ... 
+22.10.2015 17:47:47.932 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488145 is executed. 
+22.10.2015 17:47:47.932 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: key - value; TASK_INTERVAL_MS - 10000;  
+22.10.2015 17:47:47.932 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: REGISTER_DEVICE 
+22.10.2015 17:47:47.946 [INFO ] [o-auto-1-exec-3] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:47:47.946 [INFO ] [o-auto-1-exec-3] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:47:47.947 [INFO ] [o-auto-1-exec-3] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488144 is created. Execution starts ... 
+22.10.2015 17:47:47.951 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488144 is executed. 
+22.10.2015 17:47:47.951 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - Configuration: key - value; TASK_INTERVAL_MS - 10000;  
+22.10.2015 17:47:47.951 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - Status: REGISTER_DEVICE 
+22.10.2015 17:47:47.969 [INFO ] [o-auto-1-exec-4] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:47:47.969 [INFO ] [o-auto-1-exec-4] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:47:47.970 [INFO ] [o-auto-1-exec-4] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488143 is created. Execution starts ... 
+22.10.2015 17:47:47.974 [INFO ] [taskExecutor-4 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488143 is executed. 
+22.10.2015 17:47:47.974 [INFO ] [taskExecutor-4 ] t.device.delivery.DeliveryTask - Configuration: key - value; TASK_INTERVAL_MS - 10000;  
+22.10.2015 17:47:47.974 [INFO ] [taskExecutor-4 ] t.device.delivery.DeliveryTask - Status: REGISTER_DEVICE 
+22.10.2015 17:47:47.991 [INFO ] [o-auto-1-exec-5] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:47:47.991 [INFO ] [o-auto-1-exec-5] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:47:47.992 [INFO ] [o-auto-1-exec-5] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488142 is created. Execution starts ... 
+22.10.2015 17:47:47.996 [INFO ] [taskExecutor-5 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488142 is executed. 
+22.10.2015 17:47:47.997 [INFO ] [taskExecutor-5 ] t.device.delivery.DeliveryTask - Configuration: key - value; TASK_INTERVAL_MS - 10000;  
+22.10.2015 17:47:47.997 [INFO ] [taskExecutor-5 ] t.device.delivery.DeliveryTask - Status: REGISTER_DEVICE 
+22.10.2015 17:47:48.013 [INFO ] [o-auto-1-exec-6] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:47:48.013 [INFO ] [o-auto-1-exec-6] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:47:48.013 [INFO ] [o-auto-1-exec-6] rest.activity.SetConfiguration - Data Sinks gets already supplied. Configuration changed. 
+22.10.2015 17:47:48.032 [INFO ] [o-auto-1-exec-7] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:47:48.033 [INFO ] [o-auto-1-exec-7] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:47:48.159 [INFO ] [main           ] vice.rest.IDevManageConfigTest - Starting IDevManageConfigTest on Manuel-PC with PID 4240 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+22.10.2015 17:47:49.012 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+22.10.2015 17:47:49.013 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+22.10.2015 17:47:49.013 [INFO ] [main           ] vice.rest.IDevManageConfigTest - Started IDevManageConfigTest in 0.897 seconds (JVM running for 10.271) 
+22.10.2015 17:47:49.043 [INFO ] [o-auto-2-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:47:49.044 [INFO ] [o-auto-2-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:47:49.046 [INFO ] [o-auto-2-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+22.10.2015 17:47:49.052 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:47:49.052 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: key - value; TASK_INTERVAL_MS - 10000;  
+22.10.2015 17:47:49.052 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: STARTED_UP 
+22.10.2015 17:47:49.072 [INFO ] [o-auto-2-exec-2] vice.rest.IDevManageConfigImpl - GET /configurations/{authority} is invoked. 
+22.10.2015 17:47:49.130 [INFO ] [o-auto-2-exec-3] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:47:49.131 [INFO ] [o-auto-2-exec-3] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:47:49.131 [INFO ] [o-auto-2-exec-3] rest.activity.SetConfiguration - Data Sinks gets already supplied. Configuration changed. 
+22.10.2015 17:47:49.142 [INFO ] [o-auto-2-exec-4] vice.rest.IDevManageConfigImpl - GET /configurations is invoked. 
+22.10.2015 17:47:49.250 [INFO ] [main           ] .rest.IDevManageSetConfig1Test - Starting IDevManageSetConfig1Test on Manuel-PC with PID 4240 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+22.10.2015 17:47:50.074 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+22.10.2015 17:47:50.074 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+22.10.2015 17:47:50.075 [INFO ] [main           ] .rest.IDevManageSetConfig1Test - Started IDevManageSetConfig1Test in 0.859 seconds (JVM running for 11.332) 
+22.10.2015 17:47:50.098 [INFO ] [o-auto-3-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:47:50.098 [INFO ] [o-auto-3-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:47:50.100 [INFO ] [o-auto-3-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+22.10.2015 17:47:50.105 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:47:50.106 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - Pressure;  
+22.10.2015 17:47:50.106 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:47:50.625 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:47:50.625 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - Pressure;  
+22.10.2015 17:47:50.625 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:47:51.135 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:47:51.135 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - Pressure;  
+22.10.2015 17:47:51.135 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:47:51.632 [INFO ] [o-auto-3-exec-2] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:47:51.633 [INFO ] [o-auto-3-exec-2] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:47:51.633 [INFO ] [o-auto-3-exec-2] rest.activity.SetConfiguration - Data Sinks gets already supplied. Configuration changed. 
+22.10.2015 17:47:51.650 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:47:51.650 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 1000; SUPPLYING - Pressure;  
+22.10.2015 17:47:51.650 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:47:52.659 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:47:52.659 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 1000; SUPPLYING - Pressure;  
+22.10.2015 17:47:52.659 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:47:53.680 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:47:53.680 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 1000; SUPPLYING - Pressure;  
+22.10.2015 17:47:53.680 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:47:53.751 [INFO ] [main           ] .rest.IDevManageSetConfig2Test - Starting IDevManageSetConfig2Test on Manuel-PC with PID 4240 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+22.10.2015 17:47:54.496 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+22.10.2015 17:47:54.496 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+22.10.2015 17:47:54.496 [INFO ] [main           ] .rest.IDevManageSetConfig2Test - Started IDevManageSetConfig2Test in 0.784 seconds (JVM running for 15.754) 
+22.10.2015 17:47:54.519 [INFO ] [o-auto-4-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:47:54.520 [INFO ] [o-auto-4-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:47:54.521 [INFO ] [o-auto-4-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+22.10.2015 17:47:54.525 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:47:54.525 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:47:54.525 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:47:54.535 [INFO ] [o-auto-4-exec-2] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+22.10.2015 17:47:54.536 [INFO ] [o-auto-4-exec-2] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+22.10.2015 17:47:54.537 [INFO ] [o-auto-4-exec-2] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488140 is created. Execution starts ... 
+22.10.2015 17:47:54.541 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+22.10.2015 17:47:54.541 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:47:54.541 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:47:54.690 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:47:54.690 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 1000; SUPPLYING - Pressure;  
+22.10.2015 17:47:54.690 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:47:54.694 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [META-INF/services/javax.xml.bind.JAXBContext]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1327) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.loader.WebappClassLoaderBase.getResource(WebappClassLoaderBase.java:1023) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at javax.xml.bind.ContextFinder.find(ContextFinder.java:432) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:641) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:584) ~[na:1.8.0_45]
+	at common.transformer.XMLParser.unmarshal(XMLParser.java:27) ~[common-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at common.data.setting.SettingUtils.loadSettingNative(SettingUtils.java:185) ~[common-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at common.data.setting.SettingUtils.loadDataSources(SettingUtils.java:162) ~[common-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at common.data.setting.SettingUtils.loadDomainsByDeviceInformation(SettingUtils.java:243) ~[common-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:79) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:47:55.043 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+22.10.2015 17:47:55.045 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:47:55.045 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+22.10.2015 17:47:55.054 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+22.10.2015 17:47:55.054 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
+22.10.2015 17:47:55.054 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 

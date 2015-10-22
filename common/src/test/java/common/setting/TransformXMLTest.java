@@ -1,4 +1,4 @@
-package common.configuration;
+package common.setting;
 
 import java.io.File;
 import java.net.URI;

@@ -17,6 +17,7 @@ import common.data.Connection;
 import common.data.DataSource;
 import common.data.DataSources;
 import common.data.Setting;
+import common.data.model.DomainInformation;
 import common.data.type.COMPONENT_TYPE;
 import common.transformer.XMLConnectionTransformer;
 import common.transformer.XMLDataSourceTransformer;
@@ -235,5 +236,20 @@ public class SettingUtils {
 
         return result;
 
+    }
+
+    public static List<DomainInformation> loadDomainsByDeviceInformation(String deviceInformation) throws MalformedURLException, JAXBException, SAXException {
+
+        List<DataSource> dataSources = loadDataSources().getDataSources();
+
+        final String devInfo = deviceInformation.toLowerCase();
+
+        List<DomainInformation> domains = dataSources.stream()
+                //
+                .filter(item -> devInfo.equals(item.getDeviceInformation().getName().toLowerCase()))
+                //
+                .map(item -> item.getDomainInformation()).collect(Collectors.toList());
+
+        return domains;
     }
 }

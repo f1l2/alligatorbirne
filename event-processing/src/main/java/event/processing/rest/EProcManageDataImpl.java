@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import common.data.DataSource;
+import common.data.model.DeviceData;
+import common.data.model.DomainInformation;
 import common.rest.RESOURCE_NAMING;
 import common.rest.ResourceUtils;
 import event.processing.engine.EngineFactory;
@@ -25,17 +27,23 @@ public class EProcManageDataImpl implements EProcManageData {
 
     @Override
     @RequestMapping(value = "/send", method = RequestMethod.POST)
-    public void receive(@RequestBody DataSource dataSource) {
+    public void receive(@RequestBody DeviceData deviceData) {
 
         logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.EPROCESSING_SEND));
 
-        if ((null != dataSource) && (null != dataSource.getDeviceInformation())) {
-            logger.info(dataSource.getDeviceInformation().toString());
+        if ((null != deviceData) && (null != deviceData.getDevice())) {
+            logger.info(deviceData.getDevice().toString());
         } else {
             logger.info("DeviceInformation is null.");
         }
 
-        factory.getEngine().send(dataSource);
+        for (DomainInformation domain : deviceData.getDomains()) {
 
+            DataSource dataSource = new DataSource();
+            dataSource.setDeviceInformation(deviceData.getDevice());
+            dataSource.setDomainInformation(domain);
+
+            factory.getEngine().send(dataSource);
+        }
     }
 }

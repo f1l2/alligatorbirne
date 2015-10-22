@@ -87,3 +87,327 @@
 21.10.2015 18:47:47.418 [INFO ] [-auto-1-exec-10] .rest.EProcManageStatementImpl - POST /registrations/rule/{name} is invoked. 
 21.10.2015 18:47:47.426 [INFO ] [o-auto-1-exec-1] .rest.EProcManageStatementImpl - POST /registrations/rule/{name} is invoked. 
 21.10.2015 18:47:47.427 [ERROR] [o-auto-1-exec-1] processing.rest.EP_ERROR_CODES - Rule with the same name already exists. 
+22.10.2015 17:26:31.696 [INFO ] [main           ] q.esper.EsperEngineFactoryTest - Starting EsperEngineFactoryTest on Manuel-PC with PID 4624 (M:\WorkspaceTU_Master\alligatorbirne\event-processing\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\event-processing) 
+22.10.2015 17:26:34.991 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: ConfigurationModification, Class: common.data.ConfigurationModification 
+22.10.2015 17:26:34.993 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: DeviceData, Class: common.data.model.DeviceData 
+22.10.2015 17:26:34.993 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: DeviceInformation, Class: common.data.model.DeviceInformation 
+22.10.2015 17:26:34.993 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: DomainInformation, Class: common.data.model.DomainInformation 
+22.10.2015 17:26:36.113 [INFO ] [main           ] q.esper.EsperEngineFactoryTest - Started EsperEngineFactoryTest in 4.603 seconds (JVM running for 5.311) 
+22.10.2015 17:26:36.130 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION name = 'device1' 
+22.10.2015 17:26:36.215 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource as d where d.deviceInformation.name = 'device1'  
+22.10.2015 17:26:36.913 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION name = 'device2' 
+22.10.2015 17:26:36.914 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource as d where d.deviceInformation.name = 'device2'  
+22.10.2015 17:26:36.916 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION name = 'device3' 
+22.10.2015 17:26:36.917 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource as d where d.deviceInformation.name = 'device3'  
+22.10.2015 17:26:37.232 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION name = 'device1' 
+22.10.2015 17:26:37.234 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource as d where d.deviceInformation.name = 'device1'  
+22.10.2015 17:26:37.551 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION id = 1 AND name = 'device1' 
+22.10.2015 17:26:37.558 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource as d where d.deviceInformation.id = 1 AND d.deviceInformation.name = 'device1'  
+22.10.2015 17:26:37.876 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION id = 1 OR name = 'device2' 
+22.10.2015 17:26:37.878 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource as d where d.deviceInformation.id = 1 OR d.deviceInformation.name = 'device2'  
+22.10.2015 17:26:38.201 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION NOT id = 1 
+22.10.2015 17:26:38.203 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource as d where NOT(d.deviceInformation.id = 1)  
+22.10.2015 17:26:38.520 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION SUM(id) >= 3 
+22.10.2015 17:26:38.527 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select SUM(d.deviceInformation.id) as value from DataSource as d  
+22.10.2015 17:26:38.527 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 3 
+22.10.2015 17:26:38.888 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION MIN(id) >= 3 
+22.10.2015 17:26:38.892 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select MIN(d.deviceInformation.id) as value from DataSource as d  
+22.10.2015 17:26:38.892 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 3 
+22.10.2015 17:26:39.222 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION MAX(id) >= 2 
+22.10.2015 17:26:39.224 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select MAX(d.deviceInformation.id) as value from DataSource as d  
+22.10.2015 17:26:39.224 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 2 
+22.10.2015 17:26:39.527 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION SUM(id) >= 2  AND id = 2 
+22.10.2015 17:26:39.530 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select SUM(d.deviceInformation.id) as value from DataSource as d where  d.deviceInformation.id = 2 
+22.10.2015 17:26:39.530 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 2 
+22.10.2015 17:26:39.849 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION id >= 1 FROM domain1 
+22.10.2015 17:26:39.859 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource as d where d.deviceInformation.id >= 1 AND (d.domainInformation.name = 'domain1' ) 
+22.10.2015 17:26:40.180 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION id >= 2 FROM domain1 
+22.10.2015 17:26:40.182 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource as d where d.deviceInformation.id >= 2 AND (d.domainInformation.name = 'domain1' ) 
+22.10.2015 17:26:40.487 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION id >= 0 FROM domain 
+22.10.2015 17:26:40.489 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource as d where d.deviceInformation.id >= 0 AND (d.domainInformation.name = 'domain' ) 
+22.10.2015 17:26:40.805 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION id = 1 WIN:LENGTH(1) 
+22.10.2015 17:26:40.810 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource.win:length(1) as d where d.deviceInformation.id = 1  
+22.10.2015 17:26:41.189 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION SUM(id) >= 4 WIN:LENGTH(1) 
+22.10.2015 17:26:41.191 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select SUM(d.deviceInformation.id) as value from DataSource.win:length(1) as d  
+22.10.2015 17:26:41.192 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 4 
+22.10.2015 17:26:41.497 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION SUM(id) >= 4 WIN:LENGTH(2) 
+22.10.2015 17:26:41.499 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select SUM(d.deviceInformation.id) as value from DataSource.win:length(2) as d  
+22.10.2015 17:26:41.499 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 4 
+22.10.2015 17:26:41.804 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION MIN(id) < 2 WIN:LENGTH(2) 
+22.10.2015 17:26:41.806 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select MIN(d.deviceInformation.id) as value from DataSource.win:length(2) as d  
+22.10.2015 17:26:41.807 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value < 2 
+22.10.2015 17:26:42.115 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION COUNT(id) = 3 WIN:LENGTH(2) 
+22.10.2015 17:26:42.118 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select COUNT(d.deviceInformation.id) as value from DataSource.win:length(2) as d  
+22.10.2015 17:26:42.118 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value = 3 
+22.10.2015 17:26:42.431 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION COUNT(id) = 3 WIN:LENGTH(3) 
+22.10.2015 17:26:42.433 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select COUNT(d.deviceInformation.id) as value from DataSource.win:length(3) as d  
+22.10.2015 17:26:42.433 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value = 3 
+22.10.2015 17:26:42.738 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION SUM(id) >= 3 WIN:LENGTH(2) 
+22.10.2015 17:26:42.740 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select SUM(d.deviceInformation.id) as value from DataSource.win:length(2) as d  
+22.10.2015 17:26:42.740 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 3 
+22.10.2015 17:26:43.329 [INFO ] [main           ] e.p.rest.EProcManageDataTest   - Starting EProcManageDataTest on Manuel-PC with PID 4624 (M:\WorkspaceTU_Master\alligatorbirne\event-processing\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\event-processing) 
+22.10.2015 17:26:45.398 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: ConfigurationModification, Class: common.data.ConfigurationModification 
+22.10.2015 17:26:45.398 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: DeviceData, Class: common.data.model.DeviceData 
+22.10.2015 17:26:45.399 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: DeviceInformation, Class: common.data.model.DeviceInformation 
+22.10.2015 17:26:45.399 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: DomainInformation, Class: common.data.model.DomainInformation 
+22.10.2015 17:26:46.025 [INFO ] [main           ] e.p.rest.EProcManageDataTest   - Started EProcManageDataTest in 2.728 seconds (JVM running for 15.223) 
+22.10.2015 17:26:47.391 [INFO ] [o-auto-1-exec-1] e.p.rest.EProcManageDataImpl   - POST /send is invoked. 
+22.10.2015 17:26:47.392 [INFO ] [o-auto-1-exec-1] e.p.rest.EProcManageDataImpl   - DeviceInformation [id=1, name=deviceInfoName, value=null, type=SENSOR] 
+22.10.2015 17:26:47.530 [INFO ] [o-auto-1-exec-2] .rest.EProcManageStatementImpl - POST /registrations/rule/{name} is invoked. 
+22.10.2015 17:26:47.573 [INFO ] [o-auto-1-exec-3] .rest.EProcManageStatementImpl - GET /registrations/queries is invoked. 
+22.10.2015 17:26:47.652 [INFO ] [o-auto-1-exec-4] .rest.EProcManageStatementImpl - GET /registrations/queries is invoked. 
+22.10.2015 17:26:47.672 [INFO ] [o-auto-1-exec-5] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+22.10.2015 17:26:47.691 [INFO ] [o-auto-1-exec-6] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+22.10.2015 17:26:47.693 [ERROR] [o-auto-1-exec-6] processing.rest.EP_ERROR_CODES - Couldn't parse query. Please check syntax. 
+22.10.2015 17:26:47.714 [INFO ] [o-auto-1-exec-7] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+22.10.2015 17:26:47.731 [INFO ] [o-auto-1-exec-8] .rest.EProcManageStatementImpl - POST /registrations/rule/{name} is invoked. 
+22.10.2015 17:26:47.750 [INFO ] [o-auto-1-exec-9] .rest.EProcManageStatementImpl - GET /activations/rule/{name} is invoked. 
+22.10.2015 17:26:47.751 [INFO ] [o-auto-1-exec-9] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource as d where d.deviceInformation.name = 'device1'  
+22.10.2015 17:26:47.793 [INFO ] [-auto-1-exec-10] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+22.10.2015 17:26:47.807 [INFO ] [o-auto-1-exec-1] .rest.EProcManageStatementImpl - DELETE /deregistrations/query/{name} is invoked. 
+22.10.2015 17:26:47.822 [INFO ] [o-auto-1-exec-2] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+22.10.2015 17:26:47.834 [INFO ] [o-auto-1-exec-3] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+22.10.2015 17:26:47.834 [ERROR] [o-auto-1-exec-3] processing.rest.EP_ERROR_CODES - Query with the same name already exists. 
+22.10.2015 17:26:47.848 [INFO ] [o-auto-1-exec-4] .rest.EProcManageStatementImpl - POST /registrations/rule/{name} is invoked. 
+22.10.2015 17:26:47.858 [INFO ] [o-auto-1-exec-5] .rest.EProcManageStatementImpl - DELETE /deregistrations/rule/{name} is invoked. 
+22.10.2015 17:26:47.879 [INFO ] [o-auto-1-exec-6] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+22.10.2015 17:26:47.893 [INFO ] [o-auto-1-exec-7] .rest.EProcManageStatementImpl - POST /registrations/rule/{name} is invoked. 
+22.10.2015 17:26:47.906 [INFO ] [o-auto-1-exec-8] .rest.EProcManageStatementImpl - GET /activations/rule/{name} is invoked. 
+22.10.2015 17:26:47.906 [INFO ] [o-auto-1-exec-8] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource as d where d.deviceInformation.name = 'device1'  
+22.10.2015 17:26:47.953 [INFO ] [o-auto-1-exec-9] .rest.EProcManageStatementImpl - GET /deactivations/rule/{name} is invoked. 
+22.10.2015 17:26:47.953 [INFO ] [o-auto-1-exec-9] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource as d where d.deviceInformation.name = 'device1'  
+22.10.2015 17:26:47.968 [INFO ] [-auto-1-exec-10] .rest.EProcManageStatementImpl - POST /registrations/rule/{name} is invoked. 
+22.10.2015 17:26:47.978 [INFO ] [o-auto-1-exec-1] .rest.EProcManageStatementImpl - POST /registrations/rule/{name} is invoked. 
+22.10.2015 17:26:47.978 [ERROR] [o-auto-1-exec-1] processing.rest.EP_ERROR_CODES - Rule with the same name already exists. 
+22.10.2015 17:40:03.636 [INFO ] [main           ] q.esper.EsperEngineFactoryTest - Starting EsperEngineFactoryTest on Manuel-PC with PID 3196 (M:\WorkspaceTU_Master\alligatorbirne\event-processing\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\event-processing) 
+22.10.2015 17:40:06.625 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: ConfigurationModification, Class: common.data.ConfigurationModification 
+22.10.2015 17:40:06.627 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: DeviceData, Class: common.data.model.DeviceData 
+22.10.2015 17:40:06.627 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: DeviceInformation, Class: common.data.model.DeviceInformation 
+22.10.2015 17:40:06.627 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: DomainInformation, Class: common.data.model.DomainInformation 
+22.10.2015 17:40:07.390 [INFO ] [main           ] q.esper.EsperEngineFactoryTest - Started EsperEngineFactoryTest in 3.955 seconds (JVM running for 4.709) 
+22.10.2015 17:40:07.408 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION name = 'device1' 
+22.10.2015 17:40:07.485 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource as d where d.deviceInformation.name = 'device1'  
+22.10.2015 17:40:08.124 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION name = 'device2' 
+22.10.2015 17:40:08.126 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource as d where d.deviceInformation.name = 'device2'  
+22.10.2015 17:40:08.128 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION name = 'device3' 
+22.10.2015 17:40:08.129 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource as d where d.deviceInformation.name = 'device3'  
+22.10.2015 17:40:08.441 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION name = 'device1' 
+22.10.2015 17:40:08.442 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource as d where d.deviceInformation.name = 'device1'  
+22.10.2015 17:40:08.756 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION id = 1 AND name = 'device1' 
+22.10.2015 17:40:08.761 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource as d where d.deviceInformation.id = 1 AND d.deviceInformation.name = 'device1'  
+22.10.2015 17:40:09.073 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION id = 1 OR name = 'device2' 
+22.10.2015 17:40:09.075 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource as d where d.deviceInformation.id = 1 OR d.deviceInformation.name = 'device2'  
+22.10.2015 17:40:09.384 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION NOT id = 1 
+22.10.2015 17:40:09.386 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource as d where NOT(d.deviceInformation.id = 1)  
+22.10.2015 17:40:09.708 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION SUM(id) >= 3 
+22.10.2015 17:40:09.715 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select SUM(d.deviceInformation.id) as value from DataSource as d  
+22.10.2015 17:40:09.716 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 3 
+22.10.2015 17:40:10.062 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION MIN(id) >= 3 
+22.10.2015 17:40:10.065 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select MIN(d.deviceInformation.id) as value from DataSource as d  
+22.10.2015 17:40:10.065 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 3 
+22.10.2015 17:40:10.391 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION MAX(id) >= 2 
+22.10.2015 17:40:10.392 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select MAX(d.deviceInformation.id) as value from DataSource as d  
+22.10.2015 17:40:10.393 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 2 
+22.10.2015 17:40:10.702 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION SUM(id) >= 2  AND id = 2 
+22.10.2015 17:40:10.704 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select SUM(d.deviceInformation.id) as value from DataSource as d where  d.deviceInformation.id = 2 
+22.10.2015 17:40:10.704 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 2 
+22.10.2015 17:40:11.018 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION id >= 1 FROM domain1 
+22.10.2015 17:40:11.035 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource as d where d.deviceInformation.id >= 1 AND (d.domainInformation.name = 'domain1' ) 
+22.10.2015 17:40:11.364 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION id >= 2 FROM domain1 
+22.10.2015 17:40:11.366 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource as d where d.deviceInformation.id >= 2 AND (d.domainInformation.name = 'domain1' ) 
+22.10.2015 17:40:11.669 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION id >= 0 FROM domain 
+22.10.2015 17:40:11.670 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource as d where d.deviceInformation.id >= 0 AND (d.domainInformation.name = 'domain' ) 
+22.10.2015 17:40:11.978 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION id = 1 WIN:LENGTH(1) 
+22.10.2015 17:40:11.982 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource.win:length(1) as d where d.deviceInformation.id = 1  
+22.10.2015 17:40:12.291 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION SUM(id) >= 4 WIN:LENGTH(1) 
+22.10.2015 17:40:12.292 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select SUM(d.deviceInformation.id) as value from DataSource.win:length(1) as d  
+22.10.2015 17:40:12.292 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 4 
+22.10.2015 17:40:12.595 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION SUM(id) >= 4 WIN:LENGTH(2) 
+22.10.2015 17:40:12.598 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select SUM(d.deviceInformation.id) as value from DataSource.win:length(2) as d  
+22.10.2015 17:40:12.598 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 4 
+22.10.2015 17:40:12.904 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION MIN(id) < 2 WIN:LENGTH(2) 
+22.10.2015 17:40:12.905 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select MIN(d.deviceInformation.id) as value from DataSource.win:length(2) as d  
+22.10.2015 17:40:12.905 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value < 2 
+22.10.2015 17:40:13.212 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION COUNT(id) = 3 WIN:LENGTH(2) 
+22.10.2015 17:40:13.213 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select COUNT(d.deviceInformation.id) as value from DataSource.win:length(2) as d  
+22.10.2015 17:40:13.214 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value = 3 
+22.10.2015 17:40:13.519 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION COUNT(id) = 3 WIN:LENGTH(3) 
+22.10.2015 17:40:13.521 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select COUNT(d.deviceInformation.id) as value from DataSource.win:length(3) as d  
+22.10.2015 17:40:13.522 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value = 3 
+22.10.2015 17:40:13.827 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION SUM(id) >= 3 WIN:LENGTH(2) 
+22.10.2015 17:40:13.828 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select SUM(d.deviceInformation.id) as value from DataSource.win:length(2) as d  
+22.10.2015 17:40:13.829 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 3 
+22.10.2015 17:40:14.423 [INFO ] [main           ] e.p.rest.EProcManageDataTest   - Starting EProcManageDataTest on Manuel-PC with PID 3196 (M:\WorkspaceTU_Master\alligatorbirne\event-processing\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\event-processing) 
+22.10.2015 17:40:16.899 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: ConfigurationModification, Class: common.data.ConfigurationModification 
+22.10.2015 17:40:16.899 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: DeviceData, Class: common.data.model.DeviceData 
+22.10.2015 17:40:16.899 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: DeviceInformation, Class: common.data.model.DeviceInformation 
+22.10.2015 17:40:16.899 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: DomainInformation, Class: common.data.model.DomainInformation 
+22.10.2015 17:40:17.611 [INFO ] [main           ] e.p.rest.EProcManageDataTest   - Started EProcManageDataTest in 3.215 seconds (JVM running for 14.928) 
+22.10.2015 17:40:19.174 [INFO ] [o-auto-1-exec-1] e.p.rest.EProcManageDataImpl   - POST /send is invoked. 
+22.10.2015 17:40:19.175 [INFO ] [o-auto-1-exec-1] e.p.rest.EProcManageDataImpl   - DeviceInformation is null. 
+22.10.2015 17:40:19.184 [ERROR] [o-auto-1-exec-1] .c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException] with root cause 
+java.lang.NullPointerException: null
+	at event.processing.rest.EProcManageDataImpl.receive(EProcManageDataImpl.java:40) ~[classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_45]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_45]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_45]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[na:1.8.0_45]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:221) ~[spring-web-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:137) ~[spring-web-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:110) ~[spring-webmvc-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandleMethod(RequestMappingHandlerAdapter.java:776) ~[spring-webmvc-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:705) ~[spring-webmvc-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85) ~[spring-webmvc-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:959) ~[spring-webmvc-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:893) ~[spring-webmvc-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:967) ~[spring-webmvc-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:869) ~[spring-webmvc-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:648) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:843) ~[spring-webmvc-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:291) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52) ~[tomcat-embed-websocket-8.0.23.jar:8.0.23]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:239) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:77) ~[spring-web-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:239) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:85) ~[spring-web-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:239) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:219) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:106) [tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:502) [tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:142) [tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79) [tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:88) [tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:518) [tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1091) [tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:668) [tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1521) [tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1478) [tomcat-embed-core-8.0.23.jar:8.0.23]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-8.0.23.jar:8.0.23]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+22.10.2015 17:40:19.361 [INFO ] [o-auto-1-exec-2] .rest.EProcManageStatementImpl - POST /registrations/rule/{name} is invoked. 
+22.10.2015 17:40:19.400 [INFO ] [o-auto-1-exec-3] .rest.EProcManageStatementImpl - GET /registrations/queries is invoked. 
+22.10.2015 17:40:19.477 [INFO ] [o-auto-1-exec-4] .rest.EProcManageStatementImpl - GET /registrations/queries is invoked. 
+22.10.2015 17:40:19.493 [INFO ] [o-auto-1-exec-5] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+22.10.2015 17:40:19.509 [INFO ] [o-auto-1-exec-6] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+22.10.2015 17:40:19.511 [ERROR] [o-auto-1-exec-6] processing.rest.EP_ERROR_CODES - Couldn't parse query. Please check syntax. 
+22.10.2015 17:40:19.526 [INFO ] [o-auto-1-exec-7] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+22.10.2015 17:40:19.539 [INFO ] [o-auto-1-exec-8] .rest.EProcManageStatementImpl - POST /registrations/rule/{name} is invoked. 
+22.10.2015 17:40:19.553 [INFO ] [o-auto-1-exec-9] .rest.EProcManageStatementImpl - GET /activations/rule/{name} is invoked. 
+22.10.2015 17:40:19.553 [INFO ] [o-auto-1-exec-9] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource as d where d.deviceInformation.name = 'device1'  
+22.10.2015 17:40:19.601 [INFO ] [-auto-1-exec-10] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+22.10.2015 17:40:19.615 [INFO ] [o-auto-1-exec-1] .rest.EProcManageStatementImpl - DELETE /deregistrations/query/{name} is invoked. 
+22.10.2015 17:40:19.632 [INFO ] [o-auto-1-exec-2] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+22.10.2015 17:40:19.645 [INFO ] [o-auto-1-exec-3] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+22.10.2015 17:40:19.645 [ERROR] [o-auto-1-exec-3] processing.rest.EP_ERROR_CODES - Query with the same name already exists. 
+22.10.2015 17:40:19.657 [INFO ] [o-auto-1-exec-4] .rest.EProcManageStatementImpl - POST /registrations/rule/{name} is invoked. 
+22.10.2015 17:40:19.669 [INFO ] [o-auto-1-exec-5] .rest.EProcManageStatementImpl - DELETE /deregistrations/rule/{name} is invoked. 
+22.10.2015 17:40:19.690 [INFO ] [o-auto-1-exec-6] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+22.10.2015 17:40:19.704 [INFO ] [o-auto-1-exec-7] .rest.EProcManageStatementImpl - POST /registrations/rule/{name} is invoked. 
+22.10.2015 17:40:19.716 [INFO ] [o-auto-1-exec-8] .rest.EProcManageStatementImpl - GET /activations/rule/{name} is invoked. 
+22.10.2015 17:40:19.716 [INFO ] [o-auto-1-exec-8] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource as d where d.deviceInformation.name = 'device1'  
+22.10.2015 17:40:19.763 [INFO ] [o-auto-1-exec-9] .rest.EProcManageStatementImpl - GET /deactivations/rule/{name} is invoked. 
+22.10.2015 17:40:19.763 [INFO ] [o-auto-1-exec-9] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource as d where d.deviceInformation.name = 'device1'  
+22.10.2015 17:40:19.778 [INFO ] [-auto-1-exec-10] .rest.EProcManageStatementImpl - POST /registrations/rule/{name} is invoked. 
+22.10.2015 17:40:19.790 [INFO ] [o-auto-1-exec-1] .rest.EProcManageStatementImpl - POST /registrations/rule/{name} is invoked. 
+22.10.2015 17:40:19.790 [ERROR] [o-auto-1-exec-1] processing.rest.EP_ERROR_CODES - Rule with the same name already exists. 
+22.10.2015 17:47:58.867 [INFO ] [main           ] q.esper.EsperEngineFactoryTest - Starting EsperEngineFactoryTest on Manuel-PC with PID 4484 (M:\WorkspaceTU_Master\alligatorbirne\event-processing\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\event-processing) 
+22.10.2015 17:48:01.762 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: ConfigurationModification, Class: common.data.ConfigurationModification 
+22.10.2015 17:48:01.764 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: DeviceData, Class: common.data.model.DeviceData 
+22.10.2015 17:48:01.764 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: DeviceInformation, Class: common.data.model.DeviceInformation 
+22.10.2015 17:48:01.764 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: DomainInformation, Class: common.data.model.DomainInformation 
+22.10.2015 17:48:02.487 [INFO ] [main           ] q.esper.EsperEngineFactoryTest - Started EsperEngineFactoryTest in 3.803 seconds (JVM running for 4.581) 
+22.10.2015 17:48:02.502 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION name = 'device1' 
+22.10.2015 17:48:02.573 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource as d where d.deviceInformation.name = 'device1'  
+22.10.2015 17:48:03.201 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION name = 'device2' 
+22.10.2015 17:48:03.203 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource as d where d.deviceInformation.name = 'device2'  
+22.10.2015 17:48:03.205 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION name = 'device3' 
+22.10.2015 17:48:03.206 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource as d where d.deviceInformation.name = 'device3'  
+22.10.2015 17:48:03.518 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION name = 'device1' 
+22.10.2015 17:48:03.520 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource as d where d.deviceInformation.name = 'device1'  
+22.10.2015 17:48:03.834 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION id = 1 AND name = 'device1' 
+22.10.2015 17:48:03.840 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource as d where d.deviceInformation.id = 1 AND d.deviceInformation.name = 'device1'  
+22.10.2015 17:48:04.156 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION id = 1 OR name = 'device2' 
+22.10.2015 17:48:04.158 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource as d where d.deviceInformation.id = 1 OR d.deviceInformation.name = 'device2'  
+22.10.2015 17:48:04.475 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION NOT id = 1 
+22.10.2015 17:48:04.477 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource as d where NOT(d.deviceInformation.id = 1)  
+22.10.2015 17:48:04.799 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION SUM(id) >= 3 
+22.10.2015 17:48:04.806 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select SUM(d.deviceInformation.id) as value from DataSource as d  
+22.10.2015 17:48:04.806 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 3 
+22.10.2015 17:48:05.145 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION MIN(id) >= 3 
+22.10.2015 17:48:05.147 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select MIN(d.deviceInformation.id) as value from DataSource as d  
+22.10.2015 17:48:05.147 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 3 
+22.10.2015 17:48:05.468 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION MAX(id) >= 2 
+22.10.2015 17:48:05.470 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select MAX(d.deviceInformation.id) as value from DataSource as d  
+22.10.2015 17:48:05.470 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 2 
+22.10.2015 17:48:05.773 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION SUM(id) >= 2  AND id = 2 
+22.10.2015 17:48:05.776 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select SUM(d.deviceInformation.id) as value from DataSource as d where  d.deviceInformation.id = 2 
+22.10.2015 17:48:05.776 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 2 
+22.10.2015 17:48:06.092 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION id >= 1 FROM domain1 
+22.10.2015 17:48:06.108 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource as d where d.deviceInformation.id >= 1 AND (d.domainInformation.name = 'domain1' ) 
+22.10.2015 17:48:06.440 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION id >= 2 FROM domain1 
+22.10.2015 17:48:06.442 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource as d where d.deviceInformation.id >= 2 AND (d.domainInformation.name = 'domain1' ) 
+22.10.2015 17:48:06.747 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION id >= 0 FROM domain 
+22.10.2015 17:48:06.749 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource as d where d.deviceInformation.id >= 0 AND (d.domainInformation.name = 'domain' ) 
+22.10.2015 17:48:07.064 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION id = 1 WIN:LENGTH(1) 
+22.10.2015 17:48:07.069 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource.win:length(1) as d where d.deviceInformation.id = 1  
+22.10.2015 17:48:07.383 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION SUM(id) >= 4 WIN:LENGTH(1) 
+22.10.2015 17:48:07.385 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select SUM(d.deviceInformation.id) as value from DataSource.win:length(1) as d  
+22.10.2015 17:48:07.385 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 4 
+22.10.2015 17:48:07.690 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION SUM(id) >= 4 WIN:LENGTH(2) 
+22.10.2015 17:48:07.692 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select SUM(d.deviceInformation.id) as value from DataSource.win:length(2) as d  
+22.10.2015 17:48:07.693 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 4 
+22.10.2015 17:48:07.998 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION MIN(id) < 2 WIN:LENGTH(2) 
+22.10.2015 17:48:08.000 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select MIN(d.deviceInformation.id) as value from DataSource.win:length(2) as d  
+22.10.2015 17:48:08.000 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value < 2 
+22.10.2015 17:48:08.308 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION COUNT(id) = 3 WIN:LENGTH(2) 
+22.10.2015 17:48:08.311 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select COUNT(d.deviceInformation.id) as value from DataSource.win:length(2) as d  
+22.10.2015 17:48:08.311 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value = 3 
+22.10.2015 17:48:08.619 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION COUNT(id) = 3 WIN:LENGTH(3) 
+22.10.2015 17:48:08.621 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select COUNT(d.deviceInformation.id) as value from DataSource.win:length(3) as d  
+22.10.2015 17:48:08.621 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value = 3 
+22.10.2015 17:48:08.928 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Start query transformation. Input: CONDITION SUM(id) >= 3 WIN:LENGTH(2) 
+22.10.2015 17:48:08.930 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select SUM(d.deviceInformation.id) as value from DataSource.win:length(2) as d  
+22.10.2015 17:48:08.930 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 3 
+22.10.2015 17:48:09.519 [INFO ] [main           ] e.p.rest.EProcManageDataTest   - Starting EProcManageDataTest on Manuel-PC with PID 4484 (M:\WorkspaceTU_Master\alligatorbirne\event-processing\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\event-processing) 
+22.10.2015 17:48:11.626 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: ConfigurationModification, Class: common.data.ConfigurationModification 
+22.10.2015 17:48:11.626 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: DeviceData, Class: common.data.model.DeviceData 
+22.10.2015 17:48:11.626 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: DeviceInformation, Class: common.data.model.DeviceInformation 
+22.10.2015 17:48:11.626 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: DomainInformation, Class: common.data.model.DomainInformation 
+22.10.2015 17:48:12.281 [INFO ] [main           ] e.p.rest.EProcManageDataTest   - Started EProcManageDataTest in 2.791 seconds (JVM running for 14.375) 
+22.10.2015 17:48:13.656 [INFO ] [o-auto-1-exec-1] e.p.rest.EProcManageDataImpl   - POST /send is invoked. 
+22.10.2015 17:48:13.657 [INFO ] [o-auto-1-exec-1] e.p.rest.EProcManageDataImpl   - DeviceInformation [id=1, name=deviceInfoName, type=SENSOR] 
+22.10.2015 17:48:13.769 [INFO ] [o-auto-1-exec-2] .rest.EProcManageStatementImpl - POST /registrations/rule/{name} is invoked. 
+22.10.2015 17:48:13.807 [INFO ] [o-auto-1-exec-3] .rest.EProcManageStatementImpl - GET /registrations/queries is invoked. 
+22.10.2015 17:48:13.876 [INFO ] [o-auto-1-exec-4] .rest.EProcManageStatementImpl - GET /registrations/queries is invoked. 
+22.10.2015 17:48:13.890 [INFO ] [o-auto-1-exec-5] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+22.10.2015 17:48:13.909 [INFO ] [o-auto-1-exec-6] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+22.10.2015 17:48:13.910 [ERROR] [o-auto-1-exec-6] processing.rest.EP_ERROR_CODES - Couldn't parse query. Please check syntax. 
+22.10.2015 17:48:13.926 [INFO ] [o-auto-1-exec-7] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+22.10.2015 17:48:13.941 [INFO ] [o-auto-1-exec-8] .rest.EProcManageStatementImpl - POST /registrations/rule/{name} is invoked. 
+22.10.2015 17:48:13.956 [INFO ] [o-auto-1-exec-9] .rest.EProcManageStatementImpl - GET /activations/rule/{name} is invoked. 
+22.10.2015 17:48:13.956 [INFO ] [o-auto-1-exec-9] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource as d where d.deviceInformation.name = 'device1'  
+22.10.2015 17:48:13.998 [INFO ] [-auto-1-exec-10] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+22.10.2015 17:48:14.016 [INFO ] [o-auto-1-exec-1] .rest.EProcManageStatementImpl - DELETE /deregistrations/query/{name} is invoked. 
+22.10.2015 17:48:14.032 [INFO ] [o-auto-1-exec-2] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+22.10.2015 17:48:14.044 [INFO ] [o-auto-1-exec-3] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+22.10.2015 17:48:14.044 [ERROR] [o-auto-1-exec-3] processing.rest.EP_ERROR_CODES - Query with the same name already exists. 
+22.10.2015 17:48:14.062 [INFO ] [o-auto-1-exec-4] .rest.EProcManageStatementImpl - POST /registrations/rule/{name} is invoked. 
+22.10.2015 17:48:14.077 [INFO ] [o-auto-1-exec-5] .rest.EProcManageStatementImpl - DELETE /deregistrations/rule/{name} is invoked. 
+22.10.2015 17:48:14.097 [INFO ] [o-auto-1-exec-6] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+22.10.2015 17:48:14.111 [INFO ] [o-auto-1-exec-7] .rest.EProcManageStatementImpl - POST /registrations/rule/{name} is invoked. 
+22.10.2015 17:48:14.123 [INFO ] [o-auto-1-exec-8] .rest.EProcManageStatementImpl - GET /activations/rule/{name} is invoked. 
+22.10.2015 17:48:14.123 [INFO ] [o-auto-1-exec-8] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource as d where d.deviceInformation.name = 'device1'  
+22.10.2015 17:48:14.174 [INFO ] [o-auto-1-exec-9] .rest.EProcManageStatementImpl - GET /deactivations/rule/{name} is invoked. 
+22.10.2015 17:48:14.174 [INFO ] [o-auto-1-exec-9] ngine.impl.EsperEPLTransformer - Generated EPL: select * from DataSource as d where d.deviceInformation.name = 'device1'  
+22.10.2015 17:48:14.192 [INFO ] [-auto-1-exec-10] .rest.EProcManageStatementImpl - POST /registrations/rule/{name} is invoked. 
+22.10.2015 17:48:14.203 [INFO ] [o-auto-1-exec-1] .rest.EProcManageStatementImpl - POST /registrations/rule/{name} is invoked. 
+22.10.2015 17:48:14.203 [ERROR] [o-auto-1-exec-1] processing.rest.EP_ERROR_CODES - Rule with the same name already exists. 

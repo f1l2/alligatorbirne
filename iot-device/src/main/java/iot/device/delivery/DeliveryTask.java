@@ -2,7 +2,6 @@ package iot.device.delivery;
 
 import java.time.Instant;
 import java.util.Arrays;
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,8 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import common.data.DataSource;
-import common.data.model.DeviceInformation;
+import common.data.builder.DDBuilder;
 import common.data.setting.SettingUtils;
 import common.property.SystemReservedProperty;
 import common.rest.RESOURCE_NAMING;
@@ -75,18 +73,18 @@ public class DeliveryTask implements Runnable {
                     Sensor<?> sensor = (Sensor<?>) dsf.getBean(sensorData.toLowerCase());
                     Integer value = sensor.getValue();
 
-                    List<DataSource> loadDataSources = SettingUtils.loadDataSourcesByDeviceInformation(sensorData);
-
-                    DeviceInformation deviceInformation = new DeviceInformation();
-                    deviceInformation.setName(sensorData);
-                    deviceInformation.setValue(value);
+                    DDBuilder ddBuilder = new DDBuilder();
+                    ddBuilder.buildDeviceInformation(sensorData)
+                            //
+                            .buildDomainInformations(SettingUtils.loadDomainsByDeviceInformation(sensorData))
+                            //
+                            .buildSensorData(value);
 
                     if (STATUS_TYPE.TEST.equals(status.getCurrent())) {
-                        VirtualEP.send(new VirtualData(deviceInformation, deliveryUrl, Instant.now()));
+                        VirtualEP.send(new VirtualData(ddBuilder.getResult(), deliveryUrl, Instant.now()));
                     } else {
-
                         logger.info("Send data ...");
-                        ResponseEntity<Void> responseRegistration = restTemplate.postForEntity(deliveryUrl, deviceInformation, Void.class);
+                        ResponseEntity<Void> responseRegistration = restTemplate.postForEntity(deliveryUrl, ddBuilder.getResult(), Void.class);
                         logger.info("Device data send. Status: " + responseRegistration.getStatusCode() + " Response body: ");
                     }
                 }

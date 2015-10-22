@@ -11,10 +11,8 @@ public class DSBuilder {
     public DSBuilder buildDeviceInformation(String name, Integer value) {
         DeviceInformation devInfo = new DeviceInformation();
         devInfo.setName(name);
-        devInfo.setValue(value);
 
         dataSource.setDeviceInformation(devInfo);
-
         return this;
     }
 
@@ -23,7 +21,6 @@ public class DSBuilder {
         domInfo.setName(name);
 
         dataSource.setDomainInformation(domInfo);
-
         return this;
     }
 

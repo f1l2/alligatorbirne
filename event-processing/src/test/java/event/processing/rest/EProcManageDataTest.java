@@ -9,7 +9,7 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import common.data.DataSource;
+import common.data.model.DeviceData;
 import common.data.model.DeviceInformation;
 import common.data.model.DomainInformation;
 import common.data.type.DEVICE_INFORMATION_TYPE;
@@ -37,11 +37,11 @@ public class EProcManageDataTest extends AbstractTestRestEP {
         domainInfo.setName("domainInfoName");
         domainInfo.setType(DOMAIN_INFORMATION_TYPE.FIRST_FLOOR);
 
-        DataSource d = new DataSource();
-        d.setDeviceInformation(devInfo);
-        d.setDomainInformation(domainInfo);
+        DeviceData dd = new DeviceData();
+        dd.setDevice(devInfo);
+        dd.addDomain(domainInfo);
 
-        given().contentType("application/json").body(d).when().post(RESOURCE_NAMING.EPROCESSING_SEND.getPath())
+        given().contentType("application/json").body(dd).when().post(RESOURCE_NAMING.EPROCESSING_SEND.getPath())
 
         .then().statusCode(200);
     }
