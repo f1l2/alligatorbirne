@@ -2,6 +2,7 @@ package common.transformer;
 
 import common.data.model.DeviceInformation;
 import common.data.setting.XMLDeviceInformation;
+import common.utilities.NormalizeString;
 
 public class XMLDeviceInformationTranformer extends Transformer<XMLDeviceInformation, DeviceInformation> {
 
@@ -25,7 +26,7 @@ public class XMLDeviceInformationTranformer extends Transformer<XMLDeviceInforma
         if (null == local) {
             deviceInformation.setName(nullString);
         } else {
-            deviceInformation.setName(local.getName());
+            deviceInformation.setName(NormalizeString.normalize(local.getName()));
         }
 
         return deviceInformation;

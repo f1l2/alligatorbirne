@@ -2,6 +2,7 @@ package common.transformer;
 
 import common.data.model.DomainInformation;
 import common.data.setting.XMLDomainInformation;
+import common.utilities.NormalizeString;
 
 public class XMLDomainInformationTransformer extends Transformer<XMLDomainInformation, DomainInformation> {
 
@@ -26,7 +27,7 @@ public class XMLDomainInformationTransformer extends Transformer<XMLDomainInform
         if (null == local) {
             domain.setName(nullString);
         } else {
-            domain.setName(local.getName());
+            domain.setName(NormalizeString.normalize(local.getName()));
         }
 
         return domain;

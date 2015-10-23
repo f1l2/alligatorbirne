@@ -8,6 +8,7 @@ import common.data.model.DeviceInformation;
 import common.data.model.DomainInformation;
 import common.data.model.SensorData;
 import common.transformer.DeviceDataTransformer;
+import common.utilities.NormalizeString;
 
 public class DDBuilder {
 
@@ -21,6 +22,8 @@ public class DDBuilder {
     }
 
     public DDBuilder buildDeviceInformation(String name) {
+
+        name = NormalizeString.normalize(name);
 
         DeviceInformation devInfo = new DeviceInformation();
         devInfo.setName(name);

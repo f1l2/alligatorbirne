@@ -73,7 +73,7 @@ public class IDevManageSetConfig1Test {
 
         Properties properties = new Properties();
         properties.put(SensorReservedProperty.SUPPLY_REQ.getName(), "Pressure");
-        properties.put(SystemReservedProperty.TASK_INTERVAL_MS.name(), 500);
+        properties.put(SystemReservedProperty.TASK_INTERVAL_MS.getName(), 500);
 
         cm = new ConfigurationModification();
         cm.setDataSink(dataSink);

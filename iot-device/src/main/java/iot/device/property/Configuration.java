@@ -13,6 +13,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import common.property.SensorReservedProperty;
 import common.property.SystemReservedProperty;
+import common.utilities.NormalizeString;
 import iot.device.utility.ArrayMapDeserializerStringInteger;
 import iot.device.utility.ArrayMapDeserializerStringString;
 
@@ -66,27 +67,30 @@ public class Configuration {
 
             Object value = prop.get(key);
 
-            if ((key instanceof String) && (SystemReservedProperty.getSystemReservedProperty().containsKey((String) key))) {
-
-                try {
-                    mergeSystemReservedProperties((String) key, (int) value);
-                } catch (Exception e) {
-
-                }
-
-            } else if ((key instanceof String) && (SensorReservedProperty.SUPPLY_REQ.getName().equals((String) key))) {
-
-                try {
-                    mergeSupplyingSensorProperties((String) key, (String) value);
-                } catch (Exception e) {
-
-                }
-
-            } else {
+            if (!(key instanceof String)) {
                 otherProperties.put(key, prop.get(key));
+                continue;
+            }
+
+            String keyStr = NormalizeString.normalize((String) key);
+
+            if (SystemReservedProperty.getSystemReservedProperty().containsKey(keyStr)) {
+                try {
+                    mergeSystemReservedProperties(NormalizeString.normalize((String) key), (int) value);
+                } catch (Exception e) {
+
+                }
+            } else if (SensorReservedProperty.SUPPLY_REQ.getName().equals(NormalizeString.normalize((String) key))) {
+
+                try {
+                    mergeSupplyingSensorProperties(NormalizeString.normalize((String) key), (String) value);
+                } catch (Exception e) {
+
+                }
+            } else {
+                otherProperties.put(keyStr, prop.get(key));
             }
         }
-
     }
 
     public Properties getProperties() {

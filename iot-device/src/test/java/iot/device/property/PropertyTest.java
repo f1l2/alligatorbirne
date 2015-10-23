@@ -12,7 +12,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import common.property.SensorReservedProperty;
 import common.property.SystemReservedProperty;
 import iot.device.ApplicationTestContext;
-import iot.device.sensor.SensorUtils;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = ApplicationTestContext.class)
@@ -24,35 +23,35 @@ public class PropertyTest {
     @Test
     public void mergeProperties() {
 
-        Assert.assertEquals(10 * 1000, configuration.getProperties().get(SystemReservedProperty.TASK_INTERVAL_MS.name()));
+        Assert.assertEquals(10 * 1000, configuration.getProperties().get(SystemReservedProperty.TASK_INTERVAL_MS.getName()));
 
         Properties newProperties = new Properties();
-        newProperties.put(SystemReservedProperty.TASK_INTERVAL_MS.name(), 5 * 1000);
+        newProperties.put(SystemReservedProperty.TASK_INTERVAL_MS.getName(), 5 * 1000);
 
         configuration.setAndUpdateProperties(newProperties);
 
-        Assert.assertEquals(5 * 1000, configuration.getProperties().get(SystemReservedProperty.TASK_INTERVAL_MS.name()));
+        Assert.assertEquals(5 * 1000, configuration.getProperties().get(SystemReservedProperty.TASK_INTERVAL_MS.getName()));
 
         /**
          * Below defined minimum
          */
 
         newProperties = new Properties();
-        newProperties.put(SystemReservedProperty.TASK_INTERVAL_MS.name(), 4 * 100);
+        newProperties.put(SystemReservedProperty.TASK_INTERVAL_MS.getName(), 4 * 100);
 
         configuration.setAndUpdateProperties(newProperties);
 
-        Assert.assertEquals(5 * 1000, configuration.getProperties().get(SystemReservedProperty.TASK_INTERVAL_MS.name()));
+        Assert.assertEquals(5 * 1000, configuration.getProperties().get(SystemReservedProperty.TASK_INTERVAL_MS.getName()));
 
         /**
          * Over defined maximum
          */
         newProperties = new Properties();
-        newProperties.put(SystemReservedProperty.TASK_INTERVAL_MS.name(), 5001 * 1000);
+        newProperties.put(SystemReservedProperty.TASK_INTERVAL_MS.getName(), 5001 * 1000);
 
         configuration.setAndUpdateProperties(newProperties);
 
-        Assert.assertEquals(5 * 1000, configuration.getProperties().get(SystemReservedProperty.TASK_INTERVAL_MS.name()));
+        Assert.assertEquals(5 * 1000, configuration.getProperties().get(SystemReservedProperty.TASK_INTERVAL_MS.getName()));
 
     }
 
@@ -67,14 +66,4 @@ public class PropertyTest {
         Assert.assertEquals(1, configuration.getSupplyingSensor().size());
 
     }
-
-    @Test
-    public void convertToClassName() {
-
-        Assert.assertEquals("Sensor", SensorUtils.convertToClassName("SENSOR"));
-        Assert.assertEquals("Sensor", SensorUtils.convertToClassName("seNSOR"));
-        Assert.assertEquals("S", SensorUtils.convertToClassName("s"));
-
-    }
-
 }

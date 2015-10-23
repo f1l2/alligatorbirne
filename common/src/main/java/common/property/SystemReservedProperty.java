@@ -4,7 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum SystemReservedProperty {
-    TASK_INTERVAL_MS(true, 10 * 1000, 5 * 100, 5000 * 1000);
+    TASK_INTERVAL_MS("task_interval_ms", true, 10 * 1000, 5 * 100, 5000 * 1000);
+
+    private String name;
 
     private Boolean isMutable;
 
@@ -14,8 +16,8 @@ public enum SystemReservedProperty {
 
     private int max;
 
-    SystemReservedProperty(Boolean isMutable, int defaultValue, int min, int max) {
-
+    SystemReservedProperty(String name, Boolean isMutable, int defaultValue, int min, int max) {
+        this.setName(name);
         this.isMutable = isMutable;
         this.defaultValue = defaultValue;
         this.max = max;
@@ -37,9 +39,17 @@ public enum SystemReservedProperty {
         Map<String, Integer> srps = new HashMap<String, Integer>();
 
         for (SystemReservedProperty srp : SystemReservedProperty.values()) {
-            srps.put(srp.name(), srp.getDefaultValue());
+            srps.put(srp.getName(), srp.getDefaultValue());
         }
         return srps;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Boolean getIsMutable() {

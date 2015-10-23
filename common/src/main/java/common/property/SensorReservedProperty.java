@@ -1,7 +1,7 @@
 package common.property;
 
 public enum SensorReservedProperty {
-    SUPPLY_REQ("SUPPLYING");
+    SUPPLY_REQ("supplying");
 
     private String name;
 
