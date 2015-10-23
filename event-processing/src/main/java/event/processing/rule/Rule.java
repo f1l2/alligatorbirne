@@ -10,6 +10,7 @@ import org.springframework.web.client.RestTemplate;
 import common.data.Connection;
 import common.data.builder.CDBuilder;
 import common.data.setting.SettingUtils;
+import common.data.type.COMPONENT_TYPE;
 import common.rest.RESOURCE_NAMING;
 import common.rest.ResourceUtils;
 import event.processing.engine.EngineListener;
@@ -78,11 +79,12 @@ public class Rule extends EngineListener {
     @Override
     public void trigger() {
 
-        logger.info("Rule is triggered. Rule: {}", this.toString());
+        logger.info("Rule is triggered. Query name: {}", this.query);
 
         try {
 
             Connection local = SettingUtils.getLocalConnection();
+            local.setComponentType(COMPONENT_TYPE.EVENT_PROCESSING);
             Connection cm = SettingUtils.getCMConnection();
 
             String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_DELEGATION, cm);
