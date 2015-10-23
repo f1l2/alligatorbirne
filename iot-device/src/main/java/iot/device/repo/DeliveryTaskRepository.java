@@ -13,6 +13,8 @@ public interface DeliveryTaskRepository {
 
     public void save(DeliveryTaskRO task);
 
+    public Boolean create(DeliveryTaskRO task);
+
     public void delete(DeliveryTaskRO task);
 
 }

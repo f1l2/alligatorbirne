@@ -65,13 +65,19 @@ public class SetConfiguration extends Activity<String, ConfigurationModification
              */
 
             taskRO = transformer.toLocal(cm);
-            repo.save(taskRO);
+            if (repo.create(taskRO)) {
+                DeliveryTask task = ddtf.createBean(taskRO);
 
-            DeliveryTask task = ddtf.createBean(taskRO);
+                logger.info("DeliveryTask {} is created. Execution starts ...", task.getIdentification());
 
-            logger.info("DeliveryTask {} is created. Execution starts ...", task.getIdentification());
+                taskExecutor.execute(task);
+            } else {
+                taskRO.getConfiguration().setAndUpdateProperties(cm.getProperties());
 
-            taskExecutor.execute(task);
+                repo.save(taskRO);
+
+                logger.info("Data Sinks gets already supplied. Configuration changed.");
+            }
         }
 
         return next("OK", cm);

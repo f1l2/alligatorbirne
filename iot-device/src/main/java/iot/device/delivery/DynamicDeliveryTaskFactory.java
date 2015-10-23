@@ -32,11 +32,15 @@ public class DynamicDeliveryTaskFactory implements BeanDefinitionRegistryPostPro
 
         final String beanName = String.format("deliveryTask_%s", Arrays.hashCode(new Object[] { deliveryTask.getUrlDataSink().getAuthority() }));
 
+        System.out.println(beanName);
+
         DeliveryTask dt = null;
         synchronized (beanName.intern()) {
             try {
                 dt = (DeliveryTask) beanFactory.getBean(beanName);
             } catch (final NoSuchBeanDefinitionException ex) {
+
+                System.out.println("no such bean");
 
                 beanDefinitionRegistry.registerBeanDefinition(beanName, BeanDefinitionBuilder//
                         .genericBeanDefinition(DeliveryTask.class).addConstructorArgValue(deliveryTask).getBeanDefinition());

@@ -81,14 +81,28 @@ public class Configuration {
 
             if (SystemReservedProperty.getSystemReservedProperty().containsKey(keyStr)) {
                 try {
-                    mergeSystemReservedProperties(keyStr, (int) value);
+
+                    if (value instanceof Integer) {
+                        mergeSystemReservedProperties(keyStr, (int) value);
+                    } else if (value instanceof String) {
+                        int valueInt = Integer.parseInt((String) value);
+                        mergeSystemReservedProperties(keyStr, (int) valueInt);
+                    } else {
+                        logger.error("Couldn't update property due wrong data type.");
+                    }
+
                 } catch (Exception e) {
                     logger.error("{}", e);
                 }
             } else if (SensorReservedProperty.SUPPLY_REQ.getName().equals(keyStr)) {
-
                 try {
-                    mergeSupplyingSensorProperties(keyStr, (String) value);
+                    if (value instanceof Integer) {
+                        mergeSupplyingSensorProperties(keyStr, Integer.toString((int) value));
+                    } else if (value instanceof String) {
+                        mergeSupplyingSensorProperties(keyStr, (String) value);
+                    } else {
+                        logger.error("Couldn't update property due wrong data type.");
+                    }
                 } catch (Exception e) {
                     logger.error("{}", e);
                 }
