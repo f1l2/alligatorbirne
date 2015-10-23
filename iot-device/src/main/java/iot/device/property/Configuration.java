@@ -7,6 +7,8 @@ import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -14,11 +16,14 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import common.property.SensorReservedProperty;
 import common.property.SystemReservedProperty;
 import common.utilities.NormalizeString;
+import iot.device.delivery.DeliveryTask;
 import iot.device.utility.ArrayMapDeserializerStringInteger;
 import iot.device.utility.ArrayMapDeserializerStringString;
 
 @Component
 public class Configuration {
+
+    final static Logger logger = LoggerFactory.getLogger(DeliveryTask.class);
 
     /**
      * Set system reserved properties
@@ -50,7 +55,7 @@ public class Configuration {
      */
 
     public int getValue(SystemReservedProperty srp) {
-        return systemReservedProperties.get(srp.name());
+        return systemReservedProperties.get(srp.getName());
     }
 
     public List<String> getSupplyingSensor() {
@@ -76,16 +81,16 @@ public class Configuration {
 
             if (SystemReservedProperty.getSystemReservedProperty().containsKey(keyStr)) {
                 try {
-                    mergeSystemReservedProperties(NormalizeString.normalize((String) key), (int) value);
+                    mergeSystemReservedProperties(keyStr, (int) value);
                 } catch (Exception e) {
-
+                    logger.error("{}", e);
                 }
-            } else if (SensorReservedProperty.SUPPLY_REQ.getName().equals(NormalizeString.normalize((String) key))) {
+            } else if (SensorReservedProperty.SUPPLY_REQ.getName().equals(keyStr)) {
 
                 try {
-                    mergeSupplyingSensorProperties(NormalizeString.normalize((String) key), (String) value);
+                    mergeSupplyingSensorProperties(keyStr, (String) value);
                 } catch (Exception e) {
-
+                    logger.error("{}", e);
                 }
             } else {
                 otherProperties.put(keyStr, prop.get(key));

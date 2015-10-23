@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
+import common.utilities.NormalizeString;
 import event.processing.query.Query;
 
 @Component
@@ -15,8 +16,14 @@ public class QueryRepositoryImpl implements QueryRepository {
 
     private Map<String, Query> repo = new LinkedHashMap<String, Query>();
 
+    private String before(String name) {
+        return NormalizeString.normalize(name);
+    }
+
     @Override
     public Query findOne(String name) {
+
+        name = before(name);
 
         if (repo.containsKey(name)) {
             return repo.get(name);
@@ -39,11 +46,17 @@ public class QueryRepositoryImpl implements QueryRepository {
 
     @Override
     public void save(String name, Query query) {
+
+        name = before(name);
+
         repo.put(name, query);
     }
 
     @Override
     public void delete(String name) {
+
+        name = before(name);
+
         repo.remove(name);
     }
 

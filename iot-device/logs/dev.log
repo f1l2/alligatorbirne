@@ -2822,3 +2822,984 @@ java.lang.IllegalStateException: Illegal access: this web application instance h
 23.10.2015 14:29:33.066 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
 23.10.2015 14:29:33.066 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: TASK_INTERVAL_MS - 500; SUPPLYING - pressure;  
 23.10.2015 14:29:33.066 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:29:45.410 [INFO ] [main           ] t.device.property.PropertyTest - Starting PropertyTest on Manuel-PC with PID 1624 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:29:47.083 [INFO ] [main           ] t.device.property.PropertyTest - Started PropertyTest in 1.844 seconds (JVM running for 2.601) 
+23.10.2015 15:29:47.185 [INFO ] [main           ] d.r.DeliveryTaskRepositoryTest - Starting DeliveryTaskRepositoryTest on Manuel-PC with PID 1624 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:29:47.519 [INFO ] [main           ] d.r.DeliveryTaskRepositoryTest - Started DeliveryTaskRepositoryTest in 0.36 seconds (JVM running for 3.036) 
+23.10.2015 15:29:53.833 [INFO ] [main           ] .rest.IDevManageConfigFailTest - Starting IDevManageConfigFailTest on Manuel-PC with PID 1624 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:29:56.216 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+23.10.2015 15:29:56.216 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+23.10.2015 15:29:56.217 [INFO ] [main           ] .rest.IDevManageConfigFailTest - Started IDevManageConfigFailTest in 2.409 seconds (JVM running for 11.735) 
+23.10.2015 15:29:56.346 [INFO ] [pool-3-thread-1] ot.device.ApplicationScheduler - Retrieve local connection data ...  
+23.10.2015 15:29:56.352 [INFO ] [pool-3-thread-1] ot.device.ApplicationScheduler - Connection [id=0, name=localConnection, url=http://192.168.178.42:3694/, type=IOT_DEVICE] 
+23.10.2015 15:29:56.369 [INFO ] [pool-3-thread-1] ot.device.ApplicationScheduler - Load CM connection data ... 
+23.10.2015 15:29:56.369 [INFO ] [pool-3-thread-1] ot.device.ApplicationScheduler - Connection [id=0, name=Name, url=http://127.0.0.1:5000/, type=CONFIGURATION_MANAGEMENT] 
+23.10.2015 15:29:57.325 [INFO ] [o-auto-1-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:29:57.325 [INFO ] [o-auto-1-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:29:57.328 [INFO ] [o-auto-1-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+23.10.2015 15:29:57.332 [INFO ] [pool-3-thread-1] ot.device.ApplicationScheduler - Try to register device ... 
+23.10.2015 15:29:57.332 [INFO ] [pool-3-thread-1] ot.device.ApplicationScheduler - http://127.0.0.1:5000/registrations/devices 
+23.10.2015 15:29:57.332 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:29:57.332 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; key - value;  
+23.10.2015 15:29:57.332 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: REGISTER_DEVICE 
+23.10.2015 15:29:57.435 [INFO ] [o-auto-1-exec-2] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:29:57.435 [INFO ] [o-auto-1-exec-2] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:29:57.436 [INFO ] [o-auto-1-exec-2] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488145 is created. Execution starts ... 
+23.10.2015 15:29:57.440 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488145 is executed. 
+23.10.2015 15:29:57.440 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; key - value;  
+23.10.2015 15:29:57.440 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - Status: REGISTER_DEVICE 
+23.10.2015 15:29:57.461 [INFO ] [o-auto-1-exec-3] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:29:57.462 [INFO ] [o-auto-1-exec-3] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:29:57.462 [INFO ] [o-auto-1-exec-3] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488144 is created. Execution starts ... 
+23.10.2015 15:29:57.466 [INFO ] [taskExecutor-5 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488144 is executed. 
+23.10.2015 15:29:57.467 [INFO ] [taskExecutor-5 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; key - value;  
+23.10.2015 15:29:57.467 [INFO ] [taskExecutor-5 ] t.device.delivery.DeliveryTask - Status: REGISTER_DEVICE 
+23.10.2015 15:29:57.483 [INFO ] [o-auto-1-exec-4] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:29:57.484 [INFO ] [o-auto-1-exec-4] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:29:57.484 [INFO ] [o-auto-1-exec-4] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488143 is created. Execution starts ... 
+23.10.2015 15:29:57.488 [INFO ] [taskExecutor-7 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488143 is executed. 
+23.10.2015 15:29:57.488 [INFO ] [taskExecutor-7 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; key - value;  
+23.10.2015 15:29:57.488 [INFO ] [taskExecutor-7 ] t.device.delivery.DeliveryTask - Status: REGISTER_DEVICE 
+23.10.2015 15:29:57.502 [INFO ] [o-auto-1-exec-5] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:29:57.502 [INFO ] [o-auto-1-exec-5] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:29:57.503 [INFO ] [o-auto-1-exec-5] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488142 is created. Execution starts ... 
+23.10.2015 15:29:57.506 [INFO ] [taskExecutor-9 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488142 is executed. 
+23.10.2015 15:29:57.506 [INFO ] [taskExecutor-9 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; key - value;  
+23.10.2015 15:29:57.507 [INFO ] [taskExecutor-9 ] t.device.delivery.DeliveryTask - Status: REGISTER_DEVICE 
+23.10.2015 15:29:57.522 [INFO ] [o-auto-1-exec-6] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:29:57.523 [INFO ] [o-auto-1-exec-6] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:29:57.523 [INFO ] [o-auto-1-exec-6] rest.activity.SetConfiguration - Data Sinks gets already supplied. Configuration changed. 
+23.10.2015 15:29:57.537 [INFO ] [o-auto-1-exec-7] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:29:57.537 [INFO ] [o-auto-1-exec-7] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:29:57.537 [INFO ] [o-auto-1-exec-7] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488082 is created. Execution starts ... 
+23.10.2015 15:29:57.541 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488082 is executed. 
+23.10.2015 15:29:57.541 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; key - value;  
+23.10.2015 15:29:57.541 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: REGISTER_DEVICE 
+23.10.2015 15:29:57.658 [INFO ] [main           ] vice.rest.IDevManageConfigTest - Starting IDevManageConfigTest on Manuel-PC with PID 1624 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:29:58.362 [ERROR] [pool-3-thread-1] ot.device.ApplicationScheduler - Register error. Exception: I/O error on POST request for "http://127.0.0.1:5000/registrations/devices":Connection refused: connect; nested exception is java.net.ConnectException: Connection refused: connect 
+23.10.2015 15:29:58.590 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+23.10.2015 15:29:58.590 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+23.10.2015 15:29:58.590 [INFO ] [main           ] vice.rest.IDevManageConfigTest - Started IDevManageConfigTest in 0.966 seconds (JVM running for 14.108) 
+23.10.2015 15:29:58.618 [INFO ] [o-auto-2-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:29:58.619 [INFO ] [o-auto-2-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:29:58.621 [INFO ] [o-auto-2-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+23.10.2015 15:29:58.625 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:29:58.626 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; key - value;  
+23.10.2015 15:29:58.626 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: STARTED_UP 
+23.10.2015 15:29:58.650 [INFO ] [o-auto-2-exec-2] vice.rest.IDevManageConfigImpl - GET /configurations/{authority} is invoked. 
+23.10.2015 15:29:58.695 [INFO ] [o-auto-2-exec-3] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:29:58.695 [INFO ] [o-auto-2-exec-3] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:29:58.695 [INFO ] [o-auto-2-exec-3] rest.activity.SetConfiguration - Data Sinks gets already supplied. Configuration changed. 
+23.10.2015 15:29:58.704 [INFO ] [o-auto-2-exec-4] vice.rest.IDevManageConfigImpl - GET /configurations is invoked. 
+23.10.2015 15:29:58.815 [INFO ] [main           ] .rest.IDevManageSetConfig1Test - Starting IDevManageSetConfig1Test on Manuel-PC with PID 1624 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:30:38.854 [INFO ] [main           ] .rest.IDevManageSetConfig1Test - Starting IDevManageSetConfig1Test on Manuel-PC with PID 172 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:30:42.961 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+23.10.2015 15:30:42.961 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+23.10.2015 15:30:42.963 [INFO ] [main           ] .rest.IDevManageSetConfig1Test - Started IDevManageSetConfig1Test in 4.285 seconds (JVM running for 5.05) 
+23.10.2015 15:30:44.178 [INFO ] [o-auto-1-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:30:44.179 [INFO ] [o-auto-1-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:30:44.184 [INFO ] [o-auto-1-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+23.10.2015 15:30:44.188 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:30:44.188 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; supplying - Pressure;  
+23.10.2015 15:30:44.188 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:30:46.024 [INFO ] [main           ] .rest.IDevManageSetConfig2Test - Starting IDevManageSetConfig2Test on Manuel-PC with PID 172 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:30:47.042 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+23.10.2015 15:30:47.043 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+23.10.2015 15:30:47.043 [INFO ] [main           ] .rest.IDevManageSetConfig2Test - Started IDevManageSetConfig2Test in 1.063 seconds (JVM running for 9.13) 
+23.10.2015 15:30:47.073 [INFO ] [o-auto-2-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:30:47.073 [INFO ] [o-auto-2-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:30:47.075 [INFO ] [o-auto-2-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+23.10.2015 15:30:47.080 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:30:47.081 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; supplying - pressure;  
+23.10.2015 15:30:47.081 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:30:47.098 [INFO ] [o-auto-2-exec-2] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:30:47.099 [INFO ] [o-auto-2-exec-2] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:30:47.099 [INFO ] [o-auto-2-exec-2] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488140 is created. Execution starts ... 
+23.10.2015 15:30:47.103 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+23.10.2015 15:30:47.103 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; supplying - pressure;  
+23.10.2015 15:30:47.103 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:30:47.703 [INFO ] [main           ] d.r.DeliveryTaskRepositoryTest - Starting DeliveryTaskRepositoryTest on Manuel-PC with PID 172 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:30:48.002 [INFO ] [main           ] d.r.DeliveryTaskRepositoryTest - Started DeliveryTaskRepositoryTest in 0.337 seconds (JVM running for 10.089) 
+23.10.2015 15:30:50.290 [INFO ] [main           ] .rest.IDevManageConfigFailTest - Starting IDevManageConfigFailTest on Manuel-PC with PID 172 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:30:51.178 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+23.10.2015 15:30:51.179 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+23.10.2015 15:30:51.179 [INFO ] [main           ] .rest.IDevManageConfigFailTest - Started IDevManageConfigFailTest in 0.915 seconds (JVM running for 13.265) 
+23.10.2015 15:30:51.208 [INFO ] [o-auto-3-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:30:51.209 [INFO ] [o-auto-3-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:30:51.211 [INFO ] [o-auto-3-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+23.10.2015 15:30:51.216 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:30:51.216 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; key - value;  
+23.10.2015 15:30:51.216 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: STARTED_UP 
+23.10.2015 15:30:51.229 [INFO ] [o-auto-3-exec-2] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:30:51.230 [INFO ] [o-auto-3-exec-2] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:30:51.230 [INFO ] [o-auto-3-exec-2] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488145 is created. Execution starts ... 
+23.10.2015 15:30:51.235 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488145 is executed. 
+23.10.2015 15:30:51.235 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; key - value;  
+23.10.2015 15:30:51.235 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - Status: STARTED_UP 
+23.10.2015 15:30:51.248 [INFO ] [o-auto-3-exec-3] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:30:51.248 [INFO ] [o-auto-3-exec-3] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:30:51.249 [INFO ] [o-auto-3-exec-3] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488144 is created. Execution starts ... 
+23.10.2015 15:30:51.253 [INFO ] [taskExecutor-5 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488144 is executed. 
+23.10.2015 15:30:51.254 [INFO ] [taskExecutor-5 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; key - value;  
+23.10.2015 15:30:51.254 [INFO ] [taskExecutor-5 ] t.device.delivery.DeliveryTask - Status: STARTED_UP 
+23.10.2015 15:30:51.268 [INFO ] [o-auto-3-exec-4] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:30:51.268 [INFO ] [o-auto-3-exec-4] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:30:51.269 [INFO ] [o-auto-3-exec-4] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488143 is created. Execution starts ... 
+23.10.2015 15:30:51.274 [INFO ] [taskExecutor-7 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488143 is executed. 
+23.10.2015 15:30:51.274 [INFO ] [taskExecutor-7 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; key - value;  
+23.10.2015 15:30:51.274 [INFO ] [taskExecutor-7 ] t.device.delivery.DeliveryTask - Status: STARTED_UP 
+23.10.2015 15:30:51.290 [INFO ] [o-auto-3-exec-5] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:30:51.290 [INFO ] [o-auto-3-exec-5] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:30:51.291 [INFO ] [o-auto-3-exec-5] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488142 is created. Execution starts ... 
+23.10.2015 15:30:51.295 [INFO ] [taskExecutor-9 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488142 is executed. 
+23.10.2015 15:30:51.295 [INFO ] [taskExecutor-9 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; key - value;  
+23.10.2015 15:30:51.295 [INFO ] [taskExecutor-9 ] t.device.delivery.DeliveryTask - Status: STARTED_UP 
+23.10.2015 15:30:51.305 [INFO ] [o-auto-3-exec-6] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:30:51.306 [INFO ] [o-auto-3-exec-6] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:30:51.306 [INFO ] [o-auto-3-exec-6] rest.activity.SetConfiguration - Data Sinks gets already supplied. Configuration changed. 
+23.10.2015 15:30:51.322 [INFO ] [o-auto-3-exec-7] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:30:51.322 [INFO ] [o-auto-3-exec-7] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:30:51.323 [INFO ] [o-auto-3-exec-7] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488082 is created. Execution starts ... 
+23.10.2015 15:30:51.327 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488082 is executed. 
+23.10.2015 15:30:51.327 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; key - value;  
+23.10.2015 15:30:51.327 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: STARTED_UP 
+23.10.2015 15:30:51.414 [INFO ] [main           ] t.device.property.PropertyTest - Starting PropertyTest on Manuel-PC with PID 172 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:30:51.704 [INFO ] [main           ] t.device.property.PropertyTest - Started PropertyTest in 0.316 seconds (JVM running for 13.79) 
+23.10.2015 15:30:51.756 [INFO ] [main           ] vice.rest.IDevManageConfigTest - Starting IDevManageConfigTest on Manuel-PC with PID 172 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:30:52.458 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+23.10.2015 15:30:52.459 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+23.10.2015 15:30:52.459 [INFO ] [main           ] vice.rest.IDevManageConfigTest - Started IDevManageConfigTest in 0.717 seconds (JVM running for 14.545) 
+23.10.2015 15:30:52.479 [INFO ] [o-auto-4-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:30:52.479 [INFO ] [o-auto-4-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:30:52.481 [INFO ] [o-auto-4-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+23.10.2015 15:30:52.484 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:30:52.484 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; key - value;  
+23.10.2015 15:30:52.484 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: STARTED_UP 
+23.10.2015 15:30:52.510 [INFO ] [o-auto-4-exec-2] vice.rest.IDevManageConfigImpl - GET /configurations/{authority} is invoked. 
+23.10.2015 15:30:52.552 [INFO ] [o-auto-4-exec-4] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:30:52.552 [INFO ] [o-auto-4-exec-4] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:30:52.552 [INFO ] [o-auto-4-exec-4] rest.activity.SetConfiguration - Data Sinks gets already supplied. Configuration changed. 
+23.10.2015 15:30:52.561 [INFO ] [o-auto-4-exec-5] vice.rest.IDevManageConfigImpl - GET /configurations is invoked. 
+23.10.2015 15:31:07.152 [INFO ] [main           ] .rest.IDevManageSetConfig1Test - Starting IDevManageSetConfig1Test on Manuel-PC with PID 3676 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:31:11.220 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+23.10.2015 15:31:11.220 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+23.10.2015 15:31:11.221 [INFO ] [main           ] .rest.IDevManageSetConfig1Test - Started IDevManageSetConfig1Test in 4.245 seconds (JVM running for 4.906) 
+23.10.2015 15:31:12.401 [INFO ] [o-auto-1-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:31:12.401 [INFO ] [o-auto-1-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:31:12.404 [INFO ] [o-auto-1-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+23.10.2015 15:31:12.410 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:31:12.411 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; supplying - Pressure;  
+23.10.2015 15:31:12.411 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:31:14.157 [INFO ] [main           ] .rest.IDevManageSetConfig2Test - Starting IDevManageSetConfig2Test on Manuel-PC with PID 3676 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:31:29.663 [INFO ] [main           ] .rest.IDevManageSetConfig1Test - Starting IDevManageSetConfig1Test on Manuel-PC with PID 4512 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:31:34.002 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+23.10.2015 15:31:34.002 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+23.10.2015 15:31:34.004 [INFO ] [main           ] .rest.IDevManageSetConfig1Test - Started IDevManageSetConfig1Test in 4.522 seconds (JVM running for 5.227) 
+23.10.2015 15:31:35.129 [INFO ] [o-auto-1-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:31:35.130 [INFO ] [o-auto-1-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:31:35.133 [INFO ] [o-auto-1-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+23.10.2015 15:31:35.138 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:31:35.138 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; supplying - Pressure;  
+23.10.2015 15:31:35.138 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:31:36.852 [INFO ] [main           ] .rest.IDevManageSetConfig2Test - Starting IDevManageSetConfig2Test on Manuel-PC with PID 4512 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:31:38.006 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+23.10.2015 15:31:38.006 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+23.10.2015 15:31:38.006 [INFO ] [main           ] .rest.IDevManageSetConfig2Test - Started IDevManageSetConfig2Test in 1.213 seconds (JVM running for 9.23) 
+23.10.2015 15:31:38.034 [INFO ] [o-auto-2-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:31:38.035 [INFO ] [o-auto-2-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:31:38.036 [INFO ] [o-auto-2-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+23.10.2015 15:31:38.041 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:31:38.041 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; supplying - pressure;  
+23.10.2015 15:31:38.041 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:31:38.057 [INFO ] [o-auto-2-exec-2] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:31:38.057 [INFO ] [o-auto-2-exec-2] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:31:38.058 [INFO ] [o-auto-2-exec-2] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488140 is created. Execution starts ... 
+23.10.2015 15:31:38.063 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+23.10.2015 15:31:38.063 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; supplying - pressure;  
+23.10.2015 15:31:38.063 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:31:38.661 [INFO ] [main           ] .rest.IDevManageConfigFailTest - Starting IDevManageConfigFailTest on Manuel-PC with PID 4512 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:31:39.600 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+23.10.2015 15:31:39.600 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+23.10.2015 15:31:39.601 [INFO ] [main           ] .rest.IDevManageConfigFailTest - Started IDevManageConfigFailTest in 0.976 seconds (JVM running for 10.824) 
+23.10.2015 15:31:39.631 [INFO ] [o-auto-3-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:31:39.631 [INFO ] [o-auto-3-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:31:39.633 [INFO ] [o-auto-3-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+23.10.2015 15:31:39.637 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:31:39.638 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; key - value;  
+23.10.2015 15:31:39.638 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: STARTED_UP 
+23.10.2015 15:31:39.654 [INFO ] [o-auto-3-exec-2] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:31:39.654 [INFO ] [o-auto-3-exec-2] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:31:39.655 [INFO ] [o-auto-3-exec-2] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488145 is created. Execution starts ... 
+23.10.2015 15:31:39.660 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488145 is executed. 
+23.10.2015 15:31:39.660 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; key - value;  
+23.10.2015 15:31:39.660 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - Status: STARTED_UP 
+23.10.2015 15:31:39.674 [INFO ] [o-auto-3-exec-3] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:31:39.674 [INFO ] [o-auto-3-exec-3] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:31:39.675 [INFO ] [o-auto-3-exec-3] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488144 is created. Execution starts ... 
+23.10.2015 15:31:39.679 [INFO ] [taskExecutor-5 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488144 is executed. 
+23.10.2015 15:31:39.680 [INFO ] [taskExecutor-5 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; key - value;  
+23.10.2015 15:31:39.680 [INFO ] [taskExecutor-5 ] t.device.delivery.DeliveryTask - Status: STARTED_UP 
+23.10.2015 15:31:39.690 [INFO ] [o-auto-3-exec-4] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:31:39.690 [INFO ] [o-auto-3-exec-4] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:31:39.691 [INFO ] [o-auto-3-exec-4] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488143 is created. Execution starts ... 
+23.10.2015 15:31:39.696 [INFO ] [taskExecutor-7 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488143 is executed. 
+23.10.2015 15:31:39.696 [INFO ] [taskExecutor-7 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; key - value;  
+23.10.2015 15:31:39.696 [INFO ] [taskExecutor-7 ] t.device.delivery.DeliveryTask - Status: STARTED_UP 
+23.10.2015 15:31:39.708 [INFO ] [o-auto-3-exec-5] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:31:39.708 [INFO ] [o-auto-3-exec-5] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:31:39.709 [INFO ] [o-auto-3-exec-5] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488142 is created. Execution starts ... 
+23.10.2015 15:31:39.712 [INFO ] [taskExecutor-9 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488142 is executed. 
+23.10.2015 15:31:39.713 [INFO ] [taskExecutor-9 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; key - value;  
+23.10.2015 15:31:39.713 [INFO ] [taskExecutor-9 ] t.device.delivery.DeliveryTask - Status: STARTED_UP 
+23.10.2015 15:31:39.725 [INFO ] [o-auto-3-exec-6] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:31:39.725 [INFO ] [o-auto-3-exec-6] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:31:39.725 [INFO ] [o-auto-3-exec-6] rest.activity.SetConfiguration - Data Sinks gets already supplied. Configuration changed. 
+23.10.2015 15:31:39.742 [INFO ] [o-auto-3-exec-7] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:31:39.742 [INFO ] [o-auto-3-exec-7] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:31:39.742 [INFO ] [o-auto-3-exec-7] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488082 is created. Execution starts ... 
+23.10.2015 15:31:39.747 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488082 is executed. 
+23.10.2015 15:31:39.748 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; key - value;  
+23.10.2015 15:31:39.748 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: STARTED_UP 
+23.10.2015 15:31:39.849 [INFO ] [main           ] vice.rest.IDevManageConfigTest - Starting IDevManageConfigTest on Manuel-PC with PID 4512 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:31:40.606 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+23.10.2015 15:31:40.606 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+23.10.2015 15:31:40.606 [INFO ] [main           ] vice.rest.IDevManageConfigTest - Started IDevManageConfigTest in 0.795 seconds (JVM running for 11.83) 
+23.10.2015 15:31:40.626 [INFO ] [o-auto-4-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:31:40.627 [INFO ] [o-auto-4-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:31:40.628 [INFO ] [o-auto-4-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+23.10.2015 15:31:40.631 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:31:40.631 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; key - value;  
+23.10.2015 15:31:40.631 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: STARTED_UP 
+23.10.2015 15:31:40.650 [INFO ] [o-auto-4-exec-2] vice.rest.IDevManageConfigImpl - GET /configurations/{authority} is invoked. 
+23.10.2015 15:31:41.588 [INFO ] [pool-4-thread-1] ot.device.ApplicationScheduler - Retrieve local connection data ...  
+23.10.2015 15:31:41.588 [INFO ] [pool-4-thread-1] ot.device.ApplicationScheduler - Connection [id=0, name=localConnection, url=http://192.168.178.42:3819/, type=IOT_DEVICE] 
+23.10.2015 15:31:41.603 [INFO ] [pool-4-thread-1] ot.device.ApplicationScheduler - Load CM connection data ... 
+23.10.2015 15:31:41.603 [INFO ] [pool-4-thread-1] ot.device.ApplicationScheduler - Connection [id=0, name=Name, url=http://127.0.0.1:5000/, type=CONFIGURATION_MANAGEMENT] 
+23.10.2015 15:31:42.574 [INFO ] [pool-4-thread-1] ot.device.ApplicationScheduler - Try to register device ... 
+23.10.2015 15:31:42.574 [INFO ] [pool-4-thread-1] ot.device.ApplicationScheduler - http://127.0.0.1:5000/registrations/devices 
+23.10.2015 15:31:42.962 [INFO ] [o-auto-4-exec-3] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:31:42.962 [INFO ] [o-auto-4-exec-3] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:31:42.963 [INFO ] [o-auto-4-exec-3] rest.activity.SetConfiguration - Data Sinks gets already supplied. Configuration changed. 
+23.10.2015 15:31:42.976 [INFO ] [o-auto-4-exec-4] vice.rest.IDevManageConfigImpl - GET /configurations is invoked. 
+23.10.2015 15:32:06.322 [INFO ] [main           ] .rest.IDevManageSetConfig1Test - Starting IDevManageSetConfig1Test on Manuel-PC with PID 3528 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:32:10.336 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+23.10.2015 15:32:10.337 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+23.10.2015 15:32:10.338 [INFO ] [main           ] .rest.IDevManageSetConfig1Test - Started IDevManageSetConfig1Test in 4.205 seconds (JVM running for 4.888) 
+23.10.2015 15:32:11.461 [INFO ] [o-auto-1-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:32:11.461 [INFO ] [o-auto-1-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:32:11.466 [INFO ] [o-auto-1-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+23.10.2015 15:32:11.470 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:32:11.470 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; supplying - Pressure;  
+23.10.2015 15:32:11.470 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:32:52.669 [INFO ] [main           ] t.device.property.PropertyTest - Starting PropertyTest on Manuel-PC with PID 2448 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:32:54.364 [INFO ] [main           ] t.device.property.PropertyTest - Started PropertyTest in 1.884 seconds (JVM running for 2.557) 
+23.10.2015 15:33:10.536 [INFO ] [main           ] t.device.property.PropertyTest - Starting PropertyTest on Manuel-PC with PID 4356 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:33:12.778 [INFO ] [main           ] t.device.property.PropertyTest - Started PropertyTest in 2.466 seconds (JVM running for 3.197) 
+23.10.2015 15:34:48.321 [INFO ] [main           ] t.device.property.PropertyTest - Starting PropertyTest on Manuel-PC with PID 2936 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:34:50.398 [INFO ] [main           ] t.device.property.PropertyTest - Started PropertyTest in 2.29 seconds (JVM running for 3.035) 
+23.10.2015 15:35:03.250 [INFO ] [main           ] t.device.property.PropertyTest - Starting PropertyTest on Manuel-PC with PID 5492 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:35:05.447 [INFO ] [main           ] t.device.property.PropertyTest - Started PropertyTest in 2.401 seconds (JVM running for 3.145) 
+23.10.2015 15:37:08.609 [INFO ] [main           ] t.device.property.PropertyTest - Starting PropertyTest on Manuel-PC with PID 5156 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:37:10.427 [INFO ] [main           ] t.device.property.PropertyTest - Started PropertyTest in 1.994 seconds (JVM running for 2.625) 
+23.10.2015 15:37:17.520 [INFO ] [main           ] t.device.property.PropertyTest - Starting PropertyTest on Manuel-PC with PID 3660 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:37:19.732 [INFO ] [main           ] t.device.property.PropertyTest - Started PropertyTest in 2.424 seconds (JVM running for 3.165) 
+23.10.2015 15:37:36.620 [INFO ] [main           ] t.device.property.PropertyTest - Starting PropertyTest on Manuel-PC with PID 5372 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:37:38.822 [INFO ] [main           ] t.device.property.PropertyTest - Started PropertyTest in 2.409 seconds (JVM running for 3.15) 
+23.10.2015 15:38:05.150 [INFO ] [main           ] t.device.property.PropertyTest - Starting PropertyTest on Manuel-PC with PID 4688 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:38:06.934 [INFO ] [main           ] t.device.property.PropertyTest - Started PropertyTest in 1.966 seconds (JVM running for 2.589) 
+23.10.2015 15:38:12.021 [INFO ] [main           ] t.device.property.PropertyTest - Starting PropertyTest on Manuel-PC with PID 4244 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:38:14.208 [INFO ] [main           ] t.device.property.PropertyTest - Started PropertyTest in 2.416 seconds (JVM running for 3.173) 
+23.10.2015 15:39:18.701 [INFO ] [main           ] t.device.property.PropertyTest - Starting PropertyTest on Manuel-PC with PID 2432 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:39:20.914 [INFO ] [main           ] t.device.property.PropertyTest - Started PropertyTest in 2.412 seconds (JVM running for 3.184) 
+23.10.2015 15:39:45.852 [INFO ] [main           ] t.device.property.PropertyTest - Starting PropertyTest on Manuel-PC with PID 2652 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:39:48.067 [INFO ] [main           ] t.device.property.PropertyTest - Started PropertyTest in 2.425 seconds (JVM running for 3.192) 
+23.10.2015 15:41:57.310 [INFO ] [main           ] t.device.property.PropertyTest - Starting PropertyTest on Manuel-PC with PID 5536 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:41:59.152 [INFO ] [main           ] t.device.property.PropertyTest - Started PropertyTest in 2.027 seconds (JVM running for 2.664) 
+23.10.2015 15:43:35.948 [INFO ] [main           ] .rest.IDevManageSetConfig1Test - Starting IDevManageSetConfig1Test on Manuel-PC with PID 3508 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:43:39.938 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+23.10.2015 15:43:39.938 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+23.10.2015 15:43:39.939 [INFO ] [main           ] .rest.IDevManageSetConfig1Test - Started IDevManageSetConfig1Test in 4.173 seconds (JVM running for 4.849) 
+23.10.2015 15:43:41.125 [INFO ] [o-auto-1-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:43:41.125 [INFO ] [o-auto-1-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:43:41.129 [INFO ] [o-auto-1-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+23.10.2015 15:43:41.133 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:43:41.134 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; supplying - Pressure;  
+23.10.2015 15:43:41.134 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:43:41.667 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:43:41.667 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; supplying - Pressure;  
+23.10.2015 15:43:41.667 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:43:42.178 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:43:42.178 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; supplying - Pressure;  
+23.10.2015 15:43:42.178 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:43:42.689 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:43:42.689 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; supplying - Pressure;  
+23.10.2015 15:43:42.689 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:43:42.757 [INFO ] [o-auto-1-exec-2] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:43:42.757 [INFO ] [o-auto-1-exec-2] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:43:42.757 [INFO ] [o-auto-1-exec-2] rest.activity.SetConfiguration - Data Sinks gets already supplied. Configuration changed. 
+23.10.2015 15:43:43.209 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:43:43.209 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 1000; supplying - Pressure;  
+23.10.2015 15:43:43.209 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:43:44.233 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:43:44.233 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 1000; supplying - Pressure;  
+23.10.2015 15:43:44.233 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:43:44.879 [INFO ] [main           ] .rest.IDevManageSetConfig2Test - Starting IDevManageSetConfig2Test on Manuel-PC with PID 3508 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:43:45.258 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:43:45.258 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 1000; supplying - Pressure;  
+23.10.2015 15:43:45.258 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:43:45.264 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [META-INF/services/javax.xml.bind.JAXBContext]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1327) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.loader.WebappClassLoaderBase.getResource(WebappClassLoaderBase.java:1023) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at javax.xml.bind.ContextFinder.find(ContextFinder.java:432) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:641) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:584) ~[na:1.8.0_45]
+	at common.transformer.XMLParser.unmarshal(XMLParser.java:27) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadSettingNative(SettingUtils.java:185) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDataSources(SettingUtils.java:162) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDomainsByDeviceInformation(SettingUtils.java:243) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:81) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+23.10.2015 15:43:45.906 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+23.10.2015 15:43:45.906 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+23.10.2015 15:43:45.907 [INFO ] [main           ] .rest.IDevManageSetConfig2Test - Started IDevManageSetConfig2Test in 1.071 seconds (JVM running for 10.817) 
+23.10.2015 15:43:45.939 [INFO ] [o-auto-2-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:43:45.939 [INFO ] [o-auto-2-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:43:45.941 [INFO ] [o-auto-2-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+23.10.2015 15:43:45.946 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:43:45.946 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; supplying - pressure;  
+23.10.2015 15:43:45.946 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:43:45.958 [INFO ] [o-auto-2-exec-2] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:43:45.959 [INFO ] [o-auto-2-exec-2] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:43:45.960 [INFO ] [o-auto-2-exec-2] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488140 is created. Execution starts ... 
+23.10.2015 15:43:45.965 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+23.10.2015 15:43:45.965 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; supplying - pressure;  
+23.10.2015 15:43:45.965 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:43:46.264 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:43:46.264 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 1000; supplying - Pressure;  
+23.10.2015 15:43:46.264 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:43:46.266 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [META-INF/services/javax.xml.bind.JAXBContext]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1327) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.loader.WebappClassLoaderBase.getResource(WebappClassLoaderBase.java:1023) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at javax.xml.bind.ContextFinder.find(ContextFinder.java:432) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:641) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:584) ~[na:1.8.0_45]
+	at common.transformer.XMLParser.unmarshal(XMLParser.java:27) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadSettingNative(SettingUtils.java:185) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDataSources(SettingUtils.java:162) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDomainsByDeviceInformation(SettingUtils.java:243) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:81) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+23.10.2015 15:43:46.460 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:43:46.460 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; supplying - pressure;  
+23.10.2015 15:43:46.460 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:43:46.482 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+23.10.2015 15:43:46.482 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; supplying - pressure;  
+23.10.2015 15:43:46.482 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:43:46.570 [INFO ] [main           ] d.r.DeliveryTaskRepositoryTest - Starting DeliveryTaskRepositoryTest on Manuel-PC with PID 3508 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:43:46.893 [INFO ] [main           ] d.r.DeliveryTaskRepositoryTest - Started DeliveryTaskRepositoryTest in 0.358 seconds (JVM running for 11.804) 
+23.10.2015 15:43:46.974 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:43:46.974 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; supplying - pressure;  
+23.10.2015 15:43:46.974 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:43:46.975 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [META-INF/services/javax.xml.bind.JAXBContext]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1327) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.loader.WebappClassLoaderBase.getResource(WebappClassLoaderBase.java:1023) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at javax.xml.bind.ContextFinder.find(ContextFinder.java:432) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:641) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:584) ~[na:1.8.0_45]
+	at common.transformer.XMLParser.unmarshal(XMLParser.java:27) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadSettingNative(SettingUtils.java:185) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDataSources(SettingUtils.java:162) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDomainsByDeviceInformation(SettingUtils.java:243) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:81) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+23.10.2015 15:43:46.998 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+23.10.2015 15:43:46.998 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; supplying - pressure;  
+23.10.2015 15:43:46.998 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:43:46.999 [ERROR] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [META-INF/services/javax.xml.bind.JAXBContext]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1327) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.loader.WebappClassLoaderBase.getResource(WebappClassLoaderBase.java:1023) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at javax.xml.bind.ContextFinder.find(ContextFinder.java:432) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:641) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:584) ~[na:1.8.0_45]
+	at common.transformer.XMLParser.unmarshal(XMLParser.java:27) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadSettingNative(SettingUtils.java:185) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDataSources(SettingUtils.java:162) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDomainsByDeviceInformation(SettingUtils.java:243) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:81) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+23.10.2015 15:43:47.266 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:43:47.266 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 1000; supplying - Pressure;  
+23.10.2015 15:43:47.266 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:43:47.267 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [META-INF/services/javax.xml.bind.JAXBContext]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1327) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.loader.WebappClassLoaderBase.getResource(WebappClassLoaderBase.java:1023) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at javax.xml.bind.ContextFinder.find(ContextFinder.java:432) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:641) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:584) ~[na:1.8.0_45]
+	at common.transformer.XMLParser.unmarshal(XMLParser.java:27) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadSettingNative(SettingUtils.java:185) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDataSources(SettingUtils.java:162) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDomainsByDeviceInformation(SettingUtils.java:243) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:81) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+23.10.2015 15:43:47.475 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:43:47.475 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; supplying - pressure;  
+23.10.2015 15:43:47.475 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:43:47.477 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [META-INF/services/javax.xml.bind.JAXBContext]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1327) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.loader.WebappClassLoaderBase.getResource(WebappClassLoaderBase.java:1023) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at javax.xml.bind.ContextFinder.find(ContextFinder.java:432) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:641) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:584) ~[na:1.8.0_45]
+	at common.transformer.XMLParser.unmarshal(XMLParser.java:27) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadSettingNative(SettingUtils.java:185) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDataSources(SettingUtils.java:162) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDomainsByDeviceInformation(SettingUtils.java:243) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:81) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+23.10.2015 15:43:47.499 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+23.10.2015 15:43:47.499 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; supplying - pressure;  
+23.10.2015 15:43:47.499 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:43:47.501 [ERROR] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [META-INF/services/javax.xml.bind.JAXBContext]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1327) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.loader.WebappClassLoaderBase.getResource(WebappClassLoaderBase.java:1023) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at javax.xml.bind.ContextFinder.find(ContextFinder.java:432) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:641) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:584) ~[na:1.8.0_45]
+	at common.transformer.XMLParser.unmarshal(XMLParser.java:27) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadSettingNative(SettingUtils.java:185) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDataSources(SettingUtils.java:162) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDomainsByDeviceInformation(SettingUtils.java:243) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:81) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+23.10.2015 15:43:47.977 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:43:47.977 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; supplying - pressure;  
+23.10.2015 15:43:47.977 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:43:47.978 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [META-INF/services/javax.xml.bind.JAXBContext]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1327) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.loader.WebappClassLoaderBase.getResource(WebappClassLoaderBase.java:1023) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at javax.xml.bind.ContextFinder.find(ContextFinder.java:432) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:641) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:584) ~[na:1.8.0_45]
+	at common.transformer.XMLParser.unmarshal(XMLParser.java:27) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadSettingNative(SettingUtils.java:185) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDataSources(SettingUtils.java:162) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDomainsByDeviceInformation(SettingUtils.java:243) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:81) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+23.10.2015 15:43:48.001 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+23.10.2015 15:43:48.001 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; supplying - pressure;  
+23.10.2015 15:43:48.001 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:43:48.002 [ERROR] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [META-INF/services/javax.xml.bind.JAXBContext]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1327) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.loader.WebappClassLoaderBase.getResource(WebappClassLoaderBase.java:1023) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at javax.xml.bind.ContextFinder.find(ContextFinder.java:432) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:641) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:584) ~[na:1.8.0_45]
+	at common.transformer.XMLParser.unmarshal(XMLParser.java:27) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadSettingNative(SettingUtils.java:185) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDataSources(SettingUtils.java:162) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDomainsByDeviceInformation(SettingUtils.java:243) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:81) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+23.10.2015 15:43:48.267 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:43:48.267 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 1000; supplying - Pressure;  
+23.10.2015 15:43:48.267 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:43:48.269 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [META-INF/services/javax.xml.bind.JAXBContext]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1327) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.loader.WebappClassLoaderBase.getResource(WebappClassLoaderBase.java:1023) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at javax.xml.bind.ContextFinder.find(ContextFinder.java:432) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:641) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:584) ~[na:1.8.0_45]
+	at common.transformer.XMLParser.unmarshal(XMLParser.java:27) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadSettingNative(SettingUtils.java:185) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDataSources(SettingUtils.java:162) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDomainsByDeviceInformation(SettingUtils.java:243) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:81) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+23.10.2015 15:43:48.479 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:43:48.479 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; supplying - pressure;  
+23.10.2015 15:43:48.479 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:43:48.480 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [META-INF/services/javax.xml.bind.JAXBContext]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1327) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.loader.WebappClassLoaderBase.getResource(WebappClassLoaderBase.java:1023) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at javax.xml.bind.ContextFinder.find(ContextFinder.java:432) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:641) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:584) ~[na:1.8.0_45]
+	at common.transformer.XMLParser.unmarshal(XMLParser.java:27) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadSettingNative(SettingUtils.java:185) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDataSources(SettingUtils.java:162) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDomainsByDeviceInformation(SettingUtils.java:243) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:81) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+23.10.2015 15:43:48.502 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+23.10.2015 15:43:48.502 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; supplying - pressure;  
+23.10.2015 15:43:48.502 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:43:48.503 [ERROR] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [META-INF/services/javax.xml.bind.JAXBContext]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1327) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.loader.WebappClassLoaderBase.getResource(WebappClassLoaderBase.java:1023) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at javax.xml.bind.ContextFinder.find(ContextFinder.java:432) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:641) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:584) ~[na:1.8.0_45]
+	at common.transformer.XMLParser.unmarshal(XMLParser.java:27) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadSettingNative(SettingUtils.java:185) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDataSources(SettingUtils.java:162) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDomainsByDeviceInformation(SettingUtils.java:243) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:81) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+23.10.2015 15:43:48.981 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:43:48.981 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; supplying - pressure;  
+23.10.2015 15:43:48.981 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:43:48.982 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [META-INF/services/javax.xml.bind.JAXBContext]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1327) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.loader.WebappClassLoaderBase.getResource(WebappClassLoaderBase.java:1023) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at javax.xml.bind.ContextFinder.find(ContextFinder.java:432) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:641) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:584) ~[na:1.8.0_45]
+	at common.transformer.XMLParser.unmarshal(XMLParser.java:27) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadSettingNative(SettingUtils.java:185) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDataSources(SettingUtils.java:162) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDomainsByDeviceInformation(SettingUtils.java:243) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:81) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+23.10.2015 15:43:49.003 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+23.10.2015 15:43:49.003 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; supplying - pressure;  
+23.10.2015 15:43:49.003 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:43:49.004 [ERROR] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [META-INF/services/javax.xml.bind.JAXBContext]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1327) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.loader.WebappClassLoaderBase.getResource(WebappClassLoaderBase.java:1023) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at javax.xml.bind.ContextFinder.find(ContextFinder.java:432) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:641) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:584) ~[na:1.8.0_45]
+	at common.transformer.XMLParser.unmarshal(XMLParser.java:27) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadSettingNative(SettingUtils.java:185) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDataSources(SettingUtils.java:162) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDomainsByDeviceInformation(SettingUtils.java:243) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:81) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+23.10.2015 15:43:49.179 [INFO ] [main           ] .rest.IDevManageConfigFailTest - Starting IDevManageConfigFailTest on Manuel-PC with PID 3508 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:43:49.269 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:43:49.269 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 1000; supplying - Pressure;  
+23.10.2015 15:43:49.269 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:43:49.270 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [META-INF/services/javax.xml.bind.JAXBContext]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1327) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.loader.WebappClassLoaderBase.getResource(WebappClassLoaderBase.java:1023) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at javax.xml.bind.ContextFinder.find(ContextFinder.java:432) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:641) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:584) ~[na:1.8.0_45]
+	at common.transformer.XMLParser.unmarshal(XMLParser.java:27) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadSettingNative(SettingUtils.java:185) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDataSources(SettingUtils.java:162) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDomainsByDeviceInformation(SettingUtils.java:243) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:81) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+23.10.2015 15:43:49.482 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:43:49.482 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; supplying - pressure;  
+23.10.2015 15:43:49.482 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:43:49.483 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [META-INF/services/javax.xml.bind.JAXBContext]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1327) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.loader.WebappClassLoaderBase.getResource(WebappClassLoaderBase.java:1023) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at javax.xml.bind.ContextFinder.find(ContextFinder.java:432) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:641) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:584) ~[na:1.8.0_45]
+	at common.transformer.XMLParser.unmarshal(XMLParser.java:27) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadSettingNative(SettingUtils.java:185) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDataSources(SettingUtils.java:162) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDomainsByDeviceInformation(SettingUtils.java:243) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:81) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+23.10.2015 15:43:49.504 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+23.10.2015 15:43:49.504 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; supplying - pressure;  
+23.10.2015 15:43:49.504 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:43:49.505 [ERROR] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [META-INF/services/javax.xml.bind.JAXBContext]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1327) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.loader.WebappClassLoaderBase.getResource(WebappClassLoaderBase.java:1023) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at javax.xml.bind.ContextFinder.find(ContextFinder.java:432) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:641) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:584) ~[na:1.8.0_45]
+	at common.transformer.XMLParser.unmarshal(XMLParser.java:27) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadSettingNative(SettingUtils.java:185) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDataSources(SettingUtils.java:162) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDomainsByDeviceInformation(SettingUtils.java:243) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:81) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+23.10.2015 15:43:49.983 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:43:49.983 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; supplying - pressure;  
+23.10.2015 15:43:49.983 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:43:49.983 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [META-INF/services/javax.xml.bind.JAXBContext]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1327) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.loader.WebappClassLoaderBase.getResource(WebappClassLoaderBase.java:1023) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at javax.xml.bind.ContextFinder.find(ContextFinder.java:432) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:641) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:584) ~[na:1.8.0_45]
+	at common.transformer.XMLParser.unmarshal(XMLParser.java:27) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadSettingNative(SettingUtils.java:185) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDataSources(SettingUtils.java:162) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDomainsByDeviceInformation(SettingUtils.java:243) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:81) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+23.10.2015 15:43:49.986 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+23.10.2015 15:43:49.987 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+23.10.2015 15:43:49.987 [INFO ] [main           ] .rest.IDevManageConfigFailTest - Started IDevManageConfigFailTest in 0.832 seconds (JVM running for 14.898) 
+23.10.2015 15:43:50.005 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+23.10.2015 15:43:50.005 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; supplying - pressure;  
+23.10.2015 15:43:50.005 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:43:50.005 [ERROR] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [META-INF/services/javax.xml.bind.JAXBContext]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1327) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.loader.WebappClassLoaderBase.getResource(WebappClassLoaderBase.java:1023) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at javax.xml.bind.ContextFinder.find(ContextFinder.java:432) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:641) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:584) ~[na:1.8.0_45]
+	at common.transformer.XMLParser.unmarshal(XMLParser.java:27) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadSettingNative(SettingUtils.java:185) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDataSources(SettingUtils.java:162) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDomainsByDeviceInformation(SettingUtils.java:243) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:81) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+23.10.2015 15:43:50.010 [INFO ] [o-auto-3-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:43:50.010 [INFO ] [o-auto-3-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:43:50.012 [INFO ] [o-auto-3-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+23.10.2015 15:43:50.016 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:43:50.017 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; key - value;  
+23.10.2015 15:43:50.017 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: STARTED_UP 
+23.10.2015 15:43:50.028 [INFO ] [o-auto-3-exec-2] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:43:50.029 [INFO ] [o-auto-3-exec-2] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:43:50.029 [INFO ] [o-auto-3-exec-2] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488145 is created. Execution starts ... 
+23.10.2015 15:43:50.033 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488145 is executed. 
+23.10.2015 15:43:50.033 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; key - value;  
+23.10.2015 15:43:50.033 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: STARTED_UP 
+23.10.2015 15:43:50.043 [INFO ] [o-auto-3-exec-3] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:43:50.043 [INFO ] [o-auto-3-exec-3] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:43:50.043 [INFO ] [o-auto-3-exec-3] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488144 is created. Execution starts ... 
+23.10.2015 15:43:50.047 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488144 is executed. 
+23.10.2015 15:43:50.047 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; key - value;  
+23.10.2015 15:43:50.047 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - Status: STARTED_UP 
+23.10.2015 15:43:50.059 [INFO ] [o-auto-3-exec-4] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:43:50.059 [INFO ] [o-auto-3-exec-4] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:43:50.059 [INFO ] [o-auto-3-exec-4] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488143 is created. Execution starts ... 
+23.10.2015 15:43:50.081 [INFO ] [taskExecutor-4 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488143 is executed. 
+23.10.2015 15:43:50.081 [INFO ] [taskExecutor-4 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; key - value;  
+23.10.2015 15:43:50.081 [INFO ] [taskExecutor-4 ] t.device.delivery.DeliveryTask - Status: STARTED_UP 
+23.10.2015 15:43:50.091 [INFO ] [o-auto-3-exec-8] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:43:50.091 [INFO ] [o-auto-3-exec-8] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:43:50.092 [INFO ] [o-auto-3-exec-8] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488142 is created. Execution starts ... 
+23.10.2015 15:43:50.096 [INFO ] [taskExecutor-5 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488142 is executed. 
+23.10.2015 15:43:50.096 [INFO ] [taskExecutor-5 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; key - value;  
+23.10.2015 15:43:50.096 [INFO ] [taskExecutor-5 ] t.device.delivery.DeliveryTask - Status: STARTED_UP 
+23.10.2015 15:43:50.105 [INFO ] [o-auto-3-exec-9] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:43:50.105 [INFO ] [o-auto-3-exec-9] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:43:50.105 [INFO ] [o-auto-3-exec-9] rest.activity.SetConfiguration - Data Sinks gets already supplied. Configuration changed. 
+23.10.2015 15:43:50.117 [INFO ] [-auto-3-exec-10] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:43:50.117 [INFO ] [-auto-3-exec-10] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:43:50.209 [INFO ] [main           ] t.device.property.PropertyTest - Starting PropertyTest on Manuel-PC with PID 3508 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:43:50.270 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:43:50.270 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 1000; supplying - Pressure;  
+23.10.2015 15:43:50.270 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:43:50.271 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [META-INF/services/javax.xml.bind.JAXBContext]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1327) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.loader.WebappClassLoaderBase.getResource(WebappClassLoaderBase.java:1023) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at javax.xml.bind.ContextFinder.find(ContextFinder.java:432) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:641) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:584) ~[na:1.8.0_45]
+	at common.transformer.XMLParser.unmarshal(XMLParser.java:27) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadSettingNative(SettingUtils.java:185) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDataSources(SettingUtils.java:162) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDomainsByDeviceInformation(SettingUtils.java:243) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:81) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+23.10.2015 15:43:50.480 [INFO ] [main           ] t.device.property.PropertyTest - Started PropertyTest in 0.296 seconds (JVM running for 15.39) 
+23.10.2015 15:43:50.484 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:43:50.484 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; supplying - pressure;  
+23.10.2015 15:43:50.484 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:43:50.485 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [META-INF/services/javax.xml.bind.JAXBContext]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1327) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.loader.WebappClassLoaderBase.getResource(WebappClassLoaderBase.java:1023) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at javax.xml.bind.ContextFinder.find(ContextFinder.java:432) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:641) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:584) ~[na:1.8.0_45]
+	at common.transformer.XMLParser.unmarshal(XMLParser.java:27) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadSettingNative(SettingUtils.java:185) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDataSources(SettingUtils.java:162) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDomainsByDeviceInformation(SettingUtils.java:243) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:81) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+23.10.2015 15:43:50.505 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+23.10.2015 15:43:50.505 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; supplying - pressure;  
+23.10.2015 15:43:50.505 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:43:50.506 [ERROR] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [META-INF/services/javax.xml.bind.JAXBContext]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1327) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.loader.WebappClassLoaderBase.getResource(WebappClassLoaderBase.java:1023) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at javax.xml.bind.ContextFinder.find(ContextFinder.java:432) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:641) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:584) ~[na:1.8.0_45]
+	at common.transformer.XMLParser.unmarshal(XMLParser.java:27) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadSettingNative(SettingUtils.java:185) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDataSources(SettingUtils.java:162) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDomainsByDeviceInformation(SettingUtils.java:243) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:81) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+23.10.2015 15:43:50.522 [INFO ] [main           ] vice.rest.IDevManageConfigTest - Starting IDevManageConfigTest on Manuel-PC with PID 3508 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:43:50.985 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:43:50.985 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; supplying - pressure;  
+23.10.2015 15:43:50.985 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:43:50.986 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [META-INF/services/javax.xml.bind.JAXBContext]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1327) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.loader.WebappClassLoaderBase.getResource(WebappClassLoaderBase.java:1023) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at javax.xml.bind.ContextFinder.find(ContextFinder.java:432) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:641) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:584) ~[na:1.8.0_45]
+	at common.transformer.XMLParser.unmarshal(XMLParser.java:27) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadSettingNative(SettingUtils.java:185) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDataSources(SettingUtils.java:162) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDomainsByDeviceInformation(SettingUtils.java:243) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:81) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+23.10.2015 15:43:51.006 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+23.10.2015 15:43:51.006 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; supplying - pressure;  
+23.10.2015 15:43:51.006 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:43:51.007 [ERROR] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [META-INF/services/javax.xml.bind.JAXBContext]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1327) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.loader.WebappClassLoaderBase.getResource(WebappClassLoaderBase.java:1023) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at javax.xml.bind.ContextFinder.find(ContextFinder.java:432) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:641) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:584) ~[na:1.8.0_45]
+	at common.transformer.XMLParser.unmarshal(XMLParser.java:27) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadSettingNative(SettingUtils.java:185) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDataSources(SettingUtils.java:162) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDomainsByDeviceInformation(SettingUtils.java:243) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:81) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+23.10.2015 15:43:51.266 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+23.10.2015 15:43:51.266 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+23.10.2015 15:43:51.266 [INFO ] [main           ] vice.rest.IDevManageConfigTest - Started IDevManageConfigTest in 0.758 seconds (JVM running for 16.177) 
+23.10.2015 15:43:51.271 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:43:51.271 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 1000; supplying - Pressure;  
+23.10.2015 15:43:51.271 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:43:51.272 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [META-INF/services/javax.xml.bind.JAXBContext]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1327) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.loader.WebappClassLoaderBase.getResource(WebappClassLoaderBase.java:1023) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at javax.xml.bind.ContextFinder.find(ContextFinder.java:432) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:641) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:584) ~[na:1.8.0_45]
+	at common.transformer.XMLParser.unmarshal(XMLParser.java:27) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadSettingNative(SettingUtils.java:185) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDataSources(SettingUtils.java:162) ~[classes/:na]
+	at common.data.setting.SettingUtils.loadDomainsByDeviceInformation(SettingUtils.java:243) ~[classes/:na]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:81) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+23.10.2015 15:43:51.287 [INFO ] [o-auto-4-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:43:51.287 [INFO ] [o-auto-4-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:43:51.288 [INFO ] [o-auto-4-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+23.10.2015 15:43:51.292 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:43:51.292 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; key - value;  
+23.10.2015 15:43:51.292 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: STARTED_UP 
+23.10.2015 15:43:51.310 [INFO ] [o-auto-4-exec-2] vice.rest.IDevManageConfigImpl - GET /configurations/{authority} is invoked. 
+23.10.2015 15:43:51.364 [INFO ] [o-auto-4-exec-3] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:43:51.364 [INFO ] [o-auto-4-exec-3] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:43:51.365 [INFO ] [o-auto-4-exec-3] rest.activity.SetConfiguration - Data Sinks gets already supplied. Configuration changed. 
+23.10.2015 15:43:51.374 [INFO ] [o-auto-4-exec-4] vice.rest.IDevManageConfigImpl - GET /configurations is invoked. 
+23.10.2015 15:44:06.139 [INFO ] [main           ] t.device.property.PropertyTest - Starting PropertyTest on Manuel-PC with PID 4340 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:44:08.007 [INFO ] [main           ] t.device.property.PropertyTest - Started PropertyTest in 2.049 seconds (JVM running for 2.84) 
+23.10.2015 15:44:08.141 [INFO ] [main           ] d.r.DeliveryTaskRepositoryTest - Starting DeliveryTaskRepositoryTest on Manuel-PC with PID 4340 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:44:08.511 [INFO ] [main           ] d.r.DeliveryTaskRepositoryTest - Started DeliveryTaskRepositoryTest in 0.406 seconds (JVM running for 3.343) 
+23.10.2015 15:44:10.808 [INFO ] [main           ] .rest.IDevManageConfigFailTest - Starting IDevManageConfigFailTest on Manuel-PC with PID 4340 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:44:13.541 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+23.10.2015 15:44:13.542 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+23.10.2015 15:44:13.542 [INFO ] [main           ] .rest.IDevManageConfigFailTest - Started IDevManageConfigFailTest in 2.761 seconds (JVM running for 8.374) 
+23.10.2015 15:44:14.030 [INFO ] [pool-3-thread-1] ot.device.ApplicationScheduler - Retrieve local connection data ...  
+23.10.2015 15:44:14.031 [INFO ] [pool-3-thread-1] ot.device.ApplicationScheduler - Connection [id=0, name=localConnection, url=http://192.168.178.42:3982/, type=IOT_DEVICE] 
+23.10.2015 15:44:14.046 [INFO ] [pool-3-thread-1] ot.device.ApplicationScheduler - Load CM connection data ... 
+23.10.2015 15:44:14.047 [INFO ] [pool-3-thread-1] ot.device.ApplicationScheduler - Connection [id=0, name=Name, url=http://127.0.0.1:5000/, type=CONFIGURATION_MANAGEMENT] 
+23.10.2015 15:44:14.683 [INFO ] [o-auto-1-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:44:14.683 [INFO ] [o-auto-1-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:44:14.686 [INFO ] [o-auto-1-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+23.10.2015 15:44:14.691 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:44:14.692 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; key - value;  
+23.10.2015 15:44:14.692 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: REGISTER_DEVICE 
+23.10.2015 15:44:14.808 [INFO ] [o-auto-1-exec-2] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:44:14.808 [INFO ] [o-auto-1-exec-2] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:44:14.809 [INFO ] [o-auto-1-exec-2] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488145 is created. Execution starts ... 
+23.10.2015 15:44:14.813 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488145 is executed. 
+23.10.2015 15:44:14.813 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; key - value;  
+23.10.2015 15:44:14.814 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: REGISTER_DEVICE 
+23.10.2015 15:44:14.830 [INFO ] [o-auto-1-exec-3] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:44:14.830 [INFO ] [o-auto-1-exec-3] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:44:14.831 [INFO ] [o-auto-1-exec-3] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488144 is created. Execution starts ... 
+23.10.2015 15:44:14.835 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488144 is executed. 
+23.10.2015 15:44:14.835 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; key - value;  
+23.10.2015 15:44:14.835 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - Status: REGISTER_DEVICE 
+23.10.2015 15:44:14.849 [INFO ] [o-auto-1-exec-4] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:44:14.849 [INFO ] [o-auto-1-exec-4] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:44:14.850 [INFO ] [o-auto-1-exec-4] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488143 is created. Execution starts ... 
+23.10.2015 15:44:14.854 [INFO ] [taskExecutor-4 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488143 is executed. 
+23.10.2015 15:44:14.854 [INFO ] [taskExecutor-4 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; key - value;  
+23.10.2015 15:44:14.854 [INFO ] [taskExecutor-4 ] t.device.delivery.DeliveryTask - Status: REGISTER_DEVICE 
+23.10.2015 15:44:14.871 [INFO ] [o-auto-1-exec-5] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:44:14.872 [INFO ] [o-auto-1-exec-5] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:44:14.873 [INFO ] [o-auto-1-exec-5] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488142 is created. Execution starts ... 
+23.10.2015 15:44:14.876 [INFO ] [taskExecutor-5 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488142 is executed. 
+23.10.2015 15:44:14.877 [INFO ] [taskExecutor-5 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; key - value;  
+23.10.2015 15:44:14.877 [INFO ] [taskExecutor-5 ] t.device.delivery.DeliveryTask - Status: REGISTER_DEVICE 
+23.10.2015 15:44:14.896 [INFO ] [o-auto-1-exec-6] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:44:14.896 [INFO ] [o-auto-1-exec-6] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:44:14.896 [INFO ] [o-auto-1-exec-6] rest.activity.SetConfiguration - Data Sinks gets already supplied. Configuration changed. 
+23.10.2015 15:44:14.916 [INFO ] [o-auto-1-exec-7] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:44:14.917 [INFO ] [o-auto-1-exec-7] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:44:15.045 [INFO ] [main           ] vice.rest.IDevManageConfigTest - Starting IDevManageConfigTest on Manuel-PC with PID 4340 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:44:16.025 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+23.10.2015 15:44:16.026 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+23.10.2015 15:44:16.026 [INFO ] [main           ] vice.rest.IDevManageConfigTest - Started IDevManageConfigTest in 1.026 seconds (JVM running for 10.858) 
+23.10.2015 15:44:16.059 [INFO ] [o-auto-2-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:44:16.060 [INFO ] [o-auto-2-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:44:16.062 [INFO ] [o-auto-2-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+23.10.2015 15:44:16.067 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:44:16.067 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 10000; key - value;  
+23.10.2015 15:44:16.067 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: STARTED_UP 
+23.10.2015 15:44:16.085 [INFO ] [o-auto-2-exec-2] vice.rest.IDevManageConfigImpl - GET /configurations/{authority} is invoked. 
+23.10.2015 15:44:16.143 [INFO ] [o-auto-2-exec-3] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:44:16.143 [INFO ] [o-auto-2-exec-3] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:44:16.143 [INFO ] [o-auto-2-exec-3] rest.activity.SetConfiguration - Data Sinks gets already supplied. Configuration changed. 
+23.10.2015 15:44:16.153 [INFO ] [o-auto-2-exec-4] vice.rest.IDevManageConfigImpl - GET /configurations is invoked. 
+23.10.2015 15:44:16.255 [INFO ] [main           ] .rest.IDevManageSetConfig1Test - Starting IDevManageSetConfig1Test on Manuel-PC with PID 4340 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:44:17.067 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+23.10.2015 15:44:17.067 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+23.10.2015 15:44:17.068 [INFO ] [main           ] .rest.IDevManageSetConfig1Test - Started IDevManageSetConfig1Test in 0.839 seconds (JVM running for 11.899) 
+23.10.2015 15:44:17.089 [INFO ] [o-auto-3-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:44:17.090 [INFO ] [o-auto-3-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:44:17.091 [INFO ] [o-auto-3-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+23.10.2015 15:44:17.095 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:44:17.096 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; supplying - Pressure;  
+23.10.2015 15:44:17.096 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:44:17.613 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:44:17.613 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; supplying - Pressure;  
+23.10.2015 15:44:17.613 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:44:18.123 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:44:18.123 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; supplying - Pressure;  
+23.10.2015 15:44:18.123 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:44:18.618 [INFO ] [o-auto-3-exec-2] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:44:18.618 [INFO ] [o-auto-3-exec-2] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:44:18.618 [INFO ] [o-auto-3-exec-2] rest.activity.SetConfiguration - Data Sinks gets already supplied. Configuration changed. 
+23.10.2015 15:44:18.634 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:44:18.634 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 1000; supplying - Pressure;  
+23.10.2015 15:44:18.634 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:44:19.645 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:44:19.645 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 1000; supplying - Pressure;  
+23.10.2015 15:44:19.645 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:44:20.665 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:44:20.665 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 1000; supplying - Pressure;  
+23.10.2015 15:44:20.665 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:44:20.731 [INFO ] [main           ] .rest.IDevManageSetConfig2Test - Starting IDevManageSetConfig2Test on Manuel-PC with PID 4340 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+23.10.2015 15:44:21.570 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+23.10.2015 15:44:21.570 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+23.10.2015 15:44:21.570 [INFO ] [main           ] .rest.IDevManageSetConfig2Test - Started IDevManageSetConfig2Test in 0.875 seconds (JVM running for 16.402) 
+23.10.2015 15:44:21.590 [INFO ] [o-auto-4-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:44:21.591 [INFO ] [o-auto-4-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:44:21.592 [INFO ] [o-auto-4-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+23.10.2015 15:44:21.597 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:44:21.597 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; supplying - pressure;  
+23.10.2015 15:44:21.597 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:44:21.607 [INFO ] [o-auto-4-exec-2] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+23.10.2015 15:44:21.607 [INFO ] [o-auto-4-exec-2] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+23.10.2015 15:44:21.608 [INFO ] [o-auto-4-exec-2] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488140 is created. Execution starts ... 
+23.10.2015 15:44:21.612 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+23.10.2015 15:44:21.612 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; supplying - pressure;  
+23.10.2015 15:44:21.612 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:44:21.676 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:44:21.676 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 1000; supplying - Pressure;  
+23.10.2015 15:44:21.676 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:44:21.680 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [META-INF/services/javax.xml.bind.JAXBContext]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1327) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.loader.WebappClassLoaderBase.getResource(WebappClassLoaderBase.java:1023) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at javax.xml.bind.ContextFinder.find(ContextFinder.java:432) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:641) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:584) ~[na:1.8.0_45]
+	at common.transformer.XMLParser.unmarshal(XMLParser.java:27) ~[common-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at common.data.setting.SettingUtils.loadSettingNative(SettingUtils.java:185) ~[common-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at common.data.setting.SettingUtils.loadDataSources(SettingUtils.java:162) ~[common-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at common.data.setting.SettingUtils.loadDomainsByDeviceInformation(SettingUtils.java:243) ~[common-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:81) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+23.10.2015 15:44:22.109 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+23.10.2015 15:44:22.109 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; supplying - pressure;  
+23.10.2015 15:44:22.109 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Status: TEST 
+23.10.2015 15:44:22.122 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+23.10.2015 15:44:22.122 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; supplying - pressure;  
+23.10.2015 15:44:22.122 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Status: TEST 

@@ -98,8 +98,8 @@ public class SettingUtilsTest {
         Assert.assertEquals(2, newSetting.getConnections().size());
         Assert.assertEquals(2, newSetting.getDataSources().size());
 
-        Assert.assertEquals("SENSOR 1", newSetting.getDataSources().get(1).getDeviceInformation().getName());
-        Assert.assertEquals("DOMAIN 1", newSetting.getDataSources().get(1).getDomainInformation().getName());
+        Assert.assertEquals("sensor 1", newSetting.getDataSources().get(1).getDeviceInformation().getName());
+        Assert.assertEquals("domain 1", newSetting.getDataSources().get(1).getDomainInformation().getName());
 
     }
 
@@ -232,7 +232,7 @@ public class SettingUtilsTest {
 
         Assert.assertNotNull(result);
         Assert.assertEquals(1, result.size());
-        Assert.assertEquals("DOMAIN 1", result.get(0).getName());
+        Assert.assertEquals("domain 1", result.get(0).getName());
 
     }
 

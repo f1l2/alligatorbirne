@@ -17,7 +17,7 @@ public enum SystemReservedProperty {
     private int max;
 
     SystemReservedProperty(String name, Boolean isMutable, int defaultValue, int min, int max) {
-        this.setName(name);
+        this.name = name;
         this.isMutable = isMutable;
         this.defaultValue = defaultValue;
         this.max = max;
@@ -27,7 +27,7 @@ public enum SystemReservedProperty {
     public static SystemReservedProperty getSystemReservedPropertyByName(String name) {
 
         for (SystemReservedProperty property : SystemReservedProperty.values()) {
-            if (property.name().equals(name)) {
+            if (property.getName().equals(name)) {
                 return property;
             }
         }

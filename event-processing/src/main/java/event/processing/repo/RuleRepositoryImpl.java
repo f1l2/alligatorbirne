@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
+import common.utilities.NormalizeString;
 import event.processing.rule.Rule;
 
 @Component
@@ -15,8 +16,14 @@ public class RuleRepositoryImpl implements RuleRepository {
 
     private Map<String, Rule> repo = new LinkedHashMap<String, Rule>();
 
+    private String before(String name) {
+        return NormalizeString.normalize(name);
+    }
+
     @Override
     public Rule findOne(String name) {
+
+        name = before(name);
 
         if (repo.containsKey(name)) {
             return repo.get(name);
@@ -40,16 +47,24 @@ public class RuleRepositoryImpl implements RuleRepository {
 
     @Override
     public void save(String name, Rule rule) {
+
+        name = before(name);
+
         repo.put(name, rule);
     }
 
     @Override
     public void delete(String name) {
+
+        name = before(name);
+
         repo.remove(name);
     }
 
     @Override
     public List<Rule> findRulesByQueryName(String queryName) {
+
+        queryName = before(queryName);
 
         List<Rule> rules = new ArrayList<Rule>();
 
