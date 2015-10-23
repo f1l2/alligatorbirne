@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import com.jayway.restassured.RestAssured;
 
 import common.data.DataSource;
-import common.data.DataSources;
+import common.data.dto.DataSourcesDTO;
 import common.data.model.DeviceInformation;
 import common.data.model.DomainInformation;
 import common.data.type.DEVICE_INFORMATION_TYPE;
@@ -24,7 +24,7 @@ public abstract class AbstractTestRestCM {
 
     protected String authority;
 
-    protected DataSources dataSources;
+    protected DataSourcesDTO dataSources;
 
     @Before
     public void before() throws IOException {
@@ -43,7 +43,7 @@ public abstract class AbstractTestRestCM {
         return "localhost" + count + ":8080";
     }
 
-    protected DataSources getDataSources() {
+    protected DataSourcesDTO getDataSources() {
 
         DeviceInformation dev = new DeviceInformation();
         dev.setName("device");
@@ -56,7 +56,7 @@ public abstract class AbstractTestRestCM {
         dataSource.setDeviceInformation(dev);
         dataSource.setDomainInformation(domain);
 
-        DataSources dataSources = new DataSources();
+        DataSourcesDTO dataSources = new DataSourcesDTO();
         dataSources.add(dataSource);
         dataSources.add(dataSource);
 

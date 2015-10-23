@@ -182,7 +182,16 @@ public class Query {
 
     public static String addPrefix(String property) {
         if (isPropertyVariable(property)) {
-            return Evaluation.PREFIX.concat(property);
+
+            switch (property.toLowerCase()) {
+            case "name":
+            case "id":
+                return Evaluation.PREFIX_DEV_INFO.concat(property);
+
+            case "value":
+            default:
+                return Evaluation.PREFIX_DEV_DATA.concat(property);
+            }
         } else {
             return property;
         }

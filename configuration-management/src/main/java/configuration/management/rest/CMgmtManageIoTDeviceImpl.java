@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import common.data.Connection;
 import common.data.DataSource;
-import common.data.DataSources;
+import common.data.dto.DataSourcesDTO;
 import common.data.type.COMPONENT_TYPE;
 import common.rest.RESOURCE_NAMING;
 import common.rest.ResourceUtils;
@@ -84,7 +84,7 @@ public class CMgmtManageIoTDeviceImpl implements CMgmtManageIoTDevice {
 
     @Override
     @RequestMapping(value = "/registrations/devices/sources/{id}", method = RequestMethod.POST)
-    public ResponseEntity<String> registerDataSources(@PathVariable(value = "id") Long id, @RequestBody DataSources data) {
+    public ResponseEntity<String> registerDataSources(@PathVariable(value = "id") Long id, @RequestBody DataSourcesDTO data) {
 
         logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.CMGMT_REGISTER_DEVICE_SOURCES));
 

@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 
 import common.data.Connection;
 import common.data.DataSource;
-import common.data.DataSources;
+import common.data.dto.DataSourcesDTO;
 
 /**
  * Interface definition
@@ -20,7 +20,7 @@ public interface CMgmtManageIoTDevice {
 
     public ResponseEntity<List<Connection>> getAll();
 
-    public ResponseEntity<String> registerDataSources(Long id, DataSources data);
+    public ResponseEntity<String> registerDataSources(Long id, DataSourcesDTO data);
 
     public ResponseEntity<String> heartbeat(Long id);
 

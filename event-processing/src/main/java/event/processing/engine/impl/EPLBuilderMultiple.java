@@ -11,9 +11,9 @@ import event.processing.query.model.AggregateCondition;
 public class EPLBuilderMultiple extends EPLBuilder {
 
     /**
-     * insert into AggregatedValue select [aggregated_value] as value from DataSource[window] as d where [where_condition] [where_domain]
+     * insert into AggregatedValue select [aggregated_value] as value from DeviceData[window] as d where [where_condition] [where_domain]
      */
-    private static final String EPL_INSERT_PATTERN = new String("insert into AggregatedValue select " + EPLBuilder.PART_AGGREGATED_OPERATION + " as value from DataSource" + EPLBuilder.PART_WINDOW
+    private static final String EPL_INSERT_PATTERN = new String("insert into AggregatedValue select " + EPLBuilder.PART_AGGREGATED_OPERATION + " as value from DeviceData" + EPLBuilder.PART_WINDOW
             + " as d where " + EPLBuilder.PART_WHERE_CONDITION + EPLBuilder.PART_WHERE_DOMAIN);
 
     /**

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import common.data.Connection;
-import common.data.DataSources;
+import common.data.dto.DataSourcesDTO;
 import common.data.setting.SettingUtils;
 import common.data.type.COMPONENT_TYPE;
 import common.rest.RESOURCE_NAMING;
@@ -85,7 +85,7 @@ public class ApplicationScheduler {
 
                 logger.info("Convey data sources ...");
 
-                DataSources data = SettingUtils.loadDataSources();
+                DataSourcesDTO data = SettingUtils.loadDataSources();
 
                 Connection cmConnection = SettingUtils.getCMConnection();
                 String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_REGISTER_DEVICE_SOURCES, cmConnection);

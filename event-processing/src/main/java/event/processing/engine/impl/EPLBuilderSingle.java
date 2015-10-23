@@ -9,7 +9,7 @@ import event.processing.query.Query;
 
 public class EPLBuilderSingle extends EPLBuilder {
 
-    private static final String EPL_PATTERN = "select * from DataSource[window] as d where [where_condition] [where_domain]";
+    private static final String EPL_PATTERN = "select * from DeviceData[window] as d where [where_condition] [where_domain]";
 
     public EPLBuilderSingle(Query query) {
         super(query);

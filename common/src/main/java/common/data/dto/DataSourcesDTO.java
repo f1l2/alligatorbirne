@@ -1,17 +1,19 @@
-package common.data;
+package common.data.dto;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataSources {
+import common.data.DataSource;
+
+public class DataSourcesDTO {
 
     private List<DataSource> dataSources = new ArrayList<DataSource>();
 
-    public DataSources() {
+    public DataSourcesDTO() {
 
     }
 
-    public DataSources(List<DataSource> dataSources) {
+    public DataSourcesDTO(List<DataSource> dataSources) {
         this.dataSources = dataSources;
     }
 

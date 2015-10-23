@@ -43,8 +43,8 @@ public class QueryFactoryTest {
         assertEquals("property = 23", ((CompositeCondition) query.getCondition()).getSc().generate());
         assertEquals("'abc' = 21", ((CompositeCondition) query.getCondition()).getCc().generate());
 
-        assertEquals(Evaluation.PREFIX + "property = 23 AND 'abc' = 21", ((CompositeCondition) query.getCondition()).generateInclPrefix());
-        assertEquals(Evaluation.PREFIX + "property = 23", ((CompositeCondition) query.getCondition()).getSc().generateInclPrefix());
+        assertEquals(Evaluation.PREFIX_DEV_DATA + "property = 23 AND 'abc' = 21", ((CompositeCondition) query.getCondition()).generateInclPrefix());
+        assertEquals(Evaluation.PREFIX_DEV_DATA + "property = 23", ((CompositeCondition) query.getCondition()).getSc().generateInclPrefix());
         assertEquals("'abc' = 21", ((CompositeCondition) query.getCondition()).getCc().generateInclPrefix());
 
     }
@@ -215,7 +215,7 @@ public class QueryFactoryTest {
 
         assertNotNull(query);
         assertEquals("SUM(abc) = 79", query.getCondition().generate());
-        assertEquals("SUM(d.deviceInformation.abc) = 79", query.getCondition().generateInclPrefix());
+        assertEquals("SUM(" + Evaluation.PREFIX_DEV_DATA + "abc) = 79", query.getCondition().generateInclPrefix());
         assertTrue(query.getCondition() instanceof SingleCondition);
         assertNotNull(((SingleCondition) query.getCondition()).getAggregateCondition());
 

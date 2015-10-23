@@ -5,7 +5,11 @@ import event.processing.query.Query.COMPARE_FUNCTION;
 
 public class Evaluation {
 
-    public static final String PREFIX = "d.deviceInformation.";
+    public static final String PREFIX_DEV_INFO = "d.device.";
+
+    public static final String PREFIX_DOM_INFO = "d.domain.";
+
+    public static final String PREFIX_DEV_DATA = "d.sensorData.";
 
     private COMPARE_FUNCTION operator;
 

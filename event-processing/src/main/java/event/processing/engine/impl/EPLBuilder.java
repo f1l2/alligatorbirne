@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.util.CollectionUtils;
 
 import event.processing.query.Query;
+import event.processing.query.model.Evaluation;
 
 public abstract class EPLBuilder {
 
@@ -32,7 +33,7 @@ public abstract class EPLBuilder {
         if (!CollectionUtils.isEmpty(query.getDomains())) {
             StringBuilder sb = new StringBuilder();
             sb.append("AND (");
-            sb.append(query.getDomains().stream().map(item -> "d.domainInformation.name = '".concat(item).concat("'")).collect(Collectors.joining(" AND ")));
+            sb.append(query.getDomains().stream().map(item -> Evaluation.PREFIX_DOM_INFO + "name = '".concat(item).concat("'")).collect(Collectors.joining(" AND ")));
             sb.append(" )");
 
             return sb.toString();

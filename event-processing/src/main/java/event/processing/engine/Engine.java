@@ -2,7 +2,7 @@ package event.processing.engine;
 
 import java.util.List;
 
-import common.data.DataSource;
+import common.data.model.DeviceData;
 
 public abstract class Engine {
 
@@ -18,7 +18,7 @@ public abstract class Engine {
 
     public abstract void unregister(List<String> query);
 
-    public abstract void send(DataSource dataSource);
+    public abstract void send(DeviceData deviceData);
 
     public ENGINE_TYPE getType() {
         return type;

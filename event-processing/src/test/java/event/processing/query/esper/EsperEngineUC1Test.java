@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import common.data.DataSource;
+import common.data.model.DeviceData;
 import event.processing.AbstractTestEP;
 import event.processing.Application;
 
@@ -26,7 +26,7 @@ public class EsperEngineUC1Test extends AbstractTestEP {
         engine.register(queryTransformer.transformQuery(query2), testListener);
         engine.register(queryTransformer.transformQuery(query3), testListener);
 
-        sendEventAndWait(new DataSource[] { ds1, ds2, ds3 }, new int[] { 1, 2, 3 });
+        sendEventAndWait(new DeviceData[] { dd1, dd2, dd3 }, new int[] { 1, 2, 3 });
 
     }
 
@@ -41,7 +41,7 @@ public class EsperEngineUC1Test extends AbstractTestEP {
 
         engine.register(queryTransformer.transformQuery(query1), testListener);
 
-        sendEventAndWait(new DataSource[] { ds1, ds2, ds3 }, new int[] { 1, 1, 1 });
+        sendEventAndWait(new DeviceData[] { dd1, dd2, dd3 }, new int[] { 1, 1, 1 });
 
     }
 }

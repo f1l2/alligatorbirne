@@ -7,14 +7,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
-import common.data.DataSources;
+import common.data.dto.DataSourcesDTO;
 import common.transformer.Transformer;
 import configuration.management.model.IoTDeviceRO;
 import configuration.management.repo.IoTDeviceDataSourceTransformer;
 import configuration.management.repo.IoTDeviceRepository;
 
 @Component
-public class RegisterIoTDeviceDataSources extends Activity<String, DataSources> {
+public class RegisterIoTDeviceDataSources extends Activity<String, DataSourcesDTO> {
 
     final static Logger logger = LoggerFactory.getLogger(RegisterIoTDeviceDataSources.class);
 
@@ -27,7 +27,7 @@ public class RegisterIoTDeviceDataSources extends Activity<String, DataSources> 
     private IoTDeviceDataSourceTransformer transformer;
 
     @Override
-    public ResponseEntity<String> doStep(DataSources item) {
+    public ResponseEntity<String> doStep(DataSourcesDTO item) {
 
         IoTDeviceRO device = this.deviceRepository.findOne(id);
 

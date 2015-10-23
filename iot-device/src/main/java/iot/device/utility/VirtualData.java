@@ -2,17 +2,17 @@ package iot.device.utility;
 
 import java.time.Instant;
 
-import common.data.model.DeviceData;
+import common.data.dto.DeviceDataDTO;
 
 public class VirtualData {
 
-    private DeviceData devData;
+    private DeviceDataDTO devData;
 
     private String url;
 
     private Instant timeStamp;
 
-    public VirtualData(DeviceData devData, String url, Instant timeStamp) {
+    public VirtualData(DeviceDataDTO devData, String url, Instant timeStamp) {
         this.setDevData(devData);
         this.url = url;
         this.timeStamp = timeStamp;
@@ -34,11 +34,11 @@ public class VirtualData {
         this.timeStamp = timeStamp;
     }
 
-    public DeviceData getDevData() {
+    public DeviceDataDTO getDevData() {
         return devData;
     }
 
-    public void setDevData(DeviceData devData) {
+    public void setDevData(DeviceDataDTO devData) {
         this.devData = devData;
     }
 

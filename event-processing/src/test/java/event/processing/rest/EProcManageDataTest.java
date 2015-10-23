@@ -9,7 +9,7 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import common.data.model.DeviceData;
+import common.data.dto.DeviceDataDTO;
 import common.data.model.DeviceInformation;
 import common.data.model.DomainInformation;
 import common.data.type.DEVICE_INFORMATION_TYPE;
@@ -37,7 +37,7 @@ public class EProcManageDataTest extends AbstractTestRestEP {
         domainInfo.setName("domainInfoName");
         domainInfo.setType(DOMAIN_INFORMATION_TYPE.FIRST_FLOOR);
 
-        DeviceData dd = new DeviceData();
+        DeviceDataDTO dd = new DeviceDataDTO();
         dd.setDevice(devInfo);
         dd.addDomain(domainInfo);
 

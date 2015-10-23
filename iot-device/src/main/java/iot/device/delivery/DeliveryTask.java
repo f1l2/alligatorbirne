@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import common.data.builder.DDBuilder;
+import common.data.dto.DeviceDataDTO;
 import common.data.setting.SettingUtils;
 import common.property.SystemReservedProperty;
 import common.rest.RESOURCE_NAMING;
@@ -71,21 +72,20 @@ public class DeliveryTask implements Runnable {
                 for (String sensorData : configuration.getSupplyingSensor()) {
 
                     Sensor<?> sensor = (Sensor<?>) dsf.getBean(sensorData.toLowerCase());
-                    Integer value = sensor.getValue();
 
                     DDBuilder ddBuilder = new DDBuilder();
-                    ddBuilder.buildDeviceInformation(sensorData)
+                    DeviceDataDTO ddDTO = ddBuilder.buildDeviceInformation(sensorData)
                             //
-                            .buildDomainInformations(SettingUtils.loadDomainsByDeviceInformation(sensorData))
+                            .buildSensorData(sensor.getValue())
                             //
-                            .buildSensorData(value);
+                            .getResultDTO(SettingUtils.loadDomainsByDeviceInformation(sensorData));
 
                     if (STATUS_TYPE.TEST.equals(status.getCurrent())) {
-                        VirtualEP.send(new VirtualData(ddBuilder.getResult(), deliveryUrl, Instant.now()));
+                        VirtualEP.send(new VirtualData(ddDTO, deliveryUrl, Instant.now()));
                     } else {
                         logger.info("Send data ...");
-                        ResponseEntity<Void> responseRegistration = restTemplate.postForEntity(deliveryUrl, ddBuilder.getResult(), Void.class);
-                        logger.info("Device data send. Status: " + responseRegistration.getStatusCode() + " Response body: ");
+                        ResponseEntity<String> response = restTemplate.postForEntity(deliveryUrl, ddDTO, String.class);
+                        logger.info("Device data send. Status: " + response.getStatusCode() + " Response body: " + response.getBody());
                     }
                 }
 

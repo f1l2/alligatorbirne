@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-import common.data.DataSource;
+import common.data.model.DeviceData;
 import common.data.model.DeviceInformation;
 import common.data.model.DomainInformation;
 import event.processing.engine.Engine;
@@ -25,7 +25,7 @@ public abstract class AbstractTestEP {
 
     protected LanguageTransformer queryTransformer;
 
-    protected DataSource ds1, ds2, ds3;
+    protected DeviceData dd1, dd2, dd3;
 
     protected TestListener testListener;
 
@@ -34,9 +34,9 @@ public abstract class AbstractTestEP {
     @Before
     public void before() {
 
-        ds1 = generateTestDataSource(1l, "device1", 1l, "domain1");
-        ds2 = generateTestDataSource(2l, "device2", 2l, "domain2");
-        ds3 = generateTestDataSource(3l, "device3", 1l, "domain1");
+        dd1 = generateTestDeviceData(1l, "device1", 1l, "domain1");
+        dd2 = generateTestDeviceData(2l, "device2", 2l, "domain2");
+        dd3 = generateTestDeviceData(3l, "device3", 1l, "domain1");
 
         engine = factory.getEngine();
 
@@ -50,8 +50,8 @@ public abstract class AbstractTestEP {
         engine.unregisterAll();
     }
 
-    protected void sendEventAndWait(DataSource dataSource, long time) {
-        engine.send(dataSource);
+    protected void sendEventAndWait(DeviceData deviceData, long time) {
+        engine.send(deviceData);
         delay(time);
     }
 
@@ -63,7 +63,7 @@ public abstract class AbstractTestEP {
         }
     }
 
-    private DataSource generateTestDataSource(Long deviceId, String deviceName, Long domainId, String domainName) {
+    private DeviceData generateTestDeviceData(Long deviceId, String deviceName, Long domainId, String domainName) {
 
         DeviceInformation device = new DeviceInformation();
         device.setName(deviceName);
@@ -73,13 +73,13 @@ public abstract class AbstractTestEP {
         domain.setName(domainName);
         domain.setId(domainId);
 
-        return new DataSource(domain, device);
+        return new DeviceData(domain, device);
     }
 
-    protected void sendEventAndWait(DataSource[] dataSources, int[] expectedFiredEvents) {
+    protected void sendEventAndWait(DeviceData[] deviceData, int[] expectedFiredEvents) {
 
-        for (int i = 0; i < dataSources.length; i++) {
-            sendEventAndWait(dataSources[i], DEFAULT_DELAY_MS);
+        for (int i = 0; i < deviceData.length; i++) {
+            sendEventAndWait(deviceData[i], DEFAULT_DELAY_MS);
 
             assertEquals(expectedFiredEvents[i], testListener.getFiredEvents());
         }

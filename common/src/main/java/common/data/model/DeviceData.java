@@ -1,15 +1,20 @@
 package common.data.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class DeviceData extends DataModel {
 
     private SensorData<?> sensorData;
 
     private DeviceInformation device;
 
-    private List<DomainInformation> domains;
+    private DomainInformation domain;
+
+    public DeviceData(DomainInformation domain, DeviceInformation device) {
+        this.device = device;
+        this.domain = domain;
+    }
+
+    public DeviceData() {
+    }
 
     public SensorData<?> getSensorData() {
         return sensorData;
@@ -27,18 +32,17 @@ public class DeviceData extends DataModel {
         this.device = device;
     }
 
-    public List<DomainInformation> getDomains() {
-        return domains;
+    public DomainInformation getDomain() {
+        return domain;
     }
 
-    public void setDomains(List<DomainInformation> domains) {
-        this.domains = domains;
+    public void setDomain(DomainInformation domain) {
+        this.domain = domain;
     }
 
-    public void addDomain(DomainInformation domain) {
-        if (null == this.domains) {
-            this.domains = new ArrayList<DomainInformation>();
-        }
-        this.domains.add(domain);
+    @Override
+    public String toString() {
+        return "DeviceData [sensorData=" + sensorData + ", device=" + device + ", domain=" + domain + "]";
     }
+
 }

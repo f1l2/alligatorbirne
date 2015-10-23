@@ -21,6 +21,7 @@ import com.espertech.esper.client.UpdateListener;
 
 import common.data.DataSource;
 import common.data.model.DataModel;
+import common.data.model.DeviceData;
 import event.processing.engine.ENGINE_TYPE;
 import event.processing.engine.Engine;
 import event.processing.engine.EngineListener;
@@ -108,8 +109,8 @@ public class EsperEngine extends Engine {
     }
 
     @Override
-    public void send(DataSource dataSource) {
-        EP_RUNTIME.sendEvent(dataSource);
+    public void send(DeviceData deviceData) {
+        EP_RUNTIME.sendEvent(deviceData);
     }
 
     @Override

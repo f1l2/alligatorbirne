@@ -1,9 +1,11 @@
 package event.processing.rest;
 
-import common.data.model.DeviceData;
+import org.springframework.http.ResponseEntity;
+
+import common.data.dto.DeviceDataDTO;
 
 public interface EProcManageData {
 
-    public void receive(DeviceData deviceData);
+    public ResponseEntity<String> receive(DeviceDataDTO deviceDataDTO);
 
 }

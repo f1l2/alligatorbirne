@@ -15,8 +15,8 @@ import org.xml.sax.SAXException;
 
 import common.data.Connection;
 import common.data.DataSource;
-import common.data.DataSources;
 import common.data.Setting;
+import common.data.dto.DataSourcesDTO;
 import common.data.model.DomainInformation;
 import common.data.type.COMPONENT_TYPE;
 import common.transformer.XMLConnectionTransformer;
@@ -157,14 +157,14 @@ public class SettingUtils {
      * 
      * @throws SAXException
      */
-    public static DataSources loadDataSources() throws MalformedURLException, JAXBException, SAXException {
+    public static DataSourcesDTO loadDataSources() throws MalformedURLException, JAXBException, SAXException {
 
         final XMLSetting xMLsetting = loadSettingNative();
         final XMLDataSourceTransformer transformer = new XMLDataSourceTransformer();
 
         List<DataSource> remote = transformer.toRemote(xMLsetting.getDataSources().getDataSource());
 
-        DataSources measurementData = new DataSources();
+        DataSourcesDTO measurementData = new DataSourcesDTO();
         measurementData.add(remote);
 
         return measurementData;
