@@ -10,6 +10,7 @@ import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
 import org.springframework.stereotype.Component;
 
+import common.utilities.NormalizeString;
 import event.processing.gen.language.QueryBaseListener;
 import event.processing.gen.language.QueryLexer;
 import event.processing.gen.language.QueryParser;
@@ -39,6 +40,8 @@ import event.processing.query.model.Window;
 public class QueryFactory {
 
     public Query parse(String in) throws IOException {
+
+        in = NormalizeString.normalize(in);
 
         final Query query = new Query();
 
@@ -108,7 +111,7 @@ public class QueryFactory {
                     aCondition.setOperator(COMPARE_FUNCTION.findByFunction(operatorContext.getText()));
 
                     AggregateFunctionContext aggregateFunctionContext = aCtx.getChild(QueryParser.AggregateFunctionContext.class, 0);
-                    aCondition.setAggregation(AGGREGATION_FUNCTION.findByFunction(aggregateFunctionContext.getText().toUpperCase()));
+                    aCondition.setAggregation(AGGREGATION_FUNCTION.findByFunction(aggregateFunctionContext.getText()));
 
                     VariableContext propertyContext = aCtx.getChild(QueryParser.VariableContext.class, 0);
                     aCondition.setProperty(propertyContext.getText());
@@ -134,7 +137,7 @@ public class QueryFactory {
                 if (singleDigitContext != null) {
 
                     String compositeFunction = singleDigitContext.getChild(QueryParser.CompositeFunctionSingleDigitContext.class, 0).getText();
-                    cc.setCompositeFunction(LOGIC_FUNCTION.findByFunction(compositeFunction.toUpperCase()));
+                    cc.setCompositeFunction(LOGIC_FUNCTION.findByFunction(compositeFunction));
 
                     CompositeConditionContext second = singleDigitContext.getChild(QueryParser.CompositeConditionContext.class, 0);
                     cc.setCc(getCompositeCondition(second, compositeConditions));
@@ -142,7 +145,7 @@ public class QueryFactory {
                 } else if (doubleDigitContext != null) {
 
                     String compositeFunction = doubleDigitContext.getChild(QueryParser.CompositeFunctionDoubleDigitContext.class, 0).getText();
-                    cc.setCompositeFunction(LOGIC_FUNCTION.findByFunction(compositeFunction.toUpperCase()));
+                    cc.setCompositeFunction(LOGIC_FUNCTION.findByFunction(compositeFunction));
 
                     SingleConditionContext first = doubleDigitContext.getChild(QueryParser.SingleConditionContext.class, 0);
                     CompositeConditionContext second = doubleDigitContext.getChild(QueryParser.CompositeConditionContext.class, 0);

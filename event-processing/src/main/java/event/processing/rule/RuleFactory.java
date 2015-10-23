@@ -9,6 +9,7 @@ import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
 import org.springframework.stereotype.Component;
 
+import common.utilities.NormalizeString;
 import event.processing.gen.language.RuleBaseListener;
 import event.processing.gen.language.RuleLexer;
 import event.processing.gen.language.RuleParser;
@@ -24,6 +25,8 @@ import event.processing.rule.model.Reaction;
 public class RuleFactory {
 
     public Rule parse(String in) throws IOException {
+
+        in = NormalizeString.normalize(in);
 
         final Rule rule = new Rule();
 

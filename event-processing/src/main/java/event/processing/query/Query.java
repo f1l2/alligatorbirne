@@ -3,6 +3,7 @@ package event.processing.query;
 import java.util.ArrayList;
 import java.util.List;
 
+import common.utilities.NormalizeString;
 import event.processing.query.model.AggregateCondition;
 import event.processing.query.model.CompositeCondition;
 import event.processing.query.model.Condition;
@@ -16,9 +17,9 @@ public class Query {
      * Enum Keywords
      */
     public static enum KEYWORD {
-        CONDITION("CONDITION"),
+        CONDITION("condition"),
         //
-        FROM("FROM"),
+        FROM("from"),
         //
         TIME("win:time"),
         //
@@ -52,11 +53,11 @@ public class Query {
      * Enum Logic Fucntions
      */
     public static enum LOGIC_FUNCTION {
-        AND("AND", 2),
+        AND("and", 2),
         //
-        OR("OR", 2),
+        OR("or", 2),
         //
-        NOT("NOT", 1);
+        NOT("not", 1);
 
         private String function;
 
@@ -97,15 +98,15 @@ public class Query {
      * Enum Aggregation Functions
      */
     public static enum AGGREGATION_FUNCTION {
-        SUM("SUM"),
+        SUM("sum"),
         //
-        AVG("AVG"),
+        AVG("avg"),
         //
-        COUNT("COUNT"),
+        COUNT("count"),
         //
-        MAX("MAX"),
+        MAX("max"),
         //
-        MIN("MIN");
+        MIN("min");
 
         private String function;
 
@@ -182,6 +183,8 @@ public class Query {
 
     public static String addPrefix(String property) {
         if (isPropertyVariable(property)) {
+
+            property = NormalizeString.normalize(property);
 
             switch (property.toLowerCase()) {
             case "name":

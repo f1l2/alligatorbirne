@@ -23,7 +23,7 @@ public class Rule extends EngineListener {
      * Enum Keywords
      */
     public static enum KEYWORD {
-        TRIGGERS("TRIGGERS");
+        TRIGGERS("triggers");
 
         private String keyword;
 

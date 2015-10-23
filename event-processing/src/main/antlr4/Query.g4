@@ -8,13 +8,13 @@ query: conditions domains? window?;
 
 window: WS windowType'(' WS? intValue WS? ')' | WS windowType'(' WS? intValue WS? ')';
 
-domains: (WS 'FROM' WS domain);
+domains: (WS ('FROM'|'from') WS domain);
 
 domain: domainName | domain WS? COMMA WS? domain;
 
 domainName: VARIABLE;
 
-conditions: 'CONDITION' WS condition;
+conditions: ('CONDITION' | 'condition') WS condition;
 
 condition: singleCondition | compositeCondition;
 
@@ -24,7 +24,7 @@ compositeCondition: compositeOperationSingleDigit | compositeOperationDoubleDigi
 
 compositeOperationSingleDigit: compositeFunctionSingleDigit WS compositeCondition;
 
-compositeFunctionSingleDigit: 'NOT'; 
+compositeFunctionSingleDigit: ('NOT' | 'not'); 
 
 compositeOperationDoubleDigit: singleCondition WS compositeFunctionDoubleDigit WS compositeCondition;
 
@@ -32,7 +32,7 @@ compositeFunctionDoubleDigit: ('AND' | 'and' | 'OR' | 'or' );
 
 aggregateCondition: aggregateFunction WS? '(' WS? variable WS? ')' WS? operator WS? intValue;
 
-aggregateFunction: ('SUM' | 'AVG' | 'COUNT' | 'MAX' | 'MIN');
+aggregateFunction: ('SUM' | 'sum' | 'AVG' | 'avg' | 'COUNT' | 'count' | 'MAX' | 'max' | 'MIN' | 'min');
 
 evaluation: property WS? operator WS? property;
 

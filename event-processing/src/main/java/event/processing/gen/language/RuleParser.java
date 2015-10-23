@@ -19,8 +19,8 @@ public class RuleParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, T__1=2, T__2=3, T__3=4, VARIABLE=5, STRING=6, INT=7, COMMA=8, 
-		WS=9, NL=10;
+		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, VARIABLE=6, STRING=7, INT=8, COMMA=9, 
+		WS=10, NL=11;
 	public static final int
 		RULE_structure = 0, RULE_query = 1, RULE_reactions = 2, RULE_reaction = 3, 
 		RULE_devInfo = 4, RULE_devInfoName = 5, RULE_domainInfo = 6, RULE_domainInfoName = 7, 
@@ -31,11 +31,11 @@ public class RuleParser extends Parser {
 	};
 
 	private static final String[] _LITERAL_NAMES = {
-		null, "'TRIGGERS'", "';'", "','", "'='"
+		null, "'TRIGGERS'", "'triggers'", "';'", "','", "'='"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, null, null, null, null, "VARIABLE", "STRING", "INT", "COMMA", "WS", 
-		"NL"
+		null, null, null, null, null, null, "VARIABLE", "STRING", "INT", "COMMA", 
+		"WS", "NL"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -114,6 +114,7 @@ public class RuleParser extends Parser {
 	public final StructureContext structure() throws RecognitionException {
 		StructureContext _localctx = new StructureContext(_ctx, getState());
 		enterRule(_localctx, 0, RULE_structure);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
@@ -122,7 +123,12 @@ public class RuleParser extends Parser {
 			setState(25);
 			match(WS);
 			setState(26);
-			match(T__0);
+			_la = _input.LA(1);
+			if ( !(_la==T__0 || _la==T__1) ) {
+			_errHandler.recoverInline(this);
+			} else {
+				consume();
+			}
 			setState(27);
 			match(WS);
 			setState(28);
@@ -225,7 +231,7 @@ public class RuleParser extends Parser {
 				}
 
 				setState(36);
-				match(T__1);
+				match(T__2);
 				setState(38);
 				switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
 				case 1:
@@ -245,10 +251,10 @@ public class RuleParser extends Parser {
 				reaction();
 				setState(44);
 				_la = _input.LA(1);
-				if (_la==T__1) {
+				if (_la==T__2) {
 					{
 					setState(43);
-					match(T__1);
+					match(T__2);
 					}
 				}
 
@@ -301,11 +307,11 @@ public class RuleParser extends Parser {
 			setState(48);
 			devInfo();
 			setState(49);
-			match(T__2);
+			match(T__3);
 			setState(50);
 			domainInfo();
 			setState(51);
-			match(T__2);
+			match(T__3);
 			setState(52);
 			cM();
 			}
@@ -611,7 +617,7 @@ public class RuleParser extends Parser {
 			}
 
 			setState(81);
-			match(T__3);
+			match(T__4);
 			setState(83);
 			_la = _input.LA(1);
 			if (_la==WS) {
@@ -720,29 +726,29 @@ public class RuleParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\f`\4\2\t\2\4\3\t"+
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\r`\4\2\t\2\4\3\t"+
 		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4"+
 		"\f\t\f\4\r\t\r\3\2\3\2\3\2\3\2\3\2\3\2\3\3\3\3\3\4\3\4\5\4%\n\4\3\4\3"+
 		"\4\5\4)\n\4\3\4\3\4\3\4\3\4\5\4/\n\4\5\4\61\n\4\3\5\3\5\3\5\3\5\3\5\3"+
 		"\5\3\6\5\6:\n\6\3\6\3\6\5\6>\n\6\3\7\3\7\3\b\5\bC\n\b\3\b\3\b\5\bG\n\b"+
 		"\3\t\3\t\3\n\3\n\3\13\5\13N\n\13\3\13\3\13\5\13R\n\13\3\13\3\13\5\13V"+
 		"\n\13\3\13\3\13\5\13Z\n\13\3\f\3\f\3\r\3\r\3\r\2\2\16\2\4\6\b\n\f\16\20"+
-		"\22\24\26\30\2\2_\2\32\3\2\2\2\4 \3\2\2\2\6\60\3\2\2\2\b\62\3\2\2\2\n"+
-		"9\3\2\2\2\f?\3\2\2\2\16B\3\2\2\2\20H\3\2\2\2\22J\3\2\2\2\24M\3\2\2\2\26"+
-		"[\3\2\2\2\30]\3\2\2\2\32\33\5\4\3\2\33\34\7\13\2\2\34\35\7\3\2\2\35\36"+
-		"\7\13\2\2\36\37\5\6\4\2\37\3\3\2\2\2 !\7\7\2\2!\5\3\2\2\2\"$\5\b\5\2#"+
-		"%\7\13\2\2$#\3\2\2\2$%\3\2\2\2%&\3\2\2\2&(\7\4\2\2\')\7\13\2\2(\'\3\2"+
-		"\2\2()\3\2\2\2)*\3\2\2\2*+\5\6\4\2+\61\3\2\2\2,.\5\b\5\2-/\7\4\2\2.-\3"+
-		"\2\2\2./\3\2\2\2/\61\3\2\2\2\60\"\3\2\2\2\60,\3\2\2\2\61\7\3\2\2\2\62"+
-		"\63\5\n\6\2\63\64\7\5\2\2\64\65\5\16\b\2\65\66\7\5\2\2\66\67\5\22\n\2"+
-		"\67\t\3\2\2\28:\7\13\2\298\3\2\2\29:\3\2\2\2:;\3\2\2\2;=\5\f\7\2<>\7\13"+
-		"\2\2=<\3\2\2\2=>\3\2\2\2>\13\3\2\2\2?@\7\7\2\2@\r\3\2\2\2AC\7\13\2\2B"+
-		"A\3\2\2\2BC\3\2\2\2CD\3\2\2\2DF\5\20\t\2EG\7\13\2\2FE\3\2\2\2FG\3\2\2"+
-		"\2G\17\3\2\2\2HI\7\7\2\2I\21\3\2\2\2JK\5\24\13\2K\23\3\2\2\2LN\7\13\2"+
-		"\2ML\3\2\2\2MN\3\2\2\2NO\3\2\2\2OQ\5\30\r\2PR\7\13\2\2QP\3\2\2\2QR\3\2"+
-		"\2\2RS\3\2\2\2SU\7\6\2\2TV\7\13\2\2UT\3\2\2\2UV\3\2\2\2VW\3\2\2\2WY\5"+
-		"\26\f\2XZ\7\13\2\2YX\3\2\2\2YZ\3\2\2\2Z\25\3\2\2\2[\\\7\t\2\2\\\27\3\2"+
-		"\2\2]^\7\7\2\2^\31\3\2\2\2\16$(.\609=BFMQUY";
+		"\22\24\26\30\2\3\3\2\3\4_\2\32\3\2\2\2\4 \3\2\2\2\6\60\3\2\2\2\b\62\3"+
+		"\2\2\2\n9\3\2\2\2\f?\3\2\2\2\16B\3\2\2\2\20H\3\2\2\2\22J\3\2\2\2\24M\3"+
+		"\2\2\2\26[\3\2\2\2\30]\3\2\2\2\32\33\5\4\3\2\33\34\7\f\2\2\34\35\t\2\2"+
+		"\2\35\36\7\f\2\2\36\37\5\6\4\2\37\3\3\2\2\2 !\7\b\2\2!\5\3\2\2\2\"$\5"+
+		"\b\5\2#%\7\f\2\2$#\3\2\2\2$%\3\2\2\2%&\3\2\2\2&(\7\5\2\2\')\7\f\2\2(\'"+
+		"\3\2\2\2()\3\2\2\2)*\3\2\2\2*+\5\6\4\2+\61\3\2\2\2,.\5\b\5\2-/\7\5\2\2"+
+		".-\3\2\2\2./\3\2\2\2/\61\3\2\2\2\60\"\3\2\2\2\60,\3\2\2\2\61\7\3\2\2\2"+
+		"\62\63\5\n\6\2\63\64\7\6\2\2\64\65\5\16\b\2\65\66\7\6\2\2\66\67\5\22\n"+
+		"\2\67\t\3\2\2\28:\7\f\2\298\3\2\2\29:\3\2\2\2:;\3\2\2\2;=\5\f\7\2<>\7"+
+		"\f\2\2=<\3\2\2\2=>\3\2\2\2>\13\3\2\2\2?@\7\b\2\2@\r\3\2\2\2AC\7\f\2\2"+
+		"BA\3\2\2\2BC\3\2\2\2CD\3\2\2\2DF\5\20\t\2EG\7\f\2\2FE\3\2\2\2FG\3\2\2"+
+		"\2G\17\3\2\2\2HI\7\b\2\2I\21\3\2\2\2JK\5\24\13\2K\23\3\2\2\2LN\7\f\2\2"+
+		"ML\3\2\2\2MN\3\2\2\2NO\3\2\2\2OQ\5\30\r\2PR\7\f\2\2QP\3\2\2\2QR\3\2\2"+
+		"\2RS\3\2\2\2SU\7\7\2\2TV\7\f\2\2UT\3\2\2\2UV\3\2\2\2VW\3\2\2\2WY\5\26"+
+		"\f\2XZ\7\f\2\2YX\3\2\2\2YZ\3\2\2\2Z\25\3\2\2\2[\\\7\n\2\2\\\27\3\2\2\2"+
+		"]^\7\b\2\2^\31\3\2\2\2\16$(.\609=BFMQUY";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

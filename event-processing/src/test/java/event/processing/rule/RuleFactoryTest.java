@@ -30,9 +30,9 @@ public class RuleFactoryTest {
         assertEquals("query", rule.getQuery());
         assertNotNull(rule.getReactions());
         assertEquals(1, rule.getReactions().size());
-        assertEquals("deviceName", rule.getReactions().get(0).getDeviceInformation());
-        assertEquals("domainName", rule.getReactions().get(0).getDomainInformation());
-        assertEquals("1", rule.getReactions().get(0).getConfigurationModification().getProperty("cMName"));
+        assertEquals("devicename", rule.getReactions().get(0).getDeviceInformation());
+        assertEquals("domainname", rule.getReactions().get(0).getDomainInformation());
+        assertEquals("1", rule.getReactions().get(0).getConfigurationModification().getProperty("cmname"));
     }
 
     @Test
@@ -46,9 +46,9 @@ public class RuleFactoryTest {
         assertEquals("query", rule.getQuery());
         assertNotNull(rule.getReactions());
         assertEquals(2, rule.getReactions().size());
-        assertEquals("deviceName1", rule.getReactions().get(0).getDeviceInformation());
-        assertEquals("domainName1", rule.getReactions().get(0).getDomainInformation());
-        assertEquals("1", rule.getReactions().get(0).getConfigurationModification().getProperty("cMName1"));
+        assertEquals("devicename1", rule.getReactions().get(0).getDeviceInformation());
+        assertEquals("domainname1", rule.getReactions().get(0).getDomainInformation());
+        assertEquals("1", rule.getReactions().get(0).getConfigurationModification().getProperty("cmname1"));
 
     }
 
@@ -62,9 +62,9 @@ public class RuleFactoryTest {
         assertEquals("query", rule.getQuery());
         assertNotNull(rule.getReactions());
         assertEquals(3, rule.getReactions().size());
-        assertEquals("deviceName3", rule.getReactions().get(2).getDeviceInformation());
-        assertEquals("domainName3", rule.getReactions().get(2).getDomainInformation());
-        assertEquals("3", rule.getReactions().get(2).getConfigurationModification().getProperty("cMName3"));
+        assertEquals("devicename3", rule.getReactions().get(2).getDeviceInformation());
+        assertEquals("domainname3", rule.getReactions().get(2).getDomainInformation());
+        assertEquals("3", rule.getReactions().get(2).getConfigurationModification().getProperty("cmname3"));
     }
 
     private Rule test(String rule) throws IOException {

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.util.StringUtils;
 
 import event.processing.query.Query;
+import event.processing.query.Query.LOGIC_FUNCTION;
 import event.processing.query.model.AggregateCondition;
 
 public class EPLBuilderMultiple extends EPLBuilder {
@@ -88,12 +89,15 @@ public class EPLBuilderMultiple extends EPLBuilder {
         whereCondition = whereCondition.replace(condition.generateInclPrefix(), "");
         whereCondition = whereCondition.trim();
 
-        if (whereCondition.startsWith("AND")) {
-            whereCondition = whereCondition.replaceAll("^AND", "");
-        } else if (whereCondition.endsWith("AND")) {
-            whereCondition = whereCondition.replaceAll("AND$", "");
-        }
+        for (LOGIC_FUNCTION lf : Query.LOGIC_FUNCTION.values()) {
+            String function = lf.getFunction();
 
+            if (whereCondition.startsWith(function)) {
+                whereCondition = whereCondition.replaceAll("^" + function, "");
+            } else if (whereCondition.endsWith(function)) {
+                whereCondition = whereCondition.replaceAll(function + "$", "");
+            }
+        }
         return whereCondition;
     }
 
