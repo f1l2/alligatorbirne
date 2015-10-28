@@ -20,6 +20,16 @@ public interface RuleListener extends ParseTreeListener {
 	 */
 	void exitStructure(RuleParser.StructureContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link RuleParser#querySequence}.
+	 * @param ctx the parse tree
+	 */
+	void enterQuerySequence(RuleParser.QuerySequenceContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link RuleParser#querySequence}.
+	 * @param ctx the parse tree
+	 */
+	void exitQuerySequence(RuleParser.QuerySequenceContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link RuleParser#query}.
 	 * @param ctx the parse tree
 	 */

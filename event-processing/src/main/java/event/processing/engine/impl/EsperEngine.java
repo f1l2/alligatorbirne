@@ -51,6 +51,7 @@ public class EsperEngine extends Engine {
 
         Configuration cepConfig = new Configuration();
         cepConfig.addEventType("DataSource", DataSource.class);
+        cepConfig.addEventType("Event", Event.class);
 
         ClassPathScanningCandidateComponentProvider provider = new ClassPathScanningCandidateComponentProvider(true);
         provider.addIncludeFilter(new AssignableTypeFilter(DataModel.class));

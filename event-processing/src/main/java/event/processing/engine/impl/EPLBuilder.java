@@ -12,6 +12,8 @@ public abstract class EPLBuilder {
 
     protected Query query;
 
+    public static final String PART_QUERY_NAME = "[query_name]";
+
     public static final String PART_WHERE_CONDITION = "[where_condition]";
 
     public static final String PART_WHERE_DOMAIN = "[where_domain]";

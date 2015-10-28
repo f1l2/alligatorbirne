@@ -39,11 +39,12 @@ import event.processing.query.model.Window;
 @Component
 public class QueryFactory {
 
-    public Query parse(String in) throws IOException {
+    public Query parse(String in, String name) throws IOException {
 
         in = NormalizeString.normalize(in);
 
         final Query query = new Query();
+        query.setName(name);
 
         final QueryLexer queryLexer = new QueryLexer(new ANTLRInputStream(in));
         final QueryParser queryParser = new QueryParser(new CommonTokenStream(queryLexer));

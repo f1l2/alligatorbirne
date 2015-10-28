@@ -7,6 +7,7 @@ import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import common.utilities.NormalizeString;
@@ -19,10 +20,15 @@ import event.processing.gen.language.RuleParser.CMPropertyContext;
 import event.processing.gen.language.RuleParser.CMValueContext;
 import event.processing.gen.language.RuleParser.DevInfoContext;
 import event.processing.gen.language.RuleParser.DomainInfoContext;
+import event.processing.query.Query;
+import event.processing.repo.QueryRepository;
 import event.processing.rule.model.Reaction;
 
 @Component
 public class RuleFactory {
+
+    @Autowired
+    private QueryRepository queryRepository;
 
     public Rule parse(String in) throws IOException {
 
@@ -44,7 +50,9 @@ public class RuleFactory {
 
             @Override
             public void exitQuery(RuleParser.QueryContext ctx) {
-                rule.setQuery(ctx.getText());
+
+                Query query = queryRepository.findOne(ctx.getText());
+                rule.addQuery(query);
             }
 
             /**

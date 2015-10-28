@@ -22,9 +22,9 @@ public class EsperEngineUC1Test extends AbstractTestEP {
         String query2 = "CONDITION name = 'device2'";
         String query3 = "CONDITION name = 'device3'";
 
-        engine.register(queryTransformer.transformQuery(query1), testListener);
-        engine.register(queryTransformer.transformQuery(query2), testListener);
-        engine.register(queryTransformer.transformQuery(query3), testListener);
+        engine.register(queryTransformer.transformQueryString(query1, "query1"), testListener);
+        engine.register(queryTransformer.transformQueryString(query2, "query2"), testListener);
+        engine.register(queryTransformer.transformQueryString(query3, "query3"), testListener);
 
         sendEventAndWait(new DeviceData[] { dd1, dd2, dd3 }, new int[] { 1, 2, 3 });
 
@@ -39,7 +39,7 @@ public class EsperEngineUC1Test extends AbstractTestEP {
 
         String query1 = "CONDITION name = 'device1'";
 
-        engine.register(queryTransformer.transformQuery(query1), testListener);
+        engine.register(queryTransformer.transformQueryString(query1, "query1"), testListener);
 
         sendEventAndWait(new DeviceData[] { dd1, dd2, dd3 }, new int[] { 1, 1, 1 });
 

@@ -14,6 +14,7 @@ import common.data.type.COMPONENT_TYPE;
 import common.rest.RESOURCE_NAMING;
 import common.rest.ResourceUtils;
 import event.processing.engine.EngineListener;
+import event.processing.query.Query;
 import event.processing.rule.model.Reaction;
 
 public class Rule extends EngineListener {
@@ -43,16 +44,23 @@ public class Rule extends EngineListener {
 
     private Boolean isActivated = false;
 
-    private String query;
+    private List<Query> queries;
 
     private List<Reaction> reactions;
 
-    public String getQuery() {
-        return query;
+    public List<Query> getQueries() {
+        return queries;
     }
 
-    public void setQuery(String query) {
-        this.query = query;
+    public void setQueries(List<Query> queries) {
+        this.queries = queries;
+    }
+
+    public void addQuery(Query query) {
+        if (null == this.queries) {
+            this.queries = new ArrayList<Query>();
+        }
+        this.queries.add(query);
     }
 
     public List<Reaction> getReactions() {
@@ -79,7 +87,7 @@ public class Rule extends EngineListener {
     @Override
     public void trigger() {
 
-        logger.info("Rule is triggered. Query name: {}", this.query);
+        logger.info("Rule is triggered. Query name: {}", this.queries);
 
         try {
 

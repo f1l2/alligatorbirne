@@ -171,11 +171,21 @@ public class Query {
         }
     }
 
+    private String name;
+
     private Condition condition;
 
     private List<String> domains = new ArrayList<String>();
 
     private Window window;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Condition getCondition() {
         return condition;
@@ -248,5 +258,4 @@ public class Query {
             collection.add(condition.getAggregateCondition());
         }
     }
-
 }

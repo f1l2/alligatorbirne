@@ -20,7 +20,7 @@ public class EsperEngineUC4Test extends AbstractTestEP {
 
         String query = "CONDITION id >= 1 FROM domain1";
 
-        engine.register(queryTransformer.transformQuery(query), testListener);
+        engine.register(queryTransformer.transformQueryString(query, "query"), testListener);
 
         sendEventAndWait(new DeviceData[] { dd1, dd2, dd3 }, new int[] { 1, 1, 2 });
 
@@ -31,7 +31,7 @@ public class EsperEngineUC4Test extends AbstractTestEP {
 
         String query = "CONDITION id >= 2 FROM domain1";
 
-        engine.register(queryTransformer.transformQuery(query), testListener);
+        engine.register(queryTransformer.transformQueryString(query, "query"), testListener);
 
         sendEventAndWait(new DeviceData[] { dd1, dd2, dd3 }, new int[] { 0, 0, 1 });
     }
@@ -40,7 +40,7 @@ public class EsperEngineUC4Test extends AbstractTestEP {
     public void test3() throws IOException {
         String query = "CONDITION id >= 0 FROM domain";
 
-        engine.register(queryTransformer.transformQuery(query), testListener);
+        engine.register(queryTransformer.transformQueryString(query, "query"), testListener);
 
         sendEventAndWait(new DeviceData[] { dd1, dd2, dd3 }, new int[] { 0, 0, 0 });
     }

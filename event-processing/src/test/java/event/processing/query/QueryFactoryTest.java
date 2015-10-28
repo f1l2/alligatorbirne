@@ -228,6 +228,6 @@ public class QueryFactoryTest {
     }
 
     private Query test(String query) throws Exception {
-        return qf.parse(query);
+        return qf.parse(query, "query");
     }
 }

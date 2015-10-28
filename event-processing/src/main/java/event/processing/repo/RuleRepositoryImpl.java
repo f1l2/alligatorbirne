@@ -9,6 +9,7 @@ import java.util.Map;
 import org.springframework.stereotype.Component;
 
 import common.utilities.NormalizeString;
+import event.processing.query.Query;
 import event.processing.rule.Rule;
 
 @Component
@@ -76,8 +77,17 @@ public class RuleRepositoryImpl implements RuleRepository {
         while (it.hasNext()) {
 
             Rule rule = it.next();
-            if (queryName.equals(rule.getQuery())) {
-                rules.add(rule);
+
+            for (Query query : rule.getQueries()) {
+
+                if (null == query) {
+                    continue;
+                }
+
+                if (queryName.equals(query.getName())) {
+                    rules.add(rule);
+                    continue;
+                }
             }
         }
 

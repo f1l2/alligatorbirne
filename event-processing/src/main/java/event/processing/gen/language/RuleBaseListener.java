@@ -30,6 +30,18 @@ public class RuleBaseListener implements RuleListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterQuerySequence(RuleParser.QuerySequenceContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitQuerySequence(RuleParser.QuerySequenceContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterQuery(RuleParser.QueryContext ctx) { }
 	/**
 	 * {@inheritDoc}

@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
@@ -32,6 +33,12 @@ public class QueryRepositoryImpl implements QueryRepository {
     }
 
     @Override
+    public List<Query> findAllByQueries(List<Query> queries) {
+
+        return queries.stream().map(item -> findOne(item.getName())).filter(item -> item != null).collect(Collectors.toList());
+    }
+
+    @Override
     public List<Query> findAll() {
 
         List<Query> queries = new ArrayList<Query>();
@@ -45,9 +52,9 @@ public class QueryRepositoryImpl implements QueryRepository {
     }
 
     @Override
-    public void save(String name, Query query) {
+    public void save(Query query) {
 
-        name = before(name);
+        String name = before(query.getName());
 
         repo.put(name, query);
     }
@@ -59,5 +66,4 @@ public class QueryRepositoryImpl implements QueryRepository {
 
         repo.remove(name);
     }
-
 }

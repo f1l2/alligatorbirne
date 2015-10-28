@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.After;
@@ -33,9 +34,9 @@ public class QueryRepositoryTest {
     public void before() throws IOException {
 
         String input = Query.KEYWORD.CONDITION.getKeyword() + " property = 21 AND abc = 21 " + Query.KEYWORD.FROM.getKeyword() + " Domain";
-        query = qf.parse(input);
+        query = qf.parse(input, "test query");
 
-        repo.save("test query", query);
+        repo.save(query);
     }
 
     @After
@@ -54,7 +55,32 @@ public class QueryRepositoryTest {
     }
 
     @Test
-    public void findOneQuey() {
+    public void findAllQueries2() {
+
+        Query query1 = new Query();
+        query1.setName("test query 123");
+
+        Query query2 = new Query();
+        query2.setName("test query");
+
+        List<Query> queries = new ArrayList<Query>();
+        queries.add(query1);
+
+        List<Query> allQueries = repo.findAllByQueries(queries);
+        assertNotNull(allQueries);
+        assertEquals(0, allQueries.size());
+
+        queries.add(query2);
+
+        allQueries = repo.findAllByQueries(queries);
+
+        assertNotNull(allQueries);
+        assertEquals(1, allQueries.size());
+        assertEquals(query.toString(), allQueries.get(0).toString());
+    }
+
+    @Test
+    public void findOneQuery() {
 
         Query result = repo.findOne("test query");
 

@@ -80,8 +80,8 @@ public class EProcManageStatementImpl implements EProcManageStatement {
          * Parse query and store it in the repository.
          */
         try {
-            Query q = queryFactory.parse(query);
-            queryRepository.save(name, q);
+            Query q = queryFactory.parse(query, name);
+            queryRepository.save(q);
 
         } catch (Exception e) {
             return EP_ERROR_CODES.ERROR_PARSING_QUERY.getErrorResponse();
@@ -141,16 +141,60 @@ public class EProcManageStatementImpl implements EProcManageStatement {
         /**
          * Make sure that corresponding query exists.
          */
-        Query query = queryRepository.findOne(rule.getQuery());
-        if (null == query) {
+        List<Query> queries = queryRepository.findAllByQueries(rule.getQueries());
+        if (null == queries) {
             return EP_ERROR_CODES.ERROR_NON_EXISTING_QUERY.getErrorResponse();
+        }
+
+        if (queries.size() > 1) {
+
+            char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+            int i = 0;
+
+            StringBuilder sb = new StringBuilder();
+            sb.append("every [");
+
+            for (Query query : queries) {
+                if (i != 0) {
+                    sb.append(" -> ");
+                }
+                sb.append(alphabet[i]);
+                sb.append("=Event(name = '");
+                sb.append(query.getName());
+                sb.append("'");
+                i++;
+            }
+            sb.append("]");
         }
 
         /**
          * Register query at event engine.
          */
         try {
-            List<String> epls = factory.getTransformer().transformQuery(query);
+            List<String> epls = factory.getTransformer().transformQuery(queries);
+
+            if (queries.size() > 1) {
+
+                char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+                int i = 0;
+
+                StringBuilder sb = new StringBuilder();
+                sb.append("every [");
+
+                for (Query query : queries) {
+                    if (i != 0) {
+                        sb.append(" -> ");
+                    }
+                    sb.append(alphabet[i]);
+                    sb.append("=Event(name = '");
+                    sb.append(query.getName());
+                    sb.append("'");
+                    i++;
+                }
+                sb.append("]");
+
+                epls.add(sb.toString());
+            }
 
             EngineListener engineListener = factory.getEngineListener();
             ((EsperEngineListener) engineListener).addRuleListener(rule);
@@ -221,8 +265,8 @@ public class EProcManageStatementImpl implements EProcManageStatement {
          * Make sure that corresponding query exists.
          * 
          */
-        Query query = queryRepository.findOne(rule.getQuery());
-        if (null == query) {
+        List<Query> queries = queryRepository.findAllByQueries(rule.getQueries());
+        if (CollectionUtils.isEmpty(queries)) {
             return EP_ERROR_CODES.ERROR_NON_EXISTING_QUERY.getErrorResponse();
         }
 
@@ -230,7 +274,7 @@ public class EProcManageStatementImpl implements EProcManageStatement {
          * Destroy query at event engine.
          */
         try {
-            List<String> epls = factory.getTransformer().transformQuery(query);
+            List<String> epls = factory.getTransformer().transformQuery(queries);
             factory.getEngine().unregister(epls);
         } catch (Exception e) {
             System.out.println(e);

@@ -60,6 +60,7 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
         given().body(query).when().post(ResourceUtils.getPath(RESOURCE_NAMING.EPROCESSING_REGISTRATION_QUERY, queryName))
 
         .then().statusCode(HttpStatus.OK.value());
+
     }
 
     @Test

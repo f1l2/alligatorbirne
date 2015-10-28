@@ -42,9 +42,9 @@ public abstract class AbstractTestRestEP {
 
         status.setCurrent(STATUS_TYPE.TEST);
 
-        query = qf.parse(strQuery);
+        query = qf.parse(strQuery, "test query");
 
-        repo.save("test query", query);
+        repo.save(query);
 
         RestAssured.port = port;
 

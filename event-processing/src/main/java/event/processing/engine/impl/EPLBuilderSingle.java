@@ -9,7 +9,7 @@ import event.processing.query.Query;
 
 public class EPLBuilderSingle extends EPLBuilder {
 
-    private static final String EPL_PATTERN = "select * from DeviceData[window] as d where [where_condition] [where_domain]";
+    private static final String EPL_PATTERN = "insert into Event select '[query_name]' as name from DeviceData[window] as d where [where_condition] [where_domain]";
 
     public EPLBuilderSingle(Query query) {
         super(query);
@@ -25,6 +25,7 @@ public class EPLBuilderSingle extends EPLBuilder {
         epl = StringUtils.replace(epl, EPLBuilder.PART_WHERE_CONDITION, this.createEPLPartWhereCondition());
         epl = StringUtils.replace(epl, EPLBuilder.PART_WHERE_DOMAIN, this.createEPLPartWhereDomain());
         epl = StringUtils.replace(epl, EPLBuilder.PART_WINDOW, this.createEPLPartWindow());
+        epl = StringUtils.replace(epl, EPLBuilder.PART_QUERY_NAME, query.getName());
 
         List<String> epls = new ArrayList<String>();
         epls.add(epl);

@@ -1,6 +1,7 @@
 package event.processing.engine.impl;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -44,18 +45,39 @@ public class EsperEPLTransformer implements LanguageTransformer {
     }
 
     @Override
-    public List<String> transformQuery(String in) throws IOException {
+    public List<String> transformQuery(List<Query> queries) {
+
+        List<String> nativeQueries = new ArrayList<String>();
+        for (Query query : queries) {
+            nativeQueries.addAll(transformQuery(query));
+        }
+        return nativeQueries;
+    }
+
+    @Override
+    public List<String> transformQueryString(String in, String name) throws IOException {
 
         logger.info("Start query transformation. Input: {}", in);
 
-        Query query = queryFactory.parse(in);
+        Query query = queryFactory.parse(in, name);
 
         return transformQuery(query);
 
     }
 
     @Override
-    public List<String> transformRule(String in) throws IOException {
+    public List<String> transformQueryString(List<String> ins, List<String> names) throws IOException {
+
+        List<String> queries = new ArrayList<String>();
+
+        for (int i = 0; ins.size() < i && names.size() < i; i++) {
+            queries.addAll(transformQueryString(ins.get(i), names.get(i)));
+        }
+        return queries;
+    }
+
+    @Override
+    public List<String> transformRuleString(String in) throws IOException {
 
         logger.info("Start rule transformation. Input: {}", in);
 
@@ -66,7 +88,7 @@ public class EsperEPLTransformer implements LanguageTransformer {
 
     @Override
     public List<String> transformRule(Rule rule) throws IOException {
-        return transformQuery(rule.getQuery());
+        return transformQuery(rule.getQueries());
     }
 
     public void accept(EPLBuilder builder) {

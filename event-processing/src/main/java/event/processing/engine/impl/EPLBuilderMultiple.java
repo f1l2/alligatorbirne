@@ -18,7 +18,7 @@ public class EPLBuilderMultiple extends EPLBuilder {
             + " as d where " + EPLBuilder.PART_WHERE_CONDITION + EPLBuilder.PART_WHERE_DOMAIN);
 
     /**
-     * select * from AggregatedValue where [aggregated_operation]
+     * insert into Event select [queryName] as name from AggregatedValue where [aggregated_operation]
      */
     private static final String EPL_SELECT_PATTERN = new String("select * from AggregatedValue where " + EPLBuilder.PART_AGGREGATED_VALUE);
 
@@ -47,6 +47,7 @@ public class EPLBuilderMultiple extends EPLBuilder {
 
             String eplSelect = new String(EPL_SELECT_PATTERN);
             eplSelect = StringUtils.replace(eplSelect, EPLBuilder.PART_AGGREGATED_VALUE, this.createEPLPartAggregatedValue());
+            eplSelect = StringUtils.replace(eplSelect, EPLBuilder.PART_QUERY_NAME, query.getName());
 
             epls.add(this.cleanup(eplInsert));
             epls.add(this.cleanup(eplSelect));

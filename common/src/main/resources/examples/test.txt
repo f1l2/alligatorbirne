@@ -8,7 +8,7 @@ list-dev-by --devInfo Temperture --domInfo FLOOR1
 
 rq --epId 1 --query "CONDITION name = 'Temperature' AND value >= 25" --queryName detectTemperatureAbove25
 
-rq --epId 1 --query "CONDITION name = 'Temperature' AND value <= 25" --queryName detectTemperatureUnder25
+rq --epId 1 --query "CONDITION name = 'Temperature' AND value <= 15" --queryName detectTemperatureUnder25
 
 rr --epId 1 --rule 'detectTemperatureAbove25 TRIGGERS Temperature, FLOOR1, TASK_INTERVAL_MS = 2000' --ruleName decreaseIntervalBasedOnHighTemperature
 
