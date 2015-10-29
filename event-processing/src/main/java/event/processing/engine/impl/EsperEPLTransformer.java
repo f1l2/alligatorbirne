@@ -6,15 +6,12 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
 import event.processing.engine.LanguageTransformer;
 import event.processing.query.Query;
-import event.processing.query.QueryFactory;
 import event.processing.rule.Rule;
-import event.processing.rule.RuleFactory;
 
 @Component
 public class EsperEPLTransformer implements LanguageTransformer {
@@ -23,19 +20,13 @@ public class EsperEPLTransformer implements LanguageTransformer {
 
     private EPLBuilder builder;
 
-    @Autowired
-    private QueryFactory queryFactory;
-
-    @Autowired
-    private RuleFactory ruleFactory;
-
     @Override
     public List<String> transformQuery(Query query) {
 
         if (CollectionUtils.isEmpty(query.collectAggregateCondition())) {
-            this.accept(new EPLBuilderSingle(query));
+            this.accept(new EPLBuilderSingle());
         } else {
-            this.accept(new EPLBuilderMultiple(query));
+            this.accept(new EPLBuilderMultiple());
         }
 
         List<String> epls = builder.createEPL(query);
@@ -55,40 +46,35 @@ public class EsperEPLTransformer implements LanguageTransformer {
     }
 
     @Override
-    public List<String> transformQueryString(String in, String name) throws IOException {
-
-        logger.info("Start query transformation. Input: {}", in);
-
-        Query query = queryFactory.parse(in, name);
-
-        return transformQuery(query);
-
-    }
-
-    @Override
-    public List<String> transformQueryString(List<String> ins, List<String> names) throws IOException {
-
-        List<String> queries = new ArrayList<String>();
-
-        for (int i = 0; ins.size() < i && names.size() < i; i++) {
-            queries.addAll(transformQueryString(ins.get(i), names.get(i)));
-        }
-        return queries;
-    }
-
-    @Override
-    public List<String> transformRuleString(String in) throws IOException {
-
-        logger.info("Start rule transformation. Input: {}", in);
-
-        Rule rule = ruleFactory.parse(in);
-
-        return transformRule(rule);
-    }
-
-    @Override
     public List<String> transformRule(Rule rule) throws IOException {
-        return transformQuery(rule.getQueries());
+
+        List<String> epls = transformQuery(rule.getQueries());
+
+        epls.addAll(transformRulePuristic(rule));
+
+        return epls;
+    }
+
+    @Override
+    public List<String> transformRulePuristic(Rule rule) throws IOException {
+
+        List<String> epls = new ArrayList<String>();
+
+        /**
+         * If rule is triggered by a sequence of queries another epl statement is needed.
+         */
+
+        if (rule.getQueries().size() > 1) {
+
+            this.accept(new EPLBuilderSequence());
+
+            List<String> eplSequence = builder.createEPL(rule.getQueries());
+
+            epls.addAll(eplSequence);
+            epls.forEach(epl -> logger.info("Generated EPL: {}", eplSequence));
+        }
+
+        return epls;
     }
 
     public void accept(EPLBuilder builder) {

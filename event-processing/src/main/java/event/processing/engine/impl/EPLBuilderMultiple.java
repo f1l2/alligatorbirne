@@ -24,13 +24,8 @@ public class EPLBuilderMultiple extends EPLBuilder {
 
     private AggregateCondition condition;
 
-    public EPLBuilderMultiple(Query query) {
-        super(query);
-    }
-
     @Override
     public List<String> createEPL(Query query) {
-
         this.query = query;
 
         List<String> epls = new ArrayList<String>();

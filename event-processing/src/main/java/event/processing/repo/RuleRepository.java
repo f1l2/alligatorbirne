@@ -16,4 +16,6 @@ public interface RuleRepository {
 
     public List<Rule> findRulesByQueryName(String queryName);
 
+    public List<Rule> findAllActiveRules();
+
 }

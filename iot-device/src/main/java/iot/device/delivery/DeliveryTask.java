@@ -62,8 +62,8 @@ public class DeliveryTask implements Runnable {
             Configuration configuration = deliveryTaskRO.getConfiguration();
 
             logger.info("DeliveryTask {} is executed.", this.identification);
-            logger.info("Configuration: {}", configuration.toString());
-            logger.info("Status: {}", status.getCurrent().name());
+            // logger.info("Configuration: {}", configuration.toString());
+            // logger.info("Status: {}", status.getCurrent().name());
 
             int sleepTime = configuration.getValue(SystemReservedProperty.TASK_INTERVAL_MS);
 
@@ -83,7 +83,7 @@ public class DeliveryTask implements Runnable {
                     if (STATUS_TYPE.TEST.equals(status.getCurrent())) {
                         VirtualEP.send(new VirtualData(ddDTO, deliveryUrl, Instant.now()));
                     } else {
-                        logger.info("Send data ...");
+                        // logger.info("Send data ...");
                         ResponseEntity<String> response = restTemplate.postForEntity(deliveryUrl, ddDTO, String.class);
                         logger.info("Device data send. Status: " + response.getStatusCode() + " Response body: " + response.getBody());
                     }

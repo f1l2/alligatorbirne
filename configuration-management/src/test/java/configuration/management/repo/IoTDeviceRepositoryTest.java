@@ -3,6 +3,8 @@ package configuration.management.repo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -63,7 +65,9 @@ public class IoTDeviceRepositoryTest extends AbstractTestCM {
         assertNotNull(all);
         assertEquals(2, ((Collection<?>) all).size());
 
-        List<IoTDeviceRO> devices = this.deviceRepo.findByUpdatedBefore(new Date());
+        LocalDateTime.now().plusHours(1).toLocalDate();
+
+        List<IoTDeviceRO> devices = this.deviceRepo.findByUpdatedBefore(new Date(Instant.now().plusSeconds(3600 * 24).toEpochMilli()));
 
         assertNotNull(devices);
         assertEquals(2, devices.size());
@@ -95,7 +99,7 @@ public class IoTDeviceRepositoryTest extends AbstractTestCM {
         assertEquals(dataSource1.getDevice(), result.getIoTDeviceDataSources().get(0).getDevice());
         assertEquals(dataSource1.getDomain(), result.getIoTDeviceDataSources().get(0).getDomain());
 
-        List<IoTDeviceRO> devices = this.deviceRepo.findByUpdatedBefore(new Date());
+        List<IoTDeviceRO> devices = this.deviceRepo.findByUpdatedBefore(new Date(Instant.now().plusSeconds(3600 * 24).toEpochMilli()));
 
         assertNotNull(devices);
         assertEquals(2, devices.size());

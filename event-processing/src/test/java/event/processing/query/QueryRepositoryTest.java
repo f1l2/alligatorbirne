@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,15 +32,12 @@ public class QueryRepositoryTest {
     @Before
     public void before() throws IOException {
 
+        repo.reset();
+
         String input = Query.KEYWORD.CONDITION.getKeyword() + " property = 21 AND abc = 21 " + Query.KEYWORD.FROM.getKeyword() + " Domain";
         query = qf.parse(input, "test query");
 
         repo.save(query);
-    }
-
-    @After
-    public void after() {
-        repo.delete("test query");
     }
 
     @Test

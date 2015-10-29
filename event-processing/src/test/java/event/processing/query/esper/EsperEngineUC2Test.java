@@ -20,7 +20,7 @@ public class EsperEngineUC2Test extends AbstractTestEP {
 
         String query = "CONDITION id = 1 AND name = 'device1'";
 
-        engine.register(queryTransformer.transformQueryString(query, "query"), testListener);
+        engine.register(transformQueryString(query, "query"), testListener);
 
         sendEventAndWait(new DeviceData[] { dd1, dd2, dd3 }, new int[] { 1, 1, 1 });
 
@@ -31,7 +31,7 @@ public class EsperEngineUC2Test extends AbstractTestEP {
 
         String query = "CONDITION id = 1 OR name = 'device2'";
 
-        engine.register(queryTransformer.transformQueryString(query, "query"), testListener);
+        engine.register(transformQueryString(query, "query"), testListener);
 
         sendEventAndWait(new DeviceData[] { dd1, dd2, dd3 }, new int[] { 1, 2, 2 });
 
@@ -42,7 +42,7 @@ public class EsperEngineUC2Test extends AbstractTestEP {
 
         String query = "CONDITION NOT id = 1";
 
-        engine.register(queryTransformer.transformQueryString(query, "query"), testListener);
+        engine.register(transformQueryString(query, "query"), testListener);
 
         sendEventAndWait(new DeviceData[] { dd1, dd2, dd3 }, new int[] { 0, 1, 2 });
 

@@ -44,6 +44,8 @@ public class Rule extends EngineListener {
 
     private Boolean isActivated = false;
 
+    private List<String> queryNames;
+
     private List<Query> queries;
 
     private List<Reaction> reactions;
@@ -61,6 +63,21 @@ public class Rule extends EngineListener {
             this.queries = new ArrayList<Query>();
         }
         this.queries.add(query);
+    }
+
+    public List<String> getQueryNames() {
+        return queryNames;
+    }
+
+    public void setQueryNames(List<String> queryNames) {
+        this.queryNames = queryNames;
+    }
+
+    public void addQueryName(String queryName) {
+        if (null == this.queryNames) {
+            this.queryNames = new ArrayList<String>();
+        }
+        this.queryNames.add(queryName);
     }
 
     public List<Reaction> getReactions() {
@@ -87,7 +104,7 @@ public class Rule extends EngineListener {
     @Override
     public void trigger() {
 
-        logger.info("Rule is triggered. Query name: {}", this.queries);
+        logger.info("Rule is triggered. Reaction: {}", this.reactions.get(0).toString());
 
         try {
 

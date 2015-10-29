@@ -1,5 +1,6 @@
 package event.processing.engine.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,11 +25,17 @@ public abstract class EPLBuilder {
 
     public static final String PART_AGGREGATED_OPERATION = "[aggregated_operation]";
 
-    public EPLBuilder(Query query) {
-        this.query = query;
-    }
-
     public abstract List<String> createEPL(Query query);
+
+    public List<String> createEPL(List<Query> queries) {
+
+        List<String> epls = new ArrayList<String>();
+
+        queries.stream().map(item -> epls.addAll(createEPL(item)));
+
+        return epls;
+
+    }
 
     public String createEPLPartWhereDomain() {
 

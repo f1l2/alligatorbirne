@@ -3,9 +3,6 @@ package event.processing.engine.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.espertech.esper.client.EventBean;
 import com.espertech.esper.client.UpdateListener;
 
@@ -15,11 +12,10 @@ public class EsperEngineListener extends EngineListener implements UpdateListene
 
     private List<EngineListener> ruleListeners = new ArrayList<EngineListener>();
 
-    private static final Logger logger = LoggerFactory.getLogger(EsperEngineListener.class);
+    // private static final Logger logger = LoggerFactory.getLogger(EsperEngineListener.class);
 
     @Override
     public void update(EventBean[] newData, EventBean[] oldData) {
-        logger.info("Event received: " + newData[0].getUnderlying());
 
         ruleListeners.forEach(item -> item.trigger());
     }

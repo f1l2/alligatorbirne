@@ -15,4 +15,6 @@ public interface QueryRepository {
     public void save(Query query);
 
     public void delete(String name);
+
+    public void reset();
 }

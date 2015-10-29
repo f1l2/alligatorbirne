@@ -4,7 +4,7 @@ public class SensorData<T> {
 
     private T rawValue;
 
-    private Integer value = -1;
+    private Integer value;
 
     public T getRawValue() {
         return rawValue;

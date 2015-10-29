@@ -66,4 +66,9 @@ public class QueryRepositoryImpl implements QueryRepository {
 
         repo.remove(name);
     }
+
+    @Override
+    public void reset() {
+        repo = new LinkedHashMap<String, Query>();
+    }
 }

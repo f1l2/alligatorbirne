@@ -52,19 +52,13 @@ public class DeliveryTaskRepositoryImpl implements DeliveryTaskRepository {
     @Override
     public Boolean create(DeliveryTaskRO task) {
 
-        System.out.println("create entered.");
-
         String bean = task.getUrlDataSink().getAuthority();
 
         synchronized (bean.intern()) {
 
-            System.out.println("intern entered");
-
             if (null == findByAuthority(bean)) {
 
                 repo.put(bean, task);
-
-                System.out.println("added");
 
                 return true;
             }

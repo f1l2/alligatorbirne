@@ -20,7 +20,7 @@ public class EsperEngineUC3Test extends AbstractTestEP {
 
         String query = "CONDITION SUM(id) >= 3";
 
-        engine.register(queryTransformer.transformQueryString(query, "query"), testListener);
+        engine.register(transformQueryString(query, "query"), testListener);
 
         sendEventAndWait(new DeviceData[] { dd1, dd2, dd3 }, new int[] { 0, 1, 2 });
 
@@ -31,7 +31,7 @@ public class EsperEngineUC3Test extends AbstractTestEP {
 
         String query = "CONDITION MIN(id) >= 3";
 
-        engine.register(queryTransformer.transformQueryString(query, "query"), testListener);
+        engine.register(transformQueryString(query, "query"), testListener);
 
         sendEventAndWait(new DeviceData[] { dd1, dd2, dd3 }, new int[] { 0, 0, 0 });
 
@@ -42,7 +42,7 @@ public class EsperEngineUC3Test extends AbstractTestEP {
 
         String query = "CONDITION MAX(id) >= 2";
 
-        engine.register(queryTransformer.transformQueryString(query, "query"), testListener);
+        engine.register(transformQueryString(query, "query"), testListener);
 
         sendEventAndWait(new DeviceData[] { dd1, dd2, dd3 }, new int[] { 0, 1, 2 });
 
@@ -53,7 +53,7 @@ public class EsperEngineUC3Test extends AbstractTestEP {
 
         String query = "CONDITION SUM(id) >= 2  AND id = 2";
 
-        engine.register(queryTransformer.transformQueryString(query, "query"), testListener);
+        engine.register(transformQueryString(query, "query"), testListener);
 
         sendEventAndWait(new DeviceData[] { dd1, dd2, dd3 }, new int[] { 0, 1, 1 });
 

@@ -37,6 +37,7 @@ import event.processing.rule.RuleFactory;
 import event.processing.rule.model.Reaction;
 import event.processing.status.STATUS_TYPE;
 import event.processing.status.Status;
+import event.processing.utilities.Utilities;
 
 @RestController
 public class EProcManageStatementImpl implements EProcManageStatement {
@@ -108,12 +109,24 @@ public class EProcManageStatementImpl implements EProcManageStatement {
         /**
          * Parse rule and store it in the repository.
          */
+        Rule r = null;
         try {
-            Rule r = ruleFactory.parse(rule);
-            ruleRepository.save(name, r);
+            r = ruleFactory.parse(rule);
         } catch (Exception e) {
             return EP_ERROR_CODES.ERROR_PARSING_RULE.getErrorResponse();
         }
+
+        /**
+         * Find query to name. If query doesn't exist throw exception.
+         */
+
+        try {
+            Utilities.findQueriesToQueryNames(r, queryRepository);
+        } catch (Exception e) {
+            return EP_ERROR_CODES.ERROR_NON_EXISTING_QUERY.getErrorResponse();
+        }
+
+        ruleRepository.save(name, r);
 
         return new ResponseEntity<String>(OK, HttpStatus.OK);
     }
@@ -146,55 +159,15 @@ public class EProcManageStatementImpl implements EProcManageStatement {
             return EP_ERROR_CODES.ERROR_NON_EXISTING_QUERY.getErrorResponse();
         }
 
-        if (queries.size() > 1) {
-
-            char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
-            int i = 0;
-
-            StringBuilder sb = new StringBuilder();
-            sb.append("every [");
-
-            for (Query query : queries) {
-                if (i != 0) {
-                    sb.append(" -> ");
-                }
-                sb.append(alphabet[i]);
-                sb.append("=Event(name = '");
-                sb.append(query.getName());
-                sb.append("'");
-                i++;
-            }
-            sb.append("]");
-        }
-
         /**
          * Register query at event engine.
          */
         try {
-            List<String> epls = factory.getTransformer().transformQuery(queries);
 
-            if (queries.size() > 1) {
+            List<Query> notActiveQueries = Utilities.filterActiveQueries(rule.getQueries(), ruleRepository);
+            List<String> epls = factory.getTransformer().transformQuery(notActiveQueries);
 
-                char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
-                int i = 0;
-
-                StringBuilder sb = new StringBuilder();
-                sb.append("every [");
-
-                for (Query query : queries) {
-                    if (i != 0) {
-                        sb.append(" -> ");
-                    }
-                    sb.append(alphabet[i]);
-                    sb.append("=Event(name = '");
-                    sb.append(query.getName());
-                    sb.append("'");
-                    i++;
-                }
-                sb.append("]");
-
-                epls.add(sb.toString());
-            }
+            epls.addAll(factory.getTransformer().transformRulePuristic(rule));
 
             EngineListener engineListener = factory.getEngineListener();
             ((EsperEngineListener) engineListener).addRuleListener(rule);

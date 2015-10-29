@@ -94,4 +94,22 @@ public class RuleRepositoryImpl implements RuleRepository {
         return rules;
     }
 
+    @Override
+    public List<Rule> findAllActiveRules() {
+
+        List<Rule> rules = new ArrayList<Rule>();
+
+        Iterator<Rule> it = repo.values().iterator();
+        while (it.hasNext()) {
+
+            Rule rule = it.next();
+
+            if (rule.getIsActivated()) {
+                rules.add(rule);
+            }
+        }
+
+        return rules;
+    }
+
 }

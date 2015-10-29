@@ -11,8 +11,15 @@ public class EPLBuilderSingle extends EPLBuilder {
 
     private static final String EPL_PATTERN = "insert into Event select '[query_name]' as name from DeviceData[window] as d where [where_condition] [where_domain]";
 
-    public EPLBuilderSingle(Query query) {
-        super(query);
+    @Override
+    public List<String> createEPL(List<Query> queries) {
+
+        List<String> epls = new ArrayList<String>();
+
+        queries.stream().map(item -> epls.addAll(createEPL(item)));
+
+        return epls;
+
     }
 
     @Override

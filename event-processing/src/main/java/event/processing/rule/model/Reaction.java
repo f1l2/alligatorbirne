@@ -41,4 +41,9 @@ public class Reaction {
         this.configurationModification.put(key, value);
     }
 
+    @Override
+    public String toString() {
+        return "Reaction [deviceInformation=" + deviceInformation + ", domainInformation=" + domainInformation + ", configurationModification=" + configurationModification + "]";
+    }
+
 }

@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -122,6 +124,19 @@ public class RuleFactoryTest {
     }
 
     private Rule test(String rule) throws IOException {
-        return rf.parse(rule);
+
+        Rule r = rf.parse(rule);
+
+        List<Query> queries = new ArrayList<Query>();
+        for (String queryName : r.getQueryNames()) {
+            Query query = qr.findOne(queryName);
+
+            if (null != query) {
+                queries.add(query);
+            }
+        }
+        r.setQueries(queries);
+
+        return r;
     }
 }
