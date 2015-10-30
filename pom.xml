@@ -182,7 +182,7 @@
 	              			
 	              			<resources>          
 	                			<resource>
-	                  				<directory>${project.basedir}/src/main/resources/examples</directory>
+	                  				<directory>${project.basedir}/src/main/resources/scripts</directory>
 	                  				<filtering>true</filtering>
 	                			</resource>
 	              			</resources>              

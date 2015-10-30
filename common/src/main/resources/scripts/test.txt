@@ -4,7 +4,7 @@ list-ep
 
 list-ds --devId 1
 
-list-dev-by --devInfo Temperture --domInfo FLOOR1
+list-dev-by --devInfo Temperature --domInfo FLOOR1
 
 rq --epId 1 --query "CONDITION name = 'Temperature' AND value >= 25" --queryName detectTemperatureAbove25
 

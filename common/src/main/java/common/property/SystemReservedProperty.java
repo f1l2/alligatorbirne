@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum SystemReservedProperty {
-    TASK_INTERVAL_MS("task_interval_ms", true, 10 * 1000, 5 * 100, 5000 * 1000);
+    TASK_INTERVAL_MS("task_interval_ms", true, 5 * 1000, 5 * 100, 5000 * 1000);
 
     private String name;
 

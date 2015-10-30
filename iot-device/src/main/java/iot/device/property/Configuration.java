@@ -144,7 +144,13 @@ public class Configuration {
         int max = SystemReservedProperty.getSystemReservedPropertyByName(key).getMax();
 
         if ((compare(min, value, isSmaller) && (this.compare(max, value, isGreater)))) {
+
+            logger.info(key + " : " + value);
+
             systemReservedProperties.put(key, value);
+
+            logger.info("{}", systemReservedProperties.get(key));
+
         }
 
     }

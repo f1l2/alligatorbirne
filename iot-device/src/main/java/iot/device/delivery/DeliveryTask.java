@@ -18,6 +18,7 @@ import common.rest.RESOURCE_NAMING;
 import common.rest.ResourceUtils;
 import iot.device.property.Configuration;
 import iot.device.repo.DeliveryTaskRO;
+import iot.device.repo.DeliveryTaskRepository;
 import iot.device.sensor.DynamicSensorFactory;
 import iot.device.sensor.Sensor;
 import iot.device.status.STATUS_TYPE;
@@ -30,9 +31,9 @@ public class DeliveryTask implements Runnable {
 
     final static Logger logger = LoggerFactory.getLogger(DeliveryTask.class);
 
-    private DeliveryTaskRO deliveryTaskRO;
-
     private String deliveryUrl;
+
+    private String deliveryAuthority;
 
     @Autowired
     private Status status;
@@ -40,16 +41,20 @@ public class DeliveryTask implements Runnable {
     @Autowired
     private DynamicSensorFactory dsf;
 
+    @Autowired
+    private DeliveryTaskRepository dtr;
+
     private String identification;
 
     public DeliveryTask() {
-        this.identification = null;
+
     }
 
-    public DeliveryTask(DeliveryTaskRO deliveryTask) {
-        this.deliveryTaskRO = deliveryTask;
+    public DeliveryTask(DeliveryTaskRO deliveryTaskRO) {
+
+        this.deliveryAuthority = deliveryTaskRO.getUrlDataSink().getAuthority();
         this.deliveryUrl = ResourceUtils.getUrl(RESOURCE_NAMING.EPROCESSING_SEND, deliveryTaskRO.getUrlDataSink().getAuthority());
-        this.setIdentification(String.format("deliveryTask_%s", Arrays.hashCode(new Object[] { deliveryTask.getUrlDataSink().getAuthority() })));
+        this.setIdentification(String.format("deliveryTask_%s", Arrays.hashCode(new Object[] { deliveryTaskRO.getUrlDataSink().getAuthority() })));
     }
 
     @Override
@@ -59,11 +64,17 @@ public class DeliveryTask implements Runnable {
 
         for (;;) {
 
+            DeliveryTaskRO deliveryTaskRO = dtr.findByAuthority(deliveryAuthority);
+
+            if (null == deliveryTaskRO) {
+                logger.info("DeliveryTask {} terminates.", this.identification);
+                break;
+            }
+
             Configuration configuration = deliveryTaskRO.getConfiguration();
 
             logger.info("DeliveryTask {} is executed.", this.identification);
-            // logger.info("Configuration: {}", configuration.toString());
-            // logger.info("Status: {}", status.getCurrent().name());
+            logger.info("Configuration: {}", configuration.toString());
 
             int sleepTime = configuration.getValue(SystemReservedProperty.TASK_INTERVAL_MS);
 
@@ -96,7 +107,7 @@ public class DeliveryTask implements Runnable {
             try {
                 Thread.sleep(sleepTime);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                logger.error("{}", e);
             }
         }
     }
