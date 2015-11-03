@@ -47,22 +47,31 @@ public class CDBuilder {
 
     }
 
-    public CDBuilder buildConfigurationModification(Connection dataSink, String name) {
+    public CDBuilder buildConfigurationModificationStartUp(Connection dataSink, String name) {
 
         /**
          * Startup
          */
-
-        /**
-         * Prevent NPE.
-         */
-
-        if (name != null) {
-            name = name.toUpperCase();
-        }
-
         Properties properties = new Properties();
         properties.setProperty(SensorReservedProperty.REQUEST_FOR_DELIVERY.getName(), name);
+
+        ConfigurationModification cm = new ConfigurationModification();
+        cm.setDataSink(dataSink);
+        cm.setProperties(properties);
+
+        cd.setConfigurationModification(cm);
+
+        return this;
+
+    }
+
+    public CDBuilder buildConfigurationModificationShutdown(Connection dataSink, String name) {
+
+        /**
+         * Startup
+         */
+        Properties properties = new Properties();
+        properties.setProperty(SensorReservedProperty.STOP_DELIVERY.getName(), name);
 
         ConfigurationModification cm = new ConfigurationModification();
         cm.setDataSink(dataSink);

@@ -1,7 +1,9 @@
 package configuration.management.rest.activity;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Properties;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +16,7 @@ import org.springframework.util.CollectionUtils;
 import common.data.Connection;
 import common.data.builder.CDBuilder;
 import common.data.dto.DataSourcesDTO;
+import common.data.type.COMPONENT_TYPE;
 import common.property.SensorReservedProperty;
 import common.transformer.Transformer;
 import configuration.management.model.DataSourceRO;
@@ -60,29 +63,53 @@ public class RegisterDataSourcesDevice extends Activity<String, DataSourcesDTO> 
             List<DataSourceRO> ds = Transformer.makeCollection(transformer.toLocal(item.getDataSources()));
 
             component.setDataSources(ds);
+
             this.repo.save(component);
 
-            for (DataSourceRO dsRO : ds) {
-                List<EventProcessing> eps = epRepo.findByDataSources(dsRO.getDevice(), dsRO.getDomain());
+            /**
+             * Loop all data sources, which can be provided by device
+             */
 
-                for (EventProcessing ep : eps) {
-
-                    Connection remote = epTransformer.toRemote(ep);
-
-                    Properties properties = new Properties();
-                    properties.put(SensorReservedProperty.REQUEST_FOR_DELIVERY, remote.getUrl().getAuthority());
-
-                    CDBuilder builder = new CDBuilder();
-                    builder.buildConfigurationModification(remote, properties)
-                            //
-                            .buildDeviceInformation(dsRO.getDevice())
-                            //
-                            .buildDomainInformation(dsRO.getDomain());
-
-                    delegateConfigChange.doStep(builder.getResult());
-                }
+            Set<EventProcessing> eps = new HashSet<EventProcessing>();
+            for (DataSourceRO dsDevice : ds) {
+                eps.addAll(epRepo.findByDataSources(dsDevice.getDevice(), dsDevice.getDomain()));
             }
 
+            /**
+             * Loop all interested EPs
+             */
+
+            for (EventProcessing ep : eps) {
+
+                Connection remote = epTransformer.toRemote(ep);
+                remote.setComponentType(COMPONENT_TYPE.EVENT_PROCESSING);
+
+                for (DataSourceRO dsEP : ep.getDataSources()) {
+
+                    if (dsEP.getSensorData() == null) {
+
+                        logger.error("SensorData are null.");
+                        continue;
+                    }
+
+                    CDBuilder builder = new CDBuilder();
+                    builder.buildDeviceInformation(dsEP.getDevice())
+                            //
+                            .buildDomainInformation(dsEP.getDomain());
+
+                    for (String sensorData : dsEP.getSensorData()) {
+
+                        Properties properties = new Properties();
+                        properties.putAll(dsEP.getProperties());
+                        properties.put(SensorReservedProperty.REQUEST_FOR_DELIVERY.getName(), sensorData);
+
+                        builder.buildConfigurationModification(remote, properties);
+
+                        delegateConfigChange.doStep(builder.getResult());
+
+                    }
+                }
+            }
         }
 
         return next("OK", item);

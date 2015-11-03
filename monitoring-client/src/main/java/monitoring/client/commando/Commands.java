@@ -231,6 +231,22 @@ public class Commands implements CommandMarker {
         }
     }
 
+    @CliCommand(value = "deactivate-rule", help = "deactivate rule")
+    public String deactivateRule(@CliOption(key = { "epId" }, mandatory = true, help = "id of EP") final long id,
+            @CliOption(key = { "ruleName" }, mandatory = true, help = "name of rule") final String ruleName) {
+
+        try {
+            String url = ResourceUtils.getUrl(RESOURCE_NAMING.EPROCESSING_DEACTIVATIONS_RULE, getEPById(id), ruleName);
+
+            ResponseEntity<String> result = restTemplate.getForEntity(url, String.class);
+
+            return result.getBody();
+
+        } catch (CommandsException e) {
+            return e.getMessage();
+        }
+    }
+
     @CliCommand(value = "list-dev-by", help = "retrieves data sources by id")
     public String dataSourcesByIdDevInfoDomainInfo(@CliOption(key = { "devInfo" }, mandatory = true, help = "name of dev info") String devInfo,
             //

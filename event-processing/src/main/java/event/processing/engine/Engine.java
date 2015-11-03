@@ -14,9 +14,9 @@ public abstract class Engine {
 
     public abstract void register(List<String> query, EngineListener listener);
 
-    public abstract void unregister(String query);
+    public abstract void deregister(String query);
 
-    public abstract void unregister(List<String> query);
+    public abstract void deregister(List<String> query);
 
     public abstract void send(DeviceData deviceData);
 
@@ -29,5 +29,4 @@ public abstract class Engine {
         this.initialize();
     }
 
-    public abstract void unregisterAll();
 }

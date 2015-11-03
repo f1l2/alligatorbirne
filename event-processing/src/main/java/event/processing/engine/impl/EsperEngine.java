@@ -115,19 +115,13 @@ public class EsperEngine extends Engine {
     }
 
     @Override
-    public void unregister(List<String> query) {
-        query.forEach(item -> unregister(item));
+    public void deregister(List<String> query) {
+        query.forEach(item -> deregister(item));
     }
 
     @Override
-    public void unregister(String epl) {
+    public void deregister(String epl) {
         EP_ADMIN.getStatement(epl).destroy();
-    }
-
-    @Override
-    public void unregisterAll() {
-        EPAdministrator cepAdm = EP_SP.getEPAdministrator();
-        cepAdm.destroyAllStatements();
     }
 
     public EPRuntime getCepRT() {

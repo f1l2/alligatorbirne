@@ -29,7 +29,7 @@
 
 	<root>
 		<level value="INFO" />
-		<appender-ref ref="CON" />
+		<appender-ref ref="FILE" />
 	</root>
 	 	
 </configuration>

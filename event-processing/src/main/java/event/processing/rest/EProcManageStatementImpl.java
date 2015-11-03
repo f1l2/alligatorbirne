@@ -198,7 +198,7 @@ public class EProcManageStatementImpl implements EProcManageStatement {
                             //
                             .buildDomainInformation(reaction.getDomainInformation())
                             //
-                            .buildConfigurationModification(local, reaction.getDeviceInformation());
+                            .buildConfigurationModificationStartUp(local, reaction.getDeviceInformation());
 
                     restTemplate.postForEntity(url, cDBuilder.getResult(), String.class);
                 }
@@ -247,9 +247,40 @@ public class EProcManageStatementImpl implements EProcManageStatement {
          */
         try {
             List<String> epls = factory.getTransformer().transformQuery(queries);
-            factory.getEngine().unregister(epls);
+            factory.getEngine().deregister(epls);
+
+            RestTemplate restTemplate = new RestTemplate();
+
+            Connection local = SettingUtils.getLocalConnection();
+            local.setComponentType(COMPONENT_TYPE.EVENT_PROCESSING);
+            Connection cm = SettingUtils.getCMConnection();
+
+            String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_DELEGATION, cm);
+
+            if (STATUS_TYPE.TEST.equals(status.getCurrent())) {
+                /**
+                 * Is instance in test modus, don't do anything. Normally, CM wouldn't be online and test fails.
+                 */
+            } else {
+
+                for (Reaction reaction : rule.getReactions()) {
+
+                    /**
+                     * Last configuration change is used for shutdown. Therefore ignore property part in reaction.
+                     */
+
+                    CDBuilder cDBuilder = new CDBuilder();
+                    cDBuilder.buildDeviceInformation(reaction.getDeviceInformation())
+                            //
+                            .buildDomainInformation(reaction.getDomainInformation())
+                            //
+                            .buildConfigurationModificationShutdown(local, reaction.getDeviceInformation());
+
+                    restTemplate.postForEntity(url, cDBuilder.getResult(), String.class);
+                }
+            }
+
         } catch (Exception e) {
-            System.out.println(e);
             return EP_ERROR_CODES.ERROR_DEACTIVATE.getErrorResponse();
         }
 

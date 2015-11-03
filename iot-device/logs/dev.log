@@ -2266,3 +2266,271 @@ java.lang.IllegalStateException: Illegal access: this web application instance h
 03.11.2015 16:33:47.601 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; request_for_delivery - pressure;  
 03.11.2015 16:33:47.607 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
 03.11.2015 16:33:47.607 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; request_for_delivery - pressure;  
+03.11.2015 18:40:54.918 [INFO ] [main           ] t.device.property.PropertyTest - Starting PropertyTest on Manuel-PC with PID 3952 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+03.11.2015 18:40:56.509 [INFO ] [main           ] t.device.property.PropertyTest - Started PropertyTest in 1.757 seconds (JVM running for 2.471) 
+03.11.2015 18:40:56.515 [INFO ] [main           ] t.device.delivery.DeliveryTask - task_interval_ms : 5000 
+03.11.2015 18:40:56.515 [INFO ] [main           ] t.device.delivery.DeliveryTask - 5000 
+03.11.2015 18:40:56.618 [INFO ] [main           ] d.r.DeliveryTaskRepositoryTest - Starting DeliveryTaskRepositoryTest on Manuel-PC with PID 3952 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+03.11.2015 18:40:56.961 [INFO ] [main           ] d.r.DeliveryTaskRepositoryTest - Started DeliveryTaskRepositoryTest in 0.374 seconds (JVM running for 2.923) 
+03.11.2015 18:40:59.650 [INFO ] [main           ] .rest.IDevManageConfigFailTest - Starting IDevManageConfigFailTest on Manuel-PC with PID 3952 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+03.11.2015 18:41:01.949 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+03.11.2015 18:41:01.950 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+03.11.2015 18:41:01.951 [INFO ] [main           ] .rest.IDevManageConfigFailTest - Started IDevManageConfigFailTest in 2.328 seconds (JVM running for 7.912) 
+03.11.2015 18:41:02.723 [INFO ] [pool-3-thread-1] ot.device.ApplicationScheduler - Retrieve local connection data ...  
+03.11.2015 18:41:02.724 [INFO ] [pool-3-thread-1] ot.device.ApplicationScheduler - Connection [id=0, name=localConnection, url=http://192.168.56.1:1725/, type=DEVICE] 
+03.11.2015 18:41:02.739 [INFO ] [pool-3-thread-1] ot.device.ApplicationScheduler - Load CM connection data ... 
+03.11.2015 18:41:02.739 [INFO ] [pool-3-thread-1] ot.device.ApplicationScheduler - Connection [id=0, name=Name, url=http://127.0.0.1:5000/, type=CONFIGURATION_MANAGEMENT] 
+03.11.2015 18:41:02.989 [INFO ] [o-auto-1-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+03.11.2015 18:41:02.989 [INFO ] [o-auto-1-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+03.11.2015 18:41:02.992 [INFO ] [o-auto-1-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+03.11.2015 18:41:02.996 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+03.11.2015 18:41:02.997 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 5000; key - value;  
+03.11.2015 18:41:03.099 [INFO ] [o-auto-1-exec-2] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+03.11.2015 18:41:03.099 [INFO ] [o-auto-1-exec-2] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+03.11.2015 18:41:03.100 [INFO ] [o-auto-1-exec-2] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488145 is created. Execution starts ... 
+03.11.2015 18:41:03.105 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488145 is executed. 
+03.11.2015 18:41:03.105 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 5000; key - value;  
+03.11.2015 18:41:03.118 [INFO ] [o-auto-1-exec-3] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+03.11.2015 18:41:03.118 [INFO ] [o-auto-1-exec-3] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+03.11.2015 18:41:03.119 [INFO ] [o-auto-1-exec-3] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488144 is created. Execution starts ... 
+03.11.2015 18:41:03.123 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488144 is executed. 
+03.11.2015 18:41:03.123 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 5000; key - value;  
+03.11.2015 18:41:03.135 [INFO ] [o-auto-1-exec-4] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+03.11.2015 18:41:03.135 [INFO ] [o-auto-1-exec-4] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+03.11.2015 18:41:03.135 [INFO ] [o-auto-1-exec-4] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488143 is created. Execution starts ... 
+03.11.2015 18:41:03.139 [INFO ] [taskExecutor-4 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488143 is executed. 
+03.11.2015 18:41:03.140 [INFO ] [taskExecutor-4 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 5000; key - value;  
+03.11.2015 18:41:03.155 [INFO ] [o-auto-1-exec-5] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+03.11.2015 18:41:03.156 [INFO ] [o-auto-1-exec-5] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+03.11.2015 18:41:03.157 [INFO ] [o-auto-1-exec-5] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488142 is created. Execution starts ... 
+03.11.2015 18:41:03.161 [INFO ] [taskExecutor-5 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488142 is executed. 
+03.11.2015 18:41:03.161 [INFO ] [taskExecutor-5 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 5000; key - value;  
+03.11.2015 18:41:03.178 [INFO ] [o-auto-1-exec-6] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+03.11.2015 18:41:03.178 [INFO ] [o-auto-1-exec-6] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+03.11.2015 18:41:03.178 [INFO ] [o-auto-1-exec-6] rest.activity.SetConfiguration - Data Sinks gets already supplied. Configuration changed. 
+03.11.2015 18:41:03.193 [INFO ] [o-auto-1-exec-7] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+03.11.2015 18:41:03.193 [INFO ] [o-auto-1-exec-7] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+03.11.2015 18:41:03.307 [INFO ] [main           ] vice.rest.IDevManageConfigTest - Starting IDevManageConfigTest on Manuel-PC with PID 3952 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+03.11.2015 18:41:04.135 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+03.11.2015 18:41:04.136 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+03.11.2015 18:41:04.136 [INFO ] [main           ] vice.rest.IDevManageConfigTest - Started IDevManageConfigTest in 0.859 seconds (JVM running for 10.098) 
+03.11.2015 18:41:04.162 [INFO ] [o-auto-2-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+03.11.2015 18:41:04.162 [INFO ] [o-auto-2-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+03.11.2015 18:41:04.165 [INFO ] [o-auto-2-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+03.11.2015 18:41:04.169 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+03.11.2015 18:41:04.169 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 5000; key - value;  
+03.11.2015 18:41:04.194 [INFO ] [o-auto-2-exec-2] vice.rest.IDevManageConfigImpl - GET /configurations/{authority} is invoked. 
+03.11.2015 18:41:04.248 [INFO ] [o-auto-2-exec-3] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+03.11.2015 18:41:04.248 [INFO ] [o-auto-2-exec-3] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+03.11.2015 18:41:04.248 [INFO ] [o-auto-2-exec-3] rest.activity.SetConfiguration - Data Sinks gets already supplied. Configuration changed. 
+03.11.2015 18:41:04.257 [INFO ] [o-auto-2-exec-4] vice.rest.IDevManageConfigImpl - GET /configurations is invoked. 
+03.11.2015 18:41:04.363 [INFO ] [main           ] .rest.IDevManageSetConfig1Test - Starting IDevManageSetConfig1Test on Manuel-PC with PID 3952 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+03.11.2015 18:41:05.158 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+03.11.2015 18:41:05.159 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+03.11.2015 18:41:05.159 [INFO ] [main           ] .rest.IDevManageSetConfig1Test - Started IDevManageSetConfig1Test in 0.829 seconds (JVM running for 11.121) 
+03.11.2015 18:41:05.181 [INFO ] [o-auto-3-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+03.11.2015 18:41:05.181 [INFO ] [o-auto-3-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+03.11.2015 18:41:05.182 [INFO ] [o-auto-3-exec-1] t.device.delivery.DeliveryTask - task_interval_ms : 500 
+03.11.2015 18:41:05.182 [INFO ] [o-auto-3-exec-1] t.device.delivery.DeliveryTask - 500 
+03.11.2015 18:41:05.183 [INFO ] [o-auto-3-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+03.11.2015 18:41:05.188 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+03.11.2015 18:41:05.188 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; request_for_delivery - Pressure;  
+03.11.2015 18:41:05.703 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+03.11.2015 18:41:05.703 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; request_for_delivery - Pressure;  
+03.11.2015 18:41:06.224 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+03.11.2015 18:41:06.224 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; request_for_delivery - Pressure;  
+03.11.2015 18:41:06.712 [INFO ] [o-auto-3-exec-2] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+03.11.2015 18:41:06.713 [INFO ] [o-auto-3-exec-2] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+03.11.2015 18:41:06.713 [INFO ] [o-auto-3-exec-2] t.device.delivery.DeliveryTask - task_interval_ms : 1000 
+03.11.2015 18:41:06.713 [INFO ] [o-auto-3-exec-2] t.device.delivery.DeliveryTask - 1000 
+03.11.2015 18:41:06.713 [INFO ] [o-auto-3-exec-2] rest.activity.SetConfiguration - Data Sinks gets already supplied. Configuration changed. 
+03.11.2015 18:41:06.750 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+03.11.2015 18:41:06.750 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 1000; request_for_delivery - Pressure;  
+03.11.2015 18:41:07.771 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+03.11.2015 18:41:07.771 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 1000; request_for_delivery - Pressure;  
+03.11.2015 18:41:07.997 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+03.11.2015 18:41:07.997 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 5000; key - value;  
+03.11.2015 18:41:08.105 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488145 is executed. 
+03.11.2015 18:41:08.105 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 5000; key - value;  
+03.11.2015 18:41:08.123 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488144 is executed. 
+03.11.2015 18:41:08.123 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 5000; key - value;  
+03.11.2015 18:41:08.140 [INFO ] [taskExecutor-4 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488143 is executed. 
+03.11.2015 18:41:08.140 [INFO ] [taskExecutor-4 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 5000; key - value;  
+03.11.2015 18:41:08.161 [INFO ] [taskExecutor-5 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488142 is executed. 
+03.11.2015 18:41:08.161 [INFO ] [taskExecutor-5 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 5000; key - value;  
+03.11.2015 18:41:08.828 [INFO ] [main           ] .rest.IDevManageSetConfig2Test - Starting IDevManageSetConfig2Test on Manuel-PC with PID 3952 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+03.11.2015 18:41:09.170 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+03.11.2015 18:41:09.170 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 5000; key - value;  
+03.11.2015 18:41:09.615 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+03.11.2015 18:41:09.615 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+03.11.2015 18:41:09.616 [INFO ] [main           ] .rest.IDevManageSetConfig2Test - Started IDevManageSetConfig2Test in 0.835 seconds (JVM running for 15.577) 
+03.11.2015 18:41:09.636 [INFO ] [o-auto-4-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+03.11.2015 18:41:09.636 [INFO ] [o-auto-4-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+03.11.2015 18:41:09.636 [INFO ] [o-auto-4-exec-1] t.device.delivery.DeliveryTask - task_interval_ms : 500 
+03.11.2015 18:41:09.636 [INFO ] [o-auto-4-exec-1] t.device.delivery.DeliveryTask - 500 
+03.11.2015 18:41:09.638 [INFO ] [o-auto-4-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+03.11.2015 18:41:09.642 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+03.11.2015 18:41:09.642 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; request_for_delivery - pressure;  
+03.11.2015 18:41:09.656 [INFO ] [o-auto-4-exec-2] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+03.11.2015 18:41:09.656 [INFO ] [o-auto-4-exec-2] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+03.11.2015 18:41:09.656 [INFO ] [o-auto-4-exec-2] t.device.delivery.DeliveryTask - task_interval_ms : 500 
+03.11.2015 18:41:09.656 [INFO ] [o-auto-4-exec-2] t.device.delivery.DeliveryTask - 500 
+03.11.2015 18:41:09.657 [INFO ] [o-auto-4-exec-2] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488140 is created. Execution starts ... 
+03.11.2015 18:41:09.661 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+03.11.2015 18:41:09.661 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; request_for_delivery - pressure;  
+03.11.2015 18:41:09.816 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+03.11.2015 18:41:09.816 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 1000; request_for_delivery - Pressure;  
+03.11.2015 18:41:09.817 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [META-INF/services/javax.xml.bind.JAXBContext]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1327) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.loader.WebappClassLoaderBase.getResource(WebappClassLoaderBase.java:1023) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at javax.xml.bind.ContextFinder.find(ContextFinder.java:432) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:641) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:584) ~[na:1.8.0_45]
+	at common.transformer.XMLParser.unmarshal(XMLParser.java:27) ~[common-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at common.data.setting.SettingUtils.loadSettingNative(SettingUtils.java:185) ~[common-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at common.data.setting.SettingUtils.loadDataSources(SettingUtils.java:162) ~[common-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at common.data.setting.SettingUtils.loadDomainsByDeviceInformation(SettingUtils.java:243) ~[common-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:92) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+03.11.2015 18:41:10.156 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+03.11.2015 18:41:10.156 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; request_for_delivery - pressure;  
+03.11.2015 18:41:10.172 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+03.11.2015 18:41:10.172 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; request_for_delivery - pressure;  
+03.11.2015 20:02:24.028 [INFO ] [main           ] t.device.property.PropertyTest - Starting PropertyTest on Manuel-PC with PID 3760 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+03.11.2015 20:02:25.653 [INFO ] [main           ] t.device.property.PropertyTest - Started PropertyTest in 1.78 seconds (JVM running for 2.488) 
+03.11.2015 20:02:25.659 [INFO ] [main           ] t.device.delivery.DeliveryTask - task_interval_ms : 5000 
+03.11.2015 20:02:25.659 [INFO ] [main           ] t.device.delivery.DeliveryTask - 5000 
+03.11.2015 20:02:25.753 [INFO ] [main           ] d.r.DeliveryTaskRepositoryTest - Starting DeliveryTaskRepositoryTest on Manuel-PC with PID 3760 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+03.11.2015 20:02:26.074 [INFO ] [main           ] d.r.DeliveryTaskRepositoryTest - Started DeliveryTaskRepositoryTest in 0.349 seconds (JVM running for 2.91) 
+03.11.2015 20:02:28.681 [INFO ] [main           ] .rest.IDevManageConfigFailTest - Starting IDevManageConfigFailTest on Manuel-PC with PID 3760 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+03.11.2015 20:02:30.969 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+03.11.2015 20:02:30.969 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+03.11.2015 20:02:30.970 [INFO ] [main           ] .rest.IDevManageConfigFailTest - Started IDevManageConfigFailTest in 2.311 seconds (JVM running for 7.805) 
+03.11.2015 20:02:31.855 [INFO ] [pool-3-thread-1] ot.device.ApplicationScheduler - Retrieve local connection data ...  
+03.11.2015 20:02:31.856 [INFO ] [pool-3-thread-1] ot.device.ApplicationScheduler - Connection [id=0, name=localConnection, url=http://192.168.56.1:2259/, type=DEVICE] 
+03.11.2015 20:02:31.872 [INFO ] [pool-3-thread-1] ot.device.ApplicationScheduler - Load CM connection data ... 
+03.11.2015 20:02:31.872 [INFO ] [pool-3-thread-1] ot.device.ApplicationScheduler - Connection [id=0, name=Name, url=http://127.0.0.1:5000/, type=CONFIGURATION_MANAGEMENT] 
+03.11.2015 20:02:32.000 [INFO ] [o-auto-1-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+03.11.2015 20:02:32.000 [INFO ] [o-auto-1-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+03.11.2015 20:02:32.002 [INFO ] [o-auto-1-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+03.11.2015 20:02:32.007 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+03.11.2015 20:02:32.007 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 5000; key - value;  
+03.11.2015 20:02:32.100 [INFO ] [o-auto-1-exec-2] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+03.11.2015 20:02:32.100 [INFO ] [o-auto-1-exec-2] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+03.11.2015 20:02:32.101 [INFO ] [o-auto-1-exec-2] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488145 is created. Execution starts ... 
+03.11.2015 20:02:32.105 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488145 is executed. 
+03.11.2015 20:02:32.105 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 5000; key - value;  
+03.11.2015 20:02:32.121 [INFO ] [o-auto-1-exec-3] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+03.11.2015 20:02:32.121 [INFO ] [o-auto-1-exec-3] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+03.11.2015 20:02:32.122 [INFO ] [o-auto-1-exec-3] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488144 is created. Execution starts ... 
+03.11.2015 20:02:32.126 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488144 is executed. 
+03.11.2015 20:02:32.126 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 5000; key - value;  
+03.11.2015 20:02:32.141 [INFO ] [o-auto-1-exec-4] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+03.11.2015 20:02:32.141 [INFO ] [o-auto-1-exec-4] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+03.11.2015 20:02:32.142 [INFO ] [o-auto-1-exec-4] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488143 is created. Execution starts ... 
+03.11.2015 20:02:32.146 [INFO ] [taskExecutor-4 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488143 is executed. 
+03.11.2015 20:02:32.146 [INFO ] [taskExecutor-4 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 5000; key - value;  
+03.11.2015 20:02:32.160 [INFO ] [o-auto-1-exec-5] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+03.11.2015 20:02:32.160 [INFO ] [o-auto-1-exec-5] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+03.11.2015 20:02:32.161 [INFO ] [o-auto-1-exec-5] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488142 is created. Execution starts ... 
+03.11.2015 20:02:32.164 [INFO ] [taskExecutor-5 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488142 is executed. 
+03.11.2015 20:02:32.165 [INFO ] [taskExecutor-5 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 5000; key - value;  
+03.11.2015 20:02:32.178 [INFO ] [o-auto-1-exec-6] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+03.11.2015 20:02:32.178 [INFO ] [o-auto-1-exec-6] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+03.11.2015 20:02:32.178 [INFO ] [o-auto-1-exec-6] rest.activity.SetConfiguration - Data Sinks gets already supplied. Configuration changed. 
+03.11.2015 20:02:32.195 [INFO ] [o-auto-1-exec-7] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+03.11.2015 20:02:32.195 [INFO ] [o-auto-1-exec-7] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+03.11.2015 20:02:32.311 [INFO ] [main           ] vice.rest.IDevManageConfigTest - Starting IDevManageConfigTest on Manuel-PC with PID 3760 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+03.11.2015 20:02:33.145 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+03.11.2015 20:02:33.145 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+03.11.2015 20:02:33.146 [INFO ] [main           ] vice.rest.IDevManageConfigTest - Started IDevManageConfigTest in 0.869 seconds (JVM running for 9.981) 
+03.11.2015 20:02:33.174 [INFO ] [o-auto-2-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+03.11.2015 20:02:33.175 [INFO ] [o-auto-2-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+03.11.2015 20:02:33.178 [INFO ] [o-auto-2-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+03.11.2015 20:02:33.182 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+03.11.2015 20:02:33.183 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 5000; key - value;  
+03.11.2015 20:02:33.207 [INFO ] [o-auto-2-exec-2] vice.rest.IDevManageConfigImpl - GET /configurations/{authority} is invoked. 
+03.11.2015 20:02:33.265 [INFO ] [o-auto-2-exec-3] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+03.11.2015 20:02:33.265 [INFO ] [o-auto-2-exec-3] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+03.11.2015 20:02:33.265 [INFO ] [o-auto-2-exec-3] rest.activity.SetConfiguration - Data Sinks gets already supplied. Configuration changed. 
+03.11.2015 20:02:33.275 [INFO ] [o-auto-2-exec-4] vice.rest.IDevManageConfigImpl - GET /configurations is invoked. 
+03.11.2015 20:02:33.377 [INFO ] [main           ] .rest.IDevManageSetConfig1Test - Starting IDevManageSetConfig1Test on Manuel-PC with PID 3760 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+03.11.2015 20:02:34.151 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+03.11.2015 20:02:34.152 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+03.11.2015 20:02:34.152 [INFO ] [main           ] .rest.IDevManageSetConfig1Test - Started IDevManageSetConfig1Test in 0.803 seconds (JVM running for 10.988) 
+03.11.2015 20:02:34.173 [INFO ] [o-auto-3-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+03.11.2015 20:02:34.174 [INFO ] [o-auto-3-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+03.11.2015 20:02:34.174 [INFO ] [o-auto-3-exec-1] t.device.delivery.DeliveryTask - task_interval_ms : 500 
+03.11.2015 20:02:34.174 [INFO ] [o-auto-3-exec-1] t.device.delivery.DeliveryTask - 500 
+03.11.2015 20:02:34.176 [INFO ] [o-auto-3-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+03.11.2015 20:02:34.179 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+03.11.2015 20:02:34.180 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; request_for_delivery - Pressure;  
+03.11.2015 20:02:34.700 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+03.11.2015 20:02:34.700 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; request_for_delivery - Pressure;  
+03.11.2015 20:02:35.209 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+03.11.2015 20:02:35.209 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; request_for_delivery - Pressure;  
+03.11.2015 20:02:35.704 [INFO ] [o-auto-3-exec-2] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+03.11.2015 20:02:35.704 [INFO ] [o-auto-3-exec-2] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+03.11.2015 20:02:35.704 [INFO ] [o-auto-3-exec-2] t.device.delivery.DeliveryTask - task_interval_ms : 1000 
+03.11.2015 20:02:35.704 [INFO ] [o-auto-3-exec-2] t.device.delivery.DeliveryTask - 1000 
+03.11.2015 20:02:35.704 [INFO ] [o-auto-3-exec-2] rest.activity.SetConfiguration - Data Sinks gets already supplied. Configuration changed. 
+03.11.2015 20:02:35.732 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+03.11.2015 20:02:35.732 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 1000; request_for_delivery - Pressure;  
+03.11.2015 20:02:36.742 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+03.11.2015 20:02:36.742 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 1000; request_for_delivery - Pressure;  
+03.11.2015 20:02:37.008 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+03.11.2015 20:02:37.008 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 5000; key - value;  
+03.11.2015 20:02:37.106 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488145 is executed. 
+03.11.2015 20:02:37.106 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 5000; key - value;  
+03.11.2015 20:02:37.127 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488144 is executed. 
+03.11.2015 20:02:37.127 [INFO ] [taskExecutor-3 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 5000; key - value;  
+03.11.2015 20:02:37.147 [INFO ] [taskExecutor-4 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488143 is executed. 
+03.11.2015 20:02:37.147 [INFO ] [taskExecutor-4 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 5000; key - value;  
+03.11.2015 20:02:37.166 [INFO ] [taskExecutor-5 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488142 is executed. 
+03.11.2015 20:02:37.166 [INFO ] [taskExecutor-5 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 5000; key - value;  
+03.11.2015 20:02:37.751 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+03.11.2015 20:02:37.751 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 1000; request_for_delivery - Pressure;  
+03.11.2015 20:02:37.812 [INFO ] [main           ] .rest.IDevManageSetConfig2Test - Starting IDevManageSetConfig2Test on Manuel-PC with PID 3760 (M:\WorkspaceTU_Master\alligatorbirne\iot-device\target\test-classes started by Manuel in M:\WorkspaceTU_Master\alligatorbirne\iot-device) 
+03.11.2015 20:02:38.184 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+03.11.2015 20:02:38.184 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 5000; key - value;  
+03.11.2015 20:02:38.655 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Pressure Identifier: pressure 
+03.11.2015 20:02:38.655 [INFO ] [main           ] ce.sensor.DynamicSensorFactory - Manually instantiated bean. Bean: Temperature Identifier: temperature 
+03.11.2015 20:02:38.656 [INFO ] [main           ] .rest.IDevManageSetConfig2Test - Started IDevManageSetConfig2Test in 0.874 seconds (JVM running for 15.49) 
+03.11.2015 20:02:38.676 [INFO ] [o-auto-4-exec-1] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+03.11.2015 20:02:38.676 [INFO ] [o-auto-4-exec-1] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+03.11.2015 20:02:38.677 [INFO ] [o-auto-4-exec-1] t.device.delivery.DeliveryTask - task_interval_ms : 500 
+03.11.2015 20:02:38.677 [INFO ] [o-auto-4-exec-1] t.device.delivery.DeliveryTask - 500 
+03.11.2015 20:02:38.679 [INFO ] [o-auto-4-exec-1] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488141 is created. Execution starts ... 
+03.11.2015 20:02:38.684 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+03.11.2015 20:02:38.684 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; request_for_delivery - pressure;  
+03.11.2015 20:02:38.694 [INFO ] [o-auto-4-exec-2] vice.rest.IDevManageConfigImpl - POST /configurations is invoked. 
+03.11.2015 20:02:38.694 [INFO ] [o-auto-4-exec-2] .device.rest.activity.Activity - Do next step in chain: SetConfiguration 
+03.11.2015 20:02:38.695 [INFO ] [o-auto-4-exec-2] t.device.delivery.DeliveryTask - task_interval_ms : 500 
+03.11.2015 20:02:38.695 [INFO ] [o-auto-4-exec-2] t.device.delivery.DeliveryTask - 500 
+03.11.2015 20:02:38.695 [INFO ] [o-auto-4-exec-2] rest.activity.SetConfiguration - DeliveryTask deliveryTask_-753488140 is created. Execution starts ... 
+03.11.2015 20:02:38.699 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+03.11.2015 20:02:38.700 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; request_for_delivery - pressure;  
+03.11.2015 20:02:38.772 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+03.11.2015 20:02:38.772 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 1000; request_for_delivery - Pressure;  
+03.11.2015 20:02:38.775 [ERROR] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Error sending data. {} 
+java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [META-INF/services/javax.xml.bind.JAXBContext]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1327) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at org.apache.catalina.loader.WebappClassLoaderBase.getResource(WebappClassLoaderBase.java:1023) ~[tomcat-embed-core-8.0.23.jar:8.0.23]
+	at javax.xml.bind.ContextFinder.find(ContextFinder.java:432) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:641) ~[na:1.8.0_45]
+	at javax.xml.bind.JAXBContext.newInstance(JAXBContext.java:584) ~[na:1.8.0_45]
+	at common.transformer.XMLParser.unmarshal(XMLParser.java:27) ~[common-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at common.data.setting.SettingUtils.loadSettingNative(SettingUtils.java:185) ~[common-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at common.data.setting.SettingUtils.loadDataSources(SettingUtils.java:162) ~[common-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at common.data.setting.SettingUtils.loadDomainsByDeviceInformation(SettingUtils.java:243) ~[common-1.0.0-SNAPSHOT.jar:1.0.0-SNAPSHOT]
+	at iot.device.delivery.DeliveryTask.run(DeliveryTask.java:92) ~[classes/:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_45]
+03.11.2015 20:02:39.199 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488141 is executed. 
+03.11.2015 20:02:39.199 [INFO ] [taskExecutor-1 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; request_for_delivery - pressure;  
+03.11.2015 20:02:39.220 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - DeliveryTask deliveryTask_-753488140 is executed. 
+03.11.2015 20:02:39.220 [INFO ] [taskExecutor-2 ] t.device.delivery.DeliveryTask - Configuration: task_interval_ms - 500; request_for_delivery - pressure;  

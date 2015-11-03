@@ -1,5 +1,8 @@
 package configuration.management.model;
 
+import java.util.HashSet;
+import java.util.Properties;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,6 +30,12 @@ public class DataSourceRO {
     @ManyToOne()
     @JoinColumn(name = "component")
     private Component component;
+
+    @Column
+    private HashSet<String> sensorData;
+
+    @Column
+    private Properties properties;
 
     public Long getId() {
         return id;
@@ -58,6 +67,22 @@ public class DataSourceRO {
 
     public void setComponent(Component component) {
         this.component = component;
+    }
+
+    public HashSet<String> getSensorData() {
+        return sensorData;
+    }
+
+    public void setSensorData(HashSet<String> sensorData) {
+        this.sensorData = sensorData;
+    }
+
+    public Properties getProperties() {
+        return properties;
+    }
+
+    public void setProperties(Properties properties) {
+        this.properties = properties;
     }
 
 }

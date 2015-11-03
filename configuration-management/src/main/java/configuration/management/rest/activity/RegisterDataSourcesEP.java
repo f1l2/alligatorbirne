@@ -28,27 +28,21 @@ public class RegisterDataSourcesEP extends Activity<String, ConfigurationDelegat
         if ((null != component) && (null != item.getConfigurationModification().getProperties())) {
 
             /**
-             * Special ConfigurationDelegation: REQUEST_FOR_DELIVERY
-             * 
-             */
-
-            if (item.getConfigurationModification().getProperties().containsKey(SensorReservedProperty.REQUEST_FOR_DELIVERY)) {
-
-                DataSourceUtil.saveAndUpdate(component, item.getDeviceInformation(), item.getDomainInformation());
-
-                this.repo.save(component);
-            }
-
-            /**
              * Special ConfigurationDelegation: STOP_DELIVERY
              * 
              */
 
-            else if (item.getConfigurationModification().getProperties().containsKey(SensorReservedProperty.STOP_DELIVERY)) {
+            if (item.getConfigurationModification().getProperties().containsKey(SensorReservedProperty.STOP_DELIVERY.getName())) {
 
-                DataSourceUtil.delete(component, item.getDeviceInformation(), item.getDomainInformation());
+                DataSourceUtil.delete(component, item.getDeviceInformation(), item.getDomainInformation(), item.getConfigurationModification().getProperties());
 
                 this.repo.save(component);
+            } else {
+
+                DataSourceUtil.saveAndUpdate(component, item.getDeviceInformation(), item.getDomainInformation(), item.getConfigurationModification().getProperties());
+
+                this.repo.save(component);
+
             }
         }
 

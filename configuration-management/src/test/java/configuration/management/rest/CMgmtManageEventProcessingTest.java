@@ -9,6 +9,7 @@ import static org.junit.Assert.assertNotNull;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
 
 import javax.transaction.Transactional;
 
@@ -23,7 +24,10 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import com.jayway.restassured.response.Response;
 
 import common.data.Connection;
+import common.data.DataSource;
+import common.data.builder.CDBuilder;
 import common.data.type.COMPONENT_TYPE;
+import common.property.SensorReservedProperty;
 import common.rest.RESOURCE_NAMING;
 import common.rest.ResourceUtils;
 import common.rest.UrlUtils;
@@ -37,16 +41,56 @@ import configuration.management.Application;
 public class CMgmtManageEventProcessingTest extends AbstractTestRestCM {
 
     @Test
-    public void getDatSources() {
+    public void delegate() {
 
-        Connection connection = register(null);
+        // register ep
+
+        URL url = UrlUtils.parseUrl(authority);
+
+        Connection connection = new Connection();
+        connection.setComponentType(COMPONENT_TYPE.EVENT_PROCESSING);
+        connection.setUrl(url);
+
+        connection = register(connection);
+
+        // create configuration delegation
+
+        Properties properties = new Properties();
+        properties.put(SensorReservedProperty.REQUEST_FOR_DELIVERY.getName(), "temperature");
+
+        CDBuilder cDBuilder = new CDBuilder();
+        cDBuilder.buildDeviceInformation("device")
+                //
+                .buildDomainInformation("domain")
+                //
+                .buildConfigurationModification(connection, properties);
+
+        // send delegation
+
+        given().body(cDBuilder.getResult()).contentType("application/json")
+                //
+                .when().post(ResourceUtils.getPath(RESOURCE_NAMING.CMGMT_DELEGATION))
+                //
+                .then().statusCode(HttpStatus.OK.value());
+
+        // check data sources
+
+        String path = ResourceUtils.getPath(RESOURCE_NAMING.CMGMT_GET_EVENT_PROCESSING_DATA_SOURCES, connection.getId());
+
+        Response response = when().get(path);
+
+        assertEquals(HttpStatus.OK.value(), response.getStatusCode());
+
+        List<DataSource> dataSources = Arrays.asList(response.getBody().as(DataSource[].class));
+
+        assertEquals(1, dataSources.size());
 
     }
 
     @Test
     public void getAll1() {
 
-        when().get(RESOURCE_NAMING.CMGMT_GET_ALL_EVENT_PROCESSING.getPath())
+        when().get(ResourceUtils.getPath(RESOURCE_NAMING.CMGMT_GET_ALL_EVENT_PROCESSING))
 
         .then().statusCode(HttpStatus.OK.value());
 
@@ -58,7 +102,7 @@ public class CMgmtManageEventProcessingTest extends AbstractTestRestCM {
 
         register(null);
 
-        Response response = get(RESOURCE_NAMING.CMGMT_GET_ALL_EVENT_PROCESSING.getPath());
+        Response response = get(ResourceUtils.getPath(RESOURCE_NAMING.CMGMT_GET_ALL_EVENT_PROCESSING));
 
         List<Connection> result = Arrays.asList(response.getBody().as(Connection[].class));
 
@@ -87,7 +131,7 @@ public class CMgmtManageEventProcessingTest extends AbstractTestRestCM {
     @Test
     public void heartbeat() {
 
-        URL url = UrlUtils.parseUrl("localhost:4005");
+        URL url = UrlUtils.parseUrl(authority);
 
         Connection connection = new Connection();
         connection.setComponentType(COMPONENT_TYPE.EVENT_PROCESSING);
@@ -111,7 +155,7 @@ public class CMgmtManageEventProcessingTest extends AbstractTestRestCM {
     @Test
     public void heartbeatFailMissingRegistration() {
 
-        URL url = UrlUtils.parseUrl("localhost:4006");
+        URL url = UrlUtils.parseUrl(authority);
 
         Connection connection = new Connection();
         connection.setComponentType(COMPONENT_TYPE.EVENT_PROCESSING);
@@ -130,7 +174,7 @@ public class CMgmtManageEventProcessingTest extends AbstractTestRestCM {
     private Connection register(Connection connection) {
 
         if (null == connection) {
-            URL url = UrlUtils.parseUrl("localhost:3999");
+            URL url = UrlUtils.parseUrl(authority);
 
             connection = new Connection();
             connection.setComponentType(COMPONENT_TYPE.EVENT_PROCESSING);

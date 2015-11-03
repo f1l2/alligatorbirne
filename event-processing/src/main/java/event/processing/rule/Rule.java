@@ -124,7 +124,7 @@ public class Rule extends EngineListener {
                         //
                         .buildConfigurationModification(local, reaction.getConfigurationModification());
 
-                restTemplate.postForEntity(url, cDBuilder.getResult(), Connection.class);
+                restTemplate.postForEntity(url, cDBuilder.getResult(), String.class);
             }
 
         } catch (Exception ex) {

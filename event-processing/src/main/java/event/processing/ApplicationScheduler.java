@@ -98,23 +98,3 @@ public class ApplicationScheduler {
 
     }
 }
-
-// else if (statusRegistration == 2) {
-//
-// try {
-// DataSources data = UtilsConfiguration.loadMeasurementData();
-//
-// Connection cmConnection = utilsConfig.getCMConnection();
-//
-// url = UtilsResource.getUrl(RESOURCE_NAMING.CMGMT_DELEGATION, cmConnection);
-// url = url.replace("{id}", String.valueOf(connection.getId()));
-//
-// ResponseEntity<Void> responseRegisteriationSources = restTemplate.postForEntity(url, data, Void.class);
-// logger.info("Delegation successfully called. Status: " + responseRegisteriationSources.getStatusCode() + " Response body: ");
-//
-// statusRegistration++;
-//
-// } catch (Exception ex) {
-// logger.error("Error registration sources of device. Url: " + url);
-// logger.error(ex);
-// }
