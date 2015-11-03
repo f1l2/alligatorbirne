@@ -96,7 +96,7 @@ public class DeliveryTask implements Runnable {
                     } else {
                         // logger.info("Send data ...");
                         ResponseEntity<String> response = restTemplate.postForEntity(deliveryUrl, ddDTO, String.class);
-                        logger.info("Device data send. Status: " + response.getStatusCode() + " Response body: " + response.getBody());
+                        // logger.info("Device data send. Status: " + response.getStatusCode() + " Response body: " + response.getBody());
                     }
                 }
 

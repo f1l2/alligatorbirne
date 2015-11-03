@@ -106,6 +106,19 @@ public class Configuration {
                 } catch (Exception e) {
                     logger.error("{}", e);
                 }
+            } else if (SensorReservedProperty.STOP_DELIVERY.getName().equals(keyStr)) {
+                try {
+                    if (value instanceof Integer) {
+                        removeSupplyingSensorProperties(keyStr, Integer.toString((int) value));
+                    } else if (value instanceof String) {
+                        removeSupplyingSensorProperties(keyStr, (String) value);
+                    } else {
+                        logger.error("Couldn't update property due wrong data type.");
+                    }
+                } catch (Exception e) {
+                    logger.error("{}", e);
+                }
+
             } else {
                 otherProperties.put(keyStr, prop.get(key));
             }
@@ -157,6 +170,13 @@ public class Configuration {
 
     private void mergeSupplyingSensorProperties(String key, String value) {
         supplyingSensor.put(key, value);
+    }
+
+    private void removeSupplyingSensorProperties(String key, String value) {
+        if (supplyingSensor.containsKey(key)) {
+            supplyingSensor.remove(key);
+        }
+
     }
 
     private Operation isGreater = new Operation() {
