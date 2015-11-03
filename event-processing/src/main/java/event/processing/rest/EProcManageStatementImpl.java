@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import common.data.ConfigurationDelegation;
 import common.data.Connection;
 import common.data.builder.CDBuilder;
 import common.data.setting.SettingUtils;
@@ -201,7 +200,7 @@ public class EProcManageStatementImpl implements EProcManageStatement {
                             //
                             .buildConfigurationModification(local, reaction.getDeviceInformation());
 
-                    restTemplate.postForEntity(url, cDBuilder.getResult(), ConfigurationDelegation.class);
+                    restTemplate.postForEntity(url, cDBuilder.getResult(), String.class);
                 }
             }
 

@@ -38,7 +38,7 @@ public class ApplicationScheduler {
                  * Load connection data.
                  */
                 local = SettingUtils.getLocalConnection();
-                local.setComponentType(COMPONENT_TYPE.IOT_DEVICE);
+                local.setComponentType(COMPONENT_TYPE.DEVICE);
                 logger.info("Retrieve local connection data ... ");
                 logger.info(local.toString());
 

@@ -269,7 +269,7 @@ public class Commands implements CommandMarker {
      * @throws CommandsException
      */
     private Connection getDeviceById(Long id) throws CommandsException {
-        return getById(id, COMPONENT_TYPE.IOT_DEVICE);
+        return getById(id, COMPONENT_TYPE.DEVICE);
     }
 
     /**
@@ -284,7 +284,7 @@ public class Commands implements CommandMarker {
         String url;
         if (COMPONENT_TYPE.EVENT_PROCESSING.equals(ct)) {
             url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_GET_ALL_EVENT_PROCESSING, cm);
-        } else if (COMPONENT_TYPE.IOT_DEVICE.equals(ct)) {
+        } else if (COMPONENT_TYPE.DEVICE.equals(ct)) {
             url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_GET_ALL_DEVICES, cm);
         } else {
             return null;

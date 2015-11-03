@@ -37,6 +37,13 @@ import configuration.management.Application;
 public class CMgmtManageEventProcessingTest extends AbstractTestRestCM {
 
     @Test
+    public void getDatSources() {
+
+        Connection connection = register(null);
+
+    }
+
+    @Test
     public void getAll1() {
 
         when().get(RESOURCE_NAMING.CMGMT_GET_ALL_EVENT_PROCESSING.getPath())

@@ -21,13 +21,13 @@ import common.data.type.COMPONENT_TYPE;
 import common.rest.RESOURCE_NAMING;
 import common.rest.ResourceUtils;
 import common.transformer.Transformer;
-import configuration.management.model.IoTDeviceRO;
-import configuration.management.repo.IoTDeviceDataSourceTransformer;
-import configuration.management.repo.IoTDeviceRepository;
-import configuration.management.repo.IoTDeviceTransformer;
-import configuration.management.rest.activity.HeartbeatIoTDevice;
-import configuration.management.rest.activity.RegisterIoTDevice;
-import configuration.management.rest.activity.RegisterIoTDeviceDataSources;
+import configuration.management.model.Device;
+import configuration.management.repo.DataSourceTransformer;
+import configuration.management.repo.DeviceRepository;
+import configuration.management.repo.DeviceTransformer;
+import configuration.management.rest.activity.HeartbeatDevice;
+import configuration.management.rest.activity.RegisterDataSourcesDevice;
+import configuration.management.rest.activity.RegisterDevice;
 import configuration.management.rest.activity.ValidateConnection;
 
 @RestController
@@ -36,25 +36,25 @@ public class CMgmtManageIoTDeviceImpl implements CMgmtManageIoTDevice {
     final static Logger logger = LoggerFactory.getLogger(CMgmtManageIoTDeviceImpl.class);
 
     @Autowired
-    private IoTDeviceRepository deviceRepo;
+    private DeviceRepository deviceRepo;
 
     @Autowired
-    private IoTDeviceTransformer transformer;
+    private DeviceTransformer transformer;
 
     @Autowired
-    private IoTDeviceDataSourceTransformer transformerDataSource;
+    private DataSourceTransformer transformerDataSource;
 
     @Autowired
     private ValidateConnection validateConnection;
 
     @Autowired
-    private RegisterIoTDevice register;
+    private RegisterDevice register;
 
     @Autowired
-    private RegisterIoTDeviceDataSources registerDataSources;
+    private RegisterDataSourcesDevice registerDataSources;
 
     @Autowired
-    private HeartbeatIoTDevice heartbeat;
+    private HeartbeatDevice heartbeat;
 
     @Override
     @RequestMapping(value = "/registrations/devices", method = RequestMethod.GET)
@@ -77,7 +77,7 @@ public class CMgmtManageIoTDeviceImpl implements CMgmtManageIoTDevice {
          */
 
         validateConnection.setNextActivity(register);
-        validateConnection.setCt(COMPONENT_TYPE.IOT_DEVICE);
+        validateConnection.setCt(COMPONENT_TYPE.DEVICE);
 
         return validateConnection.doStep(connection);
     }
@@ -107,14 +107,14 @@ public class CMgmtManageIoTDeviceImpl implements CMgmtManageIoTDevice {
 
         logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.CMGMT_GET_DEVICE_DATA_SOURCES));
 
-        IoTDeviceRO device = deviceRepo.findOne(id);
+        Device device = deviceRepo.findOne(id);
 
         if (null == device) {
 
             return null;
 
         } else {
-            List<DataSource> dataSource = transformerDataSource.toRemote(device.getIoTDeviceDataSources());
+            List<DataSource> dataSource = transformerDataSource.toRemote(device.getDataSources());
 
             return new ResponseEntity<List<DataSource>>(dataSource, HttpStatus.OK);
         }
@@ -125,7 +125,7 @@ public class CMgmtManageIoTDeviceImpl implements CMgmtManageIoTDevice {
     public ResponseEntity<List<Connection>> getDeviceByDataSource(@PathVariable(value = "devInfo") String devInfo, @PathVariable(value = "domainInfo") String domainInfo) {
         logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.CMGGT_GET_DEVICE_BY_DATA_SOURCES));
 
-        List<IoTDeviceRO> devices = deviceRepo.findByIoTDeviceDataSources(devInfo, domainInfo);
+        List<Device> devices = deviceRepo.findByDataSources(devInfo, domainInfo);
 
         List<Connection> connections = transformer.toRemote(devices);
 

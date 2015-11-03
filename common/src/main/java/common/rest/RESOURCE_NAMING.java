@@ -24,6 +24,8 @@ public enum RESOURCE_NAMING {
     //
     CMGMT_REGISTER_EVENT_PROCESSING("/registrations/eventprocessing", RequestMethod.POST),
     //
+    CMGMT_GET_EVENT_PROCESSING_DATA_SOURCES("/registrations/devices/eventprocessing/{id}", RequestMethod.GET),
+    //
     CMGMT_HEART_BEAT_EVENT_PROCESSING("/registrations/eventprocessing/{id}", RequestMethod.PUT),
     //
     CMGMT_DELEGATION("/delegation", RequestMethod.POST),

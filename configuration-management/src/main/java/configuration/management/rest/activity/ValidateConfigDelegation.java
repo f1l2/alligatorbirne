@@ -9,24 +9,24 @@ import org.springframework.stereotype.Component;
 import common.data.ConfigurationDelegation;
 
 @Component
-public class ValidateConfigDelegation extends Activity<ConfigurationDelegation, ConfigurationDelegation> {
+public class ValidateConfigDelegation extends Activity<String, ConfigurationDelegation> {
 
     final static Logger logger = LoggerFactory.getLogger(ValidateConfigDelegation.class);
 
     @Override
-    public ResponseEntity<ConfigurationDelegation> doStep(ConfigurationDelegation item) {
+    public ResponseEntity<String> doStep(ConfigurationDelegation item) {
 
         if (null == item.getConfigurationModification()) {
             logger.error("Delegation failed due missing ConfigurationModification authority");
-            this.setErrorResponse(new ResponseEntity<ConfigurationDelegation>(item, HttpStatus.BAD_REQUEST));
+            this.setErrorResponse(new ResponseEntity<String>("", HttpStatus.BAD_REQUEST));
         } else if ((null == item.getDeviceInformation()) || (null == item.getDeviceInformation().getName())) {
             logger.error("Delegation failed due missing DeviceInformation");
-            this.setErrorResponse(new ResponseEntity<ConfigurationDelegation>(item, HttpStatus.BAD_REQUEST));
+            this.setErrorResponse(new ResponseEntity<String>("", HttpStatus.BAD_REQUEST));
         } else if ((null == item.getDomainInformation()) || (null == item.getDomainInformation().getName())) {
             logger.error("Delegation failed due missing DomainInformation");
-            this.setErrorResponse(new ResponseEntity<ConfigurationDelegation>(item, HttpStatus.BAD_REQUEST));
+            this.setErrorResponse(new ResponseEntity<String>("", HttpStatus.BAD_REQUEST));
         }
-        return next(item, item);
+        return next("OK", item);
     }
 
 }

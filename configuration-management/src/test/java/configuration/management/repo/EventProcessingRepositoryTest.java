@@ -14,8 +14,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import configuration.management.Application;
-import configuration.management.model.EventProcessingDataSourceRO;
-import configuration.management.model.EventProcessingRO;
+import configuration.management.model.DataSourceRO;
+import configuration.management.model.EventProcessing;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
@@ -24,16 +24,16 @@ public class EventProcessingRepositoryTest {
     @Autowired
     private EventProcessingRepository eventProcessingRepo;
 
-    private EventProcessingRO ep1, ep2;
+    private EventProcessing ep1, ep2;
 
-    private EventProcessingDataSourceRO dataSource1;
+    private DataSourceRO dataSource1;
 
     @Before
     public void before() {
 
         this.eventProcessingRepo.deleteAll();
 
-        ep1 = new EventProcessingRO();
+        ep1 = new EventProcessing();
         ep1.setCreated(new Date());
         ep1.setUpdated(new Date());
         ep1.setName("ep1");
@@ -41,7 +41,7 @@ public class EventProcessingRepositoryTest {
 
         ep1 = this.eventProcessingRepo.save(ep1);
 
-        ep2 = new EventProcessingRO();
+        ep2 = new EventProcessing();
 
         ep2.setCreated(new Date());
         ep2.setUpdated(new Date());
@@ -50,7 +50,7 @@ public class EventProcessingRepositoryTest {
 
         ep2 = this.eventProcessingRepo.save(ep2);
 
-        dataSource1 = new EventProcessingDataSourceRO();
+        dataSource1 = new DataSourceRO();
         dataSource1.setDevice("device");
         dataSource1.setDomain("domain");
 
@@ -59,7 +59,7 @@ public class EventProcessingRepositoryTest {
     @Test
     public void findByName() {
 
-        EventProcessingRO result = this.eventProcessingRepo.findByName(ep1.getName());
+        EventProcessing result = this.eventProcessingRepo.findByName(ep1.getName());
 
         assertNotNull(result);
         assertEquals(ep1.getId(), result.getId());
@@ -71,8 +71,8 @@ public class EventProcessingRepositoryTest {
     @Transactional
     public void saveDataSource() {
 
-        EventProcessingRO result = this.eventProcessingRepo.findByName(ep1.getName());
-        result.getEventProcessingDataSources().add(dataSource1);
+        EventProcessing result = this.eventProcessingRepo.findByName(ep1.getName());
+        result.getDataSources().add(dataSource1);
 
         result = this.eventProcessingRepo.save(result);
 
@@ -83,10 +83,10 @@ public class EventProcessingRepositoryTest {
         assertEquals(ep1.getName(), result.getName());
         assertEquals(ep1.getAuthority(), result.getAuthority());
 
-        assertNotNull(result.getEventProcessingDataSources());
-        assertEquals(1, result.getEventProcessingDataSources().size());
-        assertEquals(dataSource1.getDevice(), result.getEventProcessingDataSources().get(0).getDevice());
-        assertEquals(dataSource1.getDomain(), result.getEventProcessingDataSources().get(0).getDomain());
+        assertNotNull(result.getDataSources());
+        assertEquals(1, result.getDataSources().size());
+        assertEquals(dataSource1.getDevice(), result.getDataSources().get(0).getDevice());
+        assertEquals(dataSource1.getDomain(), result.getDataSources().get(0).getDomain());
     }
 
 }

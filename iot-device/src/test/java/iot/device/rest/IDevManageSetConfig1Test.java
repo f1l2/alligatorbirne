@@ -72,7 +72,7 @@ public class IDevManageSetConfig1Test {
         dataSink.setUrl(UrlUtils.parseUrl("host:1234"));
 
         Properties properties = new Properties();
-        properties.put(SensorReservedProperty.SUPPLY_REQ.getName(), "Pressure");
+        properties.put(SensorReservedProperty.REQUEST_FOR_DELIVERY.getName(), "Pressure");
         properties.put(SystemReservedProperty.TASK_INTERVAL_MS.getName(), 500);
 
         cm = new ConfigurationModification();

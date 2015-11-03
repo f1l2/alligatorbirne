@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
-import configuration.management.model.EventProcessingRO;
+import configuration.management.model.EventProcessing;
 import configuration.management.repo.EventProcessingRepository;
 
 @Component
@@ -23,7 +23,7 @@ public class HeartbeatEP extends Activity<String, Long> {
     @Override
     public ResponseEntity<String> doStep(Long id) {
 
-        EventProcessingRO item = eventProcessingRepo.findOne(id);
+        EventProcessing item = eventProcessingRepo.findOne(id);
 
         if (item != null) {
             item.setUpdated(new Date());

@@ -11,31 +11,32 @@ import org.springframework.stereotype.Component;
 
 import common.data.ConfigurationDelegation;
 import common.data.Connection;
-import configuration.management.model.IoTDeviceRO;
-import configuration.management.repo.IoTDeviceRepository;
-import configuration.management.repo.IoTDeviceTransformer;
+import configuration.management.model.Device;
+import configuration.management.repo.DeviceRepository;
+import configuration.management.repo.DeviceTransformer;
+import configuration.management.task.DelegationTask;
 
 @Component
-public class DelegateConfigChange extends Activity<ConfigurationDelegation, ConfigurationDelegation> {
+public class DelegateConfigChange extends Activity<String, ConfigurationDelegation> {
 
     final static Logger logger = LoggerFactory.getLogger(DelegateConfigChange.class);
     @Autowired
-    private IoTDeviceRepository deviceRepo;
+    private DeviceRepository deviceRepo;
 
     @Autowired
-    private IoTDeviceTransformer transformer;
+    private DeviceTransformer transformer;
 
     @Autowired
     private ThreadPoolTaskExecutor taskExecutor;
 
     @Override
-    public ResponseEntity<ConfigurationDelegation> doStep(ConfigurationDelegation item) {
+    public ResponseEntity<String> doStep(ConfigurationDelegation item) {
 
         /**
          * No worry about NPE because item was already checked during validations step.
          */
 
-        List<IoTDeviceRO> devicesToBeContacted = deviceRepo.findByIoTDeviceDataSources(item.getDeviceInformation().getName().toLowerCase(),
+        List<Device> devicesToBeContacted = deviceRepo.findByDataSources(item.getDeviceInformation().getName().toLowerCase(),
                 //
                 item.getDomainInformation().getName().toLowerCase());
 
@@ -43,7 +44,7 @@ public class DelegateConfigChange extends Activity<ConfigurationDelegation, Conf
 
         taskExecutor.execute(new DelegationTask(item.getConfigurationModification(), connectionsToBeContacted));
 
-        return next(item, item);
+        return next("OK", item);
     }
 
 }

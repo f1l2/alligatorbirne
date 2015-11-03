@@ -94,7 +94,7 @@ public class Configuration {
                 } catch (Exception e) {
                     logger.error("{}", e);
                 }
-            } else if (SensorReservedProperty.SUPPLY_REQ.getName().equals(keyStr)) {
+            } else if (SensorReservedProperty.REQUEST_FOR_DELIVERY.getName().equals(keyStr)) {
                 try {
                     if (value instanceof Integer) {
                         mergeSupplyingSensorProperties(keyStr, Integer.toString((int) value));

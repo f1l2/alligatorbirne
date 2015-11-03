@@ -40,16 +40,17 @@ public abstract class AbstractTestRestCM {
     }
 
     private String getRandomHost() {
+        count++;
         return "localhost" + count + ":8080";
     }
 
     protected DataSourcesDTO getDataSources() {
 
         DeviceInformation dev = new DeviceInformation();
-        dev.setName("device");
+        dev.setName("device" + count);
         dev.setType(DEVICE_INFORMATION_TYPE.SENSOR);
         DomainInformation domain = new DomainInformation();
-        domain.setName("domain");
+        domain.setName("domain" + count);
         domain.setType(DOMAIN_INFORMATION_TYPE.FIRST_FLOOR);
 
         DataSource dataSource = new DataSource();

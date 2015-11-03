@@ -6,25 +6,25 @@ import org.junit.After;
 import org.junit.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import configuration.management.model.IoTDeviceDataSourceRO;
-import configuration.management.model.IoTDeviceRO;
-import configuration.management.repo.IoTDeviceRepository;
+import configuration.management.model.DataSourceRO;
+import configuration.management.model.Device;
+import configuration.management.repo.DeviceRepository;
 
 public class AbstractTestCM {
 
     @Autowired
-    protected IoTDeviceRepository deviceRepo;
+    protected DeviceRepository deviceRepo;
 
-    protected IoTDeviceRO device1, device2;
+    protected Device device1, device2;
 
-    protected IoTDeviceDataSourceRO dataSource1;
+    protected DataSourceRO dataSource1;
 
     @Before
     public void before() {
 
         this.deviceRepo.deleteAll();
 
-        device1 = new IoTDeviceRO();
+        device1 = new Device();
 
         device1.setCreated(new Date());
         device1.setUpdated(new Date());
@@ -33,7 +33,7 @@ public class AbstractTestCM {
 
         device1 = this.deviceRepo.save(device1);
 
-        device2 = new IoTDeviceRO();
+        device2 = new Device();
 
         device2.setCreated(new Date());
         device2.setUpdated(new Date());
@@ -42,7 +42,7 @@ public class AbstractTestCM {
 
         device2 = this.deviceRepo.save(device2);
 
-        dataSource1 = new IoTDeviceDataSourceRO();
+        dataSource1 = new DataSourceRO();
         dataSource1.setDevice("deviceInformation1");
         dataSource1.setDomain("domain1");
 

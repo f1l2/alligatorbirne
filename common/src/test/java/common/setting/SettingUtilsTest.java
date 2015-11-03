@@ -110,9 +110,9 @@ public class SettingUtilsTest {
         Connection newConnection = new Connection();
         newConnection.setName("new connection");
         newConnection.setUrl(url);
-        newConnection.setComponentType(COMPONENT_TYPE.IOT_DEVICE);
+        newConnection.setComponentType(COMPONENT_TYPE.DEVICE);
 
-        Setting newSetting = SettingUtils.replaceConnection(newConnection, COMPONENT_TYPE.IOT_DEVICE);
+        Setting newSetting = SettingUtils.replaceConnection(newConnection, COMPONENT_TYPE.DEVICE);
 
         SettingUtils.setPATH_TO_SETTING_FILE(PATH_TO_TEST_OUTPUT);
 

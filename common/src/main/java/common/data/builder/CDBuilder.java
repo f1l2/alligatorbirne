@@ -62,7 +62,7 @@ public class CDBuilder {
         }
 
         Properties properties = new Properties();
-        properties.setProperty(SensorReservedProperty.SUPPLY_REQ.getName(), name);
+        properties.setProperty(SensorReservedProperty.REQUEST_FOR_DELIVERY.getName(), name);
 
         ConfigurationModification cm = new ConfigurationModification();
         cm.setDataSink(dataSink);

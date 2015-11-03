@@ -59,7 +59,7 @@ public class PropertyTest {
     public void getSensorReservedProperties() {
 
         Properties newProperties = new Properties();
-        newProperties.put(SensorReservedProperty.SUPPLY_REQ.getName(), "TEMPERATURE");
+        newProperties.put(SensorReservedProperty.REQUEST_FOR_DELIVERY.getName(), "TEMPERATURE");
 
         configuration.setAndUpdateProperties(newProperties);
 

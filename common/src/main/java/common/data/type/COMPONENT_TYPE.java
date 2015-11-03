@@ -7,7 +7,7 @@ public enum COMPONENT_TYPE {
     /*
      * Component belongs to one IOT instance
      */
-    IOT_DEVICE("iot device", "Device"),
+    DEVICE("device", "Device"),
     /*
      * Component belongs to one CM instance
      */

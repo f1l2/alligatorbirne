@@ -11,7 +11,6 @@ public class UtilTest {
         String authority = "localhost:8080";
         assertEquals("localhost", Util.parseHost(authority));
         assertEquals("8080", Util.parsePort(authority));
-
     }
 
 }

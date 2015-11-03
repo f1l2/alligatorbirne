@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import common.data.Connection;
-import configuration.management.model.EventProcessingRO;
+import configuration.management.model.EventProcessing;
 import configuration.management.repo.EventProcessingRepository;
 
 @Component
@@ -23,12 +23,12 @@ public class RegisterEP extends Activity<Connection, Connection> {
     @Override
     public ResponseEntity<Connection> doStep(Connection connection) {
 
-        EventProcessingRO item = eventProcessingRepo.findByAuthority(connection.getUrl().getAuthority());
+        EventProcessing item = eventProcessingRepo.findByAuthority(connection.getUrl().getAuthority());
         if (null != item) {
             connection.setId(item.getId());
             item.setUpdated(new Date());
         } else {
-            item = new EventProcessingRO();
+            item = new EventProcessing();
             item.setCreated(new Date());
             item.setUpdated(new Date());
             item.setAuthority(connection.getUrl().getAuthority());

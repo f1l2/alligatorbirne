@@ -99,7 +99,7 @@ public class SettingUtils {
      */
     public static List<Connection> getIoTDeviceConnection() throws MalformedURLException, JAXBException, SAXException {
 
-        return getConnections(COMPONENT_TYPE.IOT_DEVICE);
+        return getConnections(COMPONENT_TYPE.DEVICE);
     }
 
     public static Connection getLocalConnection() throws MalformedURLException, JAXBException, SAXException {

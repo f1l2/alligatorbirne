@@ -16,14 +16,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import common.data.ConfigurationDelegation;
 import common.data.Connection;
+import common.data.DataSource;
 import common.data.type.COMPONENT_TYPE;
 import common.rest.RESOURCE_NAMING;
 import common.rest.ResourceUtils;
 import common.transformer.Transformer;
+import configuration.management.model.EventProcessing;
+import configuration.management.repo.DataSourceTransformer;
 import configuration.management.repo.EventProcessingRepository;
 import configuration.management.repo.EventProcessingTransformer;
 import configuration.management.rest.activity.DelegateConfigChange;
 import configuration.management.rest.activity.HeartbeatEP;
+import configuration.management.rest.activity.RegisterDataSourcesEP;
 import configuration.management.rest.activity.RegisterEP;
 import configuration.management.rest.activity.ValidateConfigDelegation;
 import configuration.management.rest.activity.ValidateConnection;
@@ -34,10 +38,13 @@ public class CMgmtManageEventProcessingImpl implements CMgmtManageEventProcessin
     final static Logger logger = LoggerFactory.getLogger(CMgmtManageEventProcessingImpl.class);
 
     @Autowired
-    private EventProcessingRepository eventProcessingRepo;
+    private EventProcessingRepository repository;
 
     @Autowired
     private EventProcessingTransformer transformer;
+
+    @Autowired
+    private DataSourceTransformer dataSourceTransformer;
 
     @Autowired
     private ValidateConnection validateConnection;
@@ -54,13 +61,16 @@ public class CMgmtManageEventProcessingImpl implements CMgmtManageEventProcessin
     @Autowired
     private DelegateConfigChange delegatConfigChange;
 
+    @Autowired
+    private RegisterDataSourcesEP registerDataSources;
+
     @Override
     @RequestMapping(value = "/registrations/eventprocessing", method = RequestMethod.GET)
     public @ResponseBody ResponseEntity<List<Connection>> getAll() {
 
         logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.CMGMT_GET_ALL_EVENT_PROCESSING));
 
-        List<Connection> eps = transformer.toRemote(Transformer.makeCollection(eventProcessingRepo.findAll()));
+        List<Connection> eps = transformer.toRemote(Transformer.makeCollection(repository.findAll()));
 
         return new ResponseEntity<List<Connection>>(eps, HttpStatus.OK);
     }
@@ -88,12 +98,29 @@ public class CMgmtManageEventProcessingImpl implements CMgmtManageEventProcessin
     }
 
     @Override
+    @RequestMapping(value = "/registrations/devices/eventprocessing/{id}", method = RequestMethod.GET)
+    public ResponseEntity<List<DataSource>> getDataSources(@PathVariable(value = "id") Long id) {
+
+        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.CMGMT_GET_EVENT_PROCESSING_DATA_SOURCES));
+
+        EventProcessing item = repository.findOne(id);
+
+        if (null == item) {
+            return null;
+        } else {
+            List<DataSource> dataSource = dataSourceTransformer.toRemote(item.getDataSources());
+            return new ResponseEntity<List<DataSource>>(dataSource, HttpStatus.OK);
+        }
+    }
+
+    @Override
     @RequestMapping(value = "/delegation", method = RequestMethod.POST)
-    public ResponseEntity<ConfigurationDelegation> delegate(@RequestBody ConfigurationDelegation data) {
+    public ResponseEntity<String> delegate(@RequestBody ConfigurationDelegation data) {
 
         logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.CMGMT_DELEGATION));
 
-        validateConfigDelegation.setNextActivity(delegatConfigChange);
+        validateConfigDelegation.setNextActivity(registerDataSources);
+        registerDataSources.setNextActivity(delegatConfigChange);
 
         return validateConfigDelegation.doStep(data);
 
