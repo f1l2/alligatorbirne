@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 
 import common.data.ConfigurationModification;
+import common.data.dto.DataSourcesDTO;
 import iot.device.repo.DeliveryTaskRO;
 
 /**
@@ -21,4 +22,7 @@ public interface IDevManageConfig {
 
     public ResponseEntity<String> setConfiguration(ConfigurationModification configurationModification);
 
+    public ResponseEntity<String> startDelivery(String authority, DataSourcesDTO dataSources);
+
+    public ResponseEntity<String> stopDelivery(String authority, DataSourcesDTO dataSources);
 }

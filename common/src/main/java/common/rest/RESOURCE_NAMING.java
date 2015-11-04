@@ -8,6 +8,12 @@ public enum RESOURCE_NAMING {
     //
     IDEV_SET_CONFIGURATION("/configurations", RequestMethod.POST),
     //
+    IDEV_START_DELIVERY("/delivery/start/{authority}", RequestMethod.POST),
+    //
+    IDEV_STOP_DELIVERY("/delivery/stop/{authority}", RequestMethod.POST),
+    //
+    IDEV_STOP_INSTANCE("/stopping", RequestMethod.POST),
+    //
     CMGMT_GET_ALL_DEVICES("/registrations/devices", RequestMethod.GET),
     //
     CMGMT_REGISTER_DEVICE_SOURCES("/registrations/devices/sources/{id}", RequestMethod.POST),

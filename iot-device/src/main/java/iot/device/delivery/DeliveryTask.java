@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import common.data.builder.DDBuilder;
+import common.data.DataSource;
 import common.data.dto.DeviceDataDTO;
 import common.data.setting.SettingUtils;
 import common.property.SystemReservedProperty;
@@ -66,8 +66,9 @@ public class DeliveryTask implements Runnable {
 
             DeliveryTaskRO deliveryTaskRO = dtr.findByAuthority(deliveryAuthority);
 
-            if (null == deliveryTaskRO) {
+            if (deliveryTaskRO.notUsed()) {
                 logger.info("DeliveryTask {} terminates.", this.identification);
+                dtr.delete(deliveryTaskRO);
                 break;
             }
 
@@ -80,16 +81,14 @@ public class DeliveryTask implements Runnable {
 
             try {
 
-                for (String sensorData : configuration.getSupplyingSensor()) {
+                for (DataSource dataSource : deliveryTaskRO.getDataSources()) {
 
-                    Sensor<?> sensor = (Sensor<?>) dsf.getBean(sensorData.toLowerCase());
+                    Sensor<?> sensor = (Sensor<?>) dsf.getBean(dataSource.getDeviceInformation().getName().toLowerCase());
 
-                    DDBuilder ddBuilder = new DDBuilder();
-                    DeviceDataDTO ddDTO = ddBuilder.buildDeviceInformation(sensorData)
-                            //
-                            .buildSensorData(sensor.getValue())
-                            //
-                            .getResultDTO(SettingUtils.loadDomainsByDeviceInformation(sensorData));
+                    DeviceDataDTO ddDTO = new DeviceDataDTO();
+                    ddDTO.setDevice(dataSource.getDeviceInformation());
+                    ddDTO.setDomains(SettingUtils.loadDomainsByDeviceInformation(dataSource.getDeviceInformation().getName()));
+                    ddDTO.setSensorData(sensor.getValue());
 
                     if (STATUS_TYPE.TEST.equals(status.getCurrent())) {
                         VirtualEP.send(new VirtualData(ddDTO, deliveryUrl, Instant.now()));
@@ -101,7 +100,7 @@ public class DeliveryTask implements Runnable {
                 }
 
             } catch (Exception e) {
-                logger.error("Error sending data. {}", e);
+                logger.error("Error sending data", e);
             }
 
             try {

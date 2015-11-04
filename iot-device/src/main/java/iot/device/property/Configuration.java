@@ -16,14 +16,13 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import common.property.SensorReservedProperty;
 import common.property.SystemReservedProperty;
 import common.utilities.NormalizeString;
-import iot.device.delivery.DeliveryTask;
 import iot.device.utility.ArrayMapDeserializerStringInteger;
 import iot.device.utility.ArrayMapDeserializerStringString;
 
 @Component
 public class Configuration {
 
-    final static Logger logger = LoggerFactory.getLogger(DeliveryTask.class);
+    final static Logger logger = LoggerFactory.getLogger(Configuration.class);
 
     /**
      * Set system reserved properties
@@ -157,13 +156,7 @@ public class Configuration {
         int max = SystemReservedProperty.getSystemReservedPropertyByName(key).getMax();
 
         if ((compare(min, value, isSmaller) && (this.compare(max, value, isGreater)))) {
-
-            logger.info(key + " : " + value);
-
             systemReservedProperties.put(key, value);
-
-            logger.info("{}", systemReservedProperties.get(key));
-
         }
 
     }

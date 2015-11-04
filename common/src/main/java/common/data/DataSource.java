@@ -10,7 +10,8 @@ public class DataSource {
     private DeviceInformation deviceInformation;
 
     public DataSource() {
-        // default costructor
+        this.domainInformation = new DomainInformation();
+        this.deviceInformation = new DeviceInformation();
     }
 
     public DataSource(DomainInformation domain, DeviceInformation deviceInformation) {
@@ -37,5 +38,37 @@ public class DataSource {
     @Override
     public String toString() {
         return "DataSource [domainInformation=" + domainInformation + ", deviceInformation=" + deviceInformation + "]";
+    }
+
+    @Override
+    public int hashCode() {
+
+        StringBuilder hash = new StringBuilder();
+        hash.append(deviceInformation.getName());
+        hash.append("$$$");
+        hash.append(domainInformation.getName());
+
+        return hash.toString().hashCode();
+
+    }
+
+    @Override
+    public boolean equals(Object object) {
+
+        if (!(object instanceof DataSource)) {
+            return false;
+        }
+
+        DataSource ds = (DataSource) object;
+
+        if (!(deviceInformation.getName().equals(ds.getDeviceInformation().getName()))) {
+            return false;
+        }
+
+        if (!(domainInformation.getName().equals(ds.getDomainInformation().getName()))) {
+            return false;
+        }
+
+        return true;
     }
 }

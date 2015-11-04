@@ -5,6 +5,7 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.xml.bind.JAXBException;
@@ -228,7 +229,7 @@ public class SettingUtils {
 
     public static List<DataSource> loadDataSourcesByDeviceInformation(String deviceInformation) throws MalformedURLException, JAXBException, SAXException {
 
-        List<DataSource> dataSources = loadDataSources().getDataSources();
+        Set<DataSource> dataSources = loadDataSources().getDataSources();
 
         final String devInfo = deviceInformation.toLowerCase();
 
@@ -240,7 +241,7 @@ public class SettingUtils {
 
     public static List<DomainInformation> loadDomainsByDeviceInformation(String deviceInformation) throws MalformedURLException, JAXBException, SAXException {
 
-        List<DataSource> dataSources = loadDataSources().getDataSources();
+        Set<DataSource> dataSources = loadDataSources().getDataSources();
 
         final String devInfo = deviceInformation.toLowerCase();
 

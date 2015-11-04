@@ -4,6 +4,7 @@ import static com.jayway.restassured.RestAssured.get;
 import static com.jayway.restassured.RestAssured.given;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -14,7 +15,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.annotation.DirtiesContext;
@@ -22,16 +22,12 @@ import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.response.Response;
 import com.jayway.restassured.response.ResponseBodyExtractionOptions;
 
 import common.data.ConfigurationModification;
-import common.data.Connection;
-import common.data.type.COMPONENT_TYPE;
 import common.rest.RESOURCE_NAMING;
-import common.rest.UrlUtils;
 import iot.device.ApplicationTestContext;
 import iot.device.repo.DeliveryTaskRO;
 
@@ -40,12 +36,9 @@ import iot.device.repo.DeliveryTaskRO;
 @WebAppConfiguration
 @IntegrationTest("server.port:0")
 @DirtiesContext(classMode = ClassMode.AFTER_CLASS)
-public class IDevManageConfigTest {
+public class IDevManageConfigTest extends AbstractRestTest {
 
     private ConfigurationModification cm;
-
-    @Value("${local.server.port}")
-    protected int port;
 
     /**
      * Implicitly test method setConfiguration
@@ -54,18 +47,15 @@ public class IDevManageConfigTest {
     @Before
     public void before() throws IOException {
 
-        RestAssured.port = port;
+        super.before();
 
-        Connection dataSink = new Connection();
-        dataSink.setComponentType(COMPONENT_TYPE.EVENT_PROCESSING);
-        dataSink.setName("name ep");
-        dataSink.setUrl(UrlUtils.parseUrl("host:1234"));
+        this.deliveryStart();
 
         Properties properties = new Properties();
         properties.put("key", "value");
 
         cm = new ConfigurationModification();
-        cm.setDataSink(dataSink);
+        cm.setDataSink(ep);
         cm.setProperties(properties);
 
         ResponseBodyExtractionOptions response = given().body(cm).contentType(ContentType.JSON).post(RESOURCE_NAMING.IDEV_SET_CONFIGURATION.getPath())
@@ -85,6 +75,7 @@ public class IDevManageConfigTest {
 
     @After
     public void after() {
+        this.deliveryStop();
     }
 
     @Test
@@ -95,7 +86,7 @@ public class IDevManageConfigTest {
         List<DeliveryTaskRO> result = Arrays.asList(response.getBody().as(DeliveryTaskRO[].class));
 
         assertNotNull(result);
-        assertEquals(1, result.size());
+        assertTrue(result.size() >= 1);
         assertEquals(cm.getDataSink().getUrl(), result.get(0).getUrlDataSink());
 
     }

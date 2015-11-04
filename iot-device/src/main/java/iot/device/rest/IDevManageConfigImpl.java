@@ -14,12 +14,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import common.data.ConfigurationModification;
+import common.data.dto.DataSourcesDTO;
 import common.data.type.COMPONENT_TYPE;
 import common.rest.RESOURCE_NAMING;
 import common.rest.ResourceUtils;
 import iot.device.repo.DeliveryTaskRO;
 import iot.device.repo.DeliveryTaskRepositoryImpl;
 import iot.device.rest.activity.SetConfiguration;
+import iot.device.rest.activity.StartDelivery;
+import iot.device.rest.activity.StopDelivery;
+import iot.device.rest.activity.ValidateDataSources;
 import iot.device.rest.activity.ValidateRequestBody;
 
 @RestController
@@ -34,7 +38,16 @@ public class IDevManageConfigImpl implements IDevManageConfig {
     private ValidateRequestBody validateRB;
 
     @Autowired
+    private ValidateDataSources validateDS;
+
+    @Autowired
     private SetConfiguration setConfig;
+
+    @Autowired
+    private StartDelivery startDelivery;
+
+    @Autowired
+    private StopDelivery stopDelivery;
 
     @Override
     @RequestMapping(value = "/configurations", method = RequestMethod.GET)
@@ -73,4 +86,34 @@ public class IDevManageConfigImpl implements IDevManageConfig {
 
     }
 
+    @Override
+    @RequestMapping(value = "/delivery/start/{authority}", method = RequestMethod.POST)
+    public ResponseEntity<String> startDelivery(@PathVariable("authority") String authority, @RequestBody DataSourcesDTO dataSources) {
+
+        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.IDEV_START_DELIVERY));
+
+        /**
+         * Build "to-do" chain
+         */
+        startDelivery.setEpAuthority(authority);
+        validateDS.setNextActivity(startDelivery);
+
+        return validateDS.doStep(dataSources);
+    }
+
+    @Override
+    @RequestMapping(value = "/delivery/stop/{authority}", method = RequestMethod.POST)
+    public ResponseEntity<String> stopDelivery(@PathVariable("authority") String authority, @RequestBody DataSourcesDTO dataSources) {
+
+        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.IDEV_STOP_DELIVERY));
+
+        /**
+         * Build "to-do" chain
+         */
+
+        stopDelivery.setEpAuthority(authority);
+        validateDS.setNextActivity(stopDelivery);
+
+        return validateDS.doStep(dataSources);
+    }
 }

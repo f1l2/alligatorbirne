@@ -14,8 +14,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.annotation.DirtiesContext;
@@ -24,20 +22,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.util.LinkedMultiValueMap;
 
-import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.response.ResponseBodyExtractionOptions;
 
 import common.data.ConfigurationModification;
-import common.data.Connection;
-import common.data.type.COMPONENT_TYPE;
-import common.property.SensorReservedProperty;
 import common.property.SystemReservedProperty;
 import common.rest.RESOURCE_NAMING;
-import common.rest.UrlUtils;
 import iot.device.ApplicationTestContext;
-import iot.device.status.STATUS_TYPE;
-import iot.device.status.Status;
 import iot.device.utility.VirtualData;
 import iot.device.utility.VirtualEP;
 
@@ -46,15 +37,9 @@ import iot.device.utility.VirtualEP;
 @WebAppConfiguration
 @IntegrationTest("server.port:0")
 @DirtiesContext(classMode = ClassMode.AFTER_CLASS)
-public class IDevManageSetConfig1Test {
+public class IDevManageSetConfig1Test extends AbstractRestTest {
 
     private ConfigurationModification cm;
-
-    @Value("${local.server.port}")
-    protected int port;
-
-    @Autowired
-    private Status status;
 
     /**
      * Implicitly test method setConfiguration
@@ -62,33 +47,29 @@ public class IDevManageSetConfig1Test {
      */
     @Before
     public void before() throws IOException {
-        RestAssured.port = port;
 
-        status.setCurrent(STATUS_TYPE.TEST);
+        super.before();
 
-        Connection dataSink = new Connection();
-        dataSink.setComponentType(COMPONENT_TYPE.EVENT_PROCESSING);
-        dataSink.setName("name ep");
-        dataSink.setUrl(UrlUtils.parseUrl("host:1234"));
+        this.deliveryStart();
 
+        /**
+         * Send change of configuration
+         */
         Properties properties = new Properties();
-        properties.put(SensorReservedProperty.REQUEST_FOR_DELIVERY.getName(), "Pressure");
         properties.put(SystemReservedProperty.TASK_INTERVAL_MS.getName(), 500);
 
         cm = new ConfigurationModification();
-        cm.setDataSink(dataSink);
+        cm.setDataSink(ep);
         cm.setProperties(properties);
 
-        ResponseBodyExtractionOptions response = given().body(cm).contentType(ContentType.JSON).post(RESOURCE_NAMING.IDEV_SET_CONFIGURATION.getPath())
+        ResponseBodyExtractionOptions response2 = given().body(cm).contentType(ContentType.JSON).post(RESOURCE_NAMING.IDEV_SET_CONFIGURATION.getPath())
                 //
                 .then().contentType(ContentType.TEXT)
                 //
                 .extract().body();
 
-        response.asString();
-
-        assertNotNull(response);
-        assertEquals("OK", response.asString());
+        assertNotNull(response2);
+        assertEquals("OK", response2.asString());
 
     }
 
@@ -98,12 +79,14 @@ public class IDevManageSetConfig1Test {
         VirtualEP.setData(new ArrayList<VirtualData>());
         VirtualEP.setMap(new LinkedMultiValueMap<String, VirtualData>());
 
+        this.deliveryStop();
+
     }
 
     @Test
     public void setConfiguration() throws InterruptedException {
 
-        Thread.sleep(1500);
+        Thread.sleep(7000);
 
         VirtualData first = VirtualEP.getLast();
         VirtualData second = VirtualEP.getSecondLast();

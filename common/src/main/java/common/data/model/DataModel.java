@@ -6,6 +6,11 @@ public abstract class DataModel {
 
     protected String name;
 
+    public DataModel() {
+        this.id = -1l;
+        this.name = "default";
+    }
+
     public long getId() {
         return id;
     }
