@@ -7,11 +7,10 @@ import org.junit.Before;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.jayway.restassured.RestAssured;
+import com.jayway.restassured.parsing.Parser;
 
-import common.data.DataSource;
+import common.data.builder.DSBuilder;
 import common.data.dto.DataSourcesDTO;
-import common.data.model.DeviceInformation;
-import common.data.model.DomainInformation;
 import common.data.type.DEVICE_INFORMATION_TYPE;
 import common.data.type.DOMAIN_INFORMATION_TYPE;
 
@@ -29,6 +28,7 @@ public abstract class AbstractTestRestCM {
     @Before
     public void before() throws IOException {
         RestAssured.port = port;
+        RestAssured.defaultParser = Parser.JSON;
 
         authority = getRandomHost();
 
@@ -46,22 +46,11 @@ public abstract class AbstractTestRestCM {
 
     protected DataSourcesDTO getDataSources() {
 
-        DeviceInformation dev = new DeviceInformation();
-        dev.setName("device" + count);
-        dev.setType(DEVICE_INFORMATION_TYPE.SENSOR);
-        DomainInformation domain = new DomainInformation();
-        domain.setName("domain" + count);
-        domain.setType(DOMAIN_INFORMATION_TYPE.FIRST_FLOOR);
+        DSBuilder builder = new DSBuilder();
+        builder.buildDataSource("device" + count, DEVICE_INFORMATION_TYPE.SENSOR, "domain" + count, DOMAIN_INFORMATION_TYPE.FIRST_FLOOR);
+        builder.buildDataSource("device1" + count, DEVICE_INFORMATION_TYPE.SENSOR, "domain1" + count, DOMAIN_INFORMATION_TYPE.FIRST_FLOOR);
 
-        DataSource dataSource = new DataSource();
-        dataSource.setDeviceInformation(dev);
-        dataSource.setDomainInformation(domain);
-
-        DataSourcesDTO dataSources = new DataSourcesDTO();
-        dataSources.add(dataSource);
-        dataSources.add(dataSource);
-
-        return dataSources;
+        return builder.getResult();
 
     }
 }

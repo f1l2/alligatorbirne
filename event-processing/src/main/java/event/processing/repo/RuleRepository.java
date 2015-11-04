@@ -18,4 +18,6 @@ public interface RuleRepository {
 
     public List<Rule> findAllActiveRules();
 
+    public void reset();
+
 }

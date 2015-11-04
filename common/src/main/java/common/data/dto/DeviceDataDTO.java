@@ -24,13 +24,6 @@ public class DeviceDataDTO {
         return sensorData;
     }
 
-    public <T> void setSensorData(T value) {
-        SensorData<T> sensorData = new SensorData<T>();
-        sensorData.setRawValue(value);
-
-        this.sensorData = sensorData;
-    }
-
     public void setSensorData(SensorData<?> sensorData) {
         this.sensorData = sensorData;
     }

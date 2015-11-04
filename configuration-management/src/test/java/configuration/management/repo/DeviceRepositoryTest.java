@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotNull;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -19,6 +20,7 @@ import org.springframework.util.CollectionUtils;
 import common.data.type.COMPONENT_TYPE;
 import configuration.management.AbstractTestCM;
 import configuration.management.Application;
+import configuration.management.model.DataSourceRO;
 import configuration.management.model.Device;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -75,8 +77,8 @@ public class DeviceRepositoryTest extends AbstractTestCM {
 
         assertNotNull(result.getDataSources());
         assertEquals(1, result.getDataSources().size());
-        assertEquals(dataSource1.getDevice(), result.getDataSources().get(0).getDevice());
-        assertEquals(dataSource1.getDomain(), result.getDataSources().get(0).getDomain());
+        assertEquals(dataSource1.getDevice(), new ArrayList<DataSourceRO>(result.getDataSources()).get(0).getDevice());
+        assertEquals(dataSource1.getDomain(), new ArrayList<DataSourceRO>(result.getDataSources()).get(0).getDomain());
     }
 
     @Test
@@ -119,8 +121,8 @@ public class DeviceRepositoryTest extends AbstractTestCM {
 
         assertNotNull(result.getDataSources());
         assertEquals(1, result.getDataSources().size());
-        assertEquals(dataSource1.getDevice(), result.getDataSources().get(0).getDevice());
-        assertEquals(dataSource1.getDomain(), result.getDataSources().get(0).getDomain());
+        assertEquals(dataSource1.getDevice(), new ArrayList<DataSourceRO>(result.getDataSources()).get(0).getDevice());
+        assertEquals(dataSource1.getDomain(), new ArrayList<DataSourceRO>(result.getDataSources()).get(0).getDomain());
 
         List<Device> devices = this.deviceRepo.findByUpdatedBefore(new Date(Instant.now().plusSeconds(3600 * 24).toEpochMilli()));
 

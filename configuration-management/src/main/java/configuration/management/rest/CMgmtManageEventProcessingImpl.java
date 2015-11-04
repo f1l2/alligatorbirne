@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import common.data.ConfigurationDelegation;
 import common.data.Connection;
 import common.data.DataSource;
+import common.data.dto.DataSourcesDTO;
 import common.data.type.COMPONENT_TYPE;
 import common.rest.RESOURCE_NAMING;
 import common.rest.ResourceUtils;
@@ -26,6 +27,7 @@ import configuration.management.repo.DataSourceTransformer;
 import configuration.management.repo.EventProcessingRepository;
 import configuration.management.repo.EventProcessingTransformer;
 import configuration.management.rest.activity.DelegateConfigChange;
+import configuration.management.rest.activity.DelegateDeliveryChange;
 import configuration.management.rest.activity.HeartbeatEP;
 import configuration.management.rest.activity.RegisterDataSourcesEP;
 import configuration.management.rest.activity.RegisterEP;
@@ -59,10 +61,13 @@ public class CMgmtManageEventProcessingImpl implements CMgmtManageEventProcessin
     private HeartbeatEP heartBeat;
 
     @Autowired
+    private RegisterDataSourcesEP registerDataSources;
+
+    @Autowired
     private DelegateConfigChange delegatConfigChange;
 
     @Autowired
-    private RegisterDataSourcesEP registerDataSources;
+    private DelegateDeliveryChange delegateDeliveryChange;
 
     @Override
     @RequestMapping(value = "/registrations/eventprocessing", method = RequestMethod.GET)
@@ -119,10 +124,38 @@ public class CMgmtManageEventProcessingImpl implements CMgmtManageEventProcessin
 
         logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.CMGMT_DELEGATION));
 
-        validateConfigDelegation.setNextActivity(registerDataSources);
-        registerDataSources.setNextActivity(delegatConfigChange);
+        // validateConfigDelegation.setNextActivity(registerDataSources);
+        // registerDataSources.setNextActivity(delegatConfigChange);
 
         return validateConfigDelegation.doStep(data);
 
     }
+
+    @Override
+    @RequestMapping(value = "/registrations/eventprocessing/sources/{id}", method = RequestMethod.POST)
+    public ResponseEntity<String> registerDataSources(@PathVariable(value = "id") Long id, @RequestBody DataSourcesDTO data) {
+
+        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.CMGMT_REGISTER_EVENT_PROCESSING_SOURCES));
+
+        registerDataSources.setId(id);
+        registerDataSources.setNextActivity(delegateDeliveryChange);
+
+        return registerDataSources.doStep(data);
+    }
+
+    @Override
+    @RequestMapping(value = "/deregistrations/eventprocessing/sources/{id}", method = RequestMethod.POST)
+    public ResponseEntity<String> deregisterDataSources(@PathVariable(value = "id") Long id, @RequestBody DataSourcesDTO data) {
+
+        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.CMGMT_DEREGISTER_EVENT_PROCESSING_SOURCES));
+
+        registerDataSources.setId(id);
+        registerDataSources.setDeregiser(true);
+        registerDataSources.setNextActivity(delegateDeliveryChange);
+
+        delegateDeliveryChange.setStart(true);
+
+        return registerDataSources.doStep(data);
+    }
+
 }

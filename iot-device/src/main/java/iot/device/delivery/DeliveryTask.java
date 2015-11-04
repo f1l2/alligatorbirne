@@ -12,6 +12,7 @@ import org.springframework.web.client.RestTemplate;
 
 import common.data.DataSource;
 import common.data.dto.DeviceDataDTO;
+import common.data.model.SensorData;
 import common.data.setting.SettingUtils;
 import common.property.SystemReservedProperty;
 import common.rest.RESOURCE_NAMING;
@@ -85,10 +86,13 @@ public class DeliveryTask implements Runnable {
 
                     Sensor<?> sensor = (Sensor<?>) dsf.getBean(dataSource.getDeviceInformation().getName().toLowerCase());
 
+                    SensorData<Integer> sensorData = new SensorData<Integer>();
+                    sensorData.setRawValue(sensor.getValue());
+
                     DeviceDataDTO ddDTO = new DeviceDataDTO();
                     ddDTO.setDevice(dataSource.getDeviceInformation());
                     ddDTO.setDomains(SettingUtils.loadDomainsByDeviceInformation(dataSource.getDeviceInformation().getName()));
-                    ddDTO.setSensorData(sensor.getValue());
+                    ddDTO.setSensorData(sensorData);
 
                     if (STATUS_TYPE.TEST.equals(status.getCurrent())) {
                         VirtualEP.send(new VirtualData(ddDTO, deliveryUrl, Instant.now()));

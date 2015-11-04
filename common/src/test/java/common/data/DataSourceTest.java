@@ -77,4 +77,27 @@ public class DataSourceTest {
 
     }
 
+    @Test
+    public void interference() {
+        DSBuilder dsBuilder1 = new DSBuilder();
+        dsBuilder1//
+                .buildDataSource("pressure", "floor1") //
+                .buildDataSource("pressure", "floor2") //
+                .buildDataSource("pressure", "floor3");
+
+        DSBuilder dsBuilder2 = new DSBuilder();
+        dsBuilder2//
+                .buildDataSource("pressure", "floor1") //
+                .buildDataSource("pressure1", "floor2") //
+                .buildDataSource("pressure1", "floor3");
+
+        DataSourcesDTO result1 = dsBuilder1.getResult();
+        DataSourcesDTO result2 = dsBuilder2.getResult();
+
+        result1.getDataSources().retainAll(result2.getDataSources());
+
+        assertEquals(1, result1.getDataSources().size());
+
+    }
+
 }

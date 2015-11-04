@@ -6,7 +6,6 @@ import static org.junit.Assert.assertNotNull;
 import java.io.IOException;
 import java.util.List;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,15 +31,12 @@ public class RuleRepositoryTest {
     @Before
     public void before() throws IOException {
 
+        repo.reset();
+
         String input = "query TRIGGERS deviceName, domainName, cMName = 1";
         rule = qf.parse(input);
 
         repo.save("test rule", rule);
-    }
-
-    @After
-    public void after() {
-        repo.delete("test rule");
     }
 
     @Test

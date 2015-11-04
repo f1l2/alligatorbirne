@@ -56,7 +56,7 @@ public abstract class AbstractTestEP {
 
     @After
     public void after() {
-        engine.unregisterAll();
+        engine.deregisterAll();
     }
 
     protected void sendEventAndWait(DeviceData deviceData, long time) {

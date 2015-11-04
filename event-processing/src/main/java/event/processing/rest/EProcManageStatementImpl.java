@@ -19,11 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import common.data.Connection;
-import common.data.builder.CDBuilder;
+import common.data.builder.DSBuilder;
 import common.data.setting.SettingUtils;
 import common.data.type.COMPONENT_TYPE;
 import common.rest.RESOURCE_NAMING;
 import common.rest.ResourceUtils;
+import event.processing.ApplicationScheduler;
 import event.processing.engine.EngineFactory;
 import event.processing.engine.EngineListener;
 import event.processing.engine.impl.EsperEngineListener;
@@ -33,7 +34,6 @@ import event.processing.repo.QueryRepository;
 import event.processing.repo.RuleRepository;
 import event.processing.rule.Rule;
 import event.processing.rule.RuleFactory;
-import event.processing.rule.model.Reaction;
 import event.processing.status.STATUS_TYPE;
 import event.processing.status.Status;
 import event.processing.utilities.Utilities;
@@ -179,7 +179,7 @@ public class EProcManageStatementImpl implements EProcManageStatement {
             local.setComponentType(COMPONENT_TYPE.EVENT_PROCESSING);
             Connection cm = SettingUtils.getCMConnection();
 
-            String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_DELEGATION, cm);
+            String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_REGISTER_EVENT_PROCESSING_SOURCES, cm, ApplicationScheduler.id);
 
             if (STATUS_TYPE.TEST.equals(status.getCurrent())) {
                 /**
@@ -187,21 +187,11 @@ public class EProcManageStatementImpl implements EProcManageStatement {
                  */
             } else {
 
-                for (Reaction reaction : rule.getReactions()) {
+                final DSBuilder dsBuilder = new DSBuilder();
 
-                    /**
-                     * First configuration change is used for startup. Therefore ignore property part in reaction.
-                     */
+                rule.getReactions().forEach(item -> dsBuilder.buildDataSource(item.getDeviceInformation(), item.getDomainInformation()));
 
-                    CDBuilder cDBuilder = new CDBuilder();
-                    cDBuilder.buildDeviceInformation(reaction.getDeviceInformation())
-                            //
-                            .buildDomainInformation(reaction.getDomainInformation())
-                            //
-                            .buildConfigurationModificationStartUp(local, reaction.getDeviceInformation());
-
-                    restTemplate.postForEntity(url, cDBuilder.getResult(), String.class);
-                }
+                restTemplate.postForEntity(url, dsBuilder.getResult(), String.class);
             }
 
         } catch (Exception e) {
@@ -255,7 +245,7 @@ public class EProcManageStatementImpl implements EProcManageStatement {
             local.setComponentType(COMPONENT_TYPE.EVENT_PROCESSING);
             Connection cm = SettingUtils.getCMConnection();
 
-            String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_DELEGATION, cm);
+            String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_DEREGISTER_EVENT_PROCESSING_SOURCES, cm, ApplicationScheduler.id);
 
             if (STATUS_TYPE.TEST.equals(status.getCurrent())) {
                 /**
@@ -263,21 +253,11 @@ public class EProcManageStatementImpl implements EProcManageStatement {
                  */
             } else {
 
-                for (Reaction reaction : rule.getReactions()) {
+                final DSBuilder dsBuilder = new DSBuilder();
 
-                    /**
-                     * Last configuration change is used for shutdown. Therefore ignore property part in reaction.
-                     */
+                rule.getReactions().forEach(item -> dsBuilder.buildDataSource(item.getDeviceInformation(), item.getDomainInformation()));
 
-                    CDBuilder cDBuilder = new CDBuilder();
-                    cDBuilder.buildDeviceInformation(reaction.getDeviceInformation())
-                            //
-                            .buildDomainInformation(reaction.getDomainInformation())
-                            //
-                            .buildConfigurationModificationShutdown(local, reaction.getDeviceInformation());
-
-                    restTemplate.postForEntity(url, cDBuilder.getResult(), String.class);
-                }
+                restTemplate.postForEntity(url, dsBuilder.getResult(), String.class);
             }
 
         } catch (Exception e) {

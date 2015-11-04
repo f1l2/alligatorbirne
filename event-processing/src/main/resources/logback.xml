@@ -29,7 +29,7 @@
 
 	<root>
 		<level value="ERROR" />
-		<appender-ref ref="FILE" />
+		<appender-ref ref="CON" />
 	</root>
 	 	
 </configuration>

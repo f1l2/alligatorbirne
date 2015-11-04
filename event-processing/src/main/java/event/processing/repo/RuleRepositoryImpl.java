@@ -112,4 +112,9 @@ public class RuleRepositoryImpl implements RuleRepository {
         return rules;
     }
 
+    @Override
+    public void reset() {
+        repo = new LinkedHashMap<String, Rule>();
+    }
+
 }

@@ -1,8 +1,8 @@
 package configuration.management.model;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -40,7 +40,7 @@ public abstract class Component {
     private COMPONENT_TYPE type;
 
     @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE })
-    private List<DataSourceRO> dataSources = new ArrayList<DataSourceRO>();
+    private Set<DataSourceRO> dataSources = new HashSet<DataSourceRO>();
 
     public Long getId() {
         return id;
@@ -90,11 +90,11 @@ public abstract class Component {
         return type;
     }
 
-    public List<DataSourceRO> getDataSources() {
+    public Set<DataSourceRO> getDataSources() {
         return dataSources;
     }
 
-    public void setDataSources(List<DataSourceRO> dataSources) {
+    public void setDataSources(Set<DataSourceRO> dataSources) {
         this.dataSources = dataSources;
     }
 }

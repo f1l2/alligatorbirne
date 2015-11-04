@@ -20,6 +20,8 @@ public abstract class Engine {
 
     public abstract void send(DeviceData deviceData);
 
+    public abstract void deregisterAll();
+
     public ENGINE_TYPE getType() {
         return type;
     }

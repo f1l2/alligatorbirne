@@ -7,6 +7,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -124,7 +125,7 @@ public class CMgmtManageDeviceTest extends AbstractTestRestCM {
 
         assertEquals(2, ds.size());
 
-        DataSource dataSource = dataSources.getDataSources().get(0);
+        DataSource dataSource = new ArrayList<DataSource>(dataSources.getDataSources()).get(0);
 
         assertEquals(dataSource.getDeviceInformation().getName(), ds.get(0).getDeviceInformation().getName());
         assertEquals(dataSource.getDomainInformation().getName(), ds.get(0).getDomainInformation().getName());
@@ -151,7 +152,7 @@ public class CMgmtManageDeviceTest extends AbstractTestRestCM {
         List<Connection> connections = Arrays.asList(response.getBody().as(Connection[].class));
 
         assertNotNull(connections);
-        assertEquals(2, connections.size());
+        assertEquals(1, connections.size());
         assertEquals(register.getUrl().getAuthority(), connections.get(0).getUrl().getAuthority());
     }
 

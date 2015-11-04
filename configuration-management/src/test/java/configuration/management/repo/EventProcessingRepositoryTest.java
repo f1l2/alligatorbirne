@@ -3,6 +3,7 @@ package configuration.management.repo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.junit.Before;
@@ -85,8 +86,8 @@ public class EventProcessingRepositoryTest {
 
         assertNotNull(result.getDataSources());
         assertEquals(1, result.getDataSources().size());
-        assertEquals(dataSource1.getDevice(), result.getDataSources().get(0).getDevice());
-        assertEquals(dataSource1.getDomain(), result.getDataSources().get(0).getDomain());
+        assertEquals(dataSource1.getDevice(), new ArrayList<DataSourceRO>(result.getDataSources()).get(0).getDevice());
+        assertEquals(dataSource1.getDomain(), new ArrayList<DataSourceRO>(result.getDataSources()).get(0).getDomain());
     }
 
 }

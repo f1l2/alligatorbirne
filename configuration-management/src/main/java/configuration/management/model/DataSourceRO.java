@@ -85,4 +85,36 @@ public class DataSourceRO {
         this.properties = properties;
     }
 
+    @Override
+    public int hashCode() {
+
+        StringBuilder hash = new StringBuilder();
+        hash.append(device);
+        hash.append("$$$");
+        hash.append(domain);
+
+        return hash.toString().hashCode();
+
+    }
+
+    @Override
+    public boolean equals(Object object) {
+
+        if (!(object instanceof DataSourceRO)) {
+            return false;
+        }
+
+        DataSourceRO ds = (DataSourceRO) object;
+
+        if (!(device.equals(ds.getDevice()))) {
+            return false;
+        }
+
+        if (!(domain.equals(ds.getDomain()))) {
+            return false;
+        }
+
+        return true;
+    }
+
 }

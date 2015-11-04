@@ -14,7 +14,7 @@ import common.data.Connection;
 import configuration.management.model.Device;
 import configuration.management.repo.DeviceRepository;
 import configuration.management.repo.DeviceTransformer;
-import configuration.management.task.DelegationTask;
+import configuration.management.task.SetConfigDelegation;
 
 @Component
 public class DelegateConfigChange extends Activity<String, ConfigurationDelegation> {
@@ -42,7 +42,7 @@ public class DelegateConfigChange extends Activity<String, ConfigurationDelegati
 
         List<Connection> connectionsToBeContacted = transformer.toRemote(devicesToBeContacted);
 
-        taskExecutor.execute(new DelegationTask(item.getConfigurationModification(), connectionsToBeContacted));
+        taskExecutor.execute(new SetConfigDelegation(item.getConfigurationModification(), connectionsToBeContacted));
 
         return next("OK", item);
     }

@@ -4,7 +4,6 @@ import static com.jayway.restassured.RestAssured.get;
 import static com.jayway.restassured.RestAssured.given;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -35,7 +34,7 @@ import iot.device.repo.DeliveryTaskRO;
 @SpringApplicationConfiguration(classes = ApplicationTestContext.class)
 @WebAppConfiguration
 @IntegrationTest("server.port:0")
-@DirtiesContext(classMode = ClassMode.AFTER_CLASS)
+@DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD)
 public class IDevManageConfigTest extends AbstractRestTest {
 
     private ConfigurationModification cm;
@@ -86,7 +85,7 @@ public class IDevManageConfigTest extends AbstractRestTest {
         List<DeliveryTaskRO> result = Arrays.asList(response.getBody().as(DeliveryTaskRO[].class));
 
         assertNotNull(result);
-        assertTrue(result.size() >= 1);
+        assertEquals(1, result.size());
         assertEquals(cm.getDataSink().getUrl(), result.get(0).getUrlDataSink());
 
     }

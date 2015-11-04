@@ -22,6 +22,8 @@ public class ApplicationScheduler {
 
     private static Connection local, cm;
 
+    public static long id = -1;
+
     private RestTemplate restTemplate = new RestTemplate();
 
     @Autowired
@@ -67,6 +69,7 @@ public class ApplicationScheduler {
 
                 ResponseEntity<Connection> responseRegistration = restTemplate.postForEntity(url, local, Connection.class);
                 local = responseRegistration.getBody();
+                id = local.getId();
 
                 logger.info("EP registered. Status: " + responseRegistration.getStatusCode() + " Response body: " + local);
 

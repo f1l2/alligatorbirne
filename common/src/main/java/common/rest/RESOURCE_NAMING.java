@@ -30,6 +30,10 @@ public enum RESOURCE_NAMING {
     //
     CMGMT_REGISTER_EVENT_PROCESSING("/registrations/eventprocessing", RequestMethod.POST),
     //
+    CMGMT_REGISTER_EVENT_PROCESSING_SOURCES("/registrations/eventprocessing/sources/{id}", RequestMethod.POST),
+    //
+    CMGMT_DEREGISTER_EVENT_PROCESSING_SOURCES("/deregistrations/eventprocessing/sources/{id}", RequestMethod.POST),
+    //
     CMGMT_GET_EVENT_PROCESSING_DATA_SOURCES("/registrations/devices/eventprocessing/{id}", RequestMethod.GET),
     //
     CMGMT_HEART_BEAT_EVENT_PROCESSING("/registrations/eventprocessing/{id}", RequestMethod.PUT),

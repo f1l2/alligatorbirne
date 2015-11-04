@@ -3,6 +3,7 @@ package configuration.management.util;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.util.ArrayList;
 import java.util.Properties;
 
 import org.junit.Before;
@@ -57,8 +58,8 @@ public class DataSourceUtilTest {
 
         assertEquals(1, component.getDataSources().size());
         assertNotNull(component.getDataSources());
-        assertNotNull(component.getDataSources().get(0));
-        assertEquals(1, component.getDataSources().get(0).getProperties().size());
+        assertNotNull(new ArrayList<DataSourceRO>(component.getDataSources()).get(0));
+        assertEquals(1, new ArrayList<DataSourceRO>(component.getDataSources()).get(0).getProperties().size());
     }
 
     @Test
@@ -111,7 +112,7 @@ public class DataSourceUtilTest {
         DataSourceUtil.saveAndUpdate(component, device, domain, properties);
 
         assertEquals(1, component.getDataSources().size());
-        assertEquals(2, component.getDataSources().get(0).getProperties().size());
+        assertEquals(2, new ArrayList<DataSourceRO>(component.getDataSources()).get(0).getProperties().size());
 
     }
 
@@ -125,7 +126,7 @@ public class DataSourceUtilTest {
         DataSourceUtil.saveAndUpdate(component, device, domain, properties);
 
         assertEquals(1, component.getDataSources().size());
-        assertEquals(1, component.getDataSources().get(0).getProperties().size());
+        assertEquals(1, new ArrayList<DataSourceRO>(component.getDataSources()).get(0).getProperties().size());
 
     }
 
@@ -139,8 +140,8 @@ public class DataSourceUtilTest {
         DataSourceUtil.saveAndUpdate(component, device, domain, properties);
 
         assertEquals(1, component.getDataSources().size());
-        assertEquals(1, component.getDataSources().get(0).getProperties().size());
-        assertEquals(1, component.getDataSources().get(0).getSensorData().size());
+        assertEquals(1, new ArrayList<DataSourceRO>(component.getDataSources()).get(0).getProperties().size());
+        assertEquals(1, new ArrayList<DataSourceRO>(component.getDataSources()).get(0).getSensorData().size());
 
     }
 

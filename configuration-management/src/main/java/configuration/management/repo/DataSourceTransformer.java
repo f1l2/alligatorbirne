@@ -1,5 +1,10 @@
 package configuration.management.repo;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -51,6 +56,28 @@ public class DataSourceTransformer extends Transformer<DataSourceRO, DataSource>
         item.setDomainInformation(domInfo);
 
         return item;
+    }
+
+    public Set<DataSourceRO> toLocal(Set<DataSource> remotes) {
+
+        Set<DataSourceRO> locals = new HashSet<DataSourceRO>();
+
+        for (DataSource remote : remotes) {
+            locals.add(toLocal(remote));
+        }
+
+        return locals;
+    }
+
+    public List<DataSource> toRemote(Set<DataSourceRO> locals) {
+
+        List<DataSource> remotes = new ArrayList<DataSource>();
+
+        for (DataSourceRO local : locals) {
+            remotes.add(toRemote(local));
+        }
+
+        return remotes;
     }
 
 }

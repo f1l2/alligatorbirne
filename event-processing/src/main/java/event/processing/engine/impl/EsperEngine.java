@@ -124,6 +124,11 @@ public class EsperEngine extends Engine {
         EP_ADMIN.getStatement(epl).destroy();
     }
 
+    @Override
+    public void deregisterAll() {
+        EP_ADMIN.destroyAllStatements();
+    }
+
     public EPRuntime getCepRT() {
         return EP_RUNTIME;
     }
