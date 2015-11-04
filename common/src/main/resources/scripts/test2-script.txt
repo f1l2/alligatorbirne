@@ -1,0 +1,15 @@
+list-dev
+
+list-ep
+
+rq --epId 1 --query "CONDITION name = 'Temperature' AND value >= 25 FROM Floor1" --queryName detectTemperatureAbove25
+
+rq --epId 1 --query "CONDITION name = 'Temperature' AND value <= 15 FROM Floor1" --queryName detectTemperatureUnder15
+
+rr --epId 1 --rule 'detectTemperatureUnder15 -> detectTemperatureAbove25 TRIGGERS Temperature, FLOOR1, TASK_INTERVAL_MS = 1000' --ruleName decreaseIntervalBasedOnHighTemperature
+
+rr --epId 1 --rule 'detectTemperatureAbove25 -> detectTemperatureUnder15 TRIGGERS Temperature, FLOOR1, TASK_INTERVAL_MS = 10000' --ruleName increaseIntervalBasedOnLowTemperature
+
+activate-rule --epId 1 --ruleName decreaseIntervalBasedOnHighTemperature
+
+activate-rule --epId 1 --ruleName increaseIntervalBasedOnLowTemperature
