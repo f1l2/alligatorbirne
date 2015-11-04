@@ -7,7 +7,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.Properties;
 
 import org.junit.After;
@@ -20,12 +19,11 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.util.LinkedMultiValueMap;
 
 import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.response.ResponseBodyExtractionOptions;
 
-import common.data.ConfigurationModification;
+import common.data.Connection;
 import common.property.SystemReservedProperty;
 import common.rest.RESOURCE_NAMING;
 import iot.device.ApplicationTestContext;
@@ -39,7 +37,7 @@ import iot.device.utility.VirtualEP;
 @DirtiesContext(classMode = ClassMode.AFTER_CLASS)
 public class IDevManageSetConfig1Test extends AbstractRestTest {
 
-    private ConfigurationModification cm;
+    private Connection ep;
 
     /**
      * Implicitly test method setConfiguration
@@ -50,7 +48,9 @@ public class IDevManageSetConfig1Test extends AbstractRestTest {
 
         super.before();
 
-        this.deliveryStart();
+        ep = getRandomEP();
+
+        this.deliveryStart(ep);
 
         /**
          * Send change of configuration
@@ -58,11 +58,9 @@ public class IDevManageSetConfig1Test extends AbstractRestTest {
         Properties properties = new Properties();
         properties.put(SystemReservedProperty.TASK_INTERVAL_MS.getName(), 500);
 
-        cm = new ConfigurationModification();
-        cm.setDataSink(ep);
-        cm.setProperties(properties);
+        cdBuilder.buildProperties(properties);
 
-        ResponseBodyExtractionOptions response2 = given().body(cm).contentType(ContentType.JSON).post(RESOURCE_NAMING.IDEV_SET_CONFIGURATION.getPath())
+        ResponseBodyExtractionOptions response2 = given().body(cdBuilder.getResult()).contentType(ContentType.JSON).post(RESOURCE_NAMING.IDEV_SET_CONFIGURATION.getPath())
                 //
                 .then().contentType(ContentType.TEXT)
                 //
@@ -75,9 +73,6 @@ public class IDevManageSetConfig1Test extends AbstractRestTest {
 
     @After
     public void after() {
-
-        VirtualEP.setData(new ArrayList<VirtualData>());
-        VirtualEP.setMap(new LinkedMultiValueMap<String, VirtualData>());
 
         this.deliveryStop();
 
@@ -100,9 +95,9 @@ public class IDevManageSetConfig1Test extends AbstractRestTest {
         Properties properties = new Properties();
         properties.put(SystemReservedProperty.TASK_INTERVAL_MS.name(), 1000);
 
-        cm.setProperties(properties);
+        cdBuilder.buildProperties(properties);
 
-        ResponseBodyExtractionOptions response = given().body(cm).contentType(ContentType.JSON).post(RESOURCE_NAMING.IDEV_SET_CONFIGURATION.getPath())
+        ResponseBodyExtractionOptions response = given().body(cdBuilder.getResult()).contentType(ContentType.JSON).post(RESOURCE_NAMING.IDEV_SET_CONFIGURATION.getPath())
                 //
                 .then().contentType(ContentType.TEXT)
                 //

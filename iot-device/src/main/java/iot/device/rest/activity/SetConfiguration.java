@@ -7,12 +7,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
-import common.data.ConfigurationModification;
+import common.data.ConfigurationDelegation;
 import iot.device.repo.DeliveryTaskRO;
 import iot.device.repo.DeliveryTaskRepositoryImpl;
 
 @Component
-public class SetConfiguration extends Activity<String, ConfigurationModification> {
+public class SetConfiguration extends Activity<String, ConfigurationDelegation> {
 
     final static Logger logger = LoggerFactory.getLogger(SetConfiguration.class);;
 
@@ -20,16 +20,16 @@ public class SetConfiguration extends Activity<String, ConfigurationModification
     private DeliveryTaskRepositoryImpl repo;
 
     @Override
-    public ResponseEntity<String> doStep(ConfigurationModification cm) {
+    public ResponseEntity<String> doStep(ConfigurationDelegation cd) {
 
-        DeliveryTaskRO taskRO = repo.findByUrl(cm.getDataSink().getUrl());
+        DeliveryTaskRO taskRO = repo.findByUrl(cd.getDataSink().getUrl());
 
         if (null != taskRO) {
             /**
              * Update properties.
              */
 
-            taskRO.getConfiguration().setAndUpdateProperties(cm.getProperties());
+            taskRO.getConfiguration().setAndUpdateProperties(cd.getProperties());
 
             repo.save(taskRO);
 
@@ -41,6 +41,6 @@ public class SetConfiguration extends Activity<String, ConfigurationModification
             this.setErrorResponse(new ResponseEntity<String>("Data Sinks is not delivered.", HttpStatus.BAD_REQUEST));
         }
 
-        return next("OK", cm);
+        return next("OK", cd);
     }
 }

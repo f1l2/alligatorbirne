@@ -8,9 +8,9 @@ public enum RESOURCE_NAMING {
     //
     IDEV_SET_CONFIGURATION("/configurations", RequestMethod.POST),
     //
-    IDEV_START_DELIVERY("/delivery/start/{authority}", RequestMethod.POST),
+    IDEV_START_DELIVERY("/delivery/start", RequestMethod.POST),
     //
-    IDEV_STOP_DELIVERY("/delivery/stop/{authority}", RequestMethod.POST),
+    IDEV_STOP_DELIVERY("/delivery/stop", RequestMethod.POST),
     //
     IDEV_STOP_INSTANCE("/stopping", RequestMethod.POST),
     //
@@ -30,9 +30,9 @@ public enum RESOURCE_NAMING {
     //
     CMGMT_REGISTER_EVENT_PROCESSING("/registrations/eventprocessing", RequestMethod.POST),
     //
-    CMGMT_REGISTER_EVENT_PROCESSING_SOURCES("/registrations/eventprocessing/sources/{id}", RequestMethod.POST),
+    CMGMT_REGISTER_EVENT_PROCESSING_SOURCES("/registrations/eventprocessing/sources", RequestMethod.POST),
     //
-    CMGMT_DEREGISTER_EVENT_PROCESSING_SOURCES("/deregistrations/eventprocessing/sources/{id}", RequestMethod.POST),
+    CMGMT_DEREGISTER_EVENT_PROCESSING_SOURCES("/deregistrations/eventprocessing/sources", RequestMethod.POST),
     //
     CMGMT_GET_EVENT_PROCESSING_DATA_SOURCES("/registrations/devices/eventprocessing/{id}", RequestMethod.GET),
     //

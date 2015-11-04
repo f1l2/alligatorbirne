@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import common.data.Connection;
+import common.data.builder.CDBuilder;
 import common.data.builder.DSBuilder;
 import common.data.setting.SettingUtils;
 import common.data.type.COMPONENT_TYPE;
@@ -187,11 +188,11 @@ public class EProcManageStatementImpl implements EProcManageStatement {
                  */
             } else {
 
-                final DSBuilder dsBuilder = new DSBuilder();
+                final CDBuilder cdBuilder = new CDBuilder();
+                cdBuilder.buildDataSink(local);
+                rule.getReactions().forEach(item -> cdBuilder.addDataSource(item.getDeviceInformation(), item.getDomainInformation()));
 
-                rule.getReactions().forEach(item -> dsBuilder.buildDataSource(item.getDeviceInformation(), item.getDomainInformation()));
-
-                restTemplate.postForEntity(url, dsBuilder.getResult(), String.class);
+                restTemplate.postForEntity(url, cdBuilder.getResult(), String.class);
             }
 
         } catch (Exception e) {

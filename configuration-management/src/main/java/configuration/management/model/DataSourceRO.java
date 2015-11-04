@@ -1,6 +1,5 @@
 package configuration.management.model;
 
-import java.util.HashSet;
 import java.util.Properties;
 
 import javax.persistence.Column;
@@ -30,9 +29,6 @@ public class DataSourceRO {
     @ManyToOne()
     @JoinColumn(name = "component")
     private Component component;
-
-    @Column
-    private HashSet<String> sensorData;
 
     @Column
     private Properties properties;
@@ -67,14 +63,6 @@ public class DataSourceRO {
 
     public void setComponent(Component component) {
         this.component = component;
-    }
-
-    public HashSet<String> getSensorData() {
-        return sensorData;
-    }
-
-    public void setSensorData(HashSet<String> sensorData) {
-        this.sensorData = sensorData;
     }
 
     public Properties getProperties() {

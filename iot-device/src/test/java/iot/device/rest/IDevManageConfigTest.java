@@ -25,7 +25,7 @@ import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.response.Response;
 import com.jayway.restassured.response.ResponseBodyExtractionOptions;
 
-import common.data.ConfigurationModification;
+import common.data.ConfigurationDelegation;
 import common.rest.RESOURCE_NAMING;
 import iot.device.ApplicationTestContext;
 import iot.device.repo.DeliveryTaskRO;
@@ -37,7 +37,7 @@ import iot.device.repo.DeliveryTaskRO;
 @DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD)
 public class IDevManageConfigTest extends AbstractRestTest {
 
-    private ConfigurationModification cm;
+    private ConfigurationDelegation cd;
 
     /**
      * Implicitly test method setConfiguration
@@ -53,11 +53,11 @@ public class IDevManageConfigTest extends AbstractRestTest {
         Properties properties = new Properties();
         properties.put("key", "value");
 
-        cm = new ConfigurationModification();
-        cm.setDataSink(ep);
-        cm.setProperties(properties);
+        cd = new ConfigurationDelegation();
+        cd.setDataSink(ep);
+        cd.setProperties(properties);
 
-        ResponseBodyExtractionOptions response = given().body(cm).contentType(ContentType.JSON).post(RESOURCE_NAMING.IDEV_SET_CONFIGURATION.getPath())
+        ResponseBodyExtractionOptions response = given().body(cd).contentType(ContentType.JSON).post(RESOURCE_NAMING.IDEV_SET_CONFIGURATION.getPath())
                 //
                 .then().contentType(ContentType.TEXT)
                 //
@@ -86,7 +86,7 @@ public class IDevManageConfigTest extends AbstractRestTest {
 
         assertNotNull(result);
         assertEquals(1, result.size());
-        assertEquals(cm.getDataSink().getUrl(), result.get(0).getUrlDataSink());
+        assertEquals(cd.getDataSink().getUrl(), result.get(0).getUrlDataSink());
 
     }
 
@@ -94,14 +94,14 @@ public class IDevManageConfigTest extends AbstractRestTest {
     public void getConfigurationByEPAuthority() {
 
         String path = RESOURCE_NAMING.IDEV_GET_CONFIGURATION_BY_EP.getPath();
-        path = path.replace("{authority}", cm.getDataSink().getUrl().getAuthority());
+        path = path.replace("{authority}", cd.getDataSink().getUrl().getAuthority());
 
         Response response = get(path);
 
         DeliveryTaskRO result = response.getBody().as(DeliveryTaskRO.class);
 
         assertNotNull(result);
-        assertEquals(cm.getDataSink().getUrl(), result.getUrlDataSink());
+        assertEquals(cd.getDataSink().getUrl(), result.getUrlDataSink());
 
     }
 }

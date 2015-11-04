@@ -1,12 +1,15 @@
 package common.data.builder;
 
 import java.util.Properties;
+import java.util.Set;
 
 import common.data.ConfigurationDelegation;
-import common.data.ConfigurationModification;
 import common.data.Connection;
+import common.data.DataSource;
 import common.data.model.DeviceInformation;
 import common.data.model.DomainInformation;
+import common.data.type.COMPONENT_TYPE;
+import common.rest.UrlUtils;
 
 public class CDBuilder {
 
@@ -16,34 +19,60 @@ public class CDBuilder {
         cd = new ConfigurationDelegation();
     }
 
-    public CDBuilder buildDeviceInformation(String name) {
+    public CDBuilder addDataSource(String device, String domain) {
         DeviceInformation devInfo = new DeviceInformation();
-        devInfo.setName(name);
+        devInfo.setName(device);
 
-        cd.setDeviceInformation(devInfo);
+        DomainInformation domainInfo = new DomainInformation();
+        domainInfo.setName(domain);
 
-        return this;
-    }
-
-    public CDBuilder buildDomainInformation(String name) {
-        DomainInformation domInfo = new DomainInformation();
-        domInfo.setName(name);
-
-        cd.setDomainInformation(domInfo);
+        cd.getDataSources().add(new DataSource(domainInfo, devInfo));
 
         return this;
     }
 
-    public CDBuilder buildConfigurationModification(Connection dataSink, Properties properties) {
+    public CDBuilder buildDataSink(String authority, COMPONENT_TYPE ct) {
 
-        ConfigurationModification cm = new ConfigurationModification();
-        cm.setDataSink(dataSink);
-        cm.setProperties(properties);
+        Connection connection = new Connection();
+        connection.setUrl(UrlUtils.parseUrl(authority));
+        connection.setComponentType(ct);
 
-        cd.setConfigurationModification(cm);
+        cd.setDataSink(connection);
 
         return this;
 
+    }
+
+    public CDBuilder buildDataSink(Connection connection) {
+
+        cd.setDataSink(connection);
+
+        return this;
+
+    }
+
+    public CDBuilder buildDataSink(String authority, long id) {
+
+        Connection connection = new Connection();
+        connection.setUrl(UrlUtils.parseUrl(authority));
+        connection.setId(id);
+
+        cd.setDataSink(connection);
+
+        return this;
+
+    }
+
+    public CDBuilder buildDataSources(Set<DataSource> dataSources) {
+        cd.setDataSources(dataSources);
+
+        return this;
+    }
+
+    public CDBuilder buildProperties(Properties properties) {
+        cd.setProperties(properties);
+
+        return this;
     }
 
     public ConfigurationDelegation getResult() {

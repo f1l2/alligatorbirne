@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import common.data.ConfigurationDelegation;
 import common.data.Connection;
 import common.data.DataSource;
-import common.data.dto.DataSourcesDTO;
 
 /**
  * Interface definition
@@ -23,11 +22,11 @@ public interface CMgmtManageEventProcessing {
 
     public ResponseEntity<Connection> register(Connection connection);
 
-    public ResponseEntity<String> registerDataSources(Long id, DataSourcesDTO data);
+    public ResponseEntity<String> registerDataSources(ConfigurationDelegation body);
 
-    public ResponseEntity<String> deregisterDataSources(Long id, DataSourcesDTO dataSources);
+    public ResponseEntity<String> deregisterDataSources(ConfigurationDelegation body);
 
-    public ResponseEntity<String> delegate(ConfigurationDelegation data);
+    public ResponseEntity<String> delegate(ConfigurationDelegation body);
 
     public ResponseEntity<String> heartbeat(Long id);
 

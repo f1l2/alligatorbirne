@@ -118,11 +118,9 @@ public class Rule extends EngineListener {
 
             for (Reaction reaction : reactions) {
                 CDBuilder cDBuilder = new CDBuilder();
-                cDBuilder.buildDeviceInformation(reaction.getDeviceInformation())
-                        //
-                        .buildDomainInformation(reaction.getDomainInformation())
-                        //
-                        .buildConfigurationModification(local, reaction.getConfigurationModification());
+                cDBuilder.addDataSource(reaction.getDeviceInformation(), reaction.getDomainInformation())//
+                        .buildDataSink(local)//
+                        .buildProperties(reaction.getConfigurationModification());
 
                 restTemplate.postForEntity(url, cDBuilder.getResult(), String.class);
             }

@@ -8,8 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 
-import common.data.dto.DataSourcesDTO;
-import common.rest.UrlUtils;
+import common.data.ConfigurationDelegation;
 import iot.device.ApplicationConfig;
 import iot.device.delivery.DeliveryTask;
 import iot.device.delivery.DynamicDeliveryTaskFactory;
@@ -17,11 +16,9 @@ import iot.device.repo.DeliveryTaskRO;
 import iot.device.repo.DeliveryTaskRepositoryImpl;
 
 @Component
-public class StartDelivery extends Activity<String, DataSourcesDTO> {
+public class StartDelivery extends Activity<String, ConfigurationDelegation> {
 
     final static Logger logger = LoggerFactory.getLogger(StartDelivery.class);
-
-    private String epAuthority;
 
     @Autowired
     private DeliveryTaskRepositoryImpl repo;
@@ -33,9 +30,9 @@ public class StartDelivery extends Activity<String, DataSourcesDTO> {
     private DynamicDeliveryTaskFactory ddtf;
 
     @Override
-    public ResponseEntity<String> doStep(DataSourcesDTO item) {
+    public ResponseEntity<String> doStep(ConfigurationDelegation item) {
 
-        DeliveryTaskRO taskRO = repo.findByAuthority(epAuthority);
+        DeliveryTaskRO taskRO = repo.findByUrl(item.getDataSink().getUrl());
 
         if (null != taskRO) {
             /**
@@ -64,7 +61,7 @@ public class StartDelivery extends Activity<String, DataSourcesDTO> {
 
             taskRO = new DeliveryTaskRO();
             taskRO.setDataSources(item.getDataSources());
-            taskRO.setUrlDataSink(UrlUtils.parseUrl(epAuthority));
+            taskRO.setUrlDataSink(item.getDataSink().getUrl());
 
             if (repo.create(taskRO)) {
 
@@ -83,13 +80,5 @@ public class StartDelivery extends Activity<String, DataSourcesDTO> {
         }
 
         return next("OK", item);
-    }
-
-    public String getEpAuthority() {
-        return epAuthority;
-    }
-
-    public void setEpAuthority(String epAuthority) {
-        this.epAuthority = epAuthority;
     }
 }

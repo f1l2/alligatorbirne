@@ -10,9 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 
+import common.data.ConfigurationDelegation;
 import common.data.Connection;
 import common.data.DataSource;
-import common.data.dto.DataSourcesDTO;
 import configuration.management.model.Device;
 import configuration.management.repo.DeviceRepository;
 import configuration.management.repo.DeviceTransformer;
@@ -20,7 +20,7 @@ import configuration.management.task.StartDeliveryDelegation;
 import configuration.management.task.StopDeliveryDelegation;
 
 @Component
-public class DelegateDeliveryChange extends Activity<String, DataSourcesDTO> {
+public class DelegateDeliveryChange extends Activity<String, ConfigurationDelegation> {
 
     final static Logger logger = LoggerFactory.getLogger(DelegateDeliveryChange.class);
     @Autowired
@@ -35,7 +35,7 @@ public class DelegateDeliveryChange extends Activity<String, DataSourcesDTO> {
     private boolean isStart = true;
 
     @Override
-    public ResponseEntity<String> doStep(DataSourcesDTO item) {
+    public ResponseEntity<String> doStep(ConfigurationDelegation item) {
 
         /**
          * No worry about NPE because item was already checked during validations step.

@@ -58,8 +58,8 @@ public class IDevManageSetConfig2Test extends AbstractRestTest {
     @After
     public void after() {
 
-        this.deliveryStop(dsBuilder, ep1);
-        this.deliveryStop(dsBuilder, ep2);
+        this.deliveryStop(cdBuilder, ep1);
+        this.deliveryStop(cdBuilder, ep2);
 
     }
 

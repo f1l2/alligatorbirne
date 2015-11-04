@@ -4,8 +4,7 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
-import common.data.ConfigurationModification;
-import common.data.dto.DataSourcesDTO;
+import common.data.ConfigurationDelegation;
 import iot.device.repo.DeliveryTaskRO;
 
 /**
@@ -20,9 +19,10 @@ public interface IDevManageConfig {
 
     public ResponseEntity<DeliveryTaskRO> getConfigurationByEPAuthority(String authority);
 
-    public ResponseEntity<String> setConfiguration(ConfigurationModification configurationModification);
+    public ResponseEntity<String> setConfiguration(ConfigurationDelegation configurationDelegation);
 
-    public ResponseEntity<String> startDelivery(String authority, DataSourcesDTO dataSources);
+    public ResponseEntity<String> startDelivery(ConfigurationDelegation configurationDelegation);
 
-    public ResponseEntity<String> stopDelivery(String authority, DataSourcesDTO dataSources);
+    public ResponseEntity<String> stopDelivery(ConfigurationDelegation configurationDelegation);
+
 }

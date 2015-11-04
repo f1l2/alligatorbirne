@@ -7,15 +7,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
-import common.data.dto.DataSourcesDTO;
+import common.data.ConfigurationDelegation;
 
 @Component
-public class ValidateDataSources extends Activity<String, DataSourcesDTO> {
+public class ValidateDataSources extends Activity<String, ConfigurationDelegation> {
 
     final static Logger logger = LoggerFactory.getLogger(ValidateDataSources.class);;
 
     @Override
-    public ResponseEntity<String> doStep(DataSourcesDTO item) {
+    public ResponseEntity<String> doStep(ConfigurationDelegation item) {
 
         if (null == item) {
             this.setErrorResponse(new ResponseEntity<String>("Data sources is null.", HttpStatus.BAD_REQUEST));

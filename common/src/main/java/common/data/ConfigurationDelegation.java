@@ -1,38 +1,39 @@
 package common.data;
 
-import common.data.model.DeviceInformation;
-import common.data.model.DomainInformation;
+import java.util.HashSet;
+import java.util.Properties;
+import java.util.Set;
 
 public class ConfigurationDelegation {
 
-    private DeviceInformation deviceInformation;
+    private Connection dataSink;
 
-    private DomainInformation domainInformation;
+    private Set<DataSource> dataSources = new HashSet<DataSource>();
 
-    private ConfigurationModification configurationModification;
+    private Properties properties = new Properties();
 
-    public DeviceInformation getDeviceInformation() {
-        return deviceInformation;
+    public Connection getDataSink() {
+        return dataSink;
     }
 
-    public void setDeviceInformation(DeviceInformation deviceInformation) {
-        this.deviceInformation = deviceInformation;
+    public void setDataSink(Connection dataSink) {
+        this.dataSink = dataSink;
     }
 
-    public DomainInformation getDomainInformation() {
-        return domainInformation;
+    public Set<DataSource> getDataSources() {
+        return dataSources;
     }
 
-    public void setDomainInformation(DomainInformation domainInformation) {
-        this.domainInformation = domainInformation;
+    public void setDataSources(Set<DataSource> dataSources) {
+        this.dataSources = dataSources;
     }
 
-    public ConfigurationModification getConfigurationModification() {
-        return configurationModification;
+    public Properties getProperties() {
+        return properties;
     }
 
-    public void setConfigurationModification(ConfigurationModification configurationModification) {
-        this.configurationModification = configurationModification;
+    public void setProperties(Properties properties) {
+        this.properties = properties;
     }
 
 }

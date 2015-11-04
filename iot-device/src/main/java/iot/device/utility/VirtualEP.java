@@ -48,4 +48,9 @@ public class VirtualEP {
     public static void setMap(MultiValueMap<String, VirtualData> map) {
         VirtualEP.map = map;
     }
+
+    public static void reset() {
+        VirtualEP.setData(new ArrayList<VirtualData>());
+        VirtualEP.setMap(new LinkedMultiValueMap<String, VirtualData>());
+    }
 }

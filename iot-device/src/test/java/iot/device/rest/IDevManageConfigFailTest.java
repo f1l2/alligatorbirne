@@ -20,7 +20,7 @@ import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.response.ResponseBodyExtractionOptions;
 
 import common.data.Connection;
-import common.data.builder.DSBuilder;
+import common.data.type.COMPONENT_TYPE;
 import common.rest.RESOURCE_NAMING;
 import common.rest.ResourceUtils;
 import iot.device.ApplicationConfig;
@@ -36,9 +36,6 @@ public class IDevManageConfigFailTest extends AbstractRestTest {
     @Test
     public void setConfigurationFailedDueExceedMax() {
 
-        DSBuilder dsBuilder = new DSBuilder();
-        dsBuilder.buildDataSource("pressure", "floor1");
-
         List<Connection> eps = new ArrayList<Connection>();
 
         for (int i = 0; i < ApplicationConfig.MAX_TASKS; i++) {
@@ -46,12 +43,14 @@ public class IDevManageConfigFailTest extends AbstractRestTest {
             Connection ep = getRandomEP();
             eps.add(ep);
 
-            this.deliveryStart(dsBuilder, ep);
+            this.deliveryStart(ep);
         }
 
-        String path = ResourceUtils.getPath(RESOURCE_NAMING.IDEV_START_DELIVERY, getRandomEP().getUrl().getAuthority());
+        String path = ResourceUtils.getPath(RESOURCE_NAMING.IDEV_START_DELIVERY);
 
-        ResponseBodyExtractionOptions responseTooMuch = given().body(dsBuilder.getResult()).contentType(ContentType.JSON).post(path)
+        cdBuilder.buildDataSink("hostblabla:1234", COMPONENT_TYPE.EVENT_PROCESSING);
+
+        ResponseBodyExtractionOptions responseTooMuch = given().body(cdBuilder.getResult()).contentType(ContentType.JSON).post(path)
                 //
                 .then().contentType(ContentType.TEXT)
                 //
@@ -61,7 +60,7 @@ public class IDevManageConfigFailTest extends AbstractRestTest {
         assertEquals("Device has no spare capacity.", responseTooMuch.asString());
 
         for (Connection ep : eps) {
-            this.deliveryStop(dsBuilder, ep);
+            this.deliveryStop(cdBuilder, ep);
         }
 
     }

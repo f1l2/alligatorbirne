@@ -6,24 +6,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
-import common.data.dto.DataSourcesDTO;
+import common.data.ConfigurationDelegation;
 import iot.device.repo.DeliveryTaskRO;
 import iot.device.repo.DeliveryTaskRepositoryImpl;
 
 @Component
-public class StopDelivery extends Activity<String, DataSourcesDTO> {
+public class StopDelivery extends Activity<String, ConfigurationDelegation> {
 
     final static Logger logger = LoggerFactory.getLogger(StopDelivery.class);
-
-    private String epAuthority;
 
     @Autowired
     private DeliveryTaskRepositoryImpl repo;
 
     @Override
-    public ResponseEntity<String> doStep(DataSourcesDTO item) {
+    public ResponseEntity<String> doStep(ConfigurationDelegation item) {
 
-        DeliveryTaskRO taskRO = repo.findByAuthority(epAuthority);
+        DeliveryTaskRO taskRO = repo.findByUrl(item.getDataSink().getUrl());
 
         if (null != taskRO) {
             /**
@@ -44,13 +42,4 @@ public class StopDelivery extends Activity<String, DataSourcesDTO> {
 
         return next("OK", item);
     }
-
-    public String getEpAuthority() {
-        return epAuthority;
-    }
-
-    public void setEpAuthority(String epAuthority) {
-        this.epAuthority = epAuthority;
-    }
-
 }

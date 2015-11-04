@@ -1,22 +1,31 @@
 package configuration.management.rest.activity;
 
+import java.util.Arrays;
 import java.util.Set;
+import java.util.TreeSet;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
+import common.data.Connection;
+import common.data.builder.CDBuilder;
 import common.data.dto.DataSourcesDTO;
+import common.data.type.COMPONENT_TYPE;
 import configuration.management.model.DataSourceRO;
 import configuration.management.model.Device;
+import configuration.management.model.EventProcessing;
 import configuration.management.repo.DataSourceTransformer;
 import configuration.management.repo.DeviceRepository;
 import configuration.management.repo.EventProcessingRepository;
 import configuration.management.repo.EventProcessingTransformer;
+import configuration.management.task.SetConfigDelegation;
+import configuration.management.task.StartDeliveryDelegation;
 
 @Component
 public class RegisterDataSourcesDevice extends Activity<String, DataSourcesDTO> {
@@ -38,10 +47,7 @@ public class RegisterDataSourcesDevice extends Activity<String, DataSourcesDTO> 
     private EventProcessingTransformer epTransformer;
 
     @Autowired
-    private DelegateConfigChange delegateConfigChange;
-
-    @Autowired
-    private DelegateDeliveryChange delegateDeliveryChange;
+    private ThreadPoolTaskExecutor taskExecutor;
 
     @Override
     public ResponseEntity<String> doStep(DataSourcesDTO item) {
@@ -60,61 +66,40 @@ public class RegisterDataSourcesDevice extends Activity<String, DataSourcesDTO> 
 
             this.repo.save(component);
 
-            // /**
-            // * Loop all data sources, which can be provided by device
-            // */
-            //
-            // Map<String, EventProcessing> eps = new HashMap<String, EventProcessing>();
-            //
-            // for (DataSourceRO dsDevice : ds) {
-            // for (EventProcessing ep : epRepo.findByDataSources(dsDevice.getDevice(), dsDevice.getDomain())) {
-            //
-            // Connection remote = epTransformer.toRemote(ep);
-            // remote.setComponentType(COMPONENT_TYPE.EVENT_PROCESSING);
-            //
-            // DSBuilder dsBuilder = new DSBuilder();
-            // dsBuilder.buildDataSource(dsDevice.getDevice(), dsDevice.getDomain());
-            //
-            // delegateDeliveryChange.setStart(true);
-            // delegateDeliveryChange.doStep(dsBuilder.getResult());
-            //
-            // }
-            // }
-            //
-            // /**
-            // * Loop all interested EPs
-            // */
-            //
-            // for (EventProcessing ep : new ArrayList<EventProcessing>(eps.values())) {
-            //
-            // for (DataSourceRO dsEP : ep.getDataSources()) {
-            //
-            // if (dsEP.getSensorData() == null) {
-            //
-            // logger.error("SensorData are null.");
-            // continue;
-            // }
-            //
-            // CDBuilder builder = new CDBuilder();
-            // builder.buildDeviceInformation(dsEP.getDevice())
-            // //
-            // .buildDomainInformation(dsEP.getDomain());
-            //
-            // for (String sensorData : dsEP.getSensorData()) {
-            //
-            // Properties properties = new Properties();
-            // properties.putAll(dsEP.getProperties());
-            // properties.put(SensorReservedProperty.REQUEST_FOR_DELIVERY.getName(), sensorData);
-            //
-            // builder.buildConfigurationModification(remote, properties);
-            //
-            // delegateConfigChange.doStep(builder.getResult());
-            //
-            // }
-            // }
-            // }
-        }
+            /**
+             * Loop all data sources, which can be provided by device
+             */
 
+            for (DataSourceRO dsDevice : ds) {
+                for (EventProcessing ep : epRepo.findByDataSources(dsDevice.getDevice(), dsDevice.getDomain())) {
+
+                    Connection remote = epTransformer.toRemote(ep);
+                    remote.setComponentType(COMPONENT_TYPE.EVENT_PROCESSING);
+
+                    CDBuilder builder = new CDBuilder();
+                    builder.addDataSource(dsDevice.getDevice(), dsDevice.getDomain())//
+                            .buildDataSources(item.getDataSources()); //
+
+                    taskExecutor.execute(new StartDeliveryDelegation(builder.getResult(), Arrays.asList(remote)));
+
+                    ep.getDataSources().contains(dsDevice);
+
+                    if (!CollectionUtils.isEmpty(ep.getDataSources())) {
+                        DataSourceRO dsRO = ((TreeSet<DataSourceRO>) ep.getDataSources()).first();
+
+                        if (!CollectionUtils.isEmpty(dsRO.getProperties())) {
+
+                            builder = new CDBuilder();
+                            builder.buildDataSink(remote)//
+                                    .buildProperties(dsRO.getProperties())//
+                                    .addDataSource(dsDevice.getDevice(), dsDevice.getDomain());
+
+                            taskExecutor.execute(new SetConfigDelegation(builder.getResult(), Arrays.asList(remote)));
+                        }
+                    }
+                }
+            }
+        }
         return next("OK", item);
     }
 

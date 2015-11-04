@@ -103,6 +103,8 @@ public class DeliveryTask implements Runnable {
                     }
                 }
 
+            } catch (IllegalStateException e) {
+
             } catch (Exception e) {
                 logger.error("Error sending data", e);
             }

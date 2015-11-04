@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.client.RestTemplate;
 
-import common.data.ConfigurationModification;
+import common.data.ConfigurationDelegation;
 import common.data.Connection;
 import common.rest.RESOURCE_NAMING;
 import common.rest.ResourceUtils;
@@ -15,13 +15,13 @@ public class SetConfigDelegation extends DelegationTask {
 
     final static Logger logger = LoggerFactory.getLogger(SetConfigDelegation.class);
 
-    private ConfigurationModification cm;
+    private ConfigurationDelegation cd;
 
-    public SetConfigDelegation(ConfigurationModification cm, List<Connection> connections) {
+    public SetConfigDelegation(ConfigurationDelegation cd, List<Connection> connections) {
 
         super(connections);
 
-        this.cm = cm;
+        this.cd = cd;
 
     }
 
@@ -34,7 +34,7 @@ public class SetConfigDelegation extends DelegationTask {
 
         try {
             String url = ResourceUtils.getUrl(RESOURCE_NAMING.IDEV_SET_CONFIGURATION, connection.getUrl().getAuthority());
-            restTemplate.postForEntity(url, cm, String.class);
+            restTemplate.postForEntity(url, cd, String.class);
         } catch (Exception e) {
             logger.error("{}", e);
 

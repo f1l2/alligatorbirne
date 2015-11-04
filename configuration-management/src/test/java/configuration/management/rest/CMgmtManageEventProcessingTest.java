@@ -24,7 +24,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import com.jayway.restassured.response.Response;
 
 import common.data.Connection;
-import common.data.DataSource;
 import common.data.builder.CDBuilder;
 import common.data.type.COMPONENT_TYPE;
 import common.property.SensorReservedProperty;
@@ -59,11 +58,9 @@ public class CMgmtManageEventProcessingTest extends AbstractTestRestCM {
         properties.put(SensorReservedProperty.REQUEST_FOR_DELIVERY.getName(), "temperature");
 
         CDBuilder cDBuilder = new CDBuilder();
-        cDBuilder.buildDeviceInformation("device")
-                //
-                .buildDomainInformation("domain")
-                //
-                .buildConfigurationModification(connection, properties);
+        cDBuilder.addDataSource("device", "domain")//
+                .buildDataSink(connection)//
+                .buildProperties(properties);
 
         // send delegation
 
@@ -72,18 +69,6 @@ public class CMgmtManageEventProcessingTest extends AbstractTestRestCM {
                 .when().post(ResourceUtils.getPath(RESOURCE_NAMING.CMGMT_DELEGATION))
                 //
                 .then().statusCode(HttpStatus.OK.value());
-
-        // check data sources
-
-        String path = ResourceUtils.getPath(RESOURCE_NAMING.CMGMT_GET_EVENT_PROCESSING_DATA_SOURCES, connection.getId());
-
-        Response response = when().get(path);
-
-        assertEquals(HttpStatus.OK.value(), response.getStatusCode());
-
-        List<DataSource> dataSources = Arrays.asList(response.getBody().as(DataSource[].class));
-
-        assertEquals(1, dataSources.size());
 
     }
 

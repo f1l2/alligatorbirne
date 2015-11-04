@@ -10,18 +10,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
-import common.data.dto.DataSourcesDTO;
+import common.data.ConfigurationDelegation;
 import configuration.management.model.DataSourceRO;
 import configuration.management.model.EventProcessing;
 import configuration.management.repo.DataSourceTransformer;
 import configuration.management.repo.EventProcessingRepository;
 
 @Component
-public class RegisterDataSourcesEP extends Activity<String, DataSourcesDTO> {
+public class RegisterDataSourcesEP extends Activity<String, ConfigurationDelegation> {
 
     final static Logger logger = LoggerFactory.getLogger(RegisterDataSourcesEP.class);
-
-    private Long id;
 
     private boolean deregiser = false;
 
@@ -32,9 +30,9 @@ public class RegisterDataSourcesEP extends Activity<String, DataSourcesDTO> {
     private DataSourceTransformer transformer;
 
     @Override
-    public ResponseEntity<String> doStep(DataSourcesDTO item) {
+    public ResponseEntity<String> doStep(ConfigurationDelegation item) {
 
-        EventProcessing component = this.repo.findOne(id);
+        EventProcessing component = this.repo.findByAuthority(item.getDataSink().getUrl().getAuthority());
 
         if (component == null) {
             setErrorResponse(new ResponseEntity<String>("Registration of data sources failed. Event processing instance with Id couldn't be found.", HttpStatus.BAD_REQUEST));
@@ -61,14 +59,6 @@ public class RegisterDataSourcesEP extends Activity<String, DataSourcesDTO> {
         }
 
         return next("OK", item);
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public boolean isDeregiser() {

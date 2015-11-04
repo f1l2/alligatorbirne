@@ -10,7 +10,6 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
 import org.springframework.core.type.filter.AssignableTypeFilter;
 
-import common.data.ConfigurationModification;
 import common.data.model.DataModel;
 import common.data.model.DeviceInformation;
 import common.data.model.DomainInformation;
@@ -31,7 +30,6 @@ public class ClassPathScanningTest {
             classes.add(cls.getSimpleName());
         }
 
-        assertTrue(classes.contains(ConfigurationModification.class.getSimpleName()));
         assertTrue(classes.contains(DeviceInformation.class.getSimpleName()));
         assertTrue(classes.contains(DomainInformation.class.getSimpleName()));
 

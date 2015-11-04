@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import common.data.ConfigurationModification;
-import common.data.dto.DataSourcesDTO;
+import common.data.ConfigurationDelegation;
 import common.data.type.COMPONENT_TYPE;
 import common.rest.RESOURCE_NAMING;
 import common.rest.ResourceUtils;
@@ -23,8 +22,8 @@ import iot.device.repo.DeliveryTaskRepositoryImpl;
 import iot.device.rest.activity.SetConfiguration;
 import iot.device.rest.activity.StartDelivery;
 import iot.device.rest.activity.StopDelivery;
+import iot.device.rest.activity.ValidateConnection;
 import iot.device.rest.activity.ValidateDataSources;
-import iot.device.rest.activity.ValidateRequestBody;
 
 @RestController
 public class IDevManageConfigImpl implements IDevManageConfig {
@@ -35,10 +34,10 @@ public class IDevManageConfigImpl implements IDevManageConfig {
     private DeliveryTaskRepositoryImpl repo;
 
     @Autowired
-    private ValidateRequestBody validateRB;
+    private ValidateConnection validateConnection;
 
     @Autowired
-    private ValidateDataSources validateDS;
+    private ValidateDataSources validateDataSources;
 
     @Autowired
     private SetConfiguration setConfig;
@@ -72,38 +71,38 @@ public class IDevManageConfigImpl implements IDevManageConfig {
 
     @Override
     @RequestMapping(value = "/configurations", method = RequestMethod.POST)
-    public ResponseEntity<String> setConfiguration(@RequestBody ConfigurationModification configurationModification) {
+    public ResponseEntity<String> setConfiguration(@RequestBody ConfigurationDelegation body) {
 
         logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.IDEV_SET_CONFIGURATION));
 
         /**
          * Build "to-do" chain
          */
-        validateRB.setNextActivity(setConfig);
-        validateRB.setCt(COMPONENT_TYPE.EVENT_PROCESSING);
+        validateConnection.setNextActivity(setConfig);
+        validateConnection.setCt(COMPONENT_TYPE.EVENT_PROCESSING);
 
-        return validateRB.doStep(configurationModification);
+        return validateConnection.doStep(body);
 
     }
 
     @Override
-    @RequestMapping(value = "/delivery/start/{authority}", method = RequestMethod.POST)
-    public ResponseEntity<String> startDelivery(@PathVariable("authority") String authority, @RequestBody DataSourcesDTO dataSources) {
+    @RequestMapping(value = "/delivery/start", method = RequestMethod.POST)
+    public ResponseEntity<String> startDelivery(@RequestBody ConfigurationDelegation body) {
 
         logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.IDEV_START_DELIVERY));
 
         /**
          * Build "to-do" chain
          */
-        startDelivery.setEpAuthority(authority);
-        validateDS.setNextActivity(startDelivery);
+        validateConnection.setNextActivity(validateDataSources);
+        validateDataSources.setNextActivity(startDelivery);
 
-        return validateDS.doStep(dataSources);
+        return validateConnection.doStep(body);
     }
 
     @Override
-    @RequestMapping(value = "/delivery/stop/{authority}", method = RequestMethod.POST)
-    public ResponseEntity<String> stopDelivery(@PathVariable("authority") String authority, @RequestBody DataSourcesDTO dataSources) {
+    @RequestMapping(value = "/delivery/stop", method = RequestMethod.POST)
+    public ResponseEntity<String> stopDelivery(@RequestBody ConfigurationDelegation body) {
 
         logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.IDEV_STOP_DELIVERY));
 
@@ -111,9 +110,9 @@ public class IDevManageConfigImpl implements IDevManageConfig {
          * Build "to-do" chain
          */
 
-        stopDelivery.setEpAuthority(authority);
-        validateDS.setNextActivity(stopDelivery);
+        validateConnection.setNextActivity(validateDataSources);
+        validateDataSources.setNextActivity(stopDelivery);
 
-        return validateDS.doStep(dataSources);
+        return validateConnection.doStep(body);
     }
 }

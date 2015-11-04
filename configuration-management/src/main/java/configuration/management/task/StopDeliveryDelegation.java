@@ -4,20 +4,20 @@ import java.util.List;
 
 import org.springframework.web.client.RestTemplate;
 
+import common.data.ConfigurationDelegation;
 import common.data.Connection;
-import common.data.dto.DataSourcesDTO;
 import common.rest.RESOURCE_NAMING;
 import common.rest.ResourceUtils;
 
 public class StopDeliveryDelegation extends DelegationTask {
 
-    private DataSourcesDTO dsDTO;
+    private ConfigurationDelegation cd;
 
-    public StopDeliveryDelegation(DataSourcesDTO dsDTO, List<Connection> connections) {
+    public StopDeliveryDelegation(ConfigurationDelegation cd, List<Connection> connections) {
 
         super(connections);
 
-        this.dsDTO = dsDTO;
+        this.cd = cd;
     }
 
     @Override
@@ -29,7 +29,7 @@ public class StopDeliveryDelegation extends DelegationTask {
 
         try {
             String url = ResourceUtils.getUrl(RESOURCE_NAMING.IDEV_STOP_DELIVERY, connection.getUrl().getAuthority());
-            restTemplate.postForEntity(url, dsDTO, String.class);
+            restTemplate.postForEntity(url, cd, String.class);
         } catch (Exception e) {
             logger.error("{}", e);
         }

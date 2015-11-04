@@ -188,9 +188,12 @@ public class SettingUtilsTest {
         deviceInformation3.setName(name);
         dataSource.setDeviceInformation(deviceInformation3);
 
+        DomainInformation newDomainInfo = new DomainInformation();
+        newDomainInfo.setName("new name");
+
         DataSource dataSource3 = new DataSource();
         dataSource3.setDeviceInformation(deviceInformation3);
-        dataSource3.setDomainInformation(domainInformation);
+        dataSource3.setDomainInformation(newDomainInfo);
 
         setting.getDataSources().add(dataSource3);
 

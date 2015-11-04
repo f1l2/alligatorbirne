@@ -1,6 +1,6 @@
 package configuration.management.rest.activity;
 
-import java.util.List;
+import java.util.Arrays;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +11,8 @@ import org.springframework.stereotype.Component;
 
 import common.data.ConfigurationDelegation;
 import common.data.Connection;
+import common.data.DataSource;
+import common.data.type.COMPONENT_TYPE;
 import configuration.management.model.Device;
 import configuration.management.repo.DeviceRepository;
 import configuration.management.repo.DeviceTransformer;
@@ -36,13 +38,16 @@ public class DelegateConfigChange extends Activity<String, ConfigurationDelegati
          * No worry about NPE because item was already checked during validations step.
          */
 
-        List<Device> devicesToBeContacted = deviceRepo.findByDataSources(item.getDeviceInformation().getName().toLowerCase(),
-                //
-                item.getDomainInformation().getName().toLowerCase());
+        for (DataSource dsEP : item.getDataSources()) {
+            for (Device dev : deviceRepo.findByDataSources(dsEP.getDeviceInformation().getName(), dsEP.getDomainInformation().getName())) {
 
-        List<Connection> connectionsToBeContacted = transformer.toRemote(devicesToBeContacted);
+                Connection remote = transformer.toRemote(dev);
+                remote.setComponentType(COMPONENT_TYPE.DEVICE);
 
-        taskExecutor.execute(new SetConfigDelegation(item.getConfigurationModification(), connectionsToBeContacted));
+                taskExecutor.execute(new SetConfigDelegation(item, Arrays.asList(remote)));
+            }
+
+        }
 
         return next("OK", item);
     }

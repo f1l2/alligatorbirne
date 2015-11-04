@@ -15,13 +15,14 @@ import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.response.ResponseBodyExtractionOptions;
 
 import common.data.Connection;
-import common.data.builder.DSBuilder;
+import common.data.builder.CDBuilder;
 import common.data.type.COMPONENT_TYPE;
 import common.rest.RESOURCE_NAMING;
 import common.rest.ResourceUtils;
 import common.rest.UrlUtils;
 import iot.device.status.STATUS_TYPE;
 import iot.device.status.Status;
+import iot.device.utility.VirtualEP;
 
 public class AbstractRestTest {
 
@@ -33,12 +34,14 @@ public class AbstractRestTest {
 
     protected Connection ep;
 
-    protected DSBuilder dsBuilder;
+    protected CDBuilder cdBuilder;
 
     private static int count = 0;
 
     @Before
     public void before() throws IOException {
+
+        VirtualEP.reset();
 
         RestAssured.port = port;
 
@@ -46,8 +49,10 @@ public class AbstractRestTest {
 
         ep = getRandomEP();
 
-        dsBuilder = new DSBuilder();
-        dsBuilder.buildDataSource("pressure", "floor1");
+        cdBuilder = new CDBuilder();
+        cdBuilder.addDataSource("pressure", "floor1");
+        cdBuilder.buildDataSink(ep);
+
     }
 
     protected Connection getRandomEP() {
@@ -63,22 +68,19 @@ public class AbstractRestTest {
     }
 
     protected void deliveryStart() {
-        deliveryStart(dsBuilder, ep);
+        deliveryStart(cdBuilder);
     }
 
     protected void deliveryStart(Connection ep) {
-        deliveryStart(dsBuilder, ep);
+        cdBuilder.buildDataSink(ep);
+        deliveryStart(cdBuilder);
     }
 
-    protected void deliveryStart(DSBuilder dsBuilder) {
-        deliveryStart(dsBuilder, ep);
-    }
+    protected void deliveryStart(CDBuilder cdBuilder) {
 
-    protected void deliveryStart(DSBuilder dsBuilder, Connection ep) {
+        String path = ResourceUtils.getPath(RESOURCE_NAMING.IDEV_START_DELIVERY);
 
-        String path = ResourceUtils.getPath(RESOURCE_NAMING.IDEV_START_DELIVERY, ep.getUrl().getAuthority());
-
-        ResponseBodyExtractionOptions response = given().body(dsBuilder.getResult()).contentType(ContentType.JSON).post(path)
+        ResponseBodyExtractionOptions response = given().body(cdBuilder.getResult()).contentType(ContentType.JSON).post(path)
                 //
                 .then().contentType(ContentType.TEXT)
                 //
@@ -90,14 +92,14 @@ public class AbstractRestTest {
     }
 
     protected void deliveryStop() {
-        this.deliveryStop(dsBuilder, ep);
+        this.deliveryStop(cdBuilder, ep);
     }
 
-    protected void deliveryStop(DSBuilder dsBuilder, Connection dataSink) {
+    protected void deliveryStop(CDBuilder cdBuilder, Connection dataSink) {
 
-        String path = ResourceUtils.getPath(RESOURCE_NAMING.IDEV_STOP_DELIVERY, dataSink.getUrl().getAuthority());
+        String path = ResourceUtils.getPath(RESOURCE_NAMING.IDEV_STOP_DELIVERY);
 
-        ResponseBodyExtractionOptions response = given().body(dsBuilder.getResult()).contentType(ContentType.JSON).post(path)
+        ResponseBodyExtractionOptions response = given().body(cdBuilder.getResult()).contentType(ContentType.JSON).post(path)
                 //
                 .then().contentType(ContentType.TEXT)
                 //
