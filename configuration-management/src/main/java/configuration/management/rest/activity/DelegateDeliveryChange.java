@@ -32,7 +32,7 @@ public class DelegateDeliveryChange extends Activity<String, ConfigurationDelega
     @Autowired
     private ThreadPoolTaskExecutor taskExecutor;
 
-    private boolean isStart = true;
+    private boolean isStop = false;
 
     @Override
     public ResponseEntity<String> doStep(ConfigurationDelegation item) {
@@ -51,21 +51,20 @@ public class DelegateDeliveryChange extends Activity<String, ConfigurationDelega
 
         List<Connection> connectionsToBeContacted = transformer.toRemote(devicesToBeContacted);
 
-        if (isStart) {
-            taskExecutor.execute(new StartDeliveryDelegation(item, connectionsToBeContacted));
-        } else {
+        if (isStop) {
             taskExecutor.execute(new StopDeliveryDelegation(item, connectionsToBeContacted));
+        } else {
+            taskExecutor.execute(new StartDeliveryDelegation(item, connectionsToBeContacted));
         }
 
         return next("OK", item);
     }
 
-    public boolean isStart() {
-        return isStart;
+    public boolean isStop() {
+        return isStop;
     }
 
-    public void setStart(boolean isStart) {
-        this.isStart = isStart;
+    public void setStop(boolean isStop) {
+        this.isStop = isStop;
     }
-
 }

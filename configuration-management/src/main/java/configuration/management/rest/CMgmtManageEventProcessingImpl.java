@@ -135,9 +135,15 @@ public class CMgmtManageEventProcessingImpl implements CMgmtManageEventProcessin
 
         logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.CMGMT_REGISTER_EVENT_PROCESSING_SOURCES));
 
+        validateConfigDelegation.setNextActivity(registerDataSources);
         registerDataSources.setNextActivity(delegateDeliveryChange);
+        delegateDeliveryChange.setNextActivity(null);
 
-        return registerDataSources.doStep(body);
+        registerDataSources.setDeregiser(false);
+
+        delegateDeliveryChange.setStop(false);
+
+        return validateConfigDelegation.doStep(body);
     }
 
     @Override
@@ -146,12 +152,15 @@ public class CMgmtManageEventProcessingImpl implements CMgmtManageEventProcessin
 
         logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.CMGMT_DEREGISTER_EVENT_PROCESSING_SOURCES));
 
-        registerDataSources.setDeregiser(true);
+        validateConfigDelegation.setNextActivity(registerDataSources);
         registerDataSources.setNextActivity(delegateDeliveryChange);
+        delegateDeliveryChange.setNextActivity(null);
 
-        delegateDeliveryChange.setStart(true);
+        registerDataSources.setDeregiser(true);
 
-        return registerDataSources.doStep(body);
+        delegateDeliveryChange.setStop(true);
+
+        return validateConfigDelegation.doStep(body);
     }
 
 }

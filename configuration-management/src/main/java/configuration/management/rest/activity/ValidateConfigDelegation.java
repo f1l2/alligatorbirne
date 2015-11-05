@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.util.CollectionUtils;
 
 import common.data.ConfigurationDelegation;
 
@@ -20,8 +19,8 @@ public class ValidateConfigDelegation extends Activity<String, ConfigurationDele
         if (null == item.getDataSink()) {
             logger.error("Delegation failed due missing data sink.");
             this.setErrorResponse(new ResponseEntity<String>("", HttpStatus.BAD_REQUEST));
-        } else if (CollectionUtils.isEmpty(item.getDataSources())) {
-            logger.error("Delegation failed due missing DataSources");
+        } else if (null == item.getDataSources()) {
+            logger.error("Delegation failed due DataSources are null.");
             this.setErrorResponse(new ResponseEntity<String>("", HttpStatus.BAD_REQUEST));
         }
 

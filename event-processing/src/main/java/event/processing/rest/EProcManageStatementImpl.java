@@ -20,7 +20,6 @@ import org.springframework.web.client.RestTemplate;
 
 import common.data.Connection;
 import common.data.builder.CDBuilder;
-import common.data.builder.DSBuilder;
 import common.data.setting.SettingUtils;
 import common.data.type.COMPONENT_TYPE;
 import common.rest.RESOURCE_NAMING;
@@ -62,6 +61,12 @@ public class EProcManageStatementImpl implements EProcManageStatement {
 
     @Autowired
     private Status status;
+
+    private Connection local, cm;
+
+    public EProcManageStatementImpl() {
+
+    }
 
     @Override
     @RequestMapping(value = "/registrations/query/{name}", method = RequestMethod.POST)
@@ -164,6 +169,8 @@ public class EProcManageStatementImpl implements EProcManageStatement {
          */
         try {
 
+            loadConnections();
+
             List<Query> notActiveQueries = Utilities.filterActiveQueries(rule.getQueries(), ruleRepository);
             List<String> epls = factory.getTransformer().transformQuery(notActiveQueries);
 
@@ -173,12 +180,6 @@ public class EProcManageStatementImpl implements EProcManageStatement {
             ((EsperEngineListener) engineListener).addRuleListener(rule);
 
             factory.getEngine().register(epls, engineListener);
-
-            RestTemplate restTemplate = new RestTemplate();
-
-            Connection local = SettingUtils.getLocalConnection();
-            local.setComponentType(COMPONENT_TYPE.EVENT_PROCESSING);
-            Connection cm = SettingUtils.getCMConnection();
 
             String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_REGISTER_EVENT_PROCESSING_SOURCES, cm, ApplicationScheduler.id);
 
@@ -192,6 +193,7 @@ public class EProcManageStatementImpl implements EProcManageStatement {
                 cdBuilder.buildDataSink(local);
                 rule.getReactions().forEach(item -> cdBuilder.addDataSource(item.getDeviceInformation(), item.getDomainInformation()));
 
+                RestTemplate restTemplate = new RestTemplate();
                 restTemplate.postForEntity(url, cdBuilder.getResult(), String.class);
             }
 
@@ -237,14 +239,11 @@ public class EProcManageStatementImpl implements EProcManageStatement {
          * Destroy query at event engine.
          */
         try {
+
+            loadConnections();
+
             List<String> epls = factory.getTransformer().transformQuery(queries);
             factory.getEngine().deregister(epls);
-
-            RestTemplate restTemplate = new RestTemplate();
-
-            Connection local = SettingUtils.getLocalConnection();
-            local.setComponentType(COMPONENT_TYPE.EVENT_PROCESSING);
-            Connection cm = SettingUtils.getCMConnection();
 
             String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_DEREGISTER_EVENT_PROCESSING_SOURCES, cm, ApplicationScheduler.id);
 
@@ -254,18 +253,21 @@ public class EProcManageStatementImpl implements EProcManageStatement {
                  */
             } else {
 
-                final DSBuilder dsBuilder = new DSBuilder();
+                final CDBuilder cdBuilder = new CDBuilder();
+                cdBuilder.buildDataSink(local);
+                rule.getReactions().forEach(item -> cdBuilder.addDataSource(item.getDeviceInformation(), item.getDomainInformation()));
 
-                rule.getReactions().forEach(item -> dsBuilder.buildDataSource(item.getDeviceInformation(), item.getDomainInformation()));
-
-                restTemplate.postForEntity(url, dsBuilder.getResult(), String.class);
+                RestTemplate restTemplate = new RestTemplate();
+                restTemplate.postForEntity(url, cdBuilder.getResult(), String.class);
             }
+
+            rule.setIsActivated(false);
+            ruleRepository.save(name, rule);
 
         } catch (Exception e) {
             return EP_ERROR_CODES.ERROR_DEACTIVATE.getErrorResponse();
         }
 
-        rule.setIsActivated(false);
         return new ResponseEntity<String>(OK, HttpStatus.OK);
     }
 
@@ -348,5 +350,15 @@ public class EProcManageStatementImpl implements EProcManageStatement {
         logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.EPROCESSING_GET_ALL_RULES));
 
         return ruleRepository.findAll();
+    }
+
+    private void loadConnections() {
+        try {
+            local = SettingUtils.getLocalConnection();
+            local.setComponentType(COMPONENT_TYPE.EVENT_PROCESSING);
+            cm = SettingUtils.getCMConnection();
+        } catch (Exception e) {
+            logger.error("Error retrieving settings.");
+        }
     }
 }

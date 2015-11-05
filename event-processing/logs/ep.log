@@ -1510,3 +1510,297 @@
 04.11.2015 23:57:57.698 [INFO ] [o-auto-1-exec-4] .rest.EProcManageStatementImpl - POST /registrations/rule/{name} is invoked. 
 04.11.2015 23:57:57.710 [INFO ] [o-auto-1-exec-5] .rest.EProcManageStatementImpl - POST /registrations/rule/{name} is invoked. 
 04.11.2015 23:57:57.710 [ERROR] [o-auto-1-exec-5] processing.rest.EP_ERROR_CODES - Rule with the same name already exists. 
+05.11.2015 13:21:49.970 [INFO ] [main           ] q.esper.EsperEngineFactoryTest - Starting EsperEngineFactoryTest on ATCSL665088 with PID 5576 (D:\Java\workspace_Alligatorbirne\alligatorbirne\event-processing\target\test-classes started by q375980 in D:\Java\workspace_Alligatorbirne\alligatorbirne\event-processing) 
+05.11.2015 13:21:52.883 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: DeviceData, Class: common.data.model.DeviceData 
+05.11.2015 13:21:52.884 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: DeviceInformation, Class: common.data.model.DeviceInformation 
+05.11.2015 13:21:52.884 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: DomainInformation, Class: common.data.model.DomainInformation 
+05.11.2015 13:21:53.518 [INFO ] [main           ] q.esper.EsperEngineFactoryTest - Started EsperEngineFactoryTest in 3.729 seconds (JVM running for 4.449) 
+05.11.2015 13:21:53.637 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'name1' as name from DeviceData as d where d.device.id = 1  
+05.11.2015 13:21:53.637 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'name2' as name from DeviceData as d where d.device.id = 2  
+05.11.2015 13:21:53.638 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: [select * from pattern [every a=Event(name = 'name1') -> b=Event(name = 'name2')]] 
+05.11.2015 13:21:54.677 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'name2' as name from DeviceData as d where d.device.id = 2  
+05.11.2015 13:21:54.677 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'name1' as name from DeviceData as d where d.device.id = 1  
+05.11.2015 13:21:54.677 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: [select * from pattern [every a=Event(name = 'name2') -> b=Event(name = 'name1')]] 
+05.11.2015 13:21:54.992 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'name1' as name from DeviceData as d where d.device.id = 1  
+05.11.2015 13:21:54.992 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'name2' as name from DeviceData as d where d.device.id = 2  
+05.11.2015 13:21:54.992 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'name3' as name from DeviceData as d where d.device.id = 3  
+05.11.2015 13:21:54.993 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: [select * from pattern [every a=Event(name = 'name1') -> b=Event(name = 'name2') -> c=Event(name = 'name3')]] 
+05.11.2015 13:21:55.307 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'name1' as name from DeviceData as d where d.device.id = 1  
+05.11.2015 13:21:55.307 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'name2' as name from DeviceData as d where d.device.id = 2  
+05.11.2015 13:21:55.307 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: [select * from pattern [every a=Event(name = 'name1') -> b=Event(name = 'name2')]] 
+05.11.2015 13:21:55.751 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'name1' as name from DeviceData as d where d.device.id = 1  
+05.11.2015 13:21:55.751 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'name2' as name from DeviceData as d where d.device.id = 2  
+05.11.2015 13:21:55.751 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: [select * from pattern [every a=Event(name = 'name1') -> b=Event(name = 'name2')]] 
+05.11.2015 13:21:56.161 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'name1' as name from DeviceData as d where d.device.id = 1  
+05.11.2015 13:21:56.161 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'name2' as name from DeviceData as d where d.device.id = 2  
+05.11.2015 13:21:56.161 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: [select * from pattern [every a=Event(name = 'name1') -> b=Event(name = 'name2')]] 
+05.11.2015 13:21:56.976 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'detectTemperatureUnder15' as name from DeviceData as d where d.device.name = 'temperature' and d.sensorData.value <= 15  
+05.11.2015 13:21:56.976 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'detectTemperatureAbove25' as name from DeviceData as d where d.device.name = 'temperature' and d.sensorData.value >= 25  
+05.11.2015 13:21:56.977 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: [select * from pattern [every a=Event(name = 'detectTemperatureUnder15') -> b=Event(name = 'detectTemperatureAbove25')]] 
+05.11.2015 13:21:56.977 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'detectTemperatureAbove25' as name from DeviceData as d where d.device.name = 'temperature' and d.sensorData.value >= 25  
+05.11.2015 13:21:56.978 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'detectTemperatureUnder15' as name from DeviceData as d where d.device.name = 'temperature' and d.sensorData.value <= 15  
+05.11.2015 13:21:56.978 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: [select * from pattern [every a=Event(name = 'detectTemperatureAbove25') -> b=Event(name = 'detectTemperatureUnder15')]] 
+05.11.2015 13:21:58.017 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'query1' as name from DeviceData as d where d.device.name = 'device1'  
+05.11.2015 13:21:58.020 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'query2' as name from DeviceData as d where d.device.name = 'device2'  
+05.11.2015 13:21:58.024 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'query3' as name from DeviceData as d where d.device.name = 'device3'  
+05.11.2015 13:21:58.328 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'query1' as name from DeviceData as d where d.device.name = 'device1'  
+05.11.2015 13:21:58.642 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'query' as name from DeviceData as d where d.device.id = 1 and d.device.name = 'device1'  
+05.11.2015 13:21:58.946 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'query' as name from DeviceData as d where d.device.id = 1 or d.device.name = 'device2'  
+05.11.2015 13:21:59.261 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'query' as name from DeviceData as d where not(d.device.id = 1)  
+05.11.2015 13:21:59.579 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select sum(d.device.id) as value from DeviceData as d  
+05.11.2015 13:21:59.579 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 3 
+05.11.2015 13:21:59.897 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select min(d.device.id) as value from DeviceData as d  
+05.11.2015 13:21:59.897 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 3 
+05.11.2015 13:22:00.212 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select max(d.device.id) as value from DeviceData as d  
+05.11.2015 13:22:00.212 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 2 
+05.11.2015 13:22:00.518 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select sum(d.device.id) as value from DeviceData as d where  d.device.id = 2 
+05.11.2015 13:22:00.519 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 2 
+05.11.2015 13:22:00.846 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'query' as name from DeviceData as d where d.device.id >= 1 AND (d.domain.name = 'domain1' ) 
+05.11.2015 13:22:01.151 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'query' as name from DeviceData as d where d.device.id >= 2 AND (d.domain.name = 'domain1' ) 
+05.11.2015 13:22:01.455 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'query' as name from DeviceData as d where d.device.id >= 0 AND (d.domain.name = 'domain' ) 
+05.11.2015 13:22:01.770 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'query' as name from DeviceData.win:length(1) as d where d.device.id = 1  
+05.11.2015 13:22:02.080 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select sum(d.device.id) as value from DeviceData.win:length(1) as d  
+05.11.2015 13:22:02.080 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 4 
+05.11.2015 13:22:02.384 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select sum(d.device.id) as value from DeviceData.win:length(2) as d  
+05.11.2015 13:22:02.384 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 4 
+05.11.2015 13:22:02.687 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select min(d.device.id) as value from DeviceData.win:length(2) as d  
+05.11.2015 13:22:02.687 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value < 2 
+05.11.2015 13:22:02.992 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select count(d.device.id) as value from DeviceData.win:length(2) as d  
+05.11.2015 13:22:02.993 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value = 3 
+05.11.2015 13:22:03.300 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select count(d.device.id) as value from DeviceData.win:length(3) as d  
+05.11.2015 13:22:03.300 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value = 3 
+05.11.2015 13:22:03.608 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select sum(d.device.id) as value from DeviceData.win:length(2) as d  
+05.11.2015 13:22:03.608 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 3 
+05.11.2015 13:22:04.182 [INFO ] [main           ] e.p.rest.EProcManageDataTest   - Starting EProcManageDataTest on ATCSL665088 with PID 5576 (D:\Java\workspace_Alligatorbirne\alligatorbirne\event-processing\target\test-classes started by q375980 in D:\Java\workspace_Alligatorbirne\alligatorbirne\event-processing) 
+05.11.2015 13:22:06.639 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: DeviceData, Class: common.data.model.DeviceData 
+05.11.2015 13:22:06.639 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: DeviceInformation, Class: common.data.model.DeviceInformation 
+05.11.2015 13:22:06.639 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: DomainInformation, Class: common.data.model.DomainInformation 
+05.11.2015 13:22:07.229 [INFO ] [main           ] e.p.rest.EProcManageDataTest   - Started EProcManageDataTest in 3.072 seconds (JVM running for 18.159) 
+05.11.2015 13:22:08.521 [INFO ] [o-auto-1-exec-1] e.p.rest.EProcManageDataImpl   - POST /send is invoked. 
+05.11.2015 13:22:08.523 [INFO ] [o-auto-1-exec-1] e.p.rest.EProcManageDataImpl   - DeviceData [sensorData=null, device=DeviceInformation [id=1, name=deviceInfoName, type=SENSOR], domain=DomainInformation [id=2, name=domainInfoName, type=FIRST_FLOOR]] 
+05.11.2015 13:22:08.630 [INFO ] [o-auto-1-exec-2] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+05.11.2015 13:22:08.649 [INFO ] [o-auto-1-exec-3] .rest.EProcManageStatementImpl - POST /registrations/rule/{name} is invoked. 
+05.11.2015 13:22:08.672 [INFO ] [o-auto-1-exec-4] .rest.EProcManageStatementImpl - GET /registrations/queries is invoked. 
+05.11.2015 13:22:08.735 [INFO ] [o-auto-1-exec-5] .rest.EProcManageStatementImpl - GET /registrations/queries is invoked. 
+05.11.2015 13:22:08.749 [INFO ] [o-auto-1-exec-6] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+05.11.2015 13:22:08.763 [INFO ] [o-auto-1-exec-7] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+05.11.2015 13:22:08.777 [INFO ] [o-auto-1-exec-8] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+05.11.2015 13:22:08.781 [ERROR] [o-auto-1-exec-8] processing.rest.EP_ERROR_CODES - Couldn't parse query. Please check syntax. 
+05.11.2015 13:22:08.797 [INFO ] [o-auto-1-exec-9] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+05.11.2015 13:22:08.811 [INFO ] [-auto-1-exec-10] .rest.EProcManageStatementImpl - POST /registrations/rule/{name} is invoked. 
+05.11.2015 13:22:08.821 [INFO ] [o-auto-1-exec-1] .rest.EProcManageStatementImpl - GET /activations/rule/{name} is invoked. 
+05.11.2015 13:22:08.822 [INFO ] [o-auto-1-exec-1] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'alligatorbirne15' as name from DeviceData as d where d.device.name = 'device1'  
+05.11.2015 13:22:08.884 [INFO ] [o-auto-1-exec-2] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+05.11.2015 13:22:08.900 [INFO ] [o-auto-1-exec-3] .rest.EProcManageStatementImpl - DELETE /deregistrations/query/{name} is invoked. 
+05.11.2015 13:22:08.915 [INFO ] [o-auto-1-exec-4] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+05.11.2015 13:22:08.923 [INFO ] [o-auto-1-exec-5] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+05.11.2015 13:22:08.923 [ERROR] [o-auto-1-exec-5] processing.rest.EP_ERROR_CODES - Query with the same name already exists. 
+05.11.2015 13:22:08.943 [INFO ] [o-auto-1-exec-6] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+05.11.2015 13:22:08.959 [INFO ] [o-auto-1-exec-7] .rest.EProcManageStatementImpl - POST /registrations/rule/{name} is invoked. 
+05.11.2015 13:22:08.972 [INFO ] [o-auto-1-exec-8] .rest.EProcManageStatementImpl - DELETE /deregistrations/rule/{name} is invoked. 
+05.11.2015 13:22:08.982 [INFO ] [o-auto-1-exec-9] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+05.11.2015 13:22:08.993 [INFO ] [-auto-1-exec-10] .rest.EProcManageStatementImpl - POST /registrations/rule/{name} is invoked. 
+05.11.2015 13:22:09.002 [INFO ] [o-auto-1-exec-1] .rest.EProcManageStatementImpl - GET /activations/rule/{name} is invoked. 
+05.11.2015 13:22:09.002 [INFO ] [o-auto-1-exec-1] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'alligatorbirne23' as name from DeviceData as d where d.device.name = 'device1'  
+05.11.2015 13:22:09.055 [INFO ] [o-auto-1-exec-2] .rest.EProcManageStatementImpl - GET /deactivations/rule/{name} is invoked. 
+05.11.2015 13:22:09.056 [INFO ] [o-auto-1-exec-2] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'alligatorbirne23' as name from DeviceData as d where d.device.name = 'device1'  
+05.11.2015 13:22:09.111 [INFO ] [o-auto-1-exec-3] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+05.11.2015 13:22:09.124 [INFO ] [o-auto-1-exec-4] .rest.EProcManageStatementImpl - POST /registrations/rule/{name} is invoked. 
+05.11.2015 13:22:09.136 [INFO ] [o-auto-1-exec-5] .rest.EProcManageStatementImpl - POST /registrations/rule/{name} is invoked. 
+05.11.2015 13:22:09.136 [ERROR] [o-auto-1-exec-5] processing.rest.EP_ERROR_CODES - Rule with the same name already exists. 
+05.11.2015 14:03:24.172 [INFO ] [main           ] q.esper.EsperEngineFactoryTest - Starting EsperEngineFactoryTest on ATCSL665088 with PID 6556 (D:\Java\workspace_Alligatorbirne\alligatorbirne\event-processing\target\test-classes started by q375980 in D:\Java\workspace_Alligatorbirne\alligatorbirne\event-processing) 
+05.11.2015 14:03:26.623 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: DeviceData, Class: common.data.model.DeviceData 
+05.11.2015 14:03:26.624 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: DeviceInformation, Class: common.data.model.DeviceInformation 
+05.11.2015 14:03:26.624 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: DomainInformation, Class: common.data.model.DomainInformation 
+05.11.2015 14:03:27.183 [INFO ] [main           ] q.esper.EsperEngineFactoryTest - Started EsperEngineFactoryTest in 3.187 seconds (JVM running for 3.918) 
+05.11.2015 14:03:27.289 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'name1' as name from DeviceData as d where d.device.id = 1  
+05.11.2015 14:03:27.289 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'name2' as name from DeviceData as d where d.device.id = 2  
+05.11.2015 14:03:27.290 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: [select * from pattern [every a=Event(name = 'name1') -> b=Event(name = 'name2')]] 
+05.11.2015 14:03:28.156 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'name2' as name from DeviceData as d where d.device.id = 2  
+05.11.2015 14:03:28.157 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'name1' as name from DeviceData as d where d.device.id = 1  
+05.11.2015 14:03:28.157 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: [select * from pattern [every a=Event(name = 'name2') -> b=Event(name = 'name1')]] 
+05.11.2015 14:03:28.471 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'name1' as name from DeviceData as d where d.device.id = 1  
+05.11.2015 14:03:28.471 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'name2' as name from DeviceData as d where d.device.id = 2  
+05.11.2015 14:03:28.471 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'name3' as name from DeviceData as d where d.device.id = 3  
+05.11.2015 14:03:28.471 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: [select * from pattern [every a=Event(name = 'name1') -> b=Event(name = 'name2') -> c=Event(name = 'name3')]] 
+05.11.2015 14:03:28.785 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'name1' as name from DeviceData as d where d.device.id = 1  
+05.11.2015 14:03:28.785 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'name2' as name from DeviceData as d where d.device.id = 2  
+05.11.2015 14:03:28.786 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: [select * from pattern [every a=Event(name = 'name1') -> b=Event(name = 'name2')]] 
+05.11.2015 14:03:29.227 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'name1' as name from DeviceData as d where d.device.id = 1  
+05.11.2015 14:03:29.228 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'name2' as name from DeviceData as d where d.device.id = 2  
+05.11.2015 14:03:29.228 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: [select * from pattern [every a=Event(name = 'name1') -> b=Event(name = 'name2')]] 
+05.11.2015 14:03:29.636 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'name1' as name from DeviceData as d where d.device.id = 1  
+05.11.2015 14:03:29.636 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'name2' as name from DeviceData as d where d.device.id = 2  
+05.11.2015 14:03:29.636 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: [select * from pattern [every a=Event(name = 'name1') -> b=Event(name = 'name2')]] 
+05.11.2015 14:03:30.444 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'detectTemperatureUnder15' as name from DeviceData as d where d.device.name = 'temperature' and d.sensorData.value <= 15  
+05.11.2015 14:03:30.444 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'detectTemperatureAbove25' as name from DeviceData as d where d.device.name = 'temperature' and d.sensorData.value >= 25  
+05.11.2015 14:03:30.444 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: [select * from pattern [every a=Event(name = 'detectTemperatureUnder15') -> b=Event(name = 'detectTemperatureAbove25')]] 
+05.11.2015 14:03:30.444 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'detectTemperatureAbove25' as name from DeviceData as d where d.device.name = 'temperature' and d.sensorData.value >= 25  
+05.11.2015 14:03:30.445 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'detectTemperatureUnder15' as name from DeviceData as d where d.device.name = 'temperature' and d.sensorData.value <= 15  
+05.11.2015 14:03:30.445 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: [select * from pattern [every a=Event(name = 'detectTemperatureAbove25') -> b=Event(name = 'detectTemperatureUnder15')]] 
+05.11.2015 14:03:31.467 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'query1' as name from DeviceData as d where d.device.name = 'device1'  
+05.11.2015 14:03:31.468 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'query2' as name from DeviceData as d where d.device.name = 'device2'  
+05.11.2015 14:03:31.470 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'query3' as name from DeviceData as d where d.device.name = 'device3'  
+05.11.2015 14:03:31.773 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'query1' as name from DeviceData as d where d.device.name = 'device1'  
+05.11.2015 14:03:32.089 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'query' as name from DeviceData as d where d.device.id = 1 and d.device.name = 'device1'  
+05.11.2015 14:03:32.394 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'query' as name from DeviceData as d where d.device.id = 1 or d.device.name = 'device2'  
+05.11.2015 14:03:32.707 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'query' as name from DeviceData as d where not(d.device.id = 1)  
+05.11.2015 14:03:33.026 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select sum(d.device.id) as value from DeviceData as d  
+05.11.2015 14:03:33.027 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 3 
+05.11.2015 14:03:33.349 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select min(d.device.id) as value from DeviceData as d  
+05.11.2015 14:03:33.349 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 3 
+05.11.2015 14:03:33.662 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select max(d.device.id) as value from DeviceData as d  
+05.11.2015 14:03:33.662 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 2 
+05.11.2015 14:03:33.967 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select sum(d.device.id) as value from DeviceData as d where  d.device.id = 2 
+05.11.2015 14:03:33.968 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 2 
+05.11.2015 14:03:34.294 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'query' as name from DeviceData as d where d.device.id >= 1 AND (d.domain.name = 'domain1' ) 
+05.11.2015 14:03:34.599 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'query' as name from DeviceData as d where d.device.id >= 2 AND (d.domain.name = 'domain1' ) 
+05.11.2015 14:03:34.903 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'query' as name from DeviceData as d where d.device.id >= 0 AND (d.domain.name = 'domain' ) 
+05.11.2015 14:03:35.220 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'query' as name from DeviceData.win:length(1) as d where d.device.id = 1  
+05.11.2015 14:03:35.531 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select sum(d.device.id) as value from DeviceData.win:length(1) as d  
+05.11.2015 14:03:35.531 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 4 
+05.11.2015 14:03:35.835 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select sum(d.device.id) as value from DeviceData.win:length(2) as d  
+05.11.2015 14:03:35.836 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 4 
+05.11.2015 14:03:36.139 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select min(d.device.id) as value from DeviceData.win:length(2) as d  
+05.11.2015 14:03:36.140 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value < 2 
+05.11.2015 14:03:36.444 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select count(d.device.id) as value from DeviceData.win:length(2) as d  
+05.11.2015 14:03:36.444 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value = 3 
+05.11.2015 14:03:36.751 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select count(d.device.id) as value from DeviceData.win:length(3) as d  
+05.11.2015 14:03:36.751 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value = 3 
+05.11.2015 14:03:37.056 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select sum(d.device.id) as value from DeviceData.win:length(2) as d  
+05.11.2015 14:03:37.056 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 3 
+05.11.2015 14:03:37.636 [INFO ] [main           ] e.p.rest.EProcManageDataTest   - Starting EProcManageDataTest on ATCSL665088 with PID 6556 (D:\Java\workspace_Alligatorbirne\alligatorbirne\event-processing\target\test-classes started by q375980 in D:\Java\workspace_Alligatorbirne\alligatorbirne\event-processing) 
+05.11.2015 14:03:39.738 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: DeviceData, Class: common.data.model.DeviceData 
+05.11.2015 14:03:39.739 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: DeviceInformation, Class: common.data.model.DeviceInformation 
+05.11.2015 14:03:39.739 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: DomainInformation, Class: common.data.model.DomainInformation 
+05.11.2015 14:03:40.326 [INFO ] [main           ] e.p.rest.EProcManageDataTest   - Started EProcManageDataTest in 2.72 seconds (JVM running for 17.061) 
+05.11.2015 14:03:41.556 [INFO ] [o-auto-1-exec-1] e.p.rest.EProcManageDataImpl   - POST /send is invoked. 
+05.11.2015 14:03:41.558 [INFO ] [o-auto-1-exec-1] e.p.rest.EProcManageDataImpl   - DeviceData [sensorData=null, device=DeviceInformation [id=1, name=deviceInfoName, type=SENSOR], domain=DomainInformation [id=2, name=domainInfoName, type=FIRST_FLOOR]] 
+05.11.2015 14:03:41.663 [INFO ] [o-auto-1-exec-2] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+05.11.2015 14:03:41.680 [INFO ] [o-auto-1-exec-3] .rest.EProcManageStatementImpl - POST /registrations/rule/{name} is invoked. 
+05.11.2015 14:03:41.701 [INFO ] [o-auto-1-exec-4] .rest.EProcManageStatementImpl - GET /registrations/queries is invoked. 
+05.11.2015 14:03:41.768 [INFO ] [o-auto-1-exec-5] .rest.EProcManageStatementImpl - GET /registrations/queries is invoked. 
+05.11.2015 14:03:41.781 [INFO ] [o-auto-1-exec-6] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+05.11.2015 14:03:41.798 [INFO ] [o-auto-1-exec-7] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+05.11.2015 14:03:41.814 [INFO ] [o-auto-1-exec-8] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+05.11.2015 14:03:41.817 [ERROR] [o-auto-1-exec-8] processing.rest.EP_ERROR_CODES - Couldn't parse query. Please check syntax. 
+05.11.2015 14:03:41.831 [INFO ] [o-auto-1-exec-9] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+05.11.2015 14:03:41.844 [INFO ] [-auto-1-exec-10] .rest.EProcManageStatementImpl - POST /registrations/rule/{name} is invoked. 
+05.11.2015 14:03:41.853 [INFO ] [o-auto-1-exec-1] .rest.EProcManageStatementImpl - GET /activations/rule/{name} is invoked. 
+05.11.2015 14:03:41.889 [INFO ] [o-auto-1-exec-1] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'alligatorbirne15' as name from DeviceData as d where d.device.name = 'device1'  
+05.11.2015 14:03:41.901 [INFO ] [o-auto-1-exec-2] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+05.11.2015 14:03:41.914 [INFO ] [o-auto-1-exec-3] .rest.EProcManageStatementImpl - DELETE /deregistrations/query/{name} is invoked. 
+05.11.2015 14:03:41.924 [INFO ] [o-auto-1-exec-4] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+05.11.2015 14:03:41.932 [INFO ] [o-auto-1-exec-5] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+05.11.2015 14:03:41.933 [ERROR] [o-auto-1-exec-5] processing.rest.EP_ERROR_CODES - Query with the same name already exists. 
+05.11.2015 14:03:41.949 [INFO ] [o-auto-1-exec-6] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+05.11.2015 14:03:41.959 [INFO ] [o-auto-1-exec-7] .rest.EProcManageStatementImpl - POST /registrations/rule/{name} is invoked. 
+05.11.2015 14:03:41.968 [INFO ] [o-auto-1-exec-8] .rest.EProcManageStatementImpl - DELETE /deregistrations/rule/{name} is invoked. 
+05.11.2015 14:03:41.979 [INFO ] [o-auto-1-exec-9] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+05.11.2015 14:03:41.988 [INFO ] [-auto-1-exec-10] .rest.EProcManageStatementImpl - POST /registrations/rule/{name} is invoked. 
+05.11.2015 14:03:41.997 [INFO ] [o-auto-1-exec-1] .rest.EProcManageStatementImpl - GET /activations/rule/{name} is invoked. 
+05.11.2015 14:03:42.030 [INFO ] [o-auto-1-exec-1] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'alligatorbirne23' as name from DeviceData as d where d.device.name = 'device1'  
+05.11.2015 14:03:42.042 [INFO ] [o-auto-1-exec-2] .rest.EProcManageStatementImpl - GET /deactivations/rule/{name} is invoked. 
+05.11.2015 14:03:42.074 [INFO ] [o-auto-1-exec-2] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'alligatorbirne23' as name from DeviceData as d where d.device.name = 'device1'  
+05.11.2015 14:03:42.086 [INFO ] [o-auto-1-exec-3] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+05.11.2015 14:03:42.096 [INFO ] [o-auto-1-exec-4] .rest.EProcManageStatementImpl - POST /registrations/rule/{name} is invoked. 
+05.11.2015 14:03:42.104 [INFO ] [o-auto-1-exec-5] .rest.EProcManageStatementImpl - POST /registrations/rule/{name} is invoked. 
+05.11.2015 14:03:42.104 [ERROR] [o-auto-1-exec-5] processing.rest.EP_ERROR_CODES - Rule with the same name already exists. 
+05.11.2015 14:13:22.275 [INFO ] [main           ] q.esper.EsperEngineFactoryTest - Starting EsperEngineFactoryTest on ATCSL665088 with PID 5980 (D:\Java\workspace_Alligatorbirne\alligatorbirne\event-processing\target\test-classes started by q375980 in D:\Java\workspace_Alligatorbirne\alligatorbirne\event-processing) 
+05.11.2015 14:13:24.782 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: DeviceData, Class: common.data.model.DeviceData 
+05.11.2015 14:13:24.783 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: DeviceInformation, Class: common.data.model.DeviceInformation 
+05.11.2015 14:13:24.783 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: DomainInformation, Class: common.data.model.DomainInformation 
+05.11.2015 14:13:25.346 [INFO ] [main           ] q.esper.EsperEngineFactoryTest - Started EsperEngineFactoryTest in 3.272 seconds (JVM running for 4.0) 
+05.11.2015 14:13:25.463 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'name1' as name from DeviceData as d where d.device.id = 1  
+05.11.2015 14:13:25.463 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'name2' as name from DeviceData as d where d.device.id = 2  
+05.11.2015 14:13:25.464 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: [select * from pattern [every a=Event(name = 'name1') -> b=Event(name = 'name2')]] 
+05.11.2015 14:13:26.329 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'name2' as name from DeviceData as d where d.device.id = 2  
+05.11.2015 14:13:26.329 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'name1' as name from DeviceData as d where d.device.id = 1  
+05.11.2015 14:13:26.329 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: [select * from pattern [every a=Event(name = 'name2') -> b=Event(name = 'name1')]] 
+05.11.2015 14:13:26.644 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'name1' as name from DeviceData as d where d.device.id = 1  
+05.11.2015 14:13:26.644 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'name2' as name from DeviceData as d where d.device.id = 2  
+05.11.2015 14:13:26.644 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'name3' as name from DeviceData as d where d.device.id = 3  
+05.11.2015 14:13:26.645 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: [select * from pattern [every a=Event(name = 'name1') -> b=Event(name = 'name2') -> c=Event(name = 'name3')]] 
+05.11.2015 14:13:26.958 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'name1' as name from DeviceData as d where d.device.id = 1  
+05.11.2015 14:13:26.958 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'name2' as name from DeviceData as d where d.device.id = 2  
+05.11.2015 14:13:26.959 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: [select * from pattern [every a=Event(name = 'name1') -> b=Event(name = 'name2')]] 
+05.11.2015 14:13:27.397 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'name1' as name from DeviceData as d where d.device.id = 1  
+05.11.2015 14:13:27.397 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'name2' as name from DeviceData as d where d.device.id = 2  
+05.11.2015 14:13:27.397 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: [select * from pattern [every a=Event(name = 'name1') -> b=Event(name = 'name2')]] 
+05.11.2015 14:13:27.807 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'name1' as name from DeviceData as d where d.device.id = 1  
+05.11.2015 14:13:27.807 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'name2' as name from DeviceData as d where d.device.id = 2  
+05.11.2015 14:13:27.807 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: [select * from pattern [every a=Event(name = 'name1') -> b=Event(name = 'name2')]] 
+05.11.2015 14:13:28.622 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'detectTemperatureUnder15' as name from DeviceData as d where d.device.name = 'temperature' and d.sensorData.value <= 15  
+05.11.2015 14:13:28.622 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'detectTemperatureAbove25' as name from DeviceData as d where d.device.name = 'temperature' and d.sensorData.value >= 25  
+05.11.2015 14:13:28.623 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: [select * from pattern [every a=Event(name = 'detectTemperatureUnder15') -> b=Event(name = 'detectTemperatureAbove25')]] 
+05.11.2015 14:13:28.623 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'detectTemperatureAbove25' as name from DeviceData as d where d.device.name = 'temperature' and d.sensorData.value >= 25  
+05.11.2015 14:13:28.624 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'detectTemperatureUnder15' as name from DeviceData as d where d.device.name = 'temperature' and d.sensorData.value <= 15  
+05.11.2015 14:13:28.624 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: [select * from pattern [every a=Event(name = 'detectTemperatureAbove25') -> b=Event(name = 'detectTemperatureUnder15')]] 
+05.11.2015 14:13:29.666 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'query1' as name from DeviceData as d where d.device.name = 'device1'  
+05.11.2015 14:13:29.670 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'query2' as name from DeviceData as d where d.device.name = 'device2'  
+05.11.2015 14:13:29.673 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'query3' as name from DeviceData as d where d.device.name = 'device3'  
+05.11.2015 14:13:29.976 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'query1' as name from DeviceData as d where d.device.name = 'device1'  
+05.11.2015 14:13:30.288 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'query' as name from DeviceData as d where d.device.id = 1 and d.device.name = 'device1'  
+05.11.2015 14:13:30.593 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'query' as name from DeviceData as d where d.device.id = 1 or d.device.name = 'device2'  
+05.11.2015 14:13:30.905 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'query' as name from DeviceData as d where not(d.device.id = 1)  
+05.11.2015 14:13:31.224 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select sum(d.device.id) as value from DeviceData as d  
+05.11.2015 14:13:31.224 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 3 
+05.11.2015 14:13:31.545 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select min(d.device.id) as value from DeviceData as d  
+05.11.2015 14:13:31.546 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 3 
+05.11.2015 14:13:31.859 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select max(d.device.id) as value from DeviceData as d  
+05.11.2015 14:13:31.859 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 2 
+05.11.2015 14:13:32.165 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select sum(d.device.id) as value from DeviceData as d where  d.device.id = 2 
+05.11.2015 14:13:32.165 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 2 
+05.11.2015 14:13:32.481 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'query' as name from DeviceData as d where d.device.id >= 1 AND (d.domain.name = 'domain1' ) 
+05.11.2015 14:13:32.785 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'query' as name from DeviceData as d where d.device.id >= 2 AND (d.domain.name = 'domain1' ) 
+05.11.2015 14:13:33.089 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'query' as name from DeviceData as d where d.device.id >= 0 AND (d.domain.name = 'domain' ) 
+05.11.2015 14:13:33.407 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'query' as name from DeviceData.win:length(1) as d where d.device.id = 1  
+05.11.2015 14:13:33.718 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select sum(d.device.id) as value from DeviceData.win:length(1) as d  
+05.11.2015 14:13:33.718 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 4 
+05.11.2015 14:13:34.021 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select sum(d.device.id) as value from DeviceData.win:length(2) as d  
+05.11.2015 14:13:34.021 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 4 
+05.11.2015 14:13:34.324 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select min(d.device.id) as value from DeviceData.win:length(2) as d  
+05.11.2015 14:13:34.325 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value < 2 
+05.11.2015 14:13:34.629 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select count(d.device.id) as value from DeviceData.win:length(2) as d  
+05.11.2015 14:13:34.629 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value = 3 
+05.11.2015 14:13:34.935 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select count(d.device.id) as value from DeviceData.win:length(3) as d  
+05.11.2015 14:13:34.935 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value = 3 
+05.11.2015 14:13:35.238 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: insert into AggregatedValue select sum(d.device.id) as value from DeviceData.win:length(2) as d  
+05.11.2015 14:13:35.238 [INFO ] [main           ] ngine.impl.EsperEPLTransformer - Generated EPL: select * from AggregatedValue where value >= 3 
+05.11.2015 14:13:35.816 [INFO ] [main           ] e.p.rest.EProcManageDataTest   - Starting EProcManageDataTest on ATCSL665088 with PID 5980 (D:\Java\workspace_Alligatorbirne\alligatorbirne\event-processing\target\test-classes started by q375980 in D:\Java\workspace_Alligatorbirne\alligatorbirne\event-processing) 
+05.11.2015 14:13:38.015 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: DeviceData, Class: common.data.model.DeviceData 
+05.11.2015 14:13:38.015 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: DeviceInformation, Class: common.data.model.DeviceInformation 
+05.11.2015 14:13:38.015 [INFO ] [main           ] essing.engine.impl.EsperEngine - Adding event type. EventTypeName: DomainInformation, Class: common.data.model.DomainInformation 
+05.11.2015 14:13:38.547 [INFO ] [main           ] e.p.rest.EProcManageDataTest   - Started EProcManageDataTest in 2.754 seconds (JVM running for 17.199) 
+05.11.2015 14:13:39.866 [INFO ] [o-auto-1-exec-1] e.p.rest.EProcManageDataImpl   - POST /send is invoked. 
+05.11.2015 14:13:39.868 [INFO ] [o-auto-1-exec-1] e.p.rest.EProcManageDataImpl   - DeviceData [sensorData=null, device=DeviceInformation [id=1, name=deviceInfoName, type=SENSOR], domain=DomainInformation [id=2, name=domainInfoName, type=FIRST_FLOOR]] 
+05.11.2015 14:13:39.971 [INFO ] [o-auto-1-exec-2] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+05.11.2015 14:13:39.988 [INFO ] [o-auto-1-exec-3] .rest.EProcManageStatementImpl - POST /registrations/rule/{name} is invoked. 
+05.11.2015 14:13:40.009 [INFO ] [o-auto-1-exec-4] .rest.EProcManageStatementImpl - GET /registrations/queries is invoked. 
+05.11.2015 14:13:40.078 [INFO ] [o-auto-1-exec-5] .rest.EProcManageStatementImpl - GET /registrations/queries is invoked. 
+05.11.2015 14:13:40.094 [INFO ] [o-auto-1-exec-6] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+05.11.2015 14:13:40.106 [INFO ] [o-auto-1-exec-7] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+05.11.2015 14:13:40.118 [INFO ] [o-auto-1-exec-8] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+05.11.2015 14:13:40.121 [ERROR] [o-auto-1-exec-8] processing.rest.EP_ERROR_CODES - Couldn't parse query. Please check syntax. 
+05.11.2015 14:13:40.136 [INFO ] [o-auto-1-exec-9] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+05.11.2015 14:13:40.147 [INFO ] [-auto-1-exec-10] .rest.EProcManageStatementImpl - POST /registrations/rule/{name} is invoked. 
+05.11.2015 14:13:40.157 [INFO ] [o-auto-1-exec-1] .rest.EProcManageStatementImpl - GET /activations/rule/{name} is invoked. 
+05.11.2015 14:13:40.191 [INFO ] [o-auto-1-exec-1] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'alligatorbirne15' as name from DeviceData as d where d.device.name = 'device1'  
+05.11.2015 14:13:40.203 [INFO ] [o-auto-1-exec-2] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+05.11.2015 14:13:40.215 [INFO ] [o-auto-1-exec-3] .rest.EProcManageStatementImpl - DELETE /deregistrations/query/{name} is invoked. 
+05.11.2015 14:13:40.226 [INFO ] [o-auto-1-exec-4] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+05.11.2015 14:13:40.234 [INFO ] [o-auto-1-exec-5] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+05.11.2015 14:13:40.234 [ERROR] [o-auto-1-exec-5] processing.rest.EP_ERROR_CODES - Query with the same name already exists. 
+05.11.2015 14:13:40.251 [INFO ] [o-auto-1-exec-6] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+05.11.2015 14:13:40.264 [INFO ] [o-auto-1-exec-7] .rest.EProcManageStatementImpl - POST /registrations/rule/{name} is invoked. 
+05.11.2015 14:13:40.274 [INFO ] [o-auto-1-exec-8] .rest.EProcManageStatementImpl - DELETE /deregistrations/rule/{name} is invoked. 
+05.11.2015 14:13:40.284 [INFO ] [o-auto-1-exec-9] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+05.11.2015 14:13:40.293 [INFO ] [-auto-1-exec-10] .rest.EProcManageStatementImpl - POST /registrations/rule/{name} is invoked. 
+05.11.2015 14:13:40.301 [INFO ] [o-auto-1-exec-1] .rest.EProcManageStatementImpl - GET /activations/rule/{name} is invoked. 
+05.11.2015 14:13:40.330 [INFO ] [o-auto-1-exec-1] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'alligatorbirne23' as name from DeviceData as d where d.device.name = 'device1'  
+05.11.2015 14:13:40.342 [INFO ] [o-auto-1-exec-2] .rest.EProcManageStatementImpl - GET /deactivations/rule/{name} is invoked. 
+05.11.2015 14:13:40.376 [INFO ] [o-auto-1-exec-2] ngine.impl.EsperEPLTransformer - Generated EPL: insert into Event select 'alligatorbirne23' as name from DeviceData as d where d.device.name = 'device1'  
+05.11.2015 14:13:40.386 [INFO ] [o-auto-1-exec-3] .rest.EProcManageStatementImpl - POST /registrations/query/{name} is invoked. 
+05.11.2015 14:13:40.394 [INFO ] [o-auto-1-exec-4] .rest.EProcManageStatementImpl - POST /registrations/rule/{name} is invoked. 
+05.11.2015 14:13:40.401 [INFO ] [o-auto-1-exec-5] .rest.EProcManageStatementImpl - POST /registrations/rule/{name} is invoked. 
+05.11.2015 14:13:40.401 [ERROR] [o-auto-1-exec-5] processing.rest.EP_ERROR_CODES - Rule with the same name already exists. 

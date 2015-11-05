@@ -2,7 +2,7 @@ list-dev
 
 list-ep
 
-list-ds --devId 1
+list-ds --devId 2
 
 list-dev-by --devInfo Temperature --domInfo FLOOR1
 
@@ -12,7 +12,7 @@ rq --epId 1 --query "CONDITION name = 'Temperature' AND value <= 15" --queryName
 
 rr --epId 1 --rule 'detectTemperatureUnder15 -> detectTemperatureAbove25 TRIGGERS Temperature, FLOOR1, TASK_INTERVAL_MS = 2000' --ruleName decreaseIntervalBasedOnHighTemperature
 
-rr --epId 1 --rule 'detectTemperatureAbove25 -> detectTemperatureUnder15 TRIGGERS Temperature, FLOOR1, TASK_INTERVAL_MS = 10000' --ruleName increaseIntervalBasedOnLowTemperature
+rr --epId 1 --rule 'detectTemperatureAbove25 -> detectTemperatureUnder15 TRIGGERS Temperature, FLOOR1, TASK_INTERVAL_MS = 7000' --ruleName increaseIntervalBasedOnLowTemperature
 
 activate-rule --epId 1 --ruleName decreaseIntervalBasedOnHighTemperature
 
