@@ -6,7 +6,6 @@ import java.util.Arrays;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -98,7 +97,8 @@ public class DeliveryTask implements Runnable {
                         VirtualEP.send(new VirtualData(ddDTO, deliveryUrl, Instant.now()));
                     } else {
                         // logger.info("Send data ...");
-                        ResponseEntity<String> response = restTemplate.postForEntity(deliveryUrl, ddDTO, String.class);
+                        // ResponseEntity<String> response =
+                        restTemplate.postForEntity(deliveryUrl, ddDTO, String.class);
                         // logger.info("Device data send. Status: " + response.getStatusCode() + " Response body: " + response.getBody());
                     }
                 }
