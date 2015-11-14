@@ -56,7 +56,7 @@ public class TransformXMLTest {
 
         Assert.assertNotNull(connections);
         Assert.assertNotNull(connections.getConnection());
-        Assert.assertEquals(2, connections.getConnection().size());
+        Assert.assertEquals(3, connections.getConnection().size());
         connections.getConnection().get(0).getComponent();
         Assert.assertEquals("IOT_DEVICE", connections.getConnection().get(0).getComponent().value());
         Assert.assertEquals("127.0.0.1", connections.getConnection().get(0).getHost());

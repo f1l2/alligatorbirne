@@ -26,5 +26,10 @@
             <host>10.241.100.104</host>
             <port>5001</port>
         </connection>
+       	<connection component="MESSAGE_BROKER">
+			<name>Message Broker</name>
+			<host>127.0.0.1</host>
+			<port>61616</port>
+		</connection>
     </connections>
 </setting>

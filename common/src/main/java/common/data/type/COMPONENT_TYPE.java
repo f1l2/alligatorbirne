@@ -4,19 +4,27 @@ import common.data.setting.XMLComponent;
 
 public enum COMPONENT_TYPE {
 
-    /*
-     * Component belongs to one IOT instance
+    /**
+     * Component belongs to exactly one IOT instance
      */
     DEVICE("device", "Device"),
-    /*
-     * Component belongs to one CM instance
+
+    /**
+     * Component belongs to exactly one CM instance
      */
     CONFIGURATION_MANAGEMENT("configuration management", ""),
-    /*
-     * Component belongs to one EP instance
+
+    /**
+     * Component belongs to exactly one EP instance
      */
     EVENT_PROCESSING("event processing", ""),
-    /*
+
+    /**
+     * Component belongs to exactly one MB instance
+     */
+    MESSAGE_BROKER("message_broker", ""),
+
+    /**
      * Component belongs to hosting component. Special marked for various reason (faster access ...)
      */
     LOCAL("local", "stores own connection data.");
