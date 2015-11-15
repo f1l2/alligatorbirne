@@ -1,6 +1,10 @@
 package common.data.model;
 
-public abstract class DataModel {
+import java.io.Serializable;
+
+public abstract class DataModel implements Serializable {
+
+    private static final long serialVersionUID = 5706720535491286563L;
 
     protected long id;
 

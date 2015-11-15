@@ -8,7 +8,6 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 @Configuration
 @EnableScheduling
 public class ApplicationConfig {
-
     @Bean
     public ThreadPoolTaskExecutor taskExecutor() {
         ThreadPoolTaskExecutor pool = new ThreadPoolTaskExecutor();

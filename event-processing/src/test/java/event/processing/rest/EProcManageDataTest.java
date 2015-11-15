@@ -15,14 +15,14 @@ import common.data.model.DomainInformation;
 import common.data.type.DEVICE_INFORMATION_TYPE;
 import common.data.type.DOMAIN_INFORMATION_TYPE;
 import common.rest.RESOURCE_NAMING;
-import event.processing.AbstractTestRestEP;
 import event.processing.Application;
+import event.processing.message.AbstractTestMessageEP;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
 @IntegrationTest("server.port:0")
-public class EProcManageDataTest extends AbstractTestRestEP {
+public class EProcManageDataTest extends AbstractTestMessageEP {
 
     @Test
     public void send() {

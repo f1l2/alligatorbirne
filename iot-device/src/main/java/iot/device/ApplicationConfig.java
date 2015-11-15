@@ -7,6 +7,7 @@ import java.util.concurrent.Executors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jms.annotation.EnableJms;
 import org.springframework.scheduling.Trigger;
 import org.springframework.scheduling.TriggerContext;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -19,6 +20,7 @@ import iot.device.status.Status;
 
 @Configuration
 @EnableScheduling
+@EnableJms
 public class ApplicationConfig implements SchedulingConfigurer {
 
     public final static int MAX_TASKS = 5;
