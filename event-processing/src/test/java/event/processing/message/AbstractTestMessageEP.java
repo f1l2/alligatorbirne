@@ -26,6 +26,8 @@ import common.data.model.DeviceData;
 import common.data.model.DeviceInformation;
 import common.data.model.DomainInformation;
 import common.data.setting.SettingUtils;
+import event.processing.messaging.MessageHandlerImpl;
+import event.processing.messaging.MessageHandlerListener;
 
 public class AbstractTestMessageEP implements MessageListener {
 

@@ -16,11 +16,6 @@
             <host>127.0.0.1</host>
             <port>5000</port>
         </connection>
-        <connection component="IOT_DEVICE">
-            <name>localConnection</name>
-            <host>10.241.100.135</host>
-            <port>5003</port>
-        </connection>
         <connection component="LOCAL">
             <name>localConnection</name>
             <host>192.168.56.1</host>

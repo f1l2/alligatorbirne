@@ -1,4 +1,4 @@
-package event.processing.message;
+package event.processing.messaging;
 
 import javax.jms.Message;
 import javax.jms.MessageListener;

@@ -1,4 +1,4 @@
-package event.processing.message;
+package common.messaging;
 
 import java.util.List;
 
@@ -13,17 +13,14 @@ import javax.jms.Topic;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
 
 import common.data.dto.DeviceDataDTO;
 import common.data.model.DeviceData;
-import common.messaging.MessageHandler;
 import common.transformer.DeviceDataTransformer;
 
-@Service
-public class MessageHandlerImpl implements MessageHandler<DeviceDataDTO> {
+public class MessageHandlerAbstract implements MessageHandler<DeviceDataDTO> {
 
-    private static final Logger logger = LoggerFactory.getLogger(MessageHandlerImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(MessageHandlerAbstract.class);
 
     private ActiveMQConnectionFactory connectionFactory = null;
 
@@ -79,8 +76,6 @@ public class MessageHandlerImpl implements MessageHandler<DeviceDataDTO> {
                 ObjectMessage message = session.createObjectMessage(dd);
 
                 String propertyValue = dd.getDevice().getName() + ":" + dd.getDomain().getName();
-
-                System.out.println(propertyValue);
 
                 message.setStringProperty(PROPERTY, propertyValue);
 

@@ -16,6 +16,7 @@ import common.data.setting.SettingUtils;
 import common.property.SystemReservedProperty;
 import common.rest.RESOURCE_NAMING;
 import common.rest.ResourceUtils;
+import iot.device.messaging.MessageHandlerImpl;
 import iot.device.property.Configuration;
 import iot.device.repo.DeliveryTaskRO;
 import iot.device.repo.DeliveryTaskRepository;
@@ -43,6 +44,9 @@ public class DeliveryTask implements Runnable {
 
     @Autowired
     private DeliveryTaskRepository dtr;
+
+    @Autowired
+    private MessageHandlerImpl messageHandler;
 
     private String identification;
 
@@ -98,7 +102,11 @@ public class DeliveryTask implements Runnable {
                     } else {
                         // logger.info("Send data ...");
                         // ResponseEntity<String> response =
-                        restTemplate.postForEntity(deliveryUrl, ddDTO, String.class);
+                        // restTemplate.postForEntity(deliveryUrl, ddDTO, String.class);
+
+                        messageHandler.start(SettingUtils.getMBConnection());
+                        messageHandler.produce(ddDTO);
+
                         // logger.info("Device data send. Status: " + response.getStatusCode() + " Response body: " + response.getBody());
                     }
                 }
