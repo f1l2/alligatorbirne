@@ -90,13 +90,13 @@
 
        .v-table-cell-content {
        		font-size: $v-font-size * 1.0;
-       		background-color: $esb-ca-color-light-green;
+       		background-color: $monitoring-ca-color-light-green;
        }
        
     }
     
     [class*="-row"].v-selected + .v-selected td {
-    	border-top-color: $esb-ca-color-grey-90;
+    	border-top-color: $monitoring-ca-color-grey-90;
     }
   }
   
@@ -111,31 +111,31 @@
     }
   }
   
-  .v-table-row-esb-background-removed{
-    background: $esb-color-removed;
+  .v-table-row-monitoring-background-removed{
+    background: $monitoring-color-removed;
   }
   
-  .v-table-cell-content-esb-background-removed{
-    background: $esb-color-removed;
+  .v-table-cell-content-monitoring-background-removed{
+    background: $monitoring-color-removed;
   }
     
-  .v-table-row-esb-background-changed{
-    background: $esb-color-changed;
+  .v-table-row-monitoring-background-changed{
+    background: $monitoring-color-changed;
   }
 
-  .v-table-cell-content-esb-background-changed{
-    background: $esb-color-changed;
+  .v-table-cell-content-monitoring-background-changed{
+    background: $monitoring-color-changed;
   }
   
-  .v-table-row-esb-background-added{
-    background: $esb-color-added;
+  .v-table-row-monitoring-background-added{
+    background: $monitoring-color-added;
   }
   
-  .v-table-cell-content-esb-background-added{
-    background: $esb-color-added;
+  .v-table-cell-content-monitoring-background-added{
+    background: $monitoring-color-added;
   }
   
-  .esb-table-min-width {
+  .monitoring-table-min-width {
   
   	.v-table-header-cell {
 		min-width: 150px;
@@ -154,36 +154,36 @@
 	}
   }
   
-  .esb-table-without-padding {
+  .monitoring-table-without-padding {
 	.v-table-cell-content {
 		padding-right: 0px;
 	}
   }
   
-  .esb-table-font-monospace {
+  .monitoring-table-font-monospace {
   	.v-table-cell-content {
 		font-family: monospace;
 	}
   }
   
-  .esb-action {
+  .monitoring-action {
   	-webkit-border-radius:2px;
     border-radius: 2px;
     padding: 4px 7px;
     margin: 2px;
   }
 
-  .esb-added {
-  	@extend .esb-action;
-    background-color: $esb-color-added;
+  .monitoring-added {
+  	@extend .monitoring-action;
+    background-color: $monitoring-color-added;
   }
   
-  .esb-changed {
-  	@extend .esb-action;
-    background-color: $esb-color-changed;
+  .monitoring-changed {
+  	@extend .monitoring-action;
+    background-color: $monitoring-color-changed;
   }
   
-  .esb-removed {
-  	@extend .esb-action;
-    background-color: $esb-color-removed;
+  .monitoring-removed {
+  	@extend .monitoring-action;
+    background-color: $monitoring-color-removed;
   }

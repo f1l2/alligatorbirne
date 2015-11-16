@@ -4,7 +4,7 @@
 
 @import "../valo/valo";
 
-.esb-dp-theme {
+.monitoring-theme {
 
   @include valo;
   
@@ -33,20 +33,20 @@
   
   font-family: 'PT Sans', sans-serif;
   
-  .esb-root-layout {
+  .monitoring-root-layout {
 
   }
   
-  .esb-title-layout {
+  .monitoring-title-layout {
     padding: $v-layout-spacing-vertical $v-layout-spacing-horizontal*4;
     color: black;
   }
   
-  .esb-menu-layout {
+  .monitoring-menu-layout {
       
   	.v-menubar { 
 		padding: 0 $v-layout-spacing-horizontal*6;
-		background: $esb-ca-color-grey-40;
+		background: $monitoring-ca-color-grey-40;
 		color: white;
 		border: 1px solid white;
 		border-radius: 0px; 
@@ -58,12 +58,12 @@
   	}
 
   	.v-menubar-menuitem:hover {
-  		background: $esb-ca-color-grey-95;
-  		color: $esb-ca-color-green;
+  		background: $monitoring-ca-color-grey-95;
+  		color: $monitoring-ca-color-green;
 	}
 	
 	.v-menubar-menuitem-selected {
-		background: $esb-ca-color-grey-95;
+		background: $monitoring-ca-color-grey-95;
 		background-image: none;
 	}
 	
@@ -77,21 +77,21 @@
 	}
   }
   
-  .esb-headline-layout {
+  .monitoring-headline-layout {
   	padding: $v-layout-spacing-vertical $v-layout-spacing-horizontal*2;
-  	border-bottom: 1px solid $esb-ca-color-grey-90;
+  	border-bottom: 1px solid $monitoring-ca-color-grey-90;
   	font-size: $v-font-size*1.1;  
-  	background: $esb-ca-color-grey-95;
+  	background: $monitoring-ca-color-grey-95;
   	float: left;
   }
  
-  .esb-content-layout {
+  .monitoring-content-layout {
   }
   
-  .esb-content-layout-center {
+  .monitoring-content-layout-center {
   	border-top: 1px none white;
-  	border-left: 1px solid $esb-ca-color-grey-90;
-  	border-bottom: 1px solid $esb-ca-color-grey-90;
+  	border-left: 1px solid $monitoring-ca-color-grey-90;
+  	border-bottom: 1px solid $monitoring-ca-color-grey-90;
   	min-height: 420px;
   	
     .v-spacing {
@@ -103,30 +103,30 @@
     }
   }
   
-  .esb-spinner {
-  	@Include valo-spinner(24px, 3px, $esb-ca-color-green, 500ms);
+  .monitoring-spinner {
+  	@Include valo-spinner(24px, 3px, $monitoring-ca-color-green, 500ms);
   }
 
   
   
   // USER INTERACTION
 
-  .esb-clickable {
-  	border: 2px solid  $esb-ca-color-grey-92;
+  .monitoring-clickable {
+  	border: 2px solid  $monitoring-ca-color-grey-92;
   	border-radius: 4px;
   	min-width: 0px;
-  	background: $esb-ca-color-grey-92;
+  	background: $monitoring-ca-color-grey-92;
   	box-shadow: none;
   }
   
-  .esb-clickable:hover {
-  	border: 2px solid $esb-ca-color-green;
+  .monitoring-clickable:hover {
+  	border: 2px solid $monitoring-ca-color-green;
   	border-radius: 4px;
   	min-width: 0px;
   }
   
-  .esb-icon-link {
-  	@extend .esb-clickable;
+  .monitoring-icon-link {
+  	@extend .monitoring-clickable;
   	a {
   		height: 16px;
 		display: block;
@@ -139,8 +139,8 @@
   	}
   }
   
-  .esb-icon-link:hover {
-  	@extend .esb-clickable:hover;
+  .monitoring-icon-link:hover {
+  	@extend .monitoring-clickable:hover;
   	a {
    		height: 16px;
 		display: block;
@@ -153,8 +153,8 @@
   	}
   }
   
-  .esb-icon-button {
-  	@extend .esb-clickable;
+  .monitoring-icon-button {
+  	@extend .monitoring-clickable;
   	padding: 2px 12px;
   	
   	img.v-icon {
@@ -163,66 +163,66 @@
   	
   }
   
-  .esb-icon-button:hover {
-  	@extend .esb-clickable:hover;
+  .monitoring-icon-button:hover {
+  	@extend .monitoring-clickable:hover;
   }
   
-  .esb-icon-button:after {
-  	@extend .esb-clickable:after;
+  .monitoring-icon-button:after {
+  	@extend .monitoring-clickable:after;
   	border-style: none;
   }
   
-  .esb-icon-button-txt {
-  	@extend .esb-icon-button;
+  .monitoring-icon-button-txt {
+  	@extend .monitoring-icon-button;
   	padding: 0px 0px;
-  	border: 2px solid $esb-ca-color-grey-90;
+  	border: 2px solid $monitoring-ca-color-grey-90;
   	border-radius: 6px;
   	margin: 5px;
   }
   
-  .esb-icon-button-txt:hover {
-  	@extend .esb-icon-button:hover;
+  .monitoring-icon-button-txt:hover {
+  	@extend .monitoring-icon-button:hover;
   	padding: 0px 0px;
   	border-radius: 6px;
   }
   
-  .esb-icon-button-txt-btn {
-    @extend .esb-icon-button;
+  .monitoring-icon-button-txt-btn {
+    @extend .monitoring-icon-button;
 	text-align: left;
 	border-style: none;
 	padding: 8px 12px;
   }
   
-  .esb-icon-button-txt-btn:hover {
-  	@extend .esb-icon-button:hover;
+  .monitoring-icon-button-txt-btn:hover {
+  	@extend .monitoring-icon-button:hover;
 	text-align: left;
 	border-style: none;
 	padding: 8px 12px;
   }
   
-  .esb-textfield-large {
-  	height: $esb-textfield-height;
+  .monitoring-textfield-large {
+  	height: $monitoring-textfield-height;
  	width: 260px;
   }
   
-  .esb-textarea-large {
+  .monitoring-textarea-large {
   	width: 260px;
   }
   
-  .esb-textfield-xlarge {
-  	height: $esb-textfield-height;
+  .monitoring-textfield-xlarge {
+  	height: $monitoring-textfield-height;
  	width: 310px;
   }
   
-  .esb-textfield-small {
+  .monitoring-textfield-small {
  	width: 100px; 
   }
   
-  .esb-min-width-50px {
+  .monitoring-min-width-50px {
   	min-width: 50px;
   }
  
-  .esb-editable {
+  .monitoring-editable {
   	border: 1px solid white;
   	border-radius: 4px;
   	min-width: 260px;
@@ -230,16 +230,16 @@
   	white-space: normal;
   }
   
-  .esb-editable:hover {
-  	border: 1px solid $esb-ca-color-green;
+  .monitoring-editable:hover {
+  	border: 1px solid $monitoring-ca-color-green;
   	border-radius: 4px;
   }
   
-  .esb-link {
+  .monitoring-link {
   	border: none;
   	background: transparent;
 	text-align: left;
-	color: $esb-ca-color-green;
+	color: $monitoring-ca-color-green;
 	padding-left: 4px;
 	padding-right: 4px;
 	text-decoration: underline;
@@ -248,26 +248,26 @@
 	min-width: initial;
   }
   
-  .esb-link:hover {
+  .monitoring-link:hover {
   	border: 0px solid white;
   	background: transparent;
 	text-align: left;
-	color: $esb-ca-color-green;
+	color: $monitoring-ca-color-green;
 	text-decoration: underline;
   }
   
-  .esb-left-menu-button {
+  .monitoring-left-menu-button {
   	border: none;
   	background: white;
-	color: $esb-ca-color-green;
+	color: $monitoring-ca-color-green;
 	text-align: left;
 	text-decoration: underline;
   }
   
-  .esb-left-menu-button:hover {
+  .monitoring-left-menu-button:hover {
   	border: none;
-  	background: $esb-ca-color-grey-95;
-  	color: $esb-ca-color-green;
+  	background: $monitoring-ca-color-grey-95;
+  	color: $monitoring-ca-color-green;
   	margin-left: 0;
   }
   
@@ -275,14 +275,14 @@
   
   // POSITIONING
   
-  .esb-button-layout {
+  .monitoring-button-layout {
   	.v-spacing {
   		height: 0px;
   		width: 5px ! important;
   	}
   }
   
-  .esb-spacing-margin {
+  .monitoring-spacing-margin {
   	
   	.v-spacing {
     	height: 30px;
@@ -294,7 +294,7 @@
     }
   }
   
-  .esb-spacing-margin-inner {
+  .monitoring-spacing-margin-inner {
   	
   	.v-spacing {
     	height: 15px;
@@ -310,33 +310,33 @@
 
   // COLORS
   
-  .esb-background-padding {
+  .monitoring-background-padding {
   	padding: 5px;
   }
 
-  .esb-background-changed {
-  	@extend .esb-background-padding;
-  	background: $esb-color-changed;
+  .monitoring-background-changed {
+  	@extend .monitoring-background-padding;
+  	background: $monitoring-color-changed;
   }
   
-  .esb-background-added {
-  	@extend .esb-background-padding;
-  	background: $esb-color-added;
+  .monitoring-background-added {
+  	@extend .monitoring-background-padding;
+  	background: $monitoring-color-added;
   }
   
-  .esb-background-removed {
-  	@extend .esb-background-padding;
-  	background: $esb-color-removed;
+  .monitoring-background-removed {
+  	@extend .monitoring-background-padding;
+  	background: $monitoring-color-removed;
   }
   
-  .esb-background-success {
-  	@extend .esb-background-padding;
+  .monitoring-background-success {
+  	@extend .monitoring-background-padding;
   	color: #4F8A10;
     background-color: #DFF2BF;
   }
   
-  .esb-background-failure {
-  	@extend .esb-background-padding;
+  .monitoring-background-failure {
+  	@extend .monitoring-background-padding;
   	color: #D8000C;
     background-color: #FFBABA;
   }
@@ -344,114 +344,114 @@
 
   // CSS SINGLE ATTRIBUTES
   
-  .esb-label-oblique {
+  .monitoring-label-oblique {
   	font-style: oblique;
   }
   
-  .esb-label-monospace {
+  .monitoring-label-monospace {
   	font-family: monospace
   }
 
-  .esb-hide {
+  .monitoring-hide {
   	visibility: hidden;
   }
   
-  .esb-visible {
+  .monitoring-visible {
   	visibility: none;
   }
   
-  .esb-padding-right {
-  	@include esb-padding-right($v-layout-spacing-horizontal * 2);
+  .monitoring-padding-right {
+  	@include monitoring-padding-right($v-layout-spacing-horizontal * 2);
   }
   
-  .esb-padding-left {
-  	@include esb-padding-left($v-layout-spacing-horizontal * 2);
+  .monitoring-padding-left {
+  	@include monitoring-padding-left($v-layout-spacing-horizontal * 2);
   }
   
-  .esb-padding-top {
-  	@include esb-padding-top($v-layout-spacing-horizontal * 2);
+  .monitoring-padding-top {
+  	@include monitoring-padding-top($v-layout-spacing-horizontal * 2);
   }
   
-  .esb-padding-bottom {
-  	@include esb-padding-bottom($v-layout-spacing-horizontal * 2);
+  .monitoring-padding-bottom {
+  	@include monitoring-padding-bottom($v-layout-spacing-horizontal * 2);
   }
   
-  .esb-padding-right-small {
-  	@include esb-padding-right($v-layout-spacing-horizontal);
+  .monitoring-padding-right-small {
+  	@include monitoring-padding-right($v-layout-spacing-horizontal);
   }
   
-  .esb-padding-left-small {
-  	@include esb-padding-left($v-layout-spacing-horizontal);
+  .monitoring-padding-left-small {
+  	@include monitoring-padding-left($v-layout-spacing-horizontal);
   }
   
-  .esb-padding-top-small {
-  	@include esb-padding-top($v-layout-spacing-horizontal);
+  .monitoring-padding-top-small {
+  	@include monitoring-padding-top($v-layout-spacing-horizontal);
   }
   
-  .esb-padding-bottom-small {
-  	@include esb-padding-bottom($v-layout-spacing-horizontal);
+  .monitoring-padding-bottom-small {
+  	@include monitoring-padding-bottom($v-layout-spacing-horizontal);
   }
   
-  .esb-padding {
-	@include esb-padding-right($v-layout-spacing-horizontal * 2);
-	@include esb-padding-left($v-layout-spacing-horizontal * 2);
-	@include esb-padding-top($v-layout-spacing-horizontal * 2);
-	@include esb-padding-bottom($v-layout-spacing-horizontal * 2);
+  .monitoring-padding {
+	@include monitoring-padding-right($v-layout-spacing-horizontal * 2);
+	@include monitoring-padding-left($v-layout-spacing-horizontal * 2);
+	@include monitoring-padding-top($v-layout-spacing-horizontal * 2);
+	@include monitoring-padding-bottom($v-layout-spacing-horizontal * 2);
   }
   
-  .esb-padding-small {
-	@include esb-padding-right($v-layout-spacing-horizontal);
-	@include esb-padding-left($v-layout-spacing-horizontal);
-	@include esb-padding-top($v-layout-spacing-horizontal);
-	@include esb-padding-bottom($v-layout-spacing-horizontal);
+  .monitoring-padding-small {
+	@include monitoring-padding-right($v-layout-spacing-horizontal);
+	@include monitoring-padding-left($v-layout-spacing-horizontal);
+	@include monitoring-padding-top($v-layout-spacing-horizontal);
+	@include monitoring-padding-bottom($v-layout-spacing-horizontal);
   }
   
-  .esb-margin-left-small {
-  	@include esb-margin-left($v-layout-spacing-horizontal);
+  .monitoring-margin-left-small {
+  	@include monitoring-margin-left($v-layout-spacing-horizontal);
   }
   
-  .esb-margin-right-small {
-  	@include esb-margin-right($v-layout-spacing-horizontal);
+  .monitoring-margin-right-small {
+  	@include monitoring-margin-right($v-layout-spacing-horizontal);
   }
   
-  .esb-margin-top-small {
-  	@include esb-margin-top($v-layout-spacing-horizontal);
+  .monitoring-margin-top-small {
+  	@include monitoring-margin-top($v-layout-spacing-horizontal);
   }
   
-  .esb-margin-bottom-small {
-  	@include esb-margin-bottom($v-layout-spacing-horizontal);
+  .monitoring-margin-bottom-small {
+  	@include monitoring-margin-bottom($v-layout-spacing-horizontal);
   }
   
-  .esb-margin-small {
-  	@include esb-margin-right($v-layout-spacing-horizontal);
-	@include esb-margin-left($v-layout-spacing-horizontal);
-	@include esb-margin-top($v-layout-spacing-horizontal);
-	@include esb-margin-bottom($v-layout-spacing-horizontal);	
+  .monitoring-margin-small {
+  	@include monitoring-margin-right($v-layout-spacing-horizontal);
+	@include monitoring-margin-left($v-layout-spacing-horizontal);
+	@include monitoring-margin-top($v-layout-spacing-horizontal);
+	@include monitoring-margin-bottom($v-layout-spacing-horizontal);	
   }
   
-  .esb-line-height {
+  .monitoring-line-height {
   	line-height: 28px;
   	// font-size: 
   }
   
-  .esb-border-bottom {
-  	border-bottom: 1px solid $esb-ca-color-green;
+  .monitoring-border-bottom {
+  	border-bottom: 1px solid $monitoring-ca-color-green;
   	border-radius: 0px;
   }
   
-  .esb-border-top-grey {
-  	border-top: 1px solid $esb-ca-color-grey-90;
+  .monitoring-border-top-grey {
+  	border-top: 1px solid $monitoring-ca-color-grey-90;
   }
     
-  .esb-no-padding {
+  .monitoring-no-padding {
   	padding: 0px;
   }
   
-  .esb-user-navigator-link {
+  .monitoring-user-navigator-link {
     padding: 4px 7px;
   }
   
-  .esb-panel-caption-style-no-margin {
+  .monitoring-panel-caption-style-no-margin {
   	border-bottom: 1px solid #d5d5d5;
   	margin-bottom: 1px;
 	border-radius: -1px -1px 0 0;
@@ -461,35 +461,35 @@
 	font-weight: bold;
   }
   
-  .esb-panel-caption-style {
-	@extend .esb-panel-caption-style-no-margin;
+  .monitoring-panel-caption-style {
+	@extend .monitoring-panel-caption-style-no-margin;
   	border-top: 1px solid #d5d5d5;
   }
   
-  .esb-font-weight-normal {
+  .monitoring-font-weight-normal {
   	font-weight: normal;
   }
   
-  .esb-layout-block {
+  .monitoring-layout-block {
   	display: block;
   }
   
-  .esb-layout-bold {
+  .monitoring-layout-bold {
   	font-weight: bold;
   }
   
-  .esb-border {
+  .monitoring-border {
   	border: 1px solid #d5d5d5;
   }
   
-  .esb-visible-hover {
+  .monitoring-visible-hover {
   	background: none;
 	border: none;
 	box-shadow: none;
   }
   
-  .esb-filter-background {
-  	background: $esb-ca-color-grey-95;
+  .monitoring-filter-background {
+  	background: $monitoring-ca-color-grey-95;
   }
   
   .v-menubar-popup {

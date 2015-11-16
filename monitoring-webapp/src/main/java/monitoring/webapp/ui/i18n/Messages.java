@@ -9,87 +9,87 @@ import org.apache.commons.lang3.StringUtils;
 public final class Messages {
 
     public enum MESSAGE {
-        DISCARD("at.a1ta.esb.dp.ui.discard", "Discard"),
+        DISCARD("monitoring.webapp.ui.discard", "Discard"),
         //
-        SAVE("at.a1ta.esb.dp.ui.save", "Save"),
+        SAVE("monitoring.webapp.ui.save", "Save"),
         //
-        CANCEL("at.a1ta.esb.dp.ui.cancel", "Cancel"),
+        CANCEL("monitoring.webapp.ui.cancel", "Cancel"),
         //
-        CODE("at.a1ta.esb.dp.ui.code", "Code"),
+        CODE("monitoring.webapp.ui.code", "Code"),
         //
-        MESSAGE("at.a1ta.esb.dp.ui.message", "Message"),
+        MESSAGE("monitoring.webapp.ui.message", "Message"),
         //
-        NAME("at.a1ta.esb.dp.ui.name", "Name"),
+        NAME("monitoring.webapp.ui.name", "Name"),
         //
-        MEP("at.a1ta.esb.dp.ui.mep", "MEP"),
+        MEP("monitoring.webapp.ui.mep", "MEP"),
         //
-        DESCRIPTION("at.a1ta.esb.dp.ui.description", "Description"),
+        DESCRIPTION("monitoring.webapp.ui.description", "Description"),
         //
-        ADD("at.a1ta.esb.dp.ui.add", "Add"),
+        ADD("monitoring.webapp.ui.add", "Add"),
         //
-        RESET("at.a1ta.esb.dp.ui.reset", "Reset"),
+        RESET("monitoring.webapp.ui.reset", "Reset"),
         //
-        APPLY("at.a1ta.esb.dp.ui.apply", "Apply"),
+        APPLY("monitoring.webapp.ui.apply", "Apply"),
         //
-        UPDATE("at.a1ta.esb.dp.ui.update", "Update"),
+        UPDATE("monitoring.webapp.ui.update", "Update"),
         //
-        REFRESH("at.a1ta.esb.dp.ui.refresh", "Refresh"),
+        REFRESH("monitoring.webapp.ui.refresh", "Refresh"),
         //
-        KEYWORD("at.a1ta.esb.dp.ui.keyword", "Keyword"),
+        KEYWORD("monitoring.webapp.ui.keyword", "Keyword"),
         //
-        SHOW_AT_LEAST("at.a1ta.esb.dp.ui.showAtLeast", "Show at least"),
+        SHOW_AT_LEAST("monitoring.webapp.ui.showAtLeast", "Show at least"),
         //
-        ESB_NODE("at.a1ta.esb.dp.ui.esbNode", "ESB Node"),
+        monitoring_NODE("monitoring.webapp.ui.monitoringNode", "monitoring Node"),
         //
-        RELEVANCE("at.a1ta.esb.dp.ui.relevance", "Relevance"),
+        RELEVANCE("monitoring.webapp.ui.relevance", "Relevance"),
         //
-        DEPLOY("at.a1ta.esb.dp.ui.deploy", "Deploy"),
+        DEPLOY("monitoring.webapp.ui.deploy", "Deploy"),
         //
-        SERVICE_TYPE("at.a1ta.esb.dp.ui.serviceType", "Service Type"),
+        SERVICE_TYPE("monitoring.webapp.ui.serviceType", "Service Type"),
         //
-        LABELS("at.a1ta.esb.dp.ui.labels", "Labels"),
+        LABELS("monitoring.webapp.ui.labels", "Labels"),
         //
-        OK("at.a1ta.esb.dp.ui.ok", "OK"),
+        OK("monitoring.webapp.ui.ok", "OK"),
         //
-        ENVIRONMENT("at.a1ta.esb.dp.ui.environment", "Environment"),
+        ENVIRONMENT("monitoring.webapp.ui.environment", "Environment"),
         //
-        FROM("at.a1ta.esb.dp.ui.environment", "From"),
+        FROM("monitoring.webapp.ui.environment", "From"),
         //
-        SERVICE("at.a1ta.esb.dp.ui.service", "Service"),
+        SERVICE("monitoring.webapp.ui.service", "Service"),
         //
-        SERVICE_INSTANE("at.a1ta.esb.dp.ui.serviceInstance", "Service Instance"),
+        SERVICE_INSTANE("monitoring.webapp.ui.serviceInstance", "Service Instance"),
         //
-        USER("at.a1ta.esb.dp.ui.user", "User"),
+        USER("monitoring.webapp.ui.user", "User"),
         //
-        USER_NAME("at.a1ta.esb.dp.ui.user", "Login"),
+        USER_NAME("monitoring.webapp.ui.user", "Login"),
         //
-        CONTACT_NAME("at.a1ta.esb.dp.ui.contactName", "Contact"),
+        CONTACT_NAME("monitoring.webapp.ui.contactName", "Contact"),
         //
-        DISPLAY_NAME("at.a1ta.esb.dp.ui.displayname", "Name"),
+        DISPLAY_NAME("monitoring.webapp.ui.displayname", "Name"),
         //
-        EMAIL("at.a1ta.esb.dp.ui.email", "Email"),
+        EMAIL("monitoring.webapp.ui.email", "Email"),
         //
-        OPERATIN("at.a1ta.esb.dp.ui.operation", "Operation"),
+        OPERATIN("monitoring.webapp.ui.operation", "Operation"),
         //
-        SUBSCRIBE("at.a1ta.esb.dp.ui.subscribe", "Subscribe"),
+        SUBSCRIBE("monitoring.webapp.ui.subscribe", "Subscribe"),
         //
-        NODES("at.a1ta.esb.dp.ui.nodes", "Select Node"),
+        NODES("monitoring.webapp.ui.nodes", "Select Node"),
         //
-        TEXT("at.a1ta.esb.dp.ui.text", "Text"),
+        TEXT("monitoring.webapp.ui.text", "Text"),
         //
-        STOP("at.a1ta.esb.dp.ui.stop", "Stop"),
+        STOP("monitoring.webapp.ui.stop", "Stop"),
         //
-        USE_REGEX("at.a1ta.esb.dp.ui.useRegex", "Use Regex"),
+        USE_REGEX("monitoring.webapp.ui.useRegex", "Use Regex"),
         //
-        FILTER("at.a1ta.esb.dp.ui.filter", "Filter"),
+        FILTER("monitoring.webapp.ui.filter", "Filter"),
         //
-        CHANGE_USER("at.a1ta.esb.dp.ui.change_user", "Change User"),
+        CHANGE_USER("monitoring.webapp.ui.change_user", "Change User"),
         //
-        REMOVE_ALL("at.a1ta.esb.dp.ui.remove.all", "Remove all"),
+        REMOVE_ALL("monitoring.webapp.ui.remove.all", "Remove all"),
         //
-        REMOVE_SELECTED("at.a1ta.esb.dp.ui.remove.selected", "Remove selected"),
+        REMOVE_SELECTED("monitoring.webapp.ui.remove.selected", "Remove selected"),
         //
-        TAILORED("at.a1ta.esb.dp.ui.tailored", "Tailored");
+        TAILORED("monitoring.webapp.ui.tailored", "Tailored");
 
         private final String message;
 

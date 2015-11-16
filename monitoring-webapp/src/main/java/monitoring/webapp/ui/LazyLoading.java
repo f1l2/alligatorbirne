@@ -25,9 +25,9 @@ public final class LazyLoading {
     private static void setPollInterval(UI ui, int intervalInMillis) {
 
         if (intervalInMillis > -1) {
-            getLazyLoader(ui).removeStyleName("esb-hide");
+            getLazyLoader(ui).removeStyleName("monitoring-hide");
         } else {
-            getLazyLoader(ui).addStyleName("esb-hide");
+            getLazyLoader(ui).addStyleName("monitoring-hide");
         }
 
         ui.setPollInterval(intervalInMillis);

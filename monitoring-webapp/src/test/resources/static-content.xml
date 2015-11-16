@@ -19,7 +19,7 @@
             <external-url>https://tasktrack.telekom.at/confluence/pages/viewpage.action?pageId=143360652</external-url>
         </static-content>
         <static-content>
-            <name>ESB Ping</name>
+            <name>monitoring Ping</name>
             <content-url>https://tasktrack.telekom.at/confluence/plugins/servlet/remotepageview?pageId=143360654</content-url>
             <external-url>https://tasktrack.telekom.at/confluence/pages/viewpage.action?pageId=143360654</external-url>
         </static-content>
@@ -29,7 +29,7 @@
             <external-url>https://tasktrack.telekom.at/confluence/pages/viewpage.action?pageId=143360656</external-url>
         </static-content>
         <static-content>
-            <name>Esb Errors</name>
+            <name>monitoring Errors</name>
             <content-url>https://tasktrack.telekom.at/confluence/plugins/servlet/remotepageview?pageId=143360658</content-url>
             <external-url>https://tasktrack.telekom.at/confluence/pages/viewpage.action?pageId=143360658</external-url>
         </static-content>
@@ -63,12 +63,12 @@
     <static-content>
         <name>How-Tos</name>
         <static-content>
-            <name>How to access an ESB-Service</name>
+            <name>How to access an monitoring-Service</name>
             <content-url>https://tasktrack.telekom.at/confluence/plugins/servlet/remotepageview?pageId=143360676</content-url>
             <external-url>https://tasktrack.telekom.at/confluence/pages/viewpage.action?pageId=143360676</external-url>
         </static-content>
         <static-content>
-            <name>How to connect a Service to ESB</name>
+            <name>How to connect a Service to monitoring</name>
             <content-url>https://tasktrack.telekom.at/confluence/plugins/servlet/remotepageview?pageId=143360678</content-url>
             <external-url>https://tasktrack.telekom.at/confluence/pages/viewpage.action?pageId=143360678</external-url>
         </static-content>

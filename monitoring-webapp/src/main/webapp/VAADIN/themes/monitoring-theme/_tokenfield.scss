@@ -7,7 +7,7 @@
 			border-style: none;
 			margin: 2px;
 			padding: 4px 7px;
-			background: $esb-ca-color-green;
+			background: $monitoring-ca-color-green;
 			min-width: 0px;
 			text-decoration: none;
 			line-height: initial;
@@ -16,13 +16,13 @@
 		.v-button-link:focus {
 			margin: 2px;
 			padding: 4px 7px;
-			background: $esb-ca-color-grey-40;
+			background: $monitoring-ca-color-grey-40;
 		}
 		
 		.v-filterselect {
 			background: white;
 			width: 148px;
-			height: $esb-textfield-height - 2px;
+			height: $monitoring-textfield-height - 2px;
 		}
 		
 		.v-filterselect-button {
@@ -41,16 +41,16 @@
 			box-shadow: none;
 		}
 		
-		.esb-added {
-            background-color: $esb-color-added;
+		.monitoring-added {
+            background-color: $monitoring-color-added;
         }
         
-        .esb-changed {
-            background-color: $esb-color-changed;
+        .monitoring-changed {
+            background-color: $monitoring-color-changed;
         }
         
-        .esb-removed {
-            background-color: $esb-color-removed;
+        .monitoring-removed {
+            background-color: $monitoring-color-removed;
         }
 	}
 	

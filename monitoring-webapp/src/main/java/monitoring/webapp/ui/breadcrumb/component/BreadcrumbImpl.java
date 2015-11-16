@@ -19,17 +19,17 @@ public class BreadcrumbImpl extends CustomComponent implements Breadcrumb {
 
         HorizontalLayout layout = new HorizontalLayout();
         layout = new HorizontalLayout();
-        layout.setStyleName("esb-breadcrumb");
+        layout.setStyleName("monitoring-breadcrumb");
         layout.setWidth(100, Unit.PERCENTAGE);
 
         breadcrumpItemLayout = new HorizontalLayout();
         layout.addComponent(breadcrumpItemLayout);
 
         envLabel = new Label();
-        envLabel.setStyleName("esb-breadcrumb-env");
+        envLabel.setStyleName("monitoring-breadcrumb-env");
         layout.addComponent(envLabel);
 
-        lazyLoader.addStyleName("esb-breadcrumb-lazyLoader");
+        lazyLoader.addStyleName("monitoring-breadcrumb-lazyLoader");
         layout.addComponent(lazyLoader);
         layout.setExpandRatio(lazyLoader, 1);
 
@@ -70,11 +70,11 @@ public class BreadcrumbImpl extends CustomComponent implements Breadcrumb {
     }
 
     private void addItem(Component component) {
-        component.addStyleName("esb-breadcrumb-item");
+        component.addStyleName("monitoring-breadcrumb-item");
 
         if (breadcrumpItemLayout.getComponentCount() > 0) {
             Label sperator = new Label("|");
-            sperator.setStyleName("esb-breadcrumb-seperator");
+            sperator.setStyleName("monitoring-breadcrumb-seperator");
             breadcrumpItemLayout.addComponent(sperator);
         }
 

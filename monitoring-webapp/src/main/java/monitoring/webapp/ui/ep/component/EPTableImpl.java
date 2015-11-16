@@ -1,4 +1,4 @@
-package monitoring.webapp.ui.service.component;
+package monitoring.webapp.ui.ep.component;
 
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.MenuBar;

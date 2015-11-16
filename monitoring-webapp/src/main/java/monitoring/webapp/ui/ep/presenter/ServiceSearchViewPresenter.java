@@ -1,11 +1,11 @@
-package monitoring.webapp.ui.service.presenter;
+package monitoring.webapp.ui.ep.presenter;
 
 import common.data.Connection;
 import monitoring.webapp.service.MonitoringService;
+import monitoring.webapp.ui.ep.view.EPView;
 import monitoring.webapp.ui.presenter.AbstractPresenter;
-import monitoring.webapp.ui.service.view.ServiceSearchView;
 
-public class ServiceSearchViewPresenter extends AbstractPresenter<Connection, ServiceSearchView> {
+public class ServiceSearchViewPresenter extends AbstractPresenter<Connection, EPView> {
 
     private final EPTablePresenter epTablePresenter;
 
@@ -16,13 +16,13 @@ public class ServiceSearchViewPresenter extends AbstractPresenter<Connection, Se
     }
 
     @Override
-    protected void init(Connection model, ServiceSearchView userInterface) {
+    protected void init(Connection model, EPView userInterface) {
         // TODO Auto-generated method stub
 
     }
 
     @Override
-    protected void initUserInterface(ServiceSearchView userInterface) {
+    protected void initUserInterface(EPView userInterface) {
         // TODO Auto-generated method stub
 
     }

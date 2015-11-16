@@ -1,10 +1,10 @@
-package monitoring.webapp.ui.service.presenter;
+package monitoring.webapp.ui.ep.presenter;
 
 import java.util.Collection;
 
 import common.data.Connection;
 import monitoring.webapp.service.MonitoringService;
-import monitoring.webapp.ui.service.component.EPTable;
+import monitoring.webapp.ui.ep.component.EPTable;
 import monitoring.webapp.ui.table.presenter.BeanItemTablePresenter;
 
 public class EPTablePresenter extends BeanItemTablePresenter<Connection, EPTable> {

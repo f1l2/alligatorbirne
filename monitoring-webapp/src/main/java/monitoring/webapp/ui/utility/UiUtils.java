@@ -169,41 +169,41 @@ public final class UiUtils {
     public enum STYLE {
 
         //
-        TEXT_FIELD_LARGE("esb-textfield-large"),
+        TEXT_FIELD_LARGE("monitoring-textfield-large"),
         //
-        EDITABLE("esb-editable"),
+        EDITABLE("monitoring-editable"),
         //
-        ROOT_LAYOUT("esb-root-layout"),
+        ROOT_LAYOUT("monitoring-root-layout"),
         //
-        TITLE_LAYOUT("esb-title-layout"),
+        TITLE_LAYOUT("monitoring-title-layout"),
         //
-        MENU_LAYOUT("esb-menu-layout"),
+        MENU_LAYOUT("monitoring-menu-layout"),
         //
-        CONTENT_LAYOUT("esb-content-layout"),
+        CONTENT_LAYOUT("monitoring-content-layout"),
         //
-        HEADLINE_LAYOUT("esb-headline-layout"),
+        HEADLINE_LAYOUT("monitoring-headline-layout"),
         //
-        CHANGED("esb-changed"),
+        CHANGED("monitoring-changed"),
         //
-        UNCHANGED("esb-unchanged"),
+        UNCHANGED("monitoring-unchanged"),
         //
-        ADDED("esb-added"),
+        ADDED("monitoring-added"),
         //
-        REMOVED("esb-removed"),
+        REMOVED("monitoring-removed"),
         //
-        HIDE("esb-hide"),
+        HIDE("monitoring-hide"),
         //
         HORIZONTAL("horizontal"),
         //
         SMALL("small"),
         //
-        ICON_TEXT_BUTTON("esb-icon-button-txt-btn"),
+        ICON_TEXT_BUTTON("monitoring-icon-button-txt-btn"),
         //
-        ICON_BUTTON("esb-icon-button"),
+        ICON_BUTTON("monitoring-icon-button"),
         //
-        ICON_LINK("esb-icon-link"),
+        ICON_LINK("monitoring-icon-link"),
         //
-        VISIBLE_HOVER("esb-visible-hover"),
+        VISIBLE_HOVER("monitoring-visible-hover"),
         //
         BORDERLESS("borderless");
 
@@ -524,7 +524,7 @@ public final class UiUtils {
     public static Component createPanelStyleCaption(Component filterComponent) {
 
         Label label = new Label("Search");
-        label.addStyleName("esb-line-height");
+        label.addStyleName("monitoring-line-height");
 
         return createPanelStyleCaption(label, filterComponent);
     }
@@ -547,13 +547,13 @@ public final class UiUtils {
         CssLayout layout = new CssLayout();
         layout.setWidth(100, Unit.PERCENTAGE);
         layout.setHeight(100, Unit.PERCENTAGE);
-        layout.addStyleName("esb-panel-caption-style");
-        layout.addStyleName("esb-padding-small");
+        layout.addStyleName("monitoring-panel-caption-style");
+        layout.addStyleName("monitoring-padding-small");
 
         layout.addComponent(label);
 
         if (null != filterComponent) {
-            filterComponent.addStyleName("esb-font-weight-normal");
+            filterComponent.addStyleName("monitoring-font-weight-normal");
             layout.addComponent(filterComponent);
         } else {
             layout.setHeight(36, Unit.PIXELS);
@@ -584,7 +584,7 @@ public final class UiUtils {
         }
 
         panel.setContent(component);
-        panel.addStyleName("esb-spacing-margin-inner");
+        panel.addStyleName("monitoring-spacing-margin-inner");
         return panel;
 
     }

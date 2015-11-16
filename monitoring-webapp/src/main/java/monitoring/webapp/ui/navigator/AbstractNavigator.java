@@ -61,7 +61,7 @@ public abstract class AbstractNavigator {
     public Component createLink(String caption, String description, boolean enabled, Resource icon) {
 
         Button linkButton = new Button();
-        linkButton.addStyleName("esb-link");
+        linkButton.addStyleName("monitoring-link");
         linkButton.setEnabled(enabled && isLinkEnabled());
 
         if (StringUtils.isNotBlank(caption)) {

@@ -16,9 +16,9 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.Notification.Type;
 
 @SuppressWarnings("serial")
-public class DocumentationPortalErrorHandler implements ErrorHandler {
+public class MonitoringWebAppErrorHandler implements ErrorHandler {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(DocumentationPortalErrorHandler.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MonitoringWebAppErrorHandler.class);
 
     @Override
     public void error(final ErrorEvent errorEvent) {

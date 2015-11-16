@@ -1,25 +1,25 @@
-.esb-breadcrumb {
+.monitoring-breadcrumb {
 
     padding: $v-layout-spacing-vertical $v-layout-spacing-horizontal*2;
-    border-bottom: 1px solid $esb-ca-color-grey-90;
+    border-bottom: 1px solid $monitoring-ca-color-grey-90;
     font-size: $v-font-size--large;  
-    background: $esb-ca-color-grey-95;
+    background: $monitoring-ca-color-grey-95;
     float: left;
 
-    .esb-breadcrumb-lazyLoader {
+    .monitoring-breadcrumb-lazyLoader {
         float: right;
         padding-right: 10px;
     }
-	.esb-breadcrumb-env {
+	.monitoring-breadcrumb-env {
 		padding-left: 10px;
 	}
-    .esb-breadcrumb-item {
+    .monitoring-breadcrumb-item {
     	height: 100%;
     	vertical-align: middle;
         padding-left: 10px;
         min-width: 0px;
     }
-    .esb-breadcrumb-seperator {
+    .monitoring-breadcrumb-seperator {
         padding-left: 10px;
     }
     

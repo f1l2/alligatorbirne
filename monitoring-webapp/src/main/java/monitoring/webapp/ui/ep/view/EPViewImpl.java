@@ -1,4 +1,4 @@
-package monitoring.webapp.ui.service.view;
+package monitoring.webapp.ui.ep.view;
 
 import org.springframework.context.annotation.Scope;
 
@@ -7,12 +7,11 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 import monitoring.webapp.service.MonitoringService;
-import monitoring.webapp.ui.breadcrumb.component.Breadcrumb;
-import monitoring.webapp.ui.navigator.ServiceSearchNavigator;
+import monitoring.webapp.ui.ep.component.EPTable;
+import monitoring.webapp.ui.ep.component.EPTableImpl;
+import monitoring.webapp.ui.ep.presenter.ServiceSearchViewPresenter;
+import monitoring.webapp.ui.navigator.EPNavigator;
 import monitoring.webapp.ui.notify.model.NotifyModel;
-import monitoring.webapp.ui.service.component.EPTable;
-import monitoring.webapp.ui.service.component.EPTableImpl;
-import monitoring.webapp.ui.service.presenter.ServiceSearchViewPresenter;
 import monitoring.webapp.ui.utility.UiUtils;
 import monitoring.webapp.ui.view.AbstractViewImpl;
 import ru.xpoft.vaadin.VaadinView;
@@ -20,16 +19,10 @@ import ru.xpoft.vaadin.VaadinView;
 @SuppressWarnings("serial")
 @org.springframework.stereotype.Component
 @Scope("prototype")
-@VaadinView(ServiceSearchView.VIEW_NAME)
-public class ServiceSearchViewImpl extends AbstractViewImpl<ServiceSearchNavigator>implements ServiceSearchView {
+@VaadinView(EPView.VIEW_NAME)
+public class EPViewImpl extends AbstractViewImpl<EPNavigator>implements EPView {
 
     private EPTableImpl databaseTableImpl;
-
-    @Override
-    public Breadcrumb initBreadcrumb() {
-        // TODO Auto-generated method stub
-        return null;
-    }
 
     @Override
     public void addNotify(NotifyModel<?> notifyModel) {
@@ -64,15 +57,15 @@ public class ServiceSearchViewImpl extends AbstractViewImpl<ServiceSearchNavigat
     }
 
     @Override
-    protected void enter(ServiceSearchNavigator navigator, MonitoringService monitoringService) {
+    protected void enter(EPNavigator navigator, MonitoringService monitoringService) {
         final ServiceSearchViewPresenter serviceSearchViewPresenter = new ServiceSearchViewPresenter(monitoringService);
         serviceSearchViewPresenter.setUserInterface(this);
 
     }
 
     @Override
-    protected ServiceSearchNavigator createInstance(String parameters) {
-        return new ServiceSearchNavigator(parameters);
+    protected EPNavigator createInstance(String parameters) {
+        return new EPNavigator(parameters);
     }
 
 }

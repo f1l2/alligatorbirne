@@ -1,4 +1,4 @@
-package monitoring.webapp.ui.service.component;
+package monitoring.webapp.ui.ep.component;
 
 import common.data.Connection;
 import monitoring.webapp.ui.i18n.Messages;

@@ -97,7 +97,7 @@ public class FooterDecorator<BI, BIC extends BeanItemColumn> extends CustomCompo
         cbShowRecords.select(numberOfRecords.value);
 
         final HorizontalLayout hLayout = new HorizontalLayout();
-        hLayout.addStyleName("esb-border-top-grey");
+        hLayout.addStyleName("monitoring-border-top-grey");
         hLayout.setWidth(100, Unit.PERCENTAGE);
         hLayout.setSpacing(true);
         hLayout.setDefaultComponentAlignment(Alignment.MIDDLE_RIGHT);
@@ -107,8 +107,8 @@ public class FooterDecorator<BI, BIC extends BeanItemColumn> extends CustomCompo
         hLayout.addComponent(cbShowRecords);
 
         hLayout.setExpandRatio(lbNumberOfRecords, 1.0f);
-        hLayout.addStyleName("esb-padding-left-small");
-        hLayout.addStyleName("esb-padding-right-small");
+        hLayout.addStyleName("monitoring-padding-left-small");
+        hLayout.addStyleName("monitoring-padding-right-small");
 
         return hLayout;
     }

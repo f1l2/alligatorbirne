@@ -3,9 +3,6 @@ package monitoring.webapp.ui;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
-
 import com.vaadin.annotations.PreserveOnRefresh;
 import com.vaadin.annotations.StyleSheet;
 import com.vaadin.annotations.Theme;
@@ -27,18 +24,17 @@ import com.vaadin.ui.VerticalLayout;
 
 import monitoring.webapp.ui.breadcrumb.component.Breadcrumb;
 import monitoring.webapp.ui.breadcrumb.component.BreadcrumbImpl;
+import monitoring.webapp.ui.ep.view.EPView;
 import monitoring.webapp.ui.i18n.Messages;
-import monitoring.webapp.ui.navigator.ServiceSearchNavigator;
-import monitoring.webapp.ui.service.view.ServiceSearchView;
+import monitoring.webapp.ui.navigator.EPNavigator;
 import ru.xpoft.vaadin.DiscoveryNavigator;
 
 @SuppressWarnings("serial")
 @Title("Monitoring Webapp")
 @Theme("monitoring-theme")
 @StyleSheet({ "http://fonts.googleapis.com/css?family=PT+Sans" })
+@org.springframework.stereotype.Component("monitoringUI")
 @PreserveOnRefresh
-@org.springframework.stereotype.Component()
-@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class MonitoringUI extends UI {
 
     public static final Map<String, Long> SERVICES_MAP = new HashMap<String, Long>();
@@ -54,7 +50,7 @@ public class MonitoringUI extends UI {
     public MonitoringUI() {
         super();
         VerticalLayout layout = new VerticalLayout();
-        layout.setStyleName("esb-root-layout");
+        layout.setStyleName("monitoring-root-layout");
 
         layout.addComponent(createTitle());
         layout.addComponent(createMenu());
@@ -67,7 +63,7 @@ public class MonitoringUI extends UI {
     @Override
     protected void init(final VaadinRequest request) {
 
-        setErrorHandler(new DocumentationPortalErrorHandler());
+        setErrorHandler(new MonitoringWebAppErrorHandler());
 
         new DiscoveryNavigator(this, container) {
 
@@ -76,7 +72,7 @@ public class MonitoringUI extends UI {
             @Override
             public void addProvider(ViewProvider provider) {
                 super.addProvider(provider);
-                View view = provider.getView(ServiceSearchView.VIEW_NAME);
+                View view = provider.getView(EPView.VIEW_NAME);
                 if (view != null) {
                     setErrorView(view);
                 }
@@ -88,10 +84,10 @@ public class MonitoringUI extends UI {
     private Component createTitle() {
 
         HorizontalLayout layout = new HorizontalLayout();
-        layout.addStyleName("esb-title-layout");
+        layout.addStyleName("monitoring-title-layout");
 
         final Image logo = new Image();
-        logo.setSource(new ThemeResource("img/logo_100x100.jpg"));
+        logo.setSource(new ThemeResource("img/logo.png"));
         logo.setWidth(58, Unit.PIXELS);
         logo.setHeight(45, Unit.PIXELS);
         layout.addComponent(logo);
@@ -109,8 +105,8 @@ public class MonitoringUI extends UI {
 
     private BreadcrumbImpl createBreadcrumb() {
         lazyLoader = new Label();
-        lazyLoader.addStyleName("esb-spinner");
-        lazyLoader.addStyleName("esb-hide");
+        lazyLoader.addStyleName("monitoring-spinner");
+        lazyLoader.addStyleName("monitoring-hide");
 
         breadcrumbImpl = new BreadcrumbImpl(lazyLoader);
         return breadcrumbImpl;
@@ -118,7 +114,7 @@ public class MonitoringUI extends UI {
 
     private ComponentContainer createContainer() {
         container = new VerticalLayout();
-        container.addStyleName("esb-content-layout");
+        container.addStyleName("monitoring-content-layout");
 
         return container;
     }
@@ -127,16 +123,30 @@ public class MonitoringUI extends UI {
 
         HorizontalLayout layout = new HorizontalLayout();
         layout.setWidth(100, Unit.PERCENTAGE);
-        layout.addStyleName("esb-menu-layout");
+        layout.addStyleName("monitoring-menu-layout");
 
         MenuBar menuBar = new MenuBar();
         menuBar.setWidth(100, Unit.PERCENTAGE);
         layout.addComponent(menuBar);
 
-        menuBar.addItem(Messages.getString("menubar.view.services.name"), null, new MenuBar.Command() {
+        menuBar.addItem("EPs", null, new MenuBar.Command() {
             @Override
             public void menuSelected(final MenuItem selectedItem) {
-                new ServiceSearchNavigator().navigeteTo();
+                new EPNavigator().navigeteTo();
+            }
+        });
+
+        menuBar.addItem("DEVs", null, new MenuBar.Command() {
+            @Override
+            public void menuSelected(final MenuItem selectedItem) {
+                new EPNavigator().navigeteTo();
+            }
+        });
+
+        menuBar.addItem("abc", null, new MenuBar.Command() {
+            @Override
+            public void menuSelected(final MenuItem selectedItem) {
+                new EPNavigator().navigeteTo();
             }
         });
 

@@ -1,31 +1,31 @@
-@mixin esb-padding-right($padding) {
+@mixin monitoring-padding-right($padding) {
 	padding-right: $padding;
 }
 
-@mixin esb-padding-left($padding) {
+@mixin monitoring-padding-left($padding) {
 	padding-left: $padding;
 }
 
-@mixin esb-padding-top($padding) {
+@mixin monitoring-padding-top($padding) {
 	padding-top: $padding;
 }
 
-@mixin esb-padding-bottom($padding) {
+@mixin monitoring-padding-bottom($padding) {
 	padding-bottom: $padding;
 }
 
-@mixin esb-margin-right($margin) {
+@mixin monitoring-margin-right($margin) {
 	margin-right: $margin;
 }
 
-@mixin esb-margin-left($margin) {
+@mixin monitoring-margin-left($margin) {
 	margin-left: $margin;
 }
 
-@mixin esb-margin-top($margin) {
+@mixin monitoring-margin-top($margin) {
 	margin-top: $margin;
 }
 
-@mixin esb-margin-bottom($margin) {
+@mixin monitoring-margin-bottom($margin) {
 	margin-bottom: $margin;
 }

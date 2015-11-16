@@ -25,7 +25,7 @@ public class PopupLabel extends CustomComponent {
 
         popupViewContent = new PopupViewContent();
         contentPopupView = new PopupView(popupViewContent);
-        contentPopupView.addStyleName("esb-link");
+        contentPopupView.addStyleName("monitoring-link");
         contentPopupView.setHideOnMouseOut(false);
 
         HorizontalLayout layout = new HorizontalLayout();
@@ -91,10 +91,10 @@ public class PopupLabel extends CustomComponent {
 
         public PopupViewContent() {
             popupComponent = new Label();
-            popupComponent.addStyleName("esb-padding-top-small");
-            popupComponent.addStyleName("esb-padding-bottom-small");
-            popupComponent.addStyleName("esb-padding-left-small");
-            popupComponent.addStyleName("esb-padding-right-small");
+            popupComponent.addStyleName("monitoring-padding-top-small");
+            popupComponent.addStyleName("monitoring-padding-bottom-small");
+            popupComponent.addStyleName("monitoring-padding-left-small");
+            popupComponent.addStyleName("monitoring-padding-right-small");
         }
 
         @Override
