@@ -103,6 +103,24 @@ public class SettingUtils {
         return getConnections(COMPONENT_TYPE.DEVICE);
     }
 
+    public static Connection getMBConnection() throws MalformedURLException, JAXBException, SAXException {
+
+        final List<Connection> connections = getConnections(COMPONENT_TYPE.MESSAGE_BROKER);
+
+        if (null != connections && connections.size() > 0) {
+
+            if (connections.size() > 1) {
+                logger.error("Configuraiton file contains multiple 'MB connection' entries. Problem of ambiguous.");
+            }
+
+            return connections.get(0);
+
+        }
+
+        return new Connection();
+
+    }
+
     public static Connection getLocalConnection() throws MalformedURLException, JAXBException, SAXException {
         final List<Connection> connections = getConnections(COMPONENT_TYPE.LOCAL);
 

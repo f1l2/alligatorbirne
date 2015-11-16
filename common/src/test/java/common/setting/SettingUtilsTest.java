@@ -39,7 +39,7 @@ public class SettingUtilsTest {
         Assert.assertNotNull(setting);
         Assert.assertNotNull(setting.getConnections());
         Assert.assertNotNull(setting.getDataSources());
-        Assert.assertEquals(2, setting.getConnections().size());
+        Assert.assertEquals(3, setting.getConnections().size());
         Assert.assertEquals(1, setting.getDataSources().size());
     }
 
@@ -62,11 +62,14 @@ public class SettingUtilsTest {
         Assert.assertNotNull(newSetting);
         Assert.assertNotNull(newSetting.getConnections());
         Assert.assertNotNull(newSetting.getDataSources());
-        Assert.assertEquals(3, newSetting.getConnections().size());
+        Assert.assertEquals(4, newSetting.getConnections().size());
         Assert.assertEquals(1, newSetting.getDataSources().size());
 
-        Assert.assertEquals("localhost", newSetting.getConnections().get(2).getUrl().getHost());
-        Assert.assertEquals(1234, newSetting.getConnections().get(2).getUrl().getPort());
+        Assert.assertEquals("127.0.0.1", newSetting.getConnections().get(2).getUrl().getHost());
+        Assert.assertEquals(61616, newSetting.getConnections().get(2).getUrl().getPort());
+
+        Assert.assertEquals("localhost", newSetting.getConnections().get(3).getUrl().getHost());
+        Assert.assertEquals(1234, newSetting.getConnections().get(3).getUrl().getPort());
     }
 
     @Test
@@ -95,7 +98,7 @@ public class SettingUtilsTest {
         Assert.assertNotNull(newSetting);
         Assert.assertNotNull(newSetting.getConnections());
         Assert.assertNotNull(newSetting.getDataSources());
-        Assert.assertEquals(2, newSetting.getConnections().size());
+        Assert.assertEquals(3, newSetting.getConnections().size());
         Assert.assertEquals(2, newSetting.getDataSources().size());
 
         Assert.assertEquals("sensor 1", newSetting.getDataSources().get(1).getDeviceInformation().getName());
@@ -123,7 +126,7 @@ public class SettingUtilsTest {
         Assert.assertNotNull(newSetting2);
         Assert.assertNotNull(newSetting2.getConnections());
         Assert.assertNotNull(newSetting2.getDataSources());
-        Assert.assertEquals(2, newSetting2.getConnections().size());
+        Assert.assertEquals(3, newSetting2.getConnections().size());
         Assert.assertEquals(1, newSetting2.getDataSources().size());
 
         before();

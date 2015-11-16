@@ -29,6 +29,8 @@ public class XMLConnectionTransformer extends Transformer<XMLConnection, Connect
             xMLConnection.setComponent(XMLComponent.IOT_DEVICE);
         } else if (COMPONENT_TYPE.LOCAL.equals(remote.getComponentType())) {
             xMLConnection.setComponent(XMLComponent.LOCAL);
+        } else if (COMPONENT_TYPE.MESSAGE_BROKER.equals(remote.getComponentType())) {
+            xMLConnection.setComponent(XMLComponent.MESSAGE_BROKER);
         }
 
         return xMLConnection;
@@ -60,6 +62,8 @@ public class XMLConnectionTransformer extends Transformer<XMLConnection, Connect
             connection.setComponentType(COMPONENT_TYPE.DEVICE);
         } else if (XMLComponent.LOCAL.equals(local.getComponent())) {
             connection.setComponentType(COMPONENT_TYPE.LOCAL);
+        } else if (XMLComponent.MESSAGE_BROKER.equals(local.getComponent())) {
+            connection.setComponentType(COMPONENT_TYPE.MESSAGE_BROKER);
         }
 
         return connection;

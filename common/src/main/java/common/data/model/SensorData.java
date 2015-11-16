@@ -1,6 +1,10 @@
 package common.data.model;
 
-public class SensorData<T> {
+import java.io.Serializable;
+
+public class SensorData<T> implements Serializable {
+
+    private static final long serialVersionUID = -7909438674414081684L;
 
     private T rawValue;
 

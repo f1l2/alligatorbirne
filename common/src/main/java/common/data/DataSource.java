@@ -1,9 +1,13 @@
 package common.data;
 
+import java.io.Serializable;
+
 import common.data.model.DeviceInformation;
 import common.data.model.DomainInformation;
 
-public class DataSource {
+public class DataSource implements Serializable {
+
+    private static final long serialVersionUID = -3777645221502788551L;
 
     private DomainInformation domainInformation;
 

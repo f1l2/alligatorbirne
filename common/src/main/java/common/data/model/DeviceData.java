@@ -2,6 +2,8 @@ package common.data.model;
 
 public class DeviceData extends DataModel {
 
+    private static final long serialVersionUID = -4534758782540633379L;
+
     private SensorData<?> sensorData;
 
     private DeviceInformation device;

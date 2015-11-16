@@ -28,20 +28,22 @@ import event.processing.ApplicationScheduler;
 import event.processing.engine.EngineFactory;
 import event.processing.engine.EngineListener;
 import event.processing.engine.impl.EsperEngineListener;
+import event.processing.message.MessageHandlerImpl;
+import event.processing.message.MessageHandlerListener;
 import event.processing.query.Query;
-import event.processing.query.QueryFactory;
 import event.processing.repo.QueryRepository;
 import event.processing.repo.RuleRepository;
 import event.processing.rule.Rule;
 import event.processing.rule.RuleFactory;
+import event.processing.rule.model.Reaction;
 import event.processing.status.STATUS_TYPE;
 import event.processing.status.Status;
 import event.processing.utilities.Utilities;
 
 @RestController
-public class EProcManageStatementImpl implements EProcManageStatement {
+public class EProcManageRuleImpl implements EProcManageRule {
 
-    private static final Logger logger = LoggerFactory.getLogger(EProcManageStatementImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(EProcManageRuleImpl.class);
 
     @Autowired
     @Qualifier("esper")
@@ -54,48 +56,18 @@ public class EProcManageStatementImpl implements EProcManageStatement {
     private RuleRepository ruleRepository;
 
     @Autowired
-    private QueryFactory queryFactory;
+    private RuleFactory ruleFactory;
 
     @Autowired
-    private RuleFactory ruleFactory;
+    private MessageHandlerImpl messageHandler;
+
+    @Autowired
+    protected MessageHandlerListener messageHandlerListener;
 
     @Autowired
     private Status status;
 
-    private Connection local, cm;
-
-    public EProcManageStatementImpl() {
-
-    }
-
-    @Override
-    @RequestMapping(value = "/registrations/query/{name}", method = RequestMethod.POST)
-    public ResponseEntity<String> registerQuery(@PathVariable("name") String name, @RequestBody String query) {
-        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.EPROCESSING_REGISTRATION_QUERY));
-
-        /**
-         * Make sure that parameter 'name' is not empty or that it isn't already awarded.
-         */
-        if (StringUtils.isEmpty(name)) {
-            return EP_ERROR_CODES.ERROR_MISSING_QUERY_NAME.getErrorResponse();
-        } else if ((null != queryRepository.findOne(name))) {
-            return EP_ERROR_CODES.ERROR_EXISTING_QUERY.getErrorResponse();
-        }
-
-        /**
-         * Parse query and store it in the repository.
-         */
-        try {
-            Query q = queryFactory.parse(query, name);
-            queryRepository.save(q);
-
-        } catch (Exception e) {
-            return EP_ERROR_CODES.ERROR_PARSING_QUERY.getErrorResponse();
-        }
-
-        return new ResponseEntity<String>(OK, HttpStatus.OK);
-
-    }
+    private Connection local, cm, mb;
 
     @Override
     @RequestMapping(value = "/registrations/rule/{name}", method = RequestMethod.POST)
@@ -191,10 +163,17 @@ public class EProcManageStatementImpl implements EProcManageStatement {
 
                 final CDBuilder cdBuilder = new CDBuilder();
                 cdBuilder.buildDataSink(local);
-                rule.getReactions().forEach(item -> cdBuilder.addDataSource(item.getDeviceInformation(), item.getDomainInformation()));
 
-                RestTemplate restTemplate = new RestTemplate();
+                final RestTemplate restTemplate = new RestTemplate();
+                for (Reaction reaction : rule.getReactions()) {
+                    cdBuilder.addDataSource(reaction.getDeviceInformation(), reaction.getDomainInformation());
+                }
+
                 restTemplate.postForEntity(url, cdBuilder.getResult(), String.class);
+
+                messageHandler.start(mb);
+                messageHandler.consume(Utilities.createSelectorForActiveRules(ruleRepository), messageHandlerListener);
+
             }
 
         } catch (Exception e) {
@@ -272,39 +251,6 @@ public class EProcManageStatementImpl implements EProcManageStatement {
     }
 
     @Override
-    @RequestMapping(value = "/deregistrations/query/{name}", method = RequestMethod.DELETE)
-    public ResponseEntity<String> withdrawQuery(@PathVariable("name") String name) {
-        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.EPROCESSING_DEREGISTRATION_QUERY));
-
-        /**
-         * Make sure that parameter 'name' is not empty.
-         */
-        if (StringUtils.isEmpty(name)) {
-            return EP_ERROR_CODES.ERROR_MISSING_QUERY_NAME.getErrorResponse();
-        }
-
-        /**
-         * Make sure that corresponding query exists.
-         * 
-         */
-        Query query = queryRepository.findOne(name);
-        if (null == query) {
-            return EP_ERROR_CODES.ERROR_NON_EXISTING_QUERY.getErrorResponse();
-        }
-
-        /**
-         * Make sure that query isn't assigned to a rule.
-         * 
-         */
-        if (!CollectionUtils.isEmpty(ruleRepository.findRulesByQueryName(name))) {
-            return EP_ERROR_CODES.ERROR_DEREGISTER_ASSIGNED.getErrorResponse();
-        }
-
-        ruleRepository.delete(name);
-        return new ResponseEntity<String>(OK, HttpStatus.OK);
-    }
-
-    @Override
     @RequestMapping(value = "/deregistrations/rule/{name}", method = RequestMethod.DELETE)
     public ResponseEntity<String> withdrawRule(@PathVariable("name") String name) {
         logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.EPROCESSING_DEREGISTRATION_RULE));
@@ -337,14 +283,6 @@ public class EProcManageStatementImpl implements EProcManageStatement {
     }
 
     @Override
-    @RequestMapping(value = "/registrations/queries", method = RequestMethod.GET)
-    public @ResponseBody List<Query> getAllQueries() {
-        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.EPROCESSING_GET_ALL_QUERIES));
-
-        return queryRepository.findAll();
-    }
-
-    @Override
     @RequestMapping(value = "/registrations/rules", method = RequestMethod.GET)
     public @ResponseBody List<Rule> getAllRules() {
         logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.EPROCESSING_GET_ALL_RULES));
@@ -357,6 +295,9 @@ public class EProcManageStatementImpl implements EProcManageStatement {
             local = SettingUtils.getLocalConnection();
             local.setComponentType(COMPONENT_TYPE.EVENT_PROCESSING);
             cm = SettingUtils.getCMConnection();
+
+            mb = SettingUtils.getMBConnection();
+
         } catch (Exception e) {
             logger.error("Error retrieving settings.");
         }
