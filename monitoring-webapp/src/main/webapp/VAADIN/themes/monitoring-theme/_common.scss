@@ -1,0 +1,83 @@
+  .v-textfield { 
+  	 border-radius: 2px;
+  	 height: $esb-textfield-height; 
+  }
+  
+  .v-window-header {
+  	color: #7DBA00;
+  }
+  
+  .v-filterselect { 
+  	border-radius: 2px; 
+  	height: 28px;
+  }
+  
+  .v-filterselect-suggestpopup { 
+  	font-size: $v-font-size*1.0;
+  }
+  
+  .v-splitpanel-hsplitter-locked {
+ 	 border-right: 1px solid #ddd;
+  }
+  
+  .v-tooltip {
+  	background: #666666;
+  	border: 0px none white;
+  	color: white;
+  }
+  
+  .v-button { 
+  	border-radius: 4px;
+  	border: 2px solid #ddd;
+  	min-width: 100px;
+  }
+  
+  .v-button:hover {
+  	border-radius: 4px;
+  	border: 2px solid #7DBA00;
+  	color: #7DBA00;
+   }
+   
+   
+  .v-icon {
+  	min-width: 16px;
+  	min-height: 16px;
+  }
+  
+  .v-gridlayout {
+  	font-size: $v-font-size;
+  	color:black;
+  }
+  
+  .v-csslayout {
+  }
+  
+  .v-formlayout {
+  }
+  
+  .v-formlayout-contentcell {
+  	font-size: $v-font-size*1.0; 
+  }
+  
+  .v-formlayout-captioncell {
+  	padding-right: 20px;
+  	font-weight: bold;
+  	font-size: $v-font-size*1.2; 
+  	text-align: right;
+  }
+  
+  .v-tabsheet-tabcontainer {
+  	background-color: $v-background-color;
+  }
+  
+  .v-select-twincol-buttons {
+  
+  	line-height: 30px;
+  	
+  	.v-button {
+  		border-radius: 4px;
+  		border: 1px solid #ddd;
+  		min-width: 0px;
+  	}
+  }
+  

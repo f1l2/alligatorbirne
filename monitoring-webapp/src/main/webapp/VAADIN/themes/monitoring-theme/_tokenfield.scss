@@ -1,0 +1,57 @@
+.v-widget.tokenfield {
+ 	.v-csslayout {
+		border-radius: 2px;
+		border: 1px solid #c5c5c5;
+		
+		.v-button-link {
+			border-style: none;
+			margin: 2px;
+			padding: 4px 7px;
+			background: $esb-ca-color-green;
+			min-width: 0px;
+			text-decoration: none;
+			line-height: initial;
+		}
+	
+		.v-button-link:focus {
+			margin: 2px;
+			padding: 4px 7px;
+			background: $esb-ca-color-grey-40;
+		}
+		
+		.v-filterselect {
+			background: white;
+			width: 148px;
+			height: $esb-textfield-height - 2px;
+		}
+		
+		.v-filterselect-button {
+			margin: 0px;
+			padding: 0px;
+			display: inline;
+		}
+			
+		.v-filterselect-input {
+			padding: 3px 5px;
+			margin: 0px;
+			border: 0px none white;
+		}
+	
+		.v-filterselect-input:focus {
+			box-shadow: none;
+		}
+		
+		.esb-added {
+            background-color: $esb-color-added;
+        }
+        
+        .esb-changed {
+            background-color: $esb-color-changed;
+        }
+        
+        .esb-removed {
+            background-color: $esb-color-removed;
+        }
+	}
+	
+}

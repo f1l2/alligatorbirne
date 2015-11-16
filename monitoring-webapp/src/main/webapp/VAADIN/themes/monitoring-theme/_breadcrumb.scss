@@ -1,0 +1,26 @@
+.esb-breadcrumb {
+
+    padding: $v-layout-spacing-vertical $v-layout-spacing-horizontal*2;
+    border-bottom: 1px solid $esb-ca-color-grey-90;
+    font-size: $v-font-size--large;  
+    background: $esb-ca-color-grey-95;
+    float: left;
+
+    .esb-breadcrumb-lazyLoader {
+        float: right;
+        padding-right: 10px;
+    }
+	.esb-breadcrumb-env {
+		padding-left: 10px;
+	}
+    .esb-breadcrumb-item {
+    	height: 100%;
+    	vertical-align: middle;
+        padding-left: 10px;
+        min-width: 0px;
+    }
+    .esb-breadcrumb-seperator {
+        padding-left: 10px;
+    }
+    
+}

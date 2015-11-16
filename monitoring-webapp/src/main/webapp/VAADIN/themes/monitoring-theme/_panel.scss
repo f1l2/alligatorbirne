@@ -1,0 +1,18 @@
+ .v-panel {
+
+	.v-panel-caption {
+  		font-size: $v-font-size;
+  		background: #F3F3F3;
+  		color: black;
+  		font-weight: bold;
+  	}
+  	
+  	.v-panel-content {
+  		color: black;
+  	
+  		.v-spacing {
+    		height: 15px;
+    		width: 15px;
+    	}
+  	}
+}

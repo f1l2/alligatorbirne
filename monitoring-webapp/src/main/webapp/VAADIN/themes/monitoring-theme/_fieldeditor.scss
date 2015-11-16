@@ -1,0 +1,38 @@
+.esb-field-editor {
+
+  width: 320px; 	
+
+  .esb-field-editor-field {
+
+  }
+  
+  .esb-field-editor-field-edit {
+  	white-space: normal;
+	width: 250px;
+  }
+
+  .esb-field-editor-field-read-only {
+	white-space: normal;
+	max-width: 250px;
+  }  
+  
+  .esb-field-editor-button {
+  	margin-left: $v-layout-spacing-horizontal / 3;
+  }
+  
+  .esb-field-editor-button:hover {
+
+  }
+  
+  .esb-field-editor-button-edit {
+  }  
+  
+  .esb-field-editor-button-commit {
+  
+  }  
+  
+  .esb-field-editor-button-rollback {
+  
+  }
+  
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true">
+
+    <appender name="CON" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date{dd.MM.yyyy HH:mm:ss.SSS} [%-5level] [%-15.15thread] [%-5.5X{environment}] [%-15.15X{username}] [%20.30logger{36}] - %msg %n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.hibernate.SQL" level="DEBUG"/>
+    <logger name="org.dbunit" level="ERROR"/>
+    
+    <logger name="at.a1ta" level="DEBUG" />
+    <logger name="at.a1ta.eap.test" level="INFO" />
+
+    <root level="INFO">
+        <appender-ref ref="CON" />
+    </root>
+
+</configuration>

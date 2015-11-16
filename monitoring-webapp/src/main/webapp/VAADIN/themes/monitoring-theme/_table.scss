@@ -1,0 +1,189 @@
+ 
+ .v-table  {
+  
+  	@Include valo-table-borderless-style;
+	@Include valo-table-no-vertical-lines-style;
+	@Include valo-table-no-stripes-style;
+  
+	.v-table-header-cell {
+		background: white;
+		border-style: none;
+		font-size: $v-font-size*1.0;
+		font-weight: bold;
+		color: black;
+		text-align: left;
+	}
+	
+	.v-table-footer {
+		background: white;
+		border-style: none;
+	}
+	
+	.v-table-footer-cell {
+		background: white;
+		border-style: none;
+	}
+	
+	.v-table-cell-content {
+		font-size: $v-font-size;
+		word-wrap:break-word;
+		padding-right: $v-layout-spacing-horizontal*3;
+		text-align: left;
+	}
+	
+	.v-table-cell-wrapper {
+
+   	 	white-space: normal;
+   	 	line-height: 1.2;
+  	}
+
+	.v-table-resizer {
+		visibility: hidden;
+	}
+	
+	.v-table-table {
+		font-size: $v-font-size* 0.9;
+	}
+
+	.v-table-caption-container {
+    	border-style: none;   
+    }
+    
+    .v-selected .v-table-cell-content {
+    }
+
+  }
+  
+  .v-table-v-selectable {
+  	
+  	.v-table-focus {
+		border-top-style: none;
+		outline-style: none;
+		outline-offset: 0px;
+	}
+  	
+    .v-table-row, .v-table-row-odd {
+       .v-table-cell-content:first-child {
+         background-position-x: 4px;
+  		 background-position-y: center;
+         background-image: url(./icons/16/checkbox-unchecked.svg);
+         background-repeat: no-repeat;
+       }
+       
+       .v-table-cell-content {
+       		font-size: $v-font-size * 1.0;
+       		background-color: white;
+       }
+       
+       .v-table-focus {
+      		border: 1px solid grey; 			
+       }
+    }
+
+    [class*="-row"].v-selected {
+       .v-table-cell-content:first-child {
+         background-position-x: 4px;
+  		 background-position-y: center;
+         background-image: url(./icons/16/checkbox-checked.svg);
+         background-repeat: no-repeat;
+       }
+
+       .v-table-cell-content {
+       		font-size: $v-font-size * 1.0;
+       		background-color: $esb-ca-color-light-green;
+       }
+       
+    }
+    
+    [class*="-row"].v-selected + .v-selected td {
+    	border-top-color: $esb-ca-color-grey-90;
+    }
+  }
+  
+  .v-table-cell-content-wsdl-deprecated {
+    text-decoration: line-through;
+    .link {
+      text-decoration: line-through;
+    }
+    
+    .v-label{
+      text-decoration: line-through;
+    }
+  }
+  
+  .v-table-row-esb-background-removed{
+    background: $esb-color-removed;
+  }
+  
+  .v-table-cell-content-esb-background-removed{
+    background: $esb-color-removed;
+  }
+    
+  .v-table-row-esb-background-changed{
+    background: $esb-color-changed;
+  }
+
+  .v-table-cell-content-esb-background-changed{
+    background: $esb-color-changed;
+  }
+  
+  .v-table-row-esb-background-added{
+    background: $esb-color-added;
+  }
+  
+  .v-table-cell-content-esb-background-added{
+    background: $esb-color-added;
+  }
+  
+  .esb-table-min-width {
+  
+  	.v-table-header-cell {
+		min-width: 150px;
+	}
+  	 	
+	.v-table v-table-cell-content {
+		min-width: 150px;
+	}
+  	 	
+	.v-table-cell-wrapper {
+		min-width: 150px;
+  	}
+  	 	
+	.v-table-caption-container {
+		min-width: 150px; 
+	}
+  }
+  
+  .esb-table-without-padding {
+	.v-table-cell-content {
+		padding-right: 0px;
+	}
+  }
+  
+  .esb-table-font-monospace {
+  	.v-table-cell-content {
+		font-family: monospace;
+	}
+  }
+  
+  .esb-action {
+  	-webkit-border-radius:2px;
+    border-radius: 2px;
+    padding: 4px 7px;
+    margin: 2px;
+  }
+
+  .esb-added {
+  	@extend .esb-action;
+    background-color: $esb-color-added;
+  }
+  
+  .esb-changed {
+  	@extend .esb-action;
+    background-color: $esb-color-changed;
+  }
+  
+  .esb-removed {
+  	@extend .esb-action;
+    background-color: $esb-color-removed;
+  }

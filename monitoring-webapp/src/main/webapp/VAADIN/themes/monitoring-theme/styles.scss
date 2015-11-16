@@ -1,0 +1,501 @@
+@import 'variables';
+
+@import 'mixin';
+
+@import "../valo/valo";
+
+.esb-dp-theme {
+
+  @include valo;
+  
+  @import 'table';
+  
+  @import 'panel';
+  
+  @import 'common';
+  
+  @import 'tokenfield';
+
+  @import 'breadcrumb';
+
+  @import 'fieldeditor';
+  
+  
+  // LAYOUT COMPONENTS:
+  // root
+  // -> title
+  // -> menu
+  // -> headline
+  // -> content
+  // 	--> headline
+  // 	--> left
+  //	--> center
+  
+  font-family: 'PT Sans', sans-serif;
+  
+  .esb-root-layout {
+
+  }
+  
+  .esb-title-layout {
+    padding: $v-layout-spacing-vertical $v-layout-spacing-horizontal*4;
+    color: black;
+  }
+  
+  .esb-menu-layout {
+      
+  	.v-menubar { 
+		padding: 0 $v-layout-spacing-horizontal*6;
+		background: $esb-ca-color-grey-40;
+		color: white;
+		border: 1px solid white;
+		border-radius: 0px; 
+		line-height: 36px;
+		height: 40px;
+  	}
+  	
+  	.v-menubar-menuitem {
+  	}
+
+  	.v-menubar-menuitem:hover {
+  		background: $esb-ca-color-grey-95;
+  		color: $esb-ca-color-green;
+	}
+	
+	.v-menubar-menuitem-selected {
+		background: $esb-ca-color-grey-95;
+		background-image: none;
+	}
+	
+	.v-menubar-menuitem-right {
+		position: absolute;
+    	right: $v-layout-spacing-horizontal*4;
+	}
+	
+	.v-menubar-menuitem-highlight {
+    	background: #000040; 
+	}
+  }
+  
+  .esb-headline-layout {
+  	padding: $v-layout-spacing-vertical $v-layout-spacing-horizontal*2;
+  	border-bottom: 1px solid $esb-ca-color-grey-90;
+  	font-size: $v-font-size*1.1;  
+  	background: $esb-ca-color-grey-95;
+  	float: left;
+  }
+ 
+  .esb-content-layout {
+  }
+  
+  .esb-content-layout-center {
+  	border-top: 1px none white;
+  	border-left: 1px solid $esb-ca-color-grey-90;
+  	border-bottom: 1px solid $esb-ca-color-grey-90;
+  	min-height: 420px;
+  	
+    .v-spacing {
+    	height: 30px;
+    }
+        
+    .v-verticallayout-margin {
+    	height: 30px;
+    }
+  }
+  
+  .esb-spinner {
+  	@Include valo-spinner(24px, 3px, $esb-ca-color-green, 500ms);
+  }
+
+  
+  
+  // USER INTERACTION
+
+  .esb-clickable {
+  	border: 2px solid  $esb-ca-color-grey-92;
+  	border-radius: 4px;
+  	min-width: 0px;
+  	background: $esb-ca-color-grey-92;
+  	box-shadow: none;
+  }
+  
+  .esb-clickable:hover {
+  	border: 2px solid $esb-ca-color-green;
+  	border-radius: 4px;
+  	min-width: 0px;
+  }
+  
+  .esb-icon-link {
+  	@extend .esb-clickable;
+  	a {
+  		height: 16px;
+		display: block;
+		padding: 4px 12px;
+		
+		img.v-icon {
+			border: none;
+			vertical-align: top;
+		}  
+  	}
+  }
+  
+  .esb-icon-link:hover {
+  	@extend .esb-clickable:hover;
+  	a {
+   		height: 16px;
+		display: block;
+		padding: 4px 12px;
+
+		img.v-icon {
+			border: none;
+			vertical-align: top; 
+		} 
+  	}
+  }
+  
+  .esb-icon-button {
+  	@extend .esb-clickable;
+  	padding: 2px 12px;
+  	
+  	img.v-icon {
+ 		vertical-align: top;
+	}
+  	
+  }
+  
+  .esb-icon-button:hover {
+  	@extend .esb-clickable:hover;
+  }
+  
+  .esb-icon-button:after {
+  	@extend .esb-clickable:after;
+  	border-style: none;
+  }
+  
+  .esb-icon-button-txt {
+  	@extend .esb-icon-button;
+  	padding: 0px 0px;
+  	border: 2px solid $esb-ca-color-grey-90;
+  	border-radius: 6px;
+  	margin: 5px;
+  }
+  
+  .esb-icon-button-txt:hover {
+  	@extend .esb-icon-button:hover;
+  	padding: 0px 0px;
+  	border-radius: 6px;
+  }
+  
+  .esb-icon-button-txt-btn {
+    @extend .esb-icon-button;
+	text-align: left;
+	border-style: none;
+	padding: 8px 12px;
+  }
+  
+  .esb-icon-button-txt-btn:hover {
+  	@extend .esb-icon-button:hover;
+	text-align: left;
+	border-style: none;
+	padding: 8px 12px;
+  }
+  
+  .esb-textfield-large {
+  	height: $esb-textfield-height;
+ 	width: 260px;
+  }
+  
+  .esb-textarea-large {
+  	width: 260px;
+  }
+  
+  .esb-textfield-xlarge {
+  	height: $esb-textfield-height;
+ 	width: 310px;
+  }
+  
+  .esb-textfield-small {
+ 	width: 100px; 
+  }
+  
+  .esb-min-width-50px {
+  	min-width: 50px;
+  }
+ 
+  .esb-editable {
+  	border: 1px solid white;
+  	border-radius: 4px;
+  	min-width: 260px;
+  	min-height: 26px;
+  	white-space: normal;
+  }
+  
+  .esb-editable:hover {
+  	border: 1px solid $esb-ca-color-green;
+  	border-radius: 4px;
+  }
+  
+  .esb-link {
+  	border: none;
+  	background: transparent;
+	text-align: left;
+	color: $esb-ca-color-green;
+	padding-left: 4px;
+	padding-right: 4px;
+	text-decoration: underline;
+	line-height: 24px;
+	box-shadow: none;
+	min-width: initial;
+  }
+  
+  .esb-link:hover {
+  	border: 0px solid white;
+  	background: transparent;
+	text-align: left;
+	color: $esb-ca-color-green;
+	text-decoration: underline;
+  }
+  
+  .esb-left-menu-button {
+  	border: none;
+  	background: white;
+	color: $esb-ca-color-green;
+	text-align: left;
+	text-decoration: underline;
+  }
+  
+  .esb-left-menu-button:hover {
+  	border: none;
+  	background: $esb-ca-color-grey-95;
+  	color: $esb-ca-color-green;
+  	margin-left: 0;
+  }
+  
+  
+  
+  // POSITIONING
+  
+  .esb-button-layout {
+  	.v-spacing {
+  		height: 0px;
+  		width: 5px ! important;
+  	}
+  }
+  
+  .esb-spacing-margin {
+  	
+  	.v-spacing {
+    	height: 30px;
+    	width: 30px;
+    }
+    
+    .v-verticallayout-margin {
+    	height: 30px;
+    }
+  }
+  
+  .esb-spacing-margin-inner {
+  	
+  	.v-spacing {
+    	height: 15px;
+    	width: 15px;
+    }
+    
+    .v-verticallayout-margin {
+    	height: 15px;
+    }
+  }
+ 
+ 
+
+  // COLORS
+  
+  .esb-background-padding {
+  	padding: 5px;
+  }
+
+  .esb-background-changed {
+  	@extend .esb-background-padding;
+  	background: $esb-color-changed;
+  }
+  
+  .esb-background-added {
+  	@extend .esb-background-padding;
+  	background: $esb-color-added;
+  }
+  
+  .esb-background-removed {
+  	@extend .esb-background-padding;
+  	background: $esb-color-removed;
+  }
+  
+  .esb-background-success {
+  	@extend .esb-background-padding;
+  	color: #4F8A10;
+    background-color: #DFF2BF;
+  }
+  
+  .esb-background-failure {
+  	@extend .esb-background-padding;
+  	color: #D8000C;
+    background-color: #FFBABA;
+  }
+  
+
+  // CSS SINGLE ATTRIBUTES
+  
+  .esb-label-oblique {
+  	font-style: oblique;
+  }
+  
+  .esb-label-monospace {
+  	font-family: monospace
+  }
+
+  .esb-hide {
+  	visibility: hidden;
+  }
+  
+  .esb-visible {
+  	visibility: none;
+  }
+  
+  .esb-padding-right {
+  	@include esb-padding-right($v-layout-spacing-horizontal * 2);
+  }
+  
+  .esb-padding-left {
+  	@include esb-padding-left($v-layout-spacing-horizontal * 2);
+  }
+  
+  .esb-padding-top {
+  	@include esb-padding-top($v-layout-spacing-horizontal * 2);
+  }
+  
+  .esb-padding-bottom {
+  	@include esb-padding-bottom($v-layout-spacing-horizontal * 2);
+  }
+  
+  .esb-padding-right-small {
+  	@include esb-padding-right($v-layout-spacing-horizontal);
+  }
+  
+  .esb-padding-left-small {
+  	@include esb-padding-left($v-layout-spacing-horizontal);
+  }
+  
+  .esb-padding-top-small {
+  	@include esb-padding-top($v-layout-spacing-horizontal);
+  }
+  
+  .esb-padding-bottom-small {
+  	@include esb-padding-bottom($v-layout-spacing-horizontal);
+  }
+  
+  .esb-padding {
+	@include esb-padding-right($v-layout-spacing-horizontal * 2);
+	@include esb-padding-left($v-layout-spacing-horizontal * 2);
+	@include esb-padding-top($v-layout-spacing-horizontal * 2);
+	@include esb-padding-bottom($v-layout-spacing-horizontal * 2);
+  }
+  
+  .esb-padding-small {
+	@include esb-padding-right($v-layout-spacing-horizontal);
+	@include esb-padding-left($v-layout-spacing-horizontal);
+	@include esb-padding-top($v-layout-spacing-horizontal);
+	@include esb-padding-bottom($v-layout-spacing-horizontal);
+  }
+  
+  .esb-margin-left-small {
+  	@include esb-margin-left($v-layout-spacing-horizontal);
+  }
+  
+  .esb-margin-right-small {
+  	@include esb-margin-right($v-layout-spacing-horizontal);
+  }
+  
+  .esb-margin-top-small {
+  	@include esb-margin-top($v-layout-spacing-horizontal);
+  }
+  
+  .esb-margin-bottom-small {
+  	@include esb-margin-bottom($v-layout-spacing-horizontal);
+  }
+  
+  .esb-margin-small {
+  	@include esb-margin-right($v-layout-spacing-horizontal);
+	@include esb-margin-left($v-layout-spacing-horizontal);
+	@include esb-margin-top($v-layout-spacing-horizontal);
+	@include esb-margin-bottom($v-layout-spacing-horizontal);	
+  }
+  
+  .esb-line-height {
+  	line-height: 28px;
+  	// font-size: 
+  }
+  
+  .esb-border-bottom {
+  	border-bottom: 1px solid $esb-ca-color-green;
+  	border-radius: 0px;
+  }
+  
+  .esb-border-top-grey {
+  	border-top: 1px solid $esb-ca-color-grey-90;
+  }
+    
+  .esb-no-padding {
+  	padding: 0px;
+  }
+  
+  .esb-user-navigator-link {
+    padding: 4px 7px;
+  }
+  
+  .esb-panel-caption-style-no-margin {
+  	border-bottom: 1px solid #d5d5d5;
+  	margin-bottom: 1px;
+	border-radius: -1px -1px 0 0;
+	font-size: 13.4px;
+	background: #F3F3F3;
+	color: black;
+	font-weight: bold;
+  }
+  
+  .esb-panel-caption-style {
+	@extend .esb-panel-caption-style-no-margin;
+  	border-top: 1px solid #d5d5d5;
+  }
+  
+  .esb-font-weight-normal {
+  	font-weight: normal;
+  }
+  
+  .esb-layout-block {
+  	display: block;
+  }
+  
+  .esb-layout-bold {
+  	font-weight: bold;
+  }
+  
+  .esb-border {
+  	border: 1px solid #d5d5d5;
+  }
+  
+  .esb-visible-hover {
+  	background: none;
+	border: none;
+	box-shadow: none;
+  }
+  
+  .esb-filter-background {
+  	background: $esb-ca-color-grey-95;
+  }
+  
+  .v-menubar-popup {
+  	.v-menubar-menuitem {
+		line-height: 25px;
+	}
+  }
+  
+}

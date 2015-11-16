@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <file>${esbdp.home}/var/logs/esbdp.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${esbdp.home}/var/logs/esbdp.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+            <maxHistory>14</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%date{dd.MM.yyyy HH:mm:ss.SSS} [%-5level] [%-15.15thread] [%-5.5X{environment}] [%-15.15X{username}] [%20.30logger{36}] - %msg %n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="CON" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <encoder>
+            <pattern>%date{dd.MM.yyyy HH:mm:ss.SSS} [%-5level] [%-15.15thread] [%-5.5X{environment}] [%-15.15X{username}] [%20.30logger{36}] - %msg %n</pattern>
+        </encoder>
+    </appender>
+
+
+    <root level="INFO">
+        <appender-ref ref="CON" />
+        <appender-ref ref="FILE" />
+    </root>
+
+</configuration>
