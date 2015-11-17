@@ -1,5 +1,6 @@
 package monitoring.webapp.service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,6 +11,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import common.data.Connection;
+import common.data.dto.QueryDTO;
+import common.data.dto.RuleDTO;
 import common.data.type.COMPONENT_TYPE;
 import common.rest.RESOURCE_NAMING;
 import common.rest.ResourceUtils;
@@ -23,7 +26,7 @@ public class MonitoringService {
     private Connection cm;
 
     // @Value("${cm.server.host}")
-    private String host = "127.0.0.1";
+    private String host = "localhost";
 
     // @Value("${cm.server.port}")
     private int port = 5000;
@@ -31,8 +34,6 @@ public class MonitoringService {
     @PostConstruct
     public void postConstruct() {
         restTemplate = new RestTemplate();
-
-        UrlUtils.parseUrl(host + ":" + Integer.toString(port));
 
         cm = new Connection();
         cm.setComponentType(COMPONENT_TYPE.CONFIGURATION_MANAGEMENT);
@@ -43,9 +44,49 @@ public class MonitoringService {
     public List<Connection> listEP() {
         String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_GET_ALL_EVENT_PROCESSING, cm);
 
-        ResponseEntity<Connection[]> response = restTemplate.getForEntity(url, Connection[].class);
-
-        return Arrays.asList(response.getBody());
+        try {
+            ResponseEntity<Connection[]> response = restTemplate.getForEntity(url, Connection[].class);
+            return Arrays.asList(response.getBody());
+        } catch (Exception e) {
+            return new ArrayList<Connection>();
+        }
     }
 
+    public List<Connection> listDev() {
+
+        String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_GET_ALL_DEVICES, cm);
+
+        try {
+            ResponseEntity<Connection[]> response = restTemplate.getForEntity(url, Connection[].class);
+            return Arrays.asList(response.getBody());
+        } catch (Exception e) {
+            return new ArrayList<Connection>();
+        }
+    }
+
+    public List<QueryDTO> listRegisteredQuery(Connection connection) {
+
+        String url = ResourceUtils.getUrl(RESOURCE_NAMING.EPROCESSING_GET_ALL_QUERIES, connection);
+
+        try {
+            ResponseEntity<QueryDTO[]> response = restTemplate.getForEntity(url, QueryDTO[].class);
+            return Arrays.asList(response.getBody());
+
+        } catch (Exception e) {
+            return new ArrayList<QueryDTO>();
+        }
+    }
+
+    public List<RuleDTO> listRegisteredRule(Connection connection) {
+
+        String url = ResourceUtils.getUrl(RESOURCE_NAMING.EPROCESSING_GET_ALL_RULES, connection);
+
+        try {
+            ResponseEntity<RuleDTO[]> response = restTemplate.getForEntity(url, RuleDTO[].class);
+            return Arrays.asList(response.getBody());
+
+        } catch (Exception e) {
+            return new ArrayList<RuleDTO>();
+        }
+    }
 }

@@ -17,11 +17,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import common.data.dto.QueryDTO;
 import common.rest.RESOURCE_NAMING;
 import common.rest.ResourceUtils;
 import event.processing.engine.EngineFactory;
 import event.processing.query.Query;
 import event.processing.query.QueryFactory;
+import event.processing.query.QueryTransformer;
 import event.processing.repo.QueryRepository;
 import event.processing.repo.RuleRepository;
 
@@ -42,6 +44,9 @@ public class EProcManageQueryImpl implements EProcManageQuery {
 
     @Autowired
     private QueryFactory queryFactory;
+
+    @Autowired
+    private QueryTransformer queryTransformer;
 
     @Override
     @RequestMapping(value = "/registrations/query/{name}", method = RequestMethod.POST)
@@ -107,9 +112,9 @@ public class EProcManageQueryImpl implements EProcManageQuery {
 
     @Override
     @RequestMapping(value = "/registrations/queries", method = RequestMethod.GET)
-    public @ResponseBody List<Query> getAllQueries() {
+    public @ResponseBody List<QueryDTO> getAllQueries() {
         logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.EPROCESSING_GET_ALL_QUERIES));
 
-        return queryRepository.findAll();
+        return queryTransformer.toRemote(queryRepository.findAll());
     }
 }

@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
-import event.processing.query.Query;
+import common.data.dto.QueryDTO;
 
 public interface EProcManageQuery {
 
@@ -14,6 +14,6 @@ public interface EProcManageQuery {
 
     public ResponseEntity<String> withdrawQuery(String query);
 
-    public List<Query> getAllQueries();
+    public List<QueryDTO> getAllQueries();
 
 }

@@ -20,6 +20,7 @@ import org.springframework.web.client.RestTemplate;
 
 import common.data.Connection;
 import common.data.builder.CDBuilder;
+import common.data.dto.RuleDTO;
 import common.data.setting.SettingUtils;
 import common.data.type.COMPONENT_TYPE;
 import common.rest.RESOURCE_NAMING;
@@ -35,6 +36,7 @@ import event.processing.repo.QueryRepository;
 import event.processing.repo.RuleRepository;
 import event.processing.rule.Rule;
 import event.processing.rule.RuleFactory;
+import event.processing.rule.RuleTransformer;
 import event.processing.rule.model.Reaction;
 import event.processing.status.STATUS_TYPE;
 import event.processing.status.Status;
@@ -57,6 +59,9 @@ public class EProcManageRuleImpl implements EProcManageRule {
 
     @Autowired
     private RuleFactory ruleFactory;
+
+    @Autowired
+    private RuleTransformer ruleTransformer;
 
     @Autowired
     private MessageHandlerImpl messageHandler;
@@ -89,6 +94,7 @@ public class EProcManageRuleImpl implements EProcManageRule {
         Rule r = null;
         try {
             r = ruleFactory.parse(rule);
+            r.setName(name);
         } catch (Exception e) {
             return EP_ERROR_CODES.ERROR_PARSING_RULE.getErrorResponse();
         }
@@ -284,10 +290,10 @@ public class EProcManageRuleImpl implements EProcManageRule {
 
     @Override
     @RequestMapping(value = "/registrations/rules", method = RequestMethod.GET)
-    public @ResponseBody List<Rule> getAllRules() {
+    public @ResponseBody List<RuleDTO> getAllRules() {
         logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.EPROCESSING_GET_ALL_RULES));
 
-        return ruleRepository.findAll();
+        return ruleTransformer.toRemote(ruleRepository.findAll());
     }
 
     private void loadConnections() {

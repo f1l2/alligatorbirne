@@ -24,9 +24,11 @@ import com.vaadin.ui.VerticalLayout;
 
 import monitoring.webapp.ui.breadcrumb.component.Breadcrumb;
 import monitoring.webapp.ui.breadcrumb.component.BreadcrumbImpl;
-import monitoring.webapp.ui.ep.view.EPView;
+import monitoring.webapp.ui.component.view.ComponentView;
 import monitoring.webapp.ui.i18n.Messages;
-import monitoring.webapp.ui.navigator.EPNavigator;
+import monitoring.webapp.ui.navigator.ComponentNavigator;
+import monitoring.webapp.ui.navigator.MessagingNavigator;
+import monitoring.webapp.ui.navigator.StatementNavigator;
 import ru.xpoft.vaadin.DiscoveryNavigator;
 
 @SuppressWarnings("serial")
@@ -72,7 +74,7 @@ public class MonitoringUI extends UI {
             @Override
             public void addProvider(ViewProvider provider) {
                 super.addProvider(provider);
-                View view = provider.getView(EPView.VIEW_NAME);
+                View view = provider.getView(ComponentView.VIEW_NAME);
                 if (view != null) {
                     setErrorView(view);
                 }
@@ -88,7 +90,7 @@ public class MonitoringUI extends UI {
 
         final Image logo = new Image();
         logo.setSource(new ThemeResource("img/logo.png"));
-        logo.setWidth(58, Unit.PIXELS);
+        logo.setWidth(45, Unit.PIXELS);
         logo.setHeight(45, Unit.PIXELS);
         layout.addComponent(logo);
 
@@ -129,24 +131,26 @@ public class MonitoringUI extends UI {
         menuBar.setWidth(100, Unit.PERCENTAGE);
         layout.addComponent(menuBar);
 
-        menuBar.addItem("EPs", null, new MenuBar.Command() {
+        menuBar.addItem("Components", null, new MenuBar.Command() {
             @Override
             public void menuSelected(final MenuItem selectedItem) {
-                new EPNavigator().navigeteTo();
+                new ComponentNavigator().navigeteTo();
             }
         });
 
-        menuBar.addItem("DEVs", null, new MenuBar.Command() {
+        menuBar.addItem("Rule / Query", null, new MenuBar.Command() {
             @Override
             public void menuSelected(final MenuItem selectedItem) {
-                new EPNavigator().navigeteTo();
+                new StatementNavigator().navigeteTo();
             }
         });
 
-        menuBar.addItem("abc", null, new MenuBar.Command() {
+        menuBar.addItem("Messaging", null, new MenuBar.Command() {
+
             @Override
-            public void menuSelected(final MenuItem selectedItem) {
-                new EPNavigator().navigeteTo();
+            public void menuSelected(MenuItem selectedItem) {
+                new MessagingNavigator().navigeteTo();
+
             }
         });
 

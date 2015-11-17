@@ -1,20 +1,20 @@
 package monitoring.webapp.ui.navigator;
 
-import monitoring.webapp.ui.ep.view.EPView;
+import monitoring.webapp.ui.statement.view.StatementView;
 
-public class EPNavigator extends AbstractNavigator {
+public class StatementNavigator extends AbstractNavigator {
 
-    public EPNavigator(String parameters) {
+    public StatementNavigator(String parameters) {
         super(parameters);
     }
 
-    public EPNavigator() {
+    public StatementNavigator() {
         super();
     }
 
     @Override
     protected String getViewName() {
-        return EPView.VIEW_NAME;
+        return StatementView.VIEW_NAME;
     }
 
     @Override

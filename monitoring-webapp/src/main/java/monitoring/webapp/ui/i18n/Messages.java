@@ -15,13 +15,9 @@ public final class Messages {
         //
         CANCEL("monitoring.webapp.ui.cancel", "Cancel"),
         //
-        CODE("monitoring.webapp.ui.code", "Code"),
-        //
         MESSAGE("monitoring.webapp.ui.message", "Message"),
         //
         NAME("monitoring.webapp.ui.name", "Name"),
-        //
-        MEP("monitoring.webapp.ui.mep", "MEP"),
         //
         DESCRIPTION("monitoring.webapp.ui.description", "Description"),
         //
@@ -35,61 +31,25 @@ public final class Messages {
         //
         REFRESH("monitoring.webapp.ui.refresh", "Refresh"),
         //
-        KEYWORD("monitoring.webapp.ui.keyword", "Keyword"),
-        //
-        SHOW_AT_LEAST("monitoring.webapp.ui.showAtLeast", "Show at least"),
-        //
-        monitoring_NODE("monitoring.webapp.ui.monitoringNode", "monitoring Node"),
-        //
-        RELEVANCE("monitoring.webapp.ui.relevance", "Relevance"),
-        //
-        DEPLOY("monitoring.webapp.ui.deploy", "Deploy"),
-        //
-        SERVICE_TYPE("monitoring.webapp.ui.serviceType", "Service Type"),
-        //
-        LABELS("monitoring.webapp.ui.labels", "Labels"),
-        //
         OK("monitoring.webapp.ui.ok", "OK"),
-        //
-        ENVIRONMENT("monitoring.webapp.ui.environment", "Environment"),
-        //
-        FROM("monitoring.webapp.ui.environment", "From"),
-        //
-        SERVICE("monitoring.webapp.ui.service", "Service"),
-        //
-        SERVICE_INSTANE("monitoring.webapp.ui.serviceInstance", "Service Instance"),
-        //
-        USER("monitoring.webapp.ui.user", "User"),
-        //
-        USER_NAME("monitoring.webapp.ui.user", "Login"),
-        //
-        CONTACT_NAME("monitoring.webapp.ui.contactName", "Contact"),
-        //
-        DISPLAY_NAME("monitoring.webapp.ui.displayname", "Name"),
-        //
-        EMAIL("monitoring.webapp.ui.email", "Email"),
-        //
-        OPERATIN("monitoring.webapp.ui.operation", "Operation"),
-        //
-        SUBSCRIBE("monitoring.webapp.ui.subscribe", "Subscribe"),
-        //
-        NODES("monitoring.webapp.ui.nodes", "Select Node"),
         //
         TEXT("monitoring.webapp.ui.text", "Text"),
         //
         STOP("monitoring.webapp.ui.stop", "Stop"),
         //
-        USE_REGEX("monitoring.webapp.ui.useRegex", "Use Regex"),
-        //
         FILTER("monitoring.webapp.ui.filter", "Filter"),
-        //
-        CHANGE_USER("monitoring.webapp.ui.change_user", "Change User"),
         //
         REMOVE_ALL("monitoring.webapp.ui.remove.all", "Remove all"),
         //
         REMOVE_SELECTED("monitoring.webapp.ui.remove.selected", "Remove selected"),
         //
-        TAILORED("monitoring.webapp.ui.tailored", "Tailored");
+        COMPONENT_ID("monitoring.webapp.ui.component.id", "Id"),
+        //
+        COMPONENT_NAME("monitoring.webapp.ui.component.name", "Name"),
+        //
+        COMPONENT_URL("monitoring.webapp.ui.component.url", "Url"),
+        //
+        COMPONENT_UPDATED("monitoring.webapp.ui.component.updated", "Last updated");
 
         private final String message;
 

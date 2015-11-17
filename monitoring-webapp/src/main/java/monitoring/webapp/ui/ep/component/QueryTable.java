@@ -1,23 +1,17 @@
 package monitoring.webapp.ui.ep.component;
 
-import common.data.Connection;
+import common.data.dto.QueryDTO;
 import monitoring.webapp.ui.i18n.Messages;
 import monitoring.webapp.ui.table.component.BeanItemTable;
 import monitoring.webapp.ui.table.model.BeanItemColumn;
 
-public interface EPTable extends BeanItemTable<Connection, EPTable.COLUMN> {
-
-    public enum SECTION {
-        VIEW_SERVICE_INSTANCES
-    };
+public interface QueryTable extends BeanItemTable<QueryDTO, QueryTable.COLUMN> {
 
     public enum COLUMN implements BeanItemColumn {
         /**/
-        URL("URL"),
+        NAME("ID"),
         /**/
-        NAME("NAME"),
-        /**/
-        ACTION("");
+        QUERY("QUERY");
 
         private final String name;
 

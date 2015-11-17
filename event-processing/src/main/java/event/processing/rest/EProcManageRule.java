@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
-import event.processing.rule.Rule;
+import common.data.dto.RuleDTO;
 
 public interface EProcManageRule {
 
@@ -18,6 +18,6 @@ public interface EProcManageRule {
 
     public ResponseEntity<String> deactivateRule(String name);
 
-    public List<Rule> getAllRules();
+    public List<RuleDTO> getAllRules();
 
 }

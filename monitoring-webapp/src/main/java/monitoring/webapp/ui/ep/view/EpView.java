@@ -1,11 +1,11 @@
 package monitoring.webapp.ui.ep.view;
 
-import monitoring.webapp.ui.ep.component.EPTable;
+import common.data.Connection;
 import monitoring.webapp.ui.view.AbstractView;
 
-public interface EPView extends AbstractView {
+public interface EpView extends AbstractView {
     public static final String VIEW_NAME = "/ep";
 
-    public EPTable getServiceTable();
+    public void setConnection(Connection connection);
 
 }

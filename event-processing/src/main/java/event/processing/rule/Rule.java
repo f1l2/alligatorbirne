@@ -42,6 +42,8 @@ public class Rule extends EngineListener {
         }
     }
 
+    private String name;
+
     private Boolean isActivated = false;
 
     private List<String> queryNames;
@@ -49,6 +51,14 @@ public class Rule extends EngineListener {
     private List<Query> queries;
 
     private List<Reaction> reactions;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public List<Query> getQueries() {
         return queries;
@@ -130,5 +140,4 @@ public class Rule extends EngineListener {
         }
 
     }
-
 }
