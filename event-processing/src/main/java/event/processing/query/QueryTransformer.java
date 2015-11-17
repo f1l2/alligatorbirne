@@ -20,7 +20,7 @@ public class QueryTransformer extends Transformer<Query, QueryDTO> {
     public QueryDTO toRemote(Query local) {
 
         QueryDTO item = new QueryDTO();
-        item.setQuery(local.toString());
+        item.setQuery(local.getNativeQuery());
         item.setName(local.getName());
 
         return item;

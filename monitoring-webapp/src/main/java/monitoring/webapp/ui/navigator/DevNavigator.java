@@ -1,6 +1,6 @@
 package monitoring.webapp.ui.navigator;
 
-import monitoring.webapp.ui.component.view.DevView;
+import monitoring.webapp.ui.dev.view.DevView;
 
 public class DevNavigator extends AbstractNavigator {
 

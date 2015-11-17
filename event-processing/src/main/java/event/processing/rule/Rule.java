@@ -44,6 +44,8 @@ public class Rule extends EngineListener {
 
     private String name;
 
+    private String nativeRule;
+
     private Boolean isActivated = false;
 
     private List<String> queryNames;
@@ -58,6 +60,14 @@ public class Rule extends EngineListener {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getNativeRule() {
+        return nativeRule;
+    }
+
+    public void setNativeRule(String nativeRule) {
+        this.nativeRule = nativeRule;
     }
 
     public List<Query> getQueries() {

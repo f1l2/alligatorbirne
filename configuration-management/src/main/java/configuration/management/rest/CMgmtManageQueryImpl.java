@@ -1,14 +1,12 @@
-package event.processing.rest;
+package configuration.management.rest;
 
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,35 +16,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import common.data.dto.QueryDTO;
+import common.error.codes.EP_ERROR_CODES;
 import common.rest.RESOURCE_NAMING;
 import common.rest.ResourceUtils;
-import event.processing.engine.EngineFactory;
-import event.processing.query.Query;
-import event.processing.query.QueryFactory;
-import event.processing.query.QueryTransformer;
-import event.processing.repo.QueryRepository;
-import event.processing.repo.RuleRepository;
+import configuration.management.model.Query;
+import configuration.management.repo.QueryRepository;
 
 @RestController
-public class EProcManageQueryImpl implements EProcManageQuery {
+public class CMgmtManageQueryImpl implements CMgmtManageQuery {
 
-    private static final Logger logger = LoggerFactory.getLogger(EProcManageQueryImpl.class);
-
-    @Autowired
-    @Qualifier("esper")
-    private EngineFactory factory;
+    private static final Logger logger = LoggerFactory.getLogger(CMgmtManageQueryImpl.class);
 
     @Autowired
     private QueryRepository queryRepository;
-
-    @Autowired
-    private RuleRepository ruleRepository;
-
-    @Autowired
-    private QueryFactory queryFactory;
-
-    @Autowired
-    private QueryTransformer queryTransformer;
 
     @Override
     @RequestMapping(value = "/registrations/query/{name}", method = RequestMethod.POST)
@@ -58,7 +40,7 @@ public class EProcManageQueryImpl implements EProcManageQuery {
          */
         if (StringUtils.isEmpty(name)) {
             return EP_ERROR_CODES.ERROR_MISSING_QUERY_NAME.getErrorResponse();
-        } else if ((null != queryRepository.findOne(name))) {
+        } else if ((null != queryRepository.findByName(name))) {
             return EP_ERROR_CODES.ERROR_EXISTING_QUERY.getErrorResponse();
         }
 
@@ -66,8 +48,9 @@ public class EProcManageQueryImpl implements EProcManageQuery {
          * Parse query and store it in the repository.
          */
         try {
-            Query q = queryFactory.parse(query, name);
-            q.setNativeQuery(query);
+            Query q = new Query();
+            q.setQuery(query);
+            q.setName(name);
             queryRepository.save(q);
 
         } catch (Exception e) {
@@ -94,7 +77,7 @@ public class EProcManageQueryImpl implements EProcManageQuery {
          * Make sure that corresponding query exists.
          * 
          */
-        Query query = queryRepository.findOne(name);
+        Query query = queryRepository.findByName(name);
         if (null == query) {
             return EP_ERROR_CODES.ERROR_NON_EXISTING_QUERY.getErrorResponse();
         }
@@ -103,11 +86,14 @@ public class EProcManageQueryImpl implements EProcManageQuery {
          * Make sure that query isn't assigned to a rule.
          * 
          */
-        if (!CollectionUtils.isEmpty(ruleRepository.findRulesByQueryName(name))) {
-            return EP_ERROR_CODES.ERROR_DEREGISTER_ASSIGNED.getErrorResponse();
-        }
 
-        ruleRepository.delete(name);
+        // TODO
+
+        // if (!CollectionUtils.isEmpty(ruleRepository.findRulesByQueryName(name))) {
+        // return EP_ERROR_CODES.ERROR_DEREGISTER_ASSIGNED.getErrorResponse();
+        // }
+
+        queryRepository.delete(query);
         return new ResponseEntity<String>(OK, HttpStatus.OK);
     }
 
@@ -116,6 +102,6 @@ public class EProcManageQueryImpl implements EProcManageQuery {
     public @ResponseBody List<QueryDTO> getAllQueries() {
         logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.EPROCESSING_GET_ALL_QUERIES));
 
-        return queryTransformer.toRemote(queryRepository.findAll());
+        return null;
     }
 }

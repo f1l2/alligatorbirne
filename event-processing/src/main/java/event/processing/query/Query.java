@@ -173,6 +173,8 @@ public class Query {
 
     private String name;
 
+    private String nativeQuery;
+
     private Condition condition;
 
     private List<String> domains = new ArrayList<String>();
@@ -185,6 +187,14 @@ public class Query {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getNativeQuery() {
+        return nativeQuery;
+    }
+
+    public void setNativeQuery(String nativeQuery) {
+        this.nativeQuery = nativeQuery;
     }
 
     public Condition getCondition() {

@@ -1,6 +1,6 @@
 package monitoring.webapp.ui.ep.view;
 
-import java.util.Date;
+import java.util.List;
 
 import org.springframework.context.annotation.Scope;
 
@@ -9,6 +9,8 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 
 import common.data.Connection;
+import common.data.dto.QueryDTO;
+import common.data.dto.RuleDTO;
 import monitoring.webapp.service.MonitoringService;
 import monitoring.webapp.ui.ep.component.QueryTable;
 import monitoring.webapp.ui.ep.component.QueryTableImpl;
@@ -84,16 +86,27 @@ public class EpViewImpl extends AbstractViewImpl<EpNavigator>implements EpView {
         componentId.setValue(Long.toString(connection.getId()));
         componentName.setValue(connection.getName());
         componentURL.setValue(connection.getUrl().getAuthority());
-        componentLastUpdated.setValue(new Date().toString());
+        componentLastUpdated.setValue(connection.getUpdated().toString());
 
+    }
+
+    @Override
+    public void setRuleTable(List<RuleDTO> rules) {
+        ruleTable.addBeanItems(rules);
+    }
+
+    @Override
+    public void setQueryTable(List<QueryDTO> queries) {
+        queryTable.addBeanItems(queries);
     }
 
     @Override
     protected void enter(EpNavigator navigator, MonitoringService monitoringService) {
 
         final EpViewPresenter epViewPresenter = new EpViewPresenter(monitoringService);
-        epViewPresenter.setUserInterface(this);
         epViewPresenter.setEpId(Long.parseLong(navigator.getEpId()));
+        epViewPresenter.setUserInterface(this);
+        epViewPresenter.setModel(monitoringService);
 
     }
 

@@ -30,6 +30,8 @@ public class EventProcessingTransformer extends Transformer<EventProcessing, Con
         Connection connection = new Connection();
         connection.setId(local.getId());
         connection.setUrl(Util.parseUrl(local.getAuthority()));
+        connection.setName(local.getName());
+        connection.setUpdated(local.getUpdated());
 
         return connection;
     }

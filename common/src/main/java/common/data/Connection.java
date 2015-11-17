@@ -1,6 +1,7 @@
 package common.data;
 
 import java.net.URL;
+import java.util.Date;
 
 import common.data.type.COMPONENT_TYPE;
 
@@ -13,6 +14,8 @@ public class Connection {
     private URL url;
 
     private COMPONENT_TYPE componentType;
+
+    private Date updated;
 
     public long getId() {
         return id;
@@ -66,5 +69,13 @@ public class Connection {
         }
 
         return false;
+    }
+
+    public Date getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(Date updated) {
+        this.updated = updated;
     }
 }

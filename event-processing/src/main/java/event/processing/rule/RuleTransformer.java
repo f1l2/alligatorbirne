@@ -22,7 +22,7 @@ public class RuleTransformer extends Transformer<Rule, RuleDTO> {
 
         RuleDTO item = new RuleDTO();
         item.setIsActive(local.getIsActivated());
-        item.setRule(local.toString());
+        item.setRule(local.getNativeRule());
         item.setName(local.getName());
 
         return item;

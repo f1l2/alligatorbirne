@@ -19,11 +19,11 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.jayway.restassured.response.Response;
 
+import common.data.dto.QueryDTO;
 import common.rest.RESOURCE_NAMING;
 import common.rest.ResourceUtils;
 import event.processing.AbstractTestRestEP;
 import event.processing.Application;
-import event.processing.query.Query;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
@@ -36,7 +36,7 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
 
         Response response = get(RESOURCE_NAMING.EPROCESSING_GET_ALL_QUERIES.getPath());
 
-        List<Query> result = Arrays.asList(response.getBody().as(Query[].class));
+        List<QueryDTO> result = Arrays.asList(response.getBody().as(QueryDTO[].class));
 
         assertEquals(200, response.getStatusCode());
         assertNotNull(result);

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import common.data.Connection;
+import common.data.DataSource;
 import common.data.dto.QueryDTO;
 import common.data.dto.RuleDTO;
 import common.data.type.COMPONENT_TYPE;
@@ -87,6 +88,24 @@ public class MonitoringService {
 
         } catch (Exception e) {
             return new ArrayList<RuleDTO>();
+        }
+    }
+
+    public List<DataSource> listDataSourcesById(Connection connection) {
+
+        String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_GET_DEVICE_DATA_SOURCES, cm, connection.getId());
+
+        try {
+
+            ResponseEntity<DataSource[]> response = restTemplate.getForEntity(url, DataSource[].class);
+
+            return Arrays.asList(response.getBody());
+
+        } catch (Exception e) {
+
+            System.out.println(e);
+
+            return new ArrayList<DataSource>();
         }
     }
 }

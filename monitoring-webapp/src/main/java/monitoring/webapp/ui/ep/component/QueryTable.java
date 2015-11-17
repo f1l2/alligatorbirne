@@ -9,9 +9,9 @@ public interface QueryTable extends BeanItemTable<QueryDTO, QueryTable.COLUMN> {
 
     public enum COLUMN implements BeanItemColumn {
         /**/
-        NAME("ID"),
+        NAME("Name"),
         /**/
-        QUERY("QUERY");
+        QUERY("Query");
 
         private final String name;
 

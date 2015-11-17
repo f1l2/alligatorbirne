@@ -95,6 +95,7 @@ public class EProcManageRuleImpl implements EProcManageRule {
         try {
             r = ruleFactory.parse(rule);
             r.setName(name);
+            r.setNativeRule(rule);
         } catch (Exception e) {
             return EP_ERROR_CODES.ERROR_PARSING_RULE.getErrorResponse();
         }

@@ -18,14 +18,22 @@ public class EpViewPresenter extends AbstractPresenter<MonitoringService, EpView
     @Override
     protected void init(MonitoringService model, EpView userInterface) {
 
+        userInterface.initBreadcrumb().add("Event Processing");
+
         List<Connection> listEP = model.listEP();
 
+        Connection thisOne = new Connection();
         for (Connection ep : listEP) {
             if (ep.getId() == epId) {
-                userInterface.setConnection(ep);
+                thisOne = ep;
                 break;
             }
         }
+
+        userInterface.setConnection(thisOne);
+        userInterface.setQueryTable(model.listRegisteredQuery(thisOne));
+        userInterface.setRuleTable(model.listRegisteredRule(thisOne));
+
     }
 
     @Override

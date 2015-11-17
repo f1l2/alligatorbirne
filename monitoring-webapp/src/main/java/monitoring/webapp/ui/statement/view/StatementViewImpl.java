@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Scope;
 import com.vaadin.ui.VerticalLayout;
 
 import monitoring.webapp.service.MonitoringService;
+import monitoring.webapp.ui.messaging.presenter.StatementViewPresenter;
 import monitoring.webapp.ui.navigator.StatementNavigator;
 import monitoring.webapp.ui.notify.model.NotifyModel;
 import monitoring.webapp.ui.view.AbstractViewImpl;
@@ -18,8 +19,6 @@ public class StatementViewImpl extends AbstractViewImpl<StatementNavigator>imple
 
     @Override
     public void addNotify(NotifyModel<?> notifyModel) {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
@@ -34,13 +33,13 @@ public class StatementViewImpl extends AbstractViewImpl<StatementNavigator>imple
 
     @Override
     protected void enter(StatementNavigator navigator, MonitoringService monitoringService) {
-        // TODO Auto-generated method stub
-
+        final StatementViewPresenter statementViewPresenter = new StatementViewPresenter(monitoringService);
+        statementViewPresenter.setUserInterface(this);
+        statementViewPresenter.setModel(monitoringService);
     }
 
     @Override
     protected StatementNavigator createInstance(String parameters) {
-        // TODO Auto-generated method stub
-        return null;
+        return new StatementNavigator(parameters);
     }
 }

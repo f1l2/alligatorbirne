@@ -1,19 +1,17 @@
-package monitoring.webapp.ui.ep.component;
+package monitoring.webapp.ui.dev.component;
 
-import common.data.dto.RuleDTO;
+import common.data.DataSource;
 import monitoring.webapp.ui.i18n.Messages;
 import monitoring.webapp.ui.table.component.BeanItemTable;
 import monitoring.webapp.ui.table.model.BeanItemColumn;
 
-public interface RuleTable extends BeanItemTable<RuleDTO, RuleTable.COLUMN> {
+public interface DataSourceTable extends BeanItemTable<DataSource, DataSourceTable.COLUMN> {
 
     public enum COLUMN implements BeanItemColumn {
         /**/
-        NAME("Name"),
+        DEVICE_INFORMATION("Device"),
         /**/
-        RULE("Rule"),
-        /**/
-        ACTIVE("Active");
+        DOMAIN_INFORMATION("Domain");
 
         private final String name;
 
