@@ -1,5 +1,7 @@
 package monitoring.webapp.ui.ep.component;
 
+import java.util.EventListener;
+
 import common.data.dto.QueryDTO;
 import monitoring.webapp.ui.i18n.Messages;
 import monitoring.webapp.ui.table.component.BeanItemTable;
@@ -11,7 +13,9 @@ public interface QueryTable extends BeanItemTable<QueryDTO, QueryTable.COLUMN> {
         /**/
         NAME("Name"),
         /**/
-        QUERY("Query");
+        QUERY("Query"),
+        /**/
+        ACTION("Action");
 
         private final String name;
 
@@ -25,5 +29,12 @@ public interface QueryTable extends BeanItemTable<QueryDTO, QueryTable.COLUMN> {
         }
 
     }
+
+    public interface QueryTableListener extends EventListener {
+
+        public void delete(QueryDTO rule);
+    }
+
+    public void addQueryTableListener(QueryTableListener listener);
 
 }

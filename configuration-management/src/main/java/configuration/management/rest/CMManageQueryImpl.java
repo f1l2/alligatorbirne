@@ -10,7 +10,6 @@ import org.antlr.v4.runtime.Recognizer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
@@ -22,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import common.codes.ERROR_CODES;
+import common.codes.SUCCESS_CODES;
 import common.data.dto.QueryDTO;
 import common.gen.language.QueryLexer;
 import common.gen.language.QueryParser;
@@ -87,7 +87,7 @@ public class CMManageQueryImpl implements CMManageQuery {
             return ERROR_CODES.ERROR_PARSING_QUERY.getErrorResponse();
         }
 
-        return new ResponseEntity<String>(OK, HttpStatus.OK);
+        return SUCCESS_CODES.OK.getResponse();
 
     }
 
@@ -121,7 +121,7 @@ public class CMManageQueryImpl implements CMManageQuery {
         }
 
         queryRepository.delete(query);
-        return new ResponseEntity<String>(OK, HttpStatus.OK);
+        return SUCCESS_CODES.OK.getResponse();
     }
 
     @Override

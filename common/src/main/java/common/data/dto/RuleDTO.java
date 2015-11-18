@@ -6,7 +6,7 @@ public class RuleDTO {
 
     private String rule;
 
-    private Boolean isActive;
+    private boolean isActive;
 
     public String getName() {
         return name;
@@ -24,11 +24,11 @@ public class RuleDTO {
         this.rule = rule;
     }
 
-    public Boolean getIsActive() {
+    public boolean getIsActive() {
         return isActive;
     }
 
-    public void setIsActive(Boolean isActive) {
+    public void setIsActive(boolean isActive) {
         this.isActive = isActive;
     }
 

@@ -35,7 +35,7 @@ public abstract class AbstractPresenter<M, UI extends Notify> {
         }
     }
 
-    protected MonitoringService getDocumentationPortalService() {
+    protected MonitoringService getMonitoringService() {
         return monitoringService;
     }
 

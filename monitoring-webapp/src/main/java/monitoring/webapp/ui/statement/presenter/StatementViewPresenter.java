@@ -6,26 +6,37 @@ import monitoring.webapp.ui.statement.view.StatementView;
 
 public class StatementViewPresenter extends AbstractPresenter<MonitoringService, StatementView> {
 
+    private QueryComponentPresenter queryComponentPresenter;
+
+    private RuleComponentPresenter ruleComponentPresenter;
+
     public StatementViewPresenter(MonitoringService monitoringService) {
         super(monitoringService);
-
+        queryComponentPresenter = new QueryComponentPresenter(monitoringService);
+        ruleComponentPresenter = new RuleComponentPresenter(monitoringService);
     }
 
     @Override
     protected void init(MonitoringService model, StatementView userInterface) {
-        // TODO Auto-generated method stub
+        userInterface.initBreadcrumb().add("Query / Rule Mgmt");
+
+        queryComponentPresenter.setModel(model.listRegisteredQuery());
+        queryComponentPresenter.setUserInterface(userInterface.getQueryComponent());
+
+        System.out.println("HERE");
+
+        ruleComponentPresenter.setModel(model.listRegisteredRule());
+        ruleComponentPresenter.setUserInterface(userInterface.getRuleComponent());
 
     }
 
     @Override
     protected void initUserInterface(StatementView userInterface) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     protected void initModel(MonitoringService model) {
-        // TODO Auto-generated method stub
 
     }
 }

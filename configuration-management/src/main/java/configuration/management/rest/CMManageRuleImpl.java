@@ -19,9 +19,11 @@ import common.codes.SUCCESS_CODES;
 import common.data.dto.RuleDTO;
 import common.rest.RESOURCE_NAMING;
 import common.rest.ResourceUtils;
+import common.transformer.Transformer;
 import configuration.management.model.RuleDLO;
 import configuration.management.repo.QueryRepository;
 import configuration.management.repo.RuleRepository;
+import configuration.management.repo.RuleTransformer;
 
 @RestController
 public class CMManageRuleImpl implements CMManageRule {
@@ -33,6 +35,9 @@ public class CMManageRuleImpl implements CMManageRule {
 
     @Autowired
     private RuleRepository ruleRepository;
+
+    @Autowired
+    private RuleTransformer ruleTransformer;
 
     @Override
     @RequestMapping(value = "/registrations/rule/{name}", method = RequestMethod.POST)
@@ -107,7 +112,9 @@ public class CMManageRuleImpl implements CMManageRule {
     public @ResponseBody List<RuleDTO> getAllRules() {
         logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.EP_GET_ALL_RULES));
 
-        return null;
+        List<RuleDLO> rules = Transformer.makeCollection(ruleRepository.findAll());
+
+        return ruleTransformer.toRemote(rules);
     }
 
     @Override
@@ -137,6 +144,10 @@ public class CMManageRuleImpl implements CMManageRule {
         // if (null == queries) {
         // return ERROR_CODES.ERROR_NON_EXISTING_QUERY.getErrorResponse();
         // }
+
+        rule.setIsActive(true);
+
+        ruleRepository.save(rule);
 
         return SUCCESS_CODES.OK.getResponse();
     }
@@ -169,6 +180,10 @@ public class CMManageRuleImpl implements CMManageRule {
         // if (CollectionUtils.isEmpty(queries)) {
         // return EP_ERROR_CODES.ERROR_NON_EXISTING_QUERY.getErrorResponse();
         // }
+
+        rule.setIsActive(false);
+
+        ruleRepository.save(rule);
 
         return SUCCESS_CODES.OK.getResponse();
     }

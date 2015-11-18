@@ -2,7 +2,6 @@ package monitoring.webapp.ui.component.view;
 
 import org.springframework.context.annotation.Scope;
 
-import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
@@ -59,13 +58,13 @@ public class ComponentViewImpl extends AbstractViewImpl<ComponentNavigator>imple
 
         final Panel panelDEV = UiUtils.panelWrapper(devTableImpl, "Dev");
 
-        Label lbDev = new Label(("Device Instance(s)"));
+        final Label lbDev = new Label(("Device Instance(s)"));
         lbDev.addStyleName("monitoring-label-monospace");
 
-        Label lbEP = new Label("Event Processing Instance(s)");
+        final Label lbEP = new Label("Event Processing Instance(s)");
         lbEP.addStyleName("monitoring-label-monospace");
 
-        layout.setMargin(new MarginInfo(true, false, false, false));
+        layout.setMargin(true);
         layout.setSpacing(true);
         layout.addComponent(lbDev);
         layout.addComponent(panelDEV);

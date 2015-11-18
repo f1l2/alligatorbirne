@@ -21,7 +21,6 @@ public enum SUCCESS_CODES {
     }
 
     public ResponseEntity<String> getResponse() {
-        logger.error(message);
         return new ResponseEntity<String>(message, httpStatus);
     }
 
