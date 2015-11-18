@@ -13,7 +13,7 @@ import common.data.ConfigurationDelegation;
 import common.data.Connection;
 import common.data.DataSource;
 import common.data.type.COMPONENT_TYPE;
-import configuration.management.model.Device;
+import configuration.management.model.DeviceDLO;
 import configuration.management.repo.DeviceRepository;
 import configuration.management.repo.DeviceTransformer;
 import configuration.management.task.SetConfigDelegation;
@@ -39,7 +39,7 @@ public class DelegateConfigChange extends Activity<String, ConfigurationDelegati
          */
 
         for (DataSource dsEP : item.getDataSources()) {
-            for (Device dev : deviceRepo.findByDataSources(dsEP.getDeviceInformation().getName(), dsEP.getDomainInformation().getName())) {
+            for (DeviceDLO dev : deviceRepo.findByDataSources(dsEP.getDeviceInformation().getName(), dsEP.getDomainInformation().getName())) {
 
                 Connection remote = transformer.toRemote(dev);
                 remote.setComponentType(COMPONENT_TYPE.DEVICE);

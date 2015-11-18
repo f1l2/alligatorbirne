@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import common.data.Connection;
-import configuration.management.model.Device;
+import configuration.management.model.DeviceDLO;
 import configuration.management.repo.DeviceRepository;
 
 @Component
@@ -27,12 +27,12 @@ public class RegisterDevice extends Activity<Connection, Connection> {
          * If device with URL already exists, return existing values. Otherwise generate new values.
          */
 
-        Device item = deviceRepo.findByAuthority(connection.getUrl().getAuthority());
+        DeviceDLO item = deviceRepo.findByAuthority(connection.getUrl().getAuthority());
         if (null != item) {
             connection.setId(item.getId());
             item.setUpdated(new Date());
         } else {
-            item = new Device();
+            item = new DeviceDLO();
             item.setCreated(new Date());
             item.setUpdated(new Date());
             item.setAuthority(connection.getUrl().getAuthority());

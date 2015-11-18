@@ -60,7 +60,7 @@ public class IDevManageSetConfig1Test extends AbstractRestTest {
 
         cdBuilder.buildProperties(properties);
 
-        ResponseBodyExtractionOptions response2 = given().body(cdBuilder.getResult()).contentType(ContentType.JSON).post(RESOURCE_NAMING.IDEV_SET_CONFIGURATION.getPath())
+        ResponseBodyExtractionOptions response2 = given().body(cdBuilder.getResult()).contentType(ContentType.JSON).post(RESOURCE_NAMING.DEV_SET_CONFIGURATION.getPath())
                 //
                 .then().contentType(ContentType.TEXT)
                 //
@@ -97,7 +97,7 @@ public class IDevManageSetConfig1Test extends AbstractRestTest {
 
         cdBuilder.buildProperties(properties);
 
-        ResponseBodyExtractionOptions response = given().body(cdBuilder.getResult()).contentType(ContentType.JSON).post(RESOURCE_NAMING.IDEV_SET_CONFIGURATION.getPath())
+        ResponseBodyExtractionOptions response = given().body(cdBuilder.getResult()).contentType(ContentType.JSON).post(RESOURCE_NAMING.DEV_SET_CONFIGURATION.getPath())
                 //
                 .then().contentType(ContentType.TEXT)
                 //

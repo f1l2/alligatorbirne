@@ -6,8 +6,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import configuration.management.model.DataSourceRO;
-import configuration.management.model.Device;
+import configuration.management.model.DataSourceDLO;
+import configuration.management.model.DeviceDLO;
 import configuration.management.repo.DeviceRepository;
 
 public class AbstractTestCM {
@@ -15,16 +15,16 @@ public class AbstractTestCM {
     @Autowired
     protected DeviceRepository deviceRepo;
 
-    protected Device device1, device2;
+    protected DeviceDLO device1, device2;
 
-    protected DataSourceRO dataSource1;
+    protected DataSourceDLO dataSource1;
 
     @Before
     public void before() {
 
         this.deviceRepo.deleteAll();
 
-        device1 = new Device();
+        device1 = new DeviceDLO();
 
         device1.setCreated(new Date());
         device1.setUpdated(new Date());
@@ -33,7 +33,7 @@ public class AbstractTestCM {
 
         device1 = this.deviceRepo.save(device1);
 
-        device2 = new Device();
+        device2 = new DeviceDLO();
 
         device2.setCreated(new Date());
         device2.setUpdated(new Date());
@@ -42,7 +42,7 @@ public class AbstractTestCM {
 
         device2 = this.deviceRepo.save(device2);
 
-        dataSource1 = new DataSourceRO();
+        dataSource1 = new DataSourceDLO();
         dataSource1.setDevice("deviceInformation1");
         dataSource1.setDomain("domain1");
 

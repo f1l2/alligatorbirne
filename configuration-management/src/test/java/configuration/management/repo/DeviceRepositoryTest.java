@@ -20,8 +20,8 @@ import org.springframework.util.CollectionUtils;
 import common.data.type.COMPONENT_TYPE;
 import configuration.management.AbstractTestCM;
 import configuration.management.Application;
-import configuration.management.model.DataSourceRO;
-import configuration.management.model.Device;
+import configuration.management.model.DataSourceDLO;
+import configuration.management.model.DeviceDLO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
@@ -31,7 +31,7 @@ public class DeviceRepositoryTest extends AbstractTestCM {
     @Transactional
     public void findOne() {
 
-        Device result = this.deviceRepo.findOne(device1.getId());
+        DeviceDLO result = this.deviceRepo.findOne(device1.getId());
         result.getDataSources().add(dataSource1);
 
         result = this.deviceRepo.save(result);
@@ -51,7 +51,7 @@ public class DeviceRepositoryTest extends AbstractTestCM {
     @Test
     public void findByName() {
 
-        Device result = this.deviceRepo.findByName(device1.getName());
+        DeviceDLO result = this.deviceRepo.findByName(device1.getName());
 
         assertNotNull(result);
         assertEquals(device1.getId(), result.getId());
@@ -63,7 +63,7 @@ public class DeviceRepositoryTest extends AbstractTestCM {
     @Transactional
     public void saveDataSource() {
 
-        Device result = this.deviceRepo.findByName(device1.getName());
+        DeviceDLO result = this.deviceRepo.findByName(device1.getName());
         result.getDataSources().add(dataSource1);
 
         result = this.deviceRepo.save(result);
@@ -77,22 +77,22 @@ public class DeviceRepositoryTest extends AbstractTestCM {
 
         assertNotNull(result.getDataSources());
         assertEquals(1, result.getDataSources().size());
-        assertEquals(dataSource1.getDevice(), new ArrayList<DataSourceRO>(result.getDataSources()).get(0).getDevice());
-        assertEquals(dataSource1.getDomain(), new ArrayList<DataSourceRO>(result.getDataSources()).get(0).getDomain());
+        assertEquals(dataSource1.getDevice(), new ArrayList<DataSourceDLO>(result.getDataSources()).get(0).getDevice());
+        assertEquals(dataSource1.getDomain(), new ArrayList<DataSourceDLO>(result.getDataSources()).get(0).getDomain());
     }
 
     @Test
     @Transactional
     public void findByUpdatedLessThan1() {
 
-        Iterable<Device> all = this.deviceRepo.findAll();
+        Iterable<DeviceDLO> all = this.deviceRepo.findAll();
 
         assertNotNull(all);
         assertEquals(2, ((Collection<?>) all).size());
 
         LocalDateTime.now().plusHours(1).toLocalDate();
 
-        List<Device> devices = this.deviceRepo.findByUpdatedBefore(new Date(Instant.now().plusSeconds(3600 * 24).toEpochMilli()));
+        List<DeviceDLO> devices = this.deviceRepo.findByUpdatedBefore(new Date(Instant.now().plusSeconds(3600 * 24).toEpochMilli()));
 
         assertNotNull(devices);
         assertEquals(2, devices.size());
@@ -109,22 +109,22 @@ public class DeviceRepositoryTest extends AbstractTestCM {
     @Transactional
     public void findByUpdatedLessThan2() {
 
-        Iterable<Device> all = this.deviceRepo.findAll();
+        Iterable<DeviceDLO> all = this.deviceRepo.findAll();
 
         assertNotNull(all);
         assertEquals(2, ((Collection<?>) all).size());
 
-        Device result = this.deviceRepo.findByName(device1.getName());
+        DeviceDLO result = this.deviceRepo.findByName(device1.getName());
         result.getDataSources().add(dataSource1);
 
         result = this.deviceRepo.save(result);
 
         assertNotNull(result.getDataSources());
         assertEquals(1, result.getDataSources().size());
-        assertEquals(dataSource1.getDevice(), new ArrayList<DataSourceRO>(result.getDataSources()).get(0).getDevice());
-        assertEquals(dataSource1.getDomain(), new ArrayList<DataSourceRO>(result.getDataSources()).get(0).getDomain());
+        assertEquals(dataSource1.getDevice(), new ArrayList<DataSourceDLO>(result.getDataSources()).get(0).getDevice());
+        assertEquals(dataSource1.getDomain(), new ArrayList<DataSourceDLO>(result.getDataSources()).get(0).getDomain());
 
-        List<Device> devices = this.deviceRepo.findByUpdatedBefore(new Date(Instant.now().plusSeconds(3600 * 24).toEpochMilli()));
+        List<DeviceDLO> devices = this.deviceRepo.findByUpdatedBefore(new Date(Instant.now().plusSeconds(3600 * 24).toEpochMilli()));
 
         assertNotNull(devices);
         assertEquals(2, devices.size());
@@ -135,11 +135,11 @@ public class DeviceRepositoryTest extends AbstractTestCM {
     @Transactional
     public void findByDeviceDataSources1() {
 
-        Device device = this.deviceRepo.findByName(device1.getName());
+        DeviceDLO device = this.deviceRepo.findByName(device1.getName());
         device.getDataSources().add(dataSource1);
         device = this.deviceRepo.save(device);
 
-        List<Device> result = this.deviceRepo.findByDataSources(dataSource1.getDevice(), dataSource1.getDomain());
+        List<DeviceDLO> result = this.deviceRepo.findByDataSources(dataSource1.getDevice(), dataSource1.getDomain());
 
         assertNotNull(result);
         assertEquals(1, result.size());
@@ -160,7 +160,7 @@ public class DeviceRepositoryTest extends AbstractTestCM {
     @Transactional
     public void findByDeviceDataSources2() {
 
-        Device device = this.deviceRepo.findByName(device1.getName());
+        DeviceDLO device = this.deviceRepo.findByName(device1.getName());
         device.getDataSources().add(dataSource1);
         device = this.deviceRepo.save(device);
 
@@ -168,7 +168,7 @@ public class DeviceRepositoryTest extends AbstractTestCM {
         device.getDataSources().add(dataSource1);
         device = this.deviceRepo.save(device);
 
-        List<Device> result = this.deviceRepo.findByDataSources(dataSource1.getDevice(), dataSource1.getDomain());
+        List<DeviceDLO> result = this.deviceRepo.findByDataSources(dataSource1.getDevice(), dataSource1.getDomain());
 
         assertNotNull(result);
         assertEquals(2, result.size());
@@ -191,7 +191,7 @@ public class DeviceRepositoryTest extends AbstractTestCM {
     @Transactional
     public void findByDeviceDataSources3() {
 
-        Device device = this.deviceRepo.findByName(device1.getName());
+        DeviceDLO device = this.deviceRepo.findByName(device1.getName());
         device.getDataSources().add(dataSource1);
         device = this.deviceRepo.save(device);
 
@@ -199,7 +199,7 @@ public class DeviceRepositoryTest extends AbstractTestCM {
         device.getDataSources().add(dataSource1);
         device = this.deviceRepo.save(device);
 
-        List<Device> result = this.deviceRepo.findByDataSources(dataSource1.getDevice(), dataSource1.getDomain());
+        List<DeviceDLO> result = this.deviceRepo.findByDataSources(dataSource1.getDevice(), dataSource1.getDomain());
 
         assertNotNull(result);
         assertEquals(2, result.size());

@@ -63,7 +63,7 @@ public class ApplicationScheduler {
 
                 logger.info("Try to register device ...");
 
-                String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_REGISTER_DEVICE, cm);
+                String url = ResourceUtils.getUrl(RESOURCE_NAMING.CM_REGISTER_DEVICE, cm);
                 logger.info(url);
 
                 ResponseEntity<Connection> responseRegistration = restTemplate.postForEntity(url, local, Connection.class);
@@ -88,7 +88,7 @@ public class ApplicationScheduler {
                 DataSourcesDTO data = SettingUtils.loadDataSources();
 
                 Connection cmConnection = SettingUtils.getCMConnection();
-                String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_REGISTER_DEVICE_SOURCES, cmConnection);
+                String url = ResourceUtils.getUrl(RESOURCE_NAMING.CM_REGISTER_DEVICE_SOURCES, cmConnection);
                 url = url.replace("{id}", String.valueOf(local.getId()));
 
                 ResponseEntity<Void> responseRegisteriationSources = restTemplate.postForEntity(url, data, Void.class);
@@ -105,7 +105,7 @@ public class ApplicationScheduler {
         case WORKING:
 
             logger.info("Send heart beat.");
-            String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_HEART_BEAT_DEVICE, cm);
+            String url = ResourceUtils.getUrl(RESOURCE_NAMING.CM_HEART_BEAT_DEVICE, cm);
 
             url = url.replace("{id}", Long.toString(local.getId()));
             restTemplate.put(url, null);

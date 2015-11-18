@@ -6,18 +6,18 @@ import org.springframework.stereotype.Component;
 
 import common.data.Connection;
 import common.transformer.Transformer;
-import configuration.management.model.EventProcessing;
+import configuration.management.model.EventProcessingDLO;
 import configuration.management.util.Util;
 
 @Component
-public class EventProcessingTransformer extends Transformer<EventProcessing, Connection> {
+public class EventProcessingTransformer extends Transformer<EventProcessingDLO, Connection> {
 
     final static Logger logger = LoggerFactory.getLogger(Transformer.class);
 
     @Override
-    public EventProcessing toLocal(Connection remote) {
+    public EventProcessingDLO toLocal(Connection remote) {
 
-        EventProcessing eProcJPA = new EventProcessing();
+        EventProcessingDLO eProcJPA = new EventProcessingDLO();
         eProcJPA.setId(remote.getId());
         eProcJPA.setAuthority(remote.getUrl().getAuthority());
 
@@ -25,7 +25,7 @@ public class EventProcessingTransformer extends Transformer<EventProcessing, Con
     }
 
     @Override
-    public Connection toRemote(EventProcessing local) {
+    public Connection toRemote(EventProcessingDLO local) {
 
         Connection connection = new Connection();
         connection.setId(local.getId());

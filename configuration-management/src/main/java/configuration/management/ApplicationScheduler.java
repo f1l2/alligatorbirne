@@ -13,8 +13,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
-import configuration.management.model.EventProcessing;
-import configuration.management.model.Device;
+import configuration.management.model.EventProcessingDLO;
+import configuration.management.model.DeviceDLO;
 import configuration.management.repo.EventProcessingRepository;
 import configuration.management.repo.DeviceRepository;
 
@@ -44,14 +44,14 @@ public class ApplicationScheduler {
         GregorianCalendar gc = new GregorianCalendar();
         gc.add(GregorianCalendar.MINUTE, OBSOLETE_CORRIDOR * (-1));
 
-        List<Device> obsoleteIoTDevs = deviceRepo.findByUpdatedBefore(gc.getTime());
+        List<DeviceDLO> obsoleteIoTDevs = deviceRepo.findByUpdatedBefore(gc.getTime());
 
         if (!CollectionUtils.isEmpty(obsoleteIoTDevs)) {
             deviceRepo.delete(obsoleteIoTDevs);
             logger.info("Obsolete IoTDev(s) detected. {}", obsoleteIoTDevs.stream().map(item -> item.toString()).collect(Collectors.joining(", ")));
         }
 
-        List<EventProcessing> obsoleteEPs = eventProcessingRepo.findByUpdatedBefore(gc.getTime());
+        List<EventProcessingDLO> obsoleteEPs = eventProcessingRepo.findByUpdatedBefore(gc.getTime());
 
         if (!CollectionUtils.isEmpty(obsoleteEPs)) {
             eventProcessingRepo.delete(obsoleteEPs);

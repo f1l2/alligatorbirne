@@ -27,19 +27,21 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-io</artifactId>
 		</dependency>
-				<dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jms</artifactId>
-        </dependency>
-        
+
         <dependency>
             <groupId>org.apache.activemq</groupId>
-            <artifactId>activemq-broker</artifactId>
+            <artifactId>activemq-client</artifactId>
         </dependency>
+        
+		<dependency>
+	   		<groupId>org.antlr</groupId>
+	     	<artifactId>antlr4-runtime</artifactId>
+	    </dependency>
   </dependencies>
   <build>
    <plugins>
@@ -90,6 +92,21 @@
 					</configuration>
 				</execution>
 			</executions>
+		</plugin>
+  		<plugin>
+	    	<groupId>org.antlr</groupId>
+	    	<artifactId>antlr4-maven-plugin</artifactId>
+	    	<version>${antlr.version}</version>
+	    	<configuration>
+	    		<outputDirectory>${project.build.sourceDirectory}/common/gen/language</outputDirectory>
+	    	</configuration>
+	    	<executions>
+	        	<execution>
+	            	<goals>
+	                	<goal>antlr4</goal>
+	            	</goals>
+	        	</execution>
+    		</executions>
 		</plugin>
 	</plugins>
   	  

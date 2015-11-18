@@ -15,7 +15,7 @@ public class ResourceUtilsTest {
     public void testGetUrl1() {
 
         String authority = "localhost:8080";
-        String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_DELEGATION, authority);
+        String url = ResourceUtils.getUrl(RESOURCE_NAMING.CM_DELEGATION, authority);
 
         assertEquals("http://localhost:8080/delegation" + "", url);
     }
@@ -28,7 +28,7 @@ public class ResourceUtilsTest {
         Connection connection = new Connection();
         connection.setUrl(UrlUtils.parseUrl(authority));
 
-        String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_DELEGATION, connection);
+        String url = ResourceUtils.getUrl(RESOURCE_NAMING.CM_DELEGATION, connection);
 
         assertEquals("http://localhost:8080/delegation", url);
     }
@@ -41,7 +41,7 @@ public class ResourceUtilsTest {
         Connection connection = new Connection();
         connection.setUrl(UrlUtils.parseUrl(authority));
 
-        String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_REGISTER_DEVICE_SOURCES, connection, "123");
+        String url = ResourceUtils.getUrl(RESOURCE_NAMING.CM_REGISTER_DEVICE_SOURCES, connection, "123");
 
         assertEquals("http://localhost:8080/registrations/devices/sources/123", url);
 
@@ -55,7 +55,7 @@ public class ResourceUtilsTest {
         Connection connection = new Connection();
         connection.setUrl(UrlUtils.parseUrl(authority));
 
-        String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGGT_GET_DEVICE_BY_DATA_SOURCES, connection, "dev", "dom");
+        String url = ResourceUtils.getUrl(RESOURCE_NAMING.CM_GET_DEVICE_BY_DATA_SOURCES, connection, "dev", "dom");
 
         assertEquals("http://localhost:8080/registrations/devices/sources/dev/dom", url);
 

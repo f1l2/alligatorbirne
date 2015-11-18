@@ -41,7 +41,7 @@ public class EProcManageDataTest extends AbstractTestMessageEP {
         dd.setDevice(devInfo);
         dd.addDomain(domainInfo);
 
-        given().contentType("application/json").body(dd).when().post(RESOURCE_NAMING.EPROCESSING_SEND.getPath())
+        given().contentType("application/json").body(dd).when().post(RESOURCE_NAMING.EP_SEND.getPath())
 
         .then().statusCode(200);
     }

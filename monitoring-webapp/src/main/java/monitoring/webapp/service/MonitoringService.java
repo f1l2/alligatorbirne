@@ -43,7 +43,7 @@ public class MonitoringService {
     }
 
     public List<Connection> listEP() {
-        String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_GET_ALL_EVENT_PROCESSING, cm);
+        String url = ResourceUtils.getUrl(RESOURCE_NAMING.CM_GET_ALL_EVENT_PROCESSING, cm);
 
         try {
             ResponseEntity<Connection[]> response = restTemplate.getForEntity(url, Connection[].class);
@@ -55,7 +55,7 @@ public class MonitoringService {
 
     public List<Connection> listDev() {
 
-        String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_GET_ALL_DEVICES, cm);
+        String url = ResourceUtils.getUrl(RESOURCE_NAMING.CM_GET_ALL_DEVICES, cm);
 
         try {
             ResponseEntity<Connection[]> response = restTemplate.getForEntity(url, Connection[].class);
@@ -67,7 +67,7 @@ public class MonitoringService {
 
     public List<QueryDTO> listRegisteredQuery(Connection connection) {
 
-        String url = ResourceUtils.getUrl(RESOURCE_NAMING.EPROCESSING_GET_ALL_QUERIES, connection);
+        String url = ResourceUtils.getUrl(RESOURCE_NAMING.EP_GET_ALL_QUERIES, connection);
 
         try {
             ResponseEntity<QueryDTO[]> response = restTemplate.getForEntity(url, QueryDTO[].class);
@@ -80,7 +80,7 @@ public class MonitoringService {
 
     public List<RuleDTO> listRegisteredRule(Connection connection) {
 
-        String url = ResourceUtils.getUrl(RESOURCE_NAMING.EPROCESSING_GET_ALL_RULES, connection);
+        String url = ResourceUtils.getUrl(RESOURCE_NAMING.EP_GET_ALL_RULES, connection);
 
         try {
             ResponseEntity<RuleDTO[]> response = restTemplate.getForEntity(url, RuleDTO[].class);
@@ -93,7 +93,7 @@ public class MonitoringService {
 
     public List<DataSource> listDataSourcesById(Connection connection) {
 
-        String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_GET_DEVICE_DATA_SOURCES, cm, connection.getId());
+        String url = ResourceUtils.getUrl(RESOURCE_NAMING.CM_GET_DEVICE_DATA_SOURCES, cm, connection.getId());
 
         try {
 

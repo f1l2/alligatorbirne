@@ -64,7 +64,7 @@ public class ApplicationScheduler {
 
                 logger.info("Try to register ep ...");
 
-                String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_REGISTER_EVENT_PROCESSING, cm);
+                String url = ResourceUtils.getUrl(RESOURCE_NAMING.CM_REGISTER_EVENT_PROCESSING, cm);
                 logger.info(url);
 
                 ResponseEntity<Connection> responseRegistration = restTemplate.postForEntity(url, local, Connection.class);
@@ -85,7 +85,7 @@ public class ApplicationScheduler {
 
             logger.info("Send heart beat");
 
-            String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_HEART_BEAT_EVENT_PROCESSING, cm);
+            String url = ResourceUtils.getUrl(RESOURCE_NAMING.CM_HEART_BEAT_EVENT_PROCESSING, cm);
             url = url.replace("{id}", Long.toString(local.getId()));
 
             restTemplate.put(url, null);

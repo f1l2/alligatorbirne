@@ -57,7 +57,7 @@ public class IDevManageConfigTest extends AbstractRestTest {
         cd.setDataSink(ep);
         cd.setProperties(properties);
 
-        ResponseBodyExtractionOptions response = given().body(cd).contentType(ContentType.JSON).post(RESOURCE_NAMING.IDEV_SET_CONFIGURATION.getPath())
+        ResponseBodyExtractionOptions response = given().body(cd).contentType(ContentType.JSON).post(RESOURCE_NAMING.DEV_SET_CONFIGURATION.getPath())
                 //
                 .then().contentType(ContentType.TEXT)
                 //
@@ -80,7 +80,7 @@ public class IDevManageConfigTest extends AbstractRestTest {
     @Test
     public void getAllConfiguration() {
 
-        Response response = get(RESOURCE_NAMING.IDEV_GET_ALL_CONFIGURATION.getPath());
+        Response response = get(RESOURCE_NAMING.DEV_GET_ALL_CONFIGURATION.getPath());
 
         List<DeliveryTaskRO> result = Arrays.asList(response.getBody().as(DeliveryTaskRO[].class));
 
@@ -93,7 +93,7 @@ public class IDevManageConfigTest extends AbstractRestTest {
     @Test
     public void getConfigurationByEPAuthority() {
 
-        String path = RESOURCE_NAMING.IDEV_GET_CONFIGURATION_BY_EP.getPath();
+        String path = RESOURCE_NAMING.DEV_GET_CONFIGURATION_BY_EP.getPath();
         path = path.replace("{authority}", cd.getDataSink().getUrl().getAuthority());
 
         Response response = get(path);

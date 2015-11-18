@@ -6,22 +6,22 @@ import org.springframework.stereotype.Component;
 
 import common.data.Connection;
 import common.transformer.Transformer;
-import configuration.management.model.Device;
+import configuration.management.model.DeviceDLO;
 import configuration.management.util.Util;
 
 @Component
-public class DeviceTransformer extends Transformer<Device, Connection> {
+public class DeviceTransformer extends Transformer<DeviceDLO, Connection> {
 
     final static Logger logger = LoggerFactory.getLogger(Transformer.class);
 
     @Override
-    public Device toLocal(Connection remote) {
+    public DeviceDLO toLocal(Connection remote) {
 
         if (null == remote) {
             return null;
         }
 
-        Device device = new Device();
+        DeviceDLO device = new DeviceDLO();
         device.setId(remote.getId());
         device.setAuthority(remote.getUrl().getAuthority());
 
@@ -29,7 +29,7 @@ public class DeviceTransformer extends Transformer<Device, Connection> {
     }
 
     @Override
-    public Connection toRemote(Device local) {
+    public Connection toRemote(DeviceDLO local) {
 
         if (null == local) {
             return null;

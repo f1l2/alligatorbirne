@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import common.data.ConfigurationDelegation;
 import common.data.Connection;
 import common.data.DataSource;
-import configuration.management.model.Device;
+import configuration.management.model.DeviceDLO;
 import configuration.management.repo.DeviceRepository;
 import configuration.management.repo.DeviceTransformer;
 import configuration.management.task.StartDeliveryDelegation;
@@ -40,7 +40,7 @@ public class DelegateDeliveryChange extends Activity<String, ConfigurationDelega
         /**
          * No worry about NPE because item was already checked during validations step.
          */
-        List<Device> devicesToBeContacted = new ArrayList<Device>();
+        List<DeviceDLO> devicesToBeContacted = new ArrayList<DeviceDLO>();
 
         for (DataSource ds : item.getDataSources()) {
             devicesToBeContacted.addAll(deviceRepo.findByDataSources(//

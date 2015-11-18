@@ -7,17 +7,17 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-import configuration.management.model.EventProcessing;
+import configuration.management.model.EventProcessingDLO;
 
-public interface EventProcessingRepository extends CrudRepository<EventProcessing, Long> {
+public interface EventProcessingRepository extends CrudRepository<EventProcessingDLO, Long> {
 
-    public EventProcessing findByName(@Param("name") String name);
+    public EventProcessingDLO findByName(@Param("name") String name);
 
-    public EventProcessing findByAuthority(@Param("authority") String authority);
+    public EventProcessingDLO findByAuthority(@Param("authority") String authority);
 
-    public List<EventProcessing> findByUpdatedBefore(Date date);
+    public List<EventProcessingDLO> findByUpdatedBefore(Date date);
 
-    @Query("select i from EventProcessing as i left join i.dataSources as ds where ds.device = ?1 and ds.domain = ?2")
-    public List<EventProcessing> findByDataSources(String device, String domain);
+    @Query("select i from EventProcessingDLO as i left join i.dataSources as ds where ds.device = ?1 and ds.domain = ?2")
+    public List<EventProcessingDLO> findByDataSources(String device, String domain);
 
 }

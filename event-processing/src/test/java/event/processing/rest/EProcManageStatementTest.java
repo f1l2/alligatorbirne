@@ -34,7 +34,7 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
     @Test
     public void getAllQueries1() {
 
-        Response response = get(RESOURCE_NAMING.EPROCESSING_GET_ALL_QUERIES.getPath());
+        Response response = get(RESOURCE_NAMING.EP_GET_ALL_QUERIES.getPath());
 
         List<QueryDTO> result = Arrays.asList(response.getBody().as(QueryDTO[].class));
 
@@ -49,7 +49,7 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
     @Test
     public void getAllQueries2() {
 
-        when().get(RESOURCE_NAMING.EPROCESSING_GET_ALL_QUERIES.getPath())
+        when().get(RESOURCE_NAMING.EP_GET_ALL_QUERIES.getPath())
 
         .then().statusCode(200);
     }
@@ -59,7 +59,7 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
 
         String query = "CONDITION name = 'device1'";
 
-        given().body(query).when().post(ResourceUtils.getPath(RESOURCE_NAMING.EPROCESSING_REGISTRATION_QUERY, queryName))
+        given().body(query).when().post(ResourceUtils.getPath(RESOURCE_NAMING.EP_REGISTRATION_QUERY, queryName))
 
         .then().statusCode(HttpStatus.OK.value());
 
@@ -70,7 +70,7 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
 
         String query = "AVC name = 'device1'";
 
-        given().body(query).when().post(ResourceUtils.getPath(RESOURCE_NAMING.EPROCESSING_REGISTRATION_QUERY, queryName))
+        given().body(query).when().post(ResourceUtils.getPath(RESOURCE_NAMING.EP_REGISTRATION_QUERY, queryName))
 
         .then().statusCode(HttpStatus.BAD_REQUEST.value());
     }
@@ -80,7 +80,7 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
 
         String query = "CONDITION name = 'device1'";
 
-        String path = ResourceUtils.getPath(RESOURCE_NAMING.EPROCESSING_REGISTRATION_QUERY, queryName);
+        String path = ResourceUtils.getPath(RESOURCE_NAMING.EP_REGISTRATION_QUERY, queryName);
 
         given().body(query).when().post(path)
 
@@ -96,7 +96,7 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
 
         registerQuery();
 
-        when().delete(ResourceUtils.getPath(RESOURCE_NAMING.EPROCESSING_DEREGISTRATION_QUERY, queryName))
+        when().delete(ResourceUtils.getPath(RESOURCE_NAMING.EP_DEREGISTRATION_QUERY, queryName))
 
         .then().statusCode(HttpStatus.OK.value());
     }
@@ -108,7 +108,7 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
 
         String rule = queryName + " TRIGGERS device1, domain1, configurationManagement1 = 1";
 
-        given().body(rule).when().post(ResourceUtils.getPath(RESOURCE_NAMING.EPROCESSING_REGISTRATION_RULE, ruleName))
+        given().body(rule).when().post(ResourceUtils.getPath(RESOURCE_NAMING.EP_REGISTRATION_RULE, ruleName))
 
         .then().statusCode(HttpStatus.OK.value());
     }
@@ -126,11 +126,11 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
 
         String rule = queryName + " TRIGGERS device1, domain1, configurationManagement1 = 1";
 
-        given().body(rule).when().post(ResourceUtils.getPath(RESOURCE_NAMING.EPROCESSING_REGISTRATION_RULE, ruleName))
+        given().body(rule).when().post(ResourceUtils.getPath(RESOURCE_NAMING.EP_REGISTRATION_RULE, ruleName))
 
         .then().statusCode(HttpStatus.OK.value());
 
-        given().body(rule).when().post(ResourceUtils.getPath(RESOURCE_NAMING.EPROCESSING_REGISTRATION_RULE, ruleName))
+        given().body(rule).when().post(ResourceUtils.getPath(RESOURCE_NAMING.EP_REGISTRATION_RULE, ruleName))
 
         .then().statusCode(HttpStatus.BAD_REQUEST.value());
 
@@ -141,7 +141,7 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
 
         registerRule();
 
-        when().delete(ResourceUtils.getPath(RESOURCE_NAMING.EPROCESSING_DEREGISTRATION_RULE, ruleName))
+        when().delete(ResourceUtils.getPath(RESOURCE_NAMING.EP_DEREGISTRATION_RULE, ruleName))
 
         .then().statusCode(HttpStatus.OK.value());
     }
@@ -151,17 +151,17 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
 
         String query = "CONDITION name = 'device1'";
 
-        given().body(query).when().post(ResourceUtils.getPath(RESOURCE_NAMING.EPROCESSING_REGISTRATION_QUERY, queryName))
+        given().body(query).when().post(ResourceUtils.getPath(RESOURCE_NAMING.EP_REGISTRATION_QUERY, queryName))
 
         .then().statusCode(HttpStatus.OK.value());
 
         String rule = queryName + " TRIGGERS device1, domain1, configurationManagement1 = 1";
 
-        given().body(rule).when().post(ResourceUtils.getPath(RESOURCE_NAMING.EPROCESSING_REGISTRATION_RULE, ruleName))
+        given().body(rule).when().post(ResourceUtils.getPath(RESOURCE_NAMING.EP_REGISTRATION_RULE, ruleName))
 
         .then().statusCode(HttpStatus.OK.value());
 
-        when().get(ResourceUtils.getPath(RESOURCE_NAMING.EPROCESSING_ACTIVATIONS_RULE, ruleName))
+        when().get(ResourceUtils.getPath(RESOURCE_NAMING.EP_ACTIVATIONS_RULE, ruleName))
 
         .then().statusCode(HttpStatus.OK.value());
 
@@ -172,7 +172,7 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
 
         activateRule();
 
-        when().get(ResourceUtils.getPath(RESOURCE_NAMING.EPROCESSING_DEACTIVATIONS_RULE), ruleName)
+        when().get(ResourceUtils.getPath(RESOURCE_NAMING.EP_DEACTIVATIONS_RULE), ruleName)
 
         .then().statusCode(HttpStatus.OK.value());
 

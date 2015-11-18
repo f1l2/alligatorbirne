@@ -28,7 +28,7 @@ public class StartDeliveryDelegation extends DelegationTask {
         logger.info("Delegate start delivery for {}", connection.getUrl().getAuthority());
 
         try {
-            String url = ResourceUtils.getUrl(RESOURCE_NAMING.IDEV_START_DELIVERY, connection.getUrl().getAuthority());
+            String url = ResourceUtils.getUrl(RESOURCE_NAMING.DEV_START_DELIVERY, connection.getUrl().getAuthority());
             restTemplate.postForEntity(url, cd, String.class);
         } catch (Exception e) {
             logger.error("{}", e);

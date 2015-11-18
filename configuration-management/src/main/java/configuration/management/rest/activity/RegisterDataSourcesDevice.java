@@ -16,9 +16,9 @@ import common.data.Connection;
 import common.data.builder.CDBuilder;
 import common.data.dto.DataSourcesDTO;
 import common.data.type.COMPONENT_TYPE;
-import configuration.management.model.DataSourceRO;
-import configuration.management.model.Device;
-import configuration.management.model.EventProcessing;
+import configuration.management.model.DataSourceDLO;
+import configuration.management.model.DeviceDLO;
+import configuration.management.model.EventProcessingDLO;
 import configuration.management.repo.DataSourceTransformer;
 import configuration.management.repo.DeviceRepository;
 import configuration.management.repo.DeviceTransformer;
@@ -55,7 +55,7 @@ public class RegisterDataSourcesDevice extends Activity<String, DataSourcesDTO> 
     @Override
     public ResponseEntity<String> doStep(DataSourcesDTO item) {
 
-        Device component = this.devRepo.findOne(id);
+        DeviceDLO component = this.devRepo.findOne(id);
 
         Connection componentConnection = devTransformer.toRemote(component);
 
@@ -65,7 +65,7 @@ public class RegisterDataSourcesDevice extends Activity<String, DataSourcesDTO> 
             setErrorResponse(new ResponseEntity<String>("Registration of data sources failed. For device data sources already registered.", HttpStatus.BAD_REQUEST));
         } else {
 
-            Set<DataSourceRO> ds = transformer.toLocal(item.getDataSources());
+            Set<DataSourceDLO> ds = transformer.toLocal(item.getDataSources());
 
             component.setDataSources(ds);
 
@@ -75,8 +75,8 @@ public class RegisterDataSourcesDevice extends Activity<String, DataSourcesDTO> 
              * Loop all data sources, which can be provided by device
              */
 
-            for (DataSourceRO dsDevice : ds) {
-                for (EventProcessing ep : epRepo.findByDataSources(dsDevice.getDevice(), dsDevice.getDomain())) {
+            for (DataSourceDLO dsDevice : ds) {
+                for (EventProcessingDLO ep : epRepo.findByDataSources(dsDevice.getDevice(), dsDevice.getDomain())) {
 
                     Connection remote = epTransformer.toRemote(ep);
                     remote.setComponentType(COMPONENT_TYPE.EVENT_PROCESSING);
@@ -91,7 +91,7 @@ public class RegisterDataSourcesDevice extends Activity<String, DataSourcesDTO> 
 
                     if (!CollectionUtils.isEmpty(ep.getDataSources())) {
 
-                        DataSourceRO dsRO = ep.getDataSources().stream().findFirst().get();
+                        DataSourceDLO dsRO = ep.getDataSources().stream().findFirst().get();
 
                         if (!CollectionUtils.isEmpty(dsRO.getProperties())) {
 

@@ -40,7 +40,7 @@ public abstract class Component {
     private COMPONENT_TYPE type;
 
     @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE })
-    private Set<DataSourceRO> dataSources = new HashSet<DataSourceRO>();
+    private Set<DataSourceDLO> dataSources = new HashSet<DataSourceDLO>();
 
     public Long getId() {
         return id;
@@ -90,11 +90,11 @@ public abstract class Component {
         return type;
     }
 
-    public Set<DataSourceRO> getDataSources() {
+    public Set<DataSourceDLO> getDataSources() {
         return dataSources;
     }
 
-    public void setDataSources(Set<DataSourceRO> dataSources) {
+    public void setDataSources(Set<DataSourceDLO> dataSources) {
         this.dataSources = dataSources;
     }
 }

@@ -28,7 +28,7 @@ public class MessageHandlerListener implements MessageListener {
     public void onMessage(Message item) {
 
         try {
-            logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.EPROCESSING_SEND));
+            logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.EP_SEND));
 
             ActiveMQObjectMessage message = (ActiveMQObjectMessage) item;
             DeviceData deviceData = (DeviceData) message.getObject();

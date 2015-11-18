@@ -57,7 +57,7 @@ public class DeliveryTask implements Runnable {
     public DeliveryTask(DeliveryTaskRO deliveryTaskRO) {
 
         this.deliveryAuthority = deliveryTaskRO.getUrlDataSink().getAuthority();
-        this.deliveryUrl = ResourceUtils.getUrl(RESOURCE_NAMING.EPROCESSING_SEND, deliveryTaskRO.getUrlDataSink().getAuthority());
+        this.deliveryUrl = ResourceUtils.getUrl(RESOURCE_NAMING.EP_SEND, deliveryTaskRO.getUrlDataSink().getAuthority());
         this.setIdentification(String.format("deliveryTask_%s", Arrays.hashCode(new Object[] { deliveryTaskRO.getUrlDataSink().getAuthority() })));
     }
 

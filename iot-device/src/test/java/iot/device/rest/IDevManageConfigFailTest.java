@@ -46,7 +46,7 @@ public class IDevManageConfigFailTest extends AbstractRestTest {
             this.deliveryStart(ep);
         }
 
-        String path = ResourceUtils.getPath(RESOURCE_NAMING.IDEV_START_DELIVERY);
+        String path = ResourceUtils.getPath(RESOURCE_NAMING.DEV_START_DELIVERY);
 
         cdBuilder.buildDataSink("hostblabla:1234", COMPONENT_TYPE.EVENT_PROCESSING);
 

@@ -60,7 +60,7 @@ public class Commands implements CommandMarker {
     public String listEP() {
 
         try {
-            String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_GET_ALL_EVENT_PROCESSING, cm);
+            String url = ResourceUtils.getUrl(RESOURCE_NAMING.CM_GET_ALL_EVENT_PROCESSING, cm);
 
             ResponseEntity<Connection[]> response = restTemplate.getForEntity(url, Connection[].class);
 
@@ -81,7 +81,7 @@ public class Commands implements CommandMarker {
     public String listDev() {
 
         try {
-            String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_GET_ALL_DEVICES, cm);
+            String url = ResourceUtils.getUrl(RESOURCE_NAMING.CM_GET_ALL_DEVICES, cm);
 
             ResponseEntity<Connection[]> response = restTemplate.getForEntity(url, Connection[].class);
 
@@ -112,7 +112,7 @@ public class Commands implements CommandMarker {
             @CliOption(key = { "query" }, mandatory = true, help = "query") final String query) {
 
         try {
-            String url = ResourceUtils.getUrl(RESOURCE_NAMING.EPROCESSING_REGISTRATION_QUERY, getEPById(id));
+            String url = ResourceUtils.getUrl(RESOURCE_NAMING.EP_REGISTRATION_QUERY, getEPById(id));
             url = StringUtils.replace(url, "{name}", queryName);
 
             ResponseEntity<String> postForEntity = restTemplate.postForEntity(url, query, String.class);
@@ -134,7 +134,7 @@ public class Commands implements CommandMarker {
     public String listRegisteredQuery(@CliOption(key = { "epId" }, mandatory = true, help = "id of EP") final long id) {
 
         try {
-            String url = ResourceUtils.getUrl(RESOURCE_NAMING.EPROCESSING_GET_ALL_QUERIES, getEPById(id));
+            String url = ResourceUtils.getUrl(RESOURCE_NAMING.EP_GET_ALL_QUERIES, getEPById(id));
 
             ResponseEntity<Object[]> response = restTemplate.getForEntity(url, Object[].class);
 
@@ -164,7 +164,7 @@ public class Commands implements CommandMarker {
             @CliOption(key = { "rule" }, mandatory = true, help = "rule (contains name of query)") final String rule) {
 
         try {
-            String url = ResourceUtils.getUrl(RESOURCE_NAMING.EPROCESSING_REGISTRATION_RULE, getEPById(id));
+            String url = ResourceUtils.getUrl(RESOURCE_NAMING.EP_REGISTRATION_RULE, getEPById(id));
             url = StringUtils.replace(url, "{name}", ruleName);
 
             ResponseEntity<String> postForEntity = restTemplate.postForEntity(url, rule, String.class);
@@ -186,7 +186,7 @@ public class Commands implements CommandMarker {
     public String listRegisteredRule(@CliOption(key = { "epId" }, mandatory = true, help = "id of EP") final long id) {
 
         try {
-            String url = ResourceUtils.getUrl(RESOURCE_NAMING.EPROCESSING_GET_ALL_RULES, getEPById(id));
+            String url = ResourceUtils.getUrl(RESOURCE_NAMING.EP_GET_ALL_RULES, getEPById(id));
             ResponseEntity<Object[]> response = restTemplate.getForEntity(url, Object[].class);
 
             printTable(response.getBody());
@@ -202,7 +202,7 @@ public class Commands implements CommandMarker {
 
         try {
 
-            String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_GET_DEVICE_DATA_SOURCES, cm, getDeviceById(id).getId());
+            String url = ResourceUtils.getUrl(RESOURCE_NAMING.CM_GET_DEVICE_DATA_SOURCES, cm, getDeviceById(id).getId());
 
             ResponseEntity<DataSource[]> response = restTemplate.getForEntity(url, DataSource[].class);
 
@@ -220,7 +220,7 @@ public class Commands implements CommandMarker {
             @CliOption(key = { "ruleName" }, mandatory = true, help = "name of rule") final String ruleName) {
 
         try {
-            String url = ResourceUtils.getUrl(RESOURCE_NAMING.EPROCESSING_ACTIVATIONS_RULE, getEPById(id), ruleName);
+            String url = ResourceUtils.getUrl(RESOURCE_NAMING.EP_ACTIVATIONS_RULE, getEPById(id), ruleName);
 
             ResponseEntity<String> result = restTemplate.getForEntity(url, String.class);
 
@@ -236,7 +236,7 @@ public class Commands implements CommandMarker {
             @CliOption(key = { "ruleName" }, mandatory = true, help = "name of rule") final String ruleName) {
 
         try {
-            String url = ResourceUtils.getUrl(RESOURCE_NAMING.EPROCESSING_DEACTIVATIONS_RULE, getEPById(id), ruleName);
+            String url = ResourceUtils.getUrl(RESOURCE_NAMING.EP_DEACTIVATIONS_RULE, getEPById(id), ruleName);
 
             ResponseEntity<String> result = restTemplate.getForEntity(url, String.class);
 
@@ -253,7 +253,7 @@ public class Commands implements CommandMarker {
             @CliOption(key = { "domInfo" }, mandatory = true, help = "name of dom info") String domInfo) {
 
         try {
-            String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGGT_GET_DEVICE_BY_DATA_SOURCES, cm, devInfo, domInfo);
+            String url = ResourceUtils.getUrl(RESOURCE_NAMING.CM_GET_DEVICE_BY_DATA_SOURCES, cm, devInfo, domInfo);
 
             ResponseEntity<Connection[]> response = restTemplate.getForEntity(url, Connection[].class);
 
@@ -299,9 +299,9 @@ public class Commands implements CommandMarker {
     private Connection getById(Long id, COMPONENT_TYPE ct) throws CommandsException {
         String url;
         if (COMPONENT_TYPE.EVENT_PROCESSING.equals(ct)) {
-            url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_GET_ALL_EVENT_PROCESSING, cm);
+            url = ResourceUtils.getUrl(RESOURCE_NAMING.CM_GET_ALL_EVENT_PROCESSING, cm);
         } else if (COMPONENT_TYPE.DEVICE.equals(ct)) {
-            url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_GET_ALL_DEVICES, cm);
+            url = ResourceUtils.getUrl(RESOURCE_NAMING.CM_GET_ALL_DEVICES, cm);
         } else {
             return null;
         }

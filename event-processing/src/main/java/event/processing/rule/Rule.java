@@ -132,7 +132,7 @@ public class Rule extends EngineListener {
             local.setComponentType(COMPONENT_TYPE.EVENT_PROCESSING);
             Connection cm = SettingUtils.getCMConnection();
 
-            String url = ResourceUtils.getUrl(RESOURCE_NAMING.CMGMT_DELEGATION, cm);
+            String url = ResourceUtils.getUrl(RESOURCE_NAMING.CM_DELEGATION, cm);
 
             RestTemplate restTemplate = new RestTemplate();
 

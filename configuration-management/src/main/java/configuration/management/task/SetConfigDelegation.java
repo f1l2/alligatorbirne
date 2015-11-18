@@ -33,7 +33,7 @@ public class SetConfigDelegation extends DelegationTask {
         logger.info("Delegate configuration modification for {}", connection.getUrl().getAuthority());
 
         try {
-            String url = ResourceUtils.getUrl(RESOURCE_NAMING.IDEV_SET_CONFIGURATION, connection.getUrl().getAuthority());
+            String url = ResourceUtils.getUrl(RESOURCE_NAMING.DEV_SET_CONFIGURATION, connection.getUrl().getAuthority());
             restTemplate.postForEntity(url, cd, String.class);
         } catch (Exception e) {
             logger.error("{}", e);

@@ -78,7 +78,7 @@ public class AbstractRestTest {
 
     protected void deliveryStart(CDBuilder cdBuilder) {
 
-        String path = ResourceUtils.getPath(RESOURCE_NAMING.IDEV_START_DELIVERY);
+        String path = ResourceUtils.getPath(RESOURCE_NAMING.DEV_START_DELIVERY);
 
         ResponseBodyExtractionOptions response = given().body(cdBuilder.getResult()).contentType(ContentType.JSON).post(path)
                 //
@@ -97,7 +97,7 @@ public class AbstractRestTest {
 
     protected void deliveryStop(CDBuilder cdBuilder, Connection dataSink) {
 
-        String path = ResourceUtils.getPath(RESOURCE_NAMING.IDEV_STOP_DELIVERY);
+        String path = ResourceUtils.getPath(RESOURCE_NAMING.DEV_STOP_DELIVERY);
 
         ResponseBodyExtractionOptions response = given().body(cdBuilder.getResult()).contentType(ContentType.JSON).post(path)
                 //

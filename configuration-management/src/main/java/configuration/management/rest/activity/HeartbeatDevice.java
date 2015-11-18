@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
-import configuration.management.model.Device;
+import configuration.management.model.DeviceDLO;
 import configuration.management.repo.DeviceRepository;
 
 @Component
@@ -23,7 +23,7 @@ public class HeartbeatDevice extends Activity<String, Long> {
     @Override
     public ResponseEntity<String> doStep(Long id) {
 
-        Device item = deviceRepo.findOne(id);
+        DeviceDLO item = deviceRepo.findOne(id);
 
         if (item != null) {
             item.setUpdated(new Date());

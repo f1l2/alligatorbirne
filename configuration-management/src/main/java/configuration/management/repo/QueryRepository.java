@@ -3,10 +3,10 @@ package configuration.management.repo;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-import configuration.management.model.Query;
+import configuration.management.model.QueryDLO;
 
-public interface QueryRepository extends CrudRepository<Query, Long> {
+public interface QueryRepository extends CrudRepository<QueryDLO, Long> {
 
-    public Query findByName(@Param("name") String name);
+    public QueryDLO findByName(@Param("name") String name);
 
 }

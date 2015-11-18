@@ -13,17 +13,17 @@ import common.data.DataSource;
 import common.data.model.DeviceInformation;
 import common.data.model.DomainInformation;
 import common.transformer.Transformer;
-import configuration.management.model.DataSourceRO;
+import configuration.management.model.DataSourceDLO;
 
 @Component
-public class DataSourceTransformer extends Transformer<DataSourceRO, DataSource> {
+public class DataSourceTransformer extends Transformer<DataSourceDLO, DataSource> {
 
     final static Logger logger = LoggerFactory.getLogger(Transformer.class);
 
     @Override
-    public DataSourceRO toLocal(DataSource remote) {
+    public DataSourceDLO toLocal(DataSource remote) {
 
-        DataSourceRO item = new DataSourceRO();
+        DataSourceDLO item = new DataSourceDLO();
 
         /**
          * 
@@ -43,7 +43,7 @@ public class DataSourceTransformer extends Transformer<DataSourceRO, DataSource>
     }
 
     @Override
-    public DataSource toRemote(DataSourceRO local) {
+    public DataSource toRemote(DataSourceDLO local) {
 
         DeviceInformation devInfo = new DeviceInformation();
         devInfo.setName(local.getDevice());
@@ -58,9 +58,9 @@ public class DataSourceTransformer extends Transformer<DataSourceRO, DataSource>
         return item;
     }
 
-    public Set<DataSourceRO> toLocal(Set<DataSource> remotes) {
+    public Set<DataSourceDLO> toLocal(Set<DataSource> remotes) {
 
-        Set<DataSourceRO> locals = new HashSet<DataSourceRO>();
+        Set<DataSourceDLO> locals = new HashSet<DataSourceDLO>();
 
         for (DataSource remote : remotes) {
             locals.add(toLocal(remote));
@@ -69,11 +69,11 @@ public class DataSourceTransformer extends Transformer<DataSourceRO, DataSource>
         return locals;
     }
 
-    public List<DataSource> toRemote(Set<DataSourceRO> locals) {
+    public List<DataSource> toRemote(Set<DataSourceDLO> locals) {
 
         List<DataSource> remotes = new ArrayList<DataSource>();
 
-        for (DataSourceRO local : locals) {
+        for (DataSourceDLO local : locals) {
             remotes.add(toRemote(local));
         }
 

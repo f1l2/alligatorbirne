@@ -8,6 +8,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * Used to transform objects mainly between DTO (data transfer objects) and DLO (data local objects).
+ * 
+ * 
  * @author Manuel Filz
  *
  */
