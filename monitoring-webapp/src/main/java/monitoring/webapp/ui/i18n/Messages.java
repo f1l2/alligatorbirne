@@ -49,7 +49,9 @@ public final class Messages {
         //
         COMPONENT_URL("monitoring.webapp.ui.component.url", "Url"),
         //
-        COMPONENT_UPDATED("monitoring.webapp.ui.component.updated", "Last updated");
+        COMPONENT_UPDATED("monitoring.webapp.ui.component.updated", "Last updated"),
+        //
+        DESTINATION("monitoring.webapp.ui.messaging.destination", "Destination");
 
         private final String message;
 

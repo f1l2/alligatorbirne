@@ -14,20 +14,16 @@
           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
           http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd
-          http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/actievmq-core.xsd">
+          http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd">
 
     <context:annotation-config />
     <context:component-scan base-package="monitoring.webapp" scoped-proxy="targetClass" />
     
     <!--  ActiveMQ Broker -->
-	<amq:broker id="test-broker" persistent="false" useJmx="true">
-		<amq:managementContext>
-			<amq:managementContext createConnector="true"/>
-		</amq:managementContext>
-		<amq:transportConnectors>
-			<amq:transportConnector	uri="tcp://localhost:0" />
-		</amq:transportConnectors>
-	</amq:broker>
-
+	 <amq:broker useJmx="true" persistent="false" brokerName="monitoring">
+   		<amq:transportConnectors>
+      		<amq:transportConnector uri="tcp://localhost:61616" />
+    	</amq:transportConnectors>
+  	</amq:broker>
     
 </beans>

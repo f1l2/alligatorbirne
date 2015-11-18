@@ -27,6 +27,7 @@ import monitoring.webapp.ui.breadcrumb.component.BreadcrumbImpl;
 import monitoring.webapp.ui.component.view.ComponentView;
 import monitoring.webapp.ui.i18n.Messages;
 import monitoring.webapp.ui.navigator.ComponentNavigator;
+import monitoring.webapp.ui.navigator.LogNavigator;
 import monitoring.webapp.ui.navigator.MessagingNavigator;
 import monitoring.webapp.ui.navigator.StatementNavigator;
 import ru.xpoft.vaadin.DiscoveryNavigator;
@@ -150,6 +151,15 @@ public class MonitoringUI extends UI {
             @Override
             public void menuSelected(MenuItem selectedItem) {
                 new MessagingNavigator().navigeteTo();
+
+            }
+        });
+
+        menuBar.addItem("Log", null, new MenuBar.Command() {
+
+            @Override
+            public void menuSelected(MenuItem selectedItem) {
+                new LogNavigator().navigeteTo();
 
             }
         });

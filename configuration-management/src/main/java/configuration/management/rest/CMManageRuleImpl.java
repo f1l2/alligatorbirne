@@ -42,7 +42,7 @@ public class CMManageRuleImpl implements CMManageRule {
     @Override
     @RequestMapping(value = "/registrations/rule/{name}", method = RequestMethod.POST)
     public ResponseEntity<String> registerRule(@PathVariable("name") String name, @RequestBody String rule) {
-        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.EP_REGISTRATION_RULE));
+        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.CM_REGISTRATION_RULE));
 
         /**
          * Make sure that parameter 'name' is not empty or that it isn't already awarded.
@@ -78,7 +78,7 @@ public class CMManageRuleImpl implements CMManageRule {
     @Override
     @RequestMapping(value = "/deregistrations/rule/{name}", method = RequestMethod.DELETE)
     public ResponseEntity<String> withdrawRule(@PathVariable("name") String name) {
-        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.EP_DEREGISTRATION_RULE));
+        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.CM_DEREGISTRATION_RULE));
 
         /**
          * Make sure that parameter 'name' is not empty.
@@ -110,7 +110,7 @@ public class CMManageRuleImpl implements CMManageRule {
     @Override
     @RequestMapping(value = "/registrations/rules", method = RequestMethod.GET)
     public @ResponseBody List<RuleDTO> getAllRules() {
-        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.EP_GET_ALL_RULES));
+        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.CM_GET_ALL_RULES));
 
         List<RuleDLO> rules = Transformer.makeCollection(ruleRepository.findAll());
 
@@ -120,7 +120,7 @@ public class CMManageRuleImpl implements CMManageRule {
     @Override
     @RequestMapping(value = "/activations/rule/{name}", method = RequestMethod.GET)
     public ResponseEntity<String> activateRule(@PathVariable("name") String name) {
-        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.EP_ACTIVATIONS_RULE));
+        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.CM_ACTIVATIONS_RULE));
 
         /**
          * Make sure that parameter 'name' is not empty.
@@ -155,7 +155,7 @@ public class CMManageRuleImpl implements CMManageRule {
     @Override
     @RequestMapping(value = "/deactivations/rule/{name}", method = RequestMethod.GET)
     public ResponseEntity<String> deactivateRule(@PathVariable("name") String name) {
-        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.EP_DEACTIVATIONS_RULE));
+        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.CM_DEACTIVATIONS_RULE));
 
         /**
          * Make sure that parameter 'name' is not empty.

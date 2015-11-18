@@ -62,6 +62,8 @@ public enum RESOURCE_NAMING {
     CM_ACTIVATIONS_RULE("/activations/rule/{name}", RequestMethod.GET),
     //
     CM_DEACTIVATIONS_RULE("/deactivations/rule/{name}", RequestMethod.GET),
+    //
+    CM_LOGS("/logs", RequestMethod.GET),
 
     /**
      * EP relevant resources.

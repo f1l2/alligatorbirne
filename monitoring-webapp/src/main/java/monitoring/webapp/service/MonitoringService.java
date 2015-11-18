@@ -5,7 +5,15 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.MessageListener;
+import javax.management.MalformedObjectNameException;
+import javax.management.ObjectName;
 
+import org.apache.activemq.broker.BrokerService;
+import org.apache.activemq.broker.jmx.TopicViewMBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -13,6 +21,7 @@ import org.springframework.web.client.RestTemplate;
 
 import common.data.Connection;
 import common.data.DataSource;
+import common.data.dto.LogDTO;
 import common.data.dto.QueryDTO;
 import common.data.dto.RuleDTO;
 import common.data.type.COMPONENT_TYPE;
@@ -22,6 +31,12 @@ import common.rest.UrlUtils;
 
 @Component
 public class MonitoringService {
+
+    @Autowired
+    private MessagingHandlerImpl messagingHandler;
+
+    @Autowired
+    private BrokerService brokerService;
 
     private RestTemplate restTemplate;
 
@@ -99,21 +114,13 @@ public class MonitoringService {
 
         String url = ResourceUtils.getUrl(resource, connection);
 
-        System.out.println(url);
-
         try {
 
-            System.out.println("HERE");
-
             ResponseEntity<RuleDTO[]> response = restTemplate.getForEntity(url, RuleDTO[].class);
-
-            System.out.println("HERE1");
 
             return Arrays.asList(response.getBody());
 
         } catch (Exception e) {
-
-            System.out.println(e);
 
             return new ArrayList<RuleDTO>();
         }
@@ -188,6 +195,48 @@ public class MonitoringService {
         ResponseEntity<String> result = restTemplate.getForEntity(url, String.class);
 
         return result.getBody();
+    }
+
+    public List<LogDTO> listLogs() {
+        String url = ResourceUtils.getUrl(RESOURCE_NAMING.CM_LOGS, cm);
+
+        try {
+
+            ResponseEntity<LogDTO[]> response = restTemplate.getForEntity(url, LogDTO[].class);
+
+            return Arrays.asList(response.getBody());
+
+        } catch (Exception e) {
+
+            return new ArrayList<LogDTO>();
+        }
+    }
+
+    public TopicViewMBean getProxyToTopic(String name) throws MalformedObjectNameException, JMSException {
+
+        Connection connection = new Connection();
+        connection.setUrl(UrlUtils.parseUrl("localhost:61616"));
+
+        messagingHandler.start(connection);
+        messagingHandler.consume(null, new MessageListener() {
+
+            @Override
+            public void onMessage(Message message) {
+                // TODO Auto-generated method stub
+            }
+        });
+
+        brokerService.setPersistent(false);
+        brokerService.setAdvisorySupport(false);
+        brokerService.setSchedulerSupport(true);
+        brokerService.setPopulateJMSXUserID(true);
+        brokerService.setSchedulerSupport(true);
+        brokerService.getManagementContext().setCreateConnector(false);
+
+        ObjectName topicViewMBeanName = new ObjectName("org.apache.activemq:type=Broker,brokerName=" + brokerService.getBrokerName() + ",destinationType=Topic,destinationName=" + name);
+        TopicViewMBean proxy = (TopicViewMBean) brokerService.getManagementContext().newProxyInstance(topicViewMBeanName, TopicViewMBean.class, true);
+
+        return proxy;
     }
 
 }

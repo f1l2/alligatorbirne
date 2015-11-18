@@ -94,7 +94,7 @@ public class CMManageQueryImpl implements CMManageQuery {
     @Override
     @RequestMapping(value = "/deregistrations/query/{name}", method = RequestMethod.DELETE)
     public ResponseEntity<String> withdrawQuery(@PathVariable("name") String name) {
-        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.EP_DEREGISTRATION_QUERY));
+        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.CM_DEREGISTRATION_QUERY));
 
         /**
          * Make sure that parameter 'name' is not empty.
@@ -127,7 +127,7 @@ public class CMManageQueryImpl implements CMManageQuery {
     @Override
     @RequestMapping(value = "/registrations/queries", method = RequestMethod.GET)
     public @ResponseBody List<QueryDTO> getAllQueries() {
-        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.EP_GET_ALL_QUERIES));
+        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.CM_GET_ALL_QUERIES));
 
         List<QueryDLO> locals = Transformer.makeCollection(queryRepository.findAll());
 
