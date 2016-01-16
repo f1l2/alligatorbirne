@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
 
 import common.data.DataSource;
 import common.data.dto.DeviceDataDTO;
@@ -63,8 +62,6 @@ public class DeliveryTask implements Runnable {
 
     @Override
     public void run() {
-
-        RestTemplate restTemplate = new RestTemplate();
 
         for (;;) {
 

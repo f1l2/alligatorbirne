@@ -1,12 +1,9 @@
-package monitoring.webapp.ui.breadcrumb.component;
+package monitoring.webapp.ui.breadcrumb;
 
 import com.vaadin.ui.Component;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
-
-import monitoring.webapp.service.Display;
-import monitoring.webapp.ui.utility.UiUtils;
 
 @SuppressWarnings("serial")
 public class BreadcrumbImpl extends CustomComponent implements Breadcrumb {
@@ -60,12 +57,6 @@ public class BreadcrumbImpl extends CustomComponent implements Breadcrumb {
                 add(breadcrumb);
             }
         }
-        return this;
-    }
-
-    @Override
-    public Breadcrumb add(Display display) {
-        add(UiUtils.getDisplayName(display));
         return this;
     }
 

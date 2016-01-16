@@ -22,8 +22,8 @@ import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
-import monitoring.webapp.ui.breadcrumb.component.Breadcrumb;
-import monitoring.webapp.ui.breadcrumb.component.BreadcrumbImpl;
+import monitoring.webapp.ui.breadcrumb.Breadcrumb;
+import monitoring.webapp.ui.breadcrumb.BreadcrumbImpl;
 import monitoring.webapp.ui.component.view.ComponentView;
 import monitoring.webapp.ui.i18n.Messages;
 import monitoring.webapp.ui.navigator.ComponentNavigator;

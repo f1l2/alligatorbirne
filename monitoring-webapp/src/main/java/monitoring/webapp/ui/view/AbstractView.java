@@ -2,7 +2,7 @@ package monitoring.webapp.ui.view;
 
 import com.vaadin.navigator.View;
 
-import monitoring.webapp.ui.breadcrumb.component.Breadcrumb;
+import monitoring.webapp.ui.breadcrumb.Breadcrumb;
 import monitoring.webapp.ui.notify.component.Notify;
 
 public interface AbstractView extends View, Notify {

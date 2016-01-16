@@ -1,7 +1,5 @@
 package common.codes;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -12,8 +10,6 @@ public enum SUCCESS_CODES {
     private String message;
 
     private HttpStatus httpStatus;
-
-    private static final Logger logger = LoggerFactory.getLogger(SUCCESS_CODES.class);
 
     SUCCESS_CODES(String message, HttpStatus httpStatus) {
         this.setMessage(message);

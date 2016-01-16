@@ -10,7 +10,6 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.UI;
 
-import monitoring.webapp.service.Display;
 import monitoring.webapp.ui.LazyLoading;
 import monitoring.webapp.ui.utility.UiUtils;
 
@@ -44,14 +43,6 @@ public abstract class AbstractNavigator {
         }
         UI.getCurrent().getPage().setUriFragment(uriFragment.toString(), fireEvents);
 
-    }
-
-    public Component createLink(Display display) {
-        return createLink(display, true);
-    }
-
-    public Component createLink(Display display, boolean enabled) {
-        return createLink(UiUtils.getDisplayName(display), UiUtils.getDescription(display), enabled, null);
     }
 
     public Component createLink(String caption, String description) {

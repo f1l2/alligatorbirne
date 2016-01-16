@@ -12,7 +12,7 @@ import com.vaadin.ui.Window;
 
 import monitoring.webapp.service.MonitoringService;
 import monitoring.webapp.ui.MonitoringUI;
-import monitoring.webapp.ui.breadcrumb.component.Breadcrumb;
+import monitoring.webapp.ui.breadcrumb.Breadcrumb;
 import monitoring.webapp.ui.navigator.AbstractNavigator;
 import monitoring.webapp.ui.notify.component.NotifyManager;
 import monitoring.webapp.ui.notify.model.NotifyModel;

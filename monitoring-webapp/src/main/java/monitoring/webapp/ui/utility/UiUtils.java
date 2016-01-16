@@ -3,7 +3,6 @@ package monitoring.webapp.ui.utility;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
@@ -18,15 +17,12 @@ import javax.xml.transform.sax.SAXSource;
 import javax.xml.transform.sax.SAXTransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 
-import org.apache.commons.lang3.StringUtils;
 import org.xml.sax.InputSource;
 
 import com.vaadin.server.Resource;
 import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.shared.ui.MarginInfo;
-import com.vaadin.ui.AbstractSelect;
-import com.vaadin.ui.AbstractSelect.ItemCaptionMode;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Component;
@@ -36,15 +32,13 @@ import com.vaadin.ui.Link;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.Command;
 import com.vaadin.ui.MenuBar.MenuItem;
-
-import monitoring.webapp.service.Display;
-import monitoring.webapp.ui.i18n.Messages.MESSAGE;
-
 import com.vaadin.ui.OptionGroup;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
+
+import monitoring.webapp.ui.i18n.Messages.MESSAGE;
 
 public final class UiUtils {
 
@@ -474,28 +468,6 @@ public final class UiUtils {
         return component;
     }
 
-    public static <D extends Display> void setItems(AbstractSelect abstractSelect, D[] displays) {
-        setItems(abstractSelect, Arrays.asList(displays), null);
-    }
-
-    public static <D extends Display> void setItems(AbstractSelect abstractSelect, D[] displays, Comparator<D> comparator) {
-        setItems(abstractSelect, Arrays.asList(displays), comparator);
-    }
-
-    public static <D extends Display> void setItems(AbstractSelect abstractSelect, Collection<D> displays) {
-        setItems(abstractSelect, displays, null);
-    }
-
-    public static <D extends Display> void setItems(AbstractSelect abstractSelect, Collection<D> displays, Comparator<D> comparator) {
-
-        abstractSelect.removeAllItems();
-        abstractSelect.setItemCaptionMode(ItemCaptionMode.EXPLICIT);
-        for (Display display : sort(displays, comparator)) {
-            abstractSelect.addItem(display);
-            abstractSelect.setItemCaption(display, getDisplayName(display));
-        }
-    }
-
     public static <E> Collection<E> sort(Collection<E> elements, Comparator<E> comparator) {
         if (comparator == null) {
             return elements;
@@ -503,22 +475,6 @@ public final class UiUtils {
         List<E> sortedElements = new ArrayList<E>(elements);
         Collections.sort(sortedElements, comparator);
         return sortedElements;
-    }
-
-    public static String getDisplayName(Display display) {
-        String displayName = null;
-        if (display != null) {
-            displayName = StringUtils.trimToNull(display.getDisplayName());
-        }
-        return displayName;
-    }
-
-    public static String getDescription(Display display) {
-        String description = null;
-        if (display != null) {
-            description = StringUtils.trimToNull(display.getDescription());
-        }
-        return description;
     }
 
     public static Component createPanelStyleCaption(Component filterComponent) {

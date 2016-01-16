@@ -45,20 +45,15 @@ public class MessagingPresenter extends AbstractPresenter<MonitoringService, Mes
     public void get(String destination) {
         try {
 
-            System.out.println("HERE");
-
             TopicViewMBean proxyToTopic = getMonitoringService().getProxyToTopic(destination);
 
             getUserInterface().setInformation(proxyToTopic);
 
         } catch (MalformedObjectNameException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (JMSException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
     }
 
 }
