@@ -1,4 +1,4 @@
-package event.processing.rule.model;
+package common.lang.rule.model;
 
 import java.util.Properties;
 

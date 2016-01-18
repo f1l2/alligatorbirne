@@ -5,14 +5,14 @@ import java.util.List;
 
 import org.springframework.util.StringUtils;
 
-import event.processing.query.Query;
+import common.lang.query.QueryLang;
 
 public class EPLBuilderSingle extends EPLBuilder {
 
     private static final String EPL_PATTERN = "insert into Event select '[query_name]' as name from DeviceData[window] as d where [where_condition] [where_domain]";
 
     @Override
-    public List<String> createEPL(List<Query> queries) {
+    public List<String> createEPL(List<QueryLang> queries) {
 
         List<String> epls = new ArrayList<String>();
 
@@ -23,7 +23,7 @@ public class EPLBuilderSingle extends EPLBuilder {
     }
 
     @Override
-    public List<String> createEPL(Query query) {
+    public List<String> createEPL(QueryLang query) {
 
         this.query = query;
 

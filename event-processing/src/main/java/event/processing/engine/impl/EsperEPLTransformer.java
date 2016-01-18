@@ -9,9 +9,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
+import common.lang.query.QueryLang;
+import common.lang.rule.RuleLang;
 import event.processing.engine.LanguageTransformer;
-import event.processing.query.Query;
-import event.processing.rule.Rule;
 
 @Component
 public class EsperEPLTransformer implements LanguageTransformer {
@@ -21,7 +21,7 @@ public class EsperEPLTransformer implements LanguageTransformer {
     private EPLBuilder builder;
 
     @Override
-    public List<String> transformQuery(Query query) {
+    public List<String> transformQuery(QueryLang query) {
 
         if (CollectionUtils.isEmpty(query.collectAggregateCondition())) {
             this.accept(new EPLBuilderSingle());
@@ -36,17 +36,17 @@ public class EsperEPLTransformer implements LanguageTransformer {
     }
 
     @Override
-    public List<String> transformQuery(List<Query> queries) {
+    public List<String> transformQuery(List<QueryLang> queries) {
 
         List<String> nativeQueries = new ArrayList<String>();
-        for (Query query : queries) {
+        for (QueryLang query : queries) {
             nativeQueries.addAll(transformQuery(query));
         }
         return nativeQueries;
     }
 
     @Override
-    public List<String> transformRule(Rule rule) throws IOException {
+    public List<String> transformRule(RuleLang rule) throws IOException {
 
         List<String> epls = transformQuery(rule.getQueries());
 
@@ -56,7 +56,7 @@ public class EsperEPLTransformer implements LanguageTransformer {
     }
 
     @Override
-    public List<String> transformRulePuristic(Rule rule) throws IOException {
+    public List<String> transformRulePuristic(RuleLang rule) throws IOException {
 
         List<String> epls = new ArrayList<String>();
 

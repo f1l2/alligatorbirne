@@ -1,16 +1,13 @@
-package event.processing.rule;
-
-import org.springframework.stereotype.Component;
+package common.lang.rule;
 
 import common.data.dto.RuleDTO;
 import common.transformer.Transformer;
 
-@Component
-public class RuleTransformer extends Transformer<Rule, RuleDTO> {
+public abstract class AbstractRuleLangTransformer extends Transformer<RuleLang, RuleDTO> {
 
     @Override
-    public Rule toLocal(RuleDTO remote) {
-        Rule item = new Rule();
+    public RuleLang toLocal(RuleDTO remote) {
+        RuleLang item = new RuleLang();
         item.setIsActivated(remote.getIsActive());
         item.setName(remote.getName());
 
@@ -18,7 +15,7 @@ public class RuleTransformer extends Transformer<Rule, RuleDTO> {
     }
 
     @Override
-    public RuleDTO toRemote(Rule local) {
+    public RuleDTO toRemote(RuleLang local) {
 
         RuleDTO item = new RuleDTO();
         item.setIsActive(local.getIsActivated());

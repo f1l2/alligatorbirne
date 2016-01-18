@@ -13,10 +13,11 @@ public class RuleTransformer extends Transformer<RuleDLO, RuleDTO> {
 
     final static Logger logger = LoggerFactory.getLogger(Transformer.class);
 
+    final static DeviceTransformer deviceTransformer = new DeviceTransformer();
+    
     @Override
     public RuleDLO toLocal(RuleDTO remote) {
         RuleDLO item = new RuleDLO();
-        item.setIsActive(remote.getIsActive());
         item.setName(remote.getName());
         item.setRule(remote.getRule());
 
@@ -25,9 +26,8 @@ public class RuleTransformer extends Transformer<RuleDLO, RuleDTO> {
 
     @Override
     public RuleDTO toRemote(RuleDLO local) {
-
+	
         RuleDTO item = new RuleDTO();
-        item.setIsActive(local.getIsActive());
         item.setName(local.getName());
         item.setRule(local.getRule());
 

@@ -12,11 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import common.lang.query.QueryLang;
+import common.lang.rule.RuleLang;
 import event.processing.Application;
-import event.processing.query.Query;
 import event.processing.repo.QueryRepository;
 import event.processing.repo.RuleRepository;
-import event.processing.rule.Rule;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
@@ -33,21 +33,21 @@ public class UtilitiesTest {
 
         qr.reset();
 
-        Query query1 = new Query();
+        QueryLang query1 = new QueryLang();
         query1.setName("query1");
 
         qr.save(query1);
 
-        Query query2 = new Query();
+        QueryLang query2 = new QueryLang();
         query2.setName("query2");
 
         qr.save(query2);
 
-        Rule rule = new Rule();
+        RuleLang rule = new RuleLang();
         rule.addQueryName("query1");
         rule.addQueryName("query2");
 
-        rule = Utilities.findQueriesToQueryNames(rule, qr);
+        rule = RepoUtilities.findQueriesToQueryNames(rule, qr);
 
         assertNotNull(rule);
         assertEquals(2, rule.getQueries().size());
@@ -59,20 +59,20 @@ public class UtilitiesTest {
 
         qr.reset();
 
-        Query query1 = new Query();
+        QueryLang query1 = new QueryLang();
         query1.setName("query1");
 
         qr.save(query1);
 
-        Query query2 = new Query();
+        QueryLang query2 = new QueryLang();
         query2.setName("query2");
 
         qr.save(query2);
 
-        Rule rule = new Rule();
+        RuleLang rule = new RuleLang();
         rule.addQueryName("query1");
 
-        rule = Utilities.findQueriesToQueryNames(rule, qr);
+        rule = RepoUtilities.findQueriesToQueryNames(rule, qr);
         rule.setIsActivated(true);
 
         rr.save("rule1", rule);
@@ -81,9 +81,9 @@ public class UtilitiesTest {
          * List of queries is empty
          */
 
-        List<Query> queries = new ArrayList<Query>();
+        List<QueryLang> queries = new ArrayList<QueryLang>();
 
-        List<Query> notActiveQueries = Utilities.filterActiveQueries(queries, rr);
+        List<QueryLang> notActiveQueries = RepoUtilities.filterActiveQueries(queries, rr);
 
         assertNotNull(notActiveQueries);
         assertEquals(0, notActiveQueries.size());
@@ -94,7 +94,7 @@ public class UtilitiesTest {
 
         queries.add(query2);
 
-        notActiveQueries = Utilities.filterActiveQueries(queries, rr);
+        notActiveQueries = RepoUtilities.filterActiveQueries(queries, rr);
 
         assertNotNull(notActiveQueries);
         assertEquals(1, notActiveQueries.size());
@@ -105,7 +105,7 @@ public class UtilitiesTest {
 
         queries.add(query1);
 
-        notActiveQueries = Utilities.filterActiveQueries(queries, rr);
+        notActiveQueries = RepoUtilities.filterActiveQueries(queries, rr);
 
         assertNotNull(notActiveQueries);
         assertEquals(1, notActiveQueries.size());
@@ -117,7 +117,7 @@ public class UtilitiesTest {
         rule.setIsActivated(false);
         rr.save("rule1", rule);
 
-        notActiveQueries = Utilities.filterActiveQueries(queries, rr);
+        notActiveQueries = RepoUtilities.filterActiveQueries(queries, rr);
 
         assertNotNull(notActiveQueries);
         assertEquals(2, notActiveQueries.size());

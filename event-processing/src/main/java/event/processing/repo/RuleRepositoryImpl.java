@@ -8,21 +8,21 @@ import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
+import common.lang.query.QueryLang;
+import common.lang.rule.RuleLang;
 import common.utilities.NormalizeString;
-import event.processing.query.Query;
-import event.processing.rule.Rule;
 
 @Component
 public class RuleRepositoryImpl implements RuleRepository {
 
-    private Map<String, Rule> repo = new LinkedHashMap<String, Rule>();
+    private Map<String, RuleLang> repo = new LinkedHashMap<String, RuleLang>();
 
     private String before(String name) {
         return NormalizeString.normalize(name);
     }
 
     @Override
-    public Rule findOne(String name) {
+    public RuleLang findOne(String name) {
 
         name = before(name);
 
@@ -34,11 +34,11 @@ public class RuleRepositoryImpl implements RuleRepository {
     }
 
     @Override
-    public List<Rule> findAll() {
+    public List<RuleLang> findAll() {
 
-        List<Rule> rules = new ArrayList<Rule>();
+        List<RuleLang> rules = new ArrayList<RuleLang>();
 
-        Iterator<Rule> it = repo.values().iterator();
+        Iterator<RuleLang> it = repo.values().iterator();
         while (it.hasNext()) {
             rules.add(it.next());
         }
@@ -47,7 +47,7 @@ public class RuleRepositoryImpl implements RuleRepository {
     }
 
     @Override
-    public void save(String name, Rule rule) {
+    public void save(String name, RuleLang rule) {
 
         name = before(name);
 
@@ -63,22 +63,22 @@ public class RuleRepositoryImpl implements RuleRepository {
     }
 
     @Override
-    public List<Rule> findRulesByQueryName(String queryName) {
+    public List<RuleLang> findRulesByQueryName(String queryName) {
 
         queryName = before(queryName);
 
-        List<Rule> rules = new ArrayList<Rule>();
+        List<RuleLang> rules = new ArrayList<RuleLang>();
 
         if (null == queryName) {
             return rules;
         }
 
-        Iterator<Rule> it = repo.values().iterator();
+        Iterator<RuleLang> it = repo.values().iterator();
         while (it.hasNext()) {
 
-            Rule rule = it.next();
+            RuleLang rule = it.next();
 
-            for (Query query : rule.getQueries()) {
+            for (QueryLang query : rule.getQueries()) {
 
                 if (null == query) {
                     continue;
@@ -95,14 +95,14 @@ public class RuleRepositoryImpl implements RuleRepository {
     }
 
     @Override
-    public List<Rule> findAllActiveRules() {
+    public List<RuleLang> findAllActiveRules() {
 
-        List<Rule> rules = new ArrayList<Rule>();
+        List<RuleLang> rules = new ArrayList<RuleLang>();
 
-        Iterator<Rule> it = repo.values().iterator();
+        Iterator<RuleLang> it = repo.values().iterator();
         while (it.hasNext()) {
 
-            Rule rule = it.next();
+            RuleLang rule = it.next();
 
             if (rule.getIsActivated()) {
                 rules.add(rule);
@@ -114,7 +114,7 @@ public class RuleRepositoryImpl implements RuleRepository {
 
     @Override
     public void reset() {
-        repo = new LinkedHashMap<String, Rule>();
+        repo = new LinkedHashMap<String, RuleLang>();
     }
 
 }

@@ -6,12 +6,12 @@ import java.util.stream.Collectors;
 
 import org.springframework.util.CollectionUtils;
 
-import event.processing.query.Query;
-import event.processing.query.model.Evaluation;
+import common.lan.query.model.Evaluation;
+import common.lang.query.QueryLang;
 
 public abstract class EPLBuilder {
 
-    protected Query query;
+    protected QueryLang query;
 
     public static final String PART_QUERY_NAME = "[query_name]";
 
@@ -25,9 +25,9 @@ public abstract class EPLBuilder {
 
     public static final String PART_AGGREGATED_OPERATION = "[aggregated_operation]";
 
-    public abstract List<String> createEPL(Query query);
+    public abstract List<String> createEPL(QueryLang query);
 
-    public List<String> createEPL(List<Query> queries) {
+    public List<String> createEPL(List<QueryLang> queries) {
 
         List<String> epls = new ArrayList<String>();
 

@@ -3,7 +3,7 @@
 
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
 
-        <file>{user.home}/alligatorbirne/logs/monitoringdp.log</file>
+        <file>${user.home}/alligatorbirne/logs/monitoringdp.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${monitoringdp.home}/var/logs/monitoringdp.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
             <maxHistory>14</maxHistory>

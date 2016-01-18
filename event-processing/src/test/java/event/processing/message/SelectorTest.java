@@ -11,12 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import common.lang.rule.RuleLang;
+import common.lang.rule.model.Reaction;
 import common.messaging.MessageHandler;
 import event.processing.Application;
 import event.processing.repo.RuleRepository;
-import event.processing.rule.Rule;
-import event.processing.rule.model.Reaction;
-import event.processing.utilities.Utilities;
+import event.processing.utilities.RepoUtilities;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
@@ -33,12 +33,12 @@ public class SelectorTest {
         reaction.setDeviceInformation("device");
         reaction.setDomainInformation("domain");
 
-        assertEquals(MessageHandler.PROPERTY + " = 'device:domain'", Utilities.getSelectorByReaction(reaction));
+        assertEquals(MessageHandler.PROPERTY + " = 'device:domain'", RepoUtilities.getSelectorByReaction(reaction));
     }
 
     @Test
     public void createSelectorForActiveRules1() {
-        String selector = Utilities.createSelectorForActiveRules(rr);
+        String selector = RepoUtilities.createSelectorForActiveRules(rr);
 
         assertEquals(null, selector);
     }
@@ -53,13 +53,13 @@ public class SelectorTest {
         List<Reaction> reactions = new ArrayList<Reaction>();
         reactions.add(reaction1);
 
-        Rule rule = new Rule();
+        RuleLang rule = new RuleLang();
         rule.setIsActivated(true);
         rule.setReactions(reactions);
 
         rr.save("rule1", rule);
 
-        String selector = Utilities.createSelectorForActiveRules(rr);
+        String selector = RepoUtilities.createSelectorForActiveRules(rr);
 
         assertEquals(MessageHandler.PROPERTY + " = 'device:domain'", selector);
     }
@@ -79,13 +79,13 @@ public class SelectorTest {
         reactions.add(reaction1);
         reactions.add(reaction2);
 
-        Rule rule = new Rule();
+        RuleLang rule = new RuleLang();
         rule.setIsActivated(true);
         rule.setReactions(reactions);
 
         rr.save("rule1", rule);
 
-        String selector = Utilities.createSelectorForActiveRules(rr);
+        String selector = RepoUtilities.createSelectorForActiveRules(rr);
 
         assertEquals(MessageHandler.PROPERTY + " = 'device1:domain1' OR " + MessageHandler.PROPERTY + " = 'device:domain'", selector);
     }

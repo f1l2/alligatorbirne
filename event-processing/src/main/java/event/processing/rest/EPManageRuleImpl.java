@@ -24,24 +24,24 @@ import common.data.builder.CDBuilder;
 import common.data.dto.RuleDTO;
 import common.data.setting.SettingUtils;
 import common.data.type.COMPONENT_TYPE;
+import common.lang.query.QueryLang;
+import common.lang.rule.GenericListener;
+import common.lang.rule.RuleLang;
+import common.lang.rule.model.Reaction;
 import common.rest.RESOURCE_NAMING;
 import common.rest.ResourceUtils;
 import event.processing.ApplicationScheduler;
 import event.processing.engine.EngineFactory;
-import event.processing.engine.EngineListener;
 import event.processing.engine.impl.EsperEngineListener;
 import event.processing.messaging.MessageHandlerImpl;
 import event.processing.messaging.MessageHandlerListener;
-import event.processing.query.Query;
 import event.processing.repo.QueryRepository;
 import event.processing.repo.RuleRepository;
-import event.processing.rule.Rule;
-import event.processing.rule.RuleFactory;
-import event.processing.rule.RuleTransformer;
-import event.processing.rule.model.Reaction;
+import event.processing.statement.RuleLangFactory;
+import event.processing.statement.RuleLangTransformer;
 import event.processing.status.STATUS_TYPE;
 import event.processing.status.Status;
-import event.processing.utilities.Utilities;
+import event.processing.utilities.RepoUtilities;
 
 @RestController
 public class EPManageRuleImpl implements EPManageRule {
@@ -59,10 +59,10 @@ public class EPManageRuleImpl implements EPManageRule {
     private RuleRepository ruleRepository;
 
     @Autowired
-    private RuleFactory ruleFactory;
+    private RuleLangFactory ruleFactory;
 
     @Autowired
-    private RuleTransformer ruleTransformer;
+    private RuleLangTransformer ruleTransformer;
 
     @Autowired
     private MessageHandlerImpl messageHandler;
@@ -92,7 +92,7 @@ public class EPManageRuleImpl implements EPManageRule {
         /**
          * Parse rule and store it in the repository.
          */
-        Rule r = null;
+        RuleLang r = null;
         try {
             r = ruleFactory.parse(rule);
             r.setName(name);
@@ -106,7 +106,7 @@ public class EPManageRuleImpl implements EPManageRule {
          */
 
         try {
-            Utilities.findQueriesToQueryNames(r, queryRepository);
+            RepoUtilities.findQueriesToQueryNames(r, queryRepository);
         } catch (Exception e) {
             return ERROR_CODES.ERROR_NON_EXISTING_QUERY.getErrorResponse();
         }
@@ -131,7 +131,7 @@ public class EPManageRuleImpl implements EPManageRule {
         /**
          * Make sure that rule with given name exists.
          */
-        Rule rule = ruleRepository.findOne(name);
+        RuleLang rule = ruleRepository.findOne(name);
         if (null == rule) {
             return ERROR_CODES.ERROR_NON_EXISTING_RULE.getErrorResponse();
         }
@@ -139,7 +139,7 @@ public class EPManageRuleImpl implements EPManageRule {
         /**
          * Make sure that corresponding query exists.
          */
-        List<Query> queries = queryRepository.findAllByQueries(rule.getQueries());
+        List<QueryLang> queries = queryRepository.findAllByQueries(rule.getQueries());
         if (null == queries) {
             return ERROR_CODES.ERROR_NON_EXISTING_QUERY.getErrorResponse();
         }
@@ -151,12 +151,12 @@ public class EPManageRuleImpl implements EPManageRule {
 
             loadConnections();
 
-            List<Query> notActiveQueries = Utilities.filterActiveQueries(rule.getQueries(), ruleRepository);
+            List<QueryLang> notActiveQueries = RepoUtilities.filterActiveQueries(rule.getQueries(), ruleRepository);
             List<String> epls = factory.getTransformer().transformQuery(notActiveQueries);
 
             epls.addAll(factory.getTransformer().transformRulePuristic(rule));
 
-            EngineListener engineListener = factory.getEngineListener();
+            GenericListener engineListener = factory.getGenericListener();
             ((EsperEngineListener) engineListener).addRuleListener(rule);
 
             factory.getEngine().register(epls, engineListener);
@@ -180,7 +180,7 @@ public class EPManageRuleImpl implements EPManageRule {
                 restTemplate.postForEntity(url, cdBuilder.getResult(), String.class);
 
                 messageHandler.start(mb);
-                messageHandler.consume(Utilities.createSelectorForActiveRules(ruleRepository), messageHandlerListener);
+                messageHandler.consume(RepoUtilities.createSelectorForActiveRules(ruleRepository), messageHandlerListener);
 
             }
 
@@ -208,7 +208,7 @@ public class EPManageRuleImpl implements EPManageRule {
         /**
          * Make sure that rule with given name exists.
          */
-        Rule rule = ruleRepository.findOne(name);
+        RuleLang rule = ruleRepository.findOne(name);
         if (null == rule) {
             return ERROR_CODES.ERROR_NON_EXISTING_RULE.getErrorResponse();
         }
@@ -217,7 +217,7 @@ public class EPManageRuleImpl implements EPManageRule {
          * Make sure that corresponding query exists.
          * 
          */
-        List<Query> queries = queryRepository.findAllByQueries(rule.getQueries());
+        List<QueryLang> queries = queryRepository.findAllByQueries(rule.getQueries());
         if (CollectionUtils.isEmpty(queries)) {
             return ERROR_CODES.ERROR_NON_EXISTING_QUERY.getErrorResponse();
         }
@@ -273,7 +273,7 @@ public class EPManageRuleImpl implements EPManageRule {
         /**
          * Make sure that rule with given name exists.
          */
-        Rule rule = ruleRepository.findOne(name);
+        RuleLang rule = ruleRepository.findOne(name);
         if (null == rule) {
             return ERROR_CODES.ERROR_NON_EXISTING_RULE.getErrorResponse();
         }

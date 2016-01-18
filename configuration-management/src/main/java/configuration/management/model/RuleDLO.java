@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -27,8 +28,8 @@ public class RuleDLO {
     @Column
     private String rule;
 
-    @Column
-    private boolean isActive;
+    @OneToOne
+    private EventProcessingDLO epDLO;
 
     @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE })
     @JoinTable(name = "QUERY_TO_RULE",
@@ -50,6 +51,14 @@ public class RuleDLO {
         return name;
     }
 
+    public EventProcessingDLO getEpDLO() {
+        return epDLO;
+    }
+
+    public void setEpDLO(EventProcessingDLO epDLO) {
+        this.epDLO = epDLO;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -60,14 +69,6 @@ public class RuleDLO {
 
     public void setRule(String rule) {
         this.rule = rule;
-    }
-
-    public Boolean getIsActive() {
-        return isActive;
-    }
-
-    public void setIsActive(Boolean isActive) {
-        this.isActive = isActive;
     }
 
     public Set<QueryDLO> getQueries() {

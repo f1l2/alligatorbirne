@@ -1,8 +1,8 @@
-package event.processing.query.model;
+package common.lan.query.model;
 
-import event.processing.query.Query;
-import event.processing.query.Query.AGGREGATION_FUNCTION;
-import event.processing.query.Query.COMPARE_FUNCTION;
+import common.lang.query.QueryLang;
+import common.lang.query.QueryLang.AGGREGATION_FUNCTION;
+import common.lang.query.QueryLang.COMPARE_FUNCTION;
 
 public class AggregateCondition {
 
@@ -76,7 +76,7 @@ public class AggregateCondition {
         StringBuilder sb = new StringBuilder();
         sb.append(aggregation.getFunction());
         sb.append("(");
-        sb.append(Query.addPrefix(property));
+        sb.append(QueryLang.addPrefix(property));
         sb.append(")");
         sb.append(" ");
         sb.append(operator.getFunction());

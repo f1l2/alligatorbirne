@@ -12,12 +12,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import common.lan.query.model.AggregateCondition;
+import common.lan.query.model.CompositeCondition;
+import common.lan.query.model.Evaluation;
+import common.lan.query.model.SingleCondition;
+import common.lang.query.QueryLang;
+import common.lang.query.QueryLang.COMPARE_FUNCTION;
 import event.processing.Application;
-import event.processing.query.Query.COMPARE_FUNCTION;
-import event.processing.query.model.AggregateCondition;
-import event.processing.query.model.CompositeCondition;
-import event.processing.query.model.Evaluation;
-import event.processing.query.model.SingleCondition;
+import event.processing.statement.QueryLangFactory;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
@@ -25,15 +27,15 @@ public class QueryFactoryTest {
 
     private String input;
 
-    private Query query;
+    private QueryLang query;
 
     @Autowired
-    private QueryFactory qf;
+    private QueryLangFactory qf;
 
     @Test
     public void testCondition1() throws Exception {
 
-        input = Query.KEYWORD.CONDITION.getKeyword() + " property = 23 AND 'abc' = 21 " + Query.KEYWORD.FROM.getKeyword() + " Domain";
+        input = QueryLang.KEYWORD.CONDITION.getKeyword() + " property = 23 AND 'abc' = 21 " + QueryLang.KEYWORD.FROM.getKeyword() + " Domain";
         query = test(input);
 
         assertNotNull(query);
@@ -51,7 +53,7 @@ public class QueryFactoryTest {
 
     @Test
     public void testCondition2() throws Exception {
-        input = Query.KEYWORD.CONDITION.getKeyword() + " property = property " + Query.KEYWORD.FROM.getKeyword() + " Domain";
+        input = QueryLang.KEYWORD.CONDITION.getKeyword() + " property = property " + QueryLang.KEYWORD.FROM.getKeyword() + " Domain";
         query = test(input);
 
         assertNotNull(query);
@@ -62,7 +64,7 @@ public class QueryFactoryTest {
 
     @Test
     public void testCondition3() throws Exception {
-        input = Query.KEYWORD.CONDITION.getKeyword() + " 21 = property " + Query.KEYWORD.FROM.getKeyword() + " Domain";
+        input = QueryLang.KEYWORD.CONDITION.getKeyword() + " 21 = property " + QueryLang.KEYWORD.FROM.getKeyword() + " Domain";
         query = test(input);
 
         assertNotNull(query);
@@ -73,7 +75,7 @@ public class QueryFactoryTest {
 
     @Test
     public void testCondition4() throws Exception {
-        input = Query.KEYWORD.CONDITION.getKeyword() + " 21 = 45 " + Query.KEYWORD.FROM.getKeyword() + " Domain";
+        input = QueryLang.KEYWORD.CONDITION.getKeyword() + " 21 = 45 " + QueryLang.KEYWORD.FROM.getKeyword() + " Domain";
         query = test(input);
 
         assertNotNull(query);
@@ -85,7 +87,7 @@ public class QueryFactoryTest {
     @Test
     public void testCondition5() throws Exception {
 
-        input = Query.KEYWORD.CONDITION.getKeyword() + " name = 'device3'";
+        input = QueryLang.KEYWORD.CONDITION.getKeyword() + " name = 'device3'";
         query = test(input);
 
         assertNotNull(query);
@@ -97,13 +99,13 @@ public class QueryFactoryTest {
     @Test
     public void testCondition6() throws Exception {
 
-        input = Query.KEYWORD.CONDITION.getKeyword() + " " + Query.LOGIC_FUNCTION.NOT.getFunction() + " property = 23";
+        input = QueryLang.KEYWORD.CONDITION.getKeyword() + " " + QueryLang.LOGIC_FUNCTION.NOT.getFunction() + " property = 23";
         query = test(input);
 
         assertNotNull(query);
         assertTrue(query.getCondition() instanceof CompositeCondition);
         assertEquals("property = 23", ((CompositeCondition) query.getCondition()).getCc().generate());
-        assertEquals(Query.LOGIC_FUNCTION.NOT, ((CompositeCondition) query.getCondition()).getCompositeFunction());
+        assertEquals(QueryLang.LOGIC_FUNCTION.NOT, ((CompositeCondition) query.getCondition()).getCompositeFunction());
 
     }
 
@@ -122,7 +124,7 @@ public class QueryFactoryTest {
 
     @Test
     public void testOperator1() throws Exception {
-        input = Query.KEYWORD.CONDITION.getKeyword() + " 21 " + COMPARE_FUNCTION.EQUAL.getFunction() + " 14 " + Query.KEYWORD.FROM.getKeyword() + " Domain";
+        input = QueryLang.KEYWORD.CONDITION.getKeyword() + " 21 " + COMPARE_FUNCTION.EQUAL.getFunction() + " 14 " + QueryLang.KEYWORD.FROM.getKeyword() + " Domain";
         query = test(input);
 
         assertNotNull(query);
@@ -133,7 +135,7 @@ public class QueryFactoryTest {
 
     @Test
     public void testOperator2() throws Exception {
-        input = Query.KEYWORD.CONDITION.getKeyword() + " 21 " + COMPARE_FUNCTION.IS_GREATER.getFunction() + " 23 " + Query.KEYWORD.FROM.getKeyword() + " Domain";
+        input = QueryLang.KEYWORD.CONDITION.getKeyword() + " 21 " + COMPARE_FUNCTION.IS_GREATER.getFunction() + " 23 " + QueryLang.KEYWORD.FROM.getKeyword() + " Domain";
         query = test(input);
 
         assertNotNull(query);
@@ -144,7 +146,7 @@ public class QueryFactoryTest {
 
     @Test
     public void testOperator3() throws Exception {
-        input = Query.KEYWORD.CONDITION.getKeyword() + " 21 " + COMPARE_FUNCTION.IS_SMALLER.getFunction() + " 79 " + Query.KEYWORD.FROM.getKeyword() + " Domain";
+        input = QueryLang.KEYWORD.CONDITION.getKeyword() + " 21 " + COMPARE_FUNCTION.IS_SMALLER.getFunction() + " 79 " + QueryLang.KEYWORD.FROM.getKeyword() + " Domain";
         query = test(input);
 
         assertNotNull(query);
@@ -155,7 +157,7 @@ public class QueryFactoryTest {
 
     @Test
     public void testOperator4() throws Exception {
-        input = Query.KEYWORD.CONDITION.getKeyword() + " 21  " + COMPARE_FUNCTION.IS_GREATER_OR_EQUAL.getFunction() + " 79 " + Query.KEYWORD.FROM.getKeyword() + " Domain";
+        input = QueryLang.KEYWORD.CONDITION.getKeyword() + " 21  " + COMPARE_FUNCTION.IS_GREATER_OR_EQUAL.getFunction() + " 79 " + QueryLang.KEYWORD.FROM.getKeyword() + " Domain";
         query = test(input);
 
         assertNotNull(query);
@@ -166,7 +168,7 @@ public class QueryFactoryTest {
 
     @Test
     public void testOperator5() throws Exception {
-        input = Query.KEYWORD.CONDITION.getKeyword() + " 21 " + COMPARE_FUNCTION.IS_SMALLER_OR_EQUAL.getFunction() + " 79 " + Query.KEYWORD.FROM.getKeyword() + " Domain";
+        input = QueryLang.KEYWORD.CONDITION.getKeyword() + " 21 " + COMPARE_FUNCTION.IS_SMALLER_OR_EQUAL.getFunction() + " 79 " + QueryLang.KEYWORD.FROM.getKeyword() + " Domain";
         query = test(input);
 
         assertNotNull(query);
@@ -177,29 +179,29 @@ public class QueryFactoryTest {
 
     @Test
     public void testWindows1() throws Exception {
-        input = Query.KEYWORD.CONDITION.getKeyword() + " 21 = 79 " + Query.KEYWORD.FROM.getKeyword() + " Domain " + Query.KEYWORD.TIME.getKeyword() + "(10)";
+        input = QueryLang.KEYWORD.CONDITION.getKeyword() + " 21 = 79 " + QueryLang.KEYWORD.FROM.getKeyword() + " Domain " + QueryLang.KEYWORD.TIME.getKeyword() + "(10)";
         query = test(input);
 
         assertNotNull(query);
         assertNotNull(query.getWindow());
         assertEquals("10", query.getWindow().getValue());
-        assertEquals(Query.KEYWORD.TIME, query.getWindow().getType());
+        assertEquals(QueryLang.KEYWORD.TIME, query.getWindow().getType());
     }
 
     @Test
     public void testWindows2() throws Exception {
-        input = Query.KEYWORD.CONDITION.getKeyword() + " 21 = 79 " + Query.KEYWORD.FROM.getKeyword() + " Domain " + Query.KEYWORD.LENGTH.getKeyword() + "(10)";
+        input = QueryLang.KEYWORD.CONDITION.getKeyword() + " 21 = 79 " + QueryLang.KEYWORD.FROM.getKeyword() + " Domain " + QueryLang.KEYWORD.LENGTH.getKeyword() + "(10)";
         query = test(input);
 
         assertNotNull(query);
         assertNotNull(query.getWindow());
         assertEquals("10", query.getWindow().getValue());
-        assertEquals(Query.KEYWORD.LENGTH, query.getWindow().getType());
+        assertEquals(QueryLang.KEYWORD.LENGTH, query.getWindow().getType());
     }
 
     @Test
     public void testDomain1() throws Exception {
-        input = Query.KEYWORD.CONDITION.getKeyword() + " 21 = 79 " + Query.KEYWORD.FROM.getKeyword() + " Domain, DomainAB";
+        input = QueryLang.KEYWORD.CONDITION.getKeyword() + " 21 = 79 " + QueryLang.KEYWORD.FROM.getKeyword() + " Domain, DomainAB";
         query = test(input);
 
         assertNotNull(query);
@@ -210,7 +212,7 @@ public class QueryFactoryTest {
 
     @Test
     public void testAggregate1() throws Exception {
-        input = Query.KEYWORD.CONDITION.getKeyword() + " " + Query.AGGREGATION_FUNCTION.SUM.getFunction() + "( abc ) = 79 " + Query.KEYWORD.FROM.getKeyword() + " Domain";
+        input = QueryLang.KEYWORD.CONDITION.getKeyword() + " " + QueryLang.AGGREGATION_FUNCTION.SUM.getFunction() + "( abc ) = 79 " + QueryLang.KEYWORD.FROM.getKeyword() + " Domain";
         query = test(input);
 
         assertNotNull(query);
@@ -220,14 +222,14 @@ public class QueryFactoryTest {
         assertNotNull(((SingleCondition) query.getCondition()).getAggregateCondition());
 
         AggregateCondition aCondition = ((SingleCondition) query.getCondition()).getAggregateCondition();
-        assertEquals(Query.AGGREGATION_FUNCTION.SUM, aCondition.getAggregation());
+        assertEquals(QueryLang.AGGREGATION_FUNCTION.SUM, aCondition.getAggregation());
         assertEquals("abc", aCondition.getProperty());
         assertEquals("79", aCondition.getValue());
-        assertEquals(Query.COMPARE_FUNCTION.EQUAL, aCondition.getOperator());
+        assertEquals(QueryLang.COMPARE_FUNCTION.EQUAL, aCondition.getOperator());
         assertEquals("domain", query.getDomains().stream().collect(Collectors.joining(",")));
     }
 
-    private Query test(String query) throws Exception {
+    private QueryLang test(String query) throws Exception {
         return qf.parse(query, "query");
     }
 }

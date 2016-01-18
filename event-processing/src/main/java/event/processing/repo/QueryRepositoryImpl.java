@@ -9,20 +9,20 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
+import common.lang.query.QueryLang;
 import common.utilities.NormalizeString;
-import event.processing.query.Query;
 
 @Component
 public class QueryRepositoryImpl implements QueryRepository {
 
-    private Map<String, Query> repo = new LinkedHashMap<String, Query>();
+    private Map<String, QueryLang> repo = new LinkedHashMap<String, QueryLang>();
 
     private String before(String name) {
         return NormalizeString.normalize(name);
     }
 
     @Override
-    public Query findOne(String name) {
+    public QueryLang findOne(String name) {
 
         name = before(name);
 
@@ -33,17 +33,17 @@ public class QueryRepositoryImpl implements QueryRepository {
     }
 
     @Override
-    public List<Query> findAllByQueries(List<Query> queries) {
+    public List<QueryLang> findAllByQueries(List<QueryLang> queries) {
 
         return queries.stream().map(item -> findOne(item.getName())).filter(item -> item != null).collect(Collectors.toList());
     }
 
     @Override
-    public List<Query> findAll() {
+    public List<QueryLang> findAll() {
 
-        List<Query> queries = new ArrayList<Query>();
+        List<QueryLang> queries = new ArrayList<QueryLang>();
 
-        Iterator<Query> it = repo.values().iterator();
+        Iterator<QueryLang> it = repo.values().iterator();
         while (it.hasNext()) {
             queries.add(it.next());
         }
@@ -52,7 +52,7 @@ public class QueryRepositoryImpl implements QueryRepository {
     }
 
     @Override
-    public void save(Query query) {
+    public void save(QueryLang query) {
 
         String name = before(query.getName());
 
@@ -69,6 +69,6 @@ public class QueryRepositoryImpl implements QueryRepository {
 
     @Override
     public void reset() {
-        repo = new LinkedHashMap<String, Query>();
+        repo = new LinkedHashMap<String, QueryLang>();
     }
 }

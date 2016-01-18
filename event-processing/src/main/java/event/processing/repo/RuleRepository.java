@@ -2,21 +2,21 @@ package event.processing.repo;
 
 import java.util.List;
 
-import event.processing.rule.Rule;
+import common.lang.rule.RuleLang;
 
 public interface RuleRepository {
 
-    public Rule findOne(String name);
+    public RuleLang findOne(String name);
 
-    public List<Rule> findAll();
+    public List<RuleLang> findAll();
 
-    public void save(String name, Rule rule);
+    public void save(String name, RuleLang rule);
 
     public void delete(String name);
 
-    public List<Rule> findRulesByQueryName(String queryName);
+    public List<RuleLang> findRulesByQueryName(String queryName);
 
-    public List<Rule> findAllActiveRules();
+    public List<RuleLang> findAllActiveRules();
 
     public void reset();
 

@@ -1,7 +1,7 @@
-package event.processing.query.model;
+package common.lan.query.model;
 
-import event.processing.query.Query;
-import event.processing.query.Query.COMPARE_FUNCTION;
+import common.lang.query.QueryLang;
+import common.lang.query.QueryLang.COMPARE_FUNCTION;
 
 public class Evaluation {
 
@@ -65,11 +65,11 @@ public class Evaluation {
     public String generateInclPrefix() {
 
         StringBuilder sb = new StringBuilder();
-        sb.append(Query.addPrefix(property1));
+        sb.append(QueryLang.addPrefix(property1));
         sb.append(" ");
         sb.append(operator.getFunction());
         sb.append(" ");
-        sb.append(Query.addPrefix(property2));
+        sb.append(QueryLang.addPrefix(property2));
 
         return sb.toString();
     }

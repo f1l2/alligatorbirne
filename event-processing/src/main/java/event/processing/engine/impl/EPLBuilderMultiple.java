@@ -5,9 +5,9 @@ import java.util.List;
 
 import org.springframework.util.StringUtils;
 
-import event.processing.query.Query;
-import event.processing.query.Query.LOGIC_FUNCTION;
-import event.processing.query.model.AggregateCondition;
+import common.lan.query.model.AggregateCondition;
+import common.lang.query.QueryLang;
+import common.lang.query.QueryLang.LOGIC_FUNCTION;
 
 public class EPLBuilderMultiple extends EPLBuilder {
 
@@ -25,7 +25,7 @@ public class EPLBuilderMultiple extends EPLBuilder {
     private AggregateCondition condition;
 
     @Override
-    public List<String> createEPL(Query query) {
+    public List<String> createEPL(QueryLang query) {
         this.query = query;
 
         List<String> epls = new ArrayList<String>();
@@ -57,7 +57,7 @@ public class EPLBuilderMultiple extends EPLBuilder {
         StringBuilder sb = new StringBuilder();
         sb.append(condition.getAggregation().getFunction());
         sb.append("(");
-        sb.append(Query.addPrefix(condition.getProperty()));
+        sb.append(QueryLang.addPrefix(condition.getProperty()));
         sb.append(")");
 
         return sb.toString();
@@ -85,7 +85,7 @@ public class EPLBuilderMultiple extends EPLBuilder {
         whereCondition = whereCondition.replace(condition.generateInclPrefix(), "");
         whereCondition = whereCondition.trim();
 
-        for (LOGIC_FUNCTION lf : Query.LOGIC_FUNCTION.values()) {
+        for (LOGIC_FUNCTION lf : QueryLang.LOGIC_FUNCTION.values()) {
             String function = lf.getFunction();
 
             if (whereCondition.startsWith(function)) {

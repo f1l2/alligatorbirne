@@ -1,6 +1,6 @@
-package event.processing.query.model;
+package common.lan.query.model;
 
-import event.processing.query.Query.LOGIC_FUNCTION;
+import common.lang.query.QueryLang.LOGIC_FUNCTION;
 
 public class CompositeCondition extends Condition {
 

@@ -14,10 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import common.lang.query.QueryLang;
+import common.lang.rule.RuleLang;
 import event.processing.Application;
-import event.processing.query.Query;
-import event.processing.query.QueryFactory;
 import event.processing.repo.QueryRepository;
+import event.processing.statement.QueryLangFactory;
+import event.processing.statement.RuleLangFactory;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
@@ -27,17 +29,17 @@ public class RuleFactoryTest {
     private QueryRepository qr;
 
     @Autowired
-    private QueryFactory qf;
+    private QueryLangFactory qf;
 
     @Autowired
-    private RuleFactory rf;
+    private RuleLangFactory rf;
 
     @Before
     public void before() throws IOException {
 
         String queryStr = "CONDITION id=5";
 
-        Query query = null;
+        QueryLang query = null;
 
         query = qf.parse(queryStr, "query1");
         qr.save(query);
@@ -53,7 +55,7 @@ public class RuleFactoryTest {
     public void test1() throws IOException {
 
         String input = "query1 TRIGGERS deviceName, domainName, cMName = 1";
-        Rule rule = test(input);
+        RuleLang rule = test(input);
 
         assertNotNull(rule);
         assertEquals("query1", rule.getQueries().get(0).getName());
@@ -69,7 +71,7 @@ public class RuleFactoryTest {
 
         String input = "query1 TRIGGERS deviceName1, domainName1, cMName1 = 1; deviceName2, domainName2, cMName2 = 2";
 
-        Rule rule = test(input);
+        RuleLang rule = test(input);
 
         assertNotNull(rule);
         assertEquals("query1", rule.getQueries().get(0).getName());
@@ -85,7 +87,7 @@ public class RuleFactoryTest {
     public void test3() throws IOException {
         String input = "query1 TRIGGERS deviceName1, domainName1, cMName1 = 1; deviceName2, domainName2, cMName2 = 2; deviceName3, domainName3, cMName3 = 3;";
 
-        Rule rule = test(input);
+        RuleLang rule = test(input);
 
         assertNotNull(rule);
         assertEquals("query1", rule.getQueries().get(0).getName());
@@ -101,7 +103,7 @@ public class RuleFactoryTest {
 
         String input = "query1 -> query2 TRIGGERS deviceName1, domainName1, cMName1 = 1; deviceName2, domainName2, cMName2 = 2";
 
-        Rule rule = test(input);
+        RuleLang rule = test(input);
 
         assertNotNull(rule);
         assertEquals(2, rule.getQueries().size());
@@ -114,7 +116,7 @@ public class RuleFactoryTest {
 
         String input = "query1 -> query2 -> query3 TRIGGERS deviceName1, domainName1, cMName1 = 1; deviceName2, domainName2, cMName2 = 2";
 
-        Rule rule = test(input);
+        RuleLang rule = test(input);
 
         assertNotNull(rule);
         assertEquals(3, rule.getQueries().size());
@@ -123,13 +125,13 @@ public class RuleFactoryTest {
         assertEquals("query3", rule.getQueries().get(2).getName());
     }
 
-    private Rule test(String rule) throws IOException {
+    private RuleLang test(String rule) throws IOException {
 
-        Rule r = rf.parse(rule);
+        RuleLang r = rf.parse(rule);
 
-        List<Query> queries = new ArrayList<Query>();
+        List<QueryLang> queries = new ArrayList<QueryLang>();
         for (String queryName : r.getQueryNames()) {
-            Query query = qr.findOne(queryName);
+            QueryLang query = qr.findOne(queryName);
 
             if (null != query) {
                 queries.add(query);

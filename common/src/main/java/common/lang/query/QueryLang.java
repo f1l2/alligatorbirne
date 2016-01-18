@@ -1,17 +1,17 @@
-package event.processing.query;
+package common.lang.query;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import common.lan.query.model.AggregateCondition;
+import common.lan.query.model.CompositeCondition;
+import common.lan.query.model.Condition;
+import common.lan.query.model.Evaluation;
+import common.lan.query.model.SingleCondition;
+import common.lan.query.model.Window;
 import common.utilities.NormalizeString;
-import event.processing.query.model.AggregateCondition;
-import event.processing.query.model.CompositeCondition;
-import event.processing.query.model.Condition;
-import event.processing.query.model.Evaluation;
-import event.processing.query.model.SingleCondition;
-import event.processing.query.model.Window;
 
-public class Query {
+public class QueryLang {
 
     /**
      * Enum Keywords

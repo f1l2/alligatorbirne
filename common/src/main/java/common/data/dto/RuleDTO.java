@@ -1,5 +1,7 @@
 package common.data.dto;
 
+import common.data.model.DeviceData;
+
 public class RuleDTO {
 
     private String name;
@@ -7,6 +9,12 @@ public class RuleDTO {
     private String rule;
 
     private boolean isActive;
+
+    private DeviceData deviceData;
+
+    public DeviceData getDeviceData() {
+        return deviceData;
+    }
 
     public String getName() {
         return name;
@@ -30,6 +38,10 @@ public class RuleDTO {
 
     public void setIsActive(boolean isActive) {
         this.isActive = isActive;
+    }
+
+    public void setDeviceData(DeviceData deviceData) {
+        this.deviceData = deviceData;
     }
 
 }

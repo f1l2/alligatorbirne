@@ -5,9 +5,9 @@ import java.net.URL;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Util {
+public class Utilities {
 
-    final static Logger logger = LoggerFactory.getLogger(Util.class);
+    final static Logger logger = LoggerFactory.getLogger(Utilities.class);
 
     public static final String parseHost(String authority) {
 

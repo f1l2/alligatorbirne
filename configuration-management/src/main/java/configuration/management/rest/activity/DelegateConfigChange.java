@@ -46,9 +46,7 @@ public class DelegateConfigChange extends Activity<String, ConfigurationDelegati
 
                 taskExecutor.execute(new SetConfigDelegation(item, Arrays.asList(remote)));
             }
-
         }
-
         return next("OK", item);
     }
 

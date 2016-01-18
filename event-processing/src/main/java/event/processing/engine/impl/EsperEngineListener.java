@@ -6,11 +6,11 @@ import java.util.List;
 import com.espertech.esper.client.EventBean;
 import com.espertech.esper.client.UpdateListener;
 
-import event.processing.engine.EngineListener;
+import common.lang.rule.GenericListener;
 
-public class EsperEngineListener extends EngineListener implements UpdateListener {
+public class EsperEngineListener implements GenericListener, UpdateListener {
 
-    private List<EngineListener> ruleListeners = new ArrayList<EngineListener>();
+    private List<GenericListener> ruleListeners = new ArrayList<GenericListener>();
 
     // private static final Logger logger = LoggerFactory.getLogger(EsperEngineListener.class);
 
@@ -20,12 +20,13 @@ public class EsperEngineListener extends EngineListener implements UpdateListene
         ruleListeners.forEach(item -> item.trigger());
     }
 
-    public void addRuleListener(EngineListener listener) {
+    public void addRuleListener(GenericListener listener) {
         this.ruleListeners.add(listener);
     }
 
     @Override
     public void trigger() {
-        // NOT USED
+        // NOT IMPLEMENTED
     }
+
 }

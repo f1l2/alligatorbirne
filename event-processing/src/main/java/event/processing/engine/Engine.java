@@ -3,6 +3,7 @@ package event.processing.engine;
 import java.util.List;
 
 import common.data.model.DeviceData;
+import common.lang.rule.GenericListener;
 
 public abstract class Engine {
 
@@ -10,9 +11,9 @@ public abstract class Engine {
 
     protected abstract void initialize();
 
-    public abstract void register(String query, EngineListener listener);
+    public abstract void register(String query, GenericListener listener);
 
-    public abstract void register(List<String> query, EngineListener listener);
+    public abstract void register(List<String> query, GenericListener listener);
 
     public abstract void deregister(String query);
 

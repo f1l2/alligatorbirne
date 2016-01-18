@@ -1,4 +1,4 @@
-package event.processing.query;
+package common.lang.query;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -8,7 +8,6 @@ import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
-import org.springframework.stereotype.Component;
 
 import common.gen.language.QueryBaseListener;
 import common.gen.language.QueryLexer;
@@ -25,25 +24,24 @@ import common.gen.language.QueryParser.PropertyContext;
 import common.gen.language.QueryParser.SingleConditionContext;
 import common.gen.language.QueryParser.VariableContext;
 import common.gen.language.QueryParser.WindowTypeContext;
+import common.lan.query.model.AggregateCondition;
+import common.lan.query.model.CompositeCondition;
+import common.lan.query.model.Evaluation;
+import common.lan.query.model.SingleCondition;
+import common.lan.query.model.Window;
+import common.lang.query.QueryLang.AGGREGATION_FUNCTION;
+import common.lang.query.QueryLang.COMPARE_FUNCTION;
+import common.lang.query.QueryLang.KEYWORD;
+import common.lang.query.QueryLang.LOGIC_FUNCTION;
 import common.utilities.NormalizeString;
-import event.processing.query.Query.AGGREGATION_FUNCTION;
-import event.processing.query.Query.COMPARE_FUNCTION;
-import event.processing.query.Query.KEYWORD;
-import event.processing.query.Query.LOGIC_FUNCTION;
-import event.processing.query.model.AggregateCondition;
-import event.processing.query.model.CompositeCondition;
-import event.processing.query.model.Evaluation;
-import event.processing.query.model.SingleCondition;
-import event.processing.query.model.Window;
 
-@Component
-public class QueryFactory {
+public abstract class AbstractQueryLangFactory {
 
-    public Query parse(String in, String name) throws IOException {
+    public QueryLang parse(String in, String name) throws IOException {
 
         in = NormalizeString.normalize(in);
 
-        final Query query = new Query();
+        final QueryLang query = new QueryLang();
         query.setName(name);
 
         final QueryLexer queryLexer = new QueryLexer(new ANTLRInputStream(in));

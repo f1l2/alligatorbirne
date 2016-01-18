@@ -2,17 +2,17 @@ package event.processing.repo;
 
 import java.util.List;
 
-import event.processing.query.Query;
+import common.lang.query.QueryLang;
 
 public interface QueryRepository {
 
-    public Query findOne(String query);
+    public QueryLang findOne(String query);
 
-    public List<Query> findAllByQueries(List<Query> queries);
+    public List<QueryLang> findAllByQueries(List<QueryLang> queries);
 
-    public List<Query> findAll();
+    public List<QueryLang> findAll();
 
-    public void save(Query query);
+    public void save(QueryLang query);
 
     public void delete(String name);
 

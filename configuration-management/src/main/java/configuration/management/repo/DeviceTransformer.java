@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import common.data.Connection;
 import common.transformer.Transformer;
 import configuration.management.model.DeviceDLO;
-import configuration.management.util.Util;
+import configuration.management.util.Utilities;
 
 @Component
 public class DeviceTransformer extends Transformer<DeviceDLO, Connection> {
@@ -37,7 +37,7 @@ public class DeviceTransformer extends Transformer<DeviceDLO, Connection> {
 
         Connection connection = new Connection();
         connection.setId(local.getId());
-        connection.setUrl(Util.parseUrl(local.getAuthority()));
+        connection.setUrl(Utilities.parseUrl(local.getAuthority()));
         connection.setName(local.getName());
         connection.setUpdated(local.getUpdated());
 

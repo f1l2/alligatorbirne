@@ -1,4 +1,4 @@
-package event.processing.rule;
+package common.lang.rule;
 
 import java.io.IOException;
 
@@ -7,7 +7,6 @@ import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
-import org.springframework.stereotype.Component;
 
 import common.gen.language.RuleBaseListener;
 import common.gen.language.RuleLexer;
@@ -18,17 +17,16 @@ import common.gen.language.RuleParser.CMPropertyContext;
 import common.gen.language.RuleParser.CMValueContext;
 import common.gen.language.RuleParser.DevInfoContext;
 import common.gen.language.RuleParser.DomainInfoContext;
+import common.lang.rule.model.Reaction;
 import common.utilities.NormalizeString;
-import event.processing.rule.model.Reaction;
 
-@Component
-public class RuleFactory {
+public abstract class AbstractRuleLangFactory {
 
-    public Rule parse(String in) throws IOException {
+    public RuleLang parse(String in) throws IOException {
 
         in = NormalizeString.normalize(in);
 
-        final Rule rule = new Rule();
+        final RuleLang rule = new RuleLang();
 
         final RuleLexer ruleLexer = new RuleLexer(new ANTLRInputStream(in));
         final RuleParser ruleParser = new RuleParser(new CommonTokenStream(ruleLexer));

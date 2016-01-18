@@ -29,8 +29,10 @@ public enum ERROR_CODES {
 
     ERROR_DEREGISTER_ACTIVE("Deregistration failed because rule is active.", HttpStatus.BAD_REQUEST),
 
-    ERROR_DEREGISTER_ASSIGNED("Deregistration failed because query is assigned to a rule.", HttpStatus.BAD_REQUEST);
+    ERROR_DEREGISTER_ASSIGNED("Deregistration failed because query is assigned to a rule.", HttpStatus.BAD_REQUEST),
 
+	ERROR_ASSIGNING_RULE("Error assigning rule to EP.", HttpStatus.BAD_REQUEST);
+	
     private String message;
 
     private HttpStatus httpStatus;

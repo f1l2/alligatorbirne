@@ -1,23 +1,20 @@
-package event.processing.query;
-
-import org.springframework.stereotype.Component;
+package common.lang.query;
 
 import common.data.dto.QueryDTO;
 import common.transformer.Transformer;
 
-@Component
-public class QueryTransformer extends Transformer<Query, QueryDTO> {
+public abstract class AbstractQueryLangTransformer extends Transformer<QueryLang, QueryDTO> {
 
     @Override
-    public Query toLocal(QueryDTO remote) {
-        Query item = new Query();
+    public QueryLang toLocal(QueryDTO remote) {
+        QueryLang item = new QueryLang();
         item.setName(remote.getName());
 
         return item;
     }
 
     @Override
-    public QueryDTO toRemote(Query local) {
+    public QueryDTO toRemote(QueryLang local) {
 
         QueryDTO item = new QueryDTO();
         item.setQuery(local.getNativeQuery());

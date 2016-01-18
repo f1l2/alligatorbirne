@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Value;
 
 import com.jayway.restassured.RestAssured;
 
-import event.processing.query.Query;
-import event.processing.query.QueryFactory;
+import common.lang.query.QueryLang;
 import event.processing.repo.QueryRepository;
+import event.processing.statement.QueryLangFactory;
 import event.processing.status.STATUS_TYPE;
 import event.processing.status.Status;
 
@@ -21,14 +21,14 @@ public abstract class AbstractTestRestEP {
     protected QueryRepository repo;
 
     @Autowired
-    protected QueryFactory qf;
+    protected QueryLangFactory qf;
 
     @Autowired
     protected Status status;
 
-    protected Query query;
+    protected QueryLang query;
 
-    protected final String strQuery = Query.KEYWORD.CONDITION.getKeyword() + " property = 21 AND abc = 21 " + Query.KEYWORD.FROM.getKeyword() + " Domain";
+    protected final String strQuery = QueryLang.KEYWORD.CONDITION.getKeyword() + " property = 21 AND abc = 21 " + QueryLang.KEYWORD.FROM.getKeyword() + " Domain";
 
     @Value("${local.server.port}")
     protected int port;

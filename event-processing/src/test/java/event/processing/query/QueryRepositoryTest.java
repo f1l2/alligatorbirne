@@ -14,8 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import common.lang.query.QueryLang;
 import event.processing.Application;
 import event.processing.repo.QueryRepository;
+import event.processing.statement.QueryLangFactory;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
@@ -25,16 +27,16 @@ public class QueryRepositoryTest {
     private QueryRepository repo;
 
     @Autowired
-    private QueryFactory qf;
+    private QueryLangFactory qf;
 
-    private Query query;
+    private QueryLang query;
 
     @Before
     public void before() throws IOException {
 
         repo.reset();
 
-        String input = Query.KEYWORD.CONDITION.getKeyword() + " property = 21 AND abc = 21 " + Query.KEYWORD.FROM.getKeyword() + " Domain";
+        String input = QueryLang.KEYWORD.CONDITION.getKeyword() + " property = 21 AND abc = 21 " + QueryLang.KEYWORD.FROM.getKeyword() + " Domain";
         query = qf.parse(input, "test query");
 
         repo.save(query);
@@ -43,7 +45,7 @@ public class QueryRepositoryTest {
     @Test
     public void findAllQueries() {
 
-        List<Query> allQueries = repo.findAll();
+        List<QueryLang> allQueries = repo.findAll();
 
         assertNotNull(allQueries);
         assertEquals(1, allQueries.size());
@@ -53,16 +55,16 @@ public class QueryRepositoryTest {
     @Test
     public void findAllQueries2() {
 
-        Query query1 = new Query();
+        QueryLang query1 = new QueryLang();
         query1.setName("test query 123");
 
-        Query query2 = new Query();
+        QueryLang query2 = new QueryLang();
         query2.setName("test query");
 
-        List<Query> queries = new ArrayList<Query>();
+        List<QueryLang> queries = new ArrayList<QueryLang>();
         queries.add(query1);
 
-        List<Query> allQueries = repo.findAllByQueries(queries);
+        List<QueryLang> allQueries = repo.findAllByQueries(queries);
         assertNotNull(allQueries);
         assertEquals(0, allQueries.size());
 
@@ -78,7 +80,7 @@ public class QueryRepositoryTest {
     @Test
     public void findOneQuery() {
 
-        Query result = repo.findOne("test query");
+        QueryLang result = repo.findOne("test query");
 
         assertNotNull(result);
         assertEquals(query.toString(), result.toString());
@@ -89,7 +91,7 @@ public class QueryRepositoryTest {
 
         repo.delete("test query");
 
-        List<Query> allQueries = repo.findAll();
+        List<QueryLang> allQueries = repo.findAll();
 
         assertNotNull(allQueries);
         assertEquals(0, allQueries.size());

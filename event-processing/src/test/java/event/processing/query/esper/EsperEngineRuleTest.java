@@ -12,23 +12,23 @@ import common.data.model.DeviceData;
 import common.data.model.SensorData;
 import event.processing.AbstractTestEP;
 import event.processing.Application;
-import event.processing.query.QueryFactory;
 import event.processing.repo.QueryRepository;
-import event.processing.rule.RuleFactory;
-import event.processing.utilities.Utilities;
+import event.processing.statement.QueryLangFactory;
+import event.processing.statement.RuleLangFactory;
+import event.processing.utilities.RepoUtilities;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 public class EsperEngineRuleTest extends AbstractTestEP {
 
     @Autowired
-    private QueryFactory qf;
+    private QueryLangFactory qf;
 
     @Autowired
     private QueryRepository qr;
 
     @Autowired
-    private RuleFactory rf;
+    private RuleLangFactory rf;
 
     @Test
     public void test1() throws Exception {
@@ -41,7 +41,7 @@ public class EsperEngineRuleTest extends AbstractTestEP {
         qr.save(qf.parse(query1Str, "name1"));
         qr.save(qf.parse(query2Str, "name2"));
 
-        List<String> epls = this.eplTransformer.transformRule(Utilities.findQueriesToQueryNames(rf.parse(rule1Str), qr));
+        List<String> epls = this.eplTransformer.transformRule(RepoUtilities.findQueriesToQueryNames(rf.parse(rule1Str), qr));
 
         engine.register(epls, testListener);
 
@@ -60,7 +60,7 @@ public class EsperEngineRuleTest extends AbstractTestEP {
         qr.save(qf.parse(query1Str, "name1"));
         qr.save(qf.parse(query2Str, "name2"));
 
-        List<String> epls = this.eplTransformer.transformRule(Utilities.findQueriesToQueryNames(rf.parse(rule1Str), qr));
+        List<String> epls = this.eplTransformer.transformRule(RepoUtilities.findQueriesToQueryNames(rf.parse(rule1Str), qr));
 
         engine.register(epls, testListener);
 
@@ -81,7 +81,7 @@ public class EsperEngineRuleTest extends AbstractTestEP {
         qr.save(qf.parse(query2Str, "name2"));
         qr.save(qf.parse(query3Str, "name3"));
 
-        List<String> epls = this.eplTransformer.transformRule(Utilities.findQueriesToQueryNames(rf.parse(rule1Str), qr));
+        List<String> epls = this.eplTransformer.transformRule(RepoUtilities.findQueriesToQueryNames(rf.parse(rule1Str), qr));
 
         engine.register(epls, testListener);
 
@@ -100,7 +100,7 @@ public class EsperEngineRuleTest extends AbstractTestEP {
         qr.save(qf.parse(query1Str, "name1"));
         qr.save(qf.parse(query2Str, "name2"));
 
-        List<String> epls = this.eplTransformer.transformRule(Utilities.findQueriesToQueryNames(rf.parse(rule1Str), qr));
+        List<String> epls = this.eplTransformer.transformRule(RepoUtilities.findQueriesToQueryNames(rf.parse(rule1Str), qr));
 
         engine.register(epls, testListener);
 
@@ -119,7 +119,7 @@ public class EsperEngineRuleTest extends AbstractTestEP {
         qr.save(qf.parse(query1Str, "name1"));
         qr.save(qf.parse(query2Str, "name2"));
 
-        List<String> epls = this.eplTransformer.transformRule(Utilities.findQueriesToQueryNames(rf.parse(rule1Str), qr));
+        List<String> epls = this.eplTransformer.transformRule(RepoUtilities.findQueriesToQueryNames(rf.parse(rule1Str), qr));
 
         engine.register(epls, testListener);
 
@@ -138,7 +138,7 @@ public class EsperEngineRuleTest extends AbstractTestEP {
         qr.save(qf.parse(query1Str, "name1"));
         qr.save(qf.parse(query2Str, "name2"));
 
-        List<String> epls = this.eplTransformer.transformRule(Utilities.findQueriesToQueryNames(rf.parse(rule1Str), qr));
+        List<String> epls = this.eplTransformer.transformRule(RepoUtilities.findQueriesToQueryNames(rf.parse(rule1Str), qr));
 
         engine.register(epls, testListener);
 
@@ -177,8 +177,8 @@ public class EsperEngineRuleTest extends AbstractTestEP {
         qr.save(qf.parse(query1Str, "detectTemperatureAbove25"));
         qr.save(qf.parse(query2Str, "detectTemperatureUnder15"));
 
-        List<String> epls1 = this.eplTransformer.transformRule(Utilities.findQueriesToQueryNames(rf.parse(rule1Str), qr));
-        List<String> epls2 = this.eplTransformer.transformRule(Utilities.findQueriesToQueryNames(rf.parse(rule2Str), qr));
+        List<String> epls1 = this.eplTransformer.transformRule(RepoUtilities.findQueriesToQueryNames(rf.parse(rule1Str), qr));
+        List<String> epls2 = this.eplTransformer.transformRule(RepoUtilities.findQueriesToQueryNames(rf.parse(rule2Str), qr));
 
         engine.register(epls1, testListener);
         engine.register(epls2.get(2), testListener);

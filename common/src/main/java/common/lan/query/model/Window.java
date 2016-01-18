@@ -1,6 +1,6 @@
-package event.processing.query.model;
+package common.lan.query.model;
 
-import event.processing.query.Query.KEYWORD;
+import common.lang.query.QueryLang.KEYWORD;
 
 public class Window {
 

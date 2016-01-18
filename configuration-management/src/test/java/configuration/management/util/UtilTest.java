@@ -9,8 +9,8 @@ public class UtilTest {
     @Test
     public void testParseHost() {
         String authority = "localhost:8080";
-        assertEquals("localhost", Util.parseHost(authority));
-        assertEquals("8080", Util.parsePort(authority));
+        assertEquals("localhost", Utilities.parseHost(authority));
+        assertEquals("8080", Utilities.parsePort(authority));
     }
 
 }

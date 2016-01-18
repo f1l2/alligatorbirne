@@ -5,20 +5,20 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import common.lang.query.QueryLang;
+import common.lang.rule.RuleLang;
+import common.lang.rule.model.Reaction;
 import common.messaging.MessageHandler;
-import event.processing.query.Query;
 import event.processing.repo.QueryRepository;
 import event.processing.repo.RuleRepository;
-import event.processing.rule.Rule;
-import event.processing.rule.model.Reaction;
 
-public class Utilities {
+public class RepoUtilities {
 
-    public static Rule findQueriesToQueryNames(Rule r, QueryRepository qr) throws Exception {
+    public static RuleLang findQueriesToQueryNames(RuleLang r, QueryRepository qr) throws Exception {
 
-        List<Query> queries = new ArrayList<Query>();
+        List<QueryLang> queries = new ArrayList<QueryLang>();
         for (String queryName : r.getQueryNames()) {
-            Query query = qr.findOne(queryName);
+            QueryLang query = qr.findOne(queryName);
 
             if (null != query) {
                 queries.add(query);
@@ -32,19 +32,19 @@ public class Utilities {
         return r;
     }
 
-    public static List<Query> filterActiveQueries(List<Query> queries, RuleRepository rr) {
+    public static List<QueryLang> filterActiveQueries(List<QueryLang> queries, RuleRepository rr) {
 
         Set<String> activeQueries = new HashSet<String>();
 
-        for (Rule rule : rr.findAllActiveRules()) {
-            for (Query q : rule.getQueries()) {
+        for (RuleLang rule : rr.findAllActiveRules()) {
+            for (QueryLang q : rule.getQueries()) {
                 activeQueries.add(q.getName());
             }
         }
 
-        List<Query> result = new ArrayList<Query>();
+        List<QueryLang> result = new ArrayList<QueryLang>();
 
-        for (Query query : queries) {
+        for (QueryLang query : queries) {
             if (!activeQueries.contains(query.getName())) {
                 result.add(query);
             }
@@ -58,7 +58,7 @@ public class Utilities {
 
         Set<String> selectors = new HashSet<String>();
 
-        for (Rule rule : rr.findAllActiveRules()) {
+        for (RuleLang rule : rr.findAllActiveRules()) {
 
             if (rule.getIsActivated()) {
 

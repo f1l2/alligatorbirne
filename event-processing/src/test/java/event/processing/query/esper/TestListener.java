@@ -3,9 +3,9 @@ package event.processing.query.esper;
 import com.espertech.esper.client.EventBean;
 import com.espertech.esper.client.UpdateListener;
 
-import event.processing.engine.EngineListener;
+import common.lang.rule.GenericListener;
 
-public class TestListener extends EngineListener implements UpdateListener {
+public class TestListener implements GenericListener, UpdateListener {
 
     int cntFiredEvents = 0;
 

@@ -14,12 +14,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import common.data.model.DeviceData;
 import common.data.model.DeviceInformation;
 import common.data.model.DomainInformation;
+import common.lang.query.QueryLang;
 import event.processing.engine.Engine;
 import event.processing.engine.EngineFactory;
 import event.processing.engine.LanguageTransformer;
-import event.processing.query.Query;
-import event.processing.query.QueryFactory;
 import event.processing.query.esper.TestListener;
+import event.processing.statement.QueryLangFactory;
 
 public abstract class AbstractTestEP {
 
@@ -28,7 +28,7 @@ public abstract class AbstractTestEP {
     protected EngineFactory factory;
 
     @Autowired
-    protected QueryFactory qf;
+    protected QueryLangFactory qf;
 
     protected Engine engine;
 
@@ -87,7 +87,7 @@ public abstract class AbstractTestEP {
 
     protected List<String> transformQueryString(String in, String name) throws IOException {
 
-        Query query = qf.parse(in, name);
+        QueryLang query = qf.parse(in, name);
 
         return eplTransformer.transformQuery(query);
 

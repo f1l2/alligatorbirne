@@ -8,7 +8,7 @@
 	</appender>
 
 	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>{user.home}/alligatorbirne/logs/ep.log</file>
+		<file>${user.home}/alligatorbirne/logs/ep.log</file>
 
 	    <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
 	      <fileNamePattern>${logback.file}.%i.zip</fileNamePattern>

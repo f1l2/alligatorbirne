@@ -1,4 +1,4 @@
-package event.processing.query.model;
+package common.lan.query.model;
 
 public class SingleCondition extends Condition {
 

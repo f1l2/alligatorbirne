@@ -22,9 +22,9 @@ import com.espertech.esper.client.UpdateListener;
 import common.data.DataSource;
 import common.data.model.DataModel;
 import common.data.model.DeviceData;
+import common.lang.rule.GenericListener;
 import event.processing.engine.ENGINE_TYPE;
 import event.processing.engine.Engine;
-import event.processing.engine.EngineListener;
 import event.processing.status.STATUS_TYPE;
 import event.processing.status.Status;
 
@@ -91,14 +91,14 @@ public class EsperEngine extends Engine {
     }
 
     @Override
-    public void register(String epl, EngineListener listener) {
+    public void register(String epl, GenericListener listener) {
 
         EPStatement cepStatement = EP_ADMIN.createEPL(epl, epl);
         cepStatement.addListener((UpdateListener) listener);
     }
 
     @Override
-    public void register(List<String> query, EngineListener listener) {
+    public void register(List<String> query, GenericListener listener) {
         for (int i = 0; i < (query.size() - 1); i++) {
             register(query.get(i));
         }

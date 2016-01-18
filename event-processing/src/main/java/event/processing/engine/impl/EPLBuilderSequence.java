@@ -3,12 +3,12 @@ package event.processing.engine.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import event.processing.query.Query;
+import common.lang.query.QueryLang;
 
 public class EPLBuilderSequence extends EPLBuilder {
 
     @Override
-    public List<String> createEPL(List<Query> queries) {
+    public List<String> createEPL(List<QueryLang> queries) {
 
         char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
         int i = 0;
@@ -16,7 +16,7 @@ public class EPLBuilderSequence extends EPLBuilder {
         StringBuilder sb = new StringBuilder();
         sb.append("select * from pattern [every ");
 
-        for (Query query : queries) {
+        for (QueryLang query : queries) {
             if (i != 0) {
                 sb.append(" -> ");
             }
@@ -35,7 +35,7 @@ public class EPLBuilderSequence extends EPLBuilder {
     }
 
     @Override
-    public List<String> createEPL(Query query) {
+    public List<String> createEPL(QueryLang query) {
         // NOT USED
         return null;
     }

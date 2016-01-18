@@ -19,14 +19,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import common.codes.ERROR_CODES;
 import common.data.dto.QueryDTO;
+import common.lang.query.QueryLang;
 import common.rest.RESOURCE_NAMING;
 import common.rest.ResourceUtils;
 import event.processing.engine.EngineFactory;
-import event.processing.query.Query;
-import event.processing.query.QueryFactory;
-import event.processing.query.QueryTransformer;
 import event.processing.repo.QueryRepository;
 import event.processing.repo.RuleRepository;
+import event.processing.statement.QueryLangFactory;
+import event.processing.statement.QueryLangTransformer;
 
 @RestController
 public class EPManageQueryImpl implements EPManageQuery {
@@ -44,10 +44,10 @@ public class EPManageQueryImpl implements EPManageQuery {
     private RuleRepository ruleRepository;
 
     @Autowired
-    private QueryFactory queryFactory;
+    private QueryLangFactory queryFactory;
 
     @Autowired
-    private QueryTransformer queryTransformer;
+    private QueryLangTransformer queryTransformer;
 
     @Override
     @RequestMapping(value = "/registrations/query/{name}", method = RequestMethod.POST)
@@ -67,7 +67,7 @@ public class EPManageQueryImpl implements EPManageQuery {
          * Parse query and store it in the repository.
          */
         try {
-            Query q = queryFactory.parse(query, name);
+            QueryLang q = queryFactory.parse(query, name);
             q.setNativeQuery(query);
             queryRepository.save(q);
 
@@ -95,7 +95,7 @@ public class EPManageQueryImpl implements EPManageQuery {
          * Make sure that corresponding query exists.
          * 
          */
-        Query query = queryRepository.findOne(name);
+        QueryLang query = queryRepository.findOne(name);
         if (null == query) {
             return ERROR_CODES.ERROR_NON_EXISTING_QUERY.getErrorResponse();
         }

@@ -1,12 +1,13 @@
 package configuration.management.rest;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.StringUtils;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,16 +18,25 @@ import org.springframework.web.bind.annotation.RestController;
 import common.codes.ERROR_CODES;
 import common.codes.SUCCESS_CODES;
 import common.data.dto.RuleDTO;
+import common.exception.ValidationException;
+import common.lang.rule.RuleLang;
 import common.rest.RESOURCE_NAMING;
-import common.rest.ResourceUtils;
 import common.transformer.Transformer;
+import configuration.management.model.EventProcessingDLO;
 import configuration.management.model.RuleDLO;
+import configuration.management.repo.EventProcessingTransformer;
 import configuration.management.repo.QueryRepository;
 import configuration.management.repo.RuleRepository;
 import configuration.management.repo.RuleTransformer;
+import configuration.management.rest.activity.AssignRule;
+import configuration.management.rest.activity.ExecuteRestTask;
+import configuration.management.rest.activity.ValidateAssignRuleItem;
+import configuration.management.rest.activity.model.AssignRuleItem;
+import configuration.management.selection.MinNumberOfActiveRules;
+import configuration.management.statement.RuleLangFactory;
 
 @RestController
-public class CMManageRuleImpl implements CMManageRule {
+public class CMManageRuleImpl extends RestCM implements CMManageRule {
 
     private static final Logger logger = LoggerFactory.getLogger(CMManageRuleImpl.class);
 
@@ -39,38 +49,50 @@ public class CMManageRuleImpl implements CMManageRule {
     @Autowired
     private RuleTransformer ruleTransformer;
 
+    @Autowired
+    private RuleLangFactory ruleLangFactory;
+
+    @Autowired
+    private MinNumberOfActiveRules minNumberOfActiveRules;
+
+    @Autowired
+    private ValidateAssignRuleItem validateAssignRuleItem;
+
+    @Autowired
+    private AssignRule assignRule;
+
+    @Autowired
+    private EventProcessingTransformer epTransformer;
+
+    @Autowired
+    private ThreadPoolTaskExecutor taskExecutor;
+
     @Override
     @RequestMapping(value = "/registrations/rule/{name}", method = RequestMethod.POST)
     public ResponseEntity<String> registerRule(@PathVariable("name") String name, @RequestBody String rule) {
-        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.CM_REGISTRATION_RULE));
 
-        /**
-         * Make sure that parameter 'name' is not empty or that it isn't already awarded.
-         */
-        if (StringUtils.isEmpty(name)) {
-            return ERROR_CODES.ERROR_MISSING_RULE_NAME.getErrorResponse();
-        } else if ((null != ruleRepository.findByName(name))) {
-            return ERROR_CODES.ERROR_EXISTING_RULE.getErrorResponse();
-        }
+        logInvokeOfMethod(RESOURCE_NAMING.CM_REGISTRATION_RULE, logger);
 
-        /**
-         * Store rule in repository.
-         */
-        RuleDLO r = new RuleDLO();
-        r.setName(name);
-        r.setRule(rule);
-
-        /**
-         * Find query to name. If query doesn't exist throw exception.
-         */
+        RuleLang ruleLang = null;
+        RuleDLO ruleDLO = null;
 
         try {
-            Utilities.findQueriesToQueryNames(r, queryRepository);
-        } catch (Exception e) {
-            return ERROR_CODES.ERROR_NON_EXISTING_QUERY.getErrorResponse();
+            validateIsNotEmpty(name, ERROR_CODES.ERROR_MISSING_RULE_NAME);
+
+            validateNotExists(name, ruleRepository, ERROR_CODES.ERROR_EXISTING_RULE);
+
+            ruleLang = validateRuleSyntax(rule, ruleLangFactory, ERROR_CODES.ERROR_PARSING_RULE);
+
+            ruleDLO = validateAndFindQueriesToQueryNames(ruleLang, ruleDLO, queryRepository);
+
+        } catch (ValidationException e) {
+            return e.getErrorCode().getErrorResponse();
         }
 
-        ruleRepository.save(r);
+        ruleDLO.setName(name);
+        ruleDLO.setRule(rule);
+
+        ruleRepository.save(ruleDLO);
 
         return SUCCESS_CODES.OK.getResponse();
     }
@@ -78,31 +100,23 @@ public class CMManageRuleImpl implements CMManageRule {
     @Override
     @RequestMapping(value = "/deregistrations/rule/{name}", method = RequestMethod.DELETE)
     public ResponseEntity<String> withdrawRule(@PathVariable("name") String name) {
-        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.CM_DEREGISTRATION_RULE));
 
-        /**
-         * Make sure that parameter 'name' is not empty.
-         */
-        if (StringUtils.isEmpty(name)) {
-            return ERROR_CODES.ERROR_MISSING_RULE_NAME.getErrorResponse();
+        logInvokeOfMethod(RESOURCE_NAMING.CM_DEREGISTRATION_RULE, logger);
+
+        RuleDLO ruleDLO;
+        try {
+
+            validateIsNotEmpty(name, ERROR_CODES.ERROR_MISSING_RULE_NAME);
+
+            ruleDLO = validateExists(name, ruleRepository, ERROR_CODES.ERROR_NON_EXISTING_RULE);
+
+            validateRuleIsNotActive(ruleDLO, ERROR_CODES.ERROR_DEREGISTER_ACTIVE);
+
+        } catch (ValidationException e) {
+            return e.getErrorCode().getErrorResponse();
         }
 
-        /**
-         * Make sure that rule with given name exists.
-         */
-        RuleDLO rule = ruleRepository.findByName(name);
-        if (null == rule) {
-            return ERROR_CODES.ERROR_NON_EXISTING_RULE.getErrorResponse();
-        }
-
-        /**
-         * Before deregistration make sure that rule is not active.
-         */
-        if (rule.getIsActive()) {
-            return ERROR_CODES.ERROR_DEREGISTER_ACTIVE.getErrorResponse();
-        }
-
-        this.ruleRepository.delete(rule);
+        this.ruleRepository.delete(ruleDLO);
 
         return SUCCESS_CODES.OK.getResponse();
     }
@@ -110,80 +124,78 @@ public class CMManageRuleImpl implements CMManageRule {
     @Override
     @RequestMapping(value = "/registrations/rules", method = RequestMethod.GET)
     public @ResponseBody List<RuleDTO> getAllRules() {
-        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.CM_GET_ALL_RULES));
 
-        List<RuleDLO> rules = Transformer.makeCollection(ruleRepository.findAll());
+        logInvokeOfMethod(RESOURCE_NAMING.CM_GET_ALL_RULES, logger);
 
-        return ruleTransformer.toRemote(rules);
+        List<RuleDLO> rulesDLO = Transformer.makeCollection(ruleRepository.findAll());
+
+        return ruleTransformer.toRemote(rulesDLO);
     }
 
     @Override
     @RequestMapping(value = "/activations/rule/{name}", method = RequestMethod.GET)
     public ResponseEntity<String> activateRule(@PathVariable("name") String name) {
-        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.CM_ACTIVATIONS_RULE));
 
-        /**
-         * Make sure that parameter 'name' is not empty.
-         */
-        if (StringUtils.isEmpty(name)) {
-            return ERROR_CODES.ERROR_MISSING_RULE_NAME.getErrorResponse();
+        logInvokeOfMethod(RESOURCE_NAMING.CM_ACTIVATIONS_RULE, logger);
+
+        RuleDLO ruleDLO;
+
+        try {
+            validateIsNotEmpty(name, ERROR_CODES.ERROR_MISSING_RULE_NAME);
+
+            ruleDLO = validateExists(name, ruleRepository, ERROR_CODES.ERROR_NON_EXISTING_RULE);
+
+            validateRuleIsNotActive(ruleDLO, ERROR_CODES.ERROR_DEREGISTER_ACTIVE);
+
+        } catch (ValidationException e) {
+            return e.getErrorCode().getErrorResponse();
         }
 
-        /**
-         * Make sure that rule with given name exists.
-         */
-        RuleDLO rule = ruleRepository.findByName(name);
-        if (null == rule) {
-            return ERROR_CODES.ERROR_NON_EXISTING_RULE.getErrorResponse();
+        Optional<EventProcessingDLO> selectedEP = minNumberOfActiveRules.select();
+
+        if (!selectedEP.isPresent()) {
+
+            // TODO delay activation, as soon as one EP is registered.
+
+            return SUCCESS_CODES.OK.getResponse();
+
+        } else {
+
+            AssignRuleItem assignRuleItem = new AssignRuleItem();
+            assignRuleItem.setEp(epTransformer.toRemote(selectedEP.get()));
+            assignRuleItem.setRule(ruleDLO);
+
+            validateAssignRuleItem.setNextActivity(assignRule);
+
+            taskExecutor.execute(new ExecuteRestTask<String, AssignRuleItem>(validateAssignRuleItem, assignRuleItem));
+
+            return SUCCESS_CODES.OK.getResponse();
         }
 
-        /**
-         * Make sure that corresponding query exists.
-         */
-        // List<QueryDLO> queries = queryRepository.findAllByQueries(rule.getQueries());
-        // if (null == queries) {
-        // return ERROR_CODES.ERROR_NON_EXISTING_QUERY.getErrorResponse();
-        // }
-
-        rule.setIsActive(true);
-
-        ruleRepository.save(rule);
-
-        return SUCCESS_CODES.OK.getResponse();
     }
 
     @Override
     @RequestMapping(value = "/deactivations/rule/{name}", method = RequestMethod.GET)
     public ResponseEntity<String> deactivateRule(@PathVariable("name") String name) {
-        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.CM_DEACTIVATIONS_RULE));
 
-        /**
-         * Make sure that parameter 'name' is not empty.
-         */
-        if (StringUtils.isEmpty(name)) {
-            return ERROR_CODES.ERROR_MISSING_RULE_NAME.getErrorResponse();
+        logInvokeOfMethod(RESOURCE_NAMING.CM_DEACTIVATIONS_RULE, logger);
+
+        RuleDLO ruleDLO;
+
+        try {
+            validateIsNotEmpty(name, ERROR_CODES.ERROR_MISSING_RULE_NAME);
+
+            ruleDLO = validateExists(name, ruleRepository, ERROR_CODES.ERROR_NON_EXISTING_RULE);
+
+            validateExistsQuery(ruleDLO, queryRepository, ERROR_CODES.ERROR_NON_EXISTING_QUERY);
+
+        } catch (ValidationException e) {
+            return e.getErrorCode().getErrorResponse();
         }
 
-        /**
-         * Make sure that rule with given name exists.
-         */
-        RuleDLO rule = ruleRepository.findByName(name);
-        if (null == rule) {
-            return ERROR_CODES.ERROR_NON_EXISTING_RULE.getErrorResponse();
-        }
+        ruleDLO.setQueries(null);
 
-        /**
-         * Make sure that corresponding query exists.
-         * 
-         */
-        // List<Query> queries = queryRepository.findAllByQueries(rule.getQueries());
-        // if (CollectionUtils.isEmpty(queries)) {
-        // return EP_ERROR_CODES.ERROR_NON_EXISTING_QUERY.getErrorResponse();
-        // }
-
-        rule.setIsActive(false);
-
-        ruleRepository.save(rule);
+        ruleRepository.save(ruleDLO);
 
         return SUCCESS_CODES.OK.getResponse();
     }
