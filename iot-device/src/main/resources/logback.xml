@@ -24,12 +24,23 @@
 	      <pattern>%date{dd.MM.yyyy HH:mm:ss.SSS} [%-5.5level] [%-15.15thread] %-30.30logger{36} - %msg %n</pattern>
 		</layout>
 	</appender>
+	
+	<appender name="DB" class="ch.qos.logback.classic.db.DBAppender">
+    	<connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
+      		<driverClass>org.hsqldb.jdbcDriver</driverClass>
+      		<url>jdbc:hsqldb:hsql://localhost:9001/log</url>
+      		<user>SA</user>
+      		<password></password>
+    	</connectionSource>
+  	</appender>
 
-	<logger name="iot.device" level="INFO" />
+	<logger name="iot.device" level="INFO" >
+		<appender-ref ref="DB" />
+	</logger>
 
 	<root>
 		<level value="ERROR" />
-		<appender-ref ref="FILE" />
+		<appender-ref ref="DB" />
 	</root>
 	 	
 </configuration>

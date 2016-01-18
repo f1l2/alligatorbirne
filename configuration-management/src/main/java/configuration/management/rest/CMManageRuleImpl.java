@@ -29,7 +29,7 @@ import configuration.management.repo.QueryRepository;
 import configuration.management.repo.RuleRepository;
 import configuration.management.repo.RuleTransformer;
 import configuration.management.rest.activity.AssignRule;
-import configuration.management.rest.activity.ExecuteRestTask;
+import configuration.management.rest.activity.ExecuteRestActivity;
 import configuration.management.rest.activity.ValidateAssignRuleItem;
 import configuration.management.rest.activity.model.AssignRuleItem;
 import configuration.management.selection.MinNumberOfActiveRules;
@@ -83,6 +83,7 @@ public class CMManageRuleImpl extends RestCM implements CMManageRule {
 
             ruleLang = validateRuleSyntax(rule, ruleLangFactory, ERROR_CODES.ERROR_PARSING_RULE);
 
+            ruleDLO = new RuleDLO();
             ruleDLO = validateAndFindQueriesToQueryNames(ruleLang, ruleDLO, queryRepository);
 
         } catch (ValidationException e) {
@@ -167,7 +168,7 @@ public class CMManageRuleImpl extends RestCM implements CMManageRule {
 
             validateAssignRuleItem.setNextActivity(assignRule);
 
-            taskExecutor.execute(new ExecuteRestTask<String, AssignRuleItem>(validateAssignRuleItem, assignRuleItem));
+            taskExecutor.execute(new ExecuteRestActivity<String, AssignRuleItem>(validateAssignRuleItem, assignRuleItem));
 
             return SUCCESS_CODES.OK.getResponse();
         }

@@ -24,8 +24,9 @@ import configuration.management.repo.DeviceRepository;
 import configuration.management.repo.DeviceTransformer;
 import configuration.management.repo.EventProcessingRepository;
 import configuration.management.repo.EventProcessingTransformer;
-import configuration.management.task.SetConfigDelegation;
-import configuration.management.task.StartDeliveryDelegation;
+import configuration.management.rest.task.ExecuteRestTask;
+import configuration.management.rest.task.SetConfigDelegation;
+import configuration.management.rest.task.StartDeliveryDelegation;
 
 @Component
 public class RegisterDataSourcesDevice extends Activity<String, DataSourcesDTO> {
@@ -85,7 +86,7 @@ public class RegisterDataSourcesDevice extends Activity<String, DataSourcesDTO> 
                     builder.addDataSource(dsDevice.getDevice(), dsDevice.getDomain())//
                             .buildDataSink(remote);
 
-                    taskExecutor.execute(new StartDeliveryDelegation(builder.getResult(), Arrays.asList(componentConnection)));
+                    taskExecutor.execute(new ExecuteRestTask<StartDeliveryDelegation>(new StartDeliveryDelegation(builder.getResult(), Arrays.asList(componentConnection))));
 
                     ep.getDataSources().contains(dsDevice);
 
@@ -100,7 +101,7 @@ public class RegisterDataSourcesDevice extends Activity<String, DataSourcesDTO> 
                                     .buildProperties(dsRO.getProperties())//
                                     .addDataSource(dsDevice.getDevice(), dsDevice.getDomain());
 
-                            taskExecutor.execute(new SetConfigDelegation(builder.getResult(), Arrays.asList(componentConnection)));
+                            taskExecutor.execute(new ExecuteRestTask<SetConfigDelegation>(new SetConfigDelegation(builder.getResult(), Arrays.asList(componentConnection))));
                         }
                     }
                 }

@@ -16,7 +16,8 @@ import common.data.type.COMPONENT_TYPE;
 import configuration.management.model.DeviceDLO;
 import configuration.management.repo.DeviceRepository;
 import configuration.management.repo.DeviceTransformer;
-import configuration.management.task.SetConfigDelegation;
+import configuration.management.rest.task.ExecuteRestTask;
+import configuration.management.rest.task.SetConfigDelegation;
 
 @Component
 public class DelegateConfigChange extends Activity<String, ConfigurationDelegation> {
@@ -44,7 +45,7 @@ public class DelegateConfigChange extends Activity<String, ConfigurationDelegati
                 Connection remote = transformer.toRemote(dev);
                 remote.setComponentType(COMPONENT_TYPE.DEVICE);
 
-                taskExecutor.execute(new SetConfigDelegation(item, Arrays.asList(remote)));
+                taskExecutor.execute(new ExecuteRestTask<SetConfigDelegation>(new SetConfigDelegation(item, Arrays.asList(remote))));
             }
         }
         return next("OK", item);

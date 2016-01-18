@@ -10,11 +10,15 @@ import com.jayway.restassured.RestAssured;
 
 import configuration.management.model.QueryDLO;
 import configuration.management.repo.QueryRepository;
+import configuration.management.repo.RuleRepository;
 
 public abstract class AbstractTestRestCM {
 
     @Autowired
-    protected QueryRepository repo;
+    protected RuleRepository ruleRepo;
+
+    @Autowired
+    protected QueryRepository queryRepo;
 
     protected QueryDLO query;
 
@@ -30,7 +34,9 @@ public abstract class AbstractTestRestCM {
     @Before
     public void before() throws IOException {
 
-        repo.deleteAll();
+        ruleRepo.deleteAll();
+
+        queryRepo.deleteAll();
 
         RestAssured.port = port;
 

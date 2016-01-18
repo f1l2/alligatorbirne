@@ -1,35 +1,28 @@
-package configuration.management.task;
+package configuration.management.rest.task;
 
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.client.RestTemplate;
 
 import common.data.ConfigurationDelegation;
 import common.data.Connection;
 import common.rest.RESOURCE_NAMING;
 import common.rest.ResourceUtils;
 
-public class SetConfigDelegation extends DelegationTask {
+public class SetConfigDelegation extends Task<Connection> {
 
     final static Logger logger = LoggerFactory.getLogger(SetConfigDelegation.class);
 
     private ConfigurationDelegation cd;
 
     public SetConfigDelegation(ConfigurationDelegation cd, List<Connection> connections) {
-
         super(connections);
-
         this.cd = cd;
-
     }
 
     @Override
-    public void doRun(Connection connection) {
-
-        RestTemplate restTemplate = new RestTemplate();
-
+    public void doTask(Connection connection) {
         logger.info("Delegate configuration modification for {}", connection.getUrl().getAuthority());
 
         try {

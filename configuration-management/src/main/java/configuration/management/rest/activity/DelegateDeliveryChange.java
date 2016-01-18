@@ -16,8 +16,9 @@ import common.data.DataSource;
 import configuration.management.model.DeviceDLO;
 import configuration.management.repo.DeviceRepository;
 import configuration.management.repo.DeviceTransformer;
-import configuration.management.task.StartDeliveryDelegation;
-import configuration.management.task.StopDeliveryDelegation;
+import configuration.management.rest.task.ExecuteRestTask;
+import configuration.management.rest.task.StartDeliveryDelegation;
+import configuration.management.rest.task.StopDeliveryDelegation;
 
 @Component
 public class DelegateDeliveryChange extends Activity<String, ConfigurationDelegation> {
@@ -52,9 +53,10 @@ public class DelegateDeliveryChange extends Activity<String, ConfigurationDelega
         List<Connection> connectionsToBeContacted = transformer.toRemote(devicesToBeContacted);
 
         if (isStop) {
-            taskExecutor.execute(new StopDeliveryDelegation(item, connectionsToBeContacted));
+
+            taskExecutor.execute(new ExecuteRestTask<StopDeliveryDelegation>(new StopDeliveryDelegation(item, connectionsToBeContacted)));
         } else {
-            taskExecutor.execute(new StartDeliveryDelegation(item, connectionsToBeContacted));
+            taskExecutor.execute(new ExecuteRestTask<StartDeliveryDelegation>(new StartDeliveryDelegation(item, connectionsToBeContacted)));
         }
 
         return next("OK", item);
