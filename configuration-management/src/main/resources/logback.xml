@@ -36,10 +36,12 @@
 
 	<logger name="configuration.management" level="INFO" >
 		<appender-ref ref="DB" />
+		<appender-ref ref="CON" />
 	</logger>
+	
 	<root>
-		<level value="INFO" />
-		<appender-ref ref="DB" />
+		<level value="ERROR" />
+		<appender-ref ref="CON" />
 	</root>
 	 	
 </configuration>

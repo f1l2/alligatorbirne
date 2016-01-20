@@ -13303,19 +13303,19 @@ div.v-layout.v-horizontal.v-widget {
 	height: 15px;
 }
 
-.monitoring-theme .monitoring-background-padding, .monitoring-theme .monitoring-background-changed, .monitoring-theme .monitoring-background-added, .monitoring-theme .monitoring-background-removed, .monitoring-theme .monitoring-background-success, .monitoring-theme .monitoring-background-failure {
+.monitoring-theme .monitoring-background-padding, .monitoring-theme .monitoring-background-cm, .monitoring-theme .monitoring-background-ep, .monitoring-theme .monitoring-background-dev, .monitoring-theme .monitoring-background-success, .monitoring-theme .monitoring-background-failure {
 	padding: 5px;
 }
 
-.monitoring-theme .monitoring-background-changed {
+.monitoring-theme .monitoring-background-cm {
 	background: #84AE73;
 }
 
-.monitoring-theme .monitoring-background-added {
+.monitoring-theme .monitoring-background-ep {
 	background: #319EEF;
 }
 
-.monitoring-theme .monitoring-background-removed {
+.monitoring-theme .monitoring-background-dev {
 	background: #EF7918;
 }
 

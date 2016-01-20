@@ -24,7 +24,7 @@ import ru.xpoft.vaadin.VaadinView;
 @org.springframework.stereotype.Component
 @Scope("prototype")
 @VaadinView(MessagingView.VIEW_NAME)
-public class MessagingViewImpl extends AbstractViewImpl<MessagingNavigator>implements MessagingView {
+public class MessagingViewImpl extends AbstractViewImpl<MessagingNavigator> implements MessagingView {
 
     private EventListenerManager<MessagingViewListener> eventListenerManager = new EventListenerManager<MessagingViewListener>();
 

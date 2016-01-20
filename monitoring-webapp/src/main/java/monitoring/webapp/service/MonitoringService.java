@@ -1,7 +1,12 @@
 package monitoring.webapp.service;
 
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -42,6 +47,8 @@ public class MonitoringService {
 
     private Connection connectionCM;
 
+    private java.sql.Connection connection;
+
     /**
      * Initialize Connection to CM
      */
@@ -53,6 +60,8 @@ public class MonitoringService {
         connectionCM.setComponentType(COMPONENT_TYPE.CONFIGURATION_MANAGEMENT);
         connectionCM.setName("CM");
         connectionCM.setUrl(UrlUtils.parseUrl("localhost:5000"));
+
+        establishDBConnection();
     }
 
     public List<Connection> listEP() {
@@ -201,4 +210,130 @@ public class MonitoringService {
 
         return postForEntity.getBody();
     }
+
+    public void establishDBConnection() {
+        try {
+            Class.forName("org.hsqldb.jdbcDriver");
+
+            connection = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost:9001/log", "sa", ""); // password
+
+        } catch (Exception e) {
+            System.out.println("Error creating connection to logging db.");
+        }
+    }
+
+    public void shutdown() throws SQLException {
+
+        Statement statement = connection.createStatement();
+        statement.execute("SHUTDOWN");
+        connection.close();
+    }
+
+    public List<LogDTO> getAllLog() {
+
+        if (!isConnection()) {
+            return null;
+        }
+
+        return getLogs("SELECT * FROM LOGGING_EVENT WHERE LEVEL_STRING = 'INFO' ORDER BY TIMESTMP DESC;");
+    }
+
+    public List<LogDTO> getFilteredLog(int filterCode) {
+
+        if (!isConnection()) {
+            return null;
+        }
+
+        String filterDEV = "LOGGER_NAME LIKE 'iot.device%'";
+        String filterCM = "LOGGER_NAME LIKE 'configuration.management%'";
+        String filterEP = "LOGGER_NAME LIKE 'event.processing%'";
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT * FROM LOGGING_EVENT WHERE LEVEL_STRING = 'INFO'");
+        if (filterCode > 0) {
+            sb.append("AND NOT (");
+            String filter[] = { filterEP, filterCM, filterDEV };
+            for (int i = 0; i < 3; i++) {
+                if ((filterCode & (1l << i)) != 0) {
+                    sb.append(filter[i]);
+                    filterCode = filterCode & ~(1 << i);
+
+                    if (filterCode != 0) {
+                        sb.append(" OR ");
+                    }
+                }
+            }
+            sb.append(") ");
+        }
+        sb.append("ORDER BY TIMESTMP DESC");
+
+        return getLogs(sb.toString());
+    }
+
+    private boolean isConnection() {
+        if (null == connection) {
+            this.establishDBConnection();
+
+            if (null == connection) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private List<LogDTO> getLogs(String query) {
+
+        List<LogDTO> logs = new ArrayList<LogDTO>();
+        ResultSet loggingEvents = null;
+        try {
+
+            loggingEvents = this.query(query);
+            logs = convertToLogDTO(loggingEvents);
+        } catch (Exception e) {
+            System.out.println("Error accessing loggin db." + e);
+        }
+        return logs;
+    }
+
+    public void deleteAllLog() {
+
+        try {
+            this.query("DELETE FROM LOGGING_EVENT_PROPERTY WHERE 1=1;");
+            this.query("DELETE FROM LOGGING_EVENT_EXCEPTION WHERE 1=1");
+            this.query("DELETE FROM LOGGING_EVENT WHERE 1=1;");
+        } catch (SQLException e) {
+            System.out.println("Error accessing loggin db." + e);
+        }
+    }
+
+    private synchronized ResultSet query(String expression) throws SQLException {
+
+        Statement statement = null;
+        ResultSet resultSet = null;
+
+        statement = connection.createStatement();
+        resultSet = statement.executeQuery(expression);
+
+        statement.close();
+
+        return resultSet;
+    }
+
+    public static List<LogDTO> convertToLogDTO(ResultSet resultSet) throws SQLException {
+
+        List<LogDTO> logs = new ArrayList<LogDTO>();
+
+        while (resultSet.next()) {
+
+            LogDTO logDTO = new LogDTO();
+            logDTO.setDate(new Date(resultSet.getBigDecimal("TIMESTMP").toBigInteger().longValue()));
+            logDTO.setMessage(resultSet.getString("FORMATTED_MESSAGE"));
+            logDTO.setName(resultSet.getString("LOGGER_NAME"));
+
+            logs.add(logDTO);
+        }
+
+        return logs;
+    }
+
 }

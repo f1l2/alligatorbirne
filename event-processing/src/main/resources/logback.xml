@@ -39,11 +39,14 @@
 		</connectionSource>
 	</appender>
 
-	<logger name="event.processing" level="INFO" />
+	<logger name="event.processing" level="INFO" >
 		<appender-ref ref="DB" />
+		<appender-ref ref="CON" />
+	</logger>
+	
 	<root>
 		<level value="ERROR" />
-		<appender-ref ref="DB" />
+		<appender-ref ref="CON" />
 	</root>
 
 </configuration>

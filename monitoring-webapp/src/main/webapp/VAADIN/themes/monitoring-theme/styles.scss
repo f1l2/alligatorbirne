@@ -314,17 +314,17 @@
   	padding: 5px;
   }
 
-  .monitoring-background-changed {
+  .monitoring-background-cm {
   	@extend .monitoring-background-padding;
   	background: $monitoring-color-changed;
   }
   
-  .monitoring-background-added {
+  .monitoring-background-ep {
   	@extend .monitoring-background-padding;
   	background: $monitoring-color-added;
   }
   
-  .monitoring-background-removed {
+  .monitoring-background-dev {
   	@extend .monitoring-background-padding;
   	background: $monitoring-color-removed;
   }
@@ -340,6 +340,9 @@
   	color: #D8000C;
     background-color: #FFBABA;
   }
+  
+  
+  
   
 
   // CSS SINGLE ATTRIBUTES
