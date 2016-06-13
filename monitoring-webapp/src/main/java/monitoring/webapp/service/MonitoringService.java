@@ -1,6 +1,5 @@
 package monitoring.webapp.service;
 
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -10,11 +9,13 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.management.MalformedObjectNameException;
 import javax.management.ObjectName;
+import javax.servlet.ServletException;
 
 import org.apache.activemq.broker.BrokerService;
 import org.apache.activemq.broker.jmx.TopicViewMBean;
@@ -47,13 +48,16 @@ public class MonitoringService {
 
     private Connection connectionCM;
 
-    private java.sql.Connection connection;
+    private LoggingDB loggingDB;
 
     /**
      * Initialize Connection to CM
+     * 
+     * @throws ServletException
+     * @throws SQLException
      */
     @PostConstruct
-    public void postConstruct() {
+    public void postConstruct() throws ServletException, SQLException {
         restTemplate = new RestTemplate();
 
         connectionCM = new Connection();
@@ -61,7 +65,13 @@ public class MonitoringService {
         connectionCM.setName("CM");
         connectionCM.setUrl(UrlUtils.parseUrl("localhost:5000"));
 
-        establishDBConnection();
+        loggingDB = new LoggingDB();
+        loggingDB.startup();
+    }
+
+    @PreDestroy
+    public void preDestroy() throws SQLException {
+        loggingDB.shutdown();
     }
 
     public List<Connection> listEP() {
@@ -211,27 +221,9 @@ public class MonitoringService {
         return postForEntity.getBody();
     }
 
-    public void establishDBConnection() {
-        try {
-            Class.forName("org.hsqldb.jdbcDriver");
-
-            connection = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost:9001/log", "sa", ""); // password
-
-        } catch (Exception e) {
-            System.out.println("Error creating connection to logging db.");
-        }
-    }
-
-    public void shutdown() throws SQLException {
-
-        Statement statement = connection.createStatement();
-        statement.execute("SHUTDOWN");
-        connection.close();
-    }
-
     public List<LogDTO> getAllLog() {
 
-        if (!isConnection()) {
+        if (!loggingDB.isConnection()) {
             return null;
         }
 
@@ -240,7 +232,7 @@ public class MonitoringService {
 
     public List<LogDTO> getFilteredLog(int filterCode) {
 
-        if (!isConnection()) {
+        if (!loggingDB.isConnection()) {
             return null;
         }
 
@@ -268,17 +260,6 @@ public class MonitoringService {
         sb.append("ORDER BY TIMESTMP DESC");
 
         return getLogs(sb.toString());
-    }
-
-    private boolean isConnection() {
-        if (null == connection) {
-            this.establishDBConnection();
-
-            if (null == connection) {
-                return false;
-            }
-        }
-        return true;
     }
 
     private List<LogDTO> getLogs(String query) {
@@ -311,7 +292,7 @@ public class MonitoringService {
         Statement statement = null;
         ResultSet resultSet = null;
 
-        statement = connection.createStatement();
+        statement = loggingDB.getConnection().createStatement();
         resultSet = statement.executeQuery(expression);
 
         statement.close();

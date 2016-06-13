@@ -36,7 +36,6 @@ public class RegisterDevice extends Activity<Connection, Connection> {
             item.setCreated(new Date());
             item.setUpdated(new Date());
             item.setAuthority(connection.getUrl().getAuthority());
-            item = deviceRepo.save(item);
         }
 
         item = deviceRepo.save(item);

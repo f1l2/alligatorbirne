@@ -25,17 +25,16 @@
 		</layout>
 	</appender>
 	
-	<appender name="DB" class="ch.qos.logback.classic.db.DBAppender">
+<!-- 	<appender name="DB" class="ch.qos.logback.classic.db.DBAppender">
     	<connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
       		<driverClass>org.hsqldb.jdbcDriver</driverClass>
       		<url>jdbc:hsqldb:hsql://localhost:9001/logdb</url>
       		<user>SA</user>
       		<password></password>
     	</connectionSource>
-  	</appender>
+  	</appender> -->
 
 	<logger name="iot.device" level="INFO" >
-		<appender-ref ref="DB" />
 		<appender-ref ref="CON" />
 	</logger>
 

@@ -56,37 +56,37 @@ public class RegisterDataSourcesDevice extends Activity<String, DataSourcesDTO> 
     @Override
     public ResponseEntity<String> doStep(DataSourcesDTO item) {
 
-        DeviceDLO component = this.devRepo.findOne(id);
+        DeviceDLO device = devRepo.findOne(id);
+        Connection deviceConnection = devTransformer.toRemote(device);
 
-        Connection componentConnection = devTransformer.toRemote(component);
-
-        if (component == null) {
+        if (device == null) {
             setErrorResponse(new ResponseEntity<String>("Registration of data sources failed. Device with ID couldn't be found.", HttpStatus.BAD_REQUEST));
-        } else if (!CollectionUtils.isEmpty(component.getDataSources())) {
+        } else if (!CollectionUtils.isEmpty(device.getDataSources())) {
             setErrorResponse(new ResponseEntity<String>("Registration of data sources failed. For device data sources already registered.", HttpStatus.BAD_REQUEST));
         } else {
 
             Set<DataSourceDLO> ds = transformer.toLocal(item.getDataSources());
 
-            component.setDataSources(ds);
-
-            this.devRepo.save(component);
+            device.setDataSources(ds);
+            devRepo.save(device);
 
             /**
              * Loop all data sources, which can be provided by device
              */
-
             for (DataSourceDLO dsDevice : ds) {
+
+                /**
+                 * TODO what the hell
+                 */
                 for (EventProcessingDLO ep : epRepo.findByDataSources(dsDevice.getDevice(), dsDevice.getDomain())) {
 
-                    Connection remote = epTransformer.toRemote(ep);
-                    remote.setComponentType(COMPONENT_TYPE.EVENT_PROCESSING);
+                    Connection epConnection = epTransformer.toRemote(ep);
+                    epConnection.setComponentType(COMPONENT_TYPE.EVENT_PROCESSING);
 
                     CDBuilder builder = new CDBuilder();
-                    builder.addDataSource(dsDevice.getDevice(), dsDevice.getDomain())//
-                            .buildDataSink(remote);
+                    builder.addDataSource(dsDevice.getDevice(), dsDevice.getDomain()).buildDataSink(epConnection);
 
-                    taskExecutor.execute(new ExecuteRestTask<StartDeliveryDelegation>(new StartDeliveryDelegation(builder.getResult(), Arrays.asList(componentConnection))));
+                    taskExecutor.execute(new ExecuteRestTask<StartDeliveryDelegation>(new StartDeliveryDelegation(builder.getResult(), Arrays.asList(deviceConnection))));
 
                     ep.getDataSources().contains(dsDevice);
 
@@ -97,11 +97,11 @@ public class RegisterDataSourcesDevice extends Activity<String, DataSourcesDTO> 
                         if (!CollectionUtils.isEmpty(dsRO.getProperties())) {
 
                             builder = new CDBuilder();
-                            builder.buildDataSink(remote)//
+                            builder.buildDataSink(epConnection)//
                                     .buildProperties(dsRO.getProperties())//
                                     .addDataSource(dsDevice.getDevice(), dsDevice.getDomain());
 
-                            taskExecutor.execute(new ExecuteRestTask<SetConfigDelegation>(new SetConfigDelegation(builder.getResult(), Arrays.asList(componentConnection))));
+                            taskExecutor.execute(new ExecuteRestTask<SetConfigDelegation>(new SetConfigDelegation(builder.getResult(), Arrays.asList(deviceConnection))));
                         }
                     }
                 }

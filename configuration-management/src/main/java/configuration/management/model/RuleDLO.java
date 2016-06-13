@@ -33,10 +33,10 @@ public class RuleDLO {
 
     @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE })
     @JoinTable(name = "QUERY_TO_RULE",
-    //
-    joinColumns = { @JoinColumn(name = "RULE_ID", referencedColumnName = "ID") },
-    //
-    inverseJoinColumns = { @JoinColumn(name = "QUERY_ID", referencedColumnName = "ID") })
+            //
+            joinColumns = { @JoinColumn(name = "RULE_ID", referencedColumnName = "ID") },
+            //
+            inverseJoinColumns = { @JoinColumn(name = "QUERY_ID", referencedColumnName = "ID") })
     private Set<QueryDLO> queries;
 
     public Long getId() {

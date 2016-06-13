@@ -57,6 +57,5 @@ public class ApplicationScheduler {
             eventProcessingRepo.delete(obsoleteEPs);
             logger.info("Obsolete EP(s) detected. {}", obsoleteEPs.stream().map(item -> item.toString()).collect(Collectors.joining(", ")));
         }
-
     }
 }

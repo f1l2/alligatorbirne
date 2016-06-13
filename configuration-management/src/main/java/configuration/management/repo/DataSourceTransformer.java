@@ -30,15 +30,15 @@ public class DataSourceTransformer extends Transformer<DataSourceDLO, DataSource
          * Everything to lower case to be not case sensitive.
          */
 
-        String name = remote.getDeviceInformation().getName();
-        if (null != name) {
-            item.setDevice(name.toLowerCase());
-        }
-        name = remote.getDomainInformation().getName();
-        if (null != name) {
-            item.setDomain(name.toLowerCase());
+        String deviceInformation = remote.getDeviceInformation().getName();
+        if (null != deviceInformation) {
+            item.setDevice(deviceInformation.toLowerCase());
         }
 
+        String domainInformation = remote.getDomainInformation().getName();
+        if (null != domainInformation) {
+            item.setDomain(domainInformation.toLowerCase());
+        }
         return item;
     }
 

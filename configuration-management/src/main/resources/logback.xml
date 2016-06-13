@@ -28,7 +28,7 @@
 	<appender name="DB" class="ch.qos.logback.classic.db.DBAppender">
     	<connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
       		<driverClass>org.hsqldb.jdbcDriver</driverClass>
-      		<url>jdbc:hsqldb:hsql://localhost:9001/log</url>
+      		<url>jdbc:hsqldb:hsql://localhost:9001/logdb</url>
       		<user>SA</user>
       		<password></password>
     	</connectionSource>

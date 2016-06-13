@@ -1,5 +1,6 @@
 package configuration.management.rest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -110,12 +111,9 @@ public class CMManageDeviceImpl implements CMManageDevice {
         DeviceDLO device = deviceRepo.findOne(id);
 
         if (null == device) {
-
-            return null;
-
+            return new ResponseEntity<List<DataSource>>(new ArrayList<DataSource>(), HttpStatus.BAD_REQUEST);
         } else {
             List<DataSource> dataSource = transformerDataSource.toRemote(device.getDataSources());
-
             return new ResponseEntity<List<DataSource>>(dataSource, HttpStatus.OK);
         }
     }
