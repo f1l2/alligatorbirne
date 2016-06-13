@@ -54,7 +54,10 @@ public class RuleComponentPresenter extends AbstractPresenter<List<RuleDTO>, Rul
     @Override
     public void activate(RuleDTO rule) {
 
-        DISTRIBUTION_STRATEGY strategy = DISTRIBUTION_STRATEGY.getByDescription(getUserInterface().getCbStrategy().getCaption());
+        DISTRIBUTION_STRATEGY strategy = DISTRIBUTION_STRATEGY.MIN_CPU_USAGE;
+        if (null != getUserInterface().getCbStrategy().getValue()) {
+            strategy = DISTRIBUTION_STRATEGY.getByDescription(getUserInterface().getCbStrategy().getValue().toString());
+        }
 
         String result = getMonitoringService().activateRule(rule, strategy.getNumber());
 

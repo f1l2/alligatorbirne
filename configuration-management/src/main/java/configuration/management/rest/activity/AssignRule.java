@@ -71,7 +71,7 @@ public class AssignRule extends Activity<String, AssignRuleItem> {
     private ResponseEntity<String> activateRule(RuleDLO ruleDLO, String authority) {
 
         String url = ResourceUtils.getUrl(RESOURCE_NAMING.EP_ACTIVATIONS_RULE, authority, ruleDLO.getName());
-        return restTemplate.postForEntity(url, ruleDLO.getRule(), String.class);
+        return restTemplate.getForEntity(url, String.class);
     }
 
 }

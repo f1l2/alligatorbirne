@@ -14,11 +14,11 @@ import monitoring.webapp.ui.utility.UiUtils.ICON;
 import monitoring.webapp.ui.utility.UiUtils.STYLE;
 
 @SuppressWarnings("serial")
-public class RuleTableImpl extends BeanItemTableImpl<RuleDTO, RuleTable.COLUMN>implements RuleTable {
+public class RuleTableImpl extends BeanItemTableImpl<RuleDTO, RuleTable.COLUMN> implements RuleTable {
 
     private EventListenerManager<RuleTableListener> eventListenerManager = new EventListenerManager<RuleTableListener>();
 
-    public RuleTableImpl() {
+    public RuleTableImpl(boolean isExtended) {
 
         super(RuleDTO.class);
 
@@ -39,19 +39,21 @@ public class RuleTableImpl extends BeanItemTableImpl<RuleDTO, RuleTable.COLUMN>i
             }
         });
 
-        addColumn(COLUMN.ACTIVE, new BeanItemColumnGenerator<RuleDTO>() {
+        if (isExtended) {
+            addColumn(COLUMN.ACTIVE, new BeanItemColumnGenerator<RuleDTO>() {
 
-            @Override
-            public Object generateCell(RuleDTO beanItem) {
+                @Override
+                public Object generateCell(RuleDTO beanItem) {
 
-                if (beanItem.getIsActive()) {
-                    return "Yes";
+                    if (beanItem.getIsActive()) {
+                        return "Yes";
+                    }
+                    return "No";
+
                 }
-                return "No";
 
-            }
-
-        });
+            });
+        }
 
         addColumn(COLUMN.ACTION, new BeanItemColumnGenerator<RuleDTO>() {
             @Override
@@ -77,12 +79,9 @@ public class RuleTableImpl extends BeanItemTableImpl<RuleDTO, RuleTable.COLUMN>i
                 MenuBar menuBar = UiUtils.newMenuBar(STYLE.VISIBLE_HOVER);
                 MenuItem topItem = UiUtils.newMenuItem(menuBar, "", null, ICON.CONFIGURATION);
 
-                if (beanItem.getIsActive()) {
-                    UiUtils.newMenuItem(topItem, "Deactivate", cmdDeActivate, ICON.UPDATE);
-                } else {
-                    UiUtils.newMenuItem(topItem, "Activate", cmdDeActivate, ICON.UPDATE);
-                    UiUtils.newMenuItem(topItem, "Delete", cmdDelete, ICON.REMOVE);
-                }
+                UiUtils.newMenuItem(topItem, "Activate", cmdDeActivate, ICON.UPDATE);
+                UiUtils.newMenuItem(topItem, "Deactivate", cmdDeActivate, ICON.UPDATE);
+                UiUtils.newMenuItem(topItem, "Delete", cmdDelete, ICON.REMOVE);
 
                 VerticalLayout layout = new VerticalLayout();
                 layout.setDefaultComponentAlignment(Alignment.MIDDLE_RIGHT);

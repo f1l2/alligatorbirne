@@ -154,7 +154,7 @@ public class CMManageRuleImpl extends RestCM implements CMManageRule {
 
         logInvokeOfMethod(RESOURCE_NAMING.CM_ACTIVATIONS_RULE, logger);
 
-        return activateRule(name, DISTRIBUTION_STRATEGY.MIN_CPU_UTILIZATION);
+        return activateRule(name, DISTRIBUTION_STRATEGY.MIN_CPU_USAGE);
 
     }
 
@@ -175,7 +175,7 @@ public class CMManageRuleImpl extends RestCM implements CMManageRule {
             return e.getErrorCode().getErrorResponse();
         }
 
-        Optional<EventProcessingDLO> selectedEP = selectionFacade.select(DISTRIBUTION_STRATEGY.MIN_ACTIVATED_RULES);
+        Optional<EventProcessingDLO> selectedEP = selectionFacade.select(strategy);
 
         if (!selectedEP.isPresent()) {
 

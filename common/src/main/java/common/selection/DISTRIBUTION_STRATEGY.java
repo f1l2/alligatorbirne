@@ -2,9 +2,9 @@ package common.selection;
 
 public enum DISTRIBUTION_STRATEGY {
 
-    MIN_CPU_UTILIZATION(1, "Min. of CPU utilization"),
+    MIN_CPU_USAGE(1, "Min. of CPU utilization"),
 
-    MIN_RAM_UTILIZATION(2, "Min. of RAM utilization"),
+    MIN_RAM_USAGE(2, "Min. of RAM utilization"),
 
     MIN_ACTIVATED_RULES(3, "Min. number of activated rules");
 
@@ -25,18 +25,18 @@ public enum DISTRIBUTION_STRATEGY {
             }
         }
 
-        return MIN_CPU_UTILIZATION;
+        return MIN_CPU_USAGE;
     }
 
     public static DISTRIBUTION_STRATEGY getByDescription(String description) {
 
         for (DISTRIBUTION_STRATEGY strategy : DISTRIBUTION_STRATEGY.values()) {
-            if (strategy.getClass().equals(description)) {
+            if (strategy.getDescription().equals(description)) {
                 return strategy;
             }
         }
 
-        return MIN_CPU_UTILIZATION;
+        return MIN_CPU_USAGE;
     }
 
     public String getDescription() {

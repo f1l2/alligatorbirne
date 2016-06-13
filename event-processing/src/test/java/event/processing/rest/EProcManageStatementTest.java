@@ -51,7 +51,7 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
 
         when().get(RESOURCE_NAMING.EP_GET_ALL_QUERIES.getPath())
 
-        .then().statusCode(200);
+                .then().statusCode(200);
     }
 
     @Test
@@ -61,7 +61,7 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
 
         given().body(query).when().post(ResourceUtils.getPath(RESOURCE_NAMING.EP_REGISTRATION_QUERY, queryName))
 
-        .then().statusCode(HttpStatus.OK.value());
+                .then().statusCode(HttpStatus.OK.value());
 
     }
 
@@ -72,7 +72,7 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
 
         given().body(query).when().post(ResourceUtils.getPath(RESOURCE_NAMING.EP_REGISTRATION_QUERY, queryName))
 
-        .then().statusCode(HttpStatus.BAD_REQUEST.value());
+                .then().statusCode(HttpStatus.BAD_REQUEST.value());
     }
 
     @Test
@@ -84,11 +84,11 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
 
         given().body(query).when().post(path)
 
-        .then().statusCode(HttpStatus.OK.value());
+                .then().statusCode(HttpStatus.OK.value());
 
         given().body(query).when().post(path)
 
-        .then().statusCode(HttpStatus.BAD_REQUEST.value());
+                .then().statusCode(HttpStatus.BAD_REQUEST.value());
     }
 
     @Test
@@ -98,7 +98,7 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
 
         when().delete(ResourceUtils.getPath(RESOURCE_NAMING.EP_DEREGISTRATION_QUERY, queryName))
 
-        .then().statusCode(HttpStatus.OK.value());
+                .then().statusCode(HttpStatus.OK.value());
     }
 
     @Test
@@ -110,7 +110,7 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
 
         given().body(rule).when().post(ResourceUtils.getPath(RESOURCE_NAMING.EP_REGISTRATION_RULE, ruleName))
 
-        .then().statusCode(HttpStatus.OK.value());
+                .then().statusCode(HttpStatus.OK.value());
     }
 
     @Test
@@ -128,11 +128,11 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
 
         given().body(rule).when().post(ResourceUtils.getPath(RESOURCE_NAMING.EP_REGISTRATION_RULE, ruleName))
 
-        .then().statusCode(HttpStatus.OK.value());
+                .then().statusCode(HttpStatus.OK.value());
 
         given().body(rule).when().post(ResourceUtils.getPath(RESOURCE_NAMING.EP_REGISTRATION_RULE, ruleName))
 
-        .then().statusCode(HttpStatus.BAD_REQUEST.value());
+                .then().statusCode(HttpStatus.BAD_REQUEST.value());
 
     }
 
@@ -143,7 +143,7 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
 
         when().delete(ResourceUtils.getPath(RESOURCE_NAMING.EP_DEREGISTRATION_RULE, ruleName))
 
-        .then().statusCode(HttpStatus.OK.value());
+                .then().statusCode(HttpStatus.OK.value());
     }
 
     @Test
@@ -153,17 +153,17 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
 
         given().body(query).when().post(ResourceUtils.getPath(RESOURCE_NAMING.EP_REGISTRATION_QUERY, queryName))
 
-        .then().statusCode(HttpStatus.OK.value());
+                .then().statusCode(HttpStatus.OK.value());
 
         String rule = queryName + " TRIGGERS device1, domain1, configurationManagement1 = 1";
 
-        given().body(rule).when().post(ResourceUtils.getPath(RESOURCE_NAMING.EP_REGISTRATION_RULE, ruleName))
+        given().body(rule).when().get(ResourceUtils.getPath(RESOURCE_NAMING.EP_REGISTRATION_RULE, ruleName))
 
-        .then().statusCode(HttpStatus.OK.value());
+                .then().statusCode(HttpStatus.OK.value());
 
-        when().get(ResourceUtils.getPath(RESOURCE_NAMING.EP_ACTIVATIONS_RULE, ruleName))
+        when().post(ResourceUtils.getPath(RESOURCE_NAMING.EP_ACTIVATIONS_RULE, ruleName))
 
-        .then().statusCode(HttpStatus.OK.value());
+                .then().statusCode(HttpStatus.OK.value());
 
     }
 
@@ -174,7 +174,7 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
 
         when().get(ResourceUtils.getPath(RESOURCE_NAMING.EP_DEACTIVATIONS_RULE), ruleName)
 
-        .then().statusCode(HttpStatus.OK.value());
+                .then().statusCode(HttpStatus.OK.value());
 
     }
 

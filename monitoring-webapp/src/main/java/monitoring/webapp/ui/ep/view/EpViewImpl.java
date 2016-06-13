@@ -58,7 +58,7 @@ public class EpViewImpl extends AbstractViewImpl<EpNavigator> implements EpView 
         queryTable.setWidth(100, Unit.PERCENTAGE);
         queryTable.addStyleName("virtual-table-min-width");
 
-        ruleTable = new RuleTableImpl();
+        ruleTable = new RuleTableImpl(true);
         ruleTable.setSelectable(false);
         ruleTable.setImmediate(true);
         ruleTable.setColumnExpandRatio(RuleTable.COLUMN.RULE, 1.0f);

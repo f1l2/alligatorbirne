@@ -44,9 +44,7 @@ public class RuleComponentImpl extends NotifyComponent implements RuleComponent 
             UI.getCurrent().addWindow(getAddRuleWindow());
         });
 
-        ruleTable = new RuleTableImpl();
-        ruleTable.setWidth(100, Unit.PERCENTAGE);
-        ruleTable = new RuleTableImpl();
+        ruleTable = new RuleTableImpl(false);
         ruleTable.setSelectable(false);
         ruleTable.setImmediate(true);
         ruleTable.setColumnExpandRatio(RuleTable.COLUMN.RULE, 1.0f);

@@ -16,7 +16,7 @@ import monitoring.webapp.ui.utility.UiUtils.ICON;
 import monitoring.webapp.ui.utility.UiUtils.STYLE;
 
 @SuppressWarnings("serial")
-public class ComponentTableImpl extends BeanItemTableImpl<Connection, ComponentTable.COLUMN>implements ComponentTable {
+public class ComponentTableImpl extends BeanItemTableImpl<Connection, ComponentTable.COLUMN> implements ComponentTable {
 
     public ComponentTableImpl() {
 
@@ -65,24 +65,24 @@ public class ComponentTableImpl extends BeanItemTableImpl<Connection, ComponentT
             @Override
             public Object generateCell(Connection containerBeanType) {
 
-                MenuBar.Command cmdView = new MenuBar.Command() {
-
-                    public void menuSelected(MenuItem selectedItem) {
-
-                    }
-                };
-                MenuBar.Command cmdDownload = new MenuBar.Command() {
-
-                    public void menuSelected(MenuItem selectedItem) {
-
-                    }
-                };
+                // MenuBar.Command cmdView = new MenuBar.Command() {
+                //
+                // public void menuSelected(MenuItem selectedItem) {
+                //
+                // }
+                // };
+                // MenuBar.Command cmdDownload = new MenuBar.Command() {
+                //
+                // public void menuSelected(MenuItem selectedItem) {
+                //
+                // }
+                // };
 
                 MenuBar menuBar = UiUtils.newMenuBar(STYLE.VISIBLE_HOVER);
                 MenuItem topItem = UiUtils.newMenuItem(menuBar, "", null, ICON.CONFIGURATION);
 
-                UiUtils.newMenuItem(topItem, "Service Instances", cmdView, ICON.EYE);
-                UiUtils.newMenuItem(topItem, "Download Report", cmdDownload, ICON.FILE_PDF);
+                // UiUtils.newMenuItem(topItem, "Service Instances", cmdView, ICON.EYE);
+                // UiUtils.newMenuItem(topItem, "Download Report", cmdDownload, ICON.FILE_PDF);
 
                 VerticalLayout layout = new VerticalLayout();
                 layout.setDefaultComponentAlignment(Alignment.MIDDLE_RIGHT);

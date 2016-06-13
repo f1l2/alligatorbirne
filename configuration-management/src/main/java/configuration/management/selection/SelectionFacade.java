@@ -24,9 +24,9 @@ public class SelectionFacade {
 
         if (DISTRIBUTION_STRATEGY.MIN_ACTIVATED_RULES.equals(strategy)) {
             return minNumberOfActiveRules.select();
-        } else if (DISTRIBUTION_STRATEGY.MIN_CPU_UTILIZATION.equals(strategy)) {
+        } else if (DISTRIBUTION_STRATEGY.MIN_CPU_USAGE.equals(strategy)) {
             return minCpuUtilization.select();
-        } else if (DISTRIBUTION_STRATEGY.MIN_RAM_UTILIZATION.equals(strategy)) {
+        } else if (DISTRIBUTION_STRATEGY.MIN_RAM_USAGE.equals(strategy)) {
             return minRAMUtilization.select();
         }
         return Optional.empty();
