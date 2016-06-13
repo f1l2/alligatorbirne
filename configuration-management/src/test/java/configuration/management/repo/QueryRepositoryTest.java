@@ -36,7 +36,7 @@ public class QueryRepositoryTest {
 
         query = new QueryDLO();
         query.setName(nameStr);
-        query.setQuery(queryStr);
+        query.setQuery(queryStr.toLowerCase());
 
         repo.save(query);
     }
@@ -72,5 +72,4 @@ public class QueryRepositoryTest {
         assertNotNull(allQueries);
         assertEquals(0, allQueries.size());
     }
-
 }

@@ -65,7 +65,7 @@ public class ApplicationConfig implements SchedulingConfigurer {
 
                 } else if (status.getCurrent().equals(STATUS_TYPE.REGISTER_EP)) {
                     /**
-                     * Add one time unit as long device tries to register.
+                     * Add one time unit as long as device tries to register.
                      * 
                      */
 

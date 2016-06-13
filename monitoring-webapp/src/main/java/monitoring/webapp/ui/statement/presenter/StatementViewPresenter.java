@@ -23,8 +23,6 @@ public class StatementViewPresenter extends AbstractPresenter<MonitoringService,
         queryComponentPresenter.setModel(model.listRegisteredQuery());
         queryComponentPresenter.setUserInterface(userInterface.getQueryComponent());
 
-        System.out.println("HERE");
-
         ruleComponentPresenter.setModel(model.listRegisteredRule());
         ruleComponentPresenter.setUserInterface(userInterface.getRuleComponent());
 

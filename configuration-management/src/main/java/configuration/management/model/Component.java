@@ -16,6 +16,12 @@ import javax.persistence.OneToMany;
 
 import common.data.type.COMPONENT_TYPE;
 
+/**
+ * Parent container for components. Components are all nodes except Configuration Management.
+ * 
+ * @author Manuel Filz
+ *
+ */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Component {

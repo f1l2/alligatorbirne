@@ -9,7 +9,7 @@ import common.data.Connection;
 import common.data.DataSource;
 
 /**
- * Interface definition
+ * Interface definition for the management of event processing components.
  * 
  * @author Manuel Filz
  * 

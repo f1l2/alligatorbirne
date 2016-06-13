@@ -46,7 +46,7 @@ public class CMManageStatementTest extends AbstractTestRestCM {
 
         when().get(RESOURCE_NAMING.CM_GET_ALL_QUERIES.getPath())
 
-        .then().statusCode(200);
+                .then().statusCode(200);
     }
 
     @Test
@@ -56,7 +56,7 @@ public class CMManageStatementTest extends AbstractTestRestCM {
 
         given().body(query).when().post(ResourceUtils.getPath(RESOURCE_NAMING.CM_REGISTRATION_QUERY, queryName))
 
-        .then().statusCode(HttpStatus.OK.value());
+                .then().statusCode(HttpStatus.OK.value());
 
     }
 
@@ -67,7 +67,7 @@ public class CMManageStatementTest extends AbstractTestRestCM {
 
         given().body(query).when().post(ResourceUtils.getPath(RESOURCE_NAMING.CM_REGISTRATION_QUERY, queryName))
 
-        .then().statusCode(HttpStatus.BAD_REQUEST.value());
+                .then().statusCode(HttpStatus.BAD_REQUEST.value());
     }
 
     @Test
@@ -79,11 +79,11 @@ public class CMManageStatementTest extends AbstractTestRestCM {
 
         given().body(query).when().post(path)
 
-        .then().statusCode(HttpStatus.OK.value());
+                .then().statusCode(HttpStatus.OK.value());
 
         given().body(query).when().post(path)
 
-        .then().statusCode(HttpStatus.BAD_REQUEST.value());
+                .then().statusCode(HttpStatus.BAD_REQUEST.value());
     }
 
     @Test
@@ -93,7 +93,7 @@ public class CMManageStatementTest extends AbstractTestRestCM {
 
         when().delete(ResourceUtils.getPath(RESOURCE_NAMING.CM_DEREGISTRATION_QUERY, queryName))
 
-        .then().statusCode(HttpStatus.OK.value());
+                .then().statusCode(HttpStatus.OK.value());
     }
 
     @Test
@@ -105,7 +105,7 @@ public class CMManageStatementTest extends AbstractTestRestCM {
 
         given().body(rule).when().post(ResourceUtils.getPath(RESOURCE_NAMING.CM_REGISTRATION_RULE, ruleName))
 
-        .then().statusCode(HttpStatus.OK.value());
+                .then().statusCode(HttpStatus.OK.value());
     }
 
     @Test
@@ -123,11 +123,11 @@ public class CMManageStatementTest extends AbstractTestRestCM {
 
         given().body(rule).when().post(ResourceUtils.getPath(RESOURCE_NAMING.CM_REGISTRATION_RULE, ruleName))
 
-        .then().statusCode(HttpStatus.OK.value());
+                .then().statusCode(HttpStatus.OK.value());
 
         given().body(rule).when().post(ResourceUtils.getPath(RESOURCE_NAMING.CM_REGISTRATION_RULE, ruleName))
 
-        .then().statusCode(HttpStatus.BAD_REQUEST.value());
+                .then().statusCode(HttpStatus.BAD_REQUEST.value());
 
     }
 
@@ -138,7 +138,7 @@ public class CMManageStatementTest extends AbstractTestRestCM {
 
         when().delete(ResourceUtils.getPath(RESOURCE_NAMING.CM_DEREGISTRATION_RULE, ruleName))
 
-        .then().statusCode(HttpStatus.OK.value());
+                .then().statusCode(HttpStatus.OK.value());
     }
 
     @Test
@@ -148,17 +148,17 @@ public class CMManageStatementTest extends AbstractTestRestCM {
 
         given().body(query).when().post(ResourceUtils.getPath(RESOURCE_NAMING.CM_REGISTRATION_QUERY, queryName))
 
-        .then().statusCode(HttpStatus.OK.value());
+                .then().statusCode(HttpStatus.OK.value());
 
         String rule = queryName + " TRIGGERS device1, domain1, configurationManagement1 = 1";
 
         given().body(rule).when().post(ResourceUtils.getPath(RESOURCE_NAMING.CM_REGISTRATION_RULE, ruleName))
 
-        .then().statusCode(HttpStatus.OK.value());
+                .then().statusCode(HttpStatus.OK.value());
 
         when().get(ResourceUtils.getPath(RESOURCE_NAMING.CM_ACTIVATIONS_RULE, ruleName))
 
-        .then().statusCode(HttpStatus.OK.value());
+                .then().statusCode(HttpStatus.OK.value());
 
     }
 
@@ -169,7 +169,7 @@ public class CMManageStatementTest extends AbstractTestRestCM {
 
         when().get(ResourceUtils.getPath(RESOURCE_NAMING.CM_DEACTIVATIONS_RULE), ruleName)
 
-        .then().statusCode(HttpStatus.OK.value());
+                .then().statusCode(HttpStatus.OK.value());
 
     }
 

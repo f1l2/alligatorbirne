@@ -38,7 +38,7 @@ public class EventProcessingRepositoryTest {
         ep1.setCreated(new Date());
         ep1.setUpdated(new Date());
         ep1.setName("ep1");
-        ep1.setAuthority("http://url1.bla.bla.at");
+        ep1.setAuthority("url1.bla.bla.at");
 
         ep1 = this.eventProcessingRepo.save(ep1);
 
@@ -47,7 +47,7 @@ public class EventProcessingRepositoryTest {
         ep2.setCreated(new Date());
         ep2.setUpdated(new Date());
         ep2.setName("ep2");
-        ep2.setAuthority("http://url2.bla.bla.at");
+        ep2.setAuthority("url2.bla.bla.at");
 
         ep2 = this.eventProcessingRepo.save(ep2);
 

@@ -13,10 +13,10 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
-import configuration.management.model.EventProcessingDLO;
 import configuration.management.model.DeviceDLO;
-import configuration.management.repo.EventProcessingRepository;
+import configuration.management.model.EventProcessingDLO;
 import configuration.management.repo.DeviceRepository;
+import configuration.management.repo.EventProcessingRepository;
 
 @Component
 public class ApplicationScheduler {
@@ -33,7 +33,7 @@ public class ApplicationScheduler {
 
     @Scheduled(fixedDelay = 6000)
     @Transactional
-    public void carryOutActivity() {
+    public void execute() {
 
         /**
          * Detect obsolete components

@@ -55,7 +55,6 @@ public class QueryRepositoryImpl implements QueryRepository {
     public void save(QueryLang query) {
 
         String name = before(query.getName());
-
         repo.put(name, query);
     }
 
@@ -63,7 +62,6 @@ public class QueryRepositoryImpl implements QueryRepository {
     public void delete(String name) {
 
         name = before(name);
-
         repo.remove(name);
     }
 

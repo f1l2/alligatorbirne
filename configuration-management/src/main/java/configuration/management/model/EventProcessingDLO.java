@@ -14,23 +14,21 @@ public class EventProcessingDLO extends Component {
         super();
         setType(COMPONENT_TYPE.DEVICE);
     }
-    
+
     @Column
     private int numberOfActiveRules;
-    
+
     @Column
     private int cpuUsage;
-    
+
     @Column
     private int ramUsage;
-    
 
-	public int getNumberOfActiveRules() {
-		return numberOfActiveRules;
-	}
+    public int getNumberOfActiveRules() {
+        return numberOfActiveRules;
+    }
 
-	public void setNumberOfActiveRules(int numberOfActiveRules) {
-		this.numberOfActiveRules = numberOfActiveRules;
-	}
-
+    public void setNumberOfActiveRules(int numberOfActiveRules) {
+        this.numberOfActiveRules = numberOfActiveRules;
+    }
 }

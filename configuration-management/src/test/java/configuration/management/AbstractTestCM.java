@@ -29,7 +29,7 @@ public class AbstractTestCM {
         device1.setCreated(new Date());
         device1.setUpdated(new Date());
         device1.setName("device1");
-        device1.setAuthority("http://url1.bla.bla.at");
+        device1.setAuthority("url1.bla.bla.at:8080");
 
         device1 = this.deviceRepo.save(device1);
 
@@ -38,7 +38,7 @@ public class AbstractTestCM {
         device2.setCreated(new Date());
         device2.setUpdated(new Date());
         device2.setName("device2");
-        device2.setAuthority("http://url2.bla.bla.at");
+        device2.setAuthority("url2.bla.bla.at");
 
         device2 = this.deviceRepo.save(device2);
 

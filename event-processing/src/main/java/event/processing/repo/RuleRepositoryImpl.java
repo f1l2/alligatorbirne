@@ -15,7 +15,7 @@ import common.utilities.NormalizeString;
 @Component
 public class RuleRepositoryImpl implements RuleRepository {
 
-    private Map<String, RuleLang> repo = new LinkedHashMap<String, RuleLang>();
+    private Map<String, RuleLang> repo = new LinkedHashMap<>();
 
     private String before(String name) {
         return NormalizeString.normalize(name);
@@ -36,7 +36,7 @@ public class RuleRepositoryImpl implements RuleRepository {
     @Override
     public List<RuleLang> findAll() {
 
-        List<RuleLang> rules = new ArrayList<RuleLang>();
+        List<RuleLang> rules = new ArrayList<>();
 
         Iterator<RuleLang> it = repo.values().iterator();
         while (it.hasNext()) {
