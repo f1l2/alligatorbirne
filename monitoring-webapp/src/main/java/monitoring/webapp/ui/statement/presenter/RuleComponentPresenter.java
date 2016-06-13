@@ -11,7 +11,7 @@ import monitoring.webapp.ui.presenter.AbstractPresenter;
 import monitoring.webapp.ui.statement.component.RuleComponent;
 import monitoring.webapp.ui.statement.component.RuleComponent.RuleComponentListener;
 
-public class RuleComponentPresenter extends AbstractPresenter<List<RuleDTO>, RuleComponent>implements RuleComponentListener, RuleTableListener {
+public class RuleComponentPresenter extends AbstractPresenter<List<RuleDTO>, RuleComponent> implements RuleComponentListener, RuleTableListener {
 
     public RuleComponentPresenter(MonitoringService monitoringService) {
         super(monitoringService);
@@ -42,6 +42,7 @@ public class RuleComponentPresenter extends AbstractPresenter<List<RuleDTO>, Rul
     @Override
     protected void initUserInterface(RuleComponent userInterface) {
         userInterface.addRuleComponentListener(this);
+        userInterface.setPreparedRules(getMonitoringService().getPreparedQueries());
     }
 
     @Override

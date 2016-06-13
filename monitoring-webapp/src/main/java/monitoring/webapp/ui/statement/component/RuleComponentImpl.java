@@ -1,6 +1,11 @@
 package monitoring.webapp.ui.statement.component;
 
+import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
+
 import com.vaadin.ui.Button;
+import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.TextField;
@@ -23,6 +28,8 @@ public class RuleComponentImpl extends NotifyComponent implements RuleComponent 
     private RuleTableImpl queryTable;
 
     private Button addBtn;
+
+    private List<String> preparedRules;
 
     public RuleComponentImpl() {
 
@@ -63,17 +70,35 @@ public class RuleComponentImpl extends NotifyComponent implements RuleComponent 
         TextField nameTxtField = new TextField("Name");
         TextField queryTxtField = new TextField("Rule");
 
-        nameTxtField.setWidth(100, Unit.PERCENTAGE);
-        editorForm.addComponent(nameTxtField);
+        ComboBox ruleComboBox = new ComboBox("");
+        preparedRules.stream().forEach(pq -> ruleComboBox.addItem(pq));
 
+        nameTxtField.setWidth(100, Unit.PERCENTAGE);
+        ruleComboBox.setWidth(100, Unit.PERCENTAGE);
+        nameTxtField.setWidth(100, Unit.PERCENTAGE);
         queryTxtField.setWidth(100, Unit.PERCENTAGE);
+
+        editorForm.addComponent(nameTxtField);
         editorForm.addComponent(queryTxtField);
+        editorForm.addComponent(ruleComboBox);
 
         Button saveBtn = UiUtils.newButton(ICON.DISK);
         saveBtn.setDescription("Save");
         saveBtn.addClickListener(e -> {
 
-            fireUpdate(nameTxtField.getValue(), queryTxtField.getValue());
+            String rule = null;
+            if ((null == ruleComboBox.getValue()) && (StringUtils.isBlank(queryTxtField.getValue()))) {
+                // do nothing
+            } else if (null != ruleComboBox.getValue()) {
+                rule = ruleComboBox.getValue().toString();
+            } else if (StringUtils.isNotBlank(queryTxtField.getValue())) {
+                rule = queryTxtField.getValue();
+            }
+
+            if (StringUtils.isNotBlank(rule)) {
+                fireUpdate(nameTxtField.getValue(), rule);
+            }
+
             editorWindow.close();
         });
 
@@ -117,5 +142,10 @@ public class RuleComponentImpl extends NotifyComponent implements RuleComponent 
     public void addRuleComponentListener(RuleComponentListener queryComponentListener) {
         eventListenerManager.addEventListener(queryComponentListener);
 
+    }
+
+    @Override
+    public void setPreparedRules(List<String> preparedRules) {
+        this.preparedRules = preparedRules;
     }
 }

@@ -1,6 +1,11 @@
 package monitoring.webapp.ui.statement.component;
 
+import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
+
 import com.vaadin.ui.Button;
+import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.TextField;
@@ -23,6 +28,8 @@ public class QueryComponentImpl extends NotifyComponent implements QueryComponen
     private QueryTableImpl queryTable;
 
     private Button addBtn;
+
+    private List<String> preparedQueries;
 
     public QueryComponentImpl() {
 
@@ -61,18 +68,34 @@ public class QueryComponentImpl extends NotifyComponent implements QueryComponen
 
         TextField nameTxtField = new TextField("Name");
         TextField queryTxtField = new TextField("Query");
+        ComboBox queryComboBox = new ComboBox("");
+        preparedQueries.stream().forEach(pq -> queryComboBox.addItem(pq));
 
         nameTxtField.setWidth(100, Unit.PERCENTAGE);
-        editorForm.addComponent(nameTxtField);
+        queryComboBox.setWidth(100, Unit.PERCENTAGE);
 
         queryTxtField.setWidth(100, Unit.PERCENTAGE);
+
+        editorForm.addComponent(nameTxtField);
         editorForm.addComponent(queryTxtField);
+        editorForm.addComponent(queryComboBox);
 
         Button saveBtn = UiUtils.newButton(ICON.DISK);
         saveBtn.setDescription("Save");
         saveBtn.addClickListener(e -> {
 
-            fireUpdate(nameTxtField.getValue(), queryTxtField.getValue());
+            String query = null;
+            if ((null == queryComboBox.getValue()) && (StringUtils.isBlank(queryTxtField.getValue()))) {
+                // do nothing
+            } else if (null != queryComboBox.getValue()) {
+                query = queryComboBox.getValue().toString();
+            } else if (StringUtils.isNotBlank(queryTxtField.getValue())) {
+                query = queryTxtField.getValue();
+            }
+
+            if (StringUtils.isNotBlank(query)) {
+                fireUpdate(nameTxtField.getValue(), query);
+            }
             editorWindow.close();
         });
 
@@ -115,6 +138,11 @@ public class QueryComponentImpl extends NotifyComponent implements QueryComponen
     @Override
     public void addQueryComponentListener(QueryComponentListener queryComponentListener) {
         eventListenerManager.addEventListener(queryComponentListener);
-
     }
+
+    @Override
+    public void setPreparedQueries(List<String> preparedQueries) {
+        this.preparedQueries = preparedQueries;
+    }
+
 }

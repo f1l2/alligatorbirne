@@ -1,6 +1,7 @@
 package monitoring.webapp.ui.statement.component;
 
 import java.util.EventListener;
+import java.util.List;
 
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Window;
@@ -16,11 +17,13 @@ public interface QueryComponent extends Notify {
 
     public void addQueryComponentListener(QueryComponentListener externalLinkComponentListener);
 
+    public Window getAddQueryWindow();
+
+    public void setPreparedQueries(List<String> preparedQueries);
+
     public static interface QueryComponentListener extends EventListener {
 
         public void save(String name, String query);
     }
-
-    public Window getAddQueryWindow();
 
 }

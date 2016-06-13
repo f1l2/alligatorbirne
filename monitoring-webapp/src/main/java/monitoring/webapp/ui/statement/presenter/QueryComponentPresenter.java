@@ -11,7 +11,7 @@ import monitoring.webapp.ui.presenter.AbstractPresenter;
 import monitoring.webapp.ui.statement.component.QueryComponent;
 import monitoring.webapp.ui.statement.component.QueryComponent.QueryComponentListener;
 
-public class QueryComponentPresenter extends AbstractPresenter<List<QueryDTO>, QueryComponent>implements QueryComponentListener, QueryTableListener {
+public class QueryComponentPresenter extends AbstractPresenter<List<QueryDTO>, QueryComponent> implements QueryComponentListener, QueryTableListener {
 
     public QueryComponentPresenter(MonitoringService monitoringService) {
         super(monitoringService);
@@ -41,6 +41,7 @@ public class QueryComponentPresenter extends AbstractPresenter<List<QueryDTO>, Q
     @Override
     protected void initUserInterface(QueryComponent userInterface) {
         userInterface.addQueryComponentListener(this);
+        userInterface.setPreparedQueries(getMonitoringService().getPreparedQueries());
     }
 
     @Override

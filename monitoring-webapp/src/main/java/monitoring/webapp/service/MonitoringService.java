@@ -20,6 +20,7 @@ import javax.servlet.ServletException;
 import org.apache.activemq.broker.BrokerService;
 import org.apache.activemq.broker.jmx.TopicViewMBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -36,6 +37,7 @@ import common.rest.ResourceUtils;
 import common.rest.UrlUtils;
 
 @Component
+@ConfigurationProperties("c")
 public class MonitoringService {
 
     @Autowired
@@ -43,6 +45,9 @@ public class MonitoringService {
 
     @Autowired
     private BrokerService brokerService;
+
+    @Autowired
+    private PrototypeProperties properties;
 
     private RestTemplate restTemplate;
 
@@ -315,6 +320,14 @@ public class MonitoringService {
         }
 
         return logs;
+    }
+
+    public List<String> getPreparedQueries() {
+        return properties.getPreparedQueries();
+    }
+
+    public List<String> getPreparedRules() {
+        return properties.getPreparedRules();
     }
 
 }
