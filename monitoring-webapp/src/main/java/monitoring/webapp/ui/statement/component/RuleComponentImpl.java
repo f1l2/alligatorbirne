@@ -1,5 +1,6 @@
 package monitoring.webapp.ui.statement.component;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -13,6 +14,8 @@ import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
+import common.data.dto.RuleDTO;
+import common.selection.DISTRIBUTION_STRATEGY;
 import monitoring.webapp.ui.ep.component.RuleTable;
 import monitoring.webapp.ui.ep.component.RuleTableImpl;
 import monitoring.webapp.ui.event.EventListenerManager;
@@ -25,11 +28,13 @@ public class RuleComponentImpl extends NotifyComponent implements RuleComponent 
 
     private EventListenerManager<RuleComponentListener> eventListenerManager = new EventListenerManager<RuleComponentListener>();
 
-    private RuleTableImpl queryTable;
+    private RuleTableImpl ruleTable;
 
     private Button addBtn;
 
-    private List<String> preparedRules;
+    private ComboBox cbStrategy;
+
+    private List<RuleDTO> preparedRules;
 
     public RuleComponentImpl() {
 
@@ -39,24 +44,33 @@ public class RuleComponentImpl extends NotifyComponent implements RuleComponent 
             UI.getCurrent().addWindow(getAddRuleWindow());
         });
 
-        queryTable = new RuleTableImpl();
-        queryTable.setWidth(100, Unit.PERCENTAGE);
-        queryTable = new RuleTableImpl();
-        queryTable.setSelectable(false);
-        queryTable.setImmediate(true);
-        queryTable.setColumnExpandRatio(RuleTable.COLUMN.RULE, 1.0f);
-        queryTable.setWidth(100, Unit.PERCENTAGE);
-        queryTable.addStyleName("virtual-table-min-width");
+        ruleTable = new RuleTableImpl();
+        ruleTable.setWidth(100, Unit.PERCENTAGE);
+        ruleTable = new RuleTableImpl();
+        ruleTable.setSelectable(false);
+        ruleTable.setImmediate(true);
+        ruleTable.setColumnExpandRatio(RuleTable.COLUMN.RULE, 1.0f);
+        ruleTable.setWidth(100, Unit.PERCENTAGE);
+        ruleTable.addStyleName("virtual-table-min-width");
 
         HorizontalLayout btnLayout = new HorizontalLayout();
         btnLayout.setMargin(true);
         btnLayout.addComponent(addBtn);
         btnLayout.addStyleName("monitoring-spacing-margin-inner");
 
+        cbStrategy = new ComboBox("Distribution Strategy");
+        cbStrategy.addStyleName("monitoring-label-monospace");
+
+        Arrays.stream(DISTRIBUTION_STRATEGY.values()).forEach(ds -> cbStrategy.addItem(ds.getDescription()));
+
+        final FormLayout formLayout = new FormLayout();
+        formLayout.addComponent(cbStrategy);
+
         VerticalLayout vLayout = new VerticalLayout();
         vLayout.setSpacing(true);
-        vLayout.addComponent(queryTable);
+        vLayout.addComponent(ruleTable);
         vLayout.addComponent(btnLayout);
+        vLayout.addComponent(formLayout);
 
         setCompositionRoot(vLayout);
     }
@@ -71,7 +85,15 @@ public class RuleComponentImpl extends NotifyComponent implements RuleComponent 
         TextField queryTxtField = new TextField("Rule");
 
         ComboBox ruleComboBox = new ComboBox("");
+
         preparedRules.stream().forEach(pq -> ruleComboBox.addItem(pq));
+        preparedRules.stream().forEach(pq -> ruleComboBox.setItemCaption(pq, pq.getRule()));
+
+        ruleComboBox.addValueChangeListener(l -> {
+            if (ruleComboBox.getValue() != null) {
+                nameTxtField.setValue(((RuleDTO) ruleComboBox.getValue()).getName());
+            }
+        });
 
         nameTxtField.setWidth(100, Unit.PERCENTAGE);
         ruleComboBox.setWidth(100, Unit.PERCENTAGE);
@@ -90,7 +112,7 @@ public class RuleComponentImpl extends NotifyComponent implements RuleComponent 
             if ((null == ruleComboBox.getValue()) && (StringUtils.isBlank(queryTxtField.getValue()))) {
                 // do nothing
             } else if (null != ruleComboBox.getValue()) {
-                rule = ruleComboBox.getValue().toString();
+                rule = ((RuleDTO) ruleComboBox.getValue()).getRule();
             } else if (StringUtils.isNotBlank(queryTxtField.getValue())) {
                 rule = queryTxtField.getValue();
             }
@@ -130,7 +152,7 @@ public class RuleComponentImpl extends NotifyComponent implements RuleComponent 
 
     @Override
     public RuleTableImpl getRuleTable() {
-        return queryTable;
+        return ruleTable;
     }
 
     @Override
@@ -141,11 +163,15 @@ public class RuleComponentImpl extends NotifyComponent implements RuleComponent 
     @Override
     public void addRuleComponentListener(RuleComponentListener queryComponentListener) {
         eventListenerManager.addEventListener(queryComponentListener);
-
     }
 
     @Override
-    public void setPreparedRules(List<String> preparedRules) {
+    public ComboBox getCbStrategy() {
+        return cbStrategy;
+    }
+
+    @Override
+    public void setPreparedRules(List<RuleDTO> preparedRules) {
         this.preparedRules = preparedRules;
     }
 }

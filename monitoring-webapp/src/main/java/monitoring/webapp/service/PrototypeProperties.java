@@ -8,6 +8,9 @@ import java.util.Properties;
 
 import org.springframework.stereotype.Component;
 
+import common.data.dto.QueryDTO;
+import common.data.dto.RuleDTO;
+
 @Component
 public class PrototypeProperties {
 
@@ -40,34 +43,43 @@ public class PrototypeProperties {
         }
     }
 
-    public List<String> getPreparedQueries() {
-
-        List<String> preparedQueries = new ArrayList<String>();
+    public List<QueryDTO> getPreparedQueries() {
+        List<QueryDTO> preparedQueries = new ArrayList<QueryDTO>();
 
         for (int i = 1;; i++) {
-            Object object = properties.get("query" + i);
-            if (object != null) {
-                preparedQueries.add(object.toString());
+            Object query = properties.get("query.query" + i);
+            Object name = properties.get("query.name" + i);
+            if ((query != null) && (name != null)) {
+
+                QueryDTO queryDTO = new QueryDTO();
+                queryDTO.setName(name.toString());
+                queryDTO.setQuery(query.toString());
+
+                preparedQueries.add(queryDTO);
             } else {
                 break;
             }
         }
-
         return preparedQueries;
     }
 
-    public List<String> getPreparedRules() {
-        List<String> preparedRules = new ArrayList<String>();
+    public List<RuleDTO> getPreparedRules() {
+        List<RuleDTO> preparedRules = new ArrayList<RuleDTO>();
 
         for (int i = 1;; i++) {
-            Object object = properties.get("rule" + i);
-            if (object != null) {
-                preparedRules.add(object.toString());
+            Object rule = properties.get("rule.rule" + i);
+            Object name = properties.get("rule.name" + i);
+            if ((rule != null) && (name != null)) {
+
+                RuleDTO ruleDTO = new RuleDTO();
+                ruleDTO.setName(name.toString());
+                ruleDTO.setRule(rule.toString());
+
+                preparedRules.add(ruleDTO);
             } else {
                 break;
             }
         }
         return preparedRules;
     }
-
 }

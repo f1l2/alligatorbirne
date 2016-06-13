@@ -21,7 +21,9 @@ import common.data.dto.RuleDTO;
 import common.exception.ValidationException;
 import common.lang.rule.RuleLang;
 import common.rest.RESOURCE_NAMING;
+import common.selection.DISTRIBUTION_STRATEGY;
 import common.transformer.Transformer;
+import common.utilities.NormalizeString;
 import configuration.management.model.EventProcessingDLO;
 import configuration.management.model.RuleDLO;
 import configuration.management.repo.EventProcessingTransformer;
@@ -32,7 +34,7 @@ import configuration.management.rest.activity.AssignRule;
 import configuration.management.rest.activity.ExecuteRestActivity;
 import configuration.management.rest.activity.ValidateAssignRuleItem;
 import configuration.management.rest.activity.model.AssignRuleItem;
-import configuration.management.selection.MinNumberOfActiveRules;
+import configuration.management.selection.SelectionFacade;
 import configuration.management.statement.RuleLangFactory;
 
 @RestController
@@ -53,7 +55,7 @@ public class CMManageRuleImpl extends RestCM implements CMManageRule {
     private RuleLangFactory ruleLangFactory;
 
     @Autowired
-    private MinNumberOfActiveRules minNumberOfActiveRules;
+    private SelectionFacade selectionFacade;
 
     @Autowired
     private ValidateAssignRuleItem validateAssignRuleItem;
@@ -73,8 +75,11 @@ public class CMManageRuleImpl extends RestCM implements CMManageRule {
 
         logInvokeOfMethod(RESOURCE_NAMING.CM_REGISTRATION_RULE, logger);
 
+        name = NormalizeString.normalize(name);
+        rule = NormalizeString.normalize(rule);
+
         RuleLang ruleLang = null;
-        RuleDLO ruleDLO = null;
+        RuleDLO ruleDLO = new RuleDLO();
 
         try {
             validateIsNotEmpty(name, ERROR_CODES.ERROR_MISSING_RULE_NAME);
@@ -83,8 +88,7 @@ public class CMManageRuleImpl extends RestCM implements CMManageRule {
 
             ruleLang = validateRuleSyntax(rule, ruleLangFactory, ERROR_CODES.ERROR_PARSING_RULE);
 
-            ruleDLO = new RuleDLO();
-            ruleDLO = validateAndFindQueriesToQueryNames(ruleLang, ruleDLO, queryRepository);
+            ruleDLO = validateAndFindQueriesToQueryNames(ruleLang, ruleDLO, queryRepository, ERROR_CODES.ERROR_NON_EXISTING_QUERY);
 
         } catch (ValidationException e) {
             return e.getErrorCode().getErrorResponse();
@@ -103,6 +107,8 @@ public class CMManageRuleImpl extends RestCM implements CMManageRule {
     public ResponseEntity<String> withdrawRule(@PathVariable("name") String name) {
 
         logInvokeOfMethod(RESOURCE_NAMING.CM_DEREGISTRATION_RULE, logger);
+
+        name = NormalizeString.normalize(name);
 
         RuleDLO ruleDLO;
         try {
@@ -134,10 +140,27 @@ public class CMManageRuleImpl extends RestCM implements CMManageRule {
     }
 
     @Override
+    @RequestMapping(value = "/activations/rule/{name}/{strategy}", method = RequestMethod.GET)
+    public ResponseEntity<String> activateRule(@PathVariable("name") String name, @PathVariable("strategy") int strategy) {
+
+        logInvokeOfMethod(RESOURCE_NAMING.CM_ACTIVATIONS_RULE_STRATEGY, logger);
+
+        return activateRule(name, DISTRIBUTION_STRATEGY.getByNumber(strategy));
+    }
+
+    @Override
     @RequestMapping(value = "/activations/rule/{name}", method = RequestMethod.GET)
     public ResponseEntity<String> activateRule(@PathVariable("name") String name) {
 
         logInvokeOfMethod(RESOURCE_NAMING.CM_ACTIVATIONS_RULE, logger);
+
+        return activateRule(name, DISTRIBUTION_STRATEGY.MIN_CPU_UTILIZATION);
+
+    }
+
+    private ResponseEntity<String> activateRule(String name, DISTRIBUTION_STRATEGY strategy) {
+
+        name = NormalizeString.normalize(name);
 
         RuleDLO ruleDLO;
 
@@ -152,15 +175,18 @@ public class CMManageRuleImpl extends RestCM implements CMManageRule {
             return e.getErrorCode().getErrorResponse();
         }
 
-        Optional<EventProcessingDLO> selectedEP = minNumberOfActiveRules.select();
+        Optional<EventProcessingDLO> selectedEP = selectionFacade.select(DISTRIBUTION_STRATEGY.MIN_ACTIVATED_RULES);
 
         if (!selectedEP.isPresent()) {
 
+            logger.info("No EP was selected.");
             // TODO delay activation, as soon as one EP is registered.
 
             return SUCCESS_CODES.OK.getResponse();
 
         } else {
+
+            logger.info("EP selected: {}", selectedEP.get().getAuthority());
 
             AssignRuleItem assignRuleItem = new AssignRuleItem();
             assignRuleItem.setEp(epTransformer.toRemote(selectedEP.get()));
@@ -172,7 +198,6 @@ public class CMManageRuleImpl extends RestCM implements CMManageRule {
 
             return SUCCESS_CODES.OK.getResponse();
         }
-
     }
 
     @Override
@@ -180,6 +205,8 @@ public class CMManageRuleImpl extends RestCM implements CMManageRule {
     public ResponseEntity<String> deactivateRule(@PathVariable("name") String name) {
 
         logInvokeOfMethod(RESOURCE_NAMING.CM_DEACTIVATIONS_RULE, logger);
+
+        name = NormalizeString.normalize(name);
 
         RuleDLO ruleDLO;
 

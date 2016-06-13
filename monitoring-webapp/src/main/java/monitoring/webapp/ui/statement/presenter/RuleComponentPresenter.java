@@ -5,6 +5,7 @@ import java.util.List;
 
 import common.codes.SUCCESS_CODES;
 import common.data.dto.RuleDTO;
+import common.selection.DISTRIBUTION_STRATEGY;
 import monitoring.webapp.service.MonitoringService;
 import monitoring.webapp.ui.ep.component.RuleTable.RuleTableListener;
 import monitoring.webapp.ui.presenter.AbstractPresenter;
@@ -42,7 +43,7 @@ public class RuleComponentPresenter extends AbstractPresenter<List<RuleDTO>, Rul
     @Override
     protected void initUserInterface(RuleComponent userInterface) {
         userInterface.addRuleComponentListener(this);
-        userInterface.setPreparedRules(getMonitoringService().getPreparedQueries());
+        userInterface.setPreparedRules(getMonitoringService().getPreparedRules());
     }
 
     @Override
@@ -52,7 +53,11 @@ public class RuleComponentPresenter extends AbstractPresenter<List<RuleDTO>, Rul
 
     @Override
     public void activate(RuleDTO rule) {
-        String result = getMonitoringService().activateRule(rule);
+
+        DISTRIBUTION_STRATEGY strategy = DISTRIBUTION_STRATEGY.getByDescription(getUserInterface().getCbStrategy().getCaption());
+
+        String result = getMonitoringService().activateRule(rule, strategy.getNumber());
+
         if (SUCCESS_CODES.OK.getMessage().equals(result)) {
             getUserInterface().getRuleTable().removeAllBeanItems();
             getUserInterface().getRuleTable().addBeanItems(getMonitoringService().listRegisteredRule());

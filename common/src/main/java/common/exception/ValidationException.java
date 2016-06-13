@@ -8,10 +8,6 @@ public class ValidationException extends Exception {
 
     private ERROR_CODES errorCode;
 
-    public ValidationException() {
-        super();
-    }
-
     public ValidationException(ERROR_CODES errorCode) {
         super(errorCode.getMessage());
         this.setErrorCode(errorCode);

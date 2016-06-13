@@ -160,9 +160,9 @@ public class MonitoringService {
         restTemplate.delete(url);
     }
 
-    public String activateRule(RuleDTO rule) {
+    public String activateRule(RuleDTO rule, int strategyNumber) {
 
-        String url = ResourceUtils.getUrl(RESOURCE_NAMING.CM_ACTIVATIONS_RULE, connectionCM, rule.getName());
+        String url = ResourceUtils.getUrl(RESOURCE_NAMING.CM_ACTIVATIONS_RULE_STRATEGY, connectionCM, rule.getName(), String.valueOf(strategyNumber));
         ResponseEntity<String> result = restTemplate.getForEntity(url, String.class);
 
         return result.getBody();
@@ -322,11 +322,12 @@ public class MonitoringService {
         return logs;
     }
 
-    public List<String> getPreparedQueries() {
+    public List<QueryDTO> getPreparedQueries() {
+
         return properties.getPreparedQueries();
     }
 
-    public List<String> getPreparedRules() {
+    public List<RuleDTO> getPreparedRules() {
         return properties.getPreparedRules();
     }
 

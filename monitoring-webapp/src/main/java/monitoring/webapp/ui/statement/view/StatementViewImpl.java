@@ -21,7 +21,7 @@ import ru.xpoft.vaadin.VaadinView;
 @org.springframework.stereotype.Component
 @Scope("prototype")
 @VaadinView(StatementView.VIEW_NAME)
-public class StatementViewImpl extends AbstractViewImpl<StatementNavigator>implements StatementView {
+public class StatementViewImpl extends AbstractViewImpl<StatementNavigator> implements StatementView {
 
     private QueryComponentImpl queryComponentImpl;
 
@@ -82,4 +82,5 @@ public class StatementViewImpl extends AbstractViewImpl<StatementNavigator>imple
     public RuleComponent getRuleComponent() {
         return ruleComponentImpl;
     }
+
 }

@@ -12,6 +12,9 @@ public class EventProcessingDLO extends Component {
 
     public EventProcessingDLO() {
         super();
+        setCpuUsage(0);
+        setRamUsage(0);
+        setNumberOfActiveRules(0);
         setType(COMPONENT_TYPE.DEVICE);
     }
 
@@ -30,5 +33,21 @@ public class EventProcessingDLO extends Component {
 
     public void setNumberOfActiveRules(int numberOfActiveRules) {
         this.numberOfActiveRules = numberOfActiveRules;
+    }
+
+    public int getCpuUsage() {
+        return cpuUsage;
+    }
+
+    public void setCpuUsage(int cpuUsage) {
+        this.cpuUsage = cpuUsage;
+    }
+
+    public int getRamUsage() {
+        return ramUsage;
+    }
+
+    public void setRamUsage(int ramUsage) {
+        this.ramUsage = ramUsage;
     }
 }

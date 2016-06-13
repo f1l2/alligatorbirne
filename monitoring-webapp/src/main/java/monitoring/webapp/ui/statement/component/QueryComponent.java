@@ -6,6 +6,7 @@ import java.util.List;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Window;
 
+import common.data.dto.QueryDTO;
 import monitoring.webapp.ui.ep.component.QueryTableImpl;
 import monitoring.webapp.ui.notify.component.Notify;
 
@@ -19,7 +20,7 @@ public interface QueryComponent extends Notify {
 
     public Window getAddQueryWindow();
 
-    public void setPreparedQueries(List<String> preparedQueries);
+    public void setPreparedQueries(List<QueryDTO> preparedQueries);
 
     public static interface QueryComponentListener extends EventListener {
 

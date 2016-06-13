@@ -51,7 +51,11 @@ public final class Messages {
         //
         COMPONENT_UPDATED("monitoring.webapp.ui.component.updated", "Last updated"),
         //
-        DESTINATION("monitoring.webapp.ui.messaging.destination", "Destination");
+        DESTINATION("monitoring.webapp.ui.messaging.destination", "Destination"),
+        //
+        CPU_USAGE("monitoring.webapp.ui.messaging.cpu.usage", "CPU Usage"),
+        //
+        RAM_USAGE("monitoring.webapp.ui.messaging.ram.usage", "RAM Usage");
 
         private final String message;
 

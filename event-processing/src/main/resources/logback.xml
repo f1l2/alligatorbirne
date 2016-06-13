@@ -39,7 +39,7 @@
 		</connectionSource>
 	</appender>
 
-	<logger name="event.processing" level="INFO" >
+	<logger name="event.processing" level="INFO" additivity="false">
 		<appender-ref ref="DB" />
 		<appender-ref ref="CON" />
 	</logger>

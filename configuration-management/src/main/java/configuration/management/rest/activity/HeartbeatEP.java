@@ -20,6 +20,10 @@ public class HeartbeatEP extends Activity<String, Long> {
     @Autowired
     private EventProcessingRepository eventProcessingRepo;
 
+    private Integer value1;
+
+    private Integer value2;
+
     @Override
     public ResponseEntity<String> doStep(Long id) {
 
@@ -27,6 +31,8 @@ public class HeartbeatEP extends Activity<String, Long> {
 
         if (item != null) {
             item.setUpdated(new Date());
+            item.setCpuUsage(value1);
+            item.setRamUsage(value2);
             eventProcessingRepo.save(item);
         } else {
             logger.error("Heartbeat couldn't be processed due EP is not registered.");
@@ -34,4 +40,21 @@ public class HeartbeatEP extends Activity<String, Long> {
         }
         return next("OK", id);
     }
+
+    public Integer getValue1() {
+        return value1;
+    }
+
+    public void setValue1(Integer value1) {
+        this.value1 = value1;
+    }
+
+    public Integer getValue2() {
+        return value2;
+    }
+
+    public void setValue2(Integer value2) {
+        this.value2 = value2;
+    }
+
 }

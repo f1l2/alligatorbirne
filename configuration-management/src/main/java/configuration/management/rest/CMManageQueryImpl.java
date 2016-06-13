@@ -20,6 +20,7 @@ import common.exception.ValidationException;
 import common.rest.RESOURCE_NAMING;
 import common.rest.ResourceUtils;
 import common.transformer.Transformer;
+import common.utilities.NormalizeString;
 import configuration.management.model.QueryDLO;
 import configuration.management.repo.QueryRepository;
 import configuration.management.repo.QueryTransformer;
@@ -49,6 +50,9 @@ public class CMManageQueryImpl extends RestCM implements CMManageQuery {
 
         logInvokeOfMethod(RESOURCE_NAMING.CM_REGISTRATION_QUERY, logger);
 
+        name = NormalizeString.normalize(name);
+        query = NormalizeString.normalize(query);
+
         try {
             validateIsNotEmpty(name, ERROR_CODES.ERROR_MISSING_QUERY_NAME);
 
@@ -73,6 +77,8 @@ public class CMManageQueryImpl extends RestCM implements CMManageQuery {
     public ResponseEntity<String> withdrawQuery(@PathVariable("name") String name) {
 
         logInvokeOfMethod(RESOURCE_NAMING.CM_DEREGISTRATION_QUERY, logger);
+
+        name = NormalizeString.normalize(name);
 
         QueryDLO query = null;
 

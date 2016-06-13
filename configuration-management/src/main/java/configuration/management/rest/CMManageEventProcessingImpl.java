@@ -92,10 +92,13 @@ public class CMManageEventProcessingImpl implements CMManageEventProcessing {
     }
 
     @Override
-    @RequestMapping(value = "/registrations/eventprocessing/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<String> heartbeat(@PathVariable Long id) {
+    @RequestMapping(value = "/registrations/eventprocessing/{id}/{value1}/{value2}", method = RequestMethod.PUT)
+    public ResponseEntity<String> heartbeat(@PathVariable Long id, @PathVariable Integer value1, @PathVariable Integer value2) {
 
         logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.CM_HEART_BEAT_EVENT_PROCESSING));
+
+        heartBeat.setValue1(value1);
+        heartBeat.setValue2(value2);
 
         return heartBeat.doStep(id);
 

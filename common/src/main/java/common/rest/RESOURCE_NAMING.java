@@ -43,7 +43,7 @@ public enum RESOURCE_NAMING {
     //
     CM_GET_EVENT_PROCESSING_DATA_SOURCES("/registrations/devices/eventprocessing/{id}", RequestMethod.GET),
     //
-    CM_HEART_BEAT_EVENT_PROCESSING("/registrations/eventprocessing/{id}", RequestMethod.PUT),
+    CM_HEART_BEAT_EVENT_PROCESSING("/registrations/eventprocessing/{id}/{value1}/{value2}", RequestMethod.PUT),
     //
     CM_DELEGATION("/delegation", RequestMethod.POST),
     //
@@ -60,6 +60,8 @@ public enum RESOURCE_NAMING {
     CM_GET_ALL_RULES("/registrations/rules", RequestMethod.GET),
     //
     CM_ACTIVATIONS_RULE("/activations/rule/{name}", RequestMethod.GET),
+    //
+    CM_ACTIVATIONS_RULE_STRATEGY("/activations/rule/{name}/{strategy}", RequestMethod.GET),
     //
     CM_DEACTIVATIONS_RULE("/deactivations/rule/{name}", RequestMethod.GET),
     //

@@ -32,6 +32,8 @@ public class EventProcessingTransformer extends Transformer<EventProcessingDLO, 
         connection.setUrl(UrlUtils.parseUrl(local.getAuthority()));
         connection.setName(local.getName());
         connection.setUpdated(local.getUpdated());
+        connection.setValue1(local.getCpuUsage());
+        connection.setValue2(local.getRamUsage());
 
         return connection;
     }

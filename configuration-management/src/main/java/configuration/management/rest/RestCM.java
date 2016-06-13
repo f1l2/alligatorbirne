@@ -10,6 +10,7 @@ import common.exception.ValidationException;
 import common.lang.query.QueryLang;
 import common.lang.rule.RuleLang;
 import common.rest.RestCommon;
+import common.utilities.NormalizeString;
 import configuration.management.model.QueryDLO;
 import configuration.management.model.RuleDLO;
 import configuration.management.repo.QueryRepository;
@@ -46,7 +47,7 @@ public class RestCM extends RestCommon {
 
     protected QueryLang validateQuerySyntax(String query, String name, QueryLangFactory queryLangFactory, ERROR_CODES errorCode) throws ValidationException {
         try {
-            return queryLangFactory.parse(query, name);
+            return queryLangFactory.parse(NormalizeString.normalize(query), name);
 
         } catch (Exception e) {
             throw new ValidationException(errorCode);
@@ -55,7 +56,7 @@ public class RestCM extends RestCommon {
 
     protected RuleLang validateRuleSyntax(String rule, RuleLangFactory ruleLangFactory, ERROR_CODES errorCode) throws ValidationException {
         try {
-            return ruleLangFactory.parse(rule);
+            return ruleLangFactory.parse(NormalizeString.normalize(rule));
         } catch (Exception e) {
             throw new ValidationException(errorCode);
         }
@@ -67,7 +68,7 @@ public class RestCM extends RestCommon {
         }
     }
 
-    protected RuleDLO validateAndFindQueriesToQueryNames(RuleLang langRule, RuleDLO rule, QueryRepository qr) throws ValidationException {
+    protected RuleDLO validateAndFindQueriesToQueryNames(RuleLang langRule, RuleDLO rule, QueryRepository qr, ERROR_CODES errorCode) throws ValidationException {
 
         Set<QueryDLO> queries = new HashSet<QueryDLO>();
         for (String queryName : langRule.getQueryNames()) {
@@ -75,7 +76,7 @@ public class RestCM extends RestCommon {
             if (null != query) {
                 queries.add(query);
             } else {
-                throw new ValidationException();
+                throw new ValidationException(errorCode);
             }
         }
         rule.setQueries(queries);

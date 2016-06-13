@@ -8,7 +8,7 @@ public enum STATUS_TYPE {
 
     REGISTER_EP("reg_de", "EP registered at CM", 10),
 
-    WORKING("wor", "EP is working", 300),
+    WORKING("wor", "EP is working", 50),
 
     ERROR("err", "EP is in error state", 30),
 

@@ -13,6 +13,7 @@ import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
+import common.data.dto.QueryDTO;
 import monitoring.webapp.ui.ep.component.QueryTable;
 import monitoring.webapp.ui.ep.component.QueryTableImpl;
 import monitoring.webapp.ui.event.EventListenerManager;
@@ -29,7 +30,7 @@ public class QueryComponentImpl extends NotifyComponent implements QueryComponen
 
     private Button addBtn;
 
-    private List<String> preparedQueries;
+    private List<QueryDTO> preparedQueries;
 
     public QueryComponentImpl() {
 
@@ -69,11 +70,18 @@ public class QueryComponentImpl extends NotifyComponent implements QueryComponen
         TextField nameTxtField = new TextField("Name");
         TextField queryTxtField = new TextField("Query");
         ComboBox queryComboBox = new ComboBox("");
+
+        queryComboBox.addValueChangeListener(l -> {
+            if (queryComboBox.getValue() != null) {
+                nameTxtField.setValue(((QueryDTO) queryComboBox.getValue()).getName());
+            }
+        });
+
         preparedQueries.stream().forEach(pq -> queryComboBox.addItem(pq));
+        preparedQueries.stream().forEach(pq -> queryComboBox.setItemCaption(pq, pq.getQuery()));
 
         nameTxtField.setWidth(100, Unit.PERCENTAGE);
         queryComboBox.setWidth(100, Unit.PERCENTAGE);
-
         queryTxtField.setWidth(100, Unit.PERCENTAGE);
 
         editorForm.addComponent(nameTxtField);
@@ -88,7 +96,7 @@ public class QueryComponentImpl extends NotifyComponent implements QueryComponen
             if ((null == queryComboBox.getValue()) && (StringUtils.isBlank(queryTxtField.getValue()))) {
                 // do nothing
             } else if (null != queryComboBox.getValue()) {
-                query = queryComboBox.getValue().toString();
+                query = ((QueryDTO) queryComboBox.getValue()).getQuery();
             } else if (StringUtils.isNotBlank(queryTxtField.getValue())) {
                 query = queryTxtField.getValue();
             }
@@ -141,7 +149,7 @@ public class QueryComponentImpl extends NotifyComponent implements QueryComponen
     }
 
     @Override
-    public void setPreparedQueries(List<String> preparedQueries) {
+    public void setPreparedQueries(List<QueryDTO> preparedQueries) {
         this.preparedQueries = preparedQueries;
     }
 

@@ -14,8 +14,9 @@ public interface CMManageRule {
 
     public ResponseEntity<String> activateRule(String name);
 
+    public ResponseEntity<String> activateRule(String name, int strategy);
+
     public ResponseEntity<String> deactivateRule(String name);
 
     public List<RuleDTO> getAllRules();
-
 }

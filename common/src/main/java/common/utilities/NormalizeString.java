@@ -12,7 +12,7 @@ public class NormalizeString {
      */
 
     public static String normalize(String string) {
-        return string.toLowerCase();
+        return string.trim().toLowerCase();
     }
 
 }

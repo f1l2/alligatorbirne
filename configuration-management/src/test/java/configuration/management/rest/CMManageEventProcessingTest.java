@@ -77,7 +77,7 @@ public class CMManageEventProcessingTest extends AbstractTestRestCM {
 
         when().get(ResourceUtils.getPath(RESOURCE_NAMING.CM_GET_ALL_EVENT_PROCESSING))
 
-        .then().statusCode(HttpStatus.OK.value());
+                .then().statusCode(HttpStatus.OK.value());
 
     }
 
@@ -131,7 +131,7 @@ public class CMManageEventProcessingTest extends AbstractTestRestCM {
 
         Response response = given()
                 //
-                .when().put(ResourceUtils.getPath(RESOURCE_NAMING.CM_HEART_BEAT_EVENT_PROCESSING, Long.toString(connection.getId())));
+                .when().put(ResourceUtils.getPath(RESOURCE_NAMING.CM_HEART_BEAT_EVENT_PROCESSING, Long.toString(connection.getId()), "12", "13"));
 
         assertEquals(HttpStatus.OK.value(), response.getStatusCode());
 
@@ -150,7 +150,7 @@ public class CMManageEventProcessingTest extends AbstractTestRestCM {
         // send heart beat
         Response response = given()
                 //
-                .when().put(ResourceUtils.getPath(RESOURCE_NAMING.CM_HEART_BEAT_EVENT_PROCESSING, "123"));
+                .when().put(ResourceUtils.getPath(RESOURCE_NAMING.CM_HEART_BEAT_EVENT_PROCESSING, "123", "12", "13"));
 
         assertEquals(HttpStatus.BAD_REQUEST.value(), response.getStatusCode());
 

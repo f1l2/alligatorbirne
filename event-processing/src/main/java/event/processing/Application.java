@@ -20,7 +20,7 @@ public class Application {
          */
 
         for (int i = 0; i < args.length;) {
-            RELATIVE_PATH_TO_CONFIG = args[i];
+            // RELATIVE_PATH_TO_CONFIG = args[i];
             break;
         }
 

@@ -31,7 +31,7 @@ public class ApplicationScheduler {
     @Autowired
     private DeviceRepository deviceRepo;
 
-    @Scheduled(fixedDelay = 6000)
+    @Scheduled(fixedDelay = 60000)
     @Transactional
     public void execute() {
 

@@ -28,6 +28,6 @@ public interface CMManageEventProcessing {
 
     public ResponseEntity<String> delegate(ConfigurationDelegation body);
 
-    public ResponseEntity<String> heartbeat(Long id);
+    public ResponseEntity<String> heartbeat(Long id, Integer cpu_usage, Integer ram_usage);
 
 }

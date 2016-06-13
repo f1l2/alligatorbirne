@@ -17,7 +17,7 @@ import monitoring.webapp.ui.ep.component.QueryTableImpl;
 import monitoring.webapp.ui.ep.component.RuleTable;
 import monitoring.webapp.ui.ep.component.RuleTableImpl;
 import monitoring.webapp.ui.ep.presenter.EpViewPresenter;
-import monitoring.webapp.ui.i18n.Messages;
+import monitoring.webapp.ui.i18n.Messages.MESSAGE;
 import monitoring.webapp.ui.navigator.EpNavigator;
 import monitoring.webapp.ui.utility.UiUtils;
 import monitoring.webapp.ui.view.AbstractViewImpl;
@@ -27,9 +27,9 @@ import ru.xpoft.vaadin.VaadinView;
 @org.springframework.stereotype.Component
 @Scope("prototype")
 @VaadinView(EpView.VIEW_NAME)
-public class EpViewImpl extends AbstractViewImpl<EpNavigator>implements EpView {
+public class EpViewImpl extends AbstractViewImpl<EpNavigator> implements EpView {
 
-    private Label componentId, componentName, componentURL, componentLastUpdated;
+    private Label componentId, componentName, componentURL, componentLastUpdated, componentCPUUsage, componentRAMUsage;
 
     private QueryTableImpl queryTable;
 
@@ -44,10 +44,12 @@ public class EpViewImpl extends AbstractViewImpl<EpNavigator>implements EpView {
     @Override
     protected void init(VerticalLayout layout) {
 
-        componentId = UiUtils.newLabel(Messages.MESSAGE.COMPONENT_ID);
-        componentName = UiUtils.newLabel(Messages.MESSAGE.COMPONENT_NAME);
-        componentURL = UiUtils.newLabel(Messages.MESSAGE.COMPONENT_URL);
-        componentLastUpdated = UiUtils.newLabel(Messages.MESSAGE.COMPONENT_UPDATED);
+        componentId = UiUtils.newLabel(MESSAGE.COMPONENT_ID);
+        componentName = UiUtils.newLabel(MESSAGE.COMPONENT_NAME);
+        componentURL = UiUtils.newLabel(MESSAGE.COMPONENT_URL);
+        componentLastUpdated = UiUtils.newLabel(MESSAGE.COMPONENT_UPDATED);
+        componentCPUUsage = UiUtils.newLabel(MESSAGE.CPU_USAGE);
+        componentRAMUsage = UiUtils.newLabel(MESSAGE.RAM_USAGE);
 
         queryTable = new QueryTableImpl();
         queryTable.setSelectable(false);
@@ -74,6 +76,8 @@ public class EpViewImpl extends AbstractViewImpl<EpNavigator>implements EpView {
         formLayout.addComponent(componentName);
         formLayout.addComponent(componentURL);
         formLayout.addComponent(componentLastUpdated);
+        formLayout.addComponent(componentCPUUsage);
+        formLayout.addComponent(componentRAMUsage);
         formLayout.addComponent(queryTable);
         formLayout.addComponent(ruleTable);
 
@@ -87,6 +91,8 @@ public class EpViewImpl extends AbstractViewImpl<EpNavigator>implements EpView {
         componentName.setValue(connection.getName());
         componentURL.setValue(connection.getUrl().getAuthority());
         componentLastUpdated.setValue(connection.getUpdated().toString());
+        componentCPUUsage.setValue(connection.getValue1().toString());
+        componentRAMUsage.setValue(connection.getValue2().toString());
 
     }
 
@@ -114,5 +120,4 @@ public class EpViewImpl extends AbstractViewImpl<EpNavigator>implements EpView {
     protected EpNavigator createInstance(String parameters) {
         return new EpNavigator(parameters);
     }
-
 }

@@ -34,7 +34,7 @@
     	</connectionSource>
   	</appender> -->
 
-	<logger name="iot.device" level="INFO" >
+	<logger name="iot.device" level="INFO" additivity="false" >
 		<appender-ref ref="CON" />
 	</logger>
 

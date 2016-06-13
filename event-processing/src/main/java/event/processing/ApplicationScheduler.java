@@ -3,6 +3,7 @@ package event.processing;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -28,6 +29,12 @@ public class ApplicationScheduler {
 
     @Autowired
     private Status status;
+
+    @Value("${value1}")
+    private int value1;
+
+    @Value("${value2}")
+    private int value2;
 
     public void carryOutActivity() {
 
@@ -85,8 +92,7 @@ public class ApplicationScheduler {
 
             logger.info("Send heart beat");
 
-            String url = ResourceUtils.getUrl(RESOURCE_NAMING.CM_HEART_BEAT_EVENT_PROCESSING, cm);
-            url = url.replace("{id}", Long.toString(local.getId()));
+            String url = ResourceUtils.getUrl(RESOURCE_NAMING.CM_HEART_BEAT_EVENT_PROCESSING, cm, Long.toString(local.getId()), String.valueOf(value1), String.valueOf(value2));
 
             restTemplate.put(url, null);
 

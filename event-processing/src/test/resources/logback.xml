@@ -29,7 +29,7 @@
 		</layout>
 	</appender>
 
-	<appender name="DB" class="ch.qos.logback.classic.db.DBAppender">
+<!-- 	<appender name="DB" class="ch.qos.logback.classic.db.DBAppender">
 		<connectionSource
 			class="ch.qos.logback.core.db.DriverManagerConnectionSource">
 			<driverClass>org.hsqldb.jdbcDriver</driverClass>
@@ -37,10 +37,9 @@
 			<user>SA</user>
 			<password></password>
 		</connectionSource>
-	</appender>
+	</appender> -->
 
-	<logger name="event.processing" level="INFO" >
-		<appender-ref ref="DB" />
+	<logger name="event.processing" level="INFO" additivity="false" >
 		<appender-ref ref="CON" />
 	</logger>
 	

@@ -34,7 +34,7 @@
     	</connectionSource>
   	</appender> -->
 
-	<logger name="configuration.management" level="INFO" >
+	<logger name="configuration.management" level="INFO" additivity="false" >
 		<appender-ref ref="CON" />
 	</logger>
 	
