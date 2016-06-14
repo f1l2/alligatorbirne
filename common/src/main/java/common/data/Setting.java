@@ -2,6 +2,8 @@ package common.data;
 
 import java.util.List;
 
+import common.data.model.DataSource;
+
 public class Setting {
 
     private List<Connection> connections;

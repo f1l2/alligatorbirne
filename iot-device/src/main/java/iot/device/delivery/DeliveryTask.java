@@ -8,8 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import common.data.DataSource;
 import common.data.dto.DeviceDataDTO;
+import common.data.model.DataSource;
 import common.data.model.SensorData;
 import common.data.setting.SettingUtils;
 import common.property.SystemReservedProperty;

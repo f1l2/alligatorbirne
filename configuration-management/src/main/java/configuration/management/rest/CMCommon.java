@@ -19,18 +19,12 @@ import configuration.management.statement.QueryLangFactory;
 import configuration.management.statement.RuleLangFactory;
 
 /**
- * @author Manuel
- *
+ * Common methods
+ * 
+ * @author Manuel Filz
  */
-public class RestCM extends RestCommon {
+public class CMCommon extends RestCommon {
 
-    /**
-     * Method checks if rule is active.
-     * 
-     * @param rule
-     * @param errorCode
-     * @throws ValidationException
-     */
     protected void validateRuleIsNotActive(RuleDLO rule, ERROR_CODES errorCode) throws ValidationException {
 
         if (null != rule.getEpDLO()) {

@@ -4,14 +4,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import common.data.DataSource;
+import common.data.model.DataSource;
 
 public class DataSourcesDTO {
 
     private Set<DataSource> dataSources = new HashSet<DataSource>();
 
     public DataSourcesDTO() {
-
+        // Default constructor
     }
 
     public DataSourcesDTO(HashSet<DataSource> dataSources) {

@@ -1,4 +1,4 @@
-package configuration.management.rest;
+package configuration.management.rest.impl;
 
 import java.util.List;
 
@@ -16,6 +16,7 @@ import common.transformer.Transformer;
 import configuration.management.model.LogDLO;
 import configuration.management.repo.LogRepository;
 import configuration.management.repo.LogTransformer;
+import configuration.management.rest.CMManageLog;
 
 @RestController
 public class CMManageLogImpl implements CMManageLog {

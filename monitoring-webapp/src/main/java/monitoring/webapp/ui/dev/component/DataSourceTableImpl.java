@@ -1,6 +1,6 @@
 package monitoring.webapp.ui.dev.component;
 
-import common.data.DataSource;
+import common.data.model.DataSource;
 import monitoring.webapp.ui.table.component.BeanItemColumnGenerator;
 import monitoring.webapp.ui.table.component.BeanItemTableImpl;
 

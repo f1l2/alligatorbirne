@@ -3,9 +3,9 @@ package configuration.management.rest.activity.model;
 import common.data.Connection;
 import configuration.management.model.RuleDLO;
 
-public class AssignRuleItem {
+public class RevokeRuleItem {
 
-    public AssignRuleItem(RuleDLO rule, Connection ep) {
+    public RevokeRuleItem(RuleDLO rule, Connection ep) {
         super();
         this.rule = rule;
         this.ep = ep;

@@ -3,7 +3,7 @@ package monitoring.webapp.ui.dev.view;
 import java.util.List;
 
 import common.data.Connection;
-import common.data.DataSource;
+import common.data.model.DataSource;
 import monitoring.webapp.ui.view.AbstractView;
 
 public interface DevView extends AbstractView {

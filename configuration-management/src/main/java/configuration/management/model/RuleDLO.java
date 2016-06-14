@@ -18,6 +18,15 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "RULE")
 public class RuleDLO {
+
+    public RuleDLO() {
+    }
+
+    public RuleDLO(String name, String rule) {
+        this.name = name;
+        this.rule = rule;
+    }
+
     @Id()
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.AUTO)

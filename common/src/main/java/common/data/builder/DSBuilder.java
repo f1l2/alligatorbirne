@@ -1,7 +1,7 @@
 package common.data.builder;
 
-import common.data.DataSource;
 import common.data.dto.DataSourcesDTO;
+import common.data.model.DataSource;
 import common.data.model.DeviceInformation;
 import common.data.model.DomainInformation;
 import common.data.type.DEVICE_INFORMATION_TYPE;

@@ -19,8 +19,8 @@ import com.espertech.esper.client.EPServiceProviderManager;
 import com.espertech.esper.client.EPStatement;
 import com.espertech.esper.client.UpdateListener;
 
-import common.data.DataSource;
 import common.data.model.DataModel;
+import common.data.model.DataSource;
 import common.data.model.DeviceData;
 import common.lang.rule.GenericListener;
 import event.processing.engine.ENGINE_TYPE;

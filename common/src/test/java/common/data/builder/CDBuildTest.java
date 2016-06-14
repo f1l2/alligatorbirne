@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 import common.data.ConfigurationDelegation;
-import common.data.DataSource;
+import common.data.model.DataSource;
 
 public class CDBuildTest {
 

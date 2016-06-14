@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 
 import common.data.ConfigurationDelegation;
 import common.data.Connection;
-import common.data.DataSource;
+import common.data.model.DataSource;
 
 /**
  * Interface definition for the management of event processing components.

@@ -1,4 +1,4 @@
-package configuration.management.rest;
+package configuration.management.rest.impl;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import common.data.ConfigurationDelegation;
 import common.data.Connection;
-import common.data.DataSource;
+import common.data.model.DataSource;
 import common.data.type.COMPONENT_TYPE;
 import common.rest.RESOURCE_NAMING;
 import common.rest.ResourceUtils;
@@ -25,6 +25,7 @@ import configuration.management.model.EventProcessingDLO;
 import configuration.management.repo.DataSourceTransformer;
 import configuration.management.repo.EventProcessingRepository;
 import configuration.management.repo.EventProcessingTransformer;
+import configuration.management.rest.CMManageEventProcessing;
 import configuration.management.rest.activity.DelegateConfigChange;
 import configuration.management.rest.activity.DelegateDeliveryChange;
 import configuration.management.rest.activity.HeartbeatEP;

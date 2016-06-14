@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import common.data.builder.DSBuilder;
 import common.data.dto.DataSourcesDTO;
+import common.data.model.DataSource;
 import common.data.model.DeviceInformation;
 import common.data.model.DomainInformation;
 

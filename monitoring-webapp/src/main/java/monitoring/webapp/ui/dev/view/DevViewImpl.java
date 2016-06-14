@@ -9,7 +9,7 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 
 import common.data.Connection;
-import common.data.DataSource;
+import common.data.model.DataSource;
 import monitoring.webapp.service.MonitoringService;
 import monitoring.webapp.ui.dev.component.DataSourceTable;
 import monitoring.webapp.ui.dev.component.DataSourceTableImpl;

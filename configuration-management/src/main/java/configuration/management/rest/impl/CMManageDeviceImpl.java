@@ -1,4 +1,4 @@
-package configuration.management.rest;
+package configuration.management.rest.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import common.data.Connection;
-import common.data.DataSource;
 import common.data.dto.DataSourcesDTO;
+import common.data.model.DataSource;
 import common.data.type.COMPONENT_TYPE;
 import common.rest.RESOURCE_NAMING;
 import common.rest.ResourceUtils;
@@ -26,6 +26,7 @@ import configuration.management.model.DeviceDLO;
 import configuration.management.repo.DataSourceTransformer;
 import configuration.management.repo.DeviceRepository;
 import configuration.management.repo.DeviceTransformer;
+import configuration.management.rest.CMManageDevice;
 import configuration.management.rest.activity.HeartbeatDevice;
 import configuration.management.rest.activity.RegisterDataSourcesDevice;
 import configuration.management.rest.activity.RegisterDevice;

@@ -1,9 +1,6 @@
-package common.data;
+package common.data.model;
 
 import java.io.Serializable;
-
-import common.data.model.DeviceInformation;
-import common.data.model.DomainInformation;
 
 public class DataSource implements Serializable {
 

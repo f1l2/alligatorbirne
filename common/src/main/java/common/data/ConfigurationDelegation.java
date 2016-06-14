@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Properties;
 import java.util.Set;
 
+import common.data.model.DataSource;
+
 public class ConfigurationDelegation {
 
     private Connection dataSink;

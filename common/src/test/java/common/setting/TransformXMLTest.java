@@ -10,7 +10,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import common.data.DataSource;
+import common.data.model.DataSource;
 import common.data.setting.XMLConnections;
 import common.data.setting.XMLDataSource;
 import common.data.setting.XMLDataSources;

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 import common.data.ConfigurationDelegation;
 import common.data.Connection;
-import common.data.DataSource;
+import common.data.model.DataSource;
 import common.data.type.COMPONENT_TYPE;
 import configuration.management.model.DeviceDLO;
 import configuration.management.repo.DeviceRepository;

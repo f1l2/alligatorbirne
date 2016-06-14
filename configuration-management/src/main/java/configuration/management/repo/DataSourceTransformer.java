@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import common.data.DataSource;
+import common.data.model.DataSource;
 import common.data.model.DeviceInformation;
 import common.data.model.DomainInformation;
 import common.transformer.Transformer;

@@ -14,6 +14,14 @@ import javax.persistence.Table;
 @Table(name = "QUERY")
 public class QueryDLO {
 
+    public QueryDLO() {
+    }
+
+    public QueryDLO(String name, String query) {
+        this.name = name;
+        this.query = query;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

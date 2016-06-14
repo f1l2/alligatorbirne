@@ -12,8 +12,8 @@ import org.junit.Test;
 import org.xml.sax.SAXException;
 
 import common.data.Connection;
-import common.data.DataSource;
 import common.data.Setting;
+import common.data.model.DataSource;
 import common.data.model.DeviceInformation;
 import common.data.model.DomainInformation;
 import common.data.setting.SettingUtils;

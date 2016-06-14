@@ -59,16 +59,20 @@ public class RuleTableImpl extends BeanItemTableImpl<RuleDTO, RuleTable.COLUMN> 
             @Override
             public Object generateCell(RuleDTO beanItem) {
 
-                MenuBar.Command cmdDeActivate = new MenuBar.Command() {
+                MenuBar.Command cmdActivate = new MenuBar.Command() {
 
                     public void menuSelected(MenuItem selectedItem) {
-                        if (beanItem.getIsActive()) {
-                            eventListenerManager.fireEvent(item -> item.deactivate(beanItem));
-                        } else {
-                            eventListenerManager.fireEvent(item -> item.activate(beanItem));
-                        }
+                        eventListenerManager.fireEvent(item -> item.activate(beanItem));
                     }
                 };
+
+                MenuBar.Command cmdDeactivate = new MenuBar.Command() {
+
+                    public void menuSelected(MenuItem selectedItem) {
+                        eventListenerManager.fireEvent(item -> item.deactivate(beanItem));
+                    }
+                };
+
                 MenuBar.Command cmdDelete = new MenuBar.Command() {
 
                     public void menuSelected(MenuItem selectedItem) {
@@ -79,8 +83,8 @@ public class RuleTableImpl extends BeanItemTableImpl<RuleDTO, RuleTable.COLUMN> 
                 MenuBar menuBar = UiUtils.newMenuBar(STYLE.VISIBLE_HOVER);
                 MenuItem topItem = UiUtils.newMenuItem(menuBar, "", null, ICON.CONFIGURATION);
 
-                UiUtils.newMenuItem(topItem, "Activate", cmdDeActivate, ICON.UPDATE);
-                UiUtils.newMenuItem(topItem, "Deactivate", cmdDeActivate, ICON.UPDATE);
+                UiUtils.newMenuItem(topItem, "Activate", cmdActivate, ICON.UPDATE);
+                UiUtils.newMenuItem(topItem, "Deactivate", cmdDeactivate, ICON.UPDATE);
                 UiUtils.newMenuItem(topItem, "Delete", cmdDelete, ICON.REMOVE);
 
                 VerticalLayout layout = new VerticalLayout();
@@ -90,6 +94,7 @@ public class RuleTableImpl extends BeanItemTableImpl<RuleDTO, RuleTable.COLUMN> 
                 return layout;
             }
         });
+
     }
 
     @Override

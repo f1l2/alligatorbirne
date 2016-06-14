@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 
 import common.data.Connection;
-import common.data.DataSource;
 import common.data.dto.DataSourcesDTO;
+import common.data.model.DataSource;
 
 /**
  * Interface definition

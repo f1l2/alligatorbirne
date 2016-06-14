@@ -1,6 +1,6 @@
 package common.transformer;
 
-import common.data.DataSource;
+import common.data.model.DataSource;
 import common.data.model.DeviceInformation;
 import common.data.model.DomainInformation;
 import common.data.setting.XMLDataSource;

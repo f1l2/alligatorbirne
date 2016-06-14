@@ -1,4 +1,4 @@
-package configuration.management.rest;
+package configuration.management.rest.impl;
 
 import java.util.List;
 
@@ -25,10 +25,12 @@ import configuration.management.model.QueryDLO;
 import configuration.management.repo.QueryRepository;
 import configuration.management.repo.QueryTransformer;
 import configuration.management.repo.RuleRepository;
+import configuration.management.rest.CMManageQuery;
+import configuration.management.rest.CMCommon;
 import configuration.management.statement.QueryLangFactory;
 
 @RestController
-public class CMManageQueryImpl extends RestCM implements CMManageQuery {
+public class CMManageQueryImpl extends CMCommon implements CMManageQuery {
 
     private static final Logger logger = LoggerFactory.getLogger(CMManageQueryImpl.class);
 

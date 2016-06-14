@@ -6,7 +6,7 @@ import java.util.Set;
 
 import org.springframework.util.CollectionUtils;
 
-import common.data.DataSource;
+import common.data.model.DataSource;
 import iot.device.property.Configuration;
 
 public class DeliveryTaskRO {
