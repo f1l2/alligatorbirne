@@ -23,6 +23,8 @@ import common.data.dto.QueryDTO;
 import common.rest.RESOURCE_NAMING;
 import common.rest.ResourceUtils;
 import configuration.management.Application;
+import configuration.management.model.EventProcessingDLO;
+import configuration.management.model.RuleDLO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
@@ -166,6 +168,21 @@ public class CMManageStatementTest extends AbstractTestRestCM {
     public void deactivateRule() {
 
         activateRule();
+
+        /**
+         * Fake assignment of EP
+         */
+        EventProcessingDLO eventProcessing = new EventProcessingDLO();
+        eventProcessing.setAuthority("123");
+        eventProcessingRepository.save(eventProcessing);
+
+        RuleDLO rule = ruleRepo.findByName(ruleName);
+        rule.setEpDLO(eventProcessing);
+        ruleRepo.save(rule);
+
+        /**
+         * End
+         */
 
         when().get(ResourceUtils.getPath(RESOURCE_NAMING.CM_DEACTIVATIONS_RULE), ruleName)
 

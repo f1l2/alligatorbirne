@@ -1,29 +1,24 @@
-package configuration.management.rest.activity;
+package configuration.management.rest.activity.receive;
 
 import java.util.Date;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import common.data.Connection;
 import configuration.management.model.EventProcessingDLO;
-import configuration.management.repo.EventProcessingRepository;
 
 @Component
-public class RegisterEP extends Activity<Connection, Connection> {
+public class RegisterEP extends ReceiveActivity<Connection, Connection> {
 
     final static Logger logger = LoggerFactory.getLogger(RegisterEP.class);
-
-    @Autowired
-    private EventProcessingRepository eventProcessingRepo;
 
     @Override
     public ResponseEntity<Connection> doStep(Connection connection) {
 
-        EventProcessingDLO item = eventProcessingRepo.findByAuthority(connection.getUrl().getAuthority());
+        EventProcessingDLO item = eventProcessingRepository.findByAuthority(connection.getUrl().getAuthority());
         if (null != item) {
             connection.setId(item.getId());
             item.setUpdated(new Date());
@@ -32,10 +27,10 @@ public class RegisterEP extends Activity<Connection, Connection> {
             item.setCreated(new Date());
             item.setUpdated(new Date());
             item.setAuthority(connection.getUrl().getAuthority());
-            item = eventProcessingRepo.save(item);
+            item = eventProcessingRepository.save(item);
         }
 
-        item = eventProcessingRepo.save(item);
+        item = eventProcessingRepository.save(item);
         connection.setId(item.getId());
 
         return next(connection, connection);

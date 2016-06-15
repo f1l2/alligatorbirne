@@ -1,37 +1,25 @@
-package configuration.management.rest.activity;
+package configuration.management.rest.activity.call;
 
 import java.net.URL;
 import java.util.Iterator;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
 
 import common.rest.RESOURCE_NAMING;
 import common.rest.ResourceUtils;
 import configuration.management.model.EventProcessingDLO;
 import configuration.management.model.QueryDLO;
 import configuration.management.model.RuleDLO;
-import configuration.management.repo.EventProcessingRepository;
-import configuration.management.repo.RuleRepository;
 import configuration.management.rest.activity.model.AssignRuleItem;
 
 @Component
-public class AssignRule extends Activity<String, AssignRuleItem> {
+public class AssignRule extends CallActivity<String, AssignRuleItem> {
 
     final static Logger logger = LoggerFactory.getLogger(AssignRule.class);
-
-    @Autowired
-    private RuleRepository ruleRepository;
-
-    @Autowired
-    private EventProcessingRepository eventProcessingRepository;
-
-    private RestTemplate restTemplate = new RestTemplate();
 
     private boolean isProcessFlowOK = true;
 

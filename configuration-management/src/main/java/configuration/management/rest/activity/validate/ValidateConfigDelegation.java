@@ -1,4 +1,4 @@
-package configuration.management.rest.activity;
+package configuration.management.rest.activity.validate;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import common.data.ConfigurationDelegation;
+import configuration.management.rest.activity.Activity;
 
 @Component
 public class ValidateConfigDelegation extends Activity<String, ConfigurationDelegation> {

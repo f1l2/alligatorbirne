@@ -1,4 +1,4 @@
-package configuration.management.rest.activity;
+package configuration.management.rest.activity.receive;
 
 import java.util.Arrays;
 import java.util.Set;
@@ -20,26 +20,18 @@ import configuration.management.model.DataSourceDLO;
 import configuration.management.model.DeviceDLO;
 import configuration.management.model.EventProcessingDLO;
 import configuration.management.repo.DataSourceTransformer;
-import configuration.management.repo.DeviceRepository;
 import configuration.management.repo.DeviceTransformer;
-import configuration.management.repo.EventProcessingRepository;
 import configuration.management.repo.EventProcessingTransformer;
+import configuration.management.rest.activity.call.SetConfigDelegation;
+import configuration.management.rest.activity.call.StartDeliveryDelegation;
 import configuration.management.rest.task.ExecuteRestTask;
-import configuration.management.rest.task.SetConfigDelegation;
-import configuration.management.rest.task.StartDeliveryDelegation;
 
 @Component
-public class RegisterDataSourcesDevice extends Activity<String, DataSourcesDTO> {
+public class RegisterDataSourcesDevice extends ReceiveActivity<String, DataSourcesDTO> {
 
     final static Logger logger = LoggerFactory.getLogger(RegisterDataSourcesDevice.class);
 
     private Long id;
-
-    @Autowired
-    private DeviceRepository devRepo;
-
-    @Autowired
-    private EventProcessingRepository epRepo;
 
     @Autowired
     private DataSourceTransformer transformer;
@@ -48,7 +40,7 @@ public class RegisterDataSourcesDevice extends Activity<String, DataSourcesDTO> 
     private DeviceTransformer devTransformer;
 
     @Autowired
-    private EventProcessingTransformer epTransformer;
+    private EventProcessingTransformer eventProcessingTransformer;
 
     @Autowired
     private ThreadPoolTaskExecutor taskExecutor;
@@ -56,7 +48,7 @@ public class RegisterDataSourcesDevice extends Activity<String, DataSourcesDTO> 
     @Override
     public ResponseEntity<String> doStep(DataSourcesDTO item) {
 
-        DeviceDLO device = devRepo.findOne(id);
+        DeviceDLO device = deviceRepository.findOne(id);
         Connection deviceConnection = devTransformer.toRemote(device);
 
         if (device == null) {
@@ -68,7 +60,7 @@ public class RegisterDataSourcesDevice extends Activity<String, DataSourcesDTO> 
             Set<DataSourceDLO> ds = transformer.toLocal(item.getDataSources());
 
             device.setDataSources(ds);
-            devRepo.save(device);
+            deviceRepository.save(device);
 
             /**
              * Loop all data sources, which can be provided by device
@@ -78,9 +70,9 @@ public class RegisterDataSourcesDevice extends Activity<String, DataSourcesDTO> 
                 /**
                  * TODO what the hell
                  */
-                for (EventProcessingDLO ep : epRepo.findByDataSources(dsDevice.getDevice(), dsDevice.getDomain())) {
+                for (EventProcessingDLO ep : eventProcessingRepository.findByDataSources(dsDevice.getDevice(), dsDevice.getDomain())) {
 
-                    Connection epConnection = epTransformer.toRemote(ep);
+                    Connection epConnection = eventProcessingTransformer.toRemote(ep);
                     epConnection.setComponentType(COMPONENT_TYPE.EVENT_PROCESSING);
 
                     CDBuilder builder = new CDBuilder();

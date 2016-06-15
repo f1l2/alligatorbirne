@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 
 public abstract class Task<T1> {
 
-    final static Logger logger = LoggerFactory.getLogger(ExecuteRestTask.class);
+    final protected static Logger logger = LoggerFactory.getLogger(ExecuteRestTask.class);
 
     protected RestTemplate restTemplate = new RestTemplate();
 

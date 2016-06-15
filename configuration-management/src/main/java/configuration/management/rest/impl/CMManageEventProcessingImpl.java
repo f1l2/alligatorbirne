@@ -28,11 +28,11 @@ import configuration.management.repo.EventProcessingTransformer;
 import configuration.management.rest.CMManageEventProcessing;
 import configuration.management.rest.activity.DelegateConfigChange;
 import configuration.management.rest.activity.DelegateDeliveryChange;
-import configuration.management.rest.activity.HeartbeatEP;
-import configuration.management.rest.activity.RegisterDataSourcesEP;
-import configuration.management.rest.activity.RegisterEP;
-import configuration.management.rest.activity.ValidateConfigDelegation;
-import configuration.management.rest.activity.ValidateConnection;
+import configuration.management.rest.activity.receive.HeartbeatEP;
+import configuration.management.rest.activity.receive.RegisterDataSourcesEP;
+import configuration.management.rest.activity.receive.RegisterEP;
+import configuration.management.rest.activity.validate.ValidateConfigDelegation;
+import configuration.management.rest.activity.validate.ValidateConnection;
 
 @RestController
 public class CMManageEventProcessingImpl implements CMManageEventProcessing {

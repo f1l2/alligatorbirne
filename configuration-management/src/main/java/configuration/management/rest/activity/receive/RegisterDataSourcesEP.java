@@ -1,4 +1,4 @@
-package configuration.management.rest.activity;
+package configuration.management.rest.activity.receive;
 
 import java.util.Set;
 
@@ -14,17 +14,13 @@ import common.data.ConfigurationDelegation;
 import configuration.management.model.DataSourceDLO;
 import configuration.management.model.EventProcessingDLO;
 import configuration.management.repo.DataSourceTransformer;
-import configuration.management.repo.EventProcessingRepository;
 
 @Component
-public class RegisterDataSourcesEP extends Activity<String, ConfigurationDelegation> {
+public class RegisterDataSourcesEP extends ReceiveActivity<String, ConfigurationDelegation> {
 
     final static Logger logger = LoggerFactory.getLogger(RegisterDataSourcesEP.class);
 
     private boolean deregiser = false;
-
-    @Autowired
-    private EventProcessingRepository repo;
 
     @Autowired
     private DataSourceTransformer transformer;
@@ -32,32 +28,27 @@ public class RegisterDataSourcesEP extends Activity<String, ConfigurationDelegat
     @Override
     public ResponseEntity<String> doStep(ConfigurationDelegation item) {
 
-        EventProcessingDLO component = this.repo.findByAuthority(item.getDataSink().getUrl().getAuthority());
+        EventProcessingDLO component = this.eventProcessingRepository.findByAuthority(item.getDataSink().getUrl().getAuthority());
 
         if (component == null) {
-            setErrorResponse(new ResponseEntity<String>("Registration of data sources failed. Event processing instance with Id couldn't be found.", HttpStatus.BAD_REQUEST));
+            setErrorResponse(new ResponseEntity<String>("Registration of data sources failed. Event processing instance with Id couldn't be found.",
+                    //
+                    HttpStatus.BAD_REQUEST));
         } else if (CollectionUtils.isEmpty(component.getDataSources())) {
-
             if (!deregiser) {
-
                 Set<DataSourceDLO> ds = transformer.toLocal(item.getDataSources());
                 component.setDataSources(ds);
-                this.repo.save(component);
+                this.eventProcessingRepository.save(component);
             }
-
         } else {
-
             Set<DataSourceDLO> ds = transformer.toLocal(item.getDataSources());
-
             if (!deregiser) {
                 component.getDataSources().addAll(ds);
             } else {
                 component.getDataSources().retainAll(ds);
             }
-
-            this.repo.save(component);
+            this.eventProcessingRepository.save(component);
         }
-
         return next("OK", item);
     }
 

@@ -1,4 +1,4 @@
-package configuration.management.rest.activity;
+package configuration.management.rest.activity.validate;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
+import configuration.management.rest.activity.Activity;
 import configuration.management.rest.activity.model.AssignRuleItem;
 
 @Component

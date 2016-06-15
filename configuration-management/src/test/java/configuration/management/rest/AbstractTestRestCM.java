@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import com.jayway.restassured.RestAssured;
 
 import configuration.management.model.QueryDLO;
+import configuration.management.repo.EventProcessingRepository;
 import configuration.management.repo.QueryRepository;
 import configuration.management.repo.RuleRepository;
 
@@ -19,6 +20,9 @@ public abstract class AbstractTestRestCM {
 
     @Autowired
     protected QueryRepository queryRepo;
+
+    @Autowired
+    protected EventProcessingRepository eventProcessingRepository;
 
     protected QueryDLO query;
 

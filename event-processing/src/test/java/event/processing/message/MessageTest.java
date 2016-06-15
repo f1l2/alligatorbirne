@@ -23,16 +23,16 @@ public class MessageTest extends AbstractTestMessageEP {
 
         try {
 
-            mc.start(mbConnection);
-            mc.consume("", this);
+            messageHandler.start(mbConnection);
+            messageHandler.consume("", this);
 
-            mc.produce(builder.getResultDTO(domains));
+            messageHandler.produce(builder.getResultDTO(domains));
             Thread.sleep(100);
-            mc.produce(builder.getResultDTO(domains));
+            messageHandler.produce(builder.getResultDTO(domains));
             Thread.sleep(100);
-            mc.produce(builder.getResultDTO(domains));
+            messageHandler.produce(builder.getResultDTO(domains));
             Thread.sleep(100);
-            mc.stop();
+            messageHandler.stop();
 
         } catch (Exception e) {
 
@@ -46,19 +46,19 @@ public class MessageTest extends AbstractTestMessageEP {
 
         try {
 
-            mc.start(mbConnection);
+            messageHandler.start(mbConnection);
 
             System.out.println(MessageHandler.PROPERTY + " = '" + devInfo.getName() + ":" + domainInfo.getName() + "'");
 
-            mc.consume(MessageHandler.PROPERTY + " = '" + devInfo.getName() + ":" + domainInfo.getName() + "'", this);
+            messageHandler.consume(MessageHandler.PROPERTY + " = '" + devInfo.getName() + ":" + domainInfo.getName() + "'", this);
 
-            mc.produce(builder.getResultDTO(domains));
+            messageHandler.produce(builder.getResultDTO(domains));
             Thread.sleep(100);
-            mc.produce(builder.getResultDTO(domains));
+            messageHandler.produce(builder.getResultDTO(domains));
             Thread.sleep(100);
-            mc.produce(builder.getResultDTO(domains));
+            messageHandler.produce(builder.getResultDTO(domains));
             Thread.sleep(100);
-            mc.stop();
+            messageHandler.stop();
 
         } catch (Exception e) {
 
@@ -72,16 +72,16 @@ public class MessageTest extends AbstractTestMessageEP {
 
         try {
 
-            mc.start(mbConnection);
-            mc.consume("something", this);
+            messageHandler.start(mbConnection);
+            messageHandler.consume("something", this);
 
-            mc.produce(builder.getResultDTO(domains));
+            messageHandler.produce(builder.getResultDTO(domains));
             Thread.sleep(100);
-            mc.produce(builder.getResultDTO(domains));
+            messageHandler.produce(builder.getResultDTO(domains));
             Thread.sleep(100);
-            mc.produce(builder.getResultDTO(domains));
+            messageHandler.produce(builder.getResultDTO(domains));
             Thread.sleep(100);
-            mc.stop();
+            messageHandler.stop();
 
         } catch (Exception e) {
 

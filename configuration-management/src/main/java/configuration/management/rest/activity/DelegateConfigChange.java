@@ -16,8 +16,8 @@ import common.data.type.COMPONENT_TYPE;
 import configuration.management.model.DeviceDLO;
 import configuration.management.repo.DeviceRepository;
 import configuration.management.repo.DeviceTransformer;
+import configuration.management.rest.activity.call.SetConfigDelegation;
 import configuration.management.rest.task.ExecuteRestTask;
-import configuration.management.rest.task.SetConfigDelegation;
 
 @Component
 public class DelegateConfigChange extends Activity<String, ConfigurationDelegation> {

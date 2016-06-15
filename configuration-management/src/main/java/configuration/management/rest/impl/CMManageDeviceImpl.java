@@ -27,10 +27,10 @@ import configuration.management.repo.DataSourceTransformer;
 import configuration.management.repo.DeviceRepository;
 import configuration.management.repo.DeviceTransformer;
 import configuration.management.rest.CMManageDevice;
-import configuration.management.rest.activity.HeartbeatDevice;
-import configuration.management.rest.activity.RegisterDataSourcesDevice;
-import configuration.management.rest.activity.RegisterDevice;
-import configuration.management.rest.activity.ValidateConnection;
+import configuration.management.rest.activity.receive.HeartbeatDevice;
+import configuration.management.rest.activity.receive.RegisterDataSourcesDevice;
+import configuration.management.rest.activity.receive.RegisterDevice;
+import configuration.management.rest.activity.validate.ValidateConnection;
 
 @RestController
 public class CMManageDeviceImpl implements CMManageDevice {

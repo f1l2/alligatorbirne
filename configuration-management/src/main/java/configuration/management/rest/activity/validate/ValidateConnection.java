@@ -1,4 +1,4 @@
-package configuration.management.rest.activity;
+package configuration.management.rest.activity.validate;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +9,7 @@ import org.springframework.util.StringUtils;
 
 import common.data.Connection;
 import common.data.type.COMPONENT_TYPE;
+import configuration.management.rest.activity.Activity;
 
 @Component
 public class ValidateConnection extends Activity<Connection, Connection> {

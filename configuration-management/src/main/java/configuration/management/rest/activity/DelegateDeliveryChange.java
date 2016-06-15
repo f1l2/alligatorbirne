@@ -16,9 +16,9 @@ import common.data.model.DataSource;
 import configuration.management.model.DeviceDLO;
 import configuration.management.repo.DeviceRepository;
 import configuration.management.repo.DeviceTransformer;
+import configuration.management.rest.activity.call.StartDeliveryDelegation;
+import configuration.management.rest.activity.call.StopDeliveryDelegation;
 import configuration.management.rest.task.ExecuteRestTask;
-import configuration.management.rest.task.StartDeliveryDelegation;
-import configuration.management.rest.task.StopDeliveryDelegation;
 
 @Component
 public class DelegateDeliveryChange extends Activity<String, ConfigurationDelegation> {

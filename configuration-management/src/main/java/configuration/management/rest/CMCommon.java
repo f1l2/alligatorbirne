@@ -32,6 +32,13 @@ public class CMCommon extends RestCommon {
         }
     }
 
+    protected void validateRuleIsActive(RuleDLO rule, ERROR_CODES errorCode) throws ValidationException {
+
+        if (null == rule.getEpDLO()) {
+            throw new ValidationException(errorCode);
+        }
+    }
+
     protected void validateExistsQuery(RuleDLO rule, QueryRepository qr, ERROR_CODES errorCode) throws ValidationException {
 
         for (QueryDLO queryDLO : rule.getQueries()) {
@@ -77,5 +84,4 @@ public class CMCommon extends RestCommon {
 
         return rule;
     }
-
 }

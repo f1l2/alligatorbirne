@@ -157,11 +157,11 @@ public class EProcManageStatementTest extends AbstractTestRestEP {
 
         String rule = queryName + " TRIGGERS device1, domain1, configurationManagement1 = 1";
 
-        given().body(rule).when().get(ResourceUtils.getPath(RESOURCE_NAMING.EP_REGISTRATION_RULE, ruleName))
+        given().body(rule).when().post(ResourceUtils.getPath(RESOURCE_NAMING.EP_REGISTRATION_RULE, ruleName))
 
                 .then().statusCode(HttpStatus.OK.value());
 
-        when().post(ResourceUtils.getPath(RESOURCE_NAMING.EP_ACTIVATIONS_RULE, ruleName))
+        when().get(ResourceUtils.getPath(RESOURCE_NAMING.EP_ACTIVATIONS_RULE, ruleName))
 
                 .then().statusCode(HttpStatus.OK.value());
 

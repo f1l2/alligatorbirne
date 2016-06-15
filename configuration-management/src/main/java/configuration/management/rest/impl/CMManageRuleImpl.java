@@ -32,12 +32,12 @@ import configuration.management.repo.RuleRepository;
 import configuration.management.repo.RuleTransformer;
 import configuration.management.rest.CMCommon;
 import configuration.management.rest.CMManageRule;
-import configuration.management.rest.activity.AssignRule;
-import configuration.management.rest.activity.RevokeRule;
 import configuration.management.rest.activity.ExecuteRestActivity;
-import configuration.management.rest.activity.ValidateAssignRuleItem;
+import configuration.management.rest.activity.call.AssignRule;
+import configuration.management.rest.activity.call.RevokeRule;
 import configuration.management.rest.activity.model.AssignRuleItem;
 import configuration.management.rest.activity.model.RevokeRuleItem;
+import configuration.management.rest.activity.validate.ValidateAssignRuleItem;
 import configuration.management.selection.SelectionFacade;
 import configuration.management.statement.RuleLangFactory;
 
@@ -68,7 +68,7 @@ public class CMManageRuleImpl extends CMCommon implements CMManageRule {
     private AssignRule assignRule;
 
     @Autowired
-    private RevokeRule deactivateRule;
+    private RevokeRule revokeRule;
 
     @Autowired
     private EventProcessingTransformer epTransformer;
@@ -179,13 +179,14 @@ public class CMManageRuleImpl extends CMCommon implements CMManageRule {
         try {
             validateIsNotEmpty(name, ERROR_CODES.ERROR_MISSING_RULE_NAME);
             ruleDLO = validateExists(name, ruleRepository, ERROR_CODES.ERROR_NON_EXISTING_RULE);
+            validateRuleIsActive(ruleDLO, ERROR_CODES.ERROR_NOT_ACTIVE_RULE);
             validateExistsQuery(ruleDLO, queryRepository, ERROR_CODES.ERROR_NON_EXISTING_QUERY);
         } catch (ValidationException e) {
             return e.getErrorCode().getErrorResponse();
         }
 
-        RevokeRuleItem deactiveRuleItem = new RevokeRuleItem(ruleDLO, epTransformer.toRemote(ruleDLO.getEpDLO()));
-        taskExecutor.execute(new ExecuteRestActivity<String, RevokeRuleItem>(deactivateRule, deactiveRuleItem));
+        RevokeRuleItem revokeRuleItem = new RevokeRuleItem(ruleDLO, epTransformer.toRemote(ruleDLO.getEpDLO()));
+        taskExecutor.execute(new ExecuteRestActivity<String, RevokeRuleItem>(revokeRule, revokeRuleItem));
         return SUCCESS_CODES.OK.getResponse();
     }
 }

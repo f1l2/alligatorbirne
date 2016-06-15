@@ -1,4 +1,4 @@
-package configuration.management.rest.activity;
+package configuration.management.rest.activity.call;
 
 import java.net.URL;
 import java.util.Iterator;
@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
 
 import common.rest.RESOURCE_NAMING;
 import common.rest.ResourceUtils;
@@ -19,16 +18,12 @@ import configuration.management.repo.RuleRepository;
 import configuration.management.rest.activity.model.RevokeRuleItem;
 
 @Component
-public class RevokeRule extends Activity<String, RevokeRuleItem> {
+public class RevokeRule extends CallActivity<String, RevokeRuleItem> {
 
     final static Logger logger = LoggerFactory.getLogger(RevokeRule.class);
 
-    private RestTemplate restTemplate = new RestTemplate();
-
     @Autowired
     private RuleRepository ruleRepository;
-
-    private boolean isProcessFlowOK = true;
 
     @Override
     public ResponseEntity<String> doStep(RevokeRuleItem item) {
@@ -40,7 +35,7 @@ public class RevokeRule extends Activity<String, RevokeRuleItem> {
         ResponseEntity<String> response = deactivateRule(item.getRule(), urlEP.getAuthority());
         if (response.getStatusCode() != HttpStatus.OK) {
             logger.error("Deactivation of rule '{}' to '{}' failed.", item.getRule().getName(), urlEP.getAuthority());
-            isProcessFlowOK = false;
+            return new ResponseEntity<String>("Deactivation of ", HttpStatus.OK);
         }
 
         deregisterRule(item.getRule(), urlEP.getAuthority());
@@ -51,10 +46,8 @@ public class RevokeRule extends Activity<String, RevokeRuleItem> {
             deregisterQuery(queryDLO, urlEP.getAuthority());
         }
 
-        if (isProcessFlowOK) {
-            item.getRule().setQueries(null);
-            ruleRepository.save(item.getRule());
-        }
+        item.getRule().setQueries(null);
+        ruleRepository.save(item.getRule());
 
         return next("OK", item);
     }
@@ -62,7 +55,6 @@ public class RevokeRule extends Activity<String, RevokeRuleItem> {
     private void deregisterQuery(QueryDLO queryDLO, String authority) {
         String url = ResourceUtils.getUrl(RESOURCE_NAMING.EP_DEREGISTRATION_QUERY, authority, queryDLO.getName());
         restTemplate.delete(url);
-
     }
 
     private void deregisterRule(RuleDLO ruleDLO, String authority) {

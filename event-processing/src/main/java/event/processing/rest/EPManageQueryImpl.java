@@ -29,7 +29,7 @@ import event.processing.statement.QueryLangFactory;
 import event.processing.statement.QueryLangTransformer;
 
 @RestController
-public class EPManageQueryImpl implements EPManageQuery {
+public class EPManageQueryImpl extends EPCommon implements EPManageQuery {
 
     private static final Logger logger = LoggerFactory.getLogger(EPManageQueryImpl.class);
 
@@ -52,7 +52,6 @@ public class EPManageQueryImpl implements EPManageQuery {
     @Override
     @RequestMapping(value = "/registrations/query/{name}", method = RequestMethod.POST)
     public ResponseEntity<String> registerQuery(@PathVariable("name") String name, @RequestBody String query) {
-        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.EP_REGISTRATION_QUERY));
 
         /**
          * Make sure that parameter 'name' is not empty or that it isn't already awarded.
@@ -67,9 +66,9 @@ public class EPManageQueryImpl implements EPManageQuery {
          * Parse query and store it in the repository.
          */
         try {
-            QueryLang q = queryFactory.parse(query, name);
-            q.setNativeQuery(query);
-            queryRepository.save(q);
+            QueryLang queryLang = queryFactory.parse(query, name);
+            queryLang.setNativeQuery(query);
+            queryRepository.save(queryLang);
 
         } catch (Exception e) {
             return ERROR_CODES.ERROR_PARSING_QUERY.getErrorResponse();
@@ -108,7 +107,7 @@ public class EPManageQueryImpl implements EPManageQuery {
             return ERROR_CODES.ERROR_DEREGISTER_ASSIGNED.getErrorResponse();
         }
 
-        ruleRepository.delete(name);
+        queryRepository.delete(name);
         return new ResponseEntity<String>(OK, HttpStatus.OK);
     }
 

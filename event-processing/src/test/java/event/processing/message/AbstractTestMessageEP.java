@@ -35,10 +35,10 @@ public class AbstractTestMessageEP implements MessageListener {
     protected int port;
 
     @Autowired
-    protected MessageHandlerImpl mc;
+    protected MessageHandlerImpl messageHandler;
 
     @Autowired
-    protected MessageHandlerListener mhl;
+    protected MessageHandlerListener messageHandlerListener;
 
     protected DDBuilder builder;
 

@@ -1,4 +1,4 @@
-package configuration.management.rest.task;
+package configuration.management.rest.activity.call;
 
 import java.util.List;
 
@@ -9,6 +9,7 @@ import common.data.ConfigurationDelegation;
 import common.data.Connection;
 import common.rest.RESOURCE_NAMING;
 import common.rest.ResourceUtils;
+import configuration.management.rest.task.Task;
 
 public class SetConfigDelegation extends Task<Connection> {
 
