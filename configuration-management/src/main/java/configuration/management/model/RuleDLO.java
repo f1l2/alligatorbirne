@@ -41,7 +41,7 @@ public class RuleDLO {
     @OneToOne
     private EventProcessingDLO epDLO;
 
-    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE }, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
     @JoinTable(name = "QUERY_TO_RULE",
             //
             joinColumns = { @JoinColumn(name = "RULE_ID", referencedColumnName = "ID") },

@@ -24,6 +24,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import common.data.Connection;
@@ -144,20 +145,23 @@ public class MonitoringService {
     }
 
     public void deregisterQuery(QueryDTO query) {
-
-        String url = ResourceUtils.getUrl(RESOURCE_NAMING.CM_DEREGISTRATION_QUERY, connectionCM);
-        url = StringUtils.replace(url, "{name}", query.getName());
-
-        restTemplate.delete(url);
-
+        try {
+            String url = ResourceUtils.getUrl(RESOURCE_NAMING.CM_DEREGISTRATION_QUERY, connectionCM);
+            url = StringUtils.replace(url, "{name}", query.getName());
+            restTemplate.delete(url);
+        } catch (HttpClientErrorException e) {
+            throw new RuntimeException(e.getResponseBodyAsString());
+        }
     }
 
     public void deregisterRule(RuleDTO rule) {
-
-        String url = ResourceUtils.getUrl(RESOURCE_NAMING.CM_DEREGISTRATION_RULE, connectionCM);
-        url = StringUtils.replace(url, "{name}", rule.getName());
-
-        restTemplate.delete(url);
+        try {
+            String url = ResourceUtils.getUrl(RESOURCE_NAMING.CM_DEREGISTRATION_RULE, connectionCM);
+            url = StringUtils.replace(url, "{name}", rule.getName());
+            restTemplate.delete(url);
+        } catch (HttpClientErrorException e) {
+            throw new RuntimeException(e.getResponseBodyAsString());
+        }
     }
 
     public String activateRule(RuleDTO rule, int strategyNumber) {
@@ -214,16 +218,19 @@ public class MonitoringService {
         try {
             ResponseEntity<E> response = restTemplate.getForEntity(url, responseType);
             return response.getBody();
-        } catch (Exception e) {
-            return null;
+        } catch (HttpClientErrorException e) {
+            throw new RuntimeException(e.getResponseBodyAsString());
         }
     }
 
     private <E> E postForEntity(String url, String query, Class<E> responseType) {
 
-        ResponseEntity<E> postForEntity = restTemplate.postForEntity(url, query, responseType);
-
-        return postForEntity.getBody();
+        try {
+            ResponseEntity<E> postForEntity = restTemplate.postForEntity(url, query, responseType);
+            return postForEntity.getBody();
+        } catch (HttpClientErrorException e) {
+            throw new RuntimeException(e.getResponseBodyAsString());
+        }
     }
 
     public List<LogDTO> getAllLog() {

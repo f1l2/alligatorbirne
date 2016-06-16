@@ -46,7 +46,7 @@ public class RevokeRule extends CallActivity<String, RevokeRuleItem> {
             deregisterQuery(queryDLO, urlEP.getAuthority());
         }
 
-        item.getRule().setQueries(null);
+        item.getRule().setEpDLO(null);
         ruleRepository.save(item.getRule());
 
         return next("OK", item);
