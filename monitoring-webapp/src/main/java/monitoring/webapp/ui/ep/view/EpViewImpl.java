@@ -4,11 +4,14 @@ import java.util.List;
 
 import org.springframework.context.annotation.Scope;
 
+import com.vaadin.ui.Button;
 import com.vaadin.ui.FormLayout;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 
 import common.data.Connection;
+import common.data.dto.LogDTO;
 import common.data.dto.QueryDTO;
 import common.data.dto.RuleDTO;
 import monitoring.webapp.service.MonitoringService;
@@ -17,9 +20,13 @@ import monitoring.webapp.ui.ep.component.QueryTableImpl;
 import monitoring.webapp.ui.ep.component.RuleTable;
 import monitoring.webapp.ui.ep.component.RuleTableImpl;
 import monitoring.webapp.ui.ep.presenter.EpViewPresenter;
+import monitoring.webapp.ui.event.EventListenerManager;
 import monitoring.webapp.ui.i18n.Messages.MESSAGE;
+import monitoring.webapp.ui.log.component.LogTable;
+import monitoring.webapp.ui.log.component.LogTableImpl;
 import monitoring.webapp.ui.navigator.EpNavigator;
 import monitoring.webapp.ui.utility.UiUtils;
+import monitoring.webapp.ui.utility.UiUtils.ICON;
 import monitoring.webapp.ui.view.AbstractViewImpl;
 import ru.xpoft.vaadin.VaadinView;
 
@@ -29,11 +36,15 @@ import ru.xpoft.vaadin.VaadinView;
 @VaadinView(EpView.VIEW_NAME)
 public class EpViewImpl extends AbstractViewImpl<EpNavigator> implements EpView {
 
+    private EventListenerManager<EPViewListener> eventListenerManager = new EventListenerManager<EPViewListener>();
+
     private Label componentId, componentName, componentURL, componentLastUpdated, componentCPUUsage, componentRAMUsage;
 
     private QueryTableImpl queryTable;
 
     private RuleTableImpl ruleTable;
+
+    private LogTableImpl logTableTriggeredAction;
 
     @Override
     protected void init(MonitoringService monitoringService) {
@@ -65,8 +76,25 @@ public class EpViewImpl extends AbstractViewImpl<EpNavigator> implements EpView 
         ruleTable.setWidth(100, Unit.PERCENTAGE);
         ruleTable.addStyleName("virtual-table-min-width");
 
+        logTableTriggeredAction = new LogTableImpl();
+        logTableTriggeredAction.setSelectable(false);
+        logTableTriggeredAction.setImmediate(true);
+        logTableTriggeredAction.setColumnExpandRatio(LogTable.COLUMN.MESSAGE, 1.0f);
+        logTableTriggeredAction.setWidth(100, Unit.PERCENTAGE);
+        logTableTriggeredAction.addStyleName("virtual-table-min-width");
+
         queryTable.setCaption("Registered Queries");
         ruleTable.setCaption("Registered Rules");
+        logTableTriggeredAction.setCaption("Triggered Actions");
+
+        Button refreshButton = UiUtils.newButton(ICON.UPDATE);
+        refreshButton.setDescription("Refresh");
+        refreshButton.addClickListener(item -> {
+            eventListenerManager.fireEvent(i -> i.refresh());
+        });
+
+        HorizontalLayout hLayout = new HorizontalLayout();
+        hLayout.addComponent(refreshButton);
 
         FormLayout formLayout = new FormLayout();
         formLayout.setSpacing(true);
@@ -80,6 +108,8 @@ public class EpViewImpl extends AbstractViewImpl<EpNavigator> implements EpView 
         formLayout.addComponent(componentRAMUsage);
         formLayout.addComponent(queryTable);
         formLayout.addComponent(ruleTable);
+        formLayout.addComponent(hLayout);
+        formLayout.addComponent(logTableTriggeredAction);
 
         layout.addComponent(formLayout);
     }
@@ -107,6 +137,11 @@ public class EpViewImpl extends AbstractViewImpl<EpNavigator> implements EpView 
     }
 
     @Override
+    public void setLogTableTriggeredAction(List<LogDTO> logs) {
+        logTableTriggeredAction.addBeanItems(logs);
+    }
+
+    @Override
     protected void enter(EpNavigator navigator, MonitoringService monitoringService) {
 
         final EpViewPresenter epViewPresenter = new EpViewPresenter(monitoringService);
@@ -119,5 +154,15 @@ public class EpViewImpl extends AbstractViewImpl<EpNavigator> implements EpView 
     @Override
     protected EpNavigator createInstance(String parameters) {
         return new EpNavigator(parameters);
+    }
+
+    @Override
+    public void addEPViewListener(EPViewListener listener) {
+        this.eventListenerManager.addEventListener(listener);
+    }
+
+    @Override
+    public LogTable getLogTableTriggeredAction() {
+        return logTableTriggeredAction;
     }
 }

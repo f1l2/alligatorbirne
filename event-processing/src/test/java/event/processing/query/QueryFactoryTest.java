@@ -229,6 +229,49 @@ public class QueryFactoryTest {
         assertEquals("domain", query.getDomains().stream().collect(Collectors.joining(",")));
     }
 
+    @Test
+    public void testUseCase1() throws Exception {
+        input = "CONDITION doorClosed = 1 AND NOT movement = 1 FROM OfficeRoom WIN:TIME(600)";
+        query = test(input);
+    }
+
+    @Test
+    public void testUseCase2() throws Exception {
+        input = "CONDITION AVG(performanceInPercent) > 90 FROM OfficeRoom WIN:TIME(600)";
+        query = test(input);
+    }
+
+    @Test
+    public void testUseCase31() throws Exception {
+        input = "CONDITION doorClosed = 1 AND deskA = 1 AND deskB = 0 FROM OfficeRoom WIN:TIME(10)";
+        query = test(input);
+    }
+
+    @Test
+    public void testUseCase32() throws Exception {
+        input = "CONDITION doorClosed = 1 AND deskA = 1 AND deskB = 1 FROM OfficeRoom WIN:TIME(10)";
+        query = test(input);
+    }
+
+    @Test
+    public void testUseCase4() throws Exception {
+        input = "CONDITION buildingEntered = 1 AND specialTreatment = 1 AND deskB = 1 FROM EntranceFloor";
+        query = test(input);
+    }
+
+    @Test
+    public void testUseCase5() throws Exception {
+        input = "CONDITION AVG(waterUsageInLitre) > 10 FROM OfficeFloor WIN:TIME(3600)";
+        query = test(input);
+    }
+
+    @Test
+    public void testUseCase6() throws Exception {
+        input = "CONDITION temperature > 32 AND smokeDetector = 1 FROM OfficeFloor WIN:TIME(120)";
+        query = test(input);
+
+    }
+
     private QueryLang test(String query) throws Exception {
         return qf.parse(query, "query");
     }

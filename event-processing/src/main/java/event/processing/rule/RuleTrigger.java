@@ -33,8 +33,8 @@ public class RuleTrigger implements GenericListener {
     @Override
     public void trigger() {
 
-        logger.info("Rule is triggered. Reaction: {}", ruleLang.getReactions().get(0).toString());
         loadConnections();
+        logger.info("Rule '{}' is triggered. {}", ruleLang.getName(), ruleLang.getReactions().get(0).toString(), local.getUrl().getAuthority());
 
         try {
             String url = ResourceUtils.getUrl(RESOURCE_NAMING.CM_DELEGATION, cm);

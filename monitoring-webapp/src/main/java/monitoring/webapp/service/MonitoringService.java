@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -240,6 +241,23 @@ public class MonitoringService {
         }
 
         return getLogs("SELECT * FROM LOGGING_EVENT WHERE LEVEL_STRING = 'INFO' ORDER BY TIMESTMP DESC;");
+    }
+
+    public List<LogDTO> getAllLog(Map<String, String> criterias) {
+
+        if (!loggingDB.isConnection()) {
+            return null;
+        }
+
+        StringBuilder query = new StringBuilder();
+        query.append("SELECT * FROM LOGGING_EVENT WHERE LEVEL_STRING = 'INFO' ");
+        criterias.entrySet().forEach(item -> query.append("AND " + item.getKey() + " = '" + item.getValue() + "' "));
+
+        query.append("ORDER BY TIMESTMP DESC;");
+
+        System.out.println(query.toString());
+
+        return getLogs(query.toString());
     }
 
     public List<LogDTO> getFilteredLog(int filterCode) {
