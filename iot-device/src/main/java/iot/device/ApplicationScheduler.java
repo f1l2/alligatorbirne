@@ -32,27 +32,23 @@ public class ApplicationScheduler {
 
         switch (status.getCurrent()) {
         case STARTED_UP:
-
             try {
                 /**
                  * Load connection data.
                  */
                 local = SettingUtils.getLocalConnection();
                 local.setComponentType(COMPONENT_TYPE.DEVICE);
-                logger.info("Retrieve local connection data ... ");
-                logger.info(local.toString());
+                logger.info("Local connection data loaded: {}", local.toString());
 
                 /**
                  * Load CM connection data
                  */
                 cm = SettingUtils.getCMConnection();
-                logger.info("Load CM connection data ...");
-                logger.info(cm.toString());
+                logger.info("CM connection data loaded: {}", cm.toString());
 
                 status.setCurrent(STATUS_TYPE.REGISTER_DEVICE);
 
             } catch (Exception ex) {
-
                 logger.error(ex.getMessage());
             }
             break;
@@ -60,54 +56,39 @@ public class ApplicationScheduler {
         case REGISTER_DEVICE:
 
             try {
-
-                logger.info("Try to register device ...");
-
                 String url = ResourceUtils.getUrl(RESOURCE_NAMING.CM_REGISTER_DEVICE, cm);
-                logger.info(url);
+                logger.info("Try to register device at {}", url);
 
                 ResponseEntity<Connection> responseRegistration = restTemplate.postForEntity(url, local, Connection.class);
                 local = responseRegistration.getBody();
 
-                logger.info("Device registered. Status: " + responseRegistration.getStatusCode() + " Response body: " + local);
-
+                logger.info("Device registered. Status: {}; Response body: {}", responseRegistration.getStatusCode(), local);
                 status.setCurrent(STATUS_TYPE.REGISTER_DATA_SOURCES);
 
             } catch (Exception ex) {
                 logger.error("Register error. Exception: {}", ex.getMessage());
             }
-
             break;
 
         case REGISTER_DATA_SOURCES:
 
             try {
-
-                logger.info("Convey data sources ...");
-
                 DataSourcesDTO data = SettingUtils.loadDataSources();
-
-                Connection cmConnection = SettingUtils.getCMConnection();
-                String url = ResourceUtils.getUrl(RESOURCE_NAMING.CM_REGISTER_DEVICE_SOURCES, cmConnection);
-                url = url.replace("{id}", String.valueOf(local.getId()));
-
+                String url = ResourceUtils.getUrl(RESOURCE_NAMING.CM_REGISTER_DEVICE_SOURCES, cm, local.getId());
                 ResponseEntity<Void> responseRegisteriationSources = restTemplate.postForEntity(url, data, Void.class);
-                logger.info("Sources of device registered. Status: " + responseRegisteriationSources.getStatusCode() + " Response body: ");
 
+                logger.info("Sources of device registered. Status: {}", responseRegisteriationSources.getStatusCode());
                 status.setCurrent(STATUS_TYPE.WORKING);
 
             } catch (Exception ex) {
                 logger.error("Error registration sources of device. Exception: {}", ex.getMessage());
             }
-
             break;
 
         case WORKING:
 
             logger.info("Send heart beat.");
-            String url = ResourceUtils.getUrl(RESOURCE_NAMING.CM_HEART_BEAT_DEVICE, cm);
-
-            url = url.replace("{id}", Long.toString(local.getId()));
+            String url = ResourceUtils.getUrl(RESOURCE_NAMING.CM_HEART_BEAT_DEVICE, cm, local.getId());
             restTemplate.put(url, null);
 
             break;

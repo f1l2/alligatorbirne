@@ -14,7 +14,6 @@ public abstract class Activity<T1, T2> {
     public abstract ResponseEntity<T1> doStep(T2 item);
 
     public ResponseEntity<T1> next(T1 content, T2 item) {
-
         if (null != errorResponse) {
             return errorResponse;
         } else if (null != nextActivity) {

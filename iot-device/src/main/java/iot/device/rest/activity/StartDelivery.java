@@ -2,46 +2,31 @@ package iot.device.rest.activity;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 
 import common.data.ConfigurationDelegation;
 import iot.device.ApplicationConfig;
 import iot.device.delivery.DeliveryTask;
-import iot.device.delivery.DynamicDeliveryTaskFactory;
 import iot.device.repo.DeliveryTaskRO;
-import iot.device.repo.DeliveryTaskRepositoryImpl;
 
 @Component
-public class StartDelivery extends Activity<String, ConfigurationDelegation> {
+public class StartDelivery extends IoTActivity<String, ConfigurationDelegation> {
 
     final static Logger logger = LoggerFactory.getLogger(StartDelivery.class);
-
-    @Autowired
-    private DeliveryTaskRepositoryImpl repo;
-
-    @Autowired
-    private ThreadPoolTaskExecutor taskExecutor;
-
-    @Autowired
-    private DynamicDeliveryTaskFactory ddtf;
 
     @Override
     public ResponseEntity<String> doStep(ConfigurationDelegation item) {
 
-        DeliveryTaskRO taskRO = repo.findByUrl(item.getDataSink().getUrl());
+        DeliveryTaskRO taskRO = deliveryTaskRepository.findByUrl(item.getDataSink().getUrl());
 
         if (null != taskRO) {
             /**
              * Update data sources.
              */
             taskRO.getDataSources().addAll(item.getDataSources());
-
-            repo.save(taskRO);
-
+            deliveryTaskRepository.save(taskRO);
             logger.info("Data Sinks gets already supplied. Data sources updated.");
         }
 
@@ -63,18 +48,16 @@ public class StartDelivery extends Activity<String, ConfigurationDelegation> {
             taskRO.setDataSources(item.getDataSources());
             taskRO.setUrlDataSink(item.getDataSink().getUrl());
 
-            if (repo.create(taskRO)) {
+            if (deliveryTaskRepository.create(taskRO)) {
 
                 DeliveryTask task = ddtf.createBean(taskRO);
-
                 logger.info("DeliveryTask {} is created. Execution starts ...", task.getIdentification());
-
                 taskExecutor.execute(task);
+
             } else {
+
                 taskRO.getDataSources().addAll(item.getDataSources());
-
-                repo.save(taskRO);
-
+                deliveryTaskRepository.save(taskRO);
                 logger.info("Data Sinks gets already supplied. Configuration changed.");
             }
         }

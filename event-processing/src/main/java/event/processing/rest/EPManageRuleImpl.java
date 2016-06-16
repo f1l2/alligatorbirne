@@ -37,6 +37,7 @@ import event.processing.messaging.MessageHandlerImpl;
 import event.processing.messaging.MessageHandlerListener;
 import event.processing.repo.QueryRepository;
 import event.processing.repo.RuleRepository;
+import event.processing.rule.RuleTrigger;
 import event.processing.statement.RuleLangFactory;
 import event.processing.statement.RuleLangTransformer;
 import event.processing.status.STATUS_TYPE;
@@ -148,7 +149,6 @@ public class EPManageRuleImpl implements EPManageRule {
          * Register query at event engine.
          */
         try {
-
             loadConnections();
 
             List<QueryLang> notActiveQueries = RepoUtilities.filterActiveQueries(rule.getQueries(), ruleRepository);
@@ -157,7 +157,8 @@ public class EPManageRuleImpl implements EPManageRule {
             epls.addAll(factory.getTransformer().transformRulePuristic(rule));
 
             GenericListener engineListener = factory.getGenericListener();
-            ((EsperEngineListener) engineListener).addRuleListener(rule);
+            RuleTrigger ruleEP = new RuleTrigger(rule);
+            ((EsperEngineListener) engineListener).addRuleListener(ruleEP);
 
             factory.getEngine().register(epls, engineListener);
 

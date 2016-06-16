@@ -14,26 +14,32 @@ import common.lang.rule.model.Reaction;
 import common.rest.RESOURCE_NAMING;
 import common.rest.ResourceUtils;
 
-public class RuleEP extends RuleLang implements GenericListener {
+public class RuleTrigger implements GenericListener {
 
-    private static final Logger logger = LoggerFactory.getLogger(RuleEP.class);
+    private static final Logger logger = LoggerFactory.getLogger(RuleTrigger.class);
+
+    private RestTemplate restTemplate = new RestTemplate();
+
+    private RuleLang ruleLang;
+
+    private Connection local;
+
+    private Connection cm;
+
+    public RuleTrigger(RuleLang ruleLang) {
+        this.ruleLang = ruleLang;
+    }
 
     @Override
     public void trigger() {
 
-        logger.info("Rule is triggered. Reaction: {}", this.reactions.get(0).toString());
+        logger.info("Rule is triggered. Reaction: {}", ruleLang.getReactions().get(0).toString());
+        loadConnections();
 
         try {
-
-            Connection local = SettingUtils.getLocalConnection();
-            local.setComponentType(COMPONENT_TYPE.EVENT_PROCESSING);
-            Connection cm = SettingUtils.getCMConnection();
-
             String url = ResourceUtils.getUrl(RESOURCE_NAMING.CM_DELEGATION, cm);
 
-            RestTemplate restTemplate = new RestTemplate();
-
-            for (Reaction reaction : this.getReactions()) {
+            for (Reaction reaction : ruleLang.getReactions()) {
                 CDBuilder cDBuilder = new CDBuilder();
                 cDBuilder.addDataSource(reaction.getDeviceInformation(), reaction.getDomainInformation())//
                         .buildDataSink(local)//
@@ -45,6 +51,23 @@ public class RuleEP extends RuleLang implements GenericListener {
         } catch (Exception ex) {
             logger.error("Error telling CM that Rule was triggered. Rule: {}", this.toString());
         }
+    }
 
+    private void loadConnections() {
+        try {
+            local = SettingUtils.getLocalConnection();
+            local.setComponentType(COMPONENT_TYPE.EVENT_PROCESSING);
+            cm = SettingUtils.getCMConnection();
+        } catch (Exception e) {
+            logger.error("Error retrieving settings.");
+        }
+    }
+
+    public RuleLang getRuleLang() {
+        return ruleLang;
+    }
+
+    public void setRulerLang(RuleLang ruleLang) {
+        this.ruleLang = ruleLang;
     }
 }

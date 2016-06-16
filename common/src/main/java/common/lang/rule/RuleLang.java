@@ -6,7 +6,7 @@ import java.util.List;
 import common.lang.query.QueryLang;
 import common.lang.rule.model.Reaction;
 
-public class RuleLang implements GenericListener {
+public class RuleLang {
 
     /**
      * Enum Keywords
@@ -106,11 +106,6 @@ public class RuleLang implements GenericListener {
 
     public void setIsActivated(Boolean isActivated) {
         this.isActivated = isActivated;
-    }
-
-    @Override
-    public void trigger() {
-        // NOT IMPLEMENTED
     }
 
 }

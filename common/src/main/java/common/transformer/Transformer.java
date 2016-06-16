@@ -3,6 +3,7 @@ package common.transformer;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,7 +36,29 @@ public abstract class Transformer<LOCAL, REMOTE> {
 
     }
 
+    public Collection<LOCAL> toLocal(Set<REMOTE> remotes) {
+
+        List<LOCAL> locals = new ArrayList<LOCAL>();
+
+        for (REMOTE remote : remotes) {
+            locals.add(toLocal(remote));
+        }
+        return locals;
+
+    }
+
     public List<REMOTE> toRemote(List<LOCAL> locals) {
+
+        List<REMOTE> remotes = new ArrayList<REMOTE>();
+
+        for (LOCAL local : locals) {
+            remotes.add(toRemote(local));
+        }
+        return remotes;
+
+    }
+
+    public List<REMOTE> toRemote(Set<LOCAL> locals) {
 
         List<REMOTE> remotes = new ArrayList<REMOTE>();
 

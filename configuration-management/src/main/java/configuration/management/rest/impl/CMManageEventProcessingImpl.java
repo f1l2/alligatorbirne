@@ -27,7 +27,8 @@ import configuration.management.repo.EventProcessingRepository;
 import configuration.management.repo.EventProcessingTransformer;
 import configuration.management.rest.CMManageEventProcessing;
 import configuration.management.rest.activity.DelegateConfigChange;
-import configuration.management.rest.activity.DelegateDeliveryChange;
+import configuration.management.rest.activity.call.DelegateDeliveryChange;
+import configuration.management.rest.activity.receive.DeregisterDataSourcesEP;
 import configuration.management.rest.activity.receive.HeartbeatEP;
 import configuration.management.rest.activity.receive.RegisterDataSourcesEP;
 import configuration.management.rest.activity.receive.RegisterEP;
@@ -64,6 +65,9 @@ public class CMManageEventProcessingImpl implements CMManageEventProcessing {
     private RegisterDataSourcesEP registerDataSources;
 
     @Autowired
+    private DeregisterDataSourcesEP deregisterDataSources;
+
+    @Autowired
     private DelegateConfigChange delegateConfigChange;
 
     @Autowired
@@ -76,7 +80,6 @@ public class CMManageEventProcessingImpl implements CMManageEventProcessing {
         logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.CM_GET_ALL_EVENT_PROCESSING));
 
         List<Connection> eps = transformer.toRemote(Transformer.makeCollection(repository.findAll()));
-
         return new ResponseEntity<List<Connection>>(eps, HttpStatus.OK);
     }
 
@@ -88,7 +91,6 @@ public class CMManageEventProcessingImpl implements CMManageEventProcessing {
 
         validateConnection.setNextActivity(register);
         validateConnection.setCt(COMPONENT_TYPE.EVENT_PROCESSING);
-
         return validateConnection.doStep(connection);
     }
 
@@ -100,9 +102,7 @@ public class CMManageEventProcessingImpl implements CMManageEventProcessing {
 
         heartBeat.setValue1(value1);
         heartBeat.setValue2(value2);
-
         return heartBeat.doStep(id);
-
     }
 
     @Override
@@ -122,18 +122,6 @@ public class CMManageEventProcessingImpl implements CMManageEventProcessing {
     }
 
     @Override
-    @RequestMapping(value = "/delegation", method = RequestMethod.POST)
-    public ResponseEntity<String> delegate(@RequestBody ConfigurationDelegation data) {
-
-        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.CM_DELEGATION));
-
-        validateConfigDelegation.setNextActivity(delegateConfigChange);
-
-        return validateConfigDelegation.doStep(data);
-
-    }
-
-    @Override
     @RequestMapping(value = "/registrations/eventprocessing/sources", method = RequestMethod.POST)
     public ResponseEntity<String> registerDataSources(@RequestBody ConfigurationDelegation body) {
 
@@ -141,9 +129,6 @@ public class CMManageEventProcessingImpl implements CMManageEventProcessing {
 
         validateConfigDelegation.setNextActivity(registerDataSources);
         registerDataSources.setNextActivity(delegateDeliveryChange);
-        delegateDeliveryChange.setNextActivity(null);
-
-        registerDataSources.setDeregiser(false);
 
         delegateDeliveryChange.setStop(false);
 
@@ -156,15 +141,20 @@ public class CMManageEventProcessingImpl implements CMManageEventProcessing {
 
         logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.CM_DEREGISTER_EVENT_PROCESSING_SOURCES));
 
-        validateConfigDelegation.setNextActivity(registerDataSources);
-        registerDataSources.setNextActivity(delegateDeliveryChange);
-        delegateDeliveryChange.setNextActivity(null);
-
-        registerDataSources.setDeregiser(true);
+        validateConfigDelegation.setNextActivity(deregisterDataSources);
+        deregisterDataSources.setNextActivity(delegateDeliveryChange);
 
         delegateDeliveryChange.setStop(true);
-
         return validateConfigDelegation.doStep(body);
     }
 
+    @Override
+    @RequestMapping(value = "/delegation", method = RequestMethod.POST)
+    public ResponseEntity<String> delegate(@RequestBody ConfigurationDelegation data) {
+
+        logger.info(ResourceUtils.getLogMessage(RESOURCE_NAMING.CM_DELEGATION));
+
+        validateConfigDelegation.setNextActivity(delegateConfigChange);
+        return validateConfigDelegation.doStep(data);
+    }
 }
