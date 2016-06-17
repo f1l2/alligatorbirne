@@ -6,9 +6,10 @@ import common.data.Connection;
 import common.data.type.COMPONENT_TYPE;
 import monitoring.webapp.service.MonitoringService;
 import monitoring.webapp.ui.component.view.ComponentView;
+import monitoring.webapp.ui.component.view.ComponentView.ComponentViewListener;
 import monitoring.webapp.ui.presenter.AbstractPresenter;
 
-public class ComponentViewPresenter extends AbstractPresenter<MonitoringService, ComponentView> {
+public class ComponentViewPresenter extends AbstractPresenter<MonitoringService, ComponentView> implements ComponentViewListener {
 
     private final ComponentTablePresenter epTablePresenter;
 
@@ -23,22 +24,28 @@ public class ComponentViewPresenter extends AbstractPresenter<MonitoringService,
 
     @Override
     protected void init(MonitoringService model, ComponentView userInterface) {
-        // TODO Auto-generated method stub
-
+        userInterface.addComponentViewListener(this);
     }
 
     @Override
     protected void initModel(MonitoringService model) {
 
-        List<Connection> listEP = model.listEP();
-        List<Connection> listDev = model.listDev();
+        epTablePresenter.setModel(listEP());
+        devTablePresenter.setModel(listDev());
 
-        listDev.forEach(item -> item.setComponentType(COMPONENT_TYPE.DEVICE));
+    }
+
+    private List<Connection> listEP() {
+        List<Connection> listEP = getModel().listEP();
         listEP.forEach(item -> item.setComponentType(COMPONENT_TYPE.EVENT_PROCESSING));
+        return listEP;
+    }
 
-        epTablePresenter.setModel(listEP);
-        devTablePresenter.setModel(listDev);
+    private List<Connection> listDev() {
+        List<Connection> listDev = getModel().listDev();
+        listDev.forEach(item -> item.setComponentType(COMPONENT_TYPE.DEVICE));
 
+        return listDev;
     }
 
     @Override
@@ -48,4 +55,16 @@ public class ComponentViewPresenter extends AbstractPresenter<MonitoringService,
 
         userInterface.initBreadcrumb().add("Browse Components");
     }
+
+    @Override
+    public void refreshDevTable() {
+        devTablePresenter.setModel(listDev());
+
+    }
+
+    @Override
+    public void refreshEPTable() {
+        epTablePresenter.setModel(listEP());
+    }
+
 }

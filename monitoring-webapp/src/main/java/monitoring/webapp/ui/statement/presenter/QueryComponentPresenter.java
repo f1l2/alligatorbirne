@@ -55,4 +55,10 @@ public class QueryComponentPresenter extends AbstractPresenter<List<QueryDTO>, Q
         getUserInterface().getQueryTable().removeAllBeanItems();
         getUserInterface().getQueryTable().addBeanItems(getMonitoringService().listRegisteredQuery());
     }
+
+    @Override
+    public void refresh() {
+        getUserInterface().getQueryTable().removeAllBeanItems();
+        getUserInterface().getQueryTable().addBeanItems(getMonitoringService().listRegisteredQuery());
+    }
 }

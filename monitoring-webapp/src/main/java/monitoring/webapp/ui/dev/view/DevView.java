@@ -4,6 +4,7 @@ import java.util.List;
 
 import common.data.Connection;
 import common.data.model.DataSource;
+import monitoring.webapp.ui.dev.component.DataSourceTable;
 import monitoring.webapp.ui.view.AbstractView;
 
 public interface DevView extends AbstractView {
@@ -12,5 +13,7 @@ public interface DevView extends AbstractView {
     public void setConnection(Connection connection);
 
     public void setDataSources(List<DataSource> listDataSourcesById);
+
+    public DataSourceTable getDataSourcesTable();
 
 }

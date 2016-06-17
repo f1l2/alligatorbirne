@@ -28,7 +28,7 @@ public class QueryComponentImpl extends NotifyComponent implements QueryComponen
 
     private QueryTableImpl queryTable;
 
-    private Button addBtn;
+    private Button addBtn, refreshBtn;
 
     private List<QueryDTO> preparedQueries;
 
@@ -40,6 +40,12 @@ public class QueryComponentImpl extends NotifyComponent implements QueryComponen
             UI.getCurrent().addWindow(getAddQueryWindow());
         });
 
+        refreshBtn = UiUtils.newButton(ICON.UPDATE);
+        refreshBtn.setDescription("Refresh");
+        refreshBtn.addClickListener(item -> {
+            eventListenerManager.fireEvent(i -> i.refresh());
+        });
+
         queryTable = new QueryTableImpl();
         queryTable.setWidth(100, Unit.PERCENTAGE);
         queryTable.setSelectable(false);
@@ -49,8 +55,9 @@ public class QueryComponentImpl extends NotifyComponent implements QueryComponen
         queryTable.addStyleName("virtual-table-min-width");
 
         HorizontalLayout btnLayout = new HorizontalLayout();
-        btnLayout.setMargin(true);
+        btnLayout.setSpacing(true);
         btnLayout.addComponent(addBtn);
+        btnLayout.addComponent(refreshBtn);
         btnLayout.addStyleName("monitoring-spacing-margin-inner");
 
         VerticalLayout vLayout = new VerticalLayout();

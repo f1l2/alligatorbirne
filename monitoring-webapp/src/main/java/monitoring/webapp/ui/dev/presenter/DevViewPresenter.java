@@ -4,10 +4,11 @@ import java.util.List;
 
 import common.data.Connection;
 import monitoring.webapp.service.MonitoringService;
+import monitoring.webapp.ui.dev.component.DataSourceTable.DataSourceTableListener;
 import monitoring.webapp.ui.dev.view.DevView;
 import monitoring.webapp.ui.presenter.AbstractPresenter;
 
-public class DevViewPresenter extends AbstractPresenter<MonitoringService, DevView> {
+public class DevViewPresenter extends AbstractPresenter<MonitoringService, DevView> implements DataSourceTableListener {
 
     private long devId;
 
@@ -32,6 +33,7 @@ public class DevViewPresenter extends AbstractPresenter<MonitoringService, DevVi
 
         userInterface.setConnection(thisOne);
         userInterface.setDataSources(model.listDataSourcesById(thisOne));
+        userInterface.getDataSourcesTable().addListener(this);
 
     }
 
@@ -51,4 +53,8 @@ public class DevViewPresenter extends AbstractPresenter<MonitoringService, DevVi
         this.devId = devId;
     }
 
+    @Override
+    public void simulate(String device, String domain, String value) {
+        getMonitoringService().simulateDeviceData(device, domain, value);
+    }
 }

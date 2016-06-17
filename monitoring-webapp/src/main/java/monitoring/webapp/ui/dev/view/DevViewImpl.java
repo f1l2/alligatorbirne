@@ -24,7 +24,7 @@ import ru.xpoft.vaadin.VaadinView;
 @org.springframework.stereotype.Component
 @Scope("prototype")
 @VaadinView(DevView.VIEW_NAME)
-public class DevViewImpl extends AbstractViewImpl<DevNavigator>implements DevView {
+public class DevViewImpl extends AbstractViewImpl<DevNavigator> implements DevView {
 
     private Label componentId, componentName, componentURL, componentLastUpdated;
 
@@ -92,5 +92,10 @@ public class DevViewImpl extends AbstractViewImpl<DevNavigator>implements DevVie
     @Override
     public void setDataSources(List<DataSource> dataSources) {
         dataSourceTable.addBeanItems(dataSources);
+    }
+
+    @Override
+    public DataSourceTable getDataSourcesTable() {
+        return dataSourceTable;
     }
 }

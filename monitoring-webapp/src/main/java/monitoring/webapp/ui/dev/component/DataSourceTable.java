@@ -1,5 +1,7 @@
 package monitoring.webapp.ui.dev.component;
 
+import java.util.EventListener;
+
 import common.data.model.DataSource;
 import monitoring.webapp.ui.i18n.Messages;
 import monitoring.webapp.ui.table.component.BeanItemTable;
@@ -11,7 +13,9 @@ public interface DataSourceTable extends BeanItemTable<DataSource, DataSourceTab
         /**/
         DEVICE_INFORMATION("Device"),
         /**/
-        DOMAIN_INFORMATION("Domain");
+        DOMAIN_INFORMATION("Domain"),
+        /**/
+        ACTION("Action");
 
         private final String name;
 
@@ -25,5 +29,12 @@ public interface DataSourceTable extends BeanItemTable<DataSource, DataSourceTab
         }
 
     }
+
+    public interface DataSourceTableListener extends EventListener {
+
+        void simulate(String device, String domain, String value);
+    }
+
+    public void addListener(DataSourceTableListener listener);
 
 }

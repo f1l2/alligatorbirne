@@ -2,7 +2,7 @@ package monitoring.webapp.ui.statement.view;
 
 import org.springframework.context.annotation.Scope;
 
-import com.vaadin.ui.Label;
+import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.VerticalLayout;
 
 import monitoring.webapp.service.MonitoringService;
@@ -13,7 +13,6 @@ import monitoring.webapp.ui.statement.component.QueryComponentImpl;
 import monitoring.webapp.ui.statement.component.RuleComponent;
 import monitoring.webapp.ui.statement.component.RuleComponentImpl;
 import monitoring.webapp.ui.statement.presenter.StatementViewPresenter;
-import monitoring.webapp.ui.utility.UiUtils;
 import monitoring.webapp.ui.view.AbstractViewImpl;
 import ru.xpoft.vaadin.VaadinView;
 
@@ -40,25 +39,20 @@ public class StatementViewImpl extends AbstractViewImpl<StatementNavigator> impl
     protected void init(VerticalLayout layout) {
 
         queryComponentImpl = new QueryComponentImpl();
+        queryComponentImpl.setCaption("Registered Quer(y/ies)");
+        queryComponentImpl.addStyleName("monitoring-label-monospace");
+
         ruleComponentImpl = new RuleComponentImpl();
+        ruleComponentImpl.setCaption("Registered Rule(s)");
+        ruleComponentImpl.addStyleName("monitoring-label-monospace");
 
-        final Label lbRq = new Label(("Registered Quer(y/ies)"));
-        lbRq.addStyleName("monitoring-label-monospace");
+        final FormLayout formLayout = new FormLayout();
+        formLayout.addComponent(queryComponentImpl);
+        formLayout.addComponent(ruleComponentImpl);
 
-        final Label lbRr = new Label("Registered Rule(s)");
-        lbRr.addStyleName("monitoring-label-monospace");
+        layout.setMargin(true);
 
-        final VerticalLayout vLayout = new VerticalLayout();
-        vLayout.setSpacing(true);
-        vLayout.setMargin(true);
-
-        vLayout.addComponent(lbRq);
-        vLayout.addComponent(UiUtils.panelWrapper(queryComponentImpl));
-        vLayout.addComponent(lbRr);
-        vLayout.addComponent(UiUtils.panelWrapper(ruleComponentImpl));
-
-        layout.addComponent(vLayout);
-
+        layout.addComponent(formLayout);
     }
 
     @Override

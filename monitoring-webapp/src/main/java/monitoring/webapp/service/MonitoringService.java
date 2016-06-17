@@ -29,10 +29,14 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import common.data.Connection;
+import common.data.dto.DeviceDataDTO;
 import common.data.dto.LogDTO;
 import common.data.dto.QueryDTO;
 import common.data.dto.RuleDTO;
 import common.data.model.DataSource;
+import common.data.model.DeviceInformation;
+import common.data.model.DomainInformation;
+import common.data.model.SensorData;
 import common.data.type.COMPONENT_TYPE;
 import common.rest.RESOURCE_NAMING;
 import common.rest.ResourceUtils;
@@ -134,7 +138,6 @@ public class MonitoringService {
         url = StringUtils.replace(url, "{name}", queryName);
 
         return postForEntity(url, query, String.class);
-
     }
 
     public String registerRule(final String ruleName, final String rule) {
@@ -213,6 +216,32 @@ public class MonitoringService {
         TopicViewMBean proxy = (TopicViewMBean) brokerService.getManagementContext().newProxyInstance(topicViewMBeanName, TopicViewMBean.class, true);
 
         return proxy;
+    }
+
+    public void simulateDeviceData(String device, String domain, String value) {
+
+        DeviceInformation deviceInformation = new DeviceInformation();
+        deviceInformation.setName(device);
+
+        DomainInformation domainInformation = new DomainInformation();
+        domainInformation.setName(domain);
+
+        List<DomainInformation> domainInformations = new ArrayList<DomainInformation>();
+        domainInformations.add(domainInformation);
+
+        SensorData<Integer> sensorData = new SensorData<Integer>();
+        sensorData.setRawValue(Integer.parseInt(value));
+
+        DeviceDataDTO ddDTO = new DeviceDataDTO();
+        ddDTO.setDevice(deviceInformation);
+        ddDTO.setDomains(domainInformations);
+        ddDTO.setSensorData(sensorData);
+
+        Connection connection = new Connection();
+        connection.setUrl(UrlUtils.parseUrl("localhost:61616"));
+
+        messagingHandler.start(connection);
+        messagingHandler.produce(ddDTO);
     }
 
     private <E> E getForEntity(String url, Class<E> responseType) {

@@ -25,6 +25,8 @@ public interface QueryComponent extends Notify {
     public static interface QueryComponentListener extends EventListener {
 
         public void save(String name, String query);
+
+        public void refresh();
     }
 
 }

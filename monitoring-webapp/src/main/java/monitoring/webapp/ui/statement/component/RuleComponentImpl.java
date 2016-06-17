@@ -30,7 +30,7 @@ public class RuleComponentImpl extends NotifyComponent implements RuleComponent 
 
     private RuleTableImpl ruleTable;
 
-    private Button addBtn;
+    private Button addBtn, refreshBtn;
 
     private ComboBox cbStrategy;
 
@@ -44,6 +44,12 @@ public class RuleComponentImpl extends NotifyComponent implements RuleComponent 
             UI.getCurrent().addWindow(getAddRuleWindow());
         });
 
+        refreshBtn = UiUtils.newButton(ICON.UPDATE);
+        refreshBtn.setDescription("Refresh");
+        refreshBtn.addClickListener(item -> {
+            eventListenerManager.fireEvent(i -> i.refresh());
+        });
+
         ruleTable = new RuleTableImpl(false);
         ruleTable.setSelectable(false);
         ruleTable.setImmediate(true);
@@ -52,8 +58,9 @@ public class RuleComponentImpl extends NotifyComponent implements RuleComponent 
         ruleTable.addStyleName("virtual-table-min-width");
 
         HorizontalLayout btnLayout = new HorizontalLayout();
-        btnLayout.setMargin(true);
+        btnLayout.setSpacing(true);
         btnLayout.addComponent(addBtn);
+        btnLayout.addComponent(refreshBtn);
         btnLayout.addStyleName("monitoring-spacing-margin-inner");
 
         cbStrategy = new ComboBox("Distribution Strategy");

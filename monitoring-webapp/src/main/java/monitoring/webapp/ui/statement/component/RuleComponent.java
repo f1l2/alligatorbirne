@@ -28,5 +28,7 @@ public interface RuleComponent extends Notify {
     public static interface RuleComponentListener extends EventListener {
 
         public void save(String name, String query);
+
+        public void refresh();
     }
 }

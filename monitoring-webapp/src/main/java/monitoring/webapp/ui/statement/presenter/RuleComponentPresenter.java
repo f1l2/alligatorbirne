@@ -83,4 +83,10 @@ public class RuleComponentPresenter extends AbstractPresenter<List<RuleDTO>, Rul
         getUserInterface().getRuleTable().removeAllBeanItems();
         getUserInterface().getRuleTable().addBeanItems(getMonitoringService().listRegisteredRule());
     }
+
+    @Override
+    public void refresh() {
+        getUserInterface().getRuleTable().removeAllBeanItems();
+        getUserInterface().getRuleTable().addBeanItems(getMonitoringService().listRegisteredRule());
+    }
 }
