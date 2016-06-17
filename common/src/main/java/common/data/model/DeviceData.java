@@ -15,6 +15,12 @@ public class DeviceData extends DataModel {
         this.domain = domain;
     }
 
+    public DeviceData(DomainInformation domain, DeviceInformation device, SensorData<?> sensorData) {
+        this.device = device;
+        this.domain = domain;
+        this.sensorData = sensorData;
+    }
+
     public DeviceData() {
     }
 

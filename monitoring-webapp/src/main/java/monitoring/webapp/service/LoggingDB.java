@@ -118,7 +118,7 @@ public class LoggingDB {
         try {
             System.out.println("Starting Logging Database");
             HsqlProperties p = new HsqlProperties();
-            p.setProperty("server.database.0", "file:D:/WorkspaceTU_Master/alligatorbirne/workbench/logDB/db/file");
+            p.setProperty("server.database.0", "file:C:/alligatorbirne/workbench/logDB/db/file");
             p.setProperty("server.dbname.0", "logdb");
             p.setProperty("server.port", "9001");
             Server server = new Server();

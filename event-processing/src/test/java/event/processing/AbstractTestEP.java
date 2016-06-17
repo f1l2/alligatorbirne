@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import common.data.model.DeviceData;
 import common.data.model.DeviceInformation;
 import common.data.model.DomainInformation;
+import common.data.model.SensorData;
 import common.lang.query.QueryLang;
 import event.processing.engine.Engine;
 import event.processing.engine.EngineFactory;
@@ -85,6 +86,22 @@ public abstract class AbstractTestEP {
         return new DeviceData(domain, device);
     }
 
+    protected DeviceData generateTestDeviceData(Long deviceId, String deviceName, Long domainId, String domainName, Integer value) {
+
+        DeviceInformation device = new DeviceInformation();
+        device.setName(deviceName);
+        device.setId(deviceId);
+
+        DomainInformation domain = new DomainInformation();
+        domain.setName(domainName);
+        domain.setId(domainId);
+
+        SensorData<Integer> sensorData = new SensorData<Integer>();
+        sensorData.setRawValue(value);
+
+        return new DeviceData(domain, device, sensorData);
+    }
+
     protected List<String> transformQueryString(String in, String name) throws IOException {
 
         QueryLang query = qf.parse(in, name);
@@ -104,13 +121,16 @@ public abstract class AbstractTestEP {
     }
 
     protected void sendEventAndWait(DeviceData[] deviceData, int[] expectedFiredEvents) {
+        sendEventAndWait(deviceData, expectedFiredEvents, DEFAULT_DELAY_MS);
+    }
+
+    protected void sendEventAndWait(DeviceData[] deviceData, int[] expectedFiredEvents, long time) {
 
         for (int i = 0; i < deviceData.length; i++) {
 
-            sendEventAndWait(deviceData[i], DEFAULT_DELAY_MS);
+            sendEventAndWait(deviceData[i], time);
 
             assertEquals(expectedFiredEvents[i], testListener.getFiredEvents());
         }
-
     }
 }

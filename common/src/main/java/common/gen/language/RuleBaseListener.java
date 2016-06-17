@@ -30,6 +30,18 @@ public class RuleBaseListener implements RuleListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterWindow(RuleParser.WindowContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitWindow(RuleParser.WindowContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterQuerySequence(RuleParser.QuerySequenceContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -169,6 +181,30 @@ public class RuleBaseListener implements RuleListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitCMKey(RuleParser.CMKeyContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterWindowType(RuleParser.WindowTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitWindowType(RuleParser.WindowTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterIntValue(RuleParser.IntValueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitIntValue(RuleParser.IntValueContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

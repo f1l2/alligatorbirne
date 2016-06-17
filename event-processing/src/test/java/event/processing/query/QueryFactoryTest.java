@@ -231,8 +231,12 @@ public class QueryFactoryTest {
 
     @Test
     public void testUseCase1() throws Exception {
-        input = "CONDITION doorClosed = 1 AND NOT movement = 1 FROM OfficeRoom WIN:TIME(600)";
+        input = "CONDITION doorClosed=1 AND NOT isMovement=1 FROM OfficeRoom WIN:TIME(600)";
         query = test(input);
+
+        input = "CONDITION doorCLosed=1 AND isMovement=1 FROM OfficeRoom WIN:TIME(600)";
+        query = test(input);
+
     }
 
     @Test

@@ -33,7 +33,6 @@
 		<module>event-processing</module>
 		<module>configuration-management</module>
 		<module>common</module>
-		<module>monitoring-client</module>
 	</modules>
 
 	<dependencies>

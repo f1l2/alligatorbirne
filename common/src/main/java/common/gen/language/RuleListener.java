@@ -20,6 +20,16 @@ public interface RuleListener extends ParseTreeListener {
 	 */
 	void exitStructure(RuleParser.StructureContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link RuleParser#window}.
+	 * @param ctx the parse tree
+	 */
+	void enterWindow(RuleParser.WindowContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link RuleParser#window}.
+	 * @param ctx the parse tree
+	 */
+	void exitWindow(RuleParser.WindowContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link RuleParser#querySequence}.
 	 * @param ctx the parse tree
 	 */
@@ -139,4 +149,24 @@ public interface RuleListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCMKey(RuleParser.CMKeyContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link RuleParser#windowType}.
+	 * @param ctx the parse tree
+	 */
+	void enterWindowType(RuleParser.WindowTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link RuleParser#windowType}.
+	 * @param ctx the parse tree
+	 */
+	void exitWindowType(RuleParser.WindowTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link RuleParser#intValue}.
+	 * @param ctx the parse tree
+	 */
+	void enterIntValue(RuleParser.IntValueContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link RuleParser#intValue}.
+	 * @param ctx the parse tree
+	 */
+	void exitIntValue(RuleParser.IntValueContext ctx);
 }

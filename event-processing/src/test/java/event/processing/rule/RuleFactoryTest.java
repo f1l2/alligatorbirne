@@ -34,6 +34,10 @@ public class RuleFactoryTest {
     @Autowired
     private RuleLangFactory rf;
 
+    private String input;
+
+    private RuleLang rule;
+
     @Before
     public void before() throws IOException {
 
@@ -54,8 +58,8 @@ public class RuleFactoryTest {
     @Test
     public void test1() throws IOException {
 
-        String input = "query1 TRIGGERS deviceName, domainName, cMName = 1";
-        RuleLang rule = test(input);
+        input = "query1 TRIGGERS deviceName, domainName, cMName = 1";
+        rule = test(input);
 
         assertNotNull(rule);
         assertEquals("query1", rule.getQueries().get(0).getName());
@@ -69,9 +73,9 @@ public class RuleFactoryTest {
     @Test
     public void test2() throws IOException {
 
-        String input = "query1 TRIGGERS deviceName1, domainName1, cMName1 = 1; deviceName2, domainName2, cMName2 = 2";
+        input = "query1 TRIGGERS deviceName1, domainName1, cMName1 = 1; deviceName2, domainName2, cMName2 = 2";
 
-        RuleLang rule = test(input);
+        rule = test(input);
 
         assertNotNull(rule);
         assertEquals("query1", rule.getQueries().get(0).getName());
@@ -85,9 +89,9 @@ public class RuleFactoryTest {
 
     @Test
     public void test3() throws IOException {
-        String input = "query1 TRIGGERS deviceName1, domainName1, cMName1 = 1; deviceName2, domainName2, cMName2 = 2; deviceName3, domainName3, cMName3 = 3;";
+        input = "query1 TRIGGERS deviceName1, domainName1, cMName1 = 1; deviceName2, domainName2, cMName2 = 2; deviceName3, domainName3, cMName3 = 3;";
 
-        RuleLang rule = test(input);
+        rule = test(input);
 
         assertNotNull(rule);
         assertEquals("query1", rule.getQueries().get(0).getName());
@@ -101,9 +105,9 @@ public class RuleFactoryTest {
     @Test
     public void test4() throws IOException {
 
-        String input = "query1 -> query2 TRIGGERS deviceName1, domainName1, cMName1 = 1; deviceName2, domainName2, cMName2 = 2";
+        input = "query1 -> query2 TRIGGERS deviceName1, domainName1, cMName1 = 1; deviceName2, domainName2, cMName2 = 2";
 
-        RuleLang rule = test(input);
+        rule = test(input);
 
         assertNotNull(rule);
         assertEquals(2, rule.getQueries().size());
@@ -114,9 +118,9 @@ public class RuleFactoryTest {
     @Test
     public void test5() throws IOException {
 
-        String input = "query1 -> query2 -> query3 TRIGGERS deviceName1, domainName1, cMName1 = 1; deviceName2, domainName2, cMName2 = 2";
+        input = "query1 -> query2 -> query3 TRIGGERS deviceName1, domainName1, cMName1 = 1; deviceName2, domainName2, cMName2 = 2";
 
-        RuleLang rule = test(input);
+        rule = test(input);
 
         assertNotNull(rule);
         assertEquals(3, rule.getQueries().size());
@@ -140,5 +144,23 @@ public class RuleFactoryTest {
         r.setQueries(queries);
 
         return r;
+    }
+
+    @Test
+    public void testUseCase1() throws Exception {
+        input = "occupied TRIGGERS Heating, OfficeRoom, ON_OFF = 1";
+        rule = test(input);
+
+        input = "occupied TRIGGERS Heating, OfficeRoom, ON_OFF = 2";
+        rule = test(input);
+    }
+
+    @Test
+    public void testUseCase3() throws Exception {
+        input = "occupied TRIGGERS Heating, OfficeRoom, ON_OFF = 1";
+        rule = test(input);
+
+        input = "occupied TRIGGERS Heating, OfficeRoom, ON_OFF = 2";
+        rule = test(input);
     }
 }

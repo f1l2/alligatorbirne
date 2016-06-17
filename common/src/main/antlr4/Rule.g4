@@ -4,7 +4,9 @@ grammar Rule;
 	package common.gen.language;
 }
 
-structure: querySequence WS ('TRIGGERS'|'triggers') WS reactions;
+structure: querySequence WS ('TRIGGERS'|'triggers') WS reactions  window?;
+
+window: WS windowType'(' WS? intValue WS? ')' | WS windowType'(' WS? intValue WS? ')';
 
 querySequence: (query WS? '->' WS? querySequence) | query;
 
@@ -29,6 +31,10 @@ cMProperty: WS? cMKey WS? '=' WS? cMValue WS?;
 cMValue: INT;
 
 cMKey:  VARIABLE;
+
+windowType: ('WIN:TIME' | 'win:time' | 'WIN:LENGTH' | 'win:length');
+
+intValue: INT;
 
 VARIABLE: ('A'..'Z' | 'a'..'z') ('A'..'Z' | 'a'..'z' | '0'..'9' | '-' | '_' )+;
 

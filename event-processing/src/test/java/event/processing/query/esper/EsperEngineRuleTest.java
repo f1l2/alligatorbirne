@@ -189,4 +189,5 @@ public class EsperEngineRuleTest extends AbstractTestEP {
         sendEventAndWait(new DeviceData[] { devd1, devd3, devd3, devd3, devd1, devd1, devd3, devd1, devd1, devd1 }, new int[] { 0, 1, 1, 1, 2, 2, 3, 4, 4, 4 });
 
     }
+
 }
