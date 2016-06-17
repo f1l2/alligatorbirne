@@ -32,27 +32,23 @@ public class EsperEngineUC1Test extends AbstractTestEP {
     private final String query1Str = "CONDITION name = 'doorClosed' FROM OfficeRoom";
     private final String query2Str = "CONDITION name = 'isMovement' FROM OfficeRoom";
 
-    private final String rule1Str = "doorClosed -> isMovement TRIGGERS Heating, OfficeRoom, ON_OFF = 1 WIN:TIME(2)";
+    private final String rule1Str = "doorClosed -> isMovement TRIGGERS Heating, OfficeRoom, ON_OFF = 1 WIN:TIME(1)";
     private final String rule2Str = "notOccupied TRIGGERS Heating, OfficeRoom, ON_OFF = 0";
 
     @Test
     public void test1() throws Exception {
 
-        dd1 = generateTestDeviceData(1l, "doorClosed", 1l, "OfficeRoom", 1);
-        dd2 = generateTestDeviceData(2l, "isMovement", 2l, "OfficeRoom", 1);
+        dd1 = generateTestDeviceData(1l, "doorclosed", 1l, "officeroom", 1);
+        dd2 = generateTestDeviceData(2l, "ismovement", 2l, "officeroom", 1);
         dd3 = generateTestDeviceData(3l, "foo", 3l, "foo");
 
-        qr.save(qf.parse(query1Str, "occupied"));
-        qr.save(qf.parse(query2Str, "notOccupied"));
+        qr.save(qf.parse(query1Str, "doorclosed"));
+        qr.save(qf.parse(query2Str, "ismovement"));
 
         List<String> epls = this.eplTransformer.transformRule(RepoUtilities.findQueriesToQueryNames(rf.parse(rule1Str), qr));
-        epls.add("select * from pattern [every (a=Event(name = 'occupied') -> b=Event(name = 'notOccupied')) where timer:within(2 seconds)]");
-
         engine.register(epls, testListener);
 
-        sendEventAndWait(new DeviceData[] { dd1, dd3, dd2 }, new int[] { 0, 0, 0 }, 1000);
-
-        sendEventAndWait(new DeviceData[] { dd1, dd2, dd1 }, new int[] { 0, 0, 1 }, 1000);
+        sendEventAndWait(new DeviceData[] { dd1, dd3, dd2, dd1, dd2, dd1 }, new int[] { 0, 0, 1, 1, 2, 2 }, 300);
 
     }
 

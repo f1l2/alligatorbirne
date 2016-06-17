@@ -1,4 +1,4 @@
-package common.lan.query.model;
+package common.lang.query.model;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 

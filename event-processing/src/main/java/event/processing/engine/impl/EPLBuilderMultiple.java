@@ -5,9 +5,9 @@ import java.util.List;
 
 import org.springframework.util.StringUtils;
 
-import common.lan.query.model.AggregateCondition;
 import common.lang.query.QueryLang;
 import common.lang.query.QueryLang.LOGIC_FUNCTION;
+import common.lang.query.model.AggregateCondition;
 
 public class EPLBuilderMultiple extends EPLBuilder {
 

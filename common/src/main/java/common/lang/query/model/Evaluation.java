@@ -1,4 +1,4 @@
-package common.lan.query.model;
+package common.lang.query.model;
 
 import common.lang.query.QueryLang;
 import common.lang.query.QueryLang.COMPARE_FUNCTION;

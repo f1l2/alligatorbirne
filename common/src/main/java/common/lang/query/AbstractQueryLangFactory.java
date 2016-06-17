@@ -24,15 +24,15 @@ import common.gen.language.QueryParser.PropertyContext;
 import common.gen.language.QueryParser.SingleConditionContext;
 import common.gen.language.QueryParser.VariableContext;
 import common.gen.language.QueryParser.WindowTypeContext;
-import common.lan.query.model.AggregateCondition;
-import common.lan.query.model.CompositeCondition;
-import common.lan.query.model.Evaluation;
-import common.lan.query.model.SingleCondition;
-import common.lan.query.model.Window;
 import common.lang.query.QueryLang.AGGREGATION_FUNCTION;
 import common.lang.query.QueryLang.COMPARE_FUNCTION;
 import common.lang.query.QueryLang.KEYWORD;
 import common.lang.query.QueryLang.LOGIC_FUNCTION;
+import common.lang.query.model.AggregateCondition;
+import common.lang.query.model.CompositeCondition;
+import common.lang.query.model.Evaluation;
+import common.lang.query.model.SingleCondition;
+import common.lang.query.model.Window;
 import common.utilities.NormalizeString;
 
 public abstract class AbstractQueryLangFactory {

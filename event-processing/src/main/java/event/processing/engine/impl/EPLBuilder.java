@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 
 import org.springframework.util.CollectionUtils;
 
-import common.lan.query.model.Evaluation;
 import common.lang.query.QueryLang;
+import common.lang.query.model.Evaluation;
 
 public abstract class EPLBuilder {
 

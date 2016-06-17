@@ -5,14 +5,17 @@ import java.util.List;
 
 import common.lang.query.QueryLang;
 import common.lang.rule.model.Reaction;
+import common.lang.rule.model.Window;
 
 public class RuleLang {
 
     /**
      * Enum Keywords
      */
-    protected static enum KEYWORD {
-        TRIGGERS("triggers");
+    public static enum KEYWORD {
+        TRIGGERS("triggers"),
+
+        TIME("win:time");
 
         private String keyword;
 
@@ -27,6 +30,15 @@ public class RuleLang {
         public void setKeyword(String keyword) {
             this.keyword = keyword;
         }
+
+        public static KEYWORD findByKeyword(String keyword) {
+            for (KEYWORD item : KEYWORD.values()) {
+                if (item.getKeyword().equals(keyword)) {
+                    return item;
+                }
+            }
+            return null;
+        }
     }
 
     protected String name;
@@ -40,6 +52,8 @@ public class RuleLang {
     protected List<QueryLang> queries;
 
     protected List<Reaction> reactions;
+
+    protected Window window;
 
     public String getName() {
         return name;
@@ -98,6 +112,14 @@ public class RuleLang {
 
     public void setReactions(List<Reaction> reactions) {
         this.reactions = reactions;
+    }
+
+    public Window getWindow() {
+        return window;
+    }
+
+    public void setWindow(Window window) {
+        this.window = window;
     }
 
     public Boolean getIsActivated() {

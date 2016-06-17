@@ -4,10 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import common.lang.query.QueryLang;
+import common.lang.rule.model.Window;
 
 public class EPLBuilderSequence extends EPLBuilder {
 
-    @Override
+    private Window window = null;
+
+    public EPLBuilderSequence(Window window) {
+        super();
+        this.window = window;
+    }
+
     public List<String> createEPL(List<QueryLang> queries) {
 
         char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
@@ -15,6 +22,9 @@ public class EPLBuilderSequence extends EPLBuilder {
 
         StringBuilder sb = new StringBuilder();
         sb.append("select * from pattern [every ");
+        if (window != null) {
+            sb.append("(");
+        }
 
         for (QueryLang query : queries) {
             if (i != 0) {
@@ -26,6 +36,13 @@ public class EPLBuilderSequence extends EPLBuilder {
             sb.append("')");
             i++;
         }
+
+        if (window != null) {
+            sb.append(") where timer:within(");
+            sb.append(window.getValue());
+            sb.append(" seconds)");
+        }
+
         sb.append("]");
 
         List<String> epls = new ArrayList<String>();

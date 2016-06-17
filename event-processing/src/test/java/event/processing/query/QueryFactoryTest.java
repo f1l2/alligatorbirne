@@ -12,12 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import common.lan.query.model.AggregateCondition;
-import common.lan.query.model.CompositeCondition;
-import common.lan.query.model.Evaluation;
-import common.lan.query.model.SingleCondition;
 import common.lang.query.QueryLang;
 import common.lang.query.QueryLang.COMPARE_FUNCTION;
+import common.lang.query.model.AggregateCondition;
+import common.lang.query.model.CompositeCondition;
+import common.lang.query.model.Evaluation;
+import common.lang.query.model.SingleCondition;
 import event.processing.Application;
 import event.processing.statement.QueryLangFactory;
 

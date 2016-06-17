@@ -66,7 +66,7 @@ public class EsperEPLTransformer implements LanguageTransformer {
 
         if (rule.getQueries().size() > 1) {
 
-            this.accept(new EPLBuilderSequence());
+            this.accept(new EPLBuilderSequence(rule.getWindow()));
 
             List<String> eplSequence = builder.createEPL(rule.getQueries());
 

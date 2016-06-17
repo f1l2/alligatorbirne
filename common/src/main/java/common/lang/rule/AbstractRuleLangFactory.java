@@ -17,7 +17,11 @@ import common.gen.language.RuleParser.CMPropertyContext;
 import common.gen.language.RuleParser.CMValueContext;
 import common.gen.language.RuleParser.DevInfoContext;
 import common.gen.language.RuleParser.DomainInfoContext;
+import common.gen.language.RuleParser.IntValueContext;
+import common.gen.language.RuleParser.WindowTypeContext;
+import common.lang.rule.RuleLang.KEYWORD;
 import common.lang.rule.model.Reaction;
+import common.lang.rule.model.Window;
 import common.utilities.NormalizeString;
 
 public abstract class AbstractRuleLangFactory {
@@ -39,6 +43,16 @@ public abstract class AbstractRuleLangFactory {
         });
 
         ruleParser.addParseListener(new RuleBaseListener() {
+
+            @Override
+            public void exitWindow(RuleParser.WindowContext ctx) {
+
+                Window window = new Window();
+                window.setType(KEYWORD.findByKeyword(ctx.getChild(WindowTypeContext.class, 0).getText().toLowerCase()));
+                window.setValue(ctx.getChild(IntValueContext.class, 0).getText());
+
+                rule.setWindow(window);
+            }
 
             @Override
             public void exitQuery(RuleParser.QueryContext ctx) {

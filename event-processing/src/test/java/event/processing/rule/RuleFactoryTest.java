@@ -16,6 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import common.lang.query.QueryLang;
 import common.lang.rule.RuleLang;
+import common.utilities.NormalizeString;
 import event.processing.Application;
 import event.processing.repo.QueryRepository;
 import event.processing.statement.QueryLangFactory;
@@ -127,6 +128,21 @@ public class RuleFactoryTest {
         assertEquals("query1", rule.getQueries().get(0).getName());
         assertEquals("query2", rule.getQueries().get(1).getName());
         assertEquals("query3", rule.getQueries().get(2).getName());
+    }
+
+    @Test
+    public void test6() throws IOException {
+
+        input = "query1 -> query2 -> query3 TRIGGERS deviceName1, domainName1, cMName1 = 1; deviceName2, domainName2, cMName2 = 2 WIN:TIME(10)";
+
+        rule = test(NormalizeString.normalize(input));
+
+        assertNotNull(rule);
+        assertEquals(3, rule.getQueries().size());
+        assertEquals("query1", rule.getQueries().get(0).getName());
+        assertEquals("query2", rule.getQueries().get(1).getName());
+        assertEquals("query3", rule.getQueries().get(2).getName());
+        assertEquals("10", rule.getWindow().getValue());
     }
 
     private RuleLang test(String rule) throws IOException {
