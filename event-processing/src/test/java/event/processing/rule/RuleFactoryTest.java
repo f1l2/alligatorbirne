@@ -1,7 +1,9 @@
 package event.processing.rule;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -143,6 +145,42 @@ public class RuleFactoryTest {
         assertEquals("query2", rule.getQueries().get(1).getName());
         assertEquals("query3", rule.getQueries().get(2).getName());
         assertEquals("10", rule.getWindow().getValue());
+    }
+
+    @Test
+    public void test7() throws IOException {
+
+        input = "query1 -> query2 -> query3 TRIGGERS deviceName1, domainName1, cMName1 = 1; deviceName2, domainName2, cMName2 = 2 WIN:TIME(10)";
+
+        rule = test(NormalizeString.normalize(input));
+
+        assertNotNull(rule);
+        assertEquals(3, rule.getQueries().size());
+        assertEquals("query1", rule.getQueries().get(0).getName());
+        assertEquals("query2", rule.getQueries().get(1).getName());
+        assertEquals("query3", rule.getQueries().get(2).getName());
+        assertEquals("10", rule.getWindow().getValue());
+        assertFalse(rule.getNegations().contains("query1"));
+        assertFalse(rule.getNegations().contains("query2"));
+        assertFalse(rule.getNegations().contains("query3"));
+    }
+
+    @Test
+    public void test8() throws IOException {
+
+        input = "NOT query1 -> query2 -> NOT query3 TRIGGERS deviceName1, domainName1, cMName1 = 1; deviceName2, domainName2, cMName2 = 2 WIN:TIME(10)";
+
+        rule = test(NormalizeString.normalize(input));
+
+        assertNotNull(rule);
+        assertEquals(3, rule.getQueries().size());
+        assertEquals("query1", rule.getQueries().get(0).getName());
+        assertEquals("query2", rule.getQueries().get(1).getName());
+        assertEquals("query3", rule.getQueries().get(2).getName());
+        assertEquals("10", rule.getWindow().getValue());
+        assertTrue(rule.getNegations().contains("query1"));
+        assertFalse(rule.getNegations().contains("query2"));
+        assertTrue(rule.getNegations().contains("query3"));
     }
 
     private RuleLang test(String rule) throws IOException {

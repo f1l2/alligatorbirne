@@ -40,6 +40,16 @@ public interface RuleListener extends ParseTreeListener {
 	 */
 	void exitQuerySequence(RuleParser.QuerySequenceContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link RuleParser#querySingle}.
+	 * @param ctx the parse tree
+	 */
+	void enterQuerySingle(RuleParser.QuerySingleContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link RuleParser#querySingle}.
+	 * @param ctx the parse tree
+	 */
+	void exitQuerySingle(RuleParser.QuerySingleContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link RuleParser#query}.
 	 * @param ctx the parse tree
 	 */
@@ -49,6 +59,16 @@ public interface RuleListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitQuery(RuleParser.QueryContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link RuleParser#negation}.
+	 * @param ctx the parse tree
+	 */
+	void enterNegation(RuleParser.NegationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link RuleParser#negation}.
+	 * @param ctx the parse tree
+	 */
+	void exitNegation(RuleParser.NegationContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link RuleParser#reactions}.
 	 * @param ctx the parse tree

@@ -8,9 +8,13 @@ structure: querySequence WS ('TRIGGERS'|'triggers') WS reactions  window?;
 
 window: WS windowType'(' WS? intValue WS? ')' | WS windowType'(' WS? intValue WS? ')';
 
-querySequence: (query WS? '->' WS? querySequence) | query;
+querySequence: (querySingle WS? '->' WS? querySequence) | querySingle;
+
+querySingle: negation WS query | query;
 
 query: VARIABLE;
+
+negation: 'NOT' | 'not';
 
 reactions: (reaction  WS? ';' WS? reactions | reaction ';'?);
 

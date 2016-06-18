@@ -1,7 +1,11 @@
 package common.lang.rule;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import org.springframework.util.StringUtils;
 
 import common.lang.query.QueryLang;
 import common.lang.rule.model.Reaction;
@@ -43,15 +47,17 @@ public class RuleLang {
 
     protected String name;
 
+    protected Set<String> negations = new HashSet<String>();
+
     protected String nativeRule;
 
     protected Boolean isActivated = false;
 
-    protected List<String> queryNames;
+    protected List<String> queryNames = new ArrayList<String>();
 
-    protected List<QueryLang> queries;
+    protected List<QueryLang> queries = new ArrayList<QueryLang>();
 
-    protected List<Reaction> reactions;
+    protected List<Reaction> reactions = new ArrayList<Reaction>();
 
     protected Window window;
 
@@ -80,9 +86,6 @@ public class RuleLang {
     }
 
     public void addQuery(QueryLang query) {
-        if (null == this.queries) {
-            this.queries = new ArrayList<QueryLang>();
-        }
         this.queries.add(query);
     }
 
@@ -90,28 +93,26 @@ public class RuleLang {
         return queryNames;
     }
 
-    public void setQueryNames(List<String> queryNames) {
-        this.queryNames = queryNames;
-    }
-
     public void addQueryName(String queryName) {
-        if (null == this.queryNames) {
-            this.queryNames = new ArrayList<String>();
-        }
         this.queryNames.add(queryName);
     }
 
     public List<Reaction> getReactions() {
-
-        if (null == reactions) {
-            reactions = new ArrayList<Reaction>();
-        }
-
         return reactions;
     }
 
     public void setReactions(List<Reaction> reactions) {
         this.reactions = reactions;
+    }
+
+    public void addNegation(String query) {
+        if (!StringUtils.isEmpty(query)) {
+            this.negations.add(query);
+        }
+    }
+
+    public Set<String> getNegations() {
+        return this.negations;
     }
 
     public Window getWindow() {
@@ -129,5 +130,4 @@ public class RuleLang {
     public void setIsActivated(Boolean isActivated) {
         this.isActivated = isActivated;
     }
-
 }

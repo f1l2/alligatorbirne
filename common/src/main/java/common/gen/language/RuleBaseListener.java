@@ -54,6 +54,18 @@ public class RuleBaseListener implements RuleListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterQuerySingle(RuleParser.QuerySingleContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitQuerySingle(RuleParser.QuerySingleContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterQuery(RuleParser.QueryContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -61,6 +73,18 @@ public class RuleBaseListener implements RuleListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitQuery(RuleParser.QueryContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterNegation(RuleParser.NegationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNegation(RuleParser.NegationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

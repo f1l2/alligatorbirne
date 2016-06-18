@@ -44,6 +44,8 @@ public abstract class AbstractRuleLangFactory {
 
         ruleParser.addParseListener(new RuleBaseListener() {
 
+            boolean isNegation = false;
+
             @Override
             public void exitWindow(RuleParser.WindowContext ctx) {
 
@@ -55,8 +57,17 @@ public abstract class AbstractRuleLangFactory {
             }
 
             @Override
+            public void exitNegation(RuleParser.NegationContext ctx) {
+                isNegation = true;
+            }
+
+            @Override
             public void exitQuery(RuleParser.QueryContext ctx) {
                 rule.addQueryName(ctx.getText());
+                if (isNegation) {
+                    rule.addNegation(ctx.getText());
+                    isNegation = false;
+                }
             }
 
             @Override
