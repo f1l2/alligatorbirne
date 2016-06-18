@@ -85,7 +85,7 @@ public class QueryComponentImpl extends NotifyComponent implements QueryComponen
         });
 
         preparedQueries.stream().forEach(pq -> queryComboBox.addItem(pq));
-        preparedQueries.stream().forEach(pq -> queryComboBox.setItemCaption(pq, pq.getQuery()));
+        preparedQueries.stream().forEach(pq -> queryComboBox.setItemCaption(pq, pq.getName() + " : " + pq.getQuery()));
 
         nameTxtField.setWidth(100, Unit.PERCENTAGE);
         queryComboBox.setWidth(100, Unit.PERCENTAGE);

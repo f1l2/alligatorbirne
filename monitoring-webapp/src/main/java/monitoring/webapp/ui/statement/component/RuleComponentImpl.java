@@ -92,7 +92,7 @@ public class RuleComponentImpl extends NotifyComponent implements RuleComponent 
         ComboBox ruleComboBox = new ComboBox("");
 
         preparedRules.stream().forEach(pq -> ruleComboBox.addItem(pq));
-        preparedRules.stream().forEach(pq -> ruleComboBox.setItemCaption(pq, pq.getRule()));
+        preparedRules.stream().forEach(pq -> ruleComboBox.setItemCaption(pq, pq.getName() + " : " + pq.getRule()));
 
         ruleComboBox.addValueChangeListener(l -> {
             if (ruleComboBox.getValue() != null) {

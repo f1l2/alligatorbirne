@@ -19,6 +19,7 @@ import common.lang.query.model.CompositeCondition;
 import common.lang.query.model.Evaluation;
 import common.lang.query.model.SingleCondition;
 import event.processing.Application;
+import event.processing.UCTest;
 import event.processing.statement.QueryLangFactory;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -230,50 +231,15 @@ public class QueryFactoryTest {
     }
 
     @Test
-    public void testUseCase1() throws Exception {
-        input = "CONDITION doorClosed=1 AND NOT isMovement=1 FROM OfficeRoom WIN:TIME(600)";
-        query = test(input);
-
-        input = "CONDITION doorCLosed=1 AND isMovement=1 FROM OfficeRoom WIN:TIME(600)";
-        query = test(input);
-
-    }
-
-    @Test
-    public void testUseCase2() throws Exception {
-        input = "CONDITION AVG(performanceInPercent) > 90 FROM OfficeRoom WIN:TIME(600)";
-        query = test(input);
-    }
-
-    @Test
-    public void testUseCase31() throws Exception {
-        input = "CONDITION doorClosed = 1 AND deskA = 1 AND deskB = 0 FROM OfficeRoom WIN:TIME(10)";
-        query = test(input);
-    }
-
-    @Test
-    public void testUseCase32() throws Exception {
-        input = "CONDITION doorClosed = 1 AND deskA = 1 AND deskB = 1 FROM OfficeRoom WIN:TIME(10)";
-        query = test(input);
-    }
-
-    @Test
-    public void testUseCase4() throws Exception {
-        input = "CONDITION buildingEntered = 1 AND specialTreatment = 1 AND deskB = 1 FROM EntranceFloor";
-        query = test(input);
-    }
-
-    @Test
-    public void testUseCase5() throws Exception {
-        input = "CONDITION AVG(waterUsageInLitre) > 10 FROM OfficeFloor WIN:TIME(3600)";
-        query = test(input);
-    }
-
-    @Test
-    public void testUseCase6() throws Exception {
-        input = "CONDITION temperature > 32 AND smokeDetector = 1 FROM OfficeFloor WIN:TIME(120)";
-        query = test(input);
-
+    public void testUseCases() throws Exception {
+        test(UCTest.UC1_QUERY1);
+        test(UCTest.UC1_QUERY2);
+        test(UCTest.UC2_QUERY1);
+        test(UCTest.UC3_QUERY1);
+        test(UCTest.UC3_QUERY2);
+        test(UCTest.UC4_QUERY1);
+        test(UCTest.UC5_QUERY1);
+        test(UCTest.UC6_QUERY1);
     }
 
     private QueryLang test(String query) throws Exception {

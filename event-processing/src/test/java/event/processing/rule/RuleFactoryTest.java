@@ -20,6 +20,7 @@ import common.lang.query.QueryLang;
 import common.lang.rule.RuleLang;
 import common.utilities.NormalizeString;
 import event.processing.Application;
+import event.processing.UCTest;
 import event.processing.repo.QueryRepository;
 import event.processing.statement.QueryLangFactory;
 import event.processing.statement.RuleLangFactory;
@@ -201,20 +202,14 @@ public class RuleFactoryTest {
     }
 
     @Test
-    public void testUseCase1() throws Exception {
-        input = "occupied TRIGGERS Heating, OfficeRoom, ON_OFF = 1";
-        rule = test(input);
-
-        input = "occupied TRIGGERS Heating, OfficeRoom, ON_OFF = 2";
-        rule = test(input);
-    }
-
-    @Test
-    public void testUseCase3() throws Exception {
-        input = "occupied TRIGGERS Heating, OfficeRoom, ON_OFF = 1";
-        rule = test(input);
-
-        input = "occupied TRIGGERS Heating, OfficeRoom, ON_OFF = 2";
-        rule = test(input);
+    public void testUseCases() throws Exception {
+        // test(UCTest.UC1_RULE1);
+        test(UCTest.UC2_RULE1);
+        // test(UCTest.UC2_RULE1);
+        // test(UCTest.UC3_RULE1);
+        // test(UCTest.UC3_RULE2);
+        // test(UCTest.UC4_RULE1);
+        // test(UCTest.UC5_RULE1);
+        // test(UCTest.UC6_RULE1);
     }
 }

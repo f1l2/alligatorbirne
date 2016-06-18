@@ -338,9 +338,9 @@ public class MonitoringService {
     public void deleteAllLog() {
 
         try {
-            this.query("DELETE FROM LOGGING_EVENT_PROPERTY WHERE 1=1;");
-            this.query("DELETE FROM LOGGING_EVENT_EXCEPTION WHERE 1=1");
-            this.query("DELETE FROM LOGGING_EVENT WHERE 1=1;");
+            this.update("DELETE FROM LOGGING_EVENT_PROPERTY WHERE 1=1;");
+            this.update("DELETE FROM LOGGING_EVENT_EXCEPTION WHERE 1=1");
+            this.update("DELETE FROM LOGGING_EVENT WHERE 1=1;");
         } catch (SQLException e) {
             System.out.println("Error accessing loggin db." + e);
         }
@@ -357,6 +357,16 @@ public class MonitoringService {
         statement.close();
 
         return resultSet;
+    }
+
+    private synchronized void update(String expression) throws SQLException {
+
+        Statement statement = null;
+
+        statement = loggingDB.getConnection().createStatement();
+        statement.executeUpdate(expression);
+
+        statement.close();
     }
 
     public static List<LogDTO> convertToLogDTO(ResultSet resultSet) throws SQLException {

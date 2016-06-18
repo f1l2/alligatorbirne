@@ -4,36 +4,23 @@ import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import common.data.model.DeviceData;
 import event.processing.AbstractTestEP;
 import event.processing.Application;
-import event.processing.repo.QueryRepository;
-import event.processing.statement.QueryLangFactory;
-import event.processing.statement.RuleLangFactory;
 import event.processing.utilities.RepoUtilities;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 public class EsperEngineUC1Test extends AbstractTestEP {
 
-    @Autowired
-    private QueryLangFactory qf;
+    private final String query1Str = "CONDITION name = 'doorClosed' AND value=1 FROM OfficeRoom";
+    private final String query2Str = "CONDITION name = 'isMovement' AND value=1 FROM OfficeRoom";
 
-    @Autowired
-    private QueryRepository qr;
-
-    @Autowired
-    private RuleLangFactory rf;
-
-    private final String query1Str = "CONDITION name = 'doorClosed' FROM OfficeRoom";
-    private final String query2Str = "CONDITION name = 'isMovement' FROM OfficeRoom";
-
-    private final String rule1Str = "doorClosed -> isMovement TRIGGERS Heating, OfficeRoom, ON_OFF = 1 WIN:TIME(1)";
-    private final String rule2Str = "notOccupied TRIGGERS Heating, OfficeRoom, ON_OFF = 0";
+    private final String rule1Str = "UC1Q1 -> UC1Q2 TRIGGERS Heating, OfficeRoom, ON_OFF = 1 WIN:TIME(1)";
+    private final String rule2Str = "UC1Q1 -> UC1Q2 TRIGGERS Heating, OfficeRoom, ON_OFF = 0";
 
     @Test
     public void test1() throws Exception {
@@ -42,8 +29,8 @@ public class EsperEngineUC1Test extends AbstractTestEP {
         dd2 = generateTestDeviceData(2l, "ismovement", 2l, "officeroom", 1);
         dd3 = generateTestDeviceData(3l, "foo", 3l, "foo");
 
-        qr.save(qf.parse(query1Str, "doorclosed"));
-        qr.save(qf.parse(query2Str, "ismovement"));
+        qr.save(qf.parse(query1Str, "UC1Q1"));
+        qr.save(qf.parse(query2Str, "UC1Q2"));
 
         List<String> epls = this.eplTransformer.transformRule(RepoUtilities.findQueriesToQueryNames(rf.parse(rule1Str), qr));
         engine.register(epls, testListener);

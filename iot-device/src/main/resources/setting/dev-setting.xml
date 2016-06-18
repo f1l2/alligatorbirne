@@ -6,8 +6,24 @@
                 <name>Temperature</name>
             </deviceInformation>
             <domainInformation>
-                <name>FLOOR1</name>
+                <name>Floor1</name>
             </domainInformation>
+        </dataSource>
+        <dataSource>
+        	<deviceInformation>
+        		<name>utilizationInPercent</name>
+        	</deviceInformation>
+        	<domainInformation>
+        		<name>TechnicalFloor</name>
+        	</domainInformation>
+        </dataSource>
+        <dataSource>
+        	<deviceInformation>
+        		<name>abc</name>
+        	</deviceInformation>
+        	<domainInformation>
+        		<name>def</name>
+        	</domainInformation>
         </dataSource>
     </dataSources>
     <connections>

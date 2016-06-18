@@ -20,13 +20,21 @@ import event.processing.engine.Engine;
 import event.processing.engine.EngineFactory;
 import event.processing.engine.LanguageTransformer;
 import event.processing.query.esper.TestListener;
+import event.processing.repo.QueryRepository;
 import event.processing.statement.QueryLangFactory;
+import event.processing.statement.RuleLangFactory;
 
 public abstract class AbstractTestEP {
 
     @Autowired
     @Qualifier("esper")
     protected EngineFactory factory;
+
+    @Autowired
+    protected QueryRepository qr;
+
+    @Autowired
+    protected RuleLangFactory rf;
 
     @Autowired
     protected QueryLangFactory qf;
